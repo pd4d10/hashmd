@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
+    "start": "tsdx watch --format cjs,esm,umd",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
