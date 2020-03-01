@@ -34,5 +34,9 @@
     "tsdx": "^0.12.3",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/marked": "^0.7.2",
+    "marked": "^0.8.0"
   }
 }
