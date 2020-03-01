@@ -1,9 +1,9 @@
-import App from './app.svelte';
+import Editor from './Editor.svelte';
 
-const app = new App({
+const app = new Editor({
   target: document.body,
   props: {
-    name: 'world'
+    source: ``
   }
 });
 
