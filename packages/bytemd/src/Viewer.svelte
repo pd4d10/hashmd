@@ -6,9 +6,13 @@
 </script>
 
 <style>
-
+  div {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+  }
 </style>
 
-<div>
+<div class="markdown-body">
   <Element items={ast.children} />
 </div>

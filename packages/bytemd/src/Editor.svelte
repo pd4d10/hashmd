@@ -7,6 +7,12 @@
 <style>
   div {
     display: flex;
+    height: 100vh;
+  }
+  textarea {
+    flex: 1;
+    font-size: 14px;
+    padding: 10px;
   }
 </style>
 
