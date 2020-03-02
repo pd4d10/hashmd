@@ -21,9 +21,9 @@
       <svelte:self items={children} />
     </em>
   {:else if type === 'strong'}
-    <code>
+    <strong>
       <svelte:self items={children} />
-    </code>
+    </strong>
   {:else if type === 'inlineCode'}
     <code>{value}</code>
   {:else if type === 'heading'}
