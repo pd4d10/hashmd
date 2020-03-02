@@ -10,11 +10,11 @@ import { terser } from 'rollup-plugin-terser';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: 'src/main.js',
+  input: 'src/index.js',
   output: {
     sourcemap: true,
     format: 'iife',
-    name: 'app',
+    name: 'bytemd',
     file: 'public/build/bundle.js'
   },
   plugins: [

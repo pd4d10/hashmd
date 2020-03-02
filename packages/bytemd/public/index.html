@@ -17,13 +17,30 @@
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css"
     />
-    <link rel="stylesheet" href="/global.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+      }
+      #root {
+        width: 1200px;
+        margin: 0 auto;
+      }
+    </style>
     <link rel="stylesheet" href="/build/bundle.css" />
-
-    <script defer src="/build/bundle.js"></script>
   </head>
 
   <body>
     <div id="root"></div>
+    <script src="/build/bundle.js"></script>
+    <script>
+      new bytemd.Editor({
+        target: document.getElementById('root'),
+        props: {
+          source: ``
+        }
+      });
+    </script>
   </body>
 </html>
