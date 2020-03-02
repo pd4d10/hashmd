@@ -1,6 +1,8 @@
 {
   "name": "bytemd",
   "version": "0.0.1",
+  "main": "dist/bytemd.cjs.js",
+  "module": "dist/bytemd.esm.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
