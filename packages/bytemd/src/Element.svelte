@@ -1,5 +1,6 @@
 <script>
   import sanitizeHtml from 'sanitize-html';
+  import katex from 'katex';
   export let items;
   function sanitize(html) {
     return sanitizeHtml(value, {
@@ -81,6 +82,12 @@
     </a>
   {:else if type === 'image'}
     <img src={url} {alt} />
+  {:else if type === 'math'}
+    <p>
+      {@html katex.renderToString(value, { throwOnError: false })}
+    </p>
+  {:else if type === 'inlineMath'}
+    {@html katex.renderToString(value, { throwOnError: false })}
   {:else if type === 'html'}
     {@html sanitize(value)}
   {/if}

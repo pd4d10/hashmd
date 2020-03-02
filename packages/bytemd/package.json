@@ -18,8 +18,11 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "remark": "^11.0.2",
+    "katex": "^0.11.1",
+    "remark-math": "^2.0.0",
+    "remark-parse": "^7.0.2",
     "sanitize-html": "^1.22.0",
-    "sirv-cli": "^0.4.4"
+    "sirv-cli": "^0.4.4",
+    "unified": "^8.4.2"
   }
 }
