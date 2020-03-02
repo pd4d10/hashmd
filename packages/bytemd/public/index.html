@@ -34,12 +34,16 @@
     <div id="root"></div>
     <script src="/build/bytemd.js"></script>
     <script>
-      new bytemd.Editor({
-        target: document.getElementById('root'),
-        props: {
-          source: ``
-        }
-      });
+      (async () => {
+        const res = await fetch('/fixture.md');
+        const text = await res.text();
+        new bytemd.Editor({
+          target: document.getElementById('root'),
+          props: {
+            source: text
+          }
+        });
+      })();
     </script>
   </body>
 </html>

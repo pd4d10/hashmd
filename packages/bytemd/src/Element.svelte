@@ -3,7 +3,7 @@
   import katex from 'katex';
   export let items;
   function sanitize(html) {
-    return sanitizeHtml(value, {
+    return sanitizeHtml(html, {
       allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
     });
   }
