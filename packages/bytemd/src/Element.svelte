@@ -1,5 +1,11 @@
 <script>
+  import sanitizeHtml from 'sanitize-html';
   export let items;
+  function sanitize(html) {
+    return sanitizeHtml(value, {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+    });
+  }
 </script>
 
 <style>
@@ -75,5 +81,7 @@
     </a>
   {:else if type === 'image'}
     <img src={url} {alt} />
+  {:else if type === 'html'}
+    {@html sanitize(value)}
   {/if}
 {/each}
