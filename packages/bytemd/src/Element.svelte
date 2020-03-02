@@ -54,9 +54,7 @@
       <svelte:self items={children} />
     </blockquote>
   {:else if type === 'code'}
-    <pre>
-      <code>{value}</code>
-    </pre>
+    <pre>{value}</pre>
   {:else if type === 'list'}
     {#if ordered}
       <ol>
