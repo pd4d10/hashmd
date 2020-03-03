@@ -1,7 +1,10 @@
 <script>
   import sanitizeHtml from 'sanitize-html';
+  import hljs from 'highlight.js';
   import katex from 'katex';
+
   export let items;
+
   function sanitize(html) {
     return sanitizeHtml(html, {
       allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
@@ -13,7 +16,7 @@
 
 </style>
 
-{#each items as { type, value, children, ordered, depth, url, alt }, i}
+{#each items as { type, value, children, ordered, depth, url, alt, lang }, i}
   {#if type === 'text'}
     {value}
   {:else if type === 'emphasis'}
@@ -61,7 +64,11 @@
       <svelte:self items={children} />
     </blockquote>
   {:else if type === 'code'}
-    <pre>{value}</pre>
+    <pre>
+      {#if hljs.getLanguage(lang)}
+        {@html hljs.highlight(lang, value).value}
+      {:else}{value}{/if}
+    </pre>
   {:else if type === 'list'}
     {#if ordered}
       <ol>
