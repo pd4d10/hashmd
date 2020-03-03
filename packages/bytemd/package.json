@@ -3,18 +3,21 @@
   "version": "0.0.1",
   "main": "dist/bytemd.cjs.js",
   "module": "dist/bytemd.esm.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "@types/codemirror": "^0.0.87",
     "codemirror": "^5.52.0",
     "highlight.js": "^9.18.1",
     "katex": "^0.11.1",
