@@ -1,16 +1,22 @@
 <script>
   import { onMount } from 'svelte';
   import codemirror from 'codemirror';
-  import mdMode from 'codemirror/mode/markdown/markdown.js';
+  import 'codemirror/mode/markdown/markdown.js';
   import Viewer from './Viewer.svelte';
 
   window.process = { cwd: () => '/' }; // FIXME:
+
   export let source;
+  export let codemirrorConfig;
+
   let textarea;
 
   onMount(() => {
     const ed = codemirror.fromTextArea(textarea, {
-      mode: 'markdown'
+      mode: 'markdown',
+      lineNumbers: true,
+      lineWrapping: true,
+      ...codemirrorConfig
     });
     ed.setValue(source);
     ed.on('change', () => {
