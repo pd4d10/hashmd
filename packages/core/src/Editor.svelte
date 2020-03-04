@@ -28,14 +28,21 @@
 </script>
 
 <style>
-  div {
+  .container {
     display: flex;
     height: 100vh;
+  }
+  .viewer {
+    padding: 20px;
+    flex: 1;
+    overflow: auto;
   }
 </style>
 
 <Toolbar {cm} />
-<div>
+<div class="container">
   <textarea bind:this={textarea} />
-  <Viewer {source} />
+  <div class="viewer">
+    <Viewer {source} />
+  </div>
 </div>

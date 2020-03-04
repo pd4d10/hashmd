@@ -15,11 +15,7 @@
 </script>
 
 <style>
-  div {
-    flex: 1;
-    overflow: auto;
-    padding: 20px;
-  }
+
 </style>
 
 <div class="markdown-body">
