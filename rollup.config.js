@@ -1,3 +1,4 @@
+// @ts-check
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -13,25 +14,43 @@ const outputConfig = {
   name: 'bytemd'
 };
 
-const pkg = require('./package.json');
+const corePkg = require('./packages/core/package.json');
 
-export default {
-  input: 'src/index.js',
+function serve() {
+  let started = false;
+
+  return {
+    writeBundle() {
+      if (!started) {
+        started = true;
+
+        require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+          stdio: ['ignore', 'inherit', 'inherit'],
+          shell: true
+        });
+      }
+    }
+  };
+}
+
+/** @type {import('rollup').RollupOptions} */
+const core = {
+  input: 'packages/core/src/index.js',
   output: [
     {
       ...outputConfig,
       format: 'es',
-      file: pkg.module
+      file: 'packages/core/' + corePkg.module
     },
     {
       ...outputConfig,
       format: 'cjs',
-      file: pkg.main
+      file: 'packages/core/' + corePkg.main
     },
     {
       ...outputConfig,
       format: 'umd',
-      file: 'public/build/bytemd.js'
+      file: 'packages/core/' + 'public/build/bytemd.js'
     }
   ],
   plugins: [
@@ -74,19 +93,4 @@ export default {
   }
 };
 
-function serve() {
-  let started = false;
-
-  return {
-    writeBundle() {
-      if (!started) {
-        started = true;
-
-        require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-          stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true
-        });
-      }
-    }
-  };
-}
+export default [core];

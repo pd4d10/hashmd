@@ -5,33 +5,18 @@
   "main": "dist/bytemd.cjs.js",
   "module": "dist/bytemd.esm.js",
   "types": "index.d.ts",
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public"
-  },
   "files": [
     "dist",
     "index.d.ts"
   ],
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.0.0",
-    "@rollup/plugin-json": "^4.0.2",
-    "@rollup/plugin-node-resolve": "^7.0.0",
     "@types/codemirror": "^0.0.87",
     "codemirror": "^5.52.0",
     "highlight.js": "^9.18.1",
     "katex": "^0.11.1",
     "remark-math": "^2.0.0",
     "remark-parse": "^7.0.2",
-    "rollup": "^1.20.0",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^5.1.2",
     "sanitize-html": "^1.22.0",
-    "sirv-cli": "^0.4.4",
-    "svelte": "^3.0.0",
     "unified": "^8.4.2"
   }
 }
