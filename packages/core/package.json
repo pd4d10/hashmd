@@ -1,6 +1,7 @@
 {
-  "name": "bytemd",
+  "name": "@bytemd/core",
   "version": "0.0.1",
+  "description": "Full-featured markdown editor and viewer",
   "main": "dist/bytemd.cjs.js",
   "module": "dist/bytemd.esm.js",
   "types": "index.d.ts",
