@@ -4,9 +4,11 @@
   "description": "Full-featured markdown editor and viewer",
   "main": "dist/bytemd-react.cjs.js",
   "module": "dist/bytemd-react.esm.js",
+  "types": "index.d.ts",
   "keywords": [],
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
