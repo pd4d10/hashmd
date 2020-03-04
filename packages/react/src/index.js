@@ -3,6 +3,7 @@ import * as bytemd from '@bytemd/core';
 
 export class Viewer extends Component {
   constructor() {
+    super();
     this.container = null;
     this.setContainer = e => {
       this.container = e;
