@@ -27,6 +27,10 @@
     <strong>
       <svelte:self items={children} />
     </strong>
+  {:else if type === 'delete'}
+    <del>
+      <svelte:self items={children} />
+    </del>
   {:else if type === 'inlineCode'}
     <code>{value}</code>
   {:else if type === 'heading'}

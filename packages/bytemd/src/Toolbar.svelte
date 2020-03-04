@@ -17,6 +17,9 @@
   function handleItalic() {
     return handleDec('*');
   }
+  function handleStrikethrough() {
+    return handleDec('~~');
+  }
   function handleBlockquote() {}
 </script>
 
@@ -31,5 +34,7 @@
 <div>
   <button on:click={handleBold}>bold</button>
   <button on:click={handleItalic}>italic</button>
+  <button on:click={handleStrikethrough}>strikethrough</button>
   <button on:click={handleBlockquote}>blockquote</button>
+
 </div>
