@@ -4,11 +4,12 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
-import livereload from 'rollup-plugin-livereload';
+// import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
+/** @type {import('rollup').OutputOptions} */
 const outputConfig = {
   sourcemap: true,
   name: 'bytemd'
@@ -82,7 +83,7 @@ const core = {
 
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
-    !production && livereload('public'),
+    // !production && livereload('public'),
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
@@ -95,17 +96,23 @@ const core = {
 
 const reactPkg = require('./packages/react/package.json');
 
+/** @type {import('rollup').OutputOptions} */
+const reactOutputConfig = {
+  sourcemap: true
+};
+
 /** @type {import('rollup').RollupOptions} */
 const react = {
   input: 'packages/react/src/index.js',
+  external: ['react', '@bytemd/core'],
   output: [
     {
-      ...outputConfig,
+      ...reactOutputConfig,
       format: 'es',
       file: 'packages/react/' + reactPkg.module
     },
     {
-      ...outputConfig,
+      ...reactOutputConfig,
       format: 'cjs',
       file: 'packages/react/' + reactPkg.main
     }
