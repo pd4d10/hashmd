@@ -93,4 +93,24 @@ const core = {
   }
 };
 
-export default [core];
+const reactPkg = require('./packages/react/package.json');
+
+/** @type {import('rollup').RollupOptions} */
+const react = {
+  input: 'packages/react/src/index.js',
+  output: [
+    {
+      ...outputConfig,
+      format: 'es',
+      file: 'packages/react/' + reactPkg.module
+    },
+    {
+      ...outputConfig,
+      format: 'cjs',
+      file: 'packages/react/' + reactPkg.main
+    }
+  ],
+  plugins: [production && terser()]
+};
+
+export default [core, react];

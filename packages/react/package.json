@@ -1,0 +1,23 @@
+{
+  "name": "@bytemd/react",
+  "version": "0.0.1",
+  "description": "Full-featured markdown editor and viewer",
+  "main": "dist/bytemd-react.cjs.js",
+  "module": "dist/bytemd-react.esm.js",
+  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@bytemd/core": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.23",
+    "react": "^16.13.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  }
+}
