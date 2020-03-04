@@ -95,7 +95,10 @@
     <img src={url} {alt} />
   {:else if type === 'math'}
     <p>
-      {@html katex.renderToString(value, { throwOnError: false })}
+      {@html katex.renderToString(value, {
+        displayMode: true,
+        throwOnError: false
+      })}
     </p>
   {:else if type === 'inlineMath'}
     {@html katex.renderToString(value, { throwOnError: false })}
