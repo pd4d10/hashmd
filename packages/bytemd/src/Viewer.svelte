@@ -5,12 +5,10 @@
   import Element from './Element.svelte';
 
   export let source;
-
-  $: ast = unified()
+  const parser = unified()
     .use(markdown)
-    .use(math)
-    .parse(source);
-
+    .use(math);
+  $: ast = parser.parse(source);
   $: console.log(ast);
 </script>
 

@@ -1,14 +1,11 @@
 <script>
   import unified from 'unified';
-  import rehype from 'rehype-parse';
+  import html from 'rehype-parse';
   import HtmlElement from './HtmlElement.svelte';
 
   export let value;
-
-  $: ast = unified()
-    .use(rehype, { fragment: true })
-    .parse(value);
-
+  const parser = unified().use(html, { fragment: true });
+  $: ast = parser.parse(value);
   $: console.log(ast);
 </script>
 
