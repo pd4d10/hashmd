@@ -6,6 +6,7 @@ import json from '@rollup/plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
 // import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -63,7 +64,8 @@ const core = {
     commonjs(),
     builtins(),
     json(),
-    production && terser()
+    production && terser(),
+    visualizer()
   ],
   watch: {
     clearScreen: false

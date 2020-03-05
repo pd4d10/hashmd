@@ -18,6 +18,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-visualizer": "^3.3.1",
     "sirv-cli": "^0.4.4",
     "svelte": "^3.0.0"
   }
