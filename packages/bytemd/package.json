@@ -1,7 +1,9 @@
 {
-  "name": "@bytemd/core",
+  "name": "bytemd",
   "version": "0.0.1",
   "description": "Full-featured markdown editor and viewer",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
   "main": "dist/bytemd.cjs.js",
   "module": "dist/bytemd.esm.js",
   "unpkg": "dist/bytemd.umd.js",

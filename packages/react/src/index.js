@@ -1,5 +1,5 @@
 import { createElement, Component } from 'react';
-import * as bytemd from '@bytemd/core';
+import * as bytemd from 'bytemd';
 
 export class Viewer extends Component {
   constructor() {

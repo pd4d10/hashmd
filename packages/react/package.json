@@ -13,7 +13,7 @@
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@bytemd/core": "0.0.1"
+    "bytemd": "0.0.1"
   },
   "devDependencies": {
     "@types/react": "^16.9.23",

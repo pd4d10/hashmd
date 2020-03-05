@@ -16,7 +16,7 @@ const outputConfig = {
   name: 'bytemd'
 };
 
-const corePkg = require('./packages/core/package.json');
+const corePkg = require('./packages/bytemd/package.json');
 
 function serve() {
   let started = false;
@@ -37,22 +37,22 @@ function serve() {
 
 /** @type {import('rollup').RollupOptions} */
 const core = {
-  input: 'packages/core/src/index.js',
+  input: 'packages/bytemd/src/index.js',
   output: [
     {
       ...outputConfig,
       format: 'es',
-      file: 'packages/core/' + corePkg.module
+      file: 'packages/bytemd/' + corePkg.module
     },
     {
       ...outputConfig,
       format: 'cjs',
-      file: 'packages/core/' + corePkg.main
+      file: 'packages/bytemd/' + corePkg.main
     },
     {
       ...outputConfig,
       format: 'umd',
-      file: 'packages/core/' + corePkg.unpkg
+      file: 'packages/bytemd/' + corePkg.unpkg
     }
   ],
   plugins: [
@@ -77,7 +77,7 @@ const reactPkg = require('./packages/react/package.json');
 /** @type {import('rollup').RollupOptions} */
 const react = {
   input: 'packages/react/src/index.js',
-  external: ['react', '@bytemd/core'],
+  external: ['bytemd', 'react'],
   output: [
     {
       sourcemap: true,

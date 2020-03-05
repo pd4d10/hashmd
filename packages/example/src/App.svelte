@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { Editor } from '@bytemd/core';
+  import { Editor } from 'bytemd';
   let source = '';
 
   onMount(async () => {
