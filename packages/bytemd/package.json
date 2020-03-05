@@ -19,9 +19,9 @@
     "codemirror": "^5.52.0",
     "highlight.js": "^9.18.1",
     "katex": "^0.11.1",
+    "rehype-parse": "^6.0.2",
     "remark-math": "^2.0.0",
     "remark-parse": "^7.0.2",
-    "sanitize-html": "^1.22.0",
     "unified": "^8.4.2"
   }
 }

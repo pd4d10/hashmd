@@ -14,10 +14,6 @@
   $: console.log(ast);
 </script>
 
-<style>
-
-</style>
-
 <div class="markdown-body">
   <Element items={ast.children} />
 </div>

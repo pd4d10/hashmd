@@ -1,20 +1,11 @@
 <script>
-  import sanitizeHtml from 'sanitize-html';
   import hljs from 'highlight.js';
   import katex from 'katex';
+  import HtmlViewer from './HtmlViewer.svelte';
 
   export let items;
-
-  function sanitize(html) {
-    return sanitizeHtml(html, {
-      allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
-    });
-  }
 </script>
 
-<style>
-
-</style>
 
 {#each items as { type, value, children, ordered, depth, url, alt, lang }, i}
   {#if type === 'text'}
@@ -103,6 +94,6 @@
   {:else if type === 'inlineMath'}
     {@html katex.renderToString(value, { throwOnError: false })}
   {:else if type === 'html'}
-    {@html sanitize(value)}
+    <HtmlViewer {value} />
   {/if}
 {/each}
