@@ -51,25 +51,11 @@ const core = {
     {
       ...outputConfig,
       format: 'umd',
-      file: 'packages/core/' + 'public/build/bytemd.js'
+      file: 'packages/core/' + corePkg.unpkg
     }
   ],
   plugins: [
-    svelte({
-      // enable run-time checks when not in production
-      dev: !production
-      // we'll extract any component CSS out into
-      // a separate file - better for performance
-      // css: css => {
-      //   css.write('public/build/bytemd.css');
-      // }
-    }),
-
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration -
-    // consult the documentation for details:
-    // https://github.com/rollup/plugins/tree/master/packages/commonjs
+    svelte({ dev: !production }),
     resolve({
       browser: true,
       dedupe: ['svelte']
@@ -77,16 +63,6 @@ const core = {
     commonjs(),
     builtins(),
     json(),
-    // In dev mode, call `npm run start` once
-    // the bundle has been generated
-    !production && serve(),
-
-    // Watch the `public` directory and refresh the
-    // browser on changes when not in production
-    // !production && livereload('public'),
-
-    // If we're building for production (npm run build
-    // instead of npm run dev), minify
     production && terser()
   ],
   watch: {
@@ -96,23 +72,18 @@ const core = {
 
 const reactPkg = require('./packages/react/package.json');
 
-/** @type {import('rollup').OutputOptions} */
-const reactOutputConfig = {
-  sourcemap: true
-};
-
 /** @type {import('rollup').RollupOptions} */
 const react = {
   input: 'packages/react/src/index.js',
   external: ['react', '@bytemd/core'],
   output: [
     {
-      ...reactOutputConfig,
+      sourcemap: true,
       format: 'es',
       file: 'packages/react/' + reactPkg.module
     },
     {
-      ...reactOutputConfig,
+      sourcemap: true,
       format: 'cjs',
       file: 'packages/react/' + reactPkg.main
     }
@@ -120,4 +91,34 @@ const react = {
   plugins: [production && terser()]
 };
 
-export default [core, react];
+/** @type {import('rollup').RollupOptions} */
+const example = {
+  input: 'packages/example/src/main.js',
+  output: [
+    {
+      sourcemap: true,
+      format: 'iife',
+      name: 'app',
+      file: 'packages/example/public/build/bundle.js'
+    }
+  ],
+  plugins: [
+    svelte({
+      dev: !production,
+      css: css => {
+        css.write('packages/example/public/build/bundle.css');
+      }
+    }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte']
+    }),
+    commonjs(),
+    builtins(),
+    json(),
+    !production && serve(),
+    production && terser()
+  ]
+};
+
+export default [core, react, example];

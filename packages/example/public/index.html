@@ -44,18 +44,6 @@
 
   <body>
     <div id="root"></div>
-    <script src="/build/bytemd.js"></script>
-    <script>
-      (async () => {
-        const res = await fetch('/fixture.md');
-        const text = await res.text();
-        new bytemd.Editor({
-          target: document.getElementById('root'),
-          props: {
-            source: text
-          }
-        });
-      })();
-    </script>
+    <script src="/build/bundle.js"></script>
   </body>
 </html>
