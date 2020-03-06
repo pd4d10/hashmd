@@ -5,8 +5,6 @@
   import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
 
-  window.process = { cwd: () => '/' }; // FIXME:
-
   export let source;
   export let codemirrorConfig;
 
