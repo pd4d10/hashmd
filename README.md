@@ -1,5 +1,7 @@
 # bytemd
 
+[![demo](https://github.com/bytedance/bytemd/workflows/demo/badge.svg)](https://bytedance.github.io/bytemd/)
+
 Full-featured Markdown editor and viewer, built with Svelte
 
 | Package                           | Status                                                                   | Description                |

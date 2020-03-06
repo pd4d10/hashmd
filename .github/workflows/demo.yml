@@ -1,0 +1,16 @@
+name: demo
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1.1.0
+      - run: yarn && yarn build
+      - uses: peaceiris/actions-gh-pages@v2.5.1
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./packages/example/public
