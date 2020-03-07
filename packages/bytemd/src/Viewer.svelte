@@ -15,5 +15,5 @@
 </script>
 
 <div class="markdown-body">
-  <Element items={ast.children} {plugins} />
+  <Element nodes={ast.children} {plugins} />
 </div>

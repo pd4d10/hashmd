@@ -9,4 +9,4 @@
   // $: console.log(ast);
 </script>
 
-<HtmlElement items={ast.children} />
+<HtmlElement nodes={ast.children} />
