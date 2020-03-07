@@ -1,4 +1,5 @@
 // @ts-check
+import path from 'path';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -11,13 +12,10 @@ import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
 
-/** @type {import('rollup').OutputOptions} */
-const outputConfig = {
-  sourcemap: true,
-  name: 'bytemd'
-};
-
 const corePkg = require('./packages/bytemd/package.json');
+const reactPkg = require('./packages/react/package.json');
+const pluginHighlightPkg = require('./packages/plugin-highlight/package.json');
+const pluginKatexPkg = require('./packages/plugin-katex/package.json');
 
 function serve() {
   let started = false;
@@ -36,150 +34,147 @@ function serve() {
   };
 }
 
-/** @type {import('rollup').RollupOptions} */
-const core = {
-  input: 'packages/bytemd/src/index.js',
-  output: [
-    {
-      ...outputConfig,
-      format: 'es',
-      file: 'packages/bytemd/' + corePkg.module
-    },
-    {
-      ...outputConfig,
-      format: 'cjs',
-      file: 'packages/bytemd/' + corePkg.main
-    },
-    {
-      ...outputConfig,
-      format: 'umd',
-      file: 'packages/bytemd/' + corePkg.unpkg
+/** @type {{ [key: string]: import('rollup').RollupOptions}} */
+const configs = {
+  bytemd: {
+    input: 'src/index.js',
+    output: [
+      {
+        sourcemap: true,
+        format: 'es',
+        file: corePkg.module
+      },
+      {
+        sourcemap: true,
+        format: 'cjs',
+        file: corePkg.main
+      },
+      {
+        sourcemap: true,
+        format: 'umd',
+        name: 'bytemd',
+        file: corePkg.unpkg
+      }
+    ],
+    plugins: [
+      svelte({ dev: !production }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
+      commonjs(),
+      globals(),
+      builtins(),
+      json(),
+      production && terser(),
+      visualizer()
+    ],
+    watch: {
+      clearScreen: false
     }
-  ],
-  plugins: [
-    svelte({ dev: !production }),
-    resolve({
-      browser: true,
-      dedupe: ['svelte']
-    }),
-    commonjs(),
-    globals(),
-    builtins(),
-    json(),
-    production && terser(),
-    visualizer()
-  ],
-  watch: {
-    clearScreen: false
+  },
+  react: {
+    input: 'src/index.js',
+    external: ['bytemd', 'react'],
+    output: [
+      {
+        sourcemap: true,
+        format: 'es',
+        file: reactPkg.module
+      },
+      {
+        sourcemap: true,
+        format: 'cjs',
+        file: reactPkg.main
+      }
+    ],
+    plugins: [production && terser()]
+  },
+  example: {
+    input: 'src/main.js',
+    output: [
+      {
+        sourcemap: true,
+        format: 'iife',
+        name: 'app',
+        file: 'public/build/bundle.js'
+      }
+    ],
+    plugins: [
+      svelte({
+        dev: !production,
+        css: css => {
+          css.write('packages/example/public/build/bundle.css');
+        }
+      }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
+      commonjs(),
+      globals(),
+      builtins(),
+      json(),
+      !production && serve(),
+      production && terser()
+    ]
+  },
+  'plugin-highlight': {
+    input: 'src/index.js',
+    output: [
+      {
+        sourcemap: true,
+        format: 'es',
+        file: pluginHighlightPkg.module
+      },
+      {
+        sourcemap: true,
+        format: 'cjs',
+        file: pluginHighlightPkg.main
+      }
+    ],
+    plugins: [
+      svelte({ dev: !production }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
+      commonjs(),
+      production && terser()
+    ]
+  },
+  'plugin-katex': {
+    input: 'src/index.js',
+    output: [
+      {
+        sourcemap: true,
+        format: 'es',
+        file: pluginKatexPkg.module
+      },
+      {
+        sourcemap: true,
+        format: 'cjs',
+        file: pluginKatexPkg.main
+      }
+    ],
+    plugins: [
+      svelte({ dev: !production }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
+      commonjs(),
+      production && terser()
+    ]
   }
 };
 
-const reactPkg = require('./packages/react/package.json');
+Object.entries(configs).forEach(([k, v]) => {
+  v.input = path.resolve('packages', k, v.input);
+  v.output.forEach(output => {
+    output.file = path.resolve('packages', k, output.file);
+  });
+  return v;
+});
 
-/** @type {import('rollup').RollupOptions} */
-const react = {
-  input: 'packages/react/src/index.js',
-  external: ['bytemd', 'react'],
-  output: [
-    {
-      sourcemap: true,
-      format: 'es',
-      file: 'packages/react/' + reactPkg.module
-    },
-    {
-      sourcemap: true,
-      format: 'cjs',
-      file: 'packages/react/' + reactPkg.main
-    }
-  ],
-  plugins: [production && terser()]
-};
-
-/** @type {import('rollup').RollupOptions} */
-const example = {
-  input: 'packages/example/src/main.js',
-  output: [
-    {
-      sourcemap: true,
-      format: 'iife',
-      name: 'app',
-      file: 'packages/example/public/build/bundle.js'
-    }
-  ],
-  plugins: [
-    svelte({
-      dev: !production,
-      css: css => {
-        css.write('packages/example/public/build/bundle.css');
-      }
-    }),
-    resolve({
-      browser: true,
-      dedupe: ['svelte']
-    }),
-    commonjs(),
-    globals(),
-    builtins(),
-    json(),
-    !production && serve(),
-    production && terser()
-  ]
-};
-
-const pluginHighlightPkg = require('./packages/plugin-highlight/package.json');
-
-/** @type {import('rollup').RollupOptions} */
-const pluginHighlight = {
-  input: 'packages/plugin-highlight/src/index.js',
-  output: [
-    {
-      sourcemap: true,
-      format: 'es',
-      file: 'packages/plugin-highlight/' + pluginHighlightPkg.module
-    },
-    {
-      sourcemap: true,
-      format: 'cjs',
-      file: 'packages/plugin-highlight/' + pluginHighlightPkg.main
-    }
-  ],
-  plugins: [
-    svelte({ dev: !production }),
-    resolve({
-      browser: true,
-      dedupe: ['svelte']
-    }),
-    commonjs(),
-    production && terser()
-  ]
-};
-
-const pluginKatexPkg = require('./packages/plugin-katex/package.json');
-
-/** @type {import('rollup').RollupOptions} */
-const pluginKatex = {
-  input: 'packages/plugin-katex/src/index.js',
-  output: [
-    {
-      sourcemap: true,
-      format: 'es',
-      file: 'packages/plugin-katex/' + pluginKatexPkg.module
-    },
-    {
-      sourcemap: true,
-      format: 'cjs',
-      file: 'packages/plugin-katex/' + pluginKatexPkg.main
-    }
-  ],
-  plugins: [
-    svelte({ dev: !production }),
-    resolve({
-      browser: true,
-      dedupe: ['svelte']
-    }),
-    commonjs(),
-    production && terser()
-  ]
-};
-
-export default [core, react, example, pluginHighlight, pluginKatex];
+export default Object.values(configs);
