@@ -54,6 +54,25 @@
     <a href={node.url}><svelte:self nodes={node.children} {plugins} /></a>
   {:else if node.type === 'image'}
     <img src={node.url} alt={node.alt} />
+  {:else if node.type === 'table'}
+    <table>
+      <thead>
+        <tr>
+          {#each node.children[0].children as subNode, i}
+            <th align={node.align[i]}><svelte:self nodes={subNode.children} {plugins} /></th>
+          {/each}
+        </tr>
+      </thead>
+      <tbody>
+        {#each node.children.slice(1) as subNode, i}
+          <tr>
+            {#each subNode.children as subSubNode, i}
+              <td align={node.align[i]}><svelte:self nodes={subSubNode.children} {plugins} /></td>
+            {/each}
+          </tr>
+        {/each}
+      </tbody>
+    </table>
   {:else if node.type === 'html'}
     <HtmlViewer value={node.value} />
   {/if}
