@@ -40,17 +40,14 @@ const configs = {
     input: 'src/index.js',
     output: [
       {
-        sourcemap: true,
         format: 'es',
         file: corePkg.module
       },
       {
-        sourcemap: true,
         format: 'cjs',
         file: corePkg.main
       },
       {
-        sourcemap: true,
         format: 'umd',
         name: 'bytemd',
         file: corePkg.unpkg
@@ -78,12 +75,10 @@ const configs = {
     external: ['bytemd', 'react'],
     output: [
       {
-        sourcemap: true,
         format: 'es',
         file: reactPkg.module
       },
       {
-        sourcemap: true,
         format: 'cjs',
         file: reactPkg.main
       }
@@ -94,7 +89,6 @@ const configs = {
     input: 'src/main.js',
     output: [
       {
-        sourcemap: true,
         format: 'iife',
         name: 'app',
         file: 'public/build/bundle.js'
@@ -123,12 +117,10 @@ const configs = {
     input: 'src/index.js',
     output: [
       {
-        sourcemap: true,
         format: 'es',
         file: pluginHighlightPkg.module
       },
       {
-        sourcemap: true,
         format: 'cjs',
         file: pluginHighlightPkg.main
       }
@@ -147,12 +139,10 @@ const configs = {
     input: 'src/index.js',
     output: [
       {
-        sourcemap: true,
         format: 'es',
         file: pluginKatexPkg.module
       },
       {
-        sourcemap: true,
         format: 'cjs',
         file: pluginKatexPkg.main
       }
@@ -173,6 +163,7 @@ Object.entries(configs).forEach(([k, v]) => {
   v.input = path.resolve('packages', k, v.input);
   v.output.forEach(output => {
     output.file = path.resolve('packages', k, output.file);
+    output.sourcemap = true;
   });
   return v;
 });
