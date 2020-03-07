@@ -1,0 +1,22 @@
+{
+  "name": "@bytemd/plugin-katex",
+  "version": "0.0.1",
+  "description": "Katex plugin for bytemd",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "index.d.ts",
+  "svelte": "src/index.js",
+  "keywords": [],
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "katex": "^0.11.1"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

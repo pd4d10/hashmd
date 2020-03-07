@@ -1,5 +1,4 @@
 <script>
-  import katex from 'katex';
   import HtmlViewer from './HtmlViewer.svelte';
 
   export let items;
@@ -55,13 +54,6 @@
     <a href={node.url}><svelte:self items={node.children} {plugins} /></a>
   {:else if node.type === 'image'}
     <img src={node.url} alt={node.alt} />
-  {:else if node.type === 'math'}
-    <p>{@html katex.renderToString(node.value, {
-      displayMode: true,
-      throwOnError: false
-    })}</p>
-  {:else if node.type === 'inlineMath'}
-    {@html katex.renderToString(node.value, { throwOnError: false })}
   {:else if node.type === 'html'}
     <HtmlViewer value={node.value} />
   {/if}

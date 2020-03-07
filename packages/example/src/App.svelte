@@ -1,9 +1,14 @@
 <script>
   import { Editor } from 'bytemd';
   import highlight from '@bytemd/plugin-highlight'
+  import katex from '@bytemd/plugin-katex'
   let source = `# bytemd
 
 [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
+
+$$
+c = \\pm\\sqrt{a^2 + b^2}
+$$
 
 ## Usage
 
@@ -29,4 +34,4 @@ MIT
 `
 </script>
 
-<Editor {source} plugins={[highlight]} />
+<Editor {source} plugins={[highlight, katex]} />

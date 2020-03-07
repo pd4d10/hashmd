@@ -154,4 +154,32 @@ const pluginHighlight = {
   ]
 };
 
-export default [core, react, example, pluginHighlight];
+const pluginKatexPkg = require('./packages/plugin-katex/package.json');
+
+/** @type {import('rollup').RollupOptions} */
+const pluginKatex = {
+  input: 'packages/plugin-katex/src/index.js',
+  output: [
+    {
+      sourcemap: true,
+      format: 'es',
+      file: 'packages/plugin-katex/' + pluginKatexPkg.module
+    },
+    {
+      sourcemap: true,
+      format: 'cjs',
+      file: 'packages/plugin-katex/' + pluginKatexPkg.main
+    }
+  ],
+  plugins: [
+    svelte({ dev: !production }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte']
+    }),
+    commonjs(),
+    production && terser()
+  ]
+};
+
+export default [core, react, example, pluginHighlight, pluginKatex];
