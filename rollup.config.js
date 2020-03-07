@@ -13,7 +13,7 @@ import visualizer from 'rollup-plugin-visualizer';
 const production = !process.env.ROLLUP_WATCH;
 
 const corePkg = require('./packages/bytemd/package.json');
-const reactPkg = require('./packages/react/package.json');
+const reactPkg = require('./packages/bytemd-react/package.json');
 const pluginHighlightPkg = require('./packages/plugin-highlight/package.json');
 const pluginKatexPkg = require('./packages/plugin-katex/package.json');
 
