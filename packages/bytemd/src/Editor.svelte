@@ -27,14 +27,16 @@
 </script>
 
 <style>
-  .bytemd-container {
+  .bytemd-body {
     display: flex;
     height: 300px;
+    border: 1px solid #eee;
   }
   .bytemd-viewer {
     padding: 20px;
     flex: 1;
     overflow: auto;
+    border-left: 1px solid #eee;
   }
   :global(.CodeMirror) {
     flex: 1;
@@ -43,7 +45,7 @@
 </style>
 
 <Toolbar {cm} />
-<div class="bytemd-container">
+<div class="bytemd-body">
   <textarea bind:this={textarea} />
   <div class="bytemd-viewer">
     <Viewer {source} {plugins} />
