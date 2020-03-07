@@ -5,8 +5,4 @@
   export let value
 </script>
 
-<pre>{#if hljs.getLanguage(lang)}
-  {@html hljs.highlight(lang, value).value}
-{:else}
-  {value}
-{/if}</pre>
+<pre>{@html hljs.highlight(lang, value).value}</pre>
