@@ -14,8 +14,9 @@ const production = !process.env.ROLLUP_WATCH;
 
 const corePkg = require('./packages/bytemd/package.json');
 const reactPkg = require('./packages/bytemd-react/package.json');
-const pluginHighlightPkg = require('./packages/plugin-highlight/package.json');
-const pluginKatexPkg = require('./packages/plugin-katex/package.json');
+const highlightPkg = require('./packages/plugin-highlight/package.json');
+const katexPkg = require('./packages/plugin-katex/package.json');
+const graphvizPkg = require('./packages/plugin-graphviz/package.json');
 
 function serve() {
   let started = false;
@@ -118,11 +119,11 @@ const configs = {
     output: [
       {
         format: 'es',
-        file: pluginHighlightPkg.module
+        file: highlightPkg.module
       },
       {
         format: 'cjs',
-        file: pluginHighlightPkg.main
+        file: highlightPkg.main
       }
     ],
     plugins: [
@@ -140,11 +141,33 @@ const configs = {
     output: [
       {
         format: 'es',
-        file: pluginKatexPkg.module
+        file: katexPkg.module
       },
       {
         format: 'cjs',
-        file: pluginKatexPkg.main
+        file: katexPkg.main
+      }
+    ],
+    plugins: [
+      svelte({ dev: !production }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
+      commonjs(),
+      production && terser()
+    ]
+  },
+  'plugin-graphviz': {
+    input: 'src/index.js',
+    output: [
+      {
+        format: 'es',
+        file: graphvizPkg.module
+      },
+      {
+        format: 'cjs',
+        file: graphvizPkg.main
       }
     ],
     plugins: [

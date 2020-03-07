@@ -2,6 +2,7 @@
   import { Editor } from 'bytemd';
   import highlight from '@bytemd/plugin-highlight'
   import katex from '@bytemd/plugin-katex'
+  import graphviz from '@bytemd/plugin-graphviz'
   let source = `# bytemd
 
 [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
@@ -34,4 +35,4 @@ MIT
 `
 </script>
 
-<Editor {source} plugins={[highlight, katex]} />
+<Editor {source} plugins={[highlight, katex, graphviz]} />
