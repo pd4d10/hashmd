@@ -1,5 +1,5 @@
 {
-  "name": "@bytemd/react",
+  "name": "bytemd-react",
   "version": "0.0.1",
   "description": "Full-featured markdown editor and viewer",
   "main": "dist/bytemd-react.cjs.js",

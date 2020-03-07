@@ -1,3 +1,0 @@
-# @bytemd/react
-
-[WIP]

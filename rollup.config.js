@@ -73,7 +73,7 @@ const configs = {
       clearScreen: false
     }
   },
-  react: {
+  'bytemd-react': {
     input: 'src/index.js',
     external: ['bytemd', 'react'],
     output: [
