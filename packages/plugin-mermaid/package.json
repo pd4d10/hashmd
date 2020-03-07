@@ -1,0 +1,22 @@
+{
+  "name": "@bytemd/plugin-mermaid",
+  "version": "0.0.1",
+  "description": "Mermaid plugin for bytemd",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "index.d.ts",
+  "svelte": "src/index.js",
+  "keywords": [],
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mermaid": "^8.4.8"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

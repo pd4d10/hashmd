@@ -17,6 +17,7 @@ const reactPkg = require('./packages/bytemd-react/package.json');
 const highlightPkg = require('./packages/plugin-highlight/package.json');
 const katexPkg = require('./packages/plugin-katex/package.json');
 const graphvizPkg = require('./packages/plugin-graphviz/package.json');
+const mermaidPkg = require('./packages/plugin-mermaid/package.json');
 
 function serve() {
   let started = false;
@@ -168,6 +169,28 @@ const configs = {
       {
         format: 'cjs',
         file: graphvizPkg.main
+      }
+    ],
+    plugins: [
+      svelte({ dev: !production }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
+      commonjs(),
+      production && terser()
+    ]
+  },
+  'plugin-mermaid': {
+    input: 'src/index.js',
+    output: [
+      {
+        format: 'es',
+        file: mermaidPkg.module
+      },
+      {
+        format: 'cjs',
+        file: mermaidPkg.main
       }
     ],
     plugins: [
