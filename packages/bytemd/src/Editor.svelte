@@ -7,6 +7,7 @@
 
   export let source;
   export let codemirrorConfig;
+  export let plugins = [];
 
   let textarea;
   let cm;
@@ -45,6 +46,6 @@
 <div class="bytemd-container">
   <textarea bind:this={textarea} />
   <div class="bytemd-viewer">
-    <Viewer {source} />
+    <Viewer {source} {plugins} />
   </div>
 </div>

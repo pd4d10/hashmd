@@ -126,4 +126,32 @@ const example = {
   ]
 };
 
-export default [core, react, example];
+const pluginHighlightPkg = require('./packages/plugin-highlight/package.json');
+
+/** @type {import('rollup').RollupOptions} */
+const pluginHighlight = {
+  input: 'packages/plugin-highlight/src/index.js',
+  output: [
+    {
+      sourcemap: true,
+      format: 'es',
+      file: 'packages/plugin-highlight/' + pluginHighlightPkg.module
+    },
+    {
+      sourcemap: true,
+      format: 'cjs',
+      file: 'packages/plugin-highlight/' + pluginHighlightPkg.main
+    }
+  ],
+  plugins: [
+    svelte({ dev: !production }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte']
+    }),
+    commonjs(),
+    production && terser()
+  ]
+};
+
+export default [core, react, example, pluginHighlight];

@@ -1,60 +1,68 @@
 <script>
-  import hljs from 'highlight.js';
   import katex from 'katex';
   import HtmlViewer from './HtmlViewer.svelte';
 
   export let items;
+  export let plugins;
+
+  function findPlugin(node) {
+    return plugins.find(p => p.shouldTransformElement(node))
+  }
 </script>
 
-{#each items as { type, value, children, ordered, depth, url, alt, lang }, i}
-  {#if type === 'text'}{value}{:else if type === 'emphasis'}
-    <em><svelte:self items={children} /></em>
-  {:else if type === 'strong'}
-    <strong><svelte:self items={children} /></strong>
-  {:else if type === 'delete'}
-    <del><svelte:self items={children} /></del>
-  {:else if type === 'inlineCode'}
-    <code>{value}</code>
-  {:else if type === 'heading'}
-    {#if depth === 1}
-      <h1><svelte:self items={children} /></h1>
-    {:else if depth === 2}
-      <h2><svelte:self items={children} /></h2>
-    {:else if depth === 3}
-      <h3><svelte:self items={children} /></h3>
-    {:else if depth === 4}
-      <h4><svelte:self items={children} /></h4>
-    {:else if depth === 5}
-      <h5><svelte:self items={children} /></h5>
-    {:else if depth === 6}
-      <h6><svelte:self items={children} /></h6>
+{#each items as node, i}
+  {#if findPlugin(node)}
+    <svelte:component this={findPlugin(node).component} {...node} />
+  {:else if node.type === 'text'}
+    {node.value}
+  {:else if node.type === 'emphasis'}
+    <em><svelte:self items={node.children} {plugins} /></em>
+  {:else if node.type === 'strong'}
+    <strong><svelte:self items={node.children} {plugins} /></strong>
+  {:else if node.type === 'delete'}
+    <del><svelte:self items={node.children} {plugins} /></del>
+  {:else if node.type === 'inlineCode'}
+    <code>{node.value}</code>
+  {:else if node.type === 'heading'}
+    {#if node.depth === 1}
+      <h1><svelte:self items={node.children} {plugins} /></h1>
+    {:else if node.depth === 2}
+      <h2><svelte:self items={node.children} {plugins} /></h2>
+    {:else if node.depth === 3}
+      <h3><svelte:self items={node.children} {plugins} /></h3>
+    {:else if node.depth === 4}
+      <h4><svelte:self items={node.children} {plugins} /></h4>
+    {:else if node.depth === 5}
+      <h5><svelte:self items={node.children} {plugins} /></h5>
+    {:else if node.depth === 6}
+      <h6><svelte:self items={node.children} {plugins} /></h6>
     {/if}
-  {:else if type === 'paragraph'}
-    <p><svelte:self items={children} /></p>
-  {:else if type === 'blockquote'}
-    <blockquote><svelte:self items={children} /></blockquote>
-  {:else if type === 'code'}
-    <pre>{#if hljs.getLanguage(lang)}{@html hljs.highlight(lang, value).value}{:else}{value}{/if}</pre>
-  {:else if type === 'list'}
-    {#if ordered}
-      <ol><svelte:self items={children} /></ol>
+  {:else if node.type === 'paragraph'}
+    <p><svelte:self items={node.children} {plugins} /></p>
+  {:else if node.type === 'blockquote'}
+    <blockquote><svelte:self items={node.children} {plugins} /></blockquote>
+  {:else if node.type === 'code'}
+    <pre>{node.value}</pre>
+  {:else if node.type === 'list'}
+    {#if node.ordered}
+      <ol><svelte:self items={node.children} {plugins} /></ol>
     {:else}
-      <ul><svelte:self items={children} /></ul>
+      <ul><svelte:self items={node.children} {plugins} /></ul>
     {/if}
-  {:else if type === 'listItem'}
-    <li><svelte:self items={children} /></li>
-  {:else if type === 'link'}
-    <a href={url}><svelte:self items={children} /></a>
-  {:else if type === 'image'}
-    <img src={url} {alt} />
-  {:else if type === 'math'}
-    <p>{@html katex.renderToString(value, {
+  {:else if node.type === 'listItem'}
+    <li><svelte:self items={node.children} {plugins} /></li>
+  {:else if node.type === 'link'}
+    <a href={node.url}><svelte:self items={node.children} {plugins} /></a>
+  {:else if node.type === 'image'}
+    <img src={node.url} alt={node.alt} />
+  {:else if node.type === 'math'}
+    <p>{@html katex.renderToString(node.value, {
       displayMode: true,
       throwOnError: false
     })}</p>
-  {:else if type === 'inlineMath'}
-    {@html katex.renderToString(value, { throwOnError: false })}
-  {:else if type === 'html'}
-    <HtmlViewer {value} />
+  {:else if node.type === 'inlineMath'}
+    {@html katex.renderToString(node.value, { throwOnError: false })}
+  {:else if node.type === 'html'}
+    <HtmlViewer value={node.value} />
   {/if}
 {/each}

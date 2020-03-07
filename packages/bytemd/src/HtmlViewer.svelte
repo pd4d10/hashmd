@@ -6,7 +6,7 @@
   export let value;
   const parser = unified().use(html, { fragment: true });
   $: ast = parser.parse(value);
-  $: console.log(ast);
+  // $: console.log(ast);
 </script>
 
 <HtmlElement items={ast.children} />
