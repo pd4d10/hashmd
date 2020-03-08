@@ -3,6 +3,7 @@
 
   export let value
   let element
+  let error
 
   const id = 'mermaid' // TODO:
 
@@ -12,8 +13,22 @@
   }
 
   $: if (element) {
-    mermaid.render(id, value, insertSvg, element);
+    try {
+      mermaid.render(id, value, insertSvg, element);
+      error = null
+    } catch (e) {
+      error = e
+    }
   }
 </script>
 
-<div bind:this={element}></div>
+<style>
+  p {
+    color: red;
+  }
+</style>
+
+{#if error}
+  <p>{error.message}</p>
+{/if}
+<div style={error ? 'display:none': null} bind:this={element}></div>
