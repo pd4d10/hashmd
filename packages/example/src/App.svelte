@@ -4,6 +4,7 @@
   import math from '@bytemd/plugin-math'
   import graphviz from '@bytemd/plugin-graphviz'
   import mermaid from '@bytemd/plugin-mermaid'
+
   let source = `# bytemd
 
 [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
@@ -41,6 +42,40 @@ new Viewer({
 });
 \`\`\`
 `
+
+  let enabled = {
+    highlight: true,
+    math: true,
+    graphviz: true,
+    mermaid: true,
+  }
+  $: plugins = [
+    enabled.highlight && highlight,
+    enabled.math && math,
+    enabled.graphviz && graphviz,
+    enabled.mermaid && mermaid,
+  ].filter(x => x)
 </script>
 
-<Editor {source} plugins={[highlight, math, graphviz, mermaid]} />
+<style>
+  div {
+    padding: 10px;
+  }
+</style>
+
+<div>
+  Plugins:
+  <label>
+    <input type=checkbox bind:checked={enabled.highlight} /> highlight
+  </label>
+  <label>
+    <input type=checkbox bind:checked={enabled.math} /> math
+  </label>
+  <label>
+    <input type=checkbox bind:checked={enabled.graphviz} /> graphviz
+  </label>
+  <label>
+    <input type=checkbox bind:checked={enabled.mermaid} /> mermaid
+  </label>
+</div>
+<Editor {source} plugins={plugins} />

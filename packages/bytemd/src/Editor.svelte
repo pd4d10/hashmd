@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import codemirror from 'codemirror';
   import 'codemirror/mode/markdown/markdown.js';
-  import Toolbar from './Toolbar.svelte';
+  // import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
 
   export let source;
@@ -44,7 +44,7 @@
   }
 </style>
 
-<Toolbar {cm} />
+<!-- <Toolbar {cm} /> -->
 <div class="bytemd-body">
   <textarea bind:this={textarea} />
   <div class="bytemd-viewer">
