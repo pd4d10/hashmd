@@ -13,7 +13,7 @@
   ],
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "katex": "^0.11.1"
   },
   "peerDependencies": {

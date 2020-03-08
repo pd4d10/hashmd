@@ -33,10 +33,18 @@ const configs = {
       }
     ]
   },
-  'plugin-highlight': {},
-  'plugin-math': {},
-  'plugin-graphviz': {},
-  'plugin-mermaid': {}
+  'plugin-highlight': {
+    external: ['highlight.js']
+  },
+  'plugin-math': {
+    external: ['katex']
+  },
+  'plugin-graphviz': {
+    external: ['viz.js']
+  },
+  'plugin-mermaid': {
+    external: ['mermaid']
+  }
 };
 
 Object.entries(configs).forEach(([k, v]) => {

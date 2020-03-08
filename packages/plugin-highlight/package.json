@@ -13,11 +13,10 @@
   ],
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "highlight.js": "^9.18.1"
   },
   "peerDependencies": {
-    "bytemd": "*",
-    "highlight.js": "*"
+    "bytemd": "*"
   }
 }
