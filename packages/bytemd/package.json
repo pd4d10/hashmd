@@ -8,10 +8,9 @@
   "module": "dist/bytemd.esm.js",
   "unpkg": "dist/bytemd.umd.js",
   "svelte": "src/index.js",
-  "types": "index.d.ts",
+  "types": "src/index.d.ts",
   "files": [
     "dist",
-    "index.d.ts",
     "src"
   ],
   "devDependencies": {
