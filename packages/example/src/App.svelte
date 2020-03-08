@@ -1,7 +1,7 @@
 <script>
   import { Editor } from 'bytemd';
   import highlight from '@bytemd/plugin-highlight'
-  import katex from '@bytemd/plugin-katex'
+  import math from '@bytemd/plugin-math'
   import graphviz from '@bytemd/plugin-graphviz'
   let source = `# bytemd
 
@@ -35,4 +35,4 @@ MIT
 `
 </script>
 
-<Editor {source} plugins={[highlight, katex, graphviz]} />
+<Editor {source} plugins={[highlight, math, graphviz, mermaid]} />

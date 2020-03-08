@@ -15,7 +15,7 @@ const production = !process.env.ROLLUP_WATCH;
 const corePkg = require('./packages/bytemd/package.json');
 const reactPkg = require('./packages/bytemd-react/package.json');
 const highlightPkg = require('./packages/plugin-highlight/package.json');
-const katexPkg = require('./packages/plugin-katex/package.json');
+const mathPkg = require('./packages/plugin-math/package.json');
 const graphvizPkg = require('./packages/plugin-graphviz/package.json');
 const mermaidPkg = require('./packages/plugin-mermaid/package.json');
 
@@ -137,16 +137,16 @@ const configs = {
       production && terser()
     ]
   },
-  'plugin-katex': {
+  'plugin-math': {
     input: 'src/index.js',
     output: [
       {
         format: 'es',
-        file: katexPkg.module
+        file: mathPkg.module
       },
       {
         format: 'cjs',
-        file: katexPkg.main
+        file: mathPkg.main
       }
     ],
     plugins: [
