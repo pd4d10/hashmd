@@ -1,10 +1,10 @@
 import { EditorConfiguration } from 'codemirror';
 import { Node } from 'unist';
+import { SvelteComponent } from 'svelte';
 
 export interface Plugin {
-  transformNode(node: Node): Node;
   shouldTransformElement(node: Node): boolean;
-  transFormElement(node: Node): any;
+  component: typeof SvelteComponent;
 }
 
 export interface EditorProps {

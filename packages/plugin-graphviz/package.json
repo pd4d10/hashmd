@@ -4,12 +4,12 @@
   "description": "Graphviz plugin for bytemd",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "types": "index.d.ts",
+  "types": "src/index.d.ts",
   "svelte": "src/index.js",
   "keywords": [],
   "files": [
     "dist",
-    "index.d.ts"
+    "src"
   ],
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
