@@ -55,19 +55,6 @@ const configs = {
         file: corePkg.unpkg
       }
     ],
-    plugins: [
-      svelte({ dev: !production }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      globals(),
-      builtins(),
-      json(),
-      production && terser(),
-      visualizer()
-    ],
     watch: {
       clearScreen: false
     }
@@ -84,8 +71,7 @@ const configs = {
         format: 'cjs',
         file: reactPkg.main
       }
-    ],
-    plugins: [production && terser()]
+    ]
   },
   example: {
     input: 'src/main.js',
@@ -95,24 +81,6 @@ const configs = {
         name: 'app',
         file: 'public/build/bundle.js'
       }
-    ],
-    plugins: [
-      svelte({
-        dev: !production,
-        css: css => {
-          css.write('packages/example/public/build/bundle.css');
-        }
-      }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      globals(),
-      builtins(),
-      json(),
-      !production && serve(),
-      production && terser()
     ]
   },
   'plugin-highlight': {
@@ -126,15 +94,6 @@ const configs = {
         format: 'cjs',
         file: highlightPkg.main
       }
-    ],
-    plugins: [
-      svelte({ dev: !production }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      production && terser()
     ]
   },
   'plugin-math': {
@@ -148,15 +107,6 @@ const configs = {
         format: 'cjs',
         file: mathPkg.main
       }
-    ],
-    plugins: [
-      svelte({ dev: !production }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      production && terser()
     ]
   },
   'plugin-graphviz': {
@@ -170,15 +120,6 @@ const configs = {
         format: 'cjs',
         file: graphvizPkg.main
       }
-    ],
-    plugins: [
-      svelte({ dev: !production }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      production && terser()
     ]
   },
   'plugin-mermaid': {
@@ -192,15 +133,6 @@ const configs = {
         format: 'cjs',
         file: mermaidPkg.main
       }
-    ],
-    plugins: [
-      svelte({ dev: !production }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      production && terser()
     ]
   }
 };
@@ -211,6 +143,19 @@ Object.entries(configs).forEach(([k, v]) => {
     output.file = path.resolve('packages', k, output.file);
     output.sourcemap = true;
   });
+  v.plugins = [
+    svelte({ dev: !production }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte']
+    }),
+    commonjs(),
+    globals(),
+    builtins(),
+    json(),
+    production && terser(),
+    visualizer()
+  ];
   return v;
 });
 
