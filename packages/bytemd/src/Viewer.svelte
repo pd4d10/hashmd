@@ -2,7 +2,7 @@
   import unified from 'unified';
   import markdown from 'remark-parse';
   import math from 'remark-math';
-  import Element from './Element.svelte';
+  import Elements from './Elements.svelte';
 
   export let source = '';
   export let plugins = [];
@@ -15,5 +15,5 @@
 </script>
 
 <div class="markdown-body">
-  <Element nodes={ast.children} {plugins} />
+  <Elements nodes={ast.children} {plugins} />
 </div>

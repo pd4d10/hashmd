@@ -1,7 +1,7 @@
 <script>
   import unified from 'unified';
   import html from 'rehype-parse';
-  import HtmlElement from './HtmlElement.svelte';
+  import HtmlElements from './HtmlElements.svelte';
 
   export let value;
   const parser = unified().use(html, { fragment: true });
@@ -9,4 +9,4 @@
   // $: console.log(ast);
 </script>
 
-<HtmlElement nodes={ast.children} />
+<HtmlElements nodes={ast.children} />
