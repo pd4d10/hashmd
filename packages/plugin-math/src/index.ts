@@ -1,11 +1,13 @@
 import { Plugin } from 'bytemd';
 import KatexView from './KatexView.svelte';
 
-const plugin: Plugin = {
-  shouldTransformElement(node) {
-    return node.type === 'math' || node.type == 'inlineMath';
-  },
-  component: KatexView
-};
+export interface BytemdMathOptions {}
 
-export default plugin;
+export default function math({}: BytemdMathOptions = {}): Plugin {
+  return {
+    shouldTransformElement(node) {
+      return node.type === 'math' || node.type == 'inlineMath';
+    },
+    component: KatexView
+  };
+}

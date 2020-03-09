@@ -1,3 +1,4 @@
 import { Plugin } from 'bytemd';
-declare const plugin: Plugin;
-export default plugin;
+export interface BytemdHighlightOptions {
+}
+export default function highlight({}: BytemdHighlightOptions): Plugin;

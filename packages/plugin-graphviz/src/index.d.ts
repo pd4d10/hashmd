@@ -1,3 +1,4 @@
 import { Plugin } from 'bytemd';
-declare const plugin: Plugin;
-export default plugin;
+export interface BytemdGraphvizOptions {
+}
+export default function graphviz({}?: BytemdGraphvizOptions): Plugin;

@@ -77,10 +77,10 @@ new Viewer({
     mermaid: true,
   }
   $: plugins = [
-    enabled.highlight && highlight,
-    enabled.math && math,
-    enabled.graphviz && graphviz,
-    enabled.mermaid && mermaid,
+    enabled.highlight && highlight(),
+    enabled.math && math(),
+    enabled.graphviz && graphviz(),
+    enabled.mermaid && mermaid(),
   ].filter(x => x)
 </script>
 
