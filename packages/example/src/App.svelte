@@ -4,6 +4,7 @@
   import math from '@bytemd/plugin-math'
   import graphviz from '@bytemd/plugin-graphviz'
   import mermaid from '@bytemd/plugin-mermaid'
+  import plantuml from '@bytemd/plugin-plantuml'
 
   let source = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
@@ -51,6 +52,12 @@ digraph G {
 }
 \`\`\`
 
+## PlantUML
+
+\`\`\`plantuml
+A -> B: Hello
+\`\`\`
+
 ## Code syntax highlight
 
 \`\`\`js
@@ -75,12 +82,14 @@ new Viewer({
     math: true,
     graphviz: true,
     mermaid: true,
+    plantuml: true,
   }
   $: plugins = [
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.graphviz && graphviz(),
     enabled.mermaid && mermaid(),
+    enabled.plantuml && plantuml()
   ].filter(x => x)
 </script>
 
@@ -96,9 +105,6 @@ new Viewer({
 <div>
   Plugins:
   <label>
-    <input type=checkbox bind:checked={enabled.highlight} /> highlight
-  </label>
-  <label>
     <input type=checkbox bind:checked={enabled.math} /> math
   </label>
   <label>
@@ -106,6 +112,12 @@ new Viewer({
   </label>
   <label>
     <input type=checkbox bind:checked={enabled.mermaid} /> mermaid
+  </label>
+  <label>
+    <input type=checkbox bind:checked={enabled.plantuml} /> plantuml
+  </label>
+  <label>
+    <input type=checkbox bind:checked={enabled.highlight} /> highlight
   </label>
 </div>
 <Editor {source} plugins={plugins} />
