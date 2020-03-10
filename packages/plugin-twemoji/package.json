@@ -1,0 +1,23 @@
+{
+  "name": "@bytemd/plugin-twemoji",
+  "version": "0.0.1",
+  "description": "Twemoji plugin for bytemd",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "src/index.d.ts",
+  "svelte": "src/index.js",
+  "keywords": [],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/twemoji": "^12.1.0",
+    "twemoji": "^12.1.5"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

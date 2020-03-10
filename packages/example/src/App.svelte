@@ -5,6 +5,7 @@
   import graphviz from '@bytemd/plugin-graphviz'
   import mermaid from '@bytemd/plugin-mermaid'
   import plantuml from '@bytemd/plugin-plantuml'
+  import twemoji from '@bytemd/plugin-twemoji'
 
   let source = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
@@ -83,13 +84,15 @@ new Viewer({
     graphviz: true,
     mermaid: true,
     plantuml: true,
+    // twemoji: true,
   }
   $: plugins = [
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.graphviz && graphviz(),
     enabled.mermaid && mermaid(),
-    enabled.plantuml && plantuml()
+    enabled.plantuml && plantuml(),
+    // enabled.twemoji && twemoji()
   ].filter(x => x)
 </script>
 

@@ -44,6 +44,9 @@ const configs = {
   },
   'plugin-mermaid': {
     external: ['mermaid']
+  },
+  'plugin-twemoji': {
+    external: ['twemoji']
   }
 };
 
