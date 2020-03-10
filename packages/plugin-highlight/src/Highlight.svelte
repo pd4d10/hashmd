@@ -1,8 +1,7 @@
 <script>
   import hljs from 'highlight.js';
 
-  export let lang
-  export let value
+  export let node
 </script>
 
-<pre>{@html hljs.highlight(lang, value).value}</pre>
+<pre>{@html hljs.highlight(node.lang, node.value).value}</pre>

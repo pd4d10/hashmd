@@ -4,10 +4,10 @@
 
   const viz = new Viz(workerURL)
 
-  export let value
+  export let node
 </script>
 
-{#await viz.renderString(value)}
+{#await viz.renderString(node.value)}
 	<p>...</p>
 {:then raw}
 	{@html raw}

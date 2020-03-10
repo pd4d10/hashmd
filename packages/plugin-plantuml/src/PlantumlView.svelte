@@ -1,6 +1,6 @@
 <script>
   import { encode } from 'plantuml-encoder'
-  export let value
+  export let node
 </script>
 
-<img src={`//www.plantuml.com/plantuml/img/${encode(value)}`} alt="plantuml" />
+<img src={`//www.plantuml.com/plantuml/img/${encode(node.value)}`} alt="plantuml" />
