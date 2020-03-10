@@ -1,10 +1,6 @@
 <script>
+  import { onMount } from 'svelte'
   import { Editor } from 'bytemd';
-  import highlight from '@bytemd/plugin-highlight'
-  import math from '@bytemd/plugin-math'
-  import graphviz from '@bytemd/plugin-graphviz'
-  import mermaid from '@bytemd/plugin-mermaid'
-  import plantuml from '@bytemd/plugin-plantuml'
 
   let source = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
@@ -83,18 +79,25 @@ new Viewer({
     graphviz: true,
     mermaid: true,
     plantuml: true,
-    // twemoji: true,
   }
+
+  let loadedPlugins = {};
+
   $: plugins = [
-    enabled.highlight && highlight(),
-    enabled.math && math(),
-    enabled.graphviz && graphviz(),
-    enabled.mermaid && mermaid(),
-    enabled.plantuml && plantuml(),
-    // enabled.twemoji && twemoji()
+    enabled.highlight && loadedPlugins.highlight,
+    enabled.math && loadedPlugins.math,
+    enabled.graphviz && loadedPlugins.graphviz,
+    enabled.mermaid && loadedPlugins.mermaid,
+    enabled.plantuml && loadedPlugins.plantuml,
   ].filter(x => x)
 
-  import('@bytemd/plugin-twemoji').then(console.log)
+  onMount(() => {
+    import('@bytemd/plugin-highlight').then(r => { loadedPlugins.highlight = r.default() })
+    import('@bytemd/plugin-math').then(r => { loadedPlugins.math = r.default() })
+    import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
+    import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
+    import('@bytemd/plugin-plantuml').then(r => { loadedPlugins.plantuml = r.default() })
+  })
 </script>
 
 <style>
@@ -108,20 +111,10 @@ new Viewer({
 
 <div>
   Plugins:
-  <label>
-    <input type=checkbox bind:checked={enabled.math} /> math
-  </label>
-  <label>
-    <input type=checkbox bind:checked={enabled.graphviz} /> graphviz
-  </label>
-  <label>
-    <input type=checkbox bind:checked={enabled.mermaid} /> mermaid
-  </label>
-  <label>
-    <input type=checkbox bind:checked={enabled.plantuml} /> plantuml
-  </label>
-  <label>
-    <input type=checkbox bind:checked={enabled.highlight} /> highlight
-  </label>
+  {#each ['math', 'graphviz', 'mermaid', 'plantuml', 'highlight'] as p}
+    <label>
+      <input type=checkbox bind:checked={enabled[p]} /> {p}
+    </label>
+  {/each}
 </div>
 <Editor {source} plugins={plugins} />
