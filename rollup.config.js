@@ -27,9 +27,12 @@ const configs = {
     input: 'src/main.js',
     output: [
       {
-        format: 'iife',
-        name: 'app',
-        file: 'public/build/bundle.js'
+        format: 'es',
+        dir: 'public/build/module'
+      },
+      {
+        format: 'system',
+        dir: 'public/build/nomodule'
       }
     ]
   },
@@ -69,8 +72,12 @@ Object.entries(configs).forEach(([k, v]) => {
     ];
   }
   v.output.forEach(output => {
-    output.file = path.resolve('packages', k, output.file);
-    output.sourcemap = true;
+    if (output.file) {
+      output.file = path.resolve('packages', k, output.file);
+    }
+    if (output.dir) {
+      output.dir = path.resolve('packages', k, output.dir);
+    }
   });
   v.plugins = [
     svelte({ dev: !production }),

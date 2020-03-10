@@ -64,6 +64,17 @@
       >Fork me on GitHub</a
     >
     <div id="root"></div>
-    <script src="build/bundle.js"></script>
+
+    <!-- for modern browsers -->
+    <script type="module" src="build/module/main.js"></script>
+
+    <!-- for older browsers -->
+    <script
+      nomodule
+      src="https://unpkg.com/systemjs@0.21.0/dist/system-production.js"
+    ></script>
+    <script nomodule>
+      System.import('build/nomodule/main.js');
+    </script>
   </body>
 </html>

@@ -5,7 +5,6 @@
   import graphviz from '@bytemd/plugin-graphviz'
   import mermaid from '@bytemd/plugin-mermaid'
   import plantuml from '@bytemd/plugin-plantuml'
-  import twemoji from '@bytemd/plugin-twemoji'
 
   let source = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
@@ -94,6 +93,8 @@ new Viewer({
     enabled.plantuml && plantuml(),
     // enabled.twemoji && twemoji()
   ].filter(x => x)
+
+  import('@bytemd/plugin-twemoji').then(console.log)
 </script>
 
 <style>
