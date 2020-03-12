@@ -54,7 +54,7 @@ const configs = {
     external: ['viz.js']
   },
   'plugin-mermaid': {
-    external: ['mermaid']
+    external: ['mermaid', 'nanoid']
   },
   'plugin-twemoji': {
     external: ['twemoji']
