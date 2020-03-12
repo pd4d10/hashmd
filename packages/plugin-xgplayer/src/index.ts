@@ -3,8 +3,8 @@ import Xgplayer from './Xgplayer.svelte';
 
 export default function xgplayer(): Plugin {
   return {
-    shouldTransformHtmlElement(node) {
-      return node.tagName === 'xgplayer';
+    shouldTransformElement(node) {
+      return node.type === 'element' && node.tagName === 'xgplayer';
     },
     component: Xgplayer
   };

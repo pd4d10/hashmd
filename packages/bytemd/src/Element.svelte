@@ -3,13 +3,10 @@
   import HtmlViewer from './HtmlViewer.svelte';
 
   export let node;
-  export let plugin;
   export let plugins;
 </script>
 
-{#if plugin}
-  <svelte:component this={plugin.component} {...node} />
-{:else if node.type === 'text'}
+{#if node.type === 'text'}
   {node.value}
 {:else if node.type === 'emphasis'}
   <em><Elements nodes={node.children} {plugins} /></em>

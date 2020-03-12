@@ -4,7 +4,7 @@
   export let plugins;
 
   $: findPlugin = (node) => {
-    return plugins.find(p => p.shouldTransformHtmlElement && p.shouldTransformHtmlElement(node))
+    return plugins.find(p => p.shouldTransformElement(node))
   }
 </script>
 

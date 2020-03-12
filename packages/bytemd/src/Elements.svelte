@@ -3,8 +3,16 @@
 
   export let nodes;
   export let plugins;
+
+  $: findPlugin = (node) => {
+    return plugins.find(p => p.shouldTransformElement(node))
+  }
 </script>
 
 {#each nodes as node}
-  <Element {node} {plugins} plugin={plugins.find(p => p.shouldTransformElement && p.shouldTransformElement(node))} />
+  {#if findPlugin(node)}
+    <svelte:component this={findPlugin(node).component} {...node} />
+  {:else}
+    <Element {node} {plugins} />
+  {/if}
 {/each}
