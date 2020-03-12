@@ -48,12 +48,6 @@ digraph G {
 }
 </graphviz>
 
-## PlantUML
-
-\`\`\`plantuml
-A -> B: Hello
-\`\`\`
-
 ## Code syntax highlight
 
 \`\`\`js
