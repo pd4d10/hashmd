@@ -1,8 +1,7 @@
 import KatexView from './KatexView.svelte';
-export default function math(_a) {
-    _a = {};
+export default function math({} = {}) {
     return {
-        shouldTransformElement: function (node) {
+        shouldTransformElement(node) {
             return node.type === 'math' || node.type == 'inlineMath';
         },
         component: KatexView

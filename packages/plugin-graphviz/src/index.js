@@ -1,8 +1,7 @@
 import GraphvizView from './GraphvizView.svelte';
-export default function graphviz(_a) {
-    _a = {};
+export default function graphviz({} = {}) {
     return {
-        shouldTransformElement: function (node) {
+        shouldTransformElement(node) {
             return (node.type === 'code' &&
                 ['graphviz', 'dot'].includes(node.lang));
         },

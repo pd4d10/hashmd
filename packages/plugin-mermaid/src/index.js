@@ -1,8 +1,7 @@
 import MermaidView from './MermaidView.svelte';
-export default function mermaid(_a) {
-    _a = {};
+export default function mermaid({} = {}) {
     return {
-        shouldTransformElement: function (node) {
+        shouldTransformElement(node) {
             return node.type === 'element' && node.tagName === 'mermaid';
         },
         component: MermaidView
