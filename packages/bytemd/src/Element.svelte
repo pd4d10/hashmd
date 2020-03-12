@@ -8,7 +8,7 @@
 </script>
 
 {#if plugin}
-  <svelte:component this={plugin.component} {node} />
+  <svelte:component this={plugin.component} {...node} />
 {:else if node.type === 'text'}
   {node.value}
 {:else if node.type === 'emphasis'}

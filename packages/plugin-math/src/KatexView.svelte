@@ -1,14 +1,15 @@
 <script>
   import katex from 'katex';
 
-  export let node
+  export let type;
+  export let value
 </script>
 
-{#if node.type === 'math'}
-  <p>{@html katex.renderToString(node.value, {
+{#if type === 'math'}
+  <p>{@html katex.renderToString(value, {
     displayMode: true,
     throwOnError: false
   })}</p>
-{:else if node.type === 'inlineMath'}
-  {@html katex.renderToString(node.value, { throwOnError: false })}
+{:else if type === 'inlineMath'}
+  {@html katex.renderToString(value, { throwOnError: false })}
 {/if}
