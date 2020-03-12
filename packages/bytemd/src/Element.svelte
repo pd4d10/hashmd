@@ -71,5 +71,5 @@
     </tbody>
   </table>
 {:else if node.type === 'html'}
-  <HtmlViewer value={node.value} />
+  <HtmlViewer value={node.value} {plugins} />
 {/if}

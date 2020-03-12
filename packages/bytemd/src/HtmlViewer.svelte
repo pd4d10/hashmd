@@ -4,9 +4,11 @@
   import HtmlElements from './HtmlElements.svelte';
 
   export let value;
+  export let plugins;
+
   const parser = unified().use(html, { fragment: true });
   $: ast = parser.parse(value);
   // $: console.log(ast);
 </script>
 
-<HtmlElements nodes={ast.children} />
+<HtmlElements nodes={ast.children} {plugins} />

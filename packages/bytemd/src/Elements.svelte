@@ -6,5 +6,5 @@
 </script>
 
 {#each nodes as node}
-  <Element {node} {plugins} plugin={plugins.find(p => p.shouldTransformElement(node))} />
+  <Element {node} {plugins} plugin={plugins.find(p => p.shouldTransformElement && p.shouldTransformElement(node))} />
 {/each}
