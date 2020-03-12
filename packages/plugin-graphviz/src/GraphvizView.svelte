@@ -8,12 +8,20 @@
   $: value = children && children[0] && children[0].value
 </script>
 
-{#if value}
-  {#await viz.renderString(value)}
-    <p>...</p>
-  {:then raw}
-    {@html raw}
-  {:catch error}
-    <p style="color: red">{error.message}</p>
-  {/await}
-{/if}
+<style>
+  div {
+    text-align: center;
+  }
+</style>
+
+<div>
+  {#if value}
+    {#await viz.renderString(value)}
+      <p>...</p>
+    {:then raw}
+      {@html raw}
+    {:catch error}
+      <p style="color: red">{error.message}</p>
+    {/await}
+  {/if}
+</div>

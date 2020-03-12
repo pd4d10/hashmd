@@ -24,6 +24,9 @@
 </script>
 
 <style>
+  div {
+    text-align: center;
+  }
   p {
     color: red;
   }
