@@ -71,6 +71,10 @@ new Viewer({
   props: {}
 });
 \`\`\`
+
+## Video Player
+
+<xgplayer url="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo-720p.mp4" width="480" height="270" />
 `
 
   let enabled = {
@@ -79,6 +83,7 @@ new Viewer({
     graphviz: true,
     mermaid: true,
     plantuml: true,
+    xgplayer: true,
   }
 
   let loadedPlugins = {};
@@ -89,6 +94,7 @@ new Viewer({
     enabled.graphviz && loadedPlugins.graphviz,
     enabled.mermaid && loadedPlugins.mermaid,
     enabled.plantuml && loadedPlugins.plantuml,
+    enabled.xgplayer && loadedPlugins.xgplayer,
   ].filter(x => x)
 
   onMount(() => {
@@ -97,6 +103,7 @@ new Viewer({
     import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
     import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
     import('@bytemd/plugin-plantuml').then(r => { loadedPlugins.plantuml = r.default() })
+    import('@bytemd/plugin-xgplayer').then(r => { loadedPlugins.xgplayer = r.default() })
   })
 </script>
 
@@ -111,7 +118,7 @@ new Viewer({
 
 <div>
   Plugins:
-  {#each ['math', 'graphviz', 'mermaid', 'plantuml', 'highlight'] as p}
+  {#each ['math', 'graphviz', 'mermaid', 'plantuml', 'highlight', 'xgplayer'] as p}
     <label>
       <input type=checkbox bind:checked={enabled[p]} /> {p}
     </label>

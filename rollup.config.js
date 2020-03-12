@@ -12,7 +12,7 @@ import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
 
-/** @type {{ [key: string]: import('rollup').RollupOptions}} */
+/** @type {Record<string, import('rollup').RollupOptions>} */
 const configs = {
   bytemd: {
     input: 'src/index.js',
@@ -50,6 +50,9 @@ const configs = {
   },
   'plugin-twemoji': {
     external: ['twemoji']
+  },
+  'plugin-xgplayer': {
+    external: ['xgplayer']
   }
 };
 
