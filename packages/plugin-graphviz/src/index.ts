@@ -6,10 +6,7 @@ export interface BytemdGraphvizOptions {}
 export default function graphviz({}: BytemdGraphvizOptions = {}): Plugin {
   return {
     shouldTransformElement(node) {
-      return (
-        node.type === 'code' &&
-        ['graphviz', 'dot'].includes(node.lang as string)
-      );
+      return node.type === 'element' && node.tagName === 'graphviz';
     },
     component: GraphvizView
   };

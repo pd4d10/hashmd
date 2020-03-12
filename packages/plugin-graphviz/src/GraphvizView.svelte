@@ -4,13 +4,16 @@
 
   const viz = new Viz(workerURL)
 
-  export let value
+  export let children
+  $: value = children && children[0] && children[0].value
 </script>
 
-{#await viz.renderString(value)}
-	<p>...</p>
-{:then raw}
-	{@html raw}
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+{#if value}
+  {#await viz.renderString(value)}
+    <p>...</p>
+  {:then raw}
+    {@html raw}
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
+{/if}

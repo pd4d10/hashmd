@@ -21,7 +21,7 @@ sequenceDiagram
 
 ## Graphviz
 
-\`\`\`dot
+<graphviz>
 digraph G {
 	subgraph cluster_0 {
 		style=filled;
@@ -46,7 +46,7 @@ digraph G {
 	start [shape=Mdiamond];
 	end [shape=Msquare];
 }
-\`\`\`
+</graphviz>
 
 ## PlantUML
 
