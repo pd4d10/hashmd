@@ -76,7 +76,6 @@ new Viewer({
     math: true,
     graphviz: true,
     mermaid: true,
-    plantuml: true,
     xgplayer: true,
   }
 
@@ -87,7 +86,6 @@ new Viewer({
     enabled.math && loadedPlugins.math,
     enabled.graphviz && loadedPlugins.graphviz,
     enabled.mermaid && loadedPlugins.mermaid,
-    enabled.plantuml && loadedPlugins.plantuml,
     enabled.xgplayer && loadedPlugins.xgplayer,
   ].filter(x => x)
 
@@ -96,7 +94,6 @@ new Viewer({
     import('@bytemd/plugin-math').then(r => { loadedPlugins.math = r.default() })
     import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
     import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
-    import('@bytemd/plugin-plantuml').then(r => { loadedPlugins.plantuml = r.default() })
     import('@bytemd/plugin-xgplayer').then(r => { loadedPlugins.xgplayer = r.default() })
   })
 </script>
@@ -112,7 +109,7 @@ new Viewer({
 
 <div>
   Plugins:
-  {#each ['math', 'graphviz', 'mermaid', 'plantuml', 'highlight', 'xgplayer'] as p}
+  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'xgplayer'] as p}
     <label>
       <input type=checkbox bind:checked={enabled[p]} /> {p}
     </label>
