@@ -6,7 +6,7 @@ export interface BytemdMermaidOptions {}
 export default function mermaid({}: BytemdMermaidOptions = {}): Plugin {
   return {
     shouldTransformElement(node) {
-      return node.type === 'code' && node.lang === 'mermaid';
+      return node.type === 'element' && node.tagName === 'mermaid';
     },
     component: MermaidView
   };

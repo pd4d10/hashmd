@@ -3,7 +3,7 @@ export default function mermaid(_a) {
     _a = {};
     return {
         shouldTransformElement: function (node) {
-            return node.type === 'code' && node.lang === 'mermaid';
+            return node.type === 'element' && node.tagName === 'mermaid';
         },
         component: MermaidView
     };
