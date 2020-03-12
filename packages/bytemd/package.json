@@ -13,7 +13,7 @@
     "dist",
     "src"
   ],
-  "devDependencies": {
+  "dependencies": {
     "@types/codemirror": "^0.0.87",
     "codemirror": "^5.52.0",
     "rehype-parse": "^6.0.2",

@@ -16,6 +16,14 @@ const production = !process.env.ROLLUP_WATCH;
 const configs = {
   bytemd: {
     input: 'src/index.js',
+    external: [
+      'codemirror',
+      'codemirror/mode/markdown/markdown.js',
+      'unified',
+      'remark-parse',
+      'remark-math',
+      'rehype-parse'
+    ],
     watch: {
       clearScreen: false
     }
