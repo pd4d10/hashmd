@@ -74,7 +74,7 @@ new Viewer({
 
 ## Video Player
 
-<xgplayer url="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo-720p.mp4" width="480" height="270" />
+<xgplayer url="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo-720p.mp4" poster="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg" width="480" height="270" />
 `
 
   let enabled = {

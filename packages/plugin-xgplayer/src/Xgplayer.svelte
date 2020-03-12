@@ -14,6 +14,7 @@
       url: properties.url,
       width: properties.width,
       height: properties.height,
+      poster: properties.poster,
     })
   }
 </script>
