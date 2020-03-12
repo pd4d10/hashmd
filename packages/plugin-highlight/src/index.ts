@@ -4,7 +4,7 @@ import Highlight from './Highlight.svelte';
 
 export interface BytemdHighlightOptions {}
 
-export default function highlight({}: BytemdHighlightOptions): Plugin {
+export default function highlight({}: BytemdHighlightOptions = {}): Plugin {
   return {
     shouldTransformElement(node) {
       return (
