@@ -8,7 +8,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "watch": "tsc --watch",
-    "start": "sirv packages/example/public"
+    "serve": "serve packages/example/public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
@@ -21,7 +21,7 @@
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-visualizer": "^3.3.1",
-    "sirv-cli": "^0.4.4",
+    "serve": "^11.3.0",
     "svelte": "^3.0.0",
     "typescript": "^3.8.3"
   }
