@@ -20,7 +20,8 @@ Full-featured Markdown editor and viewer, built with Svelte
 | [@bytemd/plugin-math](./packages/plugin-math) |  | Math plugin |
 | [@bytemd/plugin-graphviz](./packages/plugin-graphviz) |  | Graphviz plugin |
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) |  | Mermaid plugin |
-| [@bytemd/plugin-xgplayer](./packages/plugin-xgplayer) |  | xgplayer plugin |
+| [@bytemd/plugin-video](./packages/plugin-video) |  | video plugin |
+| [@bytemd/plugin-video-xgplayer](./packages/plugin-video-xgplayer) |  | xgplayer video plugin |
 
 ## License
 
