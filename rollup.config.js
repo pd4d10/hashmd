@@ -59,7 +59,7 @@ const configs = {
   'plugin-twemoji': {
     external: ['twemoji']
   },
-  'plugin-xgplayer': {
+  'plugin-video-xgplayer': {
     external: ['xgplayer']
   }
 };

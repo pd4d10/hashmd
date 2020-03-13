@@ -11,7 +11,7 @@
     }
     player = new Player({
       el,
-      url: properties.url,
+      url: properties.src,
       width: properties.width,
       height: properties.height,
       poster: properties.poster,
