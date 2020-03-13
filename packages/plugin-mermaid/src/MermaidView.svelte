@@ -6,7 +6,7 @@
   let element
   let error
 
-  const id = nanoid()
+  const id = 'mermaid-' + nanoid()
 
   function insertSvg(svgCode, bindFunctions) {
     element.innerHTML = svgCode;
