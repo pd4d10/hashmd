@@ -22,7 +22,8 @@ const packageConfigs = {
       'unified',
       'remark-parse',
       'remark-math',
-      'rehype-parse'
+      'remark-rehype',
+      'rehype-raw'
     ],
     watch: {
       clearScreen: false
