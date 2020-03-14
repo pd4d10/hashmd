@@ -75,6 +75,21 @@ new Viewer({
   width="480"
   height="270"
 />
+
+## ABC notation
+
+<abc>
+X:1
+T:The Legacy Jig
+M:6/8
+L:1/8
+R:jig
+K:G
+GFG BAB | gfg gab | GFG BAB | d2A AFD |
+GFG BAB | gfg gab | age edB |1 dBA AFD :|2 dBA ABd |:
+efe edB | dBA ABd | efe edB | gdB ABd |
+efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
+</abc>
 `
 
   let enabled = {
@@ -83,6 +98,7 @@ new Viewer({
     graphviz: true,
     mermaid: true,
     xgplayer: true,
+    abc: true,
   }
 
   let loadedPlugins = {};
@@ -93,6 +109,7 @@ new Viewer({
     enabled.graphviz && loadedPlugins.graphviz,
     enabled.mermaid && loadedPlugins.mermaid,
     enabled.xgplayer && loadedPlugins.xgplayer,
+    enabled.abc && loadedPlugins.abc,
   ].filter(x => x)
 
   onMount(() => {
@@ -101,6 +118,7 @@ new Viewer({
     import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
     import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
     import('@bytemd/plugin-video-xgplayer').then(r => { loadedPlugins.xgplayer = r.default() })
+    import('@bytemd/plugin-abc').then(r => { loadedPlugins.abc = r.default() })
   })
 </script>
 
@@ -115,7 +133,7 @@ new Viewer({
 
 <div>
   Plugins:
-  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'xgplayer'] as p}
+  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'xgplayer', 'abc'] as p}
     <label>
       <input type=checkbox bind:checked={enabled[p]} /> {p}
     </label>

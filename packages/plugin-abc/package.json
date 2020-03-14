@@ -1,0 +1,23 @@
+{
+  "name": "@bytemd/plugin-abc",
+  "version": "0.0.1",
+  "description": "ABC notation plugin for bytemd",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "src/index.d.ts",
+  "svelte": "src/index.js",
+  "keywords": [],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "bytemd": "*"
+  },
+  "dependencies": {
+    "abcjs": "^5.12.0",
+    "nanoid": "^2.1.11"
+  }
+}

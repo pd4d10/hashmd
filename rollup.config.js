@@ -61,6 +61,9 @@ const configs = {
   },
   'plugin-video-xgplayer': {
     external: ['xgplayer']
+  },
+  'plugin-abc': {
+    external: ['abcjs', 'nanoid']
   }
 };
 

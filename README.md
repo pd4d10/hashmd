@@ -22,6 +22,7 @@ Full-featured Markdown editor and viewer, built with Svelte
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) |  | Mermaid plugin |
 | [@bytemd/plugin-video](./packages/plugin-video) |  | video plugin |
 | [@bytemd/plugin-video-xgplayer](./packages/plugin-video-xgplayer) |  | xgplayer video plugin |
+| [@bytemd/plugin-abc](./packages/plugin-abc) |  | [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) plugin |
 
 ## License
 
