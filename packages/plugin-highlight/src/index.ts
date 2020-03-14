@@ -6,7 +6,7 @@ export interface BytemdHighlightOptions {}
 
 export default function highlight({}: BytemdHighlightOptions = {}): Plugin {
   return {
-    shouldTransformElement(node) {
+    test(node) {
       return (
         node.type === 'code' && hljs.getLanguage(node.lang as string) != null
       );

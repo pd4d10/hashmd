@@ -7,7 +7,7 @@ export default function twemoji(
 ): Plugin {
   // TODO: options
   return {
-    shouldTransformElement(node) {
+    test(node) {
       return node.type === 'text';
     },
     component: TwemojiView

@@ -5,7 +5,7 @@ export interface BytemdMathOptions {}
 
 export default function math({}: BytemdMathOptions = {}): Plugin {
   return {
-    shouldTransformElement(node) {
+    test(node) {
       return node.type === 'math' || node.type == 'inlineMath';
     },
     component: KatexView

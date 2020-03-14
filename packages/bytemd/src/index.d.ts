@@ -3,7 +3,13 @@ import { Node } from 'unist';
 import { SvelteComponent } from 'svelte';
 
 export interface Plugin {
-  shouldTransformElement(node: Node): boolean;
+  /**
+   * Test if this node should be rendered
+   */
+  test(node: Node): boolean;
+  /**
+   * The component to render this node
+   */
   component: typeof SvelteComponent;
 }
 
