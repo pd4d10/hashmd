@@ -8,7 +8,7 @@ export default function highlight({}: BytemdHighlightOptions = {}): Plugin {
   return {
     test(node) {
       return (
-        node.type === 'code' && hljs.getLanguage(node.lang as string) != null
+        node.tagName === 'code' && hljs.getLanguage(node.lang as string) != null
       );
     },
     component: Highlight
