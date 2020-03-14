@@ -1,5 +1,6 @@
 <script>
   import Elements from './Elements.svelte'
+  import { santitizeHref } from './utils'
 
   export let node;
   export let plugins;
@@ -52,7 +53,7 @@
     {/if}
   </li>
 {:else if node.tagName === 'a'}
-  <a href={node.properties.href}><Elements nodes={node.children} {plugins} /></a>
+  <a href={santitizeHref(node.properties.href)}><Elements nodes={node.children} {plugins} /></a>
 {:else if node.tagName === 'img'}
   <img src={node.properties.src} alt={node.properties.alt} width={node.properties.width} height={node.properties.height} />
 
