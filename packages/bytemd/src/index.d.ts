@@ -1,8 +1,13 @@
 import { EditorConfiguration } from 'codemirror';
 import { Node } from 'unist';
+import * as unified from 'unified';
 import { SvelteComponent } from 'svelte';
 
 export interface Plugin {
+  /**
+   * Transformers for unified to be applied
+   */
+  transformer?: any; // TODO:
   /**
    * Test if this node should be rendered
    */

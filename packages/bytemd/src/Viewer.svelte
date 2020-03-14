@@ -9,13 +9,25 @@
   export let source = '';
   export let plugins = [];
 
-  const parser = unified()
-    .use(markdown)
-    .use(math)
-    .use(rehype, { allowDangerousHTML: true })
-    .use(raw)
+  $: getParser = () => {
+    let parser = unified()
+      .use(markdown)
+      .use(math)
+      .use(rehype, { allowDangerousHTML: true })
+
+    plugins.forEach(p => {
+      if (Array.isArray(p.transformer)) {
+        parser = parser.use(...p.transformer)
+      } else if (p.transformer) {
+        parser = parser.use(p.transformer)
+      }
+    })
+
+    return parser.use(raw)
+  }
+  $: parser = getParser()
   $: ast = parser.runSync(parser.parse(source))
-  // $: console.log(ast);
+  $: console.log(ast);
 </script>
 
 <div class="markdown-body">
