@@ -2,3 +2,6 @@
 .DS_Store
 node_modules
 dist
+
+packages/plugin-*/src/index.js
+packages/plugin-*/src/index.d.ts
