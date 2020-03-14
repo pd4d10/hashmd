@@ -1,15 +1,18 @@
 <script>
   import katex from 'katex';
 
-  export let type;
-  export let value
+  export let properties;
+  export let children;
+
+  $: isDisplay = properties.className.includes('math-display')
+  $: value = children && children[0] && children[0].value
 </script>
 
-{#if type === 'math'}
+{#if isDisplay}
   <p>{@html katex.renderToString(value, {
     displayMode: true,
     throwOnError: false
   })}</p>
-{:else if type === 'inlineMath'}
+{:else}
   {@html katex.renderToString(value, { throwOnError: false })}
 {/if}
