@@ -42,8 +42,16 @@
   {:else}
     <ul><Elements nodes={node.children} {plugins} /></ul>
   {/if}
+
+<!-- https://github.com/remarkjs/remark/issues/104 -->
 {:else if node.type === 'listItem'}
-  <li><Elements nodes={node.children} {plugins} /></li>
+  <li>
+    {#if node.children[0] && node.children[0].type === 'paragraph'}
+      <Elements nodes={node.children[0].children} {plugins} />
+    {:else}
+      <Elements nodes={node.children} {plugins} />
+    {/if}
+  </li>
 {:else if node.type === 'link'}
   <a href={node.url}><Elements nodes={node.children} {plugins} /></a>
 {:else if node.type === 'image'}
