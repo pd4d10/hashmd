@@ -67,7 +67,9 @@ const configs = {
   }
 };
 
-Object.entries(configs).forEach(([k, v]) => {
+const bundledConfigs = production ? configs : { example: configs.example };
+
+Object.entries(bundledConfigs).forEach(([k, v]) => {
   if (!v.input) {
     v.input = 'src/index.js';
   }
@@ -110,4 +112,4 @@ Object.entries(configs).forEach(([k, v]) => {
   return v;
 });
 
-export default Object.values(configs);
+export default Object.values(bundledConfigs);
