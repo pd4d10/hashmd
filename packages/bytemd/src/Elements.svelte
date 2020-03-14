@@ -11,7 +11,7 @@
 
 {#each nodes as node}
   {#if findPlugin(node)}
-    <svelte:component this={findPlugin(node).component} {...node} {...findPlugin(node).props} />
+    <svelte:component this={findPlugin(node).component} {node} {...findPlugin(node).props} />
   {:else}
     <Element {node} {plugins} />
   {/if}

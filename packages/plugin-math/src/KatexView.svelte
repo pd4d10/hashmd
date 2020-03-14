@@ -1,11 +1,10 @@
 <script>
   import katex from 'katex';
 
-  export let properties;
-  export let children;
+  export let node;
 
-  $: isDisplay = properties.className.includes('math-display')
-  $: value = children && children[0] && children[0].value
+  $: isDisplay = node.properties.className.includes('math-display')
+  $: value = node.children && node.children[0] && node.children[0].value
 </script>
 
 {#if isDisplay}

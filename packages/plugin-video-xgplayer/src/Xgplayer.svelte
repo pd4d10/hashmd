@@ -1,7 +1,12 @@
 <script>
   import Player from 'xgplayer';
 
-  export let properties;
+  export let node;
+  $: src = node.properties.src
+  $: width = node.properties.width
+  $: height = node.properties.height
+  $: poster = node.properties.poster
+
   let el
   let player
 
@@ -11,10 +16,10 @@
     }
     player = new Player({
       el,
-      url: properties.src,
-      width: properties.width,
-      height: properties.height,
-      poster: properties.poster,
+      url: src,
+      width,
+      height,
+      poster,
     })
   }
 </script>

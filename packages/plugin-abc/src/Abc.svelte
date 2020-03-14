@@ -5,15 +5,17 @@
 
   const id = 'abc-' + nanoid()
 
-  export let children
+  export let node
 
-  $: value = children && children[0] && children[0].value
+  $: value = node.children[0] && node.children[0].value
   $: if (value) {
     abcjs.renderAbc(id, value)
   }
 
   onMount(() => {
-    abcjs.renderAbc(id, value)
+    if (value) {
+      abcjs.renderAbc(id, value)
+    }
   })
 </script>
 

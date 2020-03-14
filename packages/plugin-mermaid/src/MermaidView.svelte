@@ -2,7 +2,7 @@
   import mermaid from 'mermaid'
   import nanoid from 'nanoid'
 
-  export let children
+  export let node
   let element
   let error
 
@@ -13,7 +13,7 @@
     if (bindFunctions) bindFunctions(element);
   }
 
-  $: value = children && children[0] && children[0].value
+  $: value = node.children[0] && node.children[0].value
   $: if (element && value) {
     try {
       mermaid.render(id, value, insertSvg, element);
