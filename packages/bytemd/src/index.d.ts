@@ -11,6 +11,10 @@ export interface Plugin {
    * The component to render this node
    */
   component: typeof SvelteComponent;
+  /**
+   * The extra props passed to component
+   */
+  props?: Record<string, unknown>;
 }
 
 export interface EditorProps {
