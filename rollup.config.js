@@ -21,7 +21,6 @@ const packageConfigs = {
       'codemirror/mode/markdown/markdown.js',
       'unified',
       'remark-parse',
-      'remark-math',
       'remark-rehype',
       'rehype-raw'
     ],
@@ -33,10 +32,10 @@ const packageConfigs = {
     external: ['bytemd', 'react']
   },
   'plugin-highlight': {
-    external: ['highlight.js']
+    external: ['rehype-highlight', 'classnames']
   },
   'plugin-math': {
-    external: ['katex']
+    external: ['katex', 'remark-math']
   },
   'plugin-graphviz': {
     external: ['viz.js']

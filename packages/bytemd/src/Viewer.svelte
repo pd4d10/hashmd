@@ -1,7 +1,6 @@
 <script>
   import unified from 'unified';
   import markdown from 'remark-parse';
-  import math from 'remark-math';
   import rehype from 'remark-rehype'
   import raw from 'rehype-raw'
   import Elements from './Elements.svelte';
@@ -12,7 +11,6 @@
   $: getParser = () => {
     let parser = unified()
       .use(markdown)
-      .use(math)
       .use(rehype, { allowDangerousHTML: true })
 
     plugins.forEach(p => {
