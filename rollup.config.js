@@ -92,6 +92,7 @@ Object.entries(configs).forEach(([k, v]) => {
     if (output.dir) {
       output.dir = path.resolve('packages', k, output.dir);
     }
+    output.sourcemap = true;
   });
   v.plugins = [
     svelte({ dev: !production }),
