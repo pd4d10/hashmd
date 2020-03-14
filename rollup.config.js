@@ -13,7 +13,7 @@ import visualizer from 'rollup-plugin-visualizer';
 const production = !process.env.ROLLUP_WATCH;
 
 /** @type {Record<string, import('rollup').RollupOptions>} */
-const configs = {
+const packageConfigs = {
   bytemd: {
     input: 'src/index.js',
     external: [
@@ -30,19 +30,6 @@ const configs = {
   },
   'bytemd-react': {
     external: ['bytemd', 'react']
-  },
-  example: {
-    input: 'src/main.js',
-    output: [
-      {
-        format: 'es',
-        dir: 'public/build/module'
-      },
-      {
-        format: 'system',
-        dir: 'public/build/nomodule'
-      }
-    ]
   },
   'plugin-highlight': {
     external: ['highlight.js']
@@ -67,7 +54,29 @@ const configs = {
   }
 };
 
-const bundledConfigs = production ? configs : { example: configs.example };
+/** @type {Record<string, import('rollup').RollupOptions>} */
+const exampleConfigs = {
+  example: {
+    input: 'src/main.js',
+    output: [
+      {
+        format: 'es',
+        dir: 'public/build/module'
+      }
+    ]
+  }
+};
+
+if (production) {
+  exampleConfigs.example.output.push({
+    format: 'system',
+    dir: 'public/build/nomodule'
+  });
+}
+
+const bundledConfigs = production
+  ? { ...packageConfigs, ...exampleConfigs }
+  : exampleConfigs;
 
 Object.entries(bundledConfigs).forEach(([k, v]) => {
   if (!v.input) {
