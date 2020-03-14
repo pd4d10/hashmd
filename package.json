@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsc; rollup -c",
     "dev": "rollup -c -w",
     "watch": "tsc --watch",
     "serve": "serve packages/example/public"

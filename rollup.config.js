@@ -115,7 +115,7 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     globals(),
     builtins(),
     json(),
-    production && terser(),
+    production && k === 'example' && terser(), // For UMD
     visualizer()
   ];
   return v;
