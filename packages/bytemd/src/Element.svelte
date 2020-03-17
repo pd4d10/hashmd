@@ -40,18 +40,10 @@
   <pre><Elements nodes={node.children} {plugins} /></pre>
 {:else if node.tagName === 'ol'}
   <ol><Elements nodes={node.children} {plugins} /></ol>
-{:else if node.type === 'ul'}
+{:else if node.tagName === 'ul'}
   <ul><Elements nodes={node.children} {plugins} /></ul>
-
-<!-- https://github.com/remarkjs/remark/issues/104 -->
 {:else if node.tagName === 'li'}
-  <li>
-    {#if node.children[0] && node.children[0].tagName === 'p'}
-      <Elements nodes={node.children[0].children} {plugins} />
-    {:else}
-      <Elements nodes={node.children} {plugins} />
-    {/if}
-  </li>
+  <li><Elements nodes={node.children} {plugins} /></li>
 {:else if node.tagName === 'a'}
   <a href={santitizeHref(node.properties.href)}><Elements nodes={node.children} {plugins} /></a>
 {:else if node.tagName === 'img'}
