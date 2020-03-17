@@ -17,6 +17,18 @@
   <del><Elements nodes={node.children} {plugins} /></del>
 {:else if node.tagName === 'ins'}
   <ins><Elements nodes={node.children} {plugins} /></ins>
+{:else if node.tagName === 'mark'}
+  <mark><Elements nodes={node.children} {plugins} /></mark>
+{:else if node.tagName === 'sub'}
+  <sub><Elements nodes={node.children} {plugins} /></sub>
+{:else if node.tagName === 'sup'}
+  <sup><Elements nodes={node.children} {plugins} /></sup>
+{:else if node.tagName === 'ruby'}
+  <ruby><Elements nodes={node.children} {plugins} /></ruby>
+{:else if node.tagName === 'rp'}
+  <rp><Elements nodes={node.children} {plugins} /></rp>
+{:else if node.tagName === 'rt'}
+  <rt><Elements nodes={node.children} {plugins} /></rt>
 
 {:else if node.tagName === 'code'}
   <code><Elements nodes={node.children} {plugins} /></code>
