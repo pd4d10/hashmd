@@ -26,4 +26,16 @@ export function handleBlockquote(cm: Editor) {
       cm.replaceRange('> ' + content, { line, ch: 0 }, { line });
     }
   }
+  cm.focus();
+}
+
+export function handleLink(cm: Editor) {
+  if (cm.somethingSelected()) {
+    const text = cm.getSelection();
+    cm.replaceSelection(`[${text}]()`);
+  } else {
+    const pos = cm.getCursor();
+    cm.replaceRange('[]()', pos);
+  }
+  cm.focus();
 }
