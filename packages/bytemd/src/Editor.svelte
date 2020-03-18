@@ -4,9 +4,11 @@
   import 'codemirror/mode/markdown/markdown.js';
   import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
+  import { dataUrlFileHandler } from './editor.js'
 
   export let source;
-  export let codemirrorConfig;
+  export let onChange = () => {};
+  export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
 
   let textarea;
@@ -17,11 +19,11 @@
       mode: 'markdown',
       // lineNumbers: true,
       lineWrapping: true,
-      ...codemirrorConfig
     });
     cm.setValue(source);
     cm.on('change', () => {
       source = cm.getValue();
+      onChange(source);
     });
   });
 </script>
@@ -44,7 +46,7 @@
   }
 </style>
 
-<Toolbar {cm} />
+<Toolbar {cm} {fileHandler} />
 <div class="bytemd-body">
   <textarea bind:this={textarea} />
   <div class="bytemd-viewer">

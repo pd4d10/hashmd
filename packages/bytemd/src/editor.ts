@@ -1,4 +1,5 @@
 import { Editor } from 'codemirror';
+import { EditorProps } from '.';
 
 export function handleDec(cm: Editor, decorator: string) {
   if (cm.somethingSelected()) {
@@ -40,15 +41,29 @@ export function handleLink(cm: Editor) {
   cm.focus();
 }
 
-export function handleImage(cm: Editor, e: InputEvent) {
+export const dataUrlFileHandler: EditorProps['fileHandler'] = async file => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', e => {
+      resolve(e.target!.result as string);
+    });
+    reader.addEventListener('error', e => {
+      reject(new Error('readAsDataURL error'));
+    });
+    reader.readAsDataURL(file);
+  });
+};
+
+export async function handleImage(
+  cm: Editor,
+  e: InputEvent,
+  fileHandler: EditorProps['fileHandler']
+) {
   const $ = e.target as HTMLInputElement;
   if (!$.files) return;
   const file = $.files[0];
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.addEventListener('load', e => {
-    const dataUrl = e.target!.result;
-    cm.replaceSelection(`![](${dataUrl})`);
-    cm.focus();
-  });
+  const url = await fileHandler(file);
+  const text = cm.getSelection();
+  cm.replaceSelection(`![${text}](${url})`);
+  cm.focus();
 }

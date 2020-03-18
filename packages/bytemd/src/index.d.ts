@@ -24,7 +24,8 @@ export interface Plugin {
 
 export interface EditorProps {
   source: string;
-  codemirrorConfig?: EditorConfiguration;
+  onChange(value: string): void;
+  fileHandler: (file: File) => Promise<string>;
   plugins?: Plugin[];
 }
 
