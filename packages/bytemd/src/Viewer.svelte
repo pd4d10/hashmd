@@ -5,7 +5,7 @@
   import raw from 'rehype-raw'
   import Elements from './Elements.svelte';
 
-  export let source = '';
+  export let value = '';
   export let plugins = [];
 
   $: getParser = () => {
@@ -24,7 +24,7 @@
     return parser.use(raw)
   }
   $: parser = getParser()
-  $: ast = parser.runSync(parser.parse(source))
+  $: ast = parser.runSync(parser.parse(value))
   $: console.log(ast);
 </script>
 

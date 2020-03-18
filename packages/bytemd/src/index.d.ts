@@ -23,7 +23,7 @@ export interface Plugin {
 }
 
 export interface EditorProps {
-  source: string;
+  value: string;
   onChange(value: string): void;
   fileHandler: (file: File) => Promise<string>;
   plugins?: Plugin[];
@@ -34,7 +34,7 @@ export declare class Editor {
 }
 
 export interface ViewerProps {
-  source: string;
+  value: string;
   plugins?: Plugin[];
 }
 

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import { Editor } from 'bytemd';
 
-  let source = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
+  let value = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
 ## Math equation
 
@@ -139,4 +139,4 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     </label>
   {/each}
 </div>
-<Editor {source} plugins={plugins} />
+<Editor {value} plugins={plugins} />

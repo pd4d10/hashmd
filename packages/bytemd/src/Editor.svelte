@@ -6,7 +6,7 @@
   import Viewer from './Viewer.svelte';
   import { dataUrlFileHandler } from './editor.js'
 
-  export let source;
+  export let value;
   export let onChange = () => {};
   export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
@@ -17,13 +17,13 @@
   onMount(() => {
     cm = codemirror.fromTextArea(textarea, {
       mode: 'markdown',
-      // lineNumbers: true,
+      lineNumbers: true,
       lineWrapping: true,
     });
-    cm.setValue(source);
+    cm.setValue(value);
     cm.on('change', () => {
-      source = cm.getValue();
-      onChange(source);
+      value = cm.getValue();
+      onChange(value);
     });
   });
 </script>
@@ -48,8 +48,10 @@
 
 <Toolbar {cm} {fileHandler} />
 <div class="bytemd-body">
-  <textarea bind:this={textarea} />
+  <div class="bytemd-editor">
+    <textarea bind:this={textarea} />
+  </div>
   <div class="bytemd-viewer">
-    <Viewer {source} {plugins} />
+    <Viewer {value} {plugins} />
   </div>
 </div>
