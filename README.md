@@ -2,7 +2,9 @@
 
 [![demo](https://github.com/bytedance/bytemd/workflows/demo/badge.svg)](https://bytedance.github.io/bytemd/)
 
-Full-featured Markdown editor and viewer, built with Svelte
+Markdown editor component built with Svelte.
+
+> Note: It is still in development.
 
 ## Packages
 
