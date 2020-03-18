@@ -39,3 +39,16 @@ export function handleLink(cm: Editor) {
   }
   cm.focus();
 }
+
+export function handleImage(cm: Editor, e: InputEvent) {
+  const $ = e.target as HTMLInputElement;
+  if (!$.files) return;
+  const file = $.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.addEventListener('load', e => {
+    const dataUrl = e.target!.result;
+    cm.replaceSelection(`![](${dataUrl})`);
+    cm.focus();
+  });
+}
