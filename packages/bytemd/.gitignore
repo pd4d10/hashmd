@@ -2,3 +2,6 @@
 /public/build/
 
 .DS_Store
+
+src/editor.js
+src/editor.d.ts

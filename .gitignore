@@ -3,5 +3,5 @@
 node_modules
 dist
 
-packages/plugin-*/src/index.js
-packages/plugin-*/src/index.d.ts
+packages/plugin-*/src/*.js
+packages/plugin-*/src/*.d.ts
