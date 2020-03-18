@@ -46,6 +46,7 @@ const packageConfigs = {
   'plugin-twemoji': {
     external: ['twemoji']
   },
+  'plugin-media': {},
   'plugin-video-xgplayer': {
     external: ['xgplayer']
   },
