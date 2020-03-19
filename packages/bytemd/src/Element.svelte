@@ -45,7 +45,7 @@
 {:else if node.tagName === 'h6'}
   <h6><Elements nodes={node.children} {plugins} /></h6>
 {:else if node.tagName === 'p'}
-  <p><Elements nodes={node.children} {plugins} /></p>
+  <p align={node.properties.align}><Elements nodes={node.children} {plugins} /></p>
 {:else if node.tagName === 'blockquote'}
   <blockquote><Elements nodes={node.children} {plugins} /></blockquote>
 {:else if node.tagName === 'pre'}
