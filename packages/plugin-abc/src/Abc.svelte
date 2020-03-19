@@ -1,9 +1,8 @@
 <script>
   import { onMount } from 'svelte'
   import abcjs from 'abcjs'
-  import nanoid from 'nanoid'
 
-  const id = 'abc-' + nanoid()
+  const id = 'abc-' + Date.now()
 
   export let node
 

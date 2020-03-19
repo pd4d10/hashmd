@@ -14,8 +14,7 @@
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "mermaid": "^8.4.8",
-    "nanoid": "^2.1.11"
+    "mermaid": "^8.4.8"
   },
   "peerDependencies": {
     "bytemd": "*"

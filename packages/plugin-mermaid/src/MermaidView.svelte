@@ -1,12 +1,11 @@
 <script>
   import mermaid from 'mermaid'
-  import nanoid from 'nanoid'
 
   export let node
   let element
   let error
 
-  const id = 'mermaid-' + nanoid()
+  const id = 'mermaid-' + Date.now()
 
   function insertSvg(svgCode, bindFunctions) {
     element.innerHTML = svgCode;

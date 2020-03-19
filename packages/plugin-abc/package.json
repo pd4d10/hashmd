@@ -17,7 +17,6 @@
     "bytemd": "*"
   },
   "dependencies": {
-    "abcjs": "^5.12.0",
-    "nanoid": "^2.1.11"
+    "abcjs": "^5.12.0"
   }
 }
