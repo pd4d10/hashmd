@@ -9,7 +9,7 @@
   div {
     display: flex;
     padding: 4px;
-    border: 1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
   span {
     cursor: pointer;
@@ -24,8 +24,8 @@
   }
   svg {
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
   input {
     display: none;

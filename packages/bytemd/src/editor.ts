@@ -79,4 +79,5 @@ export function handleTable(cm: Editor) {
     pos
   );
   cm.setCursor({ line: pos.line + 1, ch: 2 });
+  cm.focus();
 }

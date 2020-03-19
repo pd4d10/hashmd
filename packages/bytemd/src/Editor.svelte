@@ -29,10 +29,12 @@
 </script>
 
 <style>
+  .bytemd {
+    border: 1px solid #eee;
+  }
   .bytemd-body {
     display: flex;
     height: 300px;
-    border: 1px solid #eee;
   }
   .bytemd-body :global(.CodeMirror) {
     flex: 1;
@@ -46,10 +48,12 @@
   }
 </style>
 
-<Toolbar {cm} {fileHandler} />
-<div class="bytemd-body">
-  <textarea bind:this={textarea} />
-  <div class="bytemd-viewer">
-    <Viewer {value} {plugins} />
+<div class="bytemd">
+  <Toolbar {cm} {fileHandler} />
+  <div class="bytemd-body">
+    <textarea bind:this={textarea} />
+    <div class="bytemd-viewer">
+      <Viewer {value} {plugins} />
+    </div>
   </div>
 </div>
