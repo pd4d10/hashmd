@@ -41,17 +41,17 @@ const packageConfigs = {
     external: ['viz.js']
   },
   'plugin-mermaid': {
-    external: ['mermaid', 'nanoid']
+    external: ['mermaid']
   },
   'plugin-twemoji': {
     external: ['twemoji']
   },
   'plugin-media': {},
-  'plugin-video-xgplayer': {
+  'plugin-xgplayer': {
     external: ['xgplayer']
   },
   'plugin-abc': {
-    external: ['abcjs', 'nanoid']
+    external: ['abcjs']
   }
 };
 
@@ -75,9 +75,7 @@ if (production) {
   });
 }
 
-const bundledConfigs = production
-  ? { ...packageConfigs, ...exampleConfigs }
-  : exampleConfigs;
+const bundledConfigs = { ...packageConfigs, ...exampleConfigs };
 
 Object.entries(bundledConfigs).forEach(([k, v]) => {
   if (!v.input) {

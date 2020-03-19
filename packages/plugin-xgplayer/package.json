@@ -1,7 +1,7 @@
 {
-  "name": "@bytemd/plugin-video-xgplayer",
+  "name": "@bytemd/plugin-xgplayer",
   "version": "0.0.1",
-  "description": "xgplayer video plugin for bytemd",
+  "description": "xgplayer plugin for bytemd",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "src/index.d.ts",

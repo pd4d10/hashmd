@@ -1,10 +1,10 @@
-# @bytemd/plugin-video-xgplayer
+# @bytemd/plugin-xgplayer
 
 ## Usage
 
 ```js
 import { Editor } from 'bytemd';
-import xgplayer from '@bytemd/plugin-video-xgplayer';
+import xgplayer from '@bytemd/plugin-xgplayer';
 
 new Editor({
   target: document.body,

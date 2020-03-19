@@ -68,13 +68,7 @@ new Viewer({
 
 ## Video Player
 
-<video
-  src="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo-720p.mp4"
-  poster="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg"
-  controls
-  width="480"
-  height="270"
-/>
+<video src="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo-720p.mp4" poster="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg" width="480" height="270"></video>
 
 ## ABC notation
 
@@ -117,7 +111,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     import('@bytemd/plugin-math').then(r => { loadedPlugins.math = r.default() })
     import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
     import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
-    import('@bytemd/plugin-video-xgplayer').then(r => { loadedPlugins.xgplayer = r.default() })
+    import('@bytemd/plugin-xgplayer').then(r => { loadedPlugins.xgplayer = r.default() })
     import('@bytemd/plugin-abc').then(r => { loadedPlugins.abc = r.default() })
   })
 </script>
