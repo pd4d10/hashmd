@@ -78,4 +78,6 @@
   <th align={properties.align}><Elements nodes={children} {plugins} /></th>
 {:else if tagName === 'td'}
   <td align={properties.align}><Elements nodes={children} {plugins} /></td>
+{:else}
+  <Elements nodes={children} {plugins} />
 {/if}
