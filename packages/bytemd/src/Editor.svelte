@@ -34,23 +34,21 @@
     height: 300px;
     border: 1px solid #eee;
   }
+  .bytemd-body :global(.CodeMirror) {
+    flex: 1;
+    height: 100%;
+  }
   .bytemd-viewer {
     padding: 20px;
     flex: 1;
     overflow: auto;
     border-left: 1px solid #eee;
   }
-  :global(.CodeMirror) {
-    flex: 1;
-    height: 100%;
-  }
 </style>
 
 <Toolbar {cm} {fileHandler} />
 <div class="bytemd-body">
-  <div class="bytemd-editor">
-    <textarea bind:this={textarea} />
-  </div>
+  <textarea bind:this={textarea} />
   <div class="bytemd-viewer">
     <Viewer {value} {plugins} />
   </div>

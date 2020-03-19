@@ -127,7 +127,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     padding: 10px;
   }
   :global(.bytemd-body) {
-    height: 90vh!important;
+    height: 80vh!important;
   }
 </style>
 
