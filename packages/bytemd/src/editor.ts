@@ -67,3 +67,16 @@ export async function handleImage(
   cm.replaceSelection(`![${text}](${url})`);
   cm.focus();
 }
+
+export function handleTable(cm: Editor) {
+  const pos = cm.getCursor();
+  cm.replaceRange(
+    `
+|  |  |
+| --- | --- |
+|  |  |
+`,
+    pos
+  );
+  cm.setCursor({ line: pos.line + 1, ch: 2 });
+}

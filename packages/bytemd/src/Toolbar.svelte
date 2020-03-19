@@ -1,5 +1,5 @@
 <script>
-  import { handleDec, handleBlockquote, handleLink, handleImage } from './editor.js'
+  import { handleDec, handleBlockquote, handleLink, handleImage, handleTable } from './editor.js'
   export let cm;
   export let fileHandler;
   let fileInput;
@@ -40,4 +40,5 @@
   <span on:click={() => handleLink(cm)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></span>
   <span on:click={() => fileInput.click()}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></span>
   <input bind:this={fileInput} type="file" accept="image/png, image/jpeg" on:change={(e) => handleImage(cm, e, fileHandler)} />
+  <span on:click={() => handleTable(cm)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm8 16H5v-6h6v6zm0-8H5V5h6v6zm8 8h-6v-6h6v6zm0-8h-6V5h6v6z"/></svg></span>
 </div>
