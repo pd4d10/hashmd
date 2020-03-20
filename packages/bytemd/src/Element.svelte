@@ -18,6 +18,10 @@
   <em><Elements nodes={children} {plugins} /></em>
 {:else if tagName === 'strong'}
   <strong><Elements nodes={children} {plugins} /></strong>
+{:else if tagName === 'i'}
+  <i><Elements nodes={children} {plugins} /></i>
+{:else if tagName === 'b'}
+  <b><Elements nodes={children} {plugins} /></b>
 {:else if tagName === 'del'}
   <del><Elements nodes={children} {plugins} /></del>
 {:else if tagName === 'ins'}
