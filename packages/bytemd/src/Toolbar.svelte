@@ -1,5 +1,5 @@
 <script>
-  import { handleDec, handleBlockquote, handleLink, handleImage, handleTable } from './editor.js'
+  import { handleDec, handleBlockquote, handleLink, handleImage, handleTable } from './utils.js'
   export let cm;
   export let fileHandler;
   let fileInput;

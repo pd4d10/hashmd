@@ -4,7 +4,7 @@
   import 'codemirror/mode/markdown/markdown.js';
   import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
-  import { dataUrlFileHandler } from './editor.js'
+  import { dataUrlFileHandler } from './utils.js'
 
   export let value;
   export let onChange = () => {};
