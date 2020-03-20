@@ -3,6 +3,13 @@
   export let poster
   export let width
   export let height
+  export let attrs
 </script>
 
-<video {src} {poster} {width} {height} controls></video>
+<style>
+  video {
+    max-width: 100%;
+  }
+</style>
+
+<video {...attrs} {src} {poster} {width} {height}></video>

@@ -1,10 +1,19 @@
 import { Plugin } from 'bytemd';
+import { IPlayerOptions } from 'xgplayer';
 import Xgplayer from './Xgplayer.svelte';
 
-export default function xgplayer(): Plugin {
+export interface PluginOptions {
+  tagName?: string;
+  playerOptions?: Omit<IPlayerOptions, 'id' | 'el' | 'url'>;
+}
+
+export default function xgplayer({
+  tagName = 'video',
+  playerOptions
+}: PluginOptions = {}): Plugin {
   return {
     render(node) {
-      if (node.type === 'element' && node.tagName === 'video') {
+      if (node.type === 'element' && node.tagName === tagName) {
         const {
           src,
           poster,
@@ -13,7 +22,13 @@ export default function xgplayer(): Plugin {
         } = node.properties as HTMLVideoElement;
         return {
           component: Xgplayer,
-          props: { src, poster, width, height }
+          props: {
+            url: src,
+            poster,
+            width,
+            height,
+            playerOptions
+          }
         };
       }
     }

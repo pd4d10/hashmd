@@ -1,5 +1,6 @@
 <script>
   export let src
+  export let attrs
 </script>
 
-<audio {src} controls></audio>
+<audio {...attrs} {src}></audio>

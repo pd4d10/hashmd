@@ -1,10 +1,11 @@
 <script>
   import Player from 'xgplayer';
 
-  export let src
+  export let url
   export let width
   export let height
   export let poster
+  export let playerOptions
 
   let el
   let player
@@ -14,8 +15,9 @@
       player.destroy()
     }
     player = new Player({
+      ...playerOptions,
       el,
-      url: src,
+      url,
       width,
       height,
       poster,

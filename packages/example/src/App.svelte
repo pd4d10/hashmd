@@ -68,7 +68,7 @@ new Viewer({
 
 ## Video Player
 
-<video src="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo-720p.mp4" poster="//s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg" width="480" height="270"></video>
+<video src="https://raw.githubusercontent.com/bower-media-samples/big-buck-bunny-1080p-30s/master/video.mp4" poster="https://raw.githubusercontent.com/bower-media-samples/big-buck-bunny-1080p-30s/master/poster.jpg"></video>
 
 ## ABC notation
 
@@ -91,7 +91,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     math: true,
     graphviz: true,
     mermaid: true,
-    xgplayer: true,
+    media: true,
     abc: true,
   }
 
@@ -102,7 +102,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     enabled.math && loadedPlugins.math,
     enabled.graphviz && loadedPlugins.graphviz,
     enabled.mermaid && loadedPlugins.mermaid,
-    enabled.xgplayer && loadedPlugins.xgplayer,
+    enabled.media && loadedPlugins.media,
     enabled.abc && loadedPlugins.abc,
   ].filter(x => x)
 
@@ -111,7 +111,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     import('@bytemd/plugin-math').then(r => { loadedPlugins.math = r.default() })
     import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
     import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
-    import('@bytemd/plugin-xgplayer').then(r => { loadedPlugins.xgplayer = r.default() })
+    import('@bytemd/plugin-media').then(r => { loadedPlugins.media = r.default() })
     import('@bytemd/plugin-abc').then(r => { loadedPlugins.abc = r.default() })
   })
 </script>
@@ -127,7 +127,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
 
 <div>
   Plugins:
-  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'xgplayer', 'abc'] as p}
+  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'media', 'abc'] as p}
     <label>
       <input type=checkbox bind:checked={enabled[p]} /> {p}
     </label>
