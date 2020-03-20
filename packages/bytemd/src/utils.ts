@@ -1,4 +1,4 @@
-export const santitizeHref = href => {
+export const santitizeHref = (href?: string) => {
   if (
     href &&
     href

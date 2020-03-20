@@ -3,5 +3,7 @@
 
 .DS_Store
 
-src/editor.js
-src/editor.d.ts
+src/*.js
+src/*.d.ts
+!src/index.js
+!src/index.d.ts

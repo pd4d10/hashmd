@@ -1,6 +1,4 @@
-import { EditorConfiguration } from 'codemirror';
 import { Node } from 'unist';
-import * as unified from 'unified';
 import { SvelteComponent } from 'svelte';
 
 export interface Plugin {
@@ -22,6 +20,11 @@ export interface Plugin {
   props?: Record<string, unknown>;
 }
 
+// TODO: https://github.com/sveltejs/svelte/pull/4577
+declare class SvelteComponentDev<P> {
+  constructor(options: { target: Element; props?: P });
+}
+
 export interface EditorProps {
   value: string;
   onChange(value: string): void;
@@ -29,15 +32,10 @@ export interface EditorProps {
   plugins?: Plugin[];
 }
 
-export declare class Editor {
-  constructor(options: { target: HTMLElement; props: EditorProps });
-}
-
 export interface ViewerProps {
   value: string;
   plugins?: Plugin[];
 }
 
-export declare class Viewer {
-  constructor(options: { target: HTMLElement; props: ViewerProps });
-}
+export declare const Editor: SvelteComponentDev<EditorProps>;
+export declare const Viewer: SvelteComponentDev<ViewerProps>;
