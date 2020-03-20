@@ -1,5 +1,5 @@
 import { Plugin } from 'bytemd';
-import { ParseObject, ParseCallback } from 'twemoji';
+import { parse, ParseObject, ParseCallback } from 'twemoji';
 import TwemojiView from './TwemojiView.svelte';
 
 export default function twemoji(
@@ -8,7 +8,13 @@ export default function twemoji(
   // TODO: options
   return {
     render(node) {
-      if (node.type === 'text') return { component: TwemojiView };
+      if (node.type === 'text' && node.value)
+        return {
+          component: TwemojiView,
+          props: {
+            raw: parse(node.value as string)
+          }
+        };
     }
   };
 }

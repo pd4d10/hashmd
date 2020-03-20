@@ -4,8 +4,7 @@
 
   const viz = new Viz(workerURL)
 
-  export let node
-  $: value = node.children && node.children[0] && node.children[0].value
+  export let value
 </script>
 
 <style>

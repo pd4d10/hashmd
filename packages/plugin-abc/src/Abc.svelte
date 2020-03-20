@@ -4,9 +4,7 @@
 
   const id = 'abc-' + Date.now()
 
-  export let node
-
-  $: value = node.children[0] && node.children[0].value
+  export let value
   $: if (value) {
     abcjs.renderAbc(id, value)
   }

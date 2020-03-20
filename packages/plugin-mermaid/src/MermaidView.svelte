@@ -1,7 +1,7 @@
 <script>
   import mermaid from 'mermaid'
 
-  export let node
+  export let value
   let element
   let error
 
@@ -12,8 +12,7 @@
     if (bindFunctions) bindFunctions(element);
   }
 
-  $: value = node.children[0] && node.children[0].value
-  $: if (element && value) {
+  $: if (element) {
     try {
       mermaid.render(id, value, insertSvg, element);
       error = null

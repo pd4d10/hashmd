@@ -1,11 +1,10 @@
 <script>
   import Player from 'xgplayer';
 
-  export let node;
-  $: src = node.properties.src
-  $: width = node.properties.width
-  $: height = node.properties.height
-  $: poster = node.properties.poster
+  export let src
+  export let width
+  export let height
+  export let poster
 
   let el
   let player

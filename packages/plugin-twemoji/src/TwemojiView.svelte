@@ -1,6 +1,5 @@
 <script>
-  import twemoji from 'twemoji'
-  export let node
+  export let raw
 </script>
 
-{@html twemoji.parse(node.value)}
+{@html raw}
