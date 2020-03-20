@@ -19,11 +19,11 @@ Markdown editor component built with Svelte.
 | Package | Status | Description |
 | --- | --- | --- |
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) |  | Code syntax highlighting with [highlight.js](https://github.com/highlightjs/highlight.js) |
-| [@bytemd/plugin-math](./packages/plugin-math) |  | Math plugin |
+| [@bytemd/plugin-math](./packages/plugin-math) |  | Render math equation with [KaTeX](https://katex.org/) |
 | [@bytemd/plugin-graphviz](./packages/plugin-graphviz) |  | Graphviz plugin |
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) |  | Mermaid plugin |
-| [@bytemd/plugin-video](./packages/plugin-video) |  | video plugin |
-| [@bytemd/plugin-video-xgplayer](./packages/plugin-video-xgplayer) |  | xgplayer video plugin |
+| [@bytemd/plugin-media](./packages/plugin-media) |  | Supports `<video>` and `<audio>` tags |
+| [@bytemd/plugin-xgplayer](./packages/plugin-video-xgplayer) |  | Play video with [xgplayer](https://github.com/bytedance/xgplayer) |
 | [@bytemd/plugin-abc](./packages/plugin-abc) |  | [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) plugin |
 
 ## License
