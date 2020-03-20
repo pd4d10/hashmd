@@ -7,9 +7,9 @@ export interface BytemdHighlightOptions {}
 export default function highlight({}: BytemdHighlightOptions = {}): Plugin {
   return {
     transformer: [rehypeHighlight, { subset: false, ignoreMissing: true }],
-    test(node) {
-      return node.type === 'element' && node.tagName === 'code';
-    },
-    component: Highlight
+    render(node) {
+      if (node.type === 'element' && node.tagName === 'code')
+        return { component: Highlight };
+    }
   };
 }

@@ -7,17 +7,16 @@ export interface Plugin {
    */
   transformer?: any; // TODO:
   /**
-   * Test if this node should be rendered
+   * Specify how to render this node
    */
-  test(node: Node): boolean;
-  /**
-   * The component to render this node
-   */
-  component: typeof SvelteComponent;
-  /**
-   * The extra props passed to component
-   */
-  props?: Record<string, unknown>;
+  render(
+    node: Node
+  ):
+    | {
+        component: typeof SvelteComponent;
+        props?: Record<string, unknown>;
+      }
+    | undefined;
 }
 
 // TODO: https://github.com/sveltejs/svelte/pull/4577

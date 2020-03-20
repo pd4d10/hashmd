@@ -5,9 +5,10 @@ export interface BytemdGraphvizOptions {}
 
 export default function graphviz({}: BytemdGraphvizOptions = {}): Plugin {
   return {
-    test(node) {
-      return node.type === 'element' && node.tagName === 'md-graphviz';
-    },
-    component: GraphvizView
+    render(node) {
+      if (node.type === 'element' && node.tagName === 'md-graphviz') {
+        return { component: GraphvizView };
+      }
+    }
   };
 }

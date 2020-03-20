@@ -3,9 +3,9 @@ import Xgplayer from './Xgplayer.svelte';
 
 export default function xgplayer(): Plugin {
   return {
-    test(node) {
-      return node.type === 'element' && node.tagName === 'video';
-    },
-    component: Xgplayer
+    render(node) {
+      if (node.type === 'element' && node.tagName === 'video')
+        return { component: Xgplayer };
+    }
   };
 }

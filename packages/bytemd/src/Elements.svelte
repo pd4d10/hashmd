@@ -5,7 +5,10 @@
   export let plugins;
 
   $: findPlugin = (node) => {
-    return plugins.find(p => p.test(node))
+    for (let i = 0; i < plugins.length; i++) {
+      const res = plugins[i].render(node)
+      if (res) return res
+    }
   }
 </script>
 
