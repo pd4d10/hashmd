@@ -8,7 +8,7 @@ import twemoji from '@bytemd/plugin-twemoji';
 
 new Editor({
   target: document.body,
-  plugins: [twemoji()]
+  plugins: [twemoji()],
 });
 ```
 

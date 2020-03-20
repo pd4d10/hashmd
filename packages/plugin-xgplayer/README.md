@@ -8,7 +8,7 @@ import xgplayer from '@bytemd/plugin-xgplayer';
 
 new Editor({
   target: document.body,
-  plugins: [xgplayer()]
+  plugins: [xgplayer()],
 });
 ```
 

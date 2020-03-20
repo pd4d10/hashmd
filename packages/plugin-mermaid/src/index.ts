@@ -12,9 +12,9 @@ export default function mermaid({}: BytemdMermaidOptions = {}): Plugin {
         if (children && children[0] && children[0].value)
           return {
             component: MermaidView,
-            props: { value: children[0].value }
+            props: { value: children[0].value },
           };
       }
-    }
+    },
   };
 }

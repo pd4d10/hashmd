@@ -18,19 +18,19 @@ export default function math({}: BytemdMathOptions = {}): Plugin {
         const children = node.children as Node[];
         if (children && children[0] && children[0].value) {
           const displayMode = (node.properties as any).className.includes(
-            'math-display'
+            'math-display',
           );
           return {
             component: KatexView,
             props: {
               html: katex.renderToString(children[0].value as string, {
                 displayMode,
-                throwOnError: false
-              })
-            }
+                throwOnError: false,
+              }),
+            },
           };
         }
       }
-    }
+    },
   };
 }

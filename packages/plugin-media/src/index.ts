@@ -9,7 +9,7 @@ export interface PluginOptions {
 
 export default function media({
   videoAttrs = { controls: true },
-  audioAttrs = { controls: true }
+  audioAttrs = { controls: true },
 }: PluginOptions = {}): Plugin {
   return {
     render(node) {
@@ -20,11 +20,11 @@ export default function media({
             src,
             poster,
             width,
-            height
+            height,
           } = node.properties as HTMLVideoElement;
           return {
             component: Video,
-            props: { src, poster, width, height, attrs: videoAttrs }
+            props: { src, poster, width, height, attrs: videoAttrs },
           };
         }
         case 'audio': {
@@ -32,11 +32,11 @@ export default function media({
             component: Audio,
             props: {
               src: (node.properties as HTMLAudioElement).src,
-              attrs: audioAttrs
-            }
+              attrs: audioAttrs,
+            },
           };
         }
       }
-    }
+    },
   };
 }

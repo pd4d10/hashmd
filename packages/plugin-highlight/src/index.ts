@@ -11,9 +11,9 @@ export default function highlight({}: BytemdHighlightOptions = {}): Plugin {
       if (node.type === 'element' && node.tagName === 'code') {
         return {
           component: Highlight,
-          props: { node }
+          props: { node },
         };
       }
-    }
+    },
   };
 }

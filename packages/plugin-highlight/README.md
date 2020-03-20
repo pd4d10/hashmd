@@ -8,7 +8,7 @@ import highlight from '@bytemd/plugin-highlight';
 
 new Editor({
   target: document.body,
-  plugins: [highlight()]
+  plugins: [highlight()],
 });
 ```
 

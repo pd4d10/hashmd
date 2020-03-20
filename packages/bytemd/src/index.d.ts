@@ -10,7 +10,7 @@ export interface Plugin {
    * Specify how to render this node
    */
   render(
-    node: Node
+    node: Node,
   ):
     | {
         component: typeof SvelteComponent;

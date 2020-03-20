@@ -9,7 +9,7 @@ export interface PluginOptions {
 
 export default function xgplayer({
   tagName = 'video',
-  playerOptions
+  playerOptions,
 }: PluginOptions = {}): Plugin {
   return {
     render(node) {
@@ -18,7 +18,7 @@ export default function xgplayer({
           src,
           poster,
           width,
-          height
+          height,
         } = node.properties as HTMLVideoElement;
         return {
           component: Xgplayer,
@@ -27,10 +27,10 @@ export default function xgplayer({
             poster,
             width,
             height,
-            playerOptions
-          }
+            playerOptions,
+          },
         };
       }
-    }
+    },
   };
 }

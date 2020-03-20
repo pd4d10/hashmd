@@ -8,7 +8,7 @@ import abc from '@bytemd/plugin-abc';
 
 new Editor({
   target: document.body,
-  plugins: [abc()]
+  plugins: [abc()],
 });
 ```
 

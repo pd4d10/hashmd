@@ -71,7 +71,7 @@ export const dataUrlFileHandler: EditorProps['fileHandler'] = async file => {
 export async function handleImage(
   cm: Editor,
   e: InputEvent,
-  fileHandler: EditorProps['fileHandler']
+  fileHandler: EditorProps['fileHandler'],
 ) {
   const $ = e.target as HTMLInputElement;
   if (!$.files) return;
@@ -90,7 +90,7 @@ export function handleTable(cm: Editor) {
 | --- | --- |
 |  |  |
 `,
-    pos
+    pos,
   );
   cm.setCursor({ line: pos.line + 1, ch: 2 });
   cm.focus();

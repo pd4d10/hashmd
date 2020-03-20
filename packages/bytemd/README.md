@@ -10,13 +10,13 @@ import { Editor, Viewer } from 'bytemd';
 // Editor
 new Editor({
   target: document.body,
-  props: {}
+  props: {},
 });
 
 // Viewer
 new Viewer({
   target: document.body,
-  props: {}
+  props: {},
 });
 ```
 

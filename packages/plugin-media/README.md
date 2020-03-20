@@ -8,7 +8,7 @@ import media from '@bytemd/plugin-media';
 
 new Editor({
   target: document.body,
-  plugins: [media()]
+  plugins: [media()],
 });
 ```
 

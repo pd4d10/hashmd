@@ -12,10 +12,10 @@ export default function graphviz({}: BytemdGraphvizOptions = {}): Plugin {
         if (children[0] && children[0].type === 'text' && children[0].value) {
           return {
             component: Abc,
-            props: { value: children[0].value }
+            props: { value: children[0].value },
           };
         }
       }
-    }
+    },
   };
 }

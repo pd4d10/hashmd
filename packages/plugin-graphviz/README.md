@@ -8,7 +8,7 @@ import graphviz from '@bytemd/plugin-graphviz';
 
 new Editor({
   target: document.body,
-  plugins: [graphviz()]
+  plugins: [graphviz()],
 });
 ```
 
