@@ -1,5 +1,14 @@
-import { Node } from 'unist';
 import { SvelteComponent } from 'svelte';
+import { Node } from 'unist';
+
+interface HastNode extends Node {
+  tagName: string;
+  properties: {
+    className?: string[];
+    [key: string]: unknown;
+  };
+  children: HastNode[];
+}
 
 export interface Plugin {
   /**
@@ -10,7 +19,7 @@ export interface Plugin {
    * Specify how to render this node
    */
   render(
-    node: Node,
+    node: HastNode,
   ):
     | {
         component: typeof SvelteComponent;
