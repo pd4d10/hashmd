@@ -47,3 +47,5 @@ export interface ViewerProps {
 
 export declare const Editor: SvelteComponentDev<EditorProps>;
 export declare const Viewer: SvelteComponentDev<ViewerProps>;
+
+export { getCodeBlockMeta } from './utils';

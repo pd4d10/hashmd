@@ -5,6 +5,6 @@
   export let items
 </script>
 
-<code class={`hljs language-${lang}`}>
+<pre><code class={`hljs language-${lang}`}>
   <Elements children={items} />
-</code>
+</code></pre>
