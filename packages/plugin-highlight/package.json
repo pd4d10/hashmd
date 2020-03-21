@@ -14,8 +14,9 @@
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/lowlight": "^0.0.0",
     "classnames": "^2.2.6",
-    "rehype-highlight": "^3.1.0"
+    "lowlight": "^1.13.1"
   },
   "peerDependencies": {
     "bytemd": "*"

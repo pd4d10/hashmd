@@ -1,9 +1,10 @@
 <script>
   import c from 'classnames'
   import Elements from './Element.svelte'
-  export let node
+  export let lang
+  export let items
 </script>
 
-<code class={c(node.properties.className)}>
-  <Elements children={node.children} />
+<code class={`hljs language-${lang}`}>
+  <Elements children={items} />
 </code>

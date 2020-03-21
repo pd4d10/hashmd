@@ -1,19 +1,27 @@
 import { Plugin } from 'bytemd';
-import rehypeHighlight from 'rehype-highlight';
+import lowlight from 'lowlight';
 import Highlight from './Highlight.svelte';
 
-export interface BytemdHighlightOptions {}
+export interface PluginOptions {}
 
-export default function highlight({}: BytemdHighlightOptions = {}): Plugin {
+export default function highlight({}: PluginOptions = {}): Plugin {
   return {
-    transformer: [rehypeHighlight, { subset: false, ignoreMissing: true }],
     render(node) {
-      if (node.type === 'element' && node.tagName === 'code') {
-        return {
-          component: Highlight,
-          props: { node },
-        };
-      }
+      if (node.tagName !== 'code' || !node.properties.className) return;
+
+      const lang = node.properties.className[0].split('-')[1];
+      if (!lang || !lowlight.getLanguage(lang)) return;
+
+      const textNode = node.children[0];
+      if (!textNode) return;
+
+      return {
+        component: Highlight,
+        props: {
+          lang,
+          items: lowlight.highlight(lang, textNode.value as string).value,
+        },
+      };
     },
   };
 }
