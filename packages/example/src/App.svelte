@@ -12,16 +12,16 @@ $$
 
 ## Mermaid
 
-<md-mermaid>
+\`\`\`mermaid
 sequenceDiagram
   Alice->>John: Hello John, how are you?
   %% this is a comment
   John-->>Alice: Great!
-</md-mermaid>
+\`\`\`
 
 ## Graphviz
 
-<md-graphviz>
+\`\`\`graphviz
 digraph G {
 	subgraph cluster_0 {
 		style=filled;
@@ -46,7 +46,7 @@ digraph G {
 	start [shape=Mdiamond];
 	end [shape=Msquare];
 }
-</md-graphviz>
+\`\`\`
 
 ## Code syntax highlight
 
@@ -72,7 +72,7 @@ new Viewer({
 
 ## ABC notation
 
-<md-abc>
+\`\`\`abc
 X:1
 T:The Legacy Jig
 M:6/8
@@ -83,7 +83,7 @@ GFG BAB | gfg gab | GFG BAB | d2A AFD |
 GFG BAB | gfg gab | age edB |1 dBA AFD :|2 dBA ABd |:
 efe edB | dBA ABd | efe edB | gdB ABd |
 efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
-</md-abc>
+\`\`\`
 `
 
   let enabled = {
