@@ -12,6 +12,7 @@
   export let plugins = [];
 
   let textarea;
+  let viewer;
   let cm;
 
   onMount(() => {
@@ -24,6 +25,13 @@
     cm.on('change', () => {
       value = cm.getValue();
       onChange(value);
+    });
+    cm.on('scroll', (cm) => {
+      requestAnimationFrame(() => {
+        const editorInfo = cm.getScrollInfo()
+        const ratio = editorInfo.top / (editorInfo.height - editorInfo.clientHeight)
+        viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight))
+      })
     });
   });
 </script>
@@ -52,7 +60,7 @@
   <Toolbar {cm} {fileHandler} />
   <div class="bytemd-body">
     <textarea bind:this={textarea} />
-    <div class="bytemd-viewer">
+    <div class="bytemd-viewer" bind:this={viewer}>
       <Viewer {value} {plugins} />
     </div>
   </div>
