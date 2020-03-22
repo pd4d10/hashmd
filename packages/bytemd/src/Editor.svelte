@@ -25,8 +25,7 @@
     });
     cm.setValue(value);
     cm.on('change', () => {
-      value = cm.getValue();
-      dispatch('change', { value })
+      dispatch('change', { value: cm.getValue() })
     });
     cm.on('scroll', (cm) => {
       requestAnimationFrame(() => {

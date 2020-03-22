@@ -114,6 +114,10 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     import('@bytemd/plugin-media').then(r => { loadedPlugins.media = r.default() })
     import('@bytemd/plugin-abc').then(r => { loadedPlugins.abc = r.default() })
   })
+
+  function handleChange(e) {
+    value = e.detail.value
+  }
 </script>
 
 <style>
@@ -133,4 +137,4 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     </label>
   {/each}
 </div>
-<Editor {value} plugins={plugins} />
+<Editor {value} plugins={plugins} on:change={handleChange} />
