@@ -1,6 +1,5 @@
 import { Plugin } from 'bytemd';
 import katex from 'katex';
-import { Node } from 'unist';
 import remarkMath from 'remark-math';
 import KatexView from './KatexView.svelte';
 
@@ -11,26 +10,25 @@ export default function math({}: BytemdMathOptions = {}): Plugin {
     transformer: remarkMath,
     render(node) {
       if (
-        node.type === 'element' &&
-        Array.isArray((node.properties as any).className) &&
-        (node.properties as any).className.includes('math')
-      ) {
-        const children = node.children as Node[];
-        if (children && children[0] && children[0].value) {
-          const displayMode = (node.properties as any).className.includes(
-            'math-display',
-          );
-          return {
-            component: KatexView,
-            props: {
-              html: katex.renderToString(children[0].value as string, {
-                displayMode,
-                throwOnError: false,
-              }),
-            },
-          };
-        }
-      }
+        !node.tagName ||
+        !node.properties.className ||
+        !node.properties.className.includes('math')
+      )
+        return;
+
+      const textNode = node.children[0];
+      if (!textNode || !textNode.value) return;
+
+      const displayMode = node.properties.className.includes('math-display');
+      return {
+        component: KatexView,
+        props: {
+          html: katex.renderToString(textNode.value as string, {
+            displayMode,
+            throwOnError: false,
+          }),
+        },
+      };
     },
   };
 }
