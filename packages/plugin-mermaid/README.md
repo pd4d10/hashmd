@@ -10,10 +10,12 @@ import mermaid from '@bytemd/plugin-mermaid';
 
 new Editor({
   target: document.body,
-  plugins: [
-    mermaid(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      mermaid(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

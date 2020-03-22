@@ -10,10 +10,12 @@ import xgplayer from '@bytemd/plugin-xgplayer';
 
 new Editor({
   target: document.body,
-  plugins: [
-    xgplayer(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      xgplayer(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

@@ -9,10 +9,12 @@ import twemoji from '@bytemd/plugin-twemoji';
 
 new Editor({
   target: document.body,
-  plugins: [
-    twemoji(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      twemoji(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

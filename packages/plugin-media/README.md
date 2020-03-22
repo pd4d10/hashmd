@@ -10,10 +10,12 @@ import media from '@bytemd/plugin-media';
 
 new Editor({
   target: document.body,
-  plugins: [
-    media(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      media(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

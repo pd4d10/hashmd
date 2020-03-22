@@ -10,10 +10,12 @@ import abc from '@bytemd/plugin-abc';
 
 new Editor({
   target: document.body,
-  plugins: [
-    abc(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      abc(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

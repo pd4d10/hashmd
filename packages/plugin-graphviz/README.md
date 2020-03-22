@@ -10,10 +10,12 @@ import graphviz from '@bytemd/plugin-graphviz';
 
 new Editor({
   target: document.body,
-  plugins: [
-    graphviz(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      graphviz(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

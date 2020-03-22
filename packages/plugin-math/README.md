@@ -10,10 +10,12 @@ import math from '@bytemd/plugin-math';
 
 new Editor({
   target: document.body,
-  plugins: [
-    math(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      math(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

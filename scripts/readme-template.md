@@ -9,10 +9,12 @@ import {{name}} from '@bytemd/plugin-{{name}}';
 
 new Editor({
   target: document.body,
-  plugins: [
-    {{name}}(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      {{name}}(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 

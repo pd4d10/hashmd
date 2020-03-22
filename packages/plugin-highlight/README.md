@@ -10,10 +10,12 @@ import highlight from '@bytemd/plugin-highlight';
 
 new Editor({
   target: document.body,
-  plugins: [
-    highlight(),
-    // ... other plugins
-  ],
+  props: {
+    plugins: [
+      highlight(),
+      // ... other plugins
+    ],
+  },
 });
 ```
 
