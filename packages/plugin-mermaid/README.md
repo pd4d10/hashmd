@@ -1,5 +1,7 @@
 # @bytemd/plugin-mermaid
 
+[bytemd](https://github.com/bytedance/bytemd) plugin to support [mermaid](https://mermaid-js.github.io/mermaid/) diagram and flowchart
+
 ## Usage
 
 ```js
@@ -11,6 +13,17 @@ new Editor({
   plugins: [mermaid()],
 });
 ```
+
+## Example
+
+````md
+```mermaid
+sequenceDiagram
+  Alice->>John: Hello John, how are you?
+  %% this is a comment
+  John-->>Alice: Great!
+```
+````
 
 ## License
 

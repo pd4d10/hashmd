@@ -1,5 +1,7 @@
 # @bytemd/plugin-xgplayer
 
+[bytemd](https://github.com/bytedance/bytemd) plugin to support `<video>` with [xgplayer](https://github.com/bytedance/xgplayer).
+
 ## Usage
 
 ```js
@@ -8,8 +10,29 @@ import xgplayer from '@bytemd/plugin-xgplayer';
 
 new Editor({
   target: document.body,
-  plugins: [xgplayer()],
+  plugins: [
+    xgplayer(),
+    // ... other plugins
+  ],
 });
+```
+
+### Options
+
+```js
+xgplayer({
+  // Specify tag name, default: video
+  tagName: 'my-awesome-video',
+
+  // See http://h5player.bytedance.com/en/config/#optional-configuration
+  playerOptions: {},
+});
+```
+
+## Example
+
+```md
+<video src="https://example.com/video.mp4" poster="https://example.com/poster.png" width="720" height="480"></video>
 ```
 
 ## License

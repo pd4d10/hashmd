@@ -1,5 +1,7 @@
 # @bytemd/plugin-math
 
+[bytemd](https://github.com/bytedance/bytemd) plugin to support math equation
+
 ## Usage
 
 ```js
@@ -10,6 +12,14 @@ new Editor({
   target: document.body,
   plugins: [math()],
 });
+```
+
+## Example
+
+```md
+$$
+c = \pm\sqrt{a^2 + b^2}
+$$
 ```
 
 ## License

@@ -1,5 +1,7 @@
 # @bytemd/plugin-highlight
 
+[bytemd](https://github.com/bytedance/bytemd) plugin to highlight code blocks
+
 ## Usage
 
 ```js
