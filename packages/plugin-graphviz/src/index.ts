@@ -8,7 +8,10 @@ export default function graphviz({}: BytemdGraphvizOptions = {}): Plugin {
   return {
     render(node) {
       const meta = getCodeBlockMeta(node);
-      if (!meta || meta.language !== 'graphviz') return;
+      if (
+        !(meta && meta.language && ['graphviz', 'dot'].includes(meta.language))
+      )
+        return;
 
       return {
         component: GraphvizView,

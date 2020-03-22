@@ -21,7 +21,7 @@ sequenceDiagram
 
 ## Graphviz
 
-\`\`\`graphviz
+\`\`\`dot
 digraph G {
 	subgraph cluster_0 {
 		style=filled;
