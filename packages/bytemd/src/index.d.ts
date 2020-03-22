@@ -27,7 +27,6 @@ declare class SvelteComponentDev<P> {
 export interface EditorProps {
   value: string;
   containerStyle: string;
-  onChange(value: string): void;
   fileHandler: (file: File) => Promise<string>;
   plugins?: Plugin[];
 }

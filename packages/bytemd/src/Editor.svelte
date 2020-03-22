@@ -1,14 +1,15 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, createEventDispatcher } from 'svelte';
   import codemirror from 'codemirror';
   import 'codemirror/mode/markdown/markdown.js';
   import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
   import { dataUrlFileHandler } from './utils.js'
 
+  const dispatch = createEventDispatcher();
+
   export let value;
   export let containerStyle;
-  export let onChange = () => {};
   export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
 
@@ -25,7 +26,7 @@
     cm.setValue(value);
     cm.on('change', () => {
       value = cm.getValue();
-      onChange(value);
+      dispatch('change', { value })
     });
     cm.on('scroll', (cm) => {
       requestAnimationFrame(() => {
