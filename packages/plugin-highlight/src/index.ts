@@ -1,6 +1,7 @@
-import { Plugin, getCodeBlockMeta } from 'bytemd';
+import { Plugin } from 'bytemd';
 import lowlight from 'lowlight';
 import Highlight from './Highlight.svelte';
+import { getCodeBlockMeta } from 'bytemd/helpers';
 
 export interface PluginOptions {}
 

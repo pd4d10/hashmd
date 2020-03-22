@@ -1,5 +1,6 @@
-import { Plugin, getCodeBlockMeta } from 'bytemd';
+import { Plugin } from 'bytemd';
 import Abc from './Abc.svelte';
+import { getCodeBlockMeta } from 'bytemd/helpers';
 
 export interface BytemdGraphvizOptions {}
 

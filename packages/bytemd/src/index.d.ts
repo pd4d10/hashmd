@@ -1,14 +1,5 @@
 import { SvelteComponent } from 'svelte';
-import { Node } from 'unist';
-
-interface HastNode extends Node {
-  tagName: string;
-  properties: {
-    className?: string[];
-    [key: string]: unknown;
-  };
-  children: HastNode[];
-}
+import { HastNode } from '../helpers';
 
 export interface Plugin {
   /**
@@ -47,5 +38,3 @@ export interface ViewerProps {
 
 export declare const Editor: SvelteComponentDev<EditorProps>;
 export declare const Viewer: SvelteComponentDev<ViewerProps>;
-
-export { getCodeBlockMeta } from './utils';

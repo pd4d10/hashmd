@@ -11,7 +11,8 @@
   "types": "src/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "helpers"
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.87",

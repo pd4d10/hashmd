@@ -22,37 +22,37 @@ const packageConfigs = {
       'unified',
       'remark-parse',
       'remark-rehype',
-      'rehype-raw'
+      'rehype-raw',
     ],
     watch: {
-      clearScreen: false
-    }
+      clearScreen: false,
+    },
   },
   'bytemd-react': {
-    external: ['bytemd', 'react']
+    external: ['bytemd', 'react'],
   },
   'plugin-highlight': {
-    external: ['rehype-highlight', 'classnames']
+    external: ['lowlight', 'classnames'],
   },
   'plugin-math': {
-    external: ['katex', 'remark-math']
+    external: ['katex', 'remark-math'],
   },
   'plugin-graphviz': {
-    external: ['viz.js']
+    external: ['viz.js', 'viz.js/full.render.js'],
   },
   'plugin-mermaid': {
-    external: ['mermaid']
+    external: ['mermaid'],
   },
   'plugin-twemoji': {
-    external: ['twemoji']
+    external: ['twemoji'],
   },
   'plugin-media': {},
   'plugin-xgplayer': {
-    external: ['xgplayer']
+    external: ['xgplayer'],
   },
   'plugin-abc': {
-    external: ['abcjs']
-  }
+    external: ['abcjs'],
+  },
 };
 
 /** @type {Record<string, import('rollup').RollupOptions>} */
@@ -62,16 +62,16 @@ const exampleConfigs = {
     output: [
       {
         format: 'es',
-        dir: 'public/build/module'
-      }
-    ]
-  }
+        dir: 'public/build/module',
+      },
+    ],
+  },
 };
 
 if (production) {
   exampleConfigs.example.output.push({
     format: 'system',
-    dir: 'public/build/nomodule'
+    dir: 'public/build/nomodule',
   });
 }
 
@@ -87,12 +87,12 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     v.output = [
       {
         format: 'es',
-        file: pkg.module
+        file: pkg.module,
       },
       {
         format: 'cjs',
-        file: pkg.main
-      }
+        file: pkg.main,
+      },
     ];
   }
   v.output.forEach(output => {
@@ -108,15 +108,18 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     svelte({ dev: !production }),
     resolve({
       browser: true,
-      dedupe: ['svelte']
+      dedupe: ['svelte'],
     }),
     commonjs(),
     globals(),
     builtins(),
     json(),
     production && k === 'example' && terser(), // For UMD
-    visualizer()
+    // visualizer()
   ];
+  if (k !== 'bytemd' && v.external) {
+    v.external.push('bytemd', 'bytemd/helpers');
+  }
   return v;
 });
 
