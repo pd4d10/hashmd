@@ -7,6 +7,7 @@
   import { dataUrlFileHandler } from './utils.js'
 
   export let value;
+  export let containerStyle;
   export let onChange = () => {};
   export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
@@ -59,7 +60,7 @@
   }
 </style>
 
-<div class="bytemd">
+<div class="bytemd" style={containerStyle}>
   <Toolbar {cm} {fileHandler} />
   <div class="bytemd-body">
     <textarea bind:this={textarea} />
