@@ -14,12 +14,7 @@ export default function xgplayer({
   return {
     render(node) {
       if (node.type === 'element' && node.tagName === tagName) {
-        const {
-          src,
-          poster,
-          width,
-          height,
-        } = node.properties as HTMLVideoElement;
+        const { src, poster, width, height } = node.properties;
         return {
           component: Xgplayer,
           props: {

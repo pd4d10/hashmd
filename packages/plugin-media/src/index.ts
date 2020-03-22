@@ -16,12 +16,7 @@ export default function media({
       if (node.type !== 'element') return;
       switch (node.tagName) {
         case 'video': {
-          const {
-            src,
-            poster,
-            width,
-            height,
-          } = node.properties as HTMLVideoElement;
+          const { src, poster, width, height } = node.properties;
           return {
             component: Video,
             props: { src, poster, width, height, attrs: videoAttrs },
@@ -31,7 +26,7 @@ export default function media({
           return {
             component: Audio,
             props: {
-              src: (node.properties as HTMLAudioElement).src,
+              src: node.properties.src,
               attrs: audioAttrs,
             },
           };
