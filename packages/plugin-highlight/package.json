@@ -15,7 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/lowlight": "^0.0.0",
-    "classnames": "^2.2.6",
     "lowlight": "^1.13.1"
   },
   "peerDependencies": {

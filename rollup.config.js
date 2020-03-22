@@ -32,7 +32,7 @@ const packageConfigs = {
     external: ['bytemd', 'react'],
   },
   'plugin-highlight': {
-    external: ['lowlight', 'classnames'],
+    external: ['lowlight'],
   },
   'plugin-math': {
     external: ['katex', 'remark-math'],

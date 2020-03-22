@@ -25,7 +25,7 @@
   }
   $: parser = getParser()
   $: ast = parser.runSync(parser.parse(value))
-  $: console.log(ast);
+  // $: console.log(ast);
 </script>
 
 <div class="markdown-body">

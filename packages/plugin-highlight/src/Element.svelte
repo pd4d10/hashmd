@@ -1,5 +1,4 @@
 <script>
-  import c from 'classnames'
   export let children
 </script>
 
@@ -7,6 +6,6 @@
   {#if type === 'text'}
     {value}
   {:else if tagName === 'span'}
-    <span class={c(properties.className)}><svelte:self {children} /></span>
+    <span class={properties && properties.className && properties.className.join(' ')}><svelte:self {children} /></span>
   {/if}
 {/each}
