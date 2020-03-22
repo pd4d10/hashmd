@@ -1,6 +1,6 @@
 # @bytemd/plugin-xgplayer
 
-[bytemd](https://github.com/bytedance/bytemd) plugin to support `<video>` with [xgplayer](https://github.com/bytedance/xgplayer).
+[bytemd](https://github.com/bytedance/bytemd) plugin to support `<video>` with [xgplayer](https://github.com/bytedance/xgplayer)
 
 ## Usage
 

@@ -1,24 +1,3 @@
-# @bytemd/plugin-graphviz
-
-[bytemd](https://github.com/bytedance/bytemd) plugin to support [graphviz](https://www.graphviz.org/)
-
-## Usage
-
-```js
-import { Editor } from 'bytemd';
-import graphviz from '@bytemd/plugin-graphviz';
-
-new Editor({
-  target: document.body,
-  plugins: [
-    graphviz(),
-    // ... other plugins
-  ],
-});
-```
-
-## Example
-
 ````md
 ```dot
 digraph G {
@@ -47,7 +26,3 @@ digraph G {
 }
 ```
 ````
-
-## License
-
-MIT

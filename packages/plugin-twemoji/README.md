@@ -1,5 +1,6 @@
 # @bytemd/plugin-twemoji
 
+[bytemd](https://github.com/bytedance/bytemd) plugin to 
 ## Usage
 
 ```js
@@ -8,7 +9,10 @@ import twemoji from '@bytemd/plugin-twemoji';
 
 new Editor({
   target: document.body,
-  plugins: [twemoji()],
+  plugins: [
+    twemoji(),
+    // ... other plugins
+  ],
 });
 ```
 

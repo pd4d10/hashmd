@@ -10,7 +10,10 @@ import math from '@bytemd/plugin-math';
 
 new Editor({
   target: document.body,
-  plugins: [math()],
+  plugins: [
+    math(),
+    // ... other plugins
+  ],
 });
 ```
 
