@@ -39,10 +39,13 @@
 <style>
   .bytemd {
     border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
   }
   .bytemd-body {
+    flex-grow: 1;
     display: flex;
-    height: 300px;
+    overflow: auto;
   }
   .bytemd-body :global(.CodeMirror) {
     flex: 1;
