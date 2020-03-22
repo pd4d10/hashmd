@@ -3,9 +3,7 @@ import lowlight from 'lowlight';
 import Highlight from './Highlight.svelte';
 import { getCodeBlockMeta } from 'bytemd/helpers';
 
-export interface PluginOptions {}
-
-export default function highlight({}: PluginOptions = {}): Plugin {
+export default function highlight(): Plugin {
   return {
     render(node) {
       const meta = getCodeBlockMeta(node);

@@ -3,9 +3,7 @@ import katex from 'katex';
 import remarkMath from 'remark-math';
 import KatexView from './KatexView.svelte';
 
-export interface BytemdMathOptions {}
-
-export default function math({}: BytemdMathOptions = {}): Plugin {
+export default function math(): Plugin {
   return {
     transformer: remarkMath,
     render(node) {
