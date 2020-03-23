@@ -29,7 +29,7 @@ const packageConfigs = {
     },
   },
   'bytemd-react': {
-    external: ['bytemd', 'react'],
+    external: ['react'],
   },
   'plugin-highlight': {
     external: ['lowlight'],
@@ -115,11 +115,19 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     builtins(),
     json(),
     production && k === 'example' && terser(), // For UMD
-    // visualizer()
+    // k === 'example' && visualizer(),
   ];
-  if (k !== 'bytemd' && v.external) {
-    v.external.push('bytemd', 'bytemd/helpers');
+
+  if (!v.external) v.external = [];
+  if (k !== 'example') {
+    // Make svelte related packages external to avoid multiple copies
+    // https://github.com/sveltejs/svelte/issues/3671
+    v.external.push('svelte', 'svelte/internal');
+    if (k !== 'bytemd') {
+      v.external.push('bytemd', 'bytemd/helpers');
+    }
   }
+
   return v;
 });
 

@@ -1,8 +1,5 @@
 {
   "name": "svelte-app",
   "private": true,
-  "version": "1.0.0",
-  "devDependencies": {
-    "bytemd": "0.0.1"
-  }
+  "version": "1.0.0"
 }
