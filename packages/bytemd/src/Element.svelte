@@ -5,14 +5,25 @@
   export let node;
   export let plugins;
 
+  function findPlugin(node) {
+    for (let i = 0; i < plugins.length; i++) {
+      const res = plugins[i].render(node)
+      if (res) return res
+    }
+  }
+
   $: type = node.type
   $: value = node.value
   $: tagName = node.tagName
   $: children = node.children
   $: properties = node.properties
+
+  $: res = findPlugin(node)
 </script>
 
-{#if type === 'text'}
+{#if res}
+  <svelte:component this={res.component} {...res.props} />
+{:else if type === 'text'}
   {value}
 {:else if tagName === 'em'}
   <em><Elements nodes={children} {plugins} /></em>
