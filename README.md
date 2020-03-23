@@ -22,7 +22,7 @@ Markdown editor component built with Svelte.
 | [@bytemd/plugin-math](./packages/plugin-math) |  | Math equation plugin |
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) |  | [mermaid](https://mermaid-js.github.io/mermaid/) diagram and flowchart plugin |
 | [@bytemd/plugin-media](./packages/plugin-media) |  | Supports `<video>` and `<audio>` tags |
-| [@bytemd/plugin-xgplayer](./packages/plugin-video-xgplayer) |  | Play video with [xgplayer](https://github.com/bytedance/xgplayer) |
+| [@bytemd/plugin-xgplayer](./packages/plugin-xgplayer) |  | Play video with [xgplayer](https://github.com/bytedance/xgplayer) |
 | [@bytemd/plugin-abc](./packages/plugin-abc) |  | [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) plugin |
 
 ## License
