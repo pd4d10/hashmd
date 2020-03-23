@@ -5,7 +5,7 @@ import { getCodeBlockMeta } from 'bytemd/helpers';
 
 export default function highlight(): Plugin {
   return {
-    render(node) {
+    renderNode(node) {
       const meta = getCodeBlockMeta(node);
       if (!meta || !meta.language || !lowlight.getLanguage(meta.language))
         return;

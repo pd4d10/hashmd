@@ -12,7 +12,7 @@ export default function xgplayer({
   playerOptions,
 }: PluginOptions = {}): Plugin {
   return {
-    render(node) {
+    renderNode(node) {
       if (node.type === 'element' && node.tagName === tagName) {
         const { src, poster, width, height } = node.properties;
         return {

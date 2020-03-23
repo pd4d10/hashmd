@@ -7,8 +7,8 @@
 
   function findPlugin(node) {
     for (let i = 0; i < plugins.length; i++) {
-      if (plugins[i].render) {
-        const res = plugins[i].render(node)
+      if (plugins[i].renderNode) {
+        const res = plugins[i].renderNode(node)
         if (res) return res
       }
     }

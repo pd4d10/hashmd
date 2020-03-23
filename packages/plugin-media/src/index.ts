@@ -37,7 +37,7 @@ export default function media({
   } = {},
 }: PluginOptions = {}): Plugin {
   return {
-    render(node) {
+    renderNode(node) {
       if (node.type !== 'element') return;
       switch (node.tagName) {
         case 'video': {

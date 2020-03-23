@@ -14,7 +14,7 @@ export interface Plugin<P extends Props = Props> {
    *
    * If `undefined` returned then go to the next plugin
    */
-  render?(
+  renderNode?(
     node: HastNode,
   ): { component: typeof SvelteComponent; props?: P } | undefined;
   /**

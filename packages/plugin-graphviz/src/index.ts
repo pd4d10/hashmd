@@ -4,7 +4,7 @@ import { getCodeBlockMeta } from 'bytemd/helpers';
 
 export default function graphviz(): Plugin {
   return {
-    render(node) {
+    renderNode(node) {
       const meta = getCodeBlockMeta(node);
       if (
         !(meta && meta.language && ['graphviz', 'dot'].includes(meta.language))

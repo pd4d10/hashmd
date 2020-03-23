@@ -7,7 +7,7 @@ export default function twemoji(
 ): Plugin {
   // TODO: options
   return {
-    render(node) {
+    renderNode(node) {
       if (node.type === 'text' && node.value)
         return {
           component: TwemojiView,

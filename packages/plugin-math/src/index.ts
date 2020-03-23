@@ -6,7 +6,7 @@ import KatexView from './KatexView.svelte';
 export default function math(): Plugin {
   return {
     transformer: remarkMath,
-    render(node) {
+    renderNode(node) {
       if (
         !node.tagName ||
         !node.properties.className ||
