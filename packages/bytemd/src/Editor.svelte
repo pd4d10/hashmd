@@ -17,6 +17,10 @@
   let viewer;
   let cm;
 
+  $: if (cm && value !== cm.getValue()) {
+    cm.setValue(value)
+  }
+
   onMount(() => {
     cm = codemirror.fromTextArea(textarea, {
       mode: 'markdown',
@@ -24,8 +28,10 @@
       lineWrapping: true,
     });
     cm.setValue(value);
-    cm.on('change', () => {
-      dispatch('change', { value: cm.getValue() })
+    cm.on('change', (doc, change) => {
+      if (change.origin !== 'setValue') {
+        dispatch('change', { value: cm.getValue() })
+      }
     });
     cm.on('scroll', (cm) => {
       requestAnimationFrame(() => {
