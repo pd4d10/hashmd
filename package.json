@@ -8,7 +8,8 @@
     "build": "tsc; rollup -c",
     "dev": "rollup -c -w",
     "watch": "tsc --watch",
-    "serve": "serve packages/example/public"
+    "serve": "serve packages/example/public",
+    "build:package": "tsc; BUNDLE_PACKAGES=1 rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",

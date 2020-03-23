@@ -12,6 +12,8 @@ import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
 
+const bundlePackages = process.env.BUNDLE_PACKAGES;
+
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
   bytemd: {
@@ -75,7 +77,7 @@ if (production) {
   });
 }
 
-const bundledConfigs = { ...packageConfigs, ...exampleConfigs };
+const bundledConfigs = bundlePackages ? packageConfigs : exampleConfigs;
 
 Object.entries(bundledConfigs).forEach(([k, v]) => {
   if (!v.input) {
