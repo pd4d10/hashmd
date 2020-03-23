@@ -1,15 +1,40 @@
 import { Plugin } from 'bytemd';
 import Audio from './Audio.svelte';
 import Video from './Video.svelte';
+import AudioIcon from './AudioIcon.svelte';
+import VideoIcon from './VideoIcon.svelte';
+
+type ClickHandler = Exclude<Plugin['toolbarItems'], undefined>[0]['onClick'];
 
 export interface PluginOptions {
-  videoAttrs?: Partial<HTMLVideoElement>;
-  audioAttrs?: Partial<HTMLAudioElement>;
+  video?: {
+    defaultAttrs?: Partial<HTMLVideoElement>;
+    onClickIcon?: ClickHandler;
+  };
+  audio?: {
+    defaultAttrs?: Partial<HTMLAudioElement>;
+    onClickIcon?: ClickHandler;
+  };
+}
+
+function getClickHandler(type: string): ClickHandler {
+  return cm => {
+    const pos = cm.getCursor('from');
+    cm.replaceRange(`<${type} src=""></${type}>`, pos);
+    cm.setCursor({ line: pos.line, ch: pos.ch + 12 });
+    cm.focus();
+  };
 }
 
 export default function media({
-  videoAttrs = { controls: true },
-  audioAttrs = { controls: true },
+  video: {
+    defaultAttrs: videoAttrs = { controls: true },
+    onClickIcon: onClickVideo = getClickHandler('video'),
+  } = {},
+  audio: {
+    defaultAttrs: audioAttrs = { controls: true },
+    onClickIcon: onClickAudio = getClickHandler('audio'),
+  } = {},
 }: PluginOptions = {}): Plugin {
   return {
     render(node) {
@@ -33,5 +58,15 @@ export default function media({
         }
       }
     },
+    toolbarItems: [
+      {
+        component: AudioIcon,
+        onClick: onClickAudio,
+      },
+      {
+        component: VideoIcon,
+        onClick: onClickVideo,
+      },
+    ],
   };
 }

@@ -67,7 +67,7 @@
 </style>
 
 <div class="bytemd" style={containerStyle}>
-  <Toolbar {cm} {fileHandler} />
+  <Toolbar {cm} {fileHandler} {plugins} />
   <div class="bytemd-body">
     <textarea bind:this={textarea} />
     <div class="bytemd-viewer" bind:this={viewer}>

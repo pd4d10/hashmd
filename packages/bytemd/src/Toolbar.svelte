@@ -2,6 +2,7 @@
   import { handleDec, handleBlockquote, handleLink, handleImage, handleTable } from './utils.js'
   export let cm;
   export let fileHandler;
+  export let plugins;
   let fileInput;
 </script>
 
@@ -16,16 +17,17 @@
     border: 1px solid transparent;
     margin-left: 6px;
   }
-  span path {
-    fill: #777;
-  }
   span:hover {
     border: 1px solid #aaa;
   }
-  svg {
+  span :global(svg) {
     display: block;
     width: 24px;
     height: 24px;
+    fill: #777;
+  }
+  span :global(path) {
+    fill: #777;
   }
   input {
     display: none;
@@ -41,4 +43,11 @@
   <span on:click={() => fileInput.click()}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></span>
   <input bind:this={fileInput} type="file" accept="image/png, image/jpeg" on:change={(e) => handleImage(cm, e, fileHandler)} />
   <span on:click={() => handleTable(cm)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm8 16H5v-6h6v6zm0-8H5V5h6v6zm8 8h-6v-6h6v6zm0-8h-6V5h6v6z"/></svg></span>
+  {#each plugins as plugin}
+    {#if plugin.toolbarItems}
+      {#each plugin.toolbarItems as item}
+        <span on:click={() => item.onClick(cm)}><svelte:component this={item.component} {...item.props} /></span>
+      {/each}
+    {/if}
+  {/each}
 </div>
