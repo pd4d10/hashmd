@@ -8,7 +8,7 @@
 
   const dispatch = createEventDispatcher();
 
-  export let value;
+  export let value = '';
   export let containerStyle;
   export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
