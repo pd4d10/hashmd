@@ -1,6 +1,6 @@
 {
   "name": "bytemd-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Full-featured markdown editor and viewer",
   "main": "dist/bytemd-react.cjs.js",
   "module": "dist/bytemd-react.esm.js",
