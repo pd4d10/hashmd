@@ -19,7 +19,12 @@ class SvelteComponent extends React.Component<any> {
 
     this.instance = new Constructor({
       target: this.container.current,
-      props
+      props,
+    });
+    this.instance.$on('change', (e: any) => {
+      if (this.props.onChange) {
+        this.props.onChange(e.detail.value);
+      }
     });
   }
 
@@ -36,10 +41,16 @@ class SvelteComponent extends React.Component<any> {
   }
 }
 
-export const Editor: React.FC<bytemd.EditorProps> = props => (
+export interface EditorProps extends bytemd.EditorProps {
+  onChange?(value: string): void;
+}
+
+export const Editor: React.FC<EditorProps> = props => (
   <SvelteComponent this={bytemd.Editor} {...props} />
 );
 
-export const Viewer: React.FC<bytemd.ViewerProps> = props => (
+export interface ViewerProps extends bytemd.ViewerProps {}
+
+export const Viewer: React.FC<ViewerProps> = props => (
   <SvelteComponent this={bytemd.Viewer} {...props} />
 );
