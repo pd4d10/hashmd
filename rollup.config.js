@@ -6,9 +6,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
+import css from 'rollup-plugin-css-only';
 // import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import visualizer from 'rollup-plugin-visualizer';
+// import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -107,6 +108,10 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     output.sourcemap = true;
   });
   v.plugins = [
+    k === 'example' &&
+      css({
+        output: 'packages/example/public/build/library.css',
+      }),
     svelte({ dev: !production }),
     resolve({
       browser: true,
