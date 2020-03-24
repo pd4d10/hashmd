@@ -43,5 +43,14 @@ export interface ViewerProps {
   plugins?: Plugin[];
 }
 
+export interface ElementProps {
+  node: HastNode;
+}
+export interface ElementsProps {
+  nodes: HastNode[];
+}
+
 export declare const Editor: SvelteComponentDev<EditorProps>;
 export declare const Viewer: SvelteComponentDev<ViewerProps>;
+export declare const Element: SvelteComponentDev<ElementProps>;
+export declare const Elements: SvelteComponentDev<ElementsProps>;

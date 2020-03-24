@@ -3,7 +3,7 @@
   import { santitizeHref } from './utils'
 
   export let node;
-  export let plugins;
+  export let plugins = [];
 
   function findPlugin(node) {
     for (let i = 0; i < plugins.length; i++) {
