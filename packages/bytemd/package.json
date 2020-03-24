@@ -21,6 +21,7 @@
     "remark-parse": "^7.0.2",
     "remark-rehype": "^5.0.0",
     "svelte": "^3.0.0",
+    "tippy.js": "^6.0.3",
     "unified": "^8.4.2"
   }
 }

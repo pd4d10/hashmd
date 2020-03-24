@@ -22,6 +22,7 @@ export interface Plugin<P extends Props = Props> {
    */
   toolbarItems?: {
     component: typeof SvelteComponent;
+    tooltip?: string;
     onClick(cm: cm.Editor): void;
   }[];
 }

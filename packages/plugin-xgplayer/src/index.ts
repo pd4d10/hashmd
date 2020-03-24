@@ -41,6 +41,7 @@ export default function xgplayer({
       {
         component: VideoIcon,
         onClick: onClickIcon,
+        tooltip: 'video',
       },
     ],
   };

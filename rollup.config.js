@@ -26,6 +26,7 @@ const packageConfigs = {
       'remark-parse',
       'remark-rehype',
       'rehype-raw',
+      'tippy.js',
     ],
     watch: {
       clearScreen: false,

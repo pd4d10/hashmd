@@ -62,10 +62,12 @@ export default function media({
       {
         component: AudioIcon,
         onClick: onClickAudio,
+        tooltip: 'audio',
       },
       {
         component: VideoIcon,
         onClick: onClickVideo,
+        tooltip: 'video',
       },
     ],
   };
