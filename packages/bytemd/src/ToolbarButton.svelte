@@ -25,17 +25,15 @@
     border: 1px solid transparent;
     margin-left: 6px;
   }
-  span:hover {
-    border: 1px solid #aaa;
+  span:hover :global(svg) {
+    fill: #0366d6;
   }
   span :global(svg) {
     display: block;
-    width: 24px;
-    height: 24px;
-    fill: #777;
-  }
-  span :global(path) {
-    fill: #777;
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    fill: #586069;
   }
 </style>
 

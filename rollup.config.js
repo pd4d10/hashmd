@@ -115,7 +115,7 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
       entries: [
         {
           find: 'icons',
-          replacement: path.resolve(__dirname, 'vendor/octicons-v2/icons/24'),
+          replacement: path.resolve(__dirname, 'vendor/octicons-v2/icons/16'),
         },
       ],
     }),
