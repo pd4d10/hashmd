@@ -3,6 +3,13 @@
   import ToolbarButton from './ToolbarButton.svelte'
   import { handleDec, handleTag, handleBlockquote, handleLink, handleImage, handleTable } from './utils.js'
 
+  import bold from 'icons/bold.svg'
+  import italic from 'icons/italic.svg'
+  import quote from 'icons/quote.svg'
+  import image from 'icons/image.svg'
+  import server from 'icons/server.svg'
+  import link from 'icons/link.svg'
+
   const dispatch = createEventDispatcher();
 
   export let cm;
@@ -44,14 +51,12 @@
     </span>
   {/if}
 
-  <ToolbarButton tooltip="bold" on:click={() => handleDec(cm, '**')}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/></svg></ToolbarButton>
-  <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '*')}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg></ToolbarButton>
-  <ToolbarButton tooltip="strikethrough" on:click={() => handleDec(cm, '~~')}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5zM3 14h18v-2H3v2z"/></svg></ToolbarButton>
-  <ToolbarButton tooltip="highlight" on:click={() => handleTag(cm, 'mark')}><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><g><g><g><path d="M6,14l3,3v5h6v-5l3-3V9H6V14z M11,2h2v3h-2V2z M3.5,5.88l1.41-1.41l2.12,2.12L5.62,8L3.5,5.88z M16.96,6.59l2.12-2.12 l1.41,1.41L18.38,8L16.96,6.59z"/></g></g></g></svg></ToolbarButton>
-  <ToolbarButton tooltip="blockquote" on:click={() => handleBlockquote(cm)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></ToolbarButton>
-  <ToolbarButton tooltip="link" on:click={() => handleLink(cm)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></ToolbarButton>
-  <ToolbarButton tooltip="image" on:click={() => fileInput.click()}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></ToolbarButton>
-  <ToolbarButton tooltip="table" on:click={() => handleTable(cm)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm8 16H5v-6h6v6zm0-8H5V5h6v6zm8 8h-6v-6h6v6zm0-8h-6V5h6v6z"/></svg></ToolbarButton>
+  <ToolbarButton tooltip="bold" on:click={() => handleDec(cm, '**')}>{@html bold}</ToolbarButton>
+  <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '*')}>{@html italic}</ToolbarButton>
+  <ToolbarButton tooltip="blockquote" on:click={() => handleBlockquote(cm)}>{@html quote}</ToolbarButton>
+  <ToolbarButton tooltip="link" on:click={() => handleLink(cm)}>{@html link}</ToolbarButton>
+  <ToolbarButton tooltip="image" on:click={() => fileInput.click()}>{@html image}</ToolbarButton>
+  <ToolbarButton tooltip="table" on:click={() => handleTable(cm)}>{@html server}</ToolbarButton>
 
   {#each plugins as plugin}
     {#if plugin.toolbarItems}

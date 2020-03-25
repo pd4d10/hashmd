@@ -8,7 +8,9 @@ import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
 import css from 'rollup-plugin-css-only';
 // import livereload from 'rollup-plugin-livereload';
+import { string } from 'rollup-plugin-string';
 import { terser } from 'rollup-plugin-terser';
+import alias from '@rollup/plugin-alias';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -109,6 +111,14 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     output.sourcemap = true;
   });
   v.plugins = [
+    alias({
+      entries: [
+        {
+          find: 'icons',
+          replacement: path.resolve(__dirname, 'vendor/octicons-v2/icons/24'),
+        },
+      ],
+    }),
     k === 'example' &&
       css({
         output: 'packages/example/public/build/library.css',
@@ -122,6 +132,7 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     globals(),
     builtins(),
     json(),
+    string({ include: '**/*.svg' }),
     production && k === 'example' && terser(), // For UMD
     // k === 'example' && visualizer(),
   ];
