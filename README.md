@@ -25,6 +25,10 @@ Markdown editor component built with Svelte.
 | [@bytemd/plugin-xgplayer](./packages/plugin-xgplayer) |  | Play video with [xgplayer](https://github.com/bytedance/xgplayer) |
 | [@bytemd/plugin-abc](./packages/plugin-abc) |  | [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) plugin |
 
+## Credits
+
+Toolbar icons are mostly from [GitHub Octicons](https://github.com/primer/octicons-v2).
+
 ## License
 
 MIT
