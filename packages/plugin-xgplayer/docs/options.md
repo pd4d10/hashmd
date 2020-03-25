@@ -5,5 +5,8 @@ xgplayer({
 
   // See http://h5player.bytedance.com/en/config/#optional-configuration
   playerOptions: {},
+  onClickIcon(cm) {
+    // Toolbar icon click event
+  },
 });
 ```
