@@ -12,10 +12,16 @@
   export let containerStyle;
   export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
+  export let mode = 'split';
 
   let textarea;
   let viewer;
   let cm;
+
+  let activeTab = 0
+  function setActiveTab(e) {
+    activeTab = e.detail.value
+  }
 
   $: if (cm && value !== cm.getValue()) {
     cm.setValue(value)
@@ -54,8 +60,11 @@
     display: flex;
     overflow: auto;
   }
-  .bytemd-body :global(.CodeMirror) {
+  .bytemd-editor {
     flex: 1;
+    height: 100%;
+  }
+  .bytemd-editor :global(.CodeMirror) {
     height: 100%;
   }
   .bytemd-viewer {
@@ -64,13 +73,18 @@
     overflow: auto;
     border-left: 1px solid #eee;
   }
+  [hidden] {
+    display: none;
+  }
 </style>
 
 <div class="bytemd" style={containerStyle}>
-  <Toolbar {cm} {fileHandler} {plugins} />
+  <Toolbar {cm} {fileHandler} {plugins} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
-    <textarea bind:this={textarea} />
-    <div class="bytemd-viewer" bind:this={viewer}>
+    <div class="bytemd-editor" hidden={mode === 'tab' && activeTab === 1}>
+      <textarea bind:this={textarea} />
+    </div>
+    <div class="bytemd-viewer" bind:this={viewer} hidden={mode === 'tab' && activeTab === 0}>
       <Viewer {value} {plugins} />
     </div>
   </div>

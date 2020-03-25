@@ -1,9 +1,16 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './ToolbarButton.svelte'
   import { handleDec, handleTag, handleBlockquote, handleLink, handleImage, handleTable } from './utils.js'
+
+  const dispatch = createEventDispatcher();
+
   export let cm;
   export let fileHandler;
   export let plugins;
+  export let mode;
+  export let activeTab;
+
   let fileInput;
 </script>
 
@@ -16,10 +23,26 @@
   input {
     display: none;
   }
+  .bytemd-tab :global(span) {
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 26px;
+  }
+  [active=true] {
+    background-color: #ff0;
+  }
 </style>
 
 <div>
   <input bind:this={fileInput} type="file" accept="image/png, image/jpeg" on:change={(e) => handleImage(cm, e, fileHandler)} />
+
+  {#if mode === 'tab'}
+    <span class="bytemd-tab">
+      <span on:click={() => dispatch('tab', { value: 0 })} active={activeTab === 0}>Write</span>
+      <span on:click={() => dispatch('tab', { value: 1 })} active={activeTab === 1}>Preview</span>
+    </span>
+  {/if}
 
   <ToolbarButton tooltip="bold" on:click={() => handleDec(cm, '**')}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/></svg></ToolbarButton>
   <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '*')}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg></ToolbarButton>
