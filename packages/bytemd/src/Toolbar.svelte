@@ -36,7 +36,7 @@
     padding-right: 10px;
     line-height: 26px;
   }
-  [active=true] {
+  .active {
     background-color: #ff0;
   }
 </style>
@@ -46,8 +46,8 @@
 
   {#if mode === 'tab'}
     <span class="bytemd-tab">
-      <span on:click={() => dispatch('tab', { value: 0 })} active={activeTab === 0}>Write</span>
-      <span on:click={() => dispatch('tab', { value: 1 })} active={activeTab === 1}>Preview</span>
+      <span on:click={() => dispatch('tab', { value: 0 })} class:active={activeTab === 0}>Write</span>
+      <span on:click={() => dispatch('tab', { value: 1 })} class:active={activeTab === 1}>Preview</span>
     </span>
   {/if}
 

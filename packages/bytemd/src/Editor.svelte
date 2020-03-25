@@ -73,7 +73,7 @@
     overflow: auto;
     border-left: 1px solid #eee;
   }
-  [hidden] {
+  .hidden {
     display: none;
   }
 </style>
@@ -81,10 +81,10 @@
 <div class="bytemd" style={containerStyle}>
   <Toolbar {cm} {fileHandler} {plugins} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
-    <div class="bytemd-editor" hidden={mode === 'tab' && activeTab === 1}>
+    <div class="bytemd-editor" class:hidden={mode === 'tab' && activeTab === 1}>
       <textarea bind:this={textarea} />
     </div>
-    <div class="bytemd-viewer" bind:this={viewer} hidden={mode === 'tab' && activeTab === 0}>
+    <div class="bytemd-viewer" bind:this={viewer} class:hidden={mode === 'tab' && activeTab === 0}>
       <Viewer {value} {plugins} />
     </div>
   </div>
