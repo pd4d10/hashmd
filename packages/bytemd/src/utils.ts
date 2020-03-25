@@ -15,15 +15,23 @@ export const santitizeHref = (href?: string) => {
   }
 };
 
-export function handleDec(cm: Editor, decorator: string) {
+export function handleText(cm: Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
-    cm.replaceSelection(decorator + cm.getSelection() + decorator);
+    cm.replaceSelection(before + cm.getSelection() + after);
   } else {
     const { anchor, head } = cm.findWordAt(cm.getCursor());
     const word = cm.getRange(anchor, head);
-    cm.replaceRange(decorator + word + decorator, anchor, head);
+    cm.replaceRange(before + word + after, anchor, head);
   }
   cm.focus();
+}
+
+export function handleDec(cm: Editor, decorator: string) {
+  return handleText(cm, decorator, decorator);
+}
+
+export function handleTag(cm: Editor, tagName: string) {
+  return handleText(cm, `<${tagName}>`, `</${tagName}>`);
 }
 
 export function handleBlockquote(cm: Editor) {
