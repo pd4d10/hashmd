@@ -34,6 +34,12 @@ export function handleTag(cm: Editor, tagName: string) {
   return handleText(cm, `<${tagName}>`, `</${tagName}>`);
 }
 
+export function handleHeading(cm: Editor) {
+  const { line } = cm.getCursor();
+  const content = cm.getLine(line);
+  cm.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
+}
+
 export function handleBlockquote(cm: Editor) {
   if (cm.somethingSelected()) {
     const [selection] = cm.listSelections();

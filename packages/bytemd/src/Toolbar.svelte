@@ -1,8 +1,9 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './ToolbarButton.svelte'
-  import { handleDec, handleTag, handleBlockquote, handleLink, handleImage, handleTable } from './utils.js'
+  import { handleDec, handleTag, handleBlockquote, handleLink, handleImage, handleTable, handleHeading } from './utils.js'
 
+  import heading from 'icons/heading.svg'
   import bold from 'icons/bold.svg'
   import italic from 'icons/italic.svg'
   import quote from 'icons/quote.svg'
@@ -51,6 +52,7 @@
     </span>
   {/if}
 
+  <ToolbarButton tooltip="heading" on:click={() => handleHeading(cm)}>{@html heading}</ToolbarButton>
   <ToolbarButton tooltip="bold" on:click={() => handleDec(cm, '**')}>{@html bold}</ToolbarButton>
   <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '*')}>{@html italic}</ToolbarButton>
   <ToolbarButton tooltip="blockquote" on:click={() => handleBlockquote(cm)}>{@html quote}</ToolbarButton>
