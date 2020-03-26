@@ -1,5 +1,9 @@
 <script>
-  import icon from 'icons/unmute.svg'
+  import icon from 'icons/unmute.svg';
+  export let onClick;
+  export let editor;
 </script>
 
-{@html icon}
+<div on:click={() => onClick(editor)}>
+  {@html icon}
+</div>

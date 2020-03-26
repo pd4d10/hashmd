@@ -1,9 +1,10 @@
 import { Plugin } from 'bytemd';
+import { Editor } from 'codemirror';
 import { IPlayerOptions } from 'xgplayer';
 import Xgplayer from './Xgplayer.svelte';
 import VideoIcon from './VideoIcon.svelte';
 
-type ClickHandler = Exclude<Plugin['toolbarItems'], undefined>[0]['onClick'];
+type ClickHandler = (editor: Editor) => void;
 
 export interface PluginOptions {
   tagName?: string;
@@ -14,11 +15,11 @@ export interface PluginOptions {
 export default function xgplayer({
   tagName = 'video',
   playerOptions,
-  onClickIcon = cm => {
-    const pos = cm.getCursor('from');
-    cm.replaceRange(`<${tagName} src=""></${tagName}>`, pos);
-    cm.setCursor({ line: pos.line, ch: pos.ch + tagName.length + 7 });
-    cm.focus();
+  onClickIcon = editor => {
+    const pos = editor.getCursor('from');
+    editor.replaceRange(`<${tagName} src=""></${tagName}>`, pos);
+    editor.setCursor({ line: pos.line, ch: pos.ch + tagName.length + 7 });
+    editor.focus();
   },
 }: PluginOptions = {}): Plugin {
   return {
@@ -40,7 +41,9 @@ export default function xgplayer({
     toolbarItems: [
       {
         component: VideoIcon,
-        onClick: onClickIcon,
+        props: {
+          onClick: onClickIcon,
+        },
         tooltip: 'video',
       },
     ],

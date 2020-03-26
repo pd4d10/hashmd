@@ -1,10 +1,11 @@
 import { Plugin } from 'bytemd';
+import { Editor } from 'codemirror';
 import Audio from './Audio.svelte';
 import Video from './Video.svelte';
 import AudioIcon from './AudioIcon.svelte';
 import VideoIcon from './VideoIcon.svelte';
 
-type ClickHandler = Exclude<Plugin['toolbarItems'], undefined>[0]['onClick'];
+type ClickHandler = (editor: Editor) => void;
 
 export interface PluginOptions {
   video?: {
@@ -18,11 +19,11 @@ export interface PluginOptions {
 }
 
 function getClickHandler(type: string): ClickHandler {
-  return cm => {
-    const pos = cm.getCursor('from');
-    cm.replaceRange(`<${type} src=""></${type}>`, pos);
-    cm.setCursor({ line: pos.line, ch: pos.ch + 12 });
-    cm.focus();
+  return editor => {
+    const pos = editor.getCursor('from');
+    editor.replaceRange(`<${type} src=""></${type}>`, pos);
+    editor.setCursor({ line: pos.line, ch: pos.ch + 12 });
+    editor.focus();
   };
 }
 
@@ -61,12 +62,12 @@ export default function media({
     toolbarItems: [
       {
         component: AudioIcon,
-        onClick: onClickAudio,
+        props: { onClick: onClickAudio },
         tooltip: 'audio',
       },
       {
         component: VideoIcon,
-        onClick: onClickVideo,
+        props: { onClick: onClickVideo },
         tooltip: 'video',
       },
     ],
