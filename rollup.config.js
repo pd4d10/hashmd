@@ -125,7 +125,7 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     globals(),
     builtins(),
     json(),
-    string({ include: '**/*.svg' }),
+    string({ include: ['**/*.svg', '**/*.md'] }),
     production && k === 'example' && terser(), // For UMD
     // k === 'example' && visualizer(),
   ];
