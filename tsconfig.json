@@ -1,4 +1,5 @@
 {
+  "exclude": ["node_modules", "vendor"],
   "compilerOptions": {
     "skipLibCheck": true,
     /* Basic Options */
