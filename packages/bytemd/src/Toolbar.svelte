@@ -52,7 +52,7 @@
     line-height: 26px;
   }
   .active {
-    background-color: #ff0;
+    color: #0366d6;
   }
 </style>
 

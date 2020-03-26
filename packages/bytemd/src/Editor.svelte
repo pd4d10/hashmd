@@ -4,7 +4,7 @@
   import 'codemirror/mode/markdown/markdown.js';
   import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
-  import { dataUrlFileHandler } from './utils.js'
+  import { dataUrlFileHandler } from './utils.js';
 
   const dispatch = createEventDispatcher();
 
@@ -18,13 +18,13 @@
   let viewer;
   let cm;
 
-  let activeTab = 0
+  let activeTab = 0;
   function setActiveTab(e) {
-    activeTab = e.detail.value
+    activeTab = e.detail.value;
   }
 
   $: if (cm && value !== cm.getValue()) {
-    cm.setValue(value)
+    cm.setValue(value);
   }
 
   onMount(() => {
@@ -36,15 +36,16 @@
     cm.setValue(value);
     cm.on('change', (doc, change) => {
       if (change.origin !== 'setValue') {
-        dispatch('change', { value: cm.getValue() })
+        dispatch('change', { value: cm.getValue() });
       }
     });
-    cm.on('scroll', (cm) => {
+    cm.on('scroll', cm => {
       requestAnimationFrame(() => {
-        const editorInfo = cm.getScrollInfo()
-        const ratio = editorInfo.top / (editorInfo.height - editorInfo.clientHeight)
-        viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight))
-      })
+        const editorInfo = cm.getScrollInfo();
+        const ratio =
+          editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
+        viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight));
+      });
     });
   });
 </script>
@@ -62,6 +63,7 @@
   }
   .bytemd-editor {
     flex: 1;
+    overflow: hidden;
     height: 100%;
   }
   .bytemd-editor :global(.CodeMirror) {
@@ -79,12 +81,21 @@
 </style>
 
 <div class="bytemd" style={containerStyle}>
-  <Toolbar {cm} {fileHandler} {plugins} {mode} {activeTab} on:tab={setActiveTab} />
+  <Toolbar
+    {cm}
+    {fileHandler}
+    {plugins}
+    {mode}
+    {activeTab}
+    on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div class="bytemd-editor" class:hidden={mode === 'tab' && activeTab === 1}>
       <textarea bind:this={textarea} />
     </div>
-    <div class="bytemd-viewer" bind:this={viewer} class:hidden={mode === 'tab' && activeTab === 0}>
+    <div
+      class="bytemd-viewer"
+      bind:this={viewer}
+      class:hidden={mode === 'tab' && activeTab === 0}>
       <Viewer {value} {plugins} />
     </div>
   </div>
