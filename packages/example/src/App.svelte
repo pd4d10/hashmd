@@ -1,16 +1,17 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount } from 'svelte';
   import { Editor } from 'bytemd';
-  import highlight from '@bytemd/plugin-highlight'
-  import math from '@bytemd/plugin-math'
-  import graphviz from '@bytemd/plugin-graphviz'
-  import mermaid from '@bytemd/plugin-mermaid'
-  import media from '@bytemd/plugin-media'
-  import abc from '@bytemd/plugin-abc'
+  import highlight from '@bytemd/plugin-highlight';
+  import math from '@bytemd/plugin-math';
+  import graphviz from '@bytemd/plugin-graphviz';
+  import mermaid from '@bytemd/plugin-mermaid';
+  import media from '@bytemd/plugin-media';
+  import abc from '@bytemd/plugin-abc';
+  import styledText from '@bytemd/plugin-styled-text';
 
-  import demo from './demo.md'
+  import demo from './demo.md';
 
-  let value = demo
+  let value = demo;
 
   let enabled = {
     highlight: true,
@@ -19,7 +20,8 @@
     mermaid: true,
     media: true,
     abc: true,
-  }
+    'styled-text': true,
+  };
 
   $: plugins = [
     enabled.highlight && highlight(),
@@ -28,10 +30,11 @@
     enabled.mermaid && mermaid(),
     enabled.media && media(),
     enabled.abc && abc(),
-  ].filter(x => x)
+    enabled['styled-text'] && styledText(),
+  ].filter(x => x);
 
   function handleChange(e) {
-    value = e.detail.value
+    value = e.detail.value;
   }
 </script>
 
@@ -40,16 +43,17 @@
     padding: 10px;
   }
   :global(.bytemd) {
-    height: 90vh!important;
+    height: 90vh !important;
   }
 </style>
 
 <div>
   Plugins:
-  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'media', 'abc'] as p}
+  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'media', 'abc', 'styled-text'] as p}
     <label>
-      <input type="checkbox" bind:checked={enabled[p]} /> {p}
+      <input type="checkbox" bind:checked={enabled[p]} />
+      {p}
     </label>
   {/each}
 </div>
-<Editor {value} plugins={plugins} on:change={handleChange} />
+<Editor {value} {plugins} on:change={handleChange} />

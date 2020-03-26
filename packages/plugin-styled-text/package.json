@@ -1,0 +1,22 @@
+{
+  "name": "@bytemd/plugin-styled-text",
+  "version": "0.0.1",
+  "description": "Styled text plugin for bytemd",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "src/index.d.ts",
+  "svelte": "src/index.js",
+  "keywords": [],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "bytemd": "*"
+  },
+  "dependencies": {
+    "@simonwep/pickr": "^1.5.1"
+  }
+}
