@@ -54,7 +54,7 @@
 
   <ToolbarButton tooltip="heading" on:click={() => handleHeading(cm)}>{@html heading}</ToolbarButton>
   <ToolbarButton tooltip="bold" on:click={() => handleDec(cm, '**')}>{@html bold}</ToolbarButton>
-  <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '*')}>{@html italic}</ToolbarButton>
+  <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '_')}>{@html italic}</ToolbarButton>
   <ToolbarButton tooltip="blockquote" on:click={() => handleBlockquote(cm)}>{@html quote}</ToolbarButton>
   <ToolbarButton tooltip="link" on:click={() => handleLink(cm)}>{@html link}</ToolbarButton>
   <ToolbarButton tooltip="image" on:click={() => fileInput.click()}>{@html image}</ToolbarButton>
