@@ -67,19 +67,12 @@ const exampleConfigs = {
     input: 'src/main.js',
     output: [
       {
-        format: 'es',
-        dir: 'public/build/module',
+        format: 'iife',
+        dir: 'public/build',
       },
     ],
   },
 };
-
-if (production) {
-  exampleConfigs.example.output.push({
-    format: 'system',
-    dir: 'public/build/nomodule',
-  });
-}
 
 const bundledConfigs = bundlePackages ? packageConfigs : exampleConfigs;
 

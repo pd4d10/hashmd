@@ -1,6 +1,12 @@
 <script>
   import { onMount } from 'svelte'
   import { Editor } from 'bytemd';
+  import highlight from '@bytemd/plugin-highlight'
+  import math from '@bytemd/plugin-math'
+  import graphviz from '@bytemd/plugin-graphviz'
+  import mermaid from '@bytemd/plugin-mermaid'
+  import media from '@bytemd/plugin-media'
+  import abc from '@bytemd/plugin-abc'
 
   let value = `# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
@@ -95,25 +101,14 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
     abc: true,
   }
 
-  let loadedPlugins = {};
-
   $: plugins = [
-    enabled.highlight && loadedPlugins.highlight,
-    enabled.math && loadedPlugins.math,
-    enabled.graphviz && loadedPlugins.graphviz,
-    enabled.mermaid && loadedPlugins.mermaid,
-    enabled.media && loadedPlugins.media,
-    enabled.abc && loadedPlugins.abc,
+    enabled.highlight && highlight(),
+    enabled.math && math(),
+    enabled.graphviz && graphviz(),
+    enabled.mermaid && mermaid(),
+    enabled.media && media(),
+    enabled.abc && abc(),
   ].filter(x => x)
-
-  onMount(() => {
-    import('@bytemd/plugin-highlight').then(r => { loadedPlugins.highlight = r.default() })
-    import('@bytemd/plugin-math').then(r => { loadedPlugins.math = r.default() })
-    import('@bytemd/plugin-graphviz').then(r => { loadedPlugins.graphviz = r.default() })
-    import('@bytemd/plugin-mermaid').then(r => { loadedPlugins.mermaid = r.default() })
-    import('@bytemd/plugin-media').then(r => { loadedPlugins.media = r.default() })
-    import('@bytemd/plugin-abc').then(r => { loadedPlugins.abc = r.default() })
-  })
 
   function handleChange(e) {
     value = e.detail.value
@@ -133,7 +128,7 @@ efe edB | d2d def | gfe edB |1 dBA ABd :|2 dBA AFD |]
   Plugins:
   {#each ['math', 'graphviz', 'mermaid', 'highlight', 'media', 'abc'] as p}
     <label>
-      <input type=checkbox bind:checked={enabled[p]} /> {p}
+      <input type="checkbox" bind:checked={enabled[p]} /> {p}
     </label>
   {/each}
 </div>
