@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './ToolbarButton.svelte'
-  import { handleDec, handleTag, handleBlockquote, handleLink, handleImage, handleTable, handleHeading } from './utils.js'
+  import { handleDec, handleTag, handleBlockquote, handleLink, handleImage, handleTable, handleHeading, handleOl, handleUl, handleTask } from './utils.js'
 
   import heading from 'icons/heading.svg'
   import bold from 'icons/bold.svg'
@@ -10,6 +10,9 @@
   import image from 'icons/image.svg'
   import server from 'icons/server.svg'
   import link from 'icons/link.svg'
+  import iconOl from 'icons/list-ordered.svg'
+  import iconUl from 'icons/list-unordered.svg'
+  import task from 'icons/tasklist.svg'
 
   const dispatch = createEventDispatcher();
 
@@ -59,6 +62,9 @@
   <ToolbarButton tooltip="link" on:click={() => handleLink(cm)}>{@html link}</ToolbarButton>
   <ToolbarButton tooltip="image" on:click={() => fileInput.click()}>{@html image}</ToolbarButton>
   <ToolbarButton tooltip="table" on:click={() => handleTable(cm)}>{@html server}</ToolbarButton>
+  <ToolbarButton tooltip="ordered list" on:click={() => handleOl(cm)}>{@html iconOl}</ToolbarButton>
+  <ToolbarButton tooltip="unordered list" on:click={() => handleUl(cm)}>{@html iconUl}</ToolbarButton>
+  <ToolbarButton tooltip="task list" on:click={() => handleTask(cm)}>{@html task}</ToolbarButton>
 
   {#each plugins as plugin}
     {#if plugin.toolbarItems}

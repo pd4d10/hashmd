@@ -110,3 +110,47 @@ export function handleTable(cm: Editor) {
   cm.setCursor({ line: pos.line + 1, ch: 2 });
   cm.focus();
 }
+
+export function handleOl(cm: Editor) {
+  if (cm.somethingSelected()) {
+    const [selection] = cm.listSelections();
+    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
+      cm.replaceRange(
+        `${i - selection.anchor.line + 1}. ${cm.getLine(i)}`,
+        { line: i, ch: 0 },
+        { line: i },
+      );
+    }
+  } else {
+    cm.replaceRange('\n\n1. \n\n', cm.getCursor());
+  }
+  cm.focus();
+}
+
+export function handleUl(cm: Editor) {
+  if (cm.somethingSelected()) {
+    const [selection] = cm.listSelections();
+    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
+      cm.replaceRange(`- ${cm.getLine(i)}`, { line: i, ch: 0 }, { line: i });
+    }
+  } else {
+    cm.replaceRange('\n\n- \n\n', cm.getCursor());
+  }
+  cm.focus();
+}
+
+export function handleTask(cm: Editor) {
+  if (cm.somethingSelected()) {
+    const [selection] = cm.listSelections();
+    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
+      cm.replaceRange(
+        `- [ ] ${cm.getLine(i)}`,
+        { line: i, ch: 0 },
+        { line: i },
+      );
+    }
+  } else {
+    cm.replaceRange('\n\n- [ ] \n\n', cm.getCursor());
+  }
+  cm.focus();
+}
