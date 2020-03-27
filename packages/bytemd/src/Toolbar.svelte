@@ -60,7 +60,7 @@
   <input
     bind:this={fileInput}
     type="file"
-    accept="image/png, image/jpeg"
+    accept="image/*"
     on:input={e => handleImage(cm, e, fileHandler)} />
 
   {#if mode === 'tab'}
