@@ -10,7 +10,7 @@
 
   export let value = '';
   export let containerStyle;
-  export let fileHandler = dataUrlFileHandler;
+  export let fileHandler;
   export let plugins = [];
   export let mode = 'split';
   export let editorConfig;

@@ -70,7 +70,10 @@ export function handleLink(cm: Editor) {
   cm.focus();
 }
 
-export const dataUrlFileHandler: EditorProps['fileHandler'] = async file => {
+export const dataUrlFileHandler: Exclude<
+  EditorProps['fileHandler'],
+  undefined
+> = async file => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.addEventListener('load', e => {
@@ -86,10 +89,10 @@ export const dataUrlFileHandler: EditorProps['fileHandler'] = async file => {
 export async function handleImage(
   cm: Editor,
   e: InputEvent,
-  fileHandler: EditorProps['fileHandler'],
+  fileHandler = dataUrlFileHandler,
 ) {
   const $ = e.target as HTMLInputElement;
-  if (!$.files) return;
+  if (!$.files || !$.files.length) return;
   const file = $.files[0];
   const url = await fileHandler(file);
   const text = cm.getSelection();

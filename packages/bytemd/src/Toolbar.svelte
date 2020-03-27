@@ -61,7 +61,7 @@
     bind:this={fileInput}
     type="file"
     accept="image/png, image/jpeg"
-    on:change={e => handleImage(cm, e, fileHandler)} />
+    on:input={e => handleImage(cm, e, fileHandler)} />
 
   {#if mode === 'tab'}
     <span class="bytemd-tab">
