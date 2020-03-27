@@ -35,9 +35,10 @@ declare class SvelteComponentDev<P> {
 export interface EditorProps {
   value: string;
   mode?: 'split' | 'tab';
-  containerStyle: string;
-  fileHandler: (file: File) => Promise<string>;
+  containerStyle?: string;
+  fileHandler?: (file: File) => Promise<string>;
   plugins?: Plugin[];
+  editorConfig?: Omit<cm.EditorConfiguration, 'value'>;
 }
 
 export interface ViewerProps {

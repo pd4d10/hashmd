@@ -13,6 +13,7 @@
   export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
   export let mode = 'split';
+  export let editorConfig;
 
   let textarea;
   let viewer;
@@ -32,6 +33,7 @@
       mode: 'markdown',
       lineNumbers: true,
       lineWrapping: true,
+      ...editorConfig,
     });
     cm.setValue(value);
     cm.on('change', (doc, change) => {
