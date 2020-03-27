@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-xgplayer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "xgplayer plugin for bytemd",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
