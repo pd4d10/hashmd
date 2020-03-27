@@ -63,6 +63,19 @@
         return;
       }
     });
+    cm.on('drop', async (_, e) => {
+      const { items } = e.dataTransfer;
+      for (let i = 0; i < items.length; i++) {
+        if (!items[i].type.startsWith('image/')) continue;
+
+        e.preventDefault();
+        const url = await fileHandler(items[i].getAsFile());
+        const text = cm.getSelection();
+        cm.replaceSelection(`![${text}](${url})`);
+        cm.focus();
+        return;
+      }
+    });
   });
 </script>
 
