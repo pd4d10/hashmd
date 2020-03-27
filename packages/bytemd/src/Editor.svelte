@@ -10,7 +10,7 @@
 
   export let value = '';
   export let containerStyle;
-  export let fileHandler;
+  export let fileHandler = dataUrlFileHandler;
   export let plugins = [];
   export let mode = 'split';
   export let editorConfig;
@@ -48,6 +48,20 @@
           editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
         viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight));
       });
+    });
+    cm.on('paste', async (_, e) => {
+      const { items } = e.clipboardData;
+      for (let i = 0; i < items.length; i++) {
+        // console.log(items[i]);
+        if (!items[i].type.startsWith('image/')) continue;
+
+        e.preventDefault();
+        const url = await fileHandler(items[i].getAsFile());
+        const text = cm.getSelection();
+        cm.replaceSelection(`![${text}](${url})`);
+        cm.focus();
+        return;
+      }
     });
   });
 </script>

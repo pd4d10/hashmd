@@ -89,7 +89,7 @@ export const dataUrlFileHandler: Exclude<
 export async function handleImage(
   cm: Editor,
   e: InputEvent,
-  fileHandler = dataUrlFileHandler,
+  fileHandler: Exclude<EditorProps['fileHandler'], undefined>,
 ) {
   const $ = e.target as HTMLInputElement;
   if (!$.files || !$.files.length) return;
