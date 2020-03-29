@@ -1,7 +1,6 @@
 import { Plugin } from 'bytemd';
-import katex from 'katex';
 import remarkMath from 'remark-math';
-import KatexView from './KatexView.svelte';
+import Katex from './katex.svelte';
 
 export default function math(): Plugin {
   return {
@@ -19,12 +18,10 @@ export default function math(): Plugin {
 
       const displayMode = node.properties.className.includes('math-display');
       return {
-        component: KatexView,
+        component: Katex,
         props: {
-          html: katex.renderToString(textNode.value as string, {
-            displayMode,
-            throwOnError: false,
-          }),
+          displayMode,
+          text: textNode.value,
         },
       };
     },
