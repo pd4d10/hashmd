@@ -116,7 +116,24 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
       css({
         output: 'packages/example/public/build/library.css',
       }),
-    svelte({ dev: !production }),
+    svelte({
+      dev: !production,
+      preprocess: {
+        // Remove spaces
+        // https://github.com/UnwrittenFun/prettier-plugin-svelte/issues/24#issuecomment-495778976
+        markup: input => ({
+          code: input.content
+            .replace(
+              /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
+              '$1',
+            )
+            .replace(
+              /(?<!<[^>]*?|{[^}]*?)\s+(<|{)(?![^]*<\/(?:script|style)>)/g,
+              '$1',
+            ),
+        }),
+      },
+    }),
     resolve({
       browser: true,
       dedupe: ['svelte'],
