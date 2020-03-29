@@ -124,9 +124,11 @@
     <Elements nodes={children} {plugins} />
   </ul>
 {:else if tagName === 'li'}
-  <li>
+  <li class={properties.className && properties.className.join(' ')}>
     <Elements nodes={children} {plugins} />
   </li>
+{:else if tagName === 'input' && properties.type === 'checkbox'}
+  <input type="checkbox" disabled checked={properties.checked} />
 {:else if tagName === 'a'}
   <a href={santitizeHref(properties.href)}>
     <Elements nodes={children} {plugins} />
