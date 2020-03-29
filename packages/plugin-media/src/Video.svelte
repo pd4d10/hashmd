@@ -1,9 +1,9 @@
 <script>
-  export let src
-  export let poster
-  export let width
-  export let height
-  export let attrs
+  export let src;
+  export let poster;
+  export let width;
+  export let height;
+  export let attrs;
 </script>
 
 <style>
@@ -12,4 +12,4 @@
   }
 </style>
 
-<video {...attrs} {src} {poster} {width} {height}></video>
+<video {...attrs} {src} {poster} {width} {height} />

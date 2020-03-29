@@ -1,22 +1,22 @@
 <script>
   import tippy from 'tippy.js';
-  import { onMount } from 'svelte'
+  import { onMount } from 'svelte';
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
   function handleClick() {
-    dispatch('click')
+    dispatch('click');
   }
 
   onMount(() => {
     if (tooltip) {
       tippy(el, { content: tooltip });
     }
-  })
+  });
 
-  let el
-  export let tooltip
+  let el;
+  export let tooltip;
 </script>
 
 <style>
@@ -37,4 +37,6 @@
   }
 </style>
 
-<span bind:this={el} on:click={handleClick}><slot /></span>
+<span bind:this={el} on:click={handleClick}>
+  <slot />
+</span>

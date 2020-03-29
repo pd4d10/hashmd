@@ -1,5 +1,5 @@
 <script>
-  export let raw
+  export let raw;
 </script>
 
 {@html raw}

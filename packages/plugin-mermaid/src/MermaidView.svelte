@@ -1,11 +1,11 @@
 <script>
-  import mermaid from 'mermaid'
+  import mermaid from 'mermaid';
 
-  export let value
-  let element
-  let error
+  export let value;
+  let element;
+  let error;
 
-  const id = 'mermaid-' + Date.now()
+  const id = 'mermaid-' + Date.now();
 
   function insertSvg(svgCode, bindFunctions) {
     element.innerHTML = svgCode;
@@ -15,9 +15,9 @@
   $: if (element) {
     try {
       mermaid.render(id, value, insertSvg, element);
-      error = null
+      error = null;
     } catch (e) {
-      error = e
+      error = e;
     }
   }
 </script>
@@ -34,4 +34,4 @@
 {#if error}
   <p>{error.message}</p>
 {/if}
-<div style={error ? 'display:none': null} bind:this={element}></div>
+<div style={error ? 'display:none' : null} bind:this={element} />

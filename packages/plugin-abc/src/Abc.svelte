@@ -1,19 +1,19 @@
 <script>
-  import { onMount } from 'svelte'
-  import abcjs from 'abcjs'
+  import { onMount } from 'svelte';
+  import abcjs from 'abcjs';
 
-  const id = 'abc-' + Date.now()
+  const id = 'abc-' + Date.now();
 
-  export let value
+  export let value;
   $: if (value) {
-    abcjs.renderAbc(id, value)
+    abcjs.renderAbc(id, value);
   }
 
   onMount(() => {
     if (value) {
-      abcjs.renderAbc(id, value)
+      abcjs.renderAbc(id, value);
     }
-  })
+  });
 </script>
 
 <style>
@@ -22,4 +22,4 @@
   }
 </style>
 
-<div {id}></div>
+<div {id} />

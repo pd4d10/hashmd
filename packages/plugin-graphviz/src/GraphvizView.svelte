@@ -1,10 +1,10 @@
 <script>
-  import Viz from 'viz.js'
+  import Viz from 'viz.js';
   import workerURL from 'viz.js/full.render.js';
 
-  const viz = new Viz(workerURL)
+  const viz = new Viz(workerURL);
 
-  export let value
+  export let value;
 </script>
 
 <style>

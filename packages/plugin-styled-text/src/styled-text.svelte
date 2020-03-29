@@ -1,7 +1,9 @@
 <script>
-  import { Elements } from 'bytemd'
+  import { Elements } from 'bytemd';
   export let children = [];
-  export let style
+  export let style;
 </script>
 
-<span {style}><Elements nodes={children} /></span>
+<span {style}>
+  <Elements nodes={children} />
+</span>

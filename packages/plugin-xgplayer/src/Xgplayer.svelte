@@ -1,18 +1,18 @@
 <script>
   import Player from 'xgplayer';
 
-  export let url
-  export let width
-  export let height
-  export let poster
-  export let playerOptions
+  export let url;
+  export let width;
+  export let height;
+  export let poster;
+  export let playerOptions;
 
-  let el
-  let player
+  let el;
+  let player;
 
   $: if (el) {
     if (player) {
-      player.destroy()
+      player.destroy();
     }
     player = new Player({
       ...playerOptions,
@@ -21,8 +21,8 @@
       width,
       height,
       poster,
-    })
+    });
   }
 </script>
 
-<div bind:this={el}></div>
+<div bind:this={el} />
