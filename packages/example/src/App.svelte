@@ -40,7 +40,7 @@
 
 <style>
   div {
-    padding: 10px;
+    padding: 10px 0;
   }
   :global(.bytemd) {
     height: 90vh !important;
@@ -50,6 +50,7 @@
 <div>
   Plugins:
   {#each ['math', 'graphviz', 'mermaid', 'highlight', 'media', 'abc', 'styled-text'] as p}
+    {' '}
     <label>
       <input type="checkbox" bind:checked={enabled[p]} />
       {p}
