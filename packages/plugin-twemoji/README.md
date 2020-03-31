@@ -1,6 +1,7 @@
 # @bytemd/plugin-twemoji
 
-[bytemd](https://github.com/bytedance/bytemd) plugin to 
+[bytemd](https://github.com/bytedance/bytemd) plugin to replace emoji characters with [twemoji](https://github.com/twitter/twemoji)
+
 ## Usage
 
 ```js
