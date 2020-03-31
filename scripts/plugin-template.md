@@ -5,13 +5,13 @@
 
 ```js
 import { Editor } from 'bytemd';
-import {{name}} from '@bytemd/plugin-{{name}}';
+import {{camelName}} from '@bytemd/plugin-{{name}}';
 
 new Editor({
   target: document.body,
   props: {
     plugins: [
-      {{name}}(),
+      {{camelName}}(),
       // ... other plugins
     ],
   },

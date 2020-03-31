@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const mustache = require('mustache');
+const _ = require('lodash');
 
 function readFileSyncSafe(p) {
   try {
@@ -15,14 +16,16 @@ function readFileSyncSafe(p) {
 const root = path.join(__dirname, '../packages');
 
 const plugins = fs.readdirSync(root).filter(x => x.startsWith('plugin-'));
-const template = readFileSyncSafe(path.join(__dirname, 'readme-template.md'));
+const template = readFileSyncSafe(path.join(__dirname, 'plugin-template.md'));
 
 plugins.forEach(p => {
+  const name = p
+    .split('-')
+    .slice(1)
+    .join('-');
   const result = mustache.render(template, {
-    name: p
-      .split('-')
-      .slice(1)
-      .join('-'),
+    name,
+    camelName: _.camelCase(name),
     desc: readFileSyncSafe(path.join(root, p, 'docs/desc.md')),
     options: readFileSyncSafe(path.join(root, p, 'docs/options.md')),
     example: readFileSyncSafe(path.join(root, p, 'docs/example.md')),
