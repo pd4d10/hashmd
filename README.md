@@ -11,8 +11,6 @@ Markdown editor component built with Svelte.
 | Package | Status | Description |
 | --- | --- | --- |
 | [bytemd](./packages/bytemd) | [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd) | Markdown Editor and Viewer |
-| [bytemd-react](./packages/bytemd-react) |  |  |
-| [bytemd-vue](./packages/bytemd-vue) |  |  |
 
 ## Plugins
 

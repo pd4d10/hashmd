@@ -34,9 +34,6 @@ const packageConfigs = {
       clearScreen: false,
     },
   },
-  'bytemd-react': {
-    external: ['react'],
-  },
   'plugin-highlight': {
     external: ['lowlight'],
   },
