@@ -16,16 +16,15 @@ Markdown editor component built with Svelte.
 
 | Package | Status | Description |
 | --- | --- | --- |
-| [@bytemd/plugin-highlight](./packages/plugin-highlight) |  | Highlight code blocks with [highlight.js](https://github.com/highlightjs/highlight.js) |
-| [@bytemd/plugin-math](./packages/plugin-math) |  | Math equation plugin |
-| [@bytemd/plugin-mermaid](./packages/plugin-mermaid) |  | [mermaid](https://mermaid-js.github.io/mermaid/) diagram and flowchart plugin |
-| [@bytemd/plugin-media](./packages/plugin-media) |  | Supports `<video>` and `<audio>` tags |
-| [@bytemd/plugin-xgplayer](./packages/plugin-xgplayer) |  | Play video with [xgplayer](https://github.com/bytedance/xgplayer) |
-| [@bytemd/plugin-abc](./packages/plugin-abc) |  | [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) plugin |
-
-## Credits
-
-Toolbar icons are mostly from [GitHub Octicons](https://github.com/primer/octicons-v2).
+| [@bytemd/plugin-abc](./packages/plugin-abc) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-abc.svg)](https://npm.im/@bytemd/plugin-abc) | support [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) |
+| [@bytemd/plugin-graphviz](./packages/plugin-graphviz) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-graphviz.svg)](https://npm.im/@bytemd/plugin-graphviz) | support [graphviz](https://www.graphviz.org/) |
+| [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | highlight code blocks |
+| [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | support math equation |
+| [@bytemd/plugin-media](./packages/plugin-media) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-media.svg)](https://npm.im/@bytemd/plugin-media) | support `<video>` and `<audio>` tags |
+| [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | support [mermaid](https://mermaid-js.github.io/mermaid/) diagram and flowchart |
+| [@bytemd/plugin-styled-text](./packages/plugin-styled-text) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-styled-text.svg)](https://npm.im/@bytemd/plugin-styled-text) | add styled text |
+| [@bytemd/plugin-twemoji](./packages/plugin-twemoji) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-twemoji.svg)](https://npm.im/@bytemd/plugin-twemoji) | replace emoji characters with [twemoji](https://github.com/twitter/twemoji) |
+| [@bytemd/plugin-xgplayer](./packages/plugin-xgplayer) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-xgplayer.svg)](https://npm.im/@bytemd/plugin-xgplayer) | support `<video>` with [xgplayer](https://github.com/bytedance/xgplayer) |
 
 ## License
 
