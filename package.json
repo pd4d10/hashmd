@@ -9,13 +9,17 @@
     "dev": "rollup -c -w",
     "watch": "tsc --watch",
     "serve": "serve packages/example/public",
-    "build:package": "tsc; BUNDLE_PACKAGES=1 rollup -c"
+    "build:package": "tsc; BUNDLE_PACKAGES=1 rollup -c",
+    "test": "jest packages/bytemd/src",
+    "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.0.1",
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "@testing-library/svelte": "^3.0.0",
+    "jest": "^25.2.4",
     "mustache": "^4.0.1",
     "rollup": "^1.20.0",
     "rollup-plugin-css-only": "^2.0.0",
@@ -28,6 +32,16 @@
     "rollup-plugin-visualizer": "^3.3.1",
     "serve": "^11.3.0",
     "svelte": "^3.0.0",
+    "svelte-jester": "^1.0.5",
     "typescript": "^3.8.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.svelte$": "svelte-jester"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "svelte"
+    ]
   }
 }
