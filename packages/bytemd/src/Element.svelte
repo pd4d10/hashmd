@@ -20,6 +20,11 @@
   $: children = node.children;
   $: properties = node.properties;
 
+  $: className = properties && properties.className;
+  $: width = properties && properties.width;
+  $: height = properties && properties.height;
+  $: align = properties && properties.align;
+
   $: res = findPlugin(node);
 </script>
 
@@ -104,7 +109,7 @@
     <Elements nodes={children} {plugins} />
   </h6>
 {:else if tagName === 'p'}
-  <p align={properties.align}>
+  <p {align} {width} {height}>
     <Elements nodes={children} {plugins} />
   </p>
 {:else if tagName === 'blockquote'}
@@ -124,43 +129,39 @@
     <Elements nodes={children} {plugins} />
   </ul>
 {:else if tagName === 'li'}
-  <li class={properties.className && properties.className.join(' ')}>
+  <li class={className && className.join(' ')}>
     <Elements nodes={children} {plugins} />
   </li>
-{:else if tagName === 'input' && properties.type === 'checkbox'}
+{:else if tagName === 'input' && type === 'checkbox'}
   <input type="checkbox" disabled checked={properties.checked} />
 {:else if tagName === 'a'}
   <a href={santitizeHref(properties.href)}>
     <Elements nodes={children} {plugins} />
   </a>
 {:else if tagName === 'img'}
-  <img
-    src={properties.src}
-    alt={properties.alt}
-    width={properties.width}
-    height={properties.height} />
+  <img src={properties.src} alt={properties.alt} {width} {height} />
 {:else if tagName === 'table'}
-  <table>
+  <table {width} {height}>
     <Elements nodes={children} {plugins} />
   </table>
 {:else if tagName === 'thead'}
-  <thead>
+  <thead {width} {height}>
     <Elements nodes={children} {plugins} />
   </thead>
 {:else if tagName === 'tbody'}
-  <tbody>
+  <tbody {width} {height}>
     <Elements nodes={children} {plugins} />
   </tbody>
 {:else if tagName === 'tr'}
-  <tr>
+  <tr {width} {height}>
     <Elements nodes={children} {plugins} />
   </tr>
 {:else if tagName === 'th'}
-  <th align={properties.align}>
+  <th {align} {width} {height}>
     <Elements nodes={children} {plugins} />
   </th>
 {:else if tagName === 'td'}
-  <td align={properties.align}>
+  <td {align} {width} {height}>
     <Elements nodes={children} {plugins} />
   </td>
 {:else if tagName === 'hr'}
