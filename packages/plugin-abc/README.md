@@ -1,5 +1,7 @@
 # @bytemd/plugin-abc
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-abc.svg)](https://npm.im/@bytemd/plugin-abc)
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to support [ABC notation](https://en.wikipedia.org/wiki/ABC_notation)
 
 ## Usage

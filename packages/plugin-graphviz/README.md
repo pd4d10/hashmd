@@ -1,5 +1,7 @@
 # @bytemd/plugin-graphviz
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-graphviz.svg)](https://npm.im/@bytemd/plugin-graphviz)
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to support [graphviz](https://www.graphviz.org/)
 
 ## Usage

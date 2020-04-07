@@ -1,5 +1,7 @@
 # @bytemd/plugin-highlight
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight)
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to highlight code blocks
 
 ## Usage

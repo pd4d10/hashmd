@@ -1,5 +1,7 @@
 # @bytemd/plugin-mermaid
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid)
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to support [mermaid](https://mermaid-js.github.io/mermaid/) diagram and flowchart
 
 ## Usage

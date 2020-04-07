@@ -1,5 +1,7 @@
 # @bytemd/plugin-media
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-media.svg)](https://npm.im/@bytemd/plugin-media)
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to support `<video>` and `<audio>` tags
 
 ## Usage

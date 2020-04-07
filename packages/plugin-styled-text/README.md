@@ -1,5 +1,7 @@
 # @bytemd/plugin-styled-text
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-styled-text.svg)](https://npm.im/@bytemd/plugin-styled-text)
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to add styled text
 
 ## Usage

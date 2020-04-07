@@ -1,5 +1,7 @@
 # @bytemd/plugin-{{name}}
 
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-{{name}}.svg)](https://npm.im/@bytemd/plugin-{{name}})
+
 [bytemd](https://github.com/bytedance/bytemd) plugin to {{{desc}}}
 ## Usage
 
