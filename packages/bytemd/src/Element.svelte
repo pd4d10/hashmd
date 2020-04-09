@@ -157,11 +157,21 @@
     <Elements nodes={children} {plugins} />
   </tr>
 {:else if tagName === 'th'}
-  <th {align} {width} {height}>
+  <th
+    {align}
+    {width}
+    {height}
+    rowspan={properties.rowSpan}
+    colspan={properties.colSpan}>
     <Elements nodes={children} {plugins} />
   </th>
 {:else if tagName === 'td'}
-  <td {align} {width} {height}>
+  <td
+    {align}
+    {width}
+    {height}
+    rowspan={properties.rowSpan}
+    colspan={properties.colSpan}>
     <Elements nodes={children} {plugins} />
   </td>
 {:else if tagName === 'hr'}
