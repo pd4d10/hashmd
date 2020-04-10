@@ -3,7 +3,6 @@
   import { Editor } from 'bytemd';
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
-  import graphviz from '@bytemd/plugin-graphviz';
   import mermaid from '@bytemd/plugin-mermaid';
   import media from '@bytemd/plugin-media';
   import abc from '@bytemd/plugin-abc';
@@ -16,7 +15,6 @@
   let enabled = {
     highlight: true,
     math: true,
-    graphviz: true,
     mermaid: true,
     media: true,
     abc: true,
@@ -26,7 +24,6 @@
   $: plugins = [
     enabled.highlight && highlight(),
     enabled.math && math(),
-    enabled.graphviz && graphviz(),
     enabled.mermaid && mermaid(),
     enabled.media && media(),
     enabled.abc && abc(),
@@ -49,7 +46,7 @@
 
 <div>
   Plugins:
-  {#each ['math', 'graphviz', 'mermaid', 'highlight', 'media', 'abc', 'styled-text'] as p}
+  {#each ['math', 'mermaid', 'highlight', 'media', 'abc', 'styled-text'] as p}
     {' '}
     <label>
       <input type="checkbox" bind:checked={enabled[p]} />
