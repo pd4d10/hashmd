@@ -2,6 +2,7 @@ import unified from 'unified';
 import markdown from 'remark-parse';
 import rehype from 'remark-rehype';
 import raw from 'rehype-raw';
+import toHtml from 'hast-util-to-html';
 import { Editor } from 'codemirror';
 import { EditorProps, Plugin } from '.';
 
@@ -168,6 +169,20 @@ export function handleTask(cm: Editor) {
     }
   } else {
     cm.replaceRange('\n\n- [ ] \n\n', cm.getCursor());
+  }
+  cm.focus();
+}
+
+export function covertToHtml(cm: Editor, plugins: Plugin[]) {
+  if (cm.somethingSelected()) {
+    const [selection] = cm.listSelections();
+    const text = cm.getSelection();
+    const parser = getParser(plugins);
+    cm.replaceRange(
+      toHtml(parser.runSync(parser.parse(text))),
+      selection.anchor,
+      selection.head,
+    );
   }
   cm.focus();
 }

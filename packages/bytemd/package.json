@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/codemirror": "^0.0.87",
     "codemirror": "^5.52.0",
+    "hast-util-to-html": "^7.1.0",
     "rehype-raw": "^4.0.1",
     "remark-parse": "^7.0.2",
     "remark-rehype": "^5.0.0",

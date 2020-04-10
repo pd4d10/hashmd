@@ -12,6 +12,7 @@
     handleOl,
     handleUl,
     handleTask,
+    covertToHtml,
   } from './utils.js';
 
   import heading from 'icons/heading.svg';
@@ -24,6 +25,7 @@
   import iconOl from 'icons/list-ordered.svg';
   import iconUl from 'icons/list-unordered.svg';
   import task from 'icons/tasklist.svg';
+  import html from 'icons/code-review.svg';
 
   const dispatch = createEventDispatcher();
 
@@ -107,6 +109,11 @@
   </ToolbarButton>
   <ToolbarButton tooltip="task list" on:click={() => handleTask(cm)}>
     {@html task}
+  </ToolbarButton>
+  <ToolbarButton
+    tooltip="convert to HTML"
+    on:click={() => covertToHtml(cm, plugins)}>
+    {@html html}
   </ToolbarButton>
 
   {#each plugins as plugin}
