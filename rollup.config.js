@@ -1,4 +1,3 @@
-// @ts-check
 import path from 'path';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
@@ -20,7 +19,6 @@ const bundlePackages = process.env.BUNDLE_PACKAGES;
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
   bytemd: {
-    input: 'src/index.js',
     external: [
       'codemirror',
       'codemirror/mode/markdown/markdown.js',
@@ -61,12 +59,16 @@ const packageConfigs = {
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const exampleConfigs = {
   example: {
-    input: 'src/main.js',
     output: [
       {
         format: 'iife',
-        dir: 'public/build',
+        dir: path.resolve(__dirname, 'packages/example/public/build'),
       },
+    ],
+    plugins: [
+      css({
+        output: 'packages/example/public/build/library.css',
+      }),
     ],
   },
 };
@@ -75,32 +77,26 @@ const bundledConfigs = bundlePackages ? packageConfigs : exampleConfigs;
 
 Object.entries(bundledConfigs).forEach(([k, v]) => {
   if (!v.input) {
-    v.input = 'src/index.js';
+    v.input = path.resolve('packages', k, 'src/index.js');
   }
-  v.input = path.resolve('packages', k, v.input);
   if (!v.output) {
     const pkg = require(`./packages/${k}/package.json`);
     v.output = [
       {
         format: 'es',
-        file: pkg.module,
+        file: path.resolve('packages', k, pkg.module),
       },
       {
         format: 'cjs',
-        file: pkg.main,
+        file: path.resolve('packages', k, pkg.main),
       },
     ];
   }
-  v.output.forEach(output => {
-    if (output.file) {
-      output.file = path.resolve('packages', k, output.file);
-    }
-    if (output.dir) {
-      output.dir = path.resolve('packages', k, output.dir);
-    }
+  v.output.forEach((output) => {
     output.sourcemap = true;
   });
   v.plugins = [
+    ...(v.plugins || []),
     alias({
       entries: [
         {
@@ -109,16 +105,12 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
         },
       ],
     }),
-    k === 'example' &&
-      css({
-        output: 'packages/example/public/build/library.css',
-      }),
     svelte({
       dev: !production,
       preprocess: {
         // Remove spaces
         // https://github.com/UnwrittenFun/prettier-plugin-svelte/issues/24#issuecomment-495778976
-        markup: input => ({
+        markup: (input) => ({
           code: input.content
             .replace(
               /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
@@ -144,14 +136,11 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
     // k === 'example' && visualizer(),
   ];
 
-  if (!v.external) v.external = [];
   if (k !== 'example') {
     // Make svelte related packages external to avoid multiple copies
     // https://github.com/sveltejs/svelte/issues/3671
-    v.external.push('svelte', 'svelte/internal');
-    if (k !== 'bytemd') {
-      v.external.push('bytemd', 'bytemd/helpers');
-    }
+    if (!v.external) v.external = [];
+    v.external.push('svelte', 'svelte/internal', 'bytemd', 'bytemd/helpers');
   }
 
   return v;
