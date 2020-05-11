@@ -14,6 +14,7 @@
     "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
+    "@primer/octicons-v2": "^0.0.0-0ccdd71",
     "@rollup/plugin-alias": "^3.0.1",
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-json": "^4.0.2",

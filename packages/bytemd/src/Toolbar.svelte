@@ -15,17 +15,17 @@
     covertToHtml,
   } from './utils.js';
 
-  import heading from 'icons/heading.svg';
-  import bold from 'icons/bold.svg';
-  import italic from 'icons/italic.svg';
-  import quote from 'icons/quote.svg';
-  import image from 'icons/image.svg';
-  import server from 'icons/server.svg';
-  import link from 'icons/link.svg';
-  import iconOl from 'icons/list-ordered.svg';
-  import iconUl from 'icons/list-unordered.svg';
-  import task from 'icons/tasklist.svg';
-  import html from 'icons/code-review.svg';
+  import heading from 'icons/heading-16.svg';
+  import bold from 'icons/bold-16.svg';
+  import italic from 'icons/italic-16.svg';
+  import quote from 'icons/quote-16.svg';
+  import image from 'icons/image-16.svg';
+  import server from 'icons/server-16.svg';
+  import link from 'icons/link-16.svg';
+  import iconOl from 'icons/list-ordered-16.svg';
+  import iconUl from 'icons/list-unordered-16.svg';
+  import task from 'icons/tasklist-16.svg';
+  import html from 'icons/code-review-16.svg';
 
   const dispatch = createEventDispatcher();
 

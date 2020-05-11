@@ -101,7 +101,10 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
       entries: [
         {
           find: 'icons',
-          replacement: path.resolve(__dirname, 'vendor/octicons-v2/icons/16'),
+          replacement: path.resolve(
+            __dirname,
+            'node_modules/@primer/octicons-v2/build/svg',
+          ),
         },
       ],
     }),

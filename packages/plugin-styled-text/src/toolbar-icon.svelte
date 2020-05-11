@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import Pickr from '@simonwep/pickr';
-  import pencil from 'icons/pencil.svg';
+  import pencil from 'icons/pencil-16.svg';
 
   export let editor;
   let el;

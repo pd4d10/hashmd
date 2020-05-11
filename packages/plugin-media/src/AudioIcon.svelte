@@ -1,5 +1,5 @@
 <script>
-  import icon from 'icons/unmute.svg';
+  import icon from 'icons/unmute-16.svg';
   export let onClick;
   export let editor;
 </script>
