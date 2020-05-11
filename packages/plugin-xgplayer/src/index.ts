@@ -15,7 +15,7 @@ export interface PluginOptions {
 export default function xgplayer({
   tagName = 'video',
   playerOptions,
-  onClickIcon = editor => {
+  onClickIcon = (editor) => {
     const pos = editor.getCursor('from');
     editor.replaceRange(`<${tagName} src=""></${tagName}>`, pos);
     editor.setCursor({ line: pos.line, ch: pos.ch + tagName.length + 7 });

@@ -10,7 +10,7 @@ export interface HastNode extends Node {
 }
 
 export function getCodeBlockMeta(
-  node: HastNode,
+  node: HastNode
 ): { language?: string; value: string } | undefined {
   if (node.tagName !== 'pre') return;
 

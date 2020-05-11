@@ -15,7 +15,7 @@ export interface Plugin<P extends Props = Props> {
    * If `undefined` returned then go to the next plugin
    */
   renderNode?(
-    node: HastNode,
+    node: HastNode
   ): { component: typeof SvelteComponent; props?: P } | undefined;
   /**
    * Components which should be added to toolbar

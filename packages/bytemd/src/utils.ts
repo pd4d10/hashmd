@@ -104,7 +104,7 @@ export const dataUrlFileHandler: Exclude<
 export async function handleImage(
   cm: Editor,
   e: InputEvent,
-  fileHandler: Exclude<EditorProps['fileHandler'], undefined>,
+  fileHandler: Exclude<EditorProps['fileHandler'], undefined>
 ) {
   const $ = e.target as HTMLInputElement;
   if (!$.files || !$.files.length) return;
@@ -123,7 +123,7 @@ export function handleTable(cm: Editor) {
 | --- | --- |
 |  |  |
 `,
-    pos,
+    pos
   );
   cm.setCursor({ line: pos.line + 1, ch: 2 });
   cm.focus();
@@ -136,7 +136,7 @@ export function handleOl(cm: Editor) {
       cm.replaceRange(
         `${i - selection.anchor.line + 1}. ${cm.getLine(i)}`,
         { line: i, ch: 0 },
-        { line: i },
+        { line: i }
       );
     }
   } else {
@@ -164,7 +164,7 @@ export function handleTask(cm: Editor) {
       cm.replaceRange(
         `- [ ] ${cm.getLine(i)}`,
         { line: i, ch: 0 },
-        { line: i },
+        { line: i }
       );
     }
   } else {
@@ -181,7 +181,7 @@ export function covertToHtml(cm: Editor, plugins: Plugin[]) {
     cm.replaceRange(
       toHtml(parser.runSync(parser.parse(text))),
       selection.anchor,
-      selection.head,
+      selection.head
     );
   }
   cm.focus();

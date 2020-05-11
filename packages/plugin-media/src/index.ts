@@ -19,7 +19,7 @@ export interface PluginOptions {
 }
 
 function getClickHandler(type: string): ClickHandler {
-  return editor => {
+  return (editor) => {
     const pos = editor.getCursor('from');
     editor.replaceRange(`<${type} src=""></${type}>`, pos);
     editor.setCursor({ line: pos.line, ch: pos.ch + 12 });
