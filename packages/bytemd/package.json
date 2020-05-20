@@ -1,6 +1,6 @@
 {
   "name": "bytemd",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -12,8 +12,10 @@
   "files": [
     "dist",
     "src",
-    "react",
-    "helpers"
+    "helpers/index.d.ts",
+    "helpers/index.js",
+    "react/index.d.ts",
+    "react/index.js"
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.87",
