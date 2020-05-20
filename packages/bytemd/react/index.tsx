@@ -1,5 +1,5 @@
 import React, { RefObject } from 'react';
-import * as bytemd from '../src';
+import * as bytemd from '..';
 import { SvelteComponent } from 'svelte';
 
 class SvelteWrapper<

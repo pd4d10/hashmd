@@ -12,6 +12,7 @@
   "files": [
     "dist",
     "src",
+    "react",
     "helpers"
   ],
   "dependencies": {
