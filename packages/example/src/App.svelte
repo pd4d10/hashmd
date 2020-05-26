@@ -28,7 +28,7 @@
     enabled.media && media(),
     enabled.abc && abc(),
     enabled['styled-text'] && styledText(),
-  ].filter(x => x);
+  ].filter((x) => x);
 
   function handleChange(e) {
     value = e.detail.value;

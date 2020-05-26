@@ -1,12 +1,8 @@
 <script>
-  import { onMount, createEventDispatcher } from 'svelte';
-  import codemirror from 'codemirror';
-  import 'codemirror/mode/markdown/markdown.js';
+  import { onMount } from 'svelte';
   import Toolbar from './Toolbar.svelte';
   import Viewer from './Viewer.svelte';
-  import { dataUrlFileHandler } from './utils.js';
-
-  const dispatch = createEventDispatcher();
+  import { dataUrlFileHandler, initEditor } from './utils';
 
   export let value = '';
   export let containerStyle;
@@ -29,53 +25,7 @@
   }
 
   onMount(() => {
-    cm = codemirror.fromTextArea(textarea, {
-      mode: 'markdown',
-      lineNumbers: true,
-      lineWrapping: true,
-      ...editorConfig,
-    });
-    cm.setValue(value);
-    cm.on('change', (doc, change) => {
-      if (change.origin !== 'setValue') {
-        dispatch('change', { value: cm.getValue() });
-      }
-    });
-    cm.on('scroll', cm => {
-      requestAnimationFrame(() => {
-        const editorInfo = cm.getScrollInfo();
-        const ratio =
-          editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
-        viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight));
-      });
-    });
-    cm.on('paste', async (_, e) => {
-      const { items } = e.clipboardData;
-      for (let i = 0; i < items.length; i++) {
-        // console.log(items[i]);
-        if (!items[i].type.startsWith('image/')) continue;
-
-        e.preventDefault();
-        const url = await fileHandler(items[i].getAsFile());
-        const text = cm.getSelection();
-        cm.replaceSelection(`![${text}](${url})`);
-        cm.focus();
-        return;
-      }
-    });
-    cm.on('drop', async (_, e) => {
-      const { items } = e.dataTransfer;
-      for (let i = 0; i < items.length; i++) {
-        if (!items[i].type.startsWith('image/')) continue;
-
-        e.preventDefault();
-        const url = await fileHandler(items[i].getAsFile());
-        const text = cm.getSelection();
-        cm.replaceSelection(`![${text}](${url})`);
-        cm.focus();
-        return;
-      }
-    });
+    initEditor(textarea, editorConfig, value, viewer, fileHandler);
   });
 </script>
 

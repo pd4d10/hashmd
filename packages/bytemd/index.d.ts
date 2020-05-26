@@ -1,5 +1,5 @@
 import { SvelteComponent } from 'svelte';
-import { HastNode } from '../helpers';
+import { HastNode } from './helpers';
 import * as cm from 'codemirror';
 
 type Props = Record<string, unknown>;

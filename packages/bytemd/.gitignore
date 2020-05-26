@@ -1,9 +1,1 @@
-/node_modules/
-/public/build/
-
-.DS_Store
-
-*.js
-*.d.ts
-!src/index.js
-!src/index.d.ts
+/svelte/

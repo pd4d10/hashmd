@@ -1,34 +1,7 @@
-import unified from 'unified';
-import markdown from 'remark-parse';
-import rehype from 'remark-rehype';
-import raw from 'rehype-raw';
 import toHtml from 'hast-util-to-html';
 import { Editor } from 'codemirror';
-import { EditorProps, Plugin } from '.';
-
-export function getParser(plugins: Plugin[]) {
-  let parser = unified()
-    .use(markdown)
-    .use(rehype, { allowDangerousHTML: true });
-
-  plugins.forEach((p) => {
-    if (Array.isArray(p.transformer)) {
-      parser = parser.use(...p.transformer);
-    } else if (p.transformer) {
-      parser = parser.use(p.transformer);
-    }
-  });
-
-  return parser.use(raw);
-}
-
-export const santitizeHref = (href?: string) => {
-  if (href && href.trim().toLowerCase().startsWith('javascript')) {
-    return;
-  } else {
-    return href;
-  }
-};
+import { EditorProps, Plugin } from 'bytemd';
+import { getParser } from './common';
 
 export function handleText(cm: Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
@@ -84,22 +57,6 @@ export function handleLink(cm: Editor) {
   }
   cm.focus();
 }
-
-export const dataUrlFileHandler: Exclude<
-  EditorProps['fileHandler'],
-  undefined
-> = async (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', (e) => {
-      resolve(e.target!.result as string);
-    });
-    reader.addEventListener('error', (e) => {
-      reject(new Error('readAsDataURL error'));
-    });
-    reader.readAsDataURL(file);
-  });
-};
 
 export async function handleImage(
   cm: Editor,

@@ -10,27 +10,40 @@ import css from 'rollup-plugin-css-only';
 import { string } from 'rollup-plugin-string';
 import { terser } from 'rollup-plugin-terser';
 import alias from '@rollup/plugin-alias';
+import typescript from '@rollup/plugin-typescript';
+import copy from 'rollup-plugin-copy';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
 
-const bundlePackages = process.env.BUNDLE_PACKAGES;
-
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
-  bytemd: {
-    external: [
-      'codemirror',
-      'codemirror/mode/markdown/markdown.js',
-      'unified',
-      'remark-parse',
-      'remark-rehype',
-      'rehype-raw',
-      'tippy.js',
+  bytemd: {},
+  'bytemd/react': {
+    input: path.resolve('packages/bytemd/react/src/index.tsx'),
+    external: ['bytemd', 'react'],
+  },
+  'bytemd/svelte': {
+    input: path.resolve('packages/bytemd/src/utils/index.ts'),
+    output: [
+      {
+        format: 'es',
+        file: path.resolve('packages/bytemd/svelte/utils.js'),
+      },
     ],
-    watch: {
-      clearScreen: false,
-    },
+    plugins: [
+      copy({
+        targets: [
+          {
+            src: [
+              path.resolve('packages/bytemd/src/*.svelte'),
+              path.resolve('packages/bytemd/src/index.js'),
+            ],
+            dest: path.resolve('packages/bytemd/svelte'),
+          },
+        ],
+      }),
+    ],
   },
   'plugin-highlight': {
     external: ['lowlight'],
@@ -56,28 +69,52 @@ const packageConfigs = {
   },
 };
 
-/** @type {Record<string, import('rollup').RollupOptions>} */
-const exampleConfigs = {
-  example: {
-    output: [
+/** @type {import('rollup').Plugin} */
+const commonPlugins = [
+  typescript({ noEmitOnError: false }),
+  commonjs(),
+  alias({
+    entries: [
       {
-        format: 'iife',
-        dir: path.resolve(__dirname, 'packages/example/public/build'),
+        find: 'icons',
+        replacement: path.resolve(
+          __dirname,
+          'node_modules/@primer/octicons-v2/build/svg'
+        ),
       },
     ],
-    plugins: [
-      css({
-        output: 'packages/example/public/build/library.css',
+  }),
+  svelte({
+    dev: !production,
+    preprocess: {
+      // Remove spaces
+      // https://github.com/UnwrittenFun/prettier-plugin-svelte/issues/24#issuecomment-495778976
+      markup: (input) => ({
+        code: input.content
+          .replace(
+            /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
+            '$1'
+          )
+          .replace(
+            /(?<!<[^>]*?|{[^}]*?)\s+(<|{)(?![^]*<\/(?:script|style)>)/g,
+            '$1'
+          ),
       }),
-    ],
-  },
-};
+    },
+  }),
+  resolve({
+    browser: true,
+    dedupe: ['svelte'],
+  }),
+  globals(),
+  builtins(),
+  json(),
+  string({ include: ['**/*.svg', '**/*.md'] }),
+];
 
-const bundledConfigs = bundlePackages ? packageConfigs : exampleConfigs;
-
-Object.entries(bundledConfigs).forEach(([k, v]) => {
+Object.entries(packageConfigs).forEach(([k, v]) => {
   if (!v.input) {
-    v.input = path.resolve('packages', k, 'src/index.js');
+    v.input = path.resolve('packages', k, 'src/index');
   }
   if (!v.output) {
     const pkg = require(`./packages/${k}/package.json`);
@@ -95,49 +132,7 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
   v.output.forEach((output) => {
     output.sourcemap = true;
   });
-  v.plugins = [
-    ...(v.plugins || []),
-    alias({
-      entries: [
-        {
-          find: 'icons',
-          replacement: path.resolve(
-            __dirname,
-            'node_modules/@primer/octicons-v2/build/svg',
-          ),
-        },
-      ],
-    }),
-    svelte({
-      dev: !production,
-      preprocess: {
-        // Remove spaces
-        // https://github.com/UnwrittenFun/prettier-plugin-svelte/issues/24#issuecomment-495778976
-        markup: (input) => ({
-          code: input.content
-            .replace(
-              /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
-              '$1',
-            )
-            .replace(
-              /(?<!<[^>]*?|{[^}]*?)\s+(<|{)(?![^]*<\/(?:script|style)>)/g,
-              '$1',
-            ),
-        }),
-      },
-    }),
-    resolve({
-      browser: true,
-      dedupe: ['svelte'],
-    }),
-    commonjs(),
-    globals(),
-    builtins(),
-    json(),
-    string({ include: ['**/*.svg', '**/*.md'] }),
-    production && k === 'example' && terser(), // For UMD
-    // k === 'example' && visualizer(),
-  ];
+  v.plugins = [...(v.plugins || []), ...commonPlugins];
 
   if (k !== 'example') {
     // Make svelte related packages external to avoid multiple copies
@@ -149,4 +144,4 @@ Object.entries(bundledConfigs).forEach(([k, v]) => {
   return v;
 });
 
-export default Object.values(bundledConfigs);
+export default Object.values(packageConfigs);

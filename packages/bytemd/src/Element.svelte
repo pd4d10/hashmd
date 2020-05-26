@@ -1,18 +1,8 @@
 <script>
+  import { findPlugin, santitizeHref } from './utils';
   import Elements from './Elements.svelte';
-  import { santitizeHref } from './utils';
-
   export let node;
   export let plugins = [];
-
-  function findPlugin(node) {
-    for (let i = 0; i < plugins.length; i++) {
-      if (plugins[i].renderNode) {
-        const res = plugins[i].renderNode(node);
-        if (res) return res;
-      }
-    }
-  }
 
   $: type = node.type;
   $: value = node.value;
@@ -25,7 +15,7 @@
   $: height = properties && properties.height;
   $: align = properties && properties.align;
 
-  $: res = findPlugin(node);
+  $: res = findPlugin(node, plugins);
 </script>
 
 {#if res}

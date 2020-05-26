@@ -1,5 +1,5 @@
 <script>
-  import { getParser } from './utils.js';
+  import { getParser } from './utils';
   import Elements from './Elements.svelte';
 
   export let value = '';

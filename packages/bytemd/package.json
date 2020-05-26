@@ -4,18 +4,14 @@
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
-  "main": "dist/bytemd.cjs.js",
-  "module": "dist/bytemd.esm.js",
-  "unpkg": "dist/bytemd.umd.js",
-  "svelte": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/bytemd.js",
+  "svelte": "svelte/index.js",
+  "types": "index.d.ts",
   "files": [
-    "dist",
-    "src",
-    "helpers/index.d.ts",
-    "helpers/index.js",
-    "react/index.d.ts",
-    "react/index.js"
+    "**/dist",
+    "svelte"
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.87",
