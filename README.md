@@ -17,7 +17,6 @@ Markdown editor component built with Svelte.
 | Package | Status | Description |
 | --- | --- | --- |
 | [@bytemd/plugin-abc](./packages/plugin-abc) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-abc.svg)](https://npm.im/@bytemd/plugin-abc) | support [ABC notation](https://en.wikipedia.org/wiki/ABC_notation) |
-| [@bytemd/plugin-graphviz](./packages/plugin-graphviz) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-graphviz.svg)](https://npm.im/@bytemd/plugin-graphviz) | support [graphviz](https://www.graphviz.org/) |
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | highlight code blocks |
 | [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | support math equation |
 | [@bytemd/plugin-media](./packages/plugin-media) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-media.svg)](https://npm.im/@bytemd/plugin-media) | support `<video>` and `<audio>` tags |
