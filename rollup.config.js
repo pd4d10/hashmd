@@ -51,9 +51,6 @@ const packageConfigs = {
   'plugin-math': {
     external: ['katex', 'remark-math'],
   },
-  'plugin-graphviz': {
-    external: ['viz.js', 'viz.js/full.render.js'],
-  },
   'plugin-mermaid': {
     external: ['mermaid'],
   },
