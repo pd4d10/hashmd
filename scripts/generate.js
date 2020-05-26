@@ -14,14 +14,11 @@ function readFileSyncSafe(p) {
 }
 
 const root = path.join(__dirname, '../packages');
-const plugins = fs.readdirSync(root).filter(x => x.startsWith('plugin-'));
+const plugins = fs.readdirSync(root).filter((x) => x.startsWith('plugin-'));
 const template = readFileSyncSafe(path.join(__dirname, 'plugin-template.md'));
 
-plugins.forEach(p => {
-  const name = p
-    .split('-')
-    .slice(1)
-    .join('-');
+plugins.forEach((p) => {
+  const name = p.split('-').slice(1).join('-');
   const result = mustache.render(template, {
     name,
     camelName: _.camelCase(name),
@@ -37,15 +34,12 @@ const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
   /## Plugins\s+([\w\W])*?\s+##/,
   (match, p1, offset, string) => {
     const content = plugins
-      .map(p => {
-        const name = p
-          .split('-')
-          .slice(1)
-          .join('-');
+      .map((p) => {
+        const name = p.split('-').slice(1).join('-');
         const badge = `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg)](https://npm.im/@bytemd/plugin-${name})`;
         const desc = readFileSyncSafe(path.join(root, p, 'docs/desc.md')).slice(
           0,
-          -1,
+          -1
         );
         return `| [@bytemd/plugin-${name}](./packages/plugin-${name}) | ${badge} | ${desc} |`;
       })
@@ -58,6 +52,6 @@ const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
 ${content}
 
 ##`;
-  },
+  }
 );
 fs.writeFileSync(path.join(__dirname, '../README.md'), readme);
