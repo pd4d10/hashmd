@@ -4,7 +4,7 @@ import * as cm from 'codemirror';
 
 type Props = Record<string, unknown>;
 
-export interface Plugin<P extends Props = Props> {
+export interface BytemdPlugin<P extends Props = Props> {
   /**
    * Transformers for unified to be applied
    */
@@ -37,13 +37,13 @@ export interface EditorProps {
   mode?: 'split' | 'tab';
   containerStyle?: string;
   fileHandler?: (file: File) => Promise<string>;
-  plugins?: Plugin[];
+  plugins?: BytemdPlugin[];
   editorConfig?: Omit<cm.EditorConfiguration, 'value'>;
 }
 
 export interface ViewerProps {
   value: string;
-  plugins?: Plugin[];
+  plugins?: BytemdPlugin[];
 }
 
 export interface ElementProps {

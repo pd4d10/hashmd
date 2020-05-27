@@ -1,6 +1,6 @@
 import toHtml from 'hast-util-to-html';
 import { Editor } from 'codemirror';
-import { EditorProps, Plugin } from 'bytemd';
+import { EditorProps, BytemdPlugin } from 'bytemd';
 import { getParser } from './common';
 
 export function handleText(cm: Editor, before: string, after: string) {
@@ -130,7 +130,7 @@ export function handleTask(cm: Editor) {
   cm.focus();
 }
 
-export function covertToHtml(cm: Editor, plugins: Plugin[]) {
+export function covertToHtml(cm: Editor, plugins: BytemdPlugin[]) {
   if (cm.somethingSelected()) {
     const [selection] = cm.listSelections();
     const text = cm.getSelection();

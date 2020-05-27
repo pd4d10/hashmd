@@ -1,8 +1,8 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import remarkMath from 'remark-math';
 import Katex from './katex.svelte';
 
-export default function math(): Plugin {
+export default function math(): BytemdPlugin {
   return {
     transformer: remarkMath,
     renderNode(node) {

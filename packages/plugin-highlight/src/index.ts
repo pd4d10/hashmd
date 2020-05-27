@@ -1,9 +1,9 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import lowlight from 'lowlight';
 import Highlight from './Highlight.svelte';
 import { getCodeBlockMeta } from 'bytemd/helpers';
 
-export default function highlight(): Plugin {
+export default function highlight(): BytemdPlugin {
   return {
     renderNode(node) {
       const meta = getCodeBlockMeta(node);

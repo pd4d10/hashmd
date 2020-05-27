@@ -1,8 +1,8 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import MermaidView from './MermaidView.svelte';
 import { getCodeBlockMeta } from 'bytemd/helpers';
 
-export default function mermaid(): Plugin {
+export default function mermaid(): BytemdPlugin {
   return {
     renderNode(node) {
       const meta = getCodeBlockMeta(node);

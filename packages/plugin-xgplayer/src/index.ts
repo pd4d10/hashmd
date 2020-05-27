@@ -1,4 +1,4 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import { Editor } from 'codemirror';
 import { IPlayerOptions } from 'xgplayer';
 import Xgplayer from './Xgplayer.svelte';
@@ -21,7 +21,7 @@ export default function xgplayer({
     editor.setCursor({ line: pos.line, ch: pos.ch + tagName.length + 7 });
     editor.focus();
   },
-}: PluginOptions = {}): Plugin {
+}: PluginOptions = {}): BytemdPlugin {
   return {
     renderNode(node) {
       if (node.type === 'element' && node.tagName === tagName) {

@@ -1,4 +1,4 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import { Editor } from 'codemirror';
 import Audio from './Audio.svelte';
 import Video from './Video.svelte';
@@ -36,7 +36,7 @@ export default function media({
     defaultAttrs: audioAttrs = { controls: true },
     onClickIcon: onClickAudio = getClickHandler('audio'),
   } = {},
-}: PluginOptions = {}): Plugin {
+}: PluginOptions = {}): BytemdPlugin {
   return {
     renderNode(node) {
       if (node.type !== 'element') return;

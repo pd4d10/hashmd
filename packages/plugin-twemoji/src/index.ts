@@ -1,10 +1,10 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import { parse, ParseObject, ParseCallback } from 'twemoji';
 import TwemojiView from './TwemojiView.svelte';
 
 export default function twemoji(
   options: Partial<ParseObject> | ParseCallback
-): Plugin {
+): BytemdPlugin {
   // TODO: options
   return {
     renderNode(node) {

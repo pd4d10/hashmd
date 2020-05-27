@@ -1,9 +1,9 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin } from 'bytemd';
 import ToolbarIcon from './toolbar-icon.svelte';
 import Text from './styled-text.svelte';
 import '@simonwep/pickr/dist/themes/nano.min.css';
 
-export default function styledText(): Plugin {
+export default function styledText(): BytemdPlugin {
   return {
     renderNode(node) {
       if (node.tagName !== 'span') return;
