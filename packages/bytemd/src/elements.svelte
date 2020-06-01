@@ -1,5 +1,5 @@
 <script>
-  import Element from './Element.svelte';
+  import Element from './element.svelte';
 
   export let nodes;
   export let plugins = [];

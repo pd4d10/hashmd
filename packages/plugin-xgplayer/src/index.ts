@@ -1,8 +1,8 @@
 import { BytemdPlugin } from 'bytemd';
 import { Editor } from 'codemirror';
 import { IPlayerOptions } from 'xgplayer';
-import Xgplayer from './Xgplayer.svelte';
-import VideoIcon from './VideoIcon.svelte';
+import Xgplayer from './xgplayer.svelte';
+import VideoIcon from './icon.svelte';
 
 type ClickHandler = (editor: Editor) => void;
 

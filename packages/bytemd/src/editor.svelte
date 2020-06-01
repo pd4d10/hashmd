@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
-  import Toolbar from './Toolbar.svelte';
-  import Viewer from './Viewer.svelte';
+  import Toolbar from './toolbar.svelte';
+  import Viewer from './viewer.svelte';
   import { dataUrlFileHandler, initEditor } from './utils';
 
   export let value = '';

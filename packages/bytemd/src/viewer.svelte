@@ -1,6 +1,6 @@
 <script>
   import { getParser } from './utils';
-  import Elements from './Elements.svelte';
+  import Elements from './elements.svelte';
 
   export let value = '';
   export let plugins = [];

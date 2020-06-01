@@ -1,9 +1,9 @@
 import { BytemdPlugin } from 'bytemd';
 import { Editor } from 'codemirror';
-import Audio from './Audio.svelte';
-import Video from './Video.svelte';
-import AudioIcon from './AudioIcon.svelte';
-import VideoIcon from './VideoIcon.svelte';
+import Audio from './audio.svelte';
+import Video from './video.svelte';
+import AudioIcon from './audio-icon.svelte';
+import VideoIcon from './video-icon.svelte';
 
 type ClickHandler = (editor: Editor) => void;
 

@@ -1,6 +1,6 @@
 import { BytemdPlugin } from 'bytemd';
 import { parse, ParseObject, ParseCallback } from 'twemoji';
-import TwemojiView from './TwemojiView.svelte';
+import TwemojiView from './twemoji.svelte';
 
 export default function twemoji(
   options: Partial<ParseObject> | ParseCallback

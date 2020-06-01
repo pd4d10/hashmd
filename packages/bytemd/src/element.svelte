@@ -1,6 +1,6 @@
 <script>
   import { findPlugin, santitizeHref } from './utils';
-  import Elements from './Elements.svelte';
+  import Elements from './elements.svelte';
   export let node;
   export let plugins = [];
 

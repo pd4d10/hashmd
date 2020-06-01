@@ -1,5 +1,5 @@
 <script>
-  import Elements from './Element.svelte';
+  import Elements from './element.svelte';
   export let lang;
   export let items;
 </script>

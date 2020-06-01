@@ -1,5 +1,5 @@
 import { BytemdPlugin } from 'bytemd';
-import MermaidView from './MermaidView.svelte';
+import MermaidView from './mermaid.svelte';
 import { getCodeBlockMeta } from 'bytemd/helpers';
 
 export default function mermaid(): BytemdPlugin {

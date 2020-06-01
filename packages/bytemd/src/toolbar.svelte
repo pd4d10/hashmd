@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import ToolbarButton from './ToolbarButton.svelte';
+  import ToolbarButton from './toolbar-button.svelte';
   import {
     handleDec,
     handleTag,

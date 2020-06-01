@@ -1,5 +1,5 @@
 import { Plugin } from 'bytemd';
-import Abc from './Abc.svelte';
+import Abc from './abc.svelte';
 import { getCodeBlockMeta } from 'bytemd/helpers';
 
 export default function graphviz(): Plugin {
