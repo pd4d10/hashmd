@@ -5,11 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc; rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rm -rf packages/**/*/dist && rollup -c",
+    "dev": "rollup -c rollup.example.config.js -w",
     "watch": "tsc --watch",
     "serve": "serve packages/example/public",
-    "build:package": "tsc; BUNDLE_PACKAGES=1 rollup -c",
     "test": "jest packages/bytemd/src",
     "test:watch": "npm run test -- --watch"
   },

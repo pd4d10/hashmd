@@ -6,7 +6,6 @@
   import mermaid from '@bytemd/plugin-mermaid';
   import media from '@bytemd/plugin-media';
   import abc from '@bytemd/plugin-abc';
-  import styledText from '@bytemd/plugin-styled-text';
 
   import demo from './demo.md';
 
@@ -18,7 +17,6 @@
     mermaid: true,
     media: true,
     abc: true,
-    'styled-text': true,
   };
 
   $: plugins = [
@@ -46,7 +44,7 @@
 
 <div>
   Plugins:
-  {#each ['math', 'mermaid', 'highlight', 'media', 'abc', 'styled-text'] as p}
+  {#each ['math', 'mermaid', 'highlight', 'media', 'abc'] as p}
     {' '}
     <label>
       <input type="checkbox" bind:checked={enabled[p]} />

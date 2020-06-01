@@ -23,47 +23,13 @@ const packageConfigs = {
     input: path.resolve('packages/bytemd/react/src/index.tsx'),
     external: ['bytemd', 'react'],
   },
-  'bytemd/svelte': {
-    input: path.resolve('packages/bytemd/src/utils/index.ts'),
-    output: [
-      {
-        format: 'es',
-        file: path.resolve('packages/bytemd/svelte/utils.js'),
-      },
-    ],
-    plugins: [
-      copy({
-        targets: [
-          {
-            src: [
-              path.resolve('packages/bytemd/src/*.svelte'),
-              path.resolve('packages/bytemd/src/index.js'),
-            ],
-            dest: path.resolve('packages/bytemd/svelte'),
-          },
-        ],
-      }),
-    ],
-  },
-  'plugin-highlight': {
-    external: ['lowlight'],
-  },
-  'plugin-math': {
-    external: ['katex', 'remark-math'],
-  },
-  'plugin-mermaid': {
-    external: ['mermaid'],
-  },
-  'plugin-twemoji': {
-    external: ['twemoji'],
-  },
+  'plugin-highlight': {},
+  'plugin-math': {},
+  'plugin-mermaid': {},
+  'plugin-twemoji': {},
   'plugin-media': {},
-  'plugin-xgplayer': {
-    external: ['xgplayer'],
-  },
-  'plugin-abc': {
-    external: ['abcjs'],
-  },
+  'plugin-xgplayer': {},
+  'plugin-abc': {},
 };
 
 /** @type {import('rollup').Plugin} */
@@ -110,11 +76,11 @@ const commonPlugins = [
 ];
 
 Object.entries(packageConfigs).forEach(([k, v]) => {
+  const pkg = require(`./packages/${k}/package.json`);
   if (!v.input) {
-    v.input = path.resolve('packages', k, 'src/index');
+    v.input = path.resolve('packages', k, 'src/index.ts');
   }
   if (!v.output) {
-    const pkg = require(`./packages/${k}/package.json`);
     v.output = [
       {
         format: 'es',
@@ -131,12 +97,10 @@ Object.entries(packageConfigs).forEach(([k, v]) => {
   });
   v.plugins = [...(v.plugins || []), ...commonPlugins];
 
-  if (k !== 'example') {
-    // Make svelte related packages external to avoid multiple copies
-    // https://github.com/sveltejs/svelte/issues/3671
-    if (!v.external) v.external = [];
-    v.external.push('svelte', 'svelte/internal', 'bytemd', 'bytemd/helpers');
-  }
+  // Make svelte related packages external to avoid multiple copies
+  // https://github.com/sveltejs/svelte/issues/3671
+  if (!v.external) v.external = Object.keys(pkg.dependencies || {});
+  v.external.push('svelte', 'svelte/internal', 'bytemd', 'bytemd/helpers');
 
   return v;
 });

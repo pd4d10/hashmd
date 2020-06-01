@@ -6,8 +6,6 @@
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "unpkg": "dist/bytemd.js",
-  "svelte": "svelte/index.js",
   "types": "index.d.ts",
   "files": [
     "**/dist",

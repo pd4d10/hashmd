@@ -1,8 +1,7 @@
-import { Plugin } from 'bytemd';
+import { BytemdPlugin, getCodeBlockMeta } from 'bytemd';
 import Abc from './abc.svelte';
-import { getCodeBlockMeta } from 'bytemd/helpers';
 
-export default function graphviz(): Plugin {
+export default function graphviz(): BytemdPlugin {
   return {
     renderNode(node) {
       const meta = getCodeBlockMeta(node);

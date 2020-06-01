@@ -2,10 +2,9 @@
   "name": "@bytemd/plugin-twemoji",
   "version": "0.0.1",
   "description": "Twemoji plugin for bytemd",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "src/index.d.ts",
-  "svelte": "src/index.js",
   "keywords": [],
   "files": [
     "dist",
