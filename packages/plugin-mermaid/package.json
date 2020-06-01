@@ -4,7 +4,7 @@
   "description": "Mermaid plugin for bytemd",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "keywords": [],
   "files": [
     "dist",

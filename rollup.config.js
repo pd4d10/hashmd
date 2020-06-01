@@ -10,7 +10,7 @@ import css from 'rollup-plugin-css-only';
 import { string } from 'rollup-plugin-string';
 import { terser } from 'rollup-plugin-terser';
 import alias from '@rollup/plugin-alias';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import copy from 'rollup-plugin-copy';
 // import visualizer from 'rollup-plugin-visualizer';
 
@@ -19,10 +19,10 @@ const production = !process.env.ROLLUP_WATCH;
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
   bytemd: {},
-  'bytemd/react': {
-    input: path.resolve('packages/bytemd/react/src/index.tsx'),
-    external: ['bytemd', 'react'],
-  },
+  // 'bytemd/react': {
+  //   input: path.resolve('packages/bytemd/react/src/index.tsx'),
+  //   external: ['bytemd', 'react'],
+  // },
   'plugin-highlight': {},
   'plugin-math': {},
   'plugin-mermaid': {},
@@ -34,7 +34,6 @@ const packageConfigs = {
 
 /** @type {import('rollup').Plugin} */
 const commonPlugins = [
-  typescript({ noEmitOnError: false }),
   commonjs(),
   alias({
     entries: [
@@ -68,6 +67,7 @@ const commonPlugins = [
   resolve({
     browser: true,
     dedupe: ['svelte'],
+    extensions: ['.js', '.ts'],
   }),
   globals(),
   builtins(),
@@ -75,34 +75,47 @@ const commonPlugins = [
   string({ include: ['**/*.svg', '**/*.md'] }),
 ];
 
-Object.entries(packageConfigs).forEach(([k, v]) => {
-  const pkg = require(`./packages/${k}/package.json`);
-  if (!v.input) {
-    v.input = path.resolve('packages', k, 'src/index.ts');
+Object.entries(packageConfigs).forEach(([key, config]) => {
+  const pkg = require(`./packages/${key}/package.json`);
+  if (!config.input) {
+    config.input = path.resolve('packages', key, 'src/index.ts');
   }
-  if (!v.output) {
-    v.output = [
+  if (!config.output) {
+    config.output = [
       {
         format: 'es',
-        file: path.resolve('packages', k, pkg.module),
+        file: path.resolve('packages', key, pkg.module),
       },
       {
         format: 'cjs',
-        file: path.resolve('packages', k, pkg.main),
+        file: path.resolve('packages', key, pkg.main),
       },
     ];
   }
-  v.output.forEach((output) => {
+  config.output.forEach((output) => {
     output.sourcemap = true;
   });
-  v.plugins = [...(v.plugins || []), ...commonPlugins];
+  config.plugins = [
+    ...(config.plugins || []),
+    typescript({
+      tsconfigOverride: {
+        include: [`packages/${key}/src/**/*`],
+        compilerOptions: {
+          declarationDir: `packages/${key}/dist`,
+        },
+      },
+      useTsconfigDeclarationDir: true,
+      check: false,
+    }),
+    ...commonPlugins,
+  ];
 
   // Make svelte related packages external to avoid multiple copies
   // https://github.com/sveltejs/svelte/issues/3671
-  if (!v.external) v.external = Object.keys(pkg.dependencies || {});
-  v.external.push('svelte', 'svelte/internal', 'bytemd', 'bytemd/helpers');
+  if (!config.external) config.external = Object.keys(pkg.dependencies || {});
+  config.external.push('svelte', 'svelte/internal', 'bytemd');
 
-  return v;
+  return config;
 });
 
 export default Object.values(packageConfigs);

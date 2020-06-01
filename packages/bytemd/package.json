@@ -6,10 +6,9 @@
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
-    "**/dist",
-    "svelte"
+    "**/dist"
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.87",
