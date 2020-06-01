@@ -1,4 +1,6 @@
 import { Node } from 'unist';
+import { BytemdPlugin } from 'bytemd';
+import { SvelteComponent } from 'svelte';
 
 export interface HastNode extends Node {
   tagName: string;
@@ -7,6 +9,30 @@ export interface HastNode extends Node {
     [key: string]: unknown;
   };
   children: HastNode[];
+}
+
+export interface CodeBlockPluginOptions<P> {
+  languages: string[];
+  component: SvelteComponent;
+  getProps?: (meta: ReturnType<typeof getCodeBlockMeta>) => P;
+}
+
+export function createCodeBlockPlugin<P>({
+  languages,
+  component,
+  getProps,
+}: CodeBlockPluginOptions<P>): BytemdPlugin {
+  return {
+    renderNode(node) {
+      const meta = getCodeBlockMeta(node);
+      if (meta && meta.language && languages.includes(meta.language)) {
+        return {
+          component,
+          props: getProps ? getProps(meta) : meta,
+        };
+      }
+    },
+  };
 }
 
 export function getCodeBlockMeta(

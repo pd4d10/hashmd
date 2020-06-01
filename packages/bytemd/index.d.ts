@@ -1,8 +1,12 @@
 import { SvelteComponent } from 'svelte';
-import { HastNode, getCodeBlockMeta } from './src/helpers';
+import {
+  HastNode,
+  createCodeBlockPlugin,
+  getCodeBlockMeta,
+} from './src/helpers';
 import * as cm from 'codemirror';
 
-export { HastNode, getCodeBlockMeta };
+export { HastNode, createCodeBlockPlugin, getCodeBlockMeta };
 
 type Props = Record<string, unknown>;
 
