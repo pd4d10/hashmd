@@ -3,7 +3,7 @@ import AbcView from './abc.svelte';
 
 export default function abc() {
   return createCodeBlockPlugin({
-    language: ['abc'],
+    languages: ['abc'],
     component: AbcView,
   });
 }

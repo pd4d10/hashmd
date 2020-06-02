@@ -3,7 +3,7 @@ import MermaidView from './mermaid.svelte';
 
 export default function mermaid() {
   return createCodeBlockPlugin({
-    language: ['mermaid'],
+    languages: ['mermaid'],
     component: MermaidView,
   });
 }

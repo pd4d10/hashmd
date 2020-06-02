@@ -13,7 +13,7 @@ export interface HastNode extends Node {
 
 export interface CodeBlockPluginOptions<P> {
   languages: string[];
-  component: SvelteComponent;
+  component: typeof SvelteComponent;
   getProps?: (meta: ReturnType<typeof getCodeBlockMeta>) => P;
 }
 
