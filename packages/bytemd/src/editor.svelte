@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, createEventDispatcher } from 'svelte';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import { dataUrlFileHandler, initEditor } from './utils';
@@ -24,8 +24,10 @@
     cm.setValue(value);
   }
 
+  const dispatch = createEventDispatcher();
+
   onMount(() => {
-    initEditor(textarea, editorConfig, value, viewer, fileHandler);
+    initEditor(textarea, editorConfig, value, viewer, fileHandler, dispatch);
   });
 </script>
 

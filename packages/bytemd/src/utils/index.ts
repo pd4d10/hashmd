@@ -1,6 +1,6 @@
 export { getParser } from './common';
 export { initEditor, dataUrlFileHandler } from './editor';
-export { findPlugin, santitizeHref } from './element';
+export { findPlugin } from './element';
 export {
   handleDec,
   handleTag,

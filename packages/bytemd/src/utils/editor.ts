@@ -1,4 +1,3 @@
-import { createEventDispatcher } from 'svelte';
 import codemirror from 'codemirror';
 import 'codemirror/mode/markdown/markdown.js';
 import { EditorProps } from 'bytemd';
@@ -8,10 +7,9 @@ export function initEditor(
   editorConfig: any,
   value: string,
   viewer: HTMLElement,
-  fileHandler: NonNullable<EditorProps['fileHandler']>
+  fileHandler: NonNullable<EditorProps['fileHandler']>,
+  dispatch: any
 ) {
-  const dispatch = createEventDispatcher();
-
   const cm = codemirror.fromTextArea(textarea, {
     mode: 'markdown',
     lineNumbers: true,
