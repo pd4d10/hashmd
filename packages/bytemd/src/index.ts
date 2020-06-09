@@ -1,20 +1,10 @@
 import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
-import Element from './element.svelte';
-import Elements from './elements.svelte';
 import { createCodeBlockPlugin, getCodeBlockMeta, HastNode } from './helpers';
 import * as cm from 'codemirror';
 import { SvelteComponent } from 'svelte';
 
-export {
-  Editor,
-  Viewer,
-  Element,
-  Elements,
-  createCodeBlockPlugin,
-  getCodeBlockMeta,
-  HastNode,
-};
+export { Editor, Viewer, createCodeBlockPlugin, getCodeBlockMeta, HastNode };
 
 type Props = Record<string, unknown>;
 
@@ -53,11 +43,4 @@ export interface EditorProps {
 export interface ViewerProps {
   value: string;
   plugins?: BytemdPlugin[];
-}
-
-export interface ElementProps {
-  node: HastNode;
-}
-export interface ElementsProps {
-  nodes: HastNode[];
 }

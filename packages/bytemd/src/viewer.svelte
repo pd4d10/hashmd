@@ -1,15 +1,14 @@
 <script>
   import { getParser } from './utils';
-  import Elements from './elements.svelte';
 
   export let value = '';
   export let plugins = [];
 
   $: parser = getParser(plugins);
-  $: ast = parser.runSync(parser.parse(value));
-  // $: console.log(ast);
+  $: html = parser.processSync(value).toString();
+  // $: console.log(html);
 </script>
 
 <div class="markdown-body">
-  <Elements nodes={ast.children} {plugins} />
+  {@html html}
 </div>

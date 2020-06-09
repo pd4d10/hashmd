@@ -1,4 +1,3 @@
-import toHtml from 'hast-util-to-html';
 import { Editor } from 'codemirror';
 import { EditorProps, BytemdPlugin } from 'bytemd';
 import { getParser } from './common';
@@ -136,7 +135,7 @@ export function covertToHtml(cm: Editor, plugins: BytemdPlugin[]) {
     const text = cm.getSelection();
     const parser = getParser(plugins);
     cm.replaceRange(
-      toHtml(parser.runSync(parser.parse(text))),
+      parser.processSync(text).toString(),
       selection.anchor,
       selection.head
     );
