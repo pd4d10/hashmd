@@ -2,45 +2,31 @@ import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
 import { createCodeBlockPlugin, getCodeBlockMeta, HastNode } from './helpers';
 import * as cm from 'codemirror';
-import { SvelteComponent } from 'svelte';
+import * as unified from 'unified';
 
 export { Editor, Viewer, createCodeBlockPlugin, getCodeBlockMeta, HastNode };
 
-type Props = Record<string, unknown>;
+export type UnifiedTransformer = (x: unified.Processor) => unified.Processor;
 
-export interface BytemdPlugin<P extends Props = Props> {
-  /**
-   * Transformers for unified to be applied
-   */
-  transformer?: any; // TODO:
-  /**
-   * Specify how to render this node
-   *
-   * If `undefined` returned then go to the next plugin
-   */
-  renderNode?(
-    node: HastNode
-  ): { component: typeof SvelteComponent; props?: P } | undefined;
+export interface EditorProps {
+  value: string;
+  remarkTransformer?: UnifiedTransformer;
+  rehypeTransformer?: UnifiedTransformer;
+  mode?: 'split' | 'tab';
+  containerStyle?: string;
+  fileHandler?: (file: File) => Promise<string>;
+  editorConfig?: Omit<cm.EditorConfiguration, 'value'>;
   /**
    * Components which should be added to toolbar
    */
   toolbarItems?: {
-    component: typeof SvelteComponent;
-    props?: Props;
     tooltip?: string;
+    bodyHtml: string;
   }[];
-}
-
-export interface EditorProps {
-  value: string;
-  mode?: 'split' | 'tab';
-  containerStyle?: string;
-  fileHandler?: (file: File) => Promise<string>;
-  plugins?: BytemdPlugin[];
-  editorConfig?: Omit<cm.EditorConfiguration, 'value'>;
 }
 
 export interface ViewerProps {
   value: string;
-  plugins?: BytemdPlugin[];
+  remarkTransformer?: UnifiedTransformer;
+  rehypeTransformer?: UnifiedTransformer;
 }

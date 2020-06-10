@@ -1,4 +1,4 @@
-# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
+# bytemd
 
 ## Math equation
 

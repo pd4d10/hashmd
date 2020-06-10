@@ -2,7 +2,8 @@
   "name": "bytemd",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "build": "rm -rf packages/**/*/dist && rollup -c",
@@ -32,7 +33,6 @@
     "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-svelte": "^5.2.2",
     "rollup-plugin-terser": "^6.1.0",
-    "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-visualizer": "^4.0.4",
     "serve": "^11.3.1",
     "svelte": "^3.23.0",

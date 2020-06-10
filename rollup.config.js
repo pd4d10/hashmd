@@ -10,7 +10,6 @@ import css from 'rollup-plugin-css-only';
 import { string } from 'rollup-plugin-string';
 import { terser } from 'rollup-plugin-terser';
 import alias from '@rollup/plugin-alias';
-import typescript from 'rollup-plugin-typescript2';
 import copy from 'rollup-plugin-copy';
 // import visualizer from 'rollup-plugin-visualizer';
 
@@ -23,13 +22,13 @@ const packageConfigs = {
   //   input: path.resolve('packages/bytemd/react/src/index.tsx'),
   //   external: ['bytemd', 'react'],
   // },
-  'plugin-highlight': {},
-  'plugin-math': {},
-  'plugin-mermaid': {},
-  'plugin-twemoji': {},
-  'plugin-media': {},
-  'plugin-xgplayer': {},
-  'plugin-abc': {},
+  // 'plugin-highlight': {},
+  // 'plugin-math': {},
+  // 'plugin-mermaid': {},
+  // 'plugin-twemoji': {},
+  // 'plugin-media': {},
+  // 'plugin-xgplayer': {},
+  // 'plugin-abc': {},
 };
 
 /** @type {import('rollup').Plugin} */
@@ -51,23 +50,23 @@ const commonPlugins = [
     preprocess: {
       // Remove spaces
       // https://github.com/UnwrittenFun/prettier-plugin-svelte/issues/24#issuecomment-495778976
-      markup: (input) => ({
-        code: input.content
-          .replace(
-            /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
-            '$1'
-          )
-          .replace(
-            /(?<!<[^>]*?|{[^}]*?)\s+(<|{)(?![^]*<\/(?:script|style)>)/g,
-            '$1'
-          ),
-      }),
+      // markup: (input) => ({
+      //   code: input.content
+      //     .replace(
+      //       /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
+      //       '$1'
+      //     )
+      //     .replace(
+      //       /(?<!<[^>]*?|{[^}]*?)\s+(<|{)(?![^]*<\/(?:script|style)>)/g,
+      //       '$1'
+      //     ),
+      // }),
     },
   }),
   resolve({
     browser: true,
     dedupe: ['svelte'],
-    extensions: ['.js', '.ts'],
+    // extensions: ['.js', '.ts'],
   }),
   globals(),
   builtins(),
@@ -78,7 +77,7 @@ const commonPlugins = [
 Object.entries(packageConfigs).forEach(([key, config]) => {
   const pkg = require(`./packages/${key}/package.json`);
   if (!config.input) {
-    config.input = path.resolve('packages', key, 'src/index.ts');
+    config.input = path.resolve('packages', key, 'src/index.js');
   }
   if (!config.output) {
     config.output = [
@@ -95,20 +94,7 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
   config.output.forEach((output) => {
     output.sourcemap = true;
   });
-  config.plugins = [
-    ...(config.plugins || []),
-    typescript({
-      tsconfigOverride: {
-        include: [`packages/${key}/src/**/*`],
-        compilerOptions: {
-          declarationDir: `packages/${key}/dist`,
-        },
-      },
-      useTsconfigDeclarationDir: true,
-      check: false,
-    }),
-    ...commonPlugins,
-  ];
+  config.plugins = [...(config.plugins || []), ...commonPlugins];
 
   // Make svelte related packages external to avoid multiple copies
   // https://github.com/sveltejs/svelte/issues/3671

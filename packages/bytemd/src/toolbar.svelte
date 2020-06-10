@@ -1,4 +1,6 @@
 <script>
+  import { iconMap } from './icons';
+
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import {
@@ -13,26 +15,17 @@
     handleUl,
     handleTask,
     covertToHtml,
-    heading,
-    bold,
-    italic,
-    quote,
-    image,
-    server,
-    link,
-    iconOl,
-    iconUl,
-    task,
-    html,
-  } from './utils';
+  } from './toolbar';
 
   const dispatch = createEventDispatcher();
 
   export let cm;
+  export let remarkTransformer;
+  export let rehypeTransformer;
   export let fileHandler;
-  export let plugins;
   export let mode;
   export let activeTab;
+  export let toolbarItems = [];
 
   let fileInput;
 </script>
@@ -80,48 +73,46 @@
   {/if}
 
   <ToolbarButton tooltip="heading" on:click={() => handleHeading(cm)}>
-    {@html heading}
+    {@html iconMap.heading}
   </ToolbarButton>
   <ToolbarButton tooltip="bold" on:click={() => handleDec(cm, '**')}>
-    {@html bold}
+    {@html iconMap.bold}
   </ToolbarButton>
   <ToolbarButton tooltip="italic" on:click={() => handleDec(cm, '_')}>
-    {@html italic}
+    {@html iconMap.italic}
   </ToolbarButton>
   <ToolbarButton tooltip="blockquote" on:click={() => handleBlockquote(cm)}>
-    {@html quote}
+    {@html iconMap.quote}
   </ToolbarButton>
   <ToolbarButton tooltip="link" on:click={() => handleLink(cm)}>
-    {@html link}
+    {@html iconMap.link}
   </ToolbarButton>
   <ToolbarButton tooltip="image" on:click={() => fileInput.click()}>
-    {@html image}
+    {@html iconMap.image}
   </ToolbarButton>
   <ToolbarButton tooltip="table" on:click={() => handleTable(cm)}>
-    {@html server}
+    {@html iconMap.table}
   </ToolbarButton>
   <ToolbarButton tooltip="ordered list" on:click={() => handleOl(cm)}>
-    {@html iconOl}
+    {@html iconMap.ol}
   </ToolbarButton>
   <ToolbarButton tooltip="unordered list" on:click={() => handleUl(cm)}>
-    {@html iconUl}
+    {@html iconMap.ul}
   </ToolbarButton>
   <ToolbarButton tooltip="task list" on:click={() => handleTask(cm)}>
-    {@html task}
+    {@html iconMap.tasklist}
   </ToolbarButton>
   <ToolbarButton
     tooltip="convert to HTML"
-    on:click={() => covertToHtml(cm, plugins)}>
-    {@html html}
+    on:click={() => covertToHtml(cm, remarkTransformer, rehypeTransformer)}>
+    {@html iconMap.html}
   </ToolbarButton>
 
-  {#each plugins as plugin}
-    {#if plugin.toolbarItems}
-      {#each plugin.toolbarItems as item}
-        <ToolbarButton tooltip={item.tooltip}>
-          <svelte:component this={item.component} {...item.props} editor={cm} />
-        </ToolbarButton>
-      {/each}
+  {#each toolbarItems as item}
+    {#if item.bodyHtml && item.tooltip}
+      <ToolbarButton tooltip={item.tooltip}>
+        {@html item.bodyHtml}
+      </ToolbarButton>
     {/if}
   {/each}
 </div>

@@ -1,6 +1,6 @@
 import { Editor } from 'codemirror';
-import { EditorProps, BytemdPlugin } from 'bytemd';
-import { getParser } from './common';
+import { processMarkdown } from './utils';
+import { EditorProps, UnifiedTransformer } from '.';
 
 export function handleText(cm: Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
@@ -129,13 +129,16 @@ export function handleTask(cm: Editor) {
   cm.focus();
 }
 
-export function covertToHtml(cm: Editor, plugins: BytemdPlugin[]) {
+export function covertToHtml(
+  cm: Editor,
+  remarkTransformer: UnifiedTransformer,
+  rehypeTransformer: UnifiedTransformer
+) {
   if (cm.somethingSelected()) {
     const [selection] = cm.listSelections();
     const text = cm.getSelection();
-    const parser = getParser(plugins);
     cm.replaceRange(
-      parser.processSync(text).toString(),
+      processMarkdown(text, remarkTransformer, rehypeTransformer).toString(),
       selection.anchor,
       selection.head
     );

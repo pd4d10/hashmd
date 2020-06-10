@@ -1,6 +1,6 @@
 import codemirror from 'codemirror';
 import 'codemirror/mode/markdown/markdown.js';
-import { EditorProps } from 'bytemd';
+import { EditorProps } from '.';
 
 export function initEditor(
   textarea: HTMLTextAreaElement,

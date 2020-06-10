@@ -1,5 +1,5 @@
 import { Node } from 'unist';
-import { BytemdPlugin } from 'bytemd';
+import { BytemdPlugin } from '.';
 import { SvelteComponent } from 'svelte';
 
 export interface HastNode extends Node {

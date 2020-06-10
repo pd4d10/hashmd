@@ -2,14 +2,16 @@
   import { onMount, createEventDispatcher } from 'svelte';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
-  import { dataUrlFileHandler, initEditor } from './utils';
+  import { dataUrlFileHandler, initEditor } from './editor';
 
   export let value = '';
+  export let remarkTransformer;
+  export let rehypeTransformer;
   export let containerStyle;
   export let fileHandler = dataUrlFileHandler;
-  export let plugins = [];
   export let mode = 'split';
   export let editorConfig;
+  export let toolbarItems;
 
   let textarea;
   let viewer;
@@ -65,9 +67,11 @@
   <Toolbar
     {cm}
     {fileHandler}
-    {plugins}
+    {remarkTransformer}
+    {rehypeTransformer}
     {mode}
     {activeTab}
+    {toolbarItems}
     on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div class="bytemd-editor" class:hidden={mode === 'tab' && activeTab === 1}>
@@ -77,7 +81,7 @@
       class="bytemd-viewer"
       bind:this={viewer}
       class:hidden={mode === 'tab' && activeTab === 0}>
-      <Viewer {value} {plugins} />
+      <Viewer {value} {remarkTransformer} {rehypeTransformer} />
     </div>
   </div>
 </div>

@@ -1,11 +1,6 @@
 <script>
   import { onMount } from 'svelte';
   import { Editor } from 'bytemd';
-  import highlight from '@bytemd/plugin-highlight';
-  import math from '@bytemd/plugin-math';
-  import mermaid from '@bytemd/plugin-mermaid';
-  import media from '@bytemd/plugin-media';
-  import abc from '@bytemd/plugin-abc';
 
   import demo from './demo.md';
 
@@ -19,14 +14,14 @@
     abc: true,
   };
 
-  $: plugins = [
-    enabled.highlight && highlight(),
-    enabled.math && math(),
-    enabled.mermaid && mermaid(),
-    enabled.media && media(),
-    enabled.abc && abc(),
-    enabled['styled-text'] && styledText(),
-  ].filter((x) => x);
+  // $: plugins = [
+  //   enabled.highlight && highlight(),
+  //   enabled.math && math(),
+  //   enabled.mermaid && mermaid(),
+  //   enabled.media && media(),
+  //   enabled.abc && abc(),
+  //   enabled['styled-text'] && styledText(),
+  // ].filter((x) => x);
 
   function handleChange(e) {
     value = e.detail.value;
@@ -42,7 +37,7 @@
   }
 </style>
 
-<div>
+<!-- <div>
   Plugins:
   {#each ['math', 'mermaid', 'highlight', 'media', 'abc'] as p}
     {' '}
@@ -51,5 +46,5 @@
       {p}
     </label>
   {/each}
-</div>
-<Editor {value} {plugins} on:change={handleChange} />
+</div> -->
+<Editor {value} on:change={handleChange} />

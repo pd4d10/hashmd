@@ -1,11 +1,11 @@
 <script>
-  import { getParser } from './utils';
+  import { processMarkdown } from './utils';
 
   export let value = '';
-  export let plugins = [];
+  export let remarkTransformer;
+  export let rehypeTransformer;
 
-  $: parser = getParser(plugins);
-  $: html = parser.processSync(value).toString();
+  $: html = processMarkdown(value, remarkTransformer, rehypeTransformer);
   // $: console.log(html);
 </script>
 
