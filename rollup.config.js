@@ -6,10 +6,7 @@ import json from '@rollup/plugin-json';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
 import css from 'rollup-plugin-css-only';
-// import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import alias from '@rollup/plugin-alias';
-import copy from 'rollup-plugin-copy';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -21,51 +18,17 @@ const packageConfigs = {
   //   input: path.resolve('packages/bytemd/react/src/index.tsx'),
   //   external: ['bytemd', 'react'],
   // },
-  // 'plugin-highlight': {},
-  // 'plugin-math': {},
-  // 'plugin-mermaid': {},
-  // 'plugin-twemoji': {},
-  // 'plugin-media': {},
-  // 'plugin-xgplayer': {},
-  // 'plugin-abc': {},
 };
 
 /** @type {import('rollup').Plugin} */
 const commonPlugins = [
   commonjs(),
-  alias({
-    entries: [
-      {
-        find: 'icons',
-        replacement: path.resolve(
-          __dirname,
-          'node_modules/@primer/octicons-v2/build/svg'
-        ),
-      },
-    ],
-  }),
   svelte({
     dev: !production,
-    preprocess: {
-      // Remove spaces
-      // https://github.com/UnwrittenFun/prettier-plugin-svelte/issues/24#issuecomment-495778976
-      // markup: (input) => ({
-      //   code: input.content
-      //     .replace(
-      //       /(>|})\s+(?![^]*?<\/(?:script|style)>|[^<]*?>|[^{]*?})/g,
-      //       '$1'
-      //     )
-      //     .replace(
-      //       /(?<!<[^>]*?|{[^}]*?)\s+(<|{)(?![^]*<\/(?:script|style)>)/g,
-      //       '$1'
-      //     ),
-      // }),
-    },
   }),
   resolve({
     browser: true,
     dedupe: ['svelte'],
-    // extensions: ['.js', '.ts'],
   }),
   globals(),
   builtins(),
@@ -100,7 +63,7 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
   // Make svelte related packages external to avoid multiple copies
   // https://github.com/sveltejs/svelte/issues/3671
   if (!config.external) config.external = Object.keys(pkg.dependencies || {});
-  config.external.push('svelte', 'svelte/internal', 'bytemd');
+  config.external.push('svelte', 'svelte/internal');
 
   return config;
 });
