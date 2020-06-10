@@ -1,4 +1,5 @@
 <script>
+  import 'tippy.js/dist/tippy.css';
   import { iconMap } from './icons';
 
   import { createEventDispatcher } from 'svelte';

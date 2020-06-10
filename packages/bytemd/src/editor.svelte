@@ -1,4 +1,5 @@
 <script>
+  import 'codemirror/lib/codemirror.css';
   import { onMount, createEventDispatcher } from 'svelte';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';

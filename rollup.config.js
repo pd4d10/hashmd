@@ -7,7 +7,6 @@ import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
 import css from 'rollup-plugin-css-only';
 // import livereload from 'rollup-plugin-livereload';
-import { string } from 'rollup-plugin-string';
 import { terser } from 'rollup-plugin-terser';
 import alias from '@rollup/plugin-alias';
 import copy from 'rollup-plugin-copy';
@@ -71,7 +70,9 @@ const commonPlugins = [
   globals(),
   builtins(),
   json(),
-  string({ include: ['**/*.svg', '**/*.md'] }),
+  css({
+    output: 'packages/bytemd/dist/index.css',
+  }),
 ];
 
 Object.entries(packageConfigs).forEach(([key, config]) => {

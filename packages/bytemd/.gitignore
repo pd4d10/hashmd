@@ -1,1 +1,4 @@
 /svelte/
+
+**/src/*.js
+**/src/*.d.ts
