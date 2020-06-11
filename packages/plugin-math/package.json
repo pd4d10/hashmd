@@ -1,0 +1,21 @@
+{
+  "name": "@bytemd/plugin-math",
+  "version": "0.0.1",
+  "description": "@bytemd/plugin-math",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "src/index.d.ts",
+  "files": [
+    "**/dist",
+    "src/*.{js,d.ts}"
+  ],
+  "dependencies": {
+    "rehype-katex": "^3.0.0",
+    "remark-math": "^2.0.1"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

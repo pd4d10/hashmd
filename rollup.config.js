@@ -19,6 +19,7 @@ const packageConfigs = {
   //   external: ['bytemd', 'react'],
   // },
   'plugin-highlight': {},
+  'plugin-math': {},
 };
 
 /** @type {import('rollup').Plugin} */
