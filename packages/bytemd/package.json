@@ -15,6 +15,7 @@
   "dependencies": {
     "@types/codemirror": "^0.0.87",
     "codemirror": "^5.52.0",
+    "deepmerge": "^4.2.2",
     "rehype-raw": "^4.0.1",
     "rehype-sanitize": "^3.0.1",
     "rehype-stringify": "^8.0.0",

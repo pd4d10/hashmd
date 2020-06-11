@@ -6,15 +6,20 @@ import * as unified from 'unified';
 
 export { Editor, Viewer, createCodeBlockPlugin, getCodeBlockMeta, HastNode };
 
-export type UnifiedTransformer = (x: unified.Processor) => unified.Processor;
+type Transformer = (x: unified.Processor) => unified.Processor;
+
+export interface BytemdPlugin {
+  remarkTransformer?: Transformer;
+  rehypeTransformer?: Transformer;
+  sanitizeSchema?: any;
+}
 
 export interface EditorProps {
   value: string;
-  remarkTransformer?: UnifiedTransformer;
-  rehypeTransformer?: UnifiedTransformer;
   mode?: 'split' | 'tab';
   containerStyle?: string;
   fileHandler?: (file: File) => Promise<string>;
+  plugins?: BytemdPlugin[];
   editorConfig?: Omit<cm.EditorConfiguration, 'value'>;
   /**
    * Components which should be added to toolbar
@@ -27,6 +32,5 @@ export interface EditorProps {
 
 export interface ViewerProps {
   value: string;
-  remarkTransformer?: UnifiedTransformer;
-  rehypeTransformer?: UnifiedTransformer;
+  plugins?: BytemdPlugin[];
 }

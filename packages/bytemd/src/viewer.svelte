@@ -2,10 +2,9 @@
   import { processMarkdown } from './utils';
 
   export let value = '';
-  export let remarkTransformer;
-  export let rehypeTransformer;
+  export let plugins = [];
 
-  $: html = processMarkdown(value, remarkTransformer, rehypeTransformer);
+  $: html = processMarkdown(value, plugins);
   // $: console.log(html);
 </script>
 
