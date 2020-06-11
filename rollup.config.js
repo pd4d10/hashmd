@@ -18,6 +18,7 @@ const packageConfigs = {
   //   input: path.resolve('packages/bytemd/react/src/index.tsx'),
   //   external: ['bytemd', 'react'],
   // },
+  'plugin-highlight': {},
 };
 
 /** @type {import('rollup').Plugin} */
