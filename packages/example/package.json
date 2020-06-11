@@ -1,9 +1,0 @@
-{
-  "name": "svelte-app",
-  "private": true,
-  "version": "1.0.0",
-  "dependencies": {
-    "github-fork-ribbon-css": "^0.2.3",
-    "github-markdown-css": "^4.0.0"
-  }
-}

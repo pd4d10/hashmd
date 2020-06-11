@@ -1,4 +1,4 @@
-# bytemd
+# bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
 ## Math equation
 
@@ -32,10 +32,6 @@ new Viewer({
   props: {},
 });
 ```
-
-## Video Player
-
-<video src="https://raw.githubusercontent.com/bower-media-samples/big-buck-bunny-1080p-30s/master/video.mp4" poster="https://raw.githubusercontent.com/bower-media-samples/big-buck-bunny-1080p-30s/master/poster.jpg"></video>
 
 ## ABC notation
 
