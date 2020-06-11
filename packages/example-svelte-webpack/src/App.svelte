@@ -1,17 +1,14 @@
 <script>
   import { onMount } from 'svelte';
   import { Editor } from 'bytemd';
-  import remarkMath from 'remark-math';
-  import rehypeKatex from 'rehype-katex';
-  import rehypeHighlight from 'rehype-highlight';
+  import highlight from '@bytemd/plugin-highlight';
+  import math from '@bytemd/plugin-math';
 
   let value = '';
 
   function handleChange(e) {
     value = e.detail.value;
   }
-
-  let plugins = [];
 
   onMount(async () => {
     const res = await fetch(
@@ -20,14 +17,37 @@
     const text = await res.text();
     value = text;
   });
+
+  let enabled = {
+    highlight: true,
+    math: true,
+  };
+
+  $: plugins = [
+    enabled.highlight && highlight(),
+    enabled.math && math(),
+  ].filter((x) => x);
 </script>
 
 <style>
+  div {
+    padding: 10px 0;
+  }
   :global(.bytemd) {
     height: 90vh !important;
   }
 </style>
 
+<div>
+  Plugins:
+  {#each ['math', 'highlight'] as p}
+    {' '}
+    <label>
+      <input type="checkbox" bind:checked={enabled[p]} />
+      {p}
+    </label>
+  {/each}
+</div>
 <Editor
   {value}
   on:change={(v) => {
