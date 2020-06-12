@@ -59,6 +59,9 @@
   }
   .bytemd-editor :global(.CodeMirror) {
     height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 14px;
   }
   .bytemd-viewer {
     padding: 20px;
