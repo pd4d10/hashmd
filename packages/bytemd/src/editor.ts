@@ -1,5 +1,6 @@
 import codemirror from 'codemirror';
 import 'codemirror/mode/markdown/markdown.js';
+import 'codemirror/lib/codemirror.css';
 import { EditorProps } from '.';
 
 export function initEditor(
@@ -12,7 +13,6 @@ export function initEditor(
 ) {
   const cm = codemirror.fromTextArea(textarea, {
     mode: 'markdown',
-    lineNumbers: true,
     lineWrapping: true,
     ...editorConfig,
   });
