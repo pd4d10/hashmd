@@ -11,8 +11,8 @@ type Transformer = (x: unified.Processor) => unified.Processor;
 export interface BytemdPlugin {
   remarkTransformer?: Transformer;
   rehypeTransformer?: Transformer;
-  sanitizeSchema?: any;
-  onMount(el: HTMLElement): void;
+  markdownSanitizeSchema?: any;
+  onMount?(el: HTMLElement): void;
 }
 
 export interface EditorProps {

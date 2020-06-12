@@ -16,7 +16,7 @@ function remarkMermaid() {
 export default function bytemdMermaid(): BytemdPlugin {
   return {
     remarkTransformer: (u) => u.use(remarkMermaid),
-    sanitizeSchema: {
+    markdownSanitizeSchema: {
       attributes: {
         div: ['className'],
       },

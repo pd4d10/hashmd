@@ -4,11 +4,5 @@ import rehypeHighlight from 'rehype-highlight';
 export default function highlight(): BytemdPlugin {
   return {
     rehypeTransformer: (u) => u.use(rehypeHighlight, { ignoreMissing: true }),
-    sanitizeSchema: {
-      attributes: {
-        code: ['className'],
-        span: ['className'],
-      },
-    },
   };
 }

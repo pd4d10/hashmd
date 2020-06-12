@@ -6,10 +6,9 @@ export default function math(): BytemdPlugin {
   return {
     remarkTransformer: (u) => u.use(remarkMath),
     rehypeTransformer: (u) => u.use(rehypeKatex),
-    sanitizeSchema: {
+    markdownSanitizeSchema: {
       attributes: {
-        span: ['className', 'style'],
-        // TODO: svg
+        div: ['className'],
       },
     },
   };
