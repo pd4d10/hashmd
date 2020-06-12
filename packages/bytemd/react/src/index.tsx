@@ -1,64 +1,52 @@
-import React, { RefObject } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import * as bytemd from 'bytemd';
-import { SvelteComponent } from 'svelte';
-
-class SvelteWrapper<
-  P extends Record<string, unknown> = {}
-> extends React.Component<
-  P & {
-    component: typeof SvelteComponent;
-    onMount?: (instance: SvelteComponent) => void;
-  }
-> {
-  private container: RefObject<HTMLDivElement> = React.createRef();
-  private instance?: SvelteComponent;
-
-  componentDidMount() {
-    const { component: Component, onMount } = this.props;
-
-    this.instance = new Component({
-      target: this.container.current!,
-      props: this.props,
-    });
-
-    if (onMount) {
-      onMount(this.instance);
-    }
-  }
-
-  componentDidUpdate() {
-    this.instance!.$set(this.props);
-  }
-
-  componentWillUnmount() {
-    this.instance!.$destroy();
-  }
-
-  render() {
-    return <div ref={this.container} />;
-  }
-}
 
 export interface EditorProps extends bytemd.EditorProps {
   onChange?(value: string): void;
 }
 
-export const Editor: React.FC<EditorProps> = (props) => (
-  <SvelteWrapper
-    {...props}
-    onMount={(instance) => {
-      instance.$on('change', (e: any) => {
-        if (props.onChange) {
-          props.onChange(e.detail.value);
-        }
-      });
-    }}
-    component={bytemd.Editor}
-  />
-);
+export const Editor: React.FC<EditorProps> = (props) => {
+  const ins = useRef<bytemd.Editor>();
+  const el = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!el.current) return;
+
+    const editor = new bytemd.Editor({
+      target: el.current,
+      props,
+    });
+    editor.$on('change', (e) => {
+      if (props.onChange) {
+        props.onChange(e.detail.value);
+      }
+    });
+    ins.current = editor;
+  }, [el.current]);
+
+  return <div ref={el}></div>;
+};
 
 export interface ViewerProps extends bytemd.ViewerProps {}
 
-export const Viewer: React.FC<ViewerProps> = (props) => (
-  <SvelteWrapper {...props} component={bytemd.Viewer} />
-);
+export const Viewer: React.FC<ViewerProps> = ({ value, plugins }) => {
+  const el = useRef<HTMLDivElement>(null);
+  const html = useMemo(() => bytemd.processMarkdown(value, plugins), [
+    value,
+    plugins,
+  ]);
+
+  useEffect(() => {
+    plugins?.forEach(({ onMount }) => {
+      if (onMount && el.current) onMount(el.current);
+    });
+  }, [html]);
+
+  return (
+    <div
+      ref={el}
+      className="markdown-body"
+      dangerouslySetInnerHTML={{ __html: html }}
+    ></div>
+  );
+};

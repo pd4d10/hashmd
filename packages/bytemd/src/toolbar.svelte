@@ -15,14 +15,11 @@
     handleOl,
     handleUl,
     handleTask,
-    covertToHtml,
   } from './toolbar';
 
   const dispatch = createEventDispatcher();
 
   export let cm;
-  export let remarkTransformer;
-  export let rehypeTransformer;
   export let fileHandler;
   export let mode;
   export let activeTab;
@@ -102,11 +99,6 @@
   </ToolbarButton>
   <ToolbarButton tooltip="task list" on:click={() => handleTask(cm)}>
     {@html iconMap.tasklist}
-  </ToolbarButton>
-  <ToolbarButton
-    tooltip="convert to HTML"
-    on:click={() => covertToHtml(cm, remarkTransformer, rehypeTransformer)}>
-    {@html iconMap.html}
   </ToolbarButton>
 
   {#each toolbarItems as item}

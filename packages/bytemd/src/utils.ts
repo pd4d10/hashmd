@@ -8,7 +8,7 @@ import merge from 'deepmerge';
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import { BytemdPlugin } from '.';
 
-export function processMarkdown(value: string, plugins: BytemdPlugin[]) {
+export function processMarkdown(value: string, plugins: BytemdPlugin[] = []) {
   let parser = unified().use(remark);
 
   plugins.forEach(({ remarkTransformer }) => {

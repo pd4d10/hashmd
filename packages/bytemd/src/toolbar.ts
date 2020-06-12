@@ -1,6 +1,5 @@
 import { Editor } from 'codemirror';
-import { processMarkdown } from './utils';
-import { EditorProps, BytemdPlugin } from '.';
+import { EditorProps } from '.';
 
 export function handleText(cm: Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
@@ -125,19 +124,6 @@ export function handleTask(cm: Editor) {
     }
   } else {
     cm.replaceRange('\n\n- [ ] \n\n', cm.getCursor());
-  }
-  cm.focus();
-}
-
-export function covertToHtml(cm: Editor, plugins: BytemdPlugin[]) {
-  if (cm.somethingSelected()) {
-    const [selection] = cm.listSelections();
-    const text = cm.getSelection();
-    cm.replaceRange(
-      processMarkdown(text, plugins).toString(),
-      selection.anchor,
-      selection.head
-    );
   }
   cm.focus();
 }

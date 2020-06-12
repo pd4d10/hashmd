@@ -1,10 +1,10 @@
 import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
-import { createCodeBlockPlugin, getCodeBlockMeta, HastNode } from './helpers';
 import * as cm from 'codemirror';
 import * as unified from 'unified';
 
-export { Editor, Viewer, createCodeBlockPlugin, getCodeBlockMeta, HastNode };
+export { Editor, Viewer };
+export { processMarkdown } from './utils';
 
 type Transformer = (x: unified.Processor) => unified.Processor;
 
