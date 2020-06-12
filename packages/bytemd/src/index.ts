@@ -12,6 +12,7 @@ export interface BytemdPlugin {
   remarkTransformer?: Transformer;
   rehypeTransformer?: Transformer;
   sanitizeSchema?: any;
+  onMount(el: HTMLElement): void;
 }
 
 export interface EditorProps {
