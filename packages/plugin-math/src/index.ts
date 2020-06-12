@@ -9,6 +9,7 @@ export default function math(): BytemdPlugin {
     markdownSanitizeSchema: {
       attributes: {
         div: ['className'],
+        span: ['className'],
       },
     },
   };
