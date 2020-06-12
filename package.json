@@ -2,16 +2,11 @@
   "name": "bytemd",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
-    "build": "rm -rf packages/**/*/dist && rollup -c",
-    "dev": "rollup -c rollup.example.config.js -w",
-    "watch": "tsc --watch",
-    "serve": "serve packages/example/public",
-    "test": "jest packages/bytemd/src",
-    "test:watch": "npm run test -- --watch"
+    "build": "tsc; rollup -c",
+    "watch": "tsc --watch"
   },
   "devDependencies": {
     "@primer/octicons-v2": "0.0.0-53e900d",

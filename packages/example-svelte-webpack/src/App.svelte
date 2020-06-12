@@ -13,7 +13,7 @@
 
   onMount(async () => {
     const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/master/packages/example/src/demo.md'
+      'https://raw.githubusercontent.com/bytedance/bytemd/master/assets/demo.md'
     );
     const text = await res.text();
     value = text;
