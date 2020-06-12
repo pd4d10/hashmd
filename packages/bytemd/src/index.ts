@@ -29,6 +29,7 @@ export interface EditorProps {
     tooltip?: string;
     bodyHtml: string;
   }[];
+  debounceMs?: number;
 }
 
 export interface ViewerProps {

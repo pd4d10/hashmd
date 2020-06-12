@@ -11,6 +11,7 @@
   export let mode = 'split';
   export let editorConfig;
   export let toolbarItems = [];
+  export let debounceMs = 300;
 
   let textarea;
   let viewer;
@@ -34,7 +35,8 @@
       value,
       viewer,
       fileHandler,
-      dispatch
+      dispatch,
+      debounceMs
     );
   });
 </script>

@@ -14,8 +14,10 @@
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.87",
+    "@types/lodash-es": "^4.17.3",
     "codemirror": "^5.52.0",
     "deepmerge": "^4.2.2",
+    "lodash-es": "^4.17.15",
     "rehype-raw": "^4.0.1",
     "rehype-sanitize": "^3.0.1",
     "rehype-stringify": "^8.0.0",

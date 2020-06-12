@@ -1,4 +1,5 @@
 import codemirror from 'codemirror';
+import { debounce } from 'lodash-es';
 import 'codemirror/mode/markdown/markdown.js';
 import 'codemirror/lib/codemirror.css';
 import { EditorProps } from '.';
@@ -9,7 +10,8 @@ export function initEditor(
   value: string,
   viewer: HTMLElement,
   fileHandler: NonNullable<EditorProps['fileHandler']>,
-  dispatch: any
+  dispatch: any,
+  debounceMs: number
 ) {
   const cm = codemirror.fromTextArea(textarea, {
     mode: 'markdown',
@@ -17,11 +19,14 @@ export function initEditor(
     ...editorConfig,
   });
   cm.setValue(value);
-  cm.on('change', (doc, change) => {
-    if (change.origin !== 'setValue') {
-      dispatch('change', { value: cm.getValue() });
-    }
-  });
+  cm.on(
+    'change',
+    debounce((doc, change) => {
+      if (change.origin !== 'setValue') {
+        dispatch('change', { value: cm.getValue() });
+      }
+    }, debounceMs)
+  );
   cm.on('scroll', (cm) => {
     requestAnimationFrame(() => {
       const editorInfo = cm.getScrollInfo();
