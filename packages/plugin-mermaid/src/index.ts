@@ -24,14 +24,18 @@ export default function bytemdMermaid(): BytemdPlugin {
     onMount(el) {
       const els = el.querySelectorAll('.bytemd-mermaid');
       els.forEach((el, i) => {
-        mermaid.render(
-          `bytemd-mermaid-${i}`,
-          el.getAttribute('value')!,
-          (svgCode) => {
-            el.innerHTML = svgCode;
-          },
-          el
-        );
+        try {
+          mermaid.render(
+            `bytemd-mermaid-${i}`,
+            el.getAttribute('value')!,
+            (svgCode) => {
+              el.innerHTML = svgCode;
+            },
+            el
+          );
+        } catch (err) {
+          console.error(err);
+        }
       });
     },
   };
