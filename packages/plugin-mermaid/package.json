@@ -1,0 +1,22 @@
+{
+  "name": "@bytemd/plugin-mermaid",
+  "version": "0.0.1",
+  "description": "@bytemd/plugin-mermaid",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "src/index.d.ts",
+  "files": [
+    "**/dist",
+    "src/*.{js,d.ts}"
+  ],
+  "dependencies": {
+    "@types/mermaid": "^8.2.1",
+    "mermaid": "^8.5.2",
+    "unist-util-visit": "^2.0.2"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

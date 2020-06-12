@@ -3,6 +3,7 @@
   import { Editor } from 'bytemd';
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
+  import mermaid from '@bytemd/plugin-mermaid';
 
   let value = '';
 
@@ -21,9 +22,11 @@
   let enabled = {
     highlight: true,
     math: true,
+    mermaid: true,
   };
 
   $: plugins = [
+    enabled.mermaid && mermaid(),
     enabled.highlight && highlight(),
     enabled.math && math(),
   ].filter((x) => x);
@@ -40,7 +43,7 @@
 
 <div>
   Plugins:
-  {#each ['math', 'highlight'] as p}
+  {#each ['math', 'highlight', 'mermaid'] as p}
     {' '}
     <label>
       <input type="checkbox" bind:checked={enabled[p]} />

@@ -20,6 +20,7 @@ const packageConfigs = {
   // },
   'plugin-highlight': {},
   'plugin-math': {},
+  'plugin-mermaid': {},
 };
 
 /** @type {import('rollup').Plugin} */
