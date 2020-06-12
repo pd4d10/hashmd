@@ -28,7 +28,14 @@
   const dispatch = createEventDispatcher();
 
   onMount(() => {
-    initEditor(textarea, editorConfig, value, viewer, fileHandler, dispatch);
+    cm = initEditor(
+      textarea,
+      editorConfig,
+      value,
+      viewer,
+      fileHandler,
+      dispatch
+    );
   });
 </script>
 
