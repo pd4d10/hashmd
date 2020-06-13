@@ -14,10 +14,9 @@ const production = !process.env.ROLLUP_WATCH;
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
   bytemd: {},
-  // 'bytemd/react': {
-  //   input: path.resolve('packages/bytemd/react/src/index.tsx'),
-  //   external: ['bytemd', 'react'],
-  // },
+  'bytemd/react': {
+    external: ['react'],
+  },
   'plugin-highlight': {},
   'plugin-math': {},
   'plugin-mermaid': {},
@@ -66,7 +65,7 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
   // Make svelte related packages external to avoid multiple copies
   // https://github.com/sveltejs/svelte/issues/3671
   if (!config.external) config.external = Object.keys(pkg.dependencies || {});
-  config.external.push('svelte', 'svelte/internal');
+  config.external.push('bytemd', 'svelte', 'svelte/internal');
 
   return config;
 });
