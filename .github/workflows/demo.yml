@@ -11,10 +11,10 @@ jobs:
       - run: |
           yarn
           yarn build
-          cd packages/example-svelte-webpack
+          cd examples/svelte-webpack
           yarn build
       - uses: peaceiris/actions-gh-pages@v2.5.1
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./packages/example-svelte-webpack/public
+          PUBLISH_DIR: ./examples/svelte-webpack/public

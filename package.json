@@ -2,10 +2,12 @@
   "name": "bytemd",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "build": "tsc; rollup -c",
+    "dev": "rollup -cw",
     "watch": "tsc --watch"
   },
   "devDependencies": {
