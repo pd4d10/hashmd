@@ -6,11 +6,12 @@ export interface EditorProps extends bytemd.EditorProps {
 }
 
 export const Editor: React.FC<EditorProps> = (props) => {
-  const ins = useRef<bytemd.Editor>();
+  const ed = useRef<bytemd.Editor>();
   const el = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!el.current) return;
+    if (ed.current) ed.current.$destroy();
 
     const editor = new bytemd.Editor({
       target: el.current,
@@ -21,7 +22,7 @@ export const Editor: React.FC<EditorProps> = (props) => {
         props.onChange(e.detail.value);
       }
     });
-    ins.current = editor;
+    ed.current = editor;
   }, [el.current]);
 
   return <div ref={el}></div>;
