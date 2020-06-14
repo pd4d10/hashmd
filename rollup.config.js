@@ -13,7 +13,12 @@ const production = !process.env.ROLLUP_WATCH;
 
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
-  bytemd: {},
+  bytemd: {
+    external: [
+      'codemirror/mode/markdown/markdown.js',
+      'hast-util-sanitize/lib/github.json',
+    ],
+  },
   'bytemd/react': {
     external: ['react'],
   },
@@ -64,9 +69,17 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
 
   // Make svelte related packages external to avoid multiple copies
   // https://github.com/sveltejs/svelte/issues/3671
-  if (!config.external) config.external = Object.keys(pkg.dependencies || {});
-  config.external.push('bytemd', 'svelte', 'svelte/internal');
+  if (!config.external) config.external = [];
+  config.external.push(
+    'bytemd',
+    'svelte',
+    'svelte/internal',
+    ...Object.keys(pkg.dependencies || {})
+  );
 
+  // config.watch = {
+  //   clearScreen: false,
+  // };
   return config;
 });
 

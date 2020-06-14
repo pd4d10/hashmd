@@ -6,8 +6,9 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "tsc; rollup -c",
-    "dev": "rollup -cw",
+    "clean": "rm -rf packages/**/*/dist",
+    "build": "npm run clean && tsc; rollup -c",
+    "dev": "npm run clean && rollup -cw",
     "watch": "tsc --watch"
   },
   "devDependencies": {
