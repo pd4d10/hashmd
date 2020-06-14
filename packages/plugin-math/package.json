@@ -8,8 +8,8 @@
   "module": "dist/index.esm.js",
   "types": "src/index.d.ts",
   "files": [
-    "**/dist",
-    "src/*.{js,d.ts}"
+    "dist",
+    "src/*.d.ts"
   ],
   "dependencies": {
     "rehype-katex": "^3.0.0",

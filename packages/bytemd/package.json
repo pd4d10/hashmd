@@ -10,7 +10,7 @@
   "svelte": "src/index.js",
   "files": [
     "**/dist",
-    "src/*.{svelte,js,d.ts}"
+    "**/src/*.{svelte,js,d.ts}"
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.87",
