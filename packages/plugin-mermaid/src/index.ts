@@ -1,38 +1,27 @@
 import { BytemdPlugin } from 'bytemd';
-import visit from 'unist-util-visit';
 import mermaid from 'mermaid';
-
-function remarkMermaid() {
-  return (tree: any) => {
-    visit(tree, 'code', (node: any) => {
-      if (node.lang === 'mermaid') {
-        node.type = 'html';
-        node.value = `<div class="bytemd-mermaid" value="${node.value}"></div>`;
-      }
-    });
-  };
-}
 
 export default function bytemdMermaid(): BytemdPlugin {
   return {
-    remarkTransformer: (u) => u.use(remarkMermaid),
     markdownSanitizeSchema: {
       attributes: {
-        div: ['className'],
+        code: ['className'],
       },
     },
     onMount(el) {
-      const els = el.querySelectorAll('.bytemd-mermaid');
+      const els = el.querySelectorAll<HTMLElement>('pre>code.language-mermaid');
       els.forEach((el, i) => {
         try {
+          const pre = el.parentElement!;
           mermaid.render(
             `bytemd-mermaid-${i}`,
-            el.getAttribute('value')!,
+            el.innerText,
             (svgCode) => {
-              el.innerHTML = svgCode;
+              pre.innerHTML = svgCode;
             },
-            el
+            pre
           );
+          pre.replaceWith(pre.children[0]);
         } catch (err) {
           console.error(err);
         }
