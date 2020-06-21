@@ -4,6 +4,9 @@
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
+  import 'github-markdown-css';
+  import 'highlight.js/styles/vs.css';
+  import 'katex/dist/katex.css';
 
   let value = '';
 
@@ -51,10 +54,4 @@
     </label>
   {/each}
 </div>
-<Editor
-  {value}
-  on:change={(v) => {
-    value = v;
-  }}
-  {plugins}
-  on:change={handleChange} />
+<Editor {value} {plugins} on:change={handleChange} />

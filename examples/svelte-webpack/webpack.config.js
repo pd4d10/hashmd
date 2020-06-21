@@ -43,6 +43,15 @@ module.exports = {
           'css-loader',
         ],
       },
+      {
+        test: /\.(ttf|woff2?)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            esModule: false,
+          },
+        },
+      },
     ],
   },
   mode,
