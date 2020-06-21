@@ -1,10 +1,8 @@
-import codemirror from 'codemirror';
-import { debounce } from 'lodash-es';
-import 'codemirror/mode/markdown/markdown.js';
-import 'codemirror/lib/codemirror.css';
+import debounce from 'lodash.debounce';
 import { EditorProps } from '.';
+import 'codemirror/lib/codemirror.css';
 
-export function initEditor(
+export async function initEditor(
   textarea: HTMLTextAreaElement,
   editorConfig: any,
   value: string,
@@ -13,6 +11,8 @@ export function initEditor(
   dispatch: any,
   debounceMs: number
 ) {
+  const codemirror = await import('codemirror');
+  await import('codemirror/mode/markdown/markdown.js');
   const cm = codemirror.fromTextArea(textarea, {
     mode: 'markdown',
     lineWrapping: true,

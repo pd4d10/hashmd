@@ -1,6 +1,6 @@
 import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
-import * as cm from 'codemirror';
+import { EditorConfiguration } from 'codemirror';
 import * as unified from 'unified';
 
 export { Editor, Viewer };
@@ -21,7 +21,7 @@ export interface EditorProps {
   containerStyle?: string;
   fileHandler?: (file: File) => Promise<string>;
   plugins?: BytemdPlugin[];
-  editorConfig?: Omit<cm.EditorConfiguration, 'value'>;
+  editorConfig?: Omit<EditorConfiguration, 'value'>;
   /**
    * Components which should be added to toolbar
    */

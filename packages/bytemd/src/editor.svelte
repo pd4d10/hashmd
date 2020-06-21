@@ -28,8 +28,8 @@
 
   const dispatch = createEventDispatcher();
 
-  onMount(() => {
-    cm = initEditor(
+  onMount(async () => {
+    cm = await initEditor(
       textarea,
       editorConfig,
       value,
@@ -56,6 +56,9 @@
     flex: 1;
     overflow: hidden;
     height: 100%;
+  }
+  .bytemd-editor textarea {
+    display: none;
   }
   .bytemd-editor :global(.CodeMirror) {
     height: 100%;
