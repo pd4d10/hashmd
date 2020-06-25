@@ -6,6 +6,7 @@ import json from '@rollup/plugin-json';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
 import css from 'rollup-plugin-css-only';
+import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 // import visualizer from 'rollup-plugin-visualizer';
 
@@ -22,6 +23,9 @@ const packageConfigs = {
   'bytemd/react': {
     external: ['react'],
   },
+  'bytemd/vue': {
+    external: ['vue'],
+  },
   'plugin-highlight': {},
   'plugin-math': {},
   'plugin-mermaid': {},
@@ -33,6 +37,7 @@ const commonPlugins = [
   svelte({
     dev: !production,
   }),
+  vue(),
   resolve({
     browser: true,
     dedupe: ['svelte'],

@@ -20,6 +20,7 @@
     "@types/react": "^16.9.36",
     "jest": "^26.0.1",
     "mustache": "^4.0.1",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "rollup": "^2.15.0",
     "rollup-plugin-css-only": "^2.1.0",
@@ -29,6 +30,7 @@
     "rollup-plugin-svelte": "^5.2.2",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-visualizer": "^4.0.4",
+    "rollup-plugin-vue": "^5.1.9",
     "svelte": "^3.23.2",
     "svelte-jester": "^1.0.6",
     "typescript": "^3.9.5"
