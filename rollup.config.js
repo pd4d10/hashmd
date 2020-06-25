@@ -11,6 +11,7 @@ import { terser } from 'rollup-plugin-terser';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
+const umd = process.env.UMD; // TODO: dynamic import
 
 /** @type {Record<string, import('rollup').RollupOptions>} */
 const packageConfigs = {
@@ -31,24 +32,10 @@ const packageConfigs = {
   'plugin-mermaid': {},
 };
 
-/** @type {import('rollup').Plugin} */
-const commonPlugins = [
-  commonjs(),
-  svelte({
-    dev: !production,
-  }),
-  vue(),
-  resolve({
-    browser: true,
-    dedupe: ['svelte'],
-  }),
-  globals(),
-  builtins(),
-  json(),
-  css({
-    output: 'packages/bytemd/dist/index.css',
-  }),
-];
+if (umd) {
+  delete packageConfigs['bytemd/react'];
+  delete packageConfigs['bytemd/vue'];
+}
 
 Object.entries(packageConfigs).forEach(([key, config]) => {
   const pkg = require(`./packages/${key}/package.json`);
@@ -56,31 +43,48 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
     config.input = path.resolve('packages', key, 'src/index.js');
   }
   if (!config.output) {
-    config.output = [
-      {
-        format: 'es',
-        file: path.resolve('packages', key, pkg.module),
-      },
-      {
-        format: 'cjs',
-        file: path.resolve('packages', key, pkg.main),
-      },
-    ];
+    if (umd) {
+      config.output = [
+        {
+          name: key,
+          format: 'umd',
+          file: path.resolve('packages', key, pkg.unpkg),
+        },
+      ];
+    } else {
+      config.output = [
+        { format: 'es', file: path.resolve('packages', key, pkg.module) },
+        { format: 'cjs', file: path.resolve('packages', key, pkg.main) },
+      ];
+    }
   }
   config.output.forEach((output) => {
     output.sourcemap = true;
   });
-  config.plugins = [...(config.plugins || []), ...commonPlugins];
+  config.plugins = [
+    commonjs(),
+    svelte({
+      dev: !production,
+    }),
+    vue(),
+    resolve({
+      browser: true,
+      dedupe: ['svelte'],
+    }),
+    globals(),
+    builtins(),
+    json(),
+    css({
+      output: 'packages/bytemd/dist/index.css',
+    }),
+    umd && terser(),
+  ];
 
-  // Make svelte related packages external to avoid multiple copies
-  // https://github.com/sveltejs/svelte/issues/3671
-  if (!config.external) config.external = [];
-  config.external.push(
+  config.external = [
     'bytemd',
-    'svelte',
-    'svelte/internal',
-    ...Object.keys(pkg.dependencies || {})
-  );
+    ...(config.external || []),
+    ...(umd ? [] : Object.keys(pkg.dependencies || {})),
+  ];
 
   // config.watch = {
   //   clearScreen: false,
