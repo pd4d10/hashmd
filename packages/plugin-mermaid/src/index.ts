@@ -1,7 +1,8 @@
 import { BytemdPlugin } from 'bytemd';
-import mermaid from 'mermaid';
+import m from 'mermaid';
+import mermaidAPI from 'mermaid/mermaidAPI';
 
-export default function bytemdMermaid(): BytemdPlugin {
+export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   return {
     markdownSanitizeSchema: {
       attributes: {
@@ -9,11 +10,14 @@ export default function bytemdMermaid(): BytemdPlugin {
       },
     },
     onMount(el) {
+      if (options) {
+        m.initialize(options);
+      }
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-mermaid');
       els.forEach((el, i) => {
         try {
           const pre = el.parentElement!;
-          mermaid.render(
+          m.render(
             `bytemd-mermaid-${i}`,
             el.innerText,
             (svgCode) => {

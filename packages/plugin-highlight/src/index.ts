@@ -1,10 +1,24 @@
 import { BytemdPlugin } from 'bytemd';
 import rehypeHighlight from 'rehype-highlight';
 
-export default function highlight(): BytemdPlugin {
+interface HighlightOptions {
+  prefix?: string;
+  subset?: boolean | string[];
+  ignoreMissing?: boolean;
+  plainText?: string[];
+  aliases?: Record<string, string[]>;
+}
+
+const defaults: HighlightOptions = { subset: false, ignoreMissing: true };
+
+export default function highlight({
+  subset = false,
+  ignoreMissing = true,
+  ...rest
+}: HighlightOptions = {}): BytemdPlugin {
   return {
     rehypeTransformer: (u) =>
-      u.use(rehypeHighlight, { subset: false, ignoreMissing: true }),
+      u.use(rehypeHighlight, { subset, ignoreMissing, ...rest }),
     markdownSanitizeSchema: {
       attributes: {
         code: ['className'],
