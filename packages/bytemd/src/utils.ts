@@ -36,5 +36,6 @@ export function processMarkdown({
 
   parser = parser.use(stringify);
 
+  // console.log(parser.parse(value));
   return parser.processSync(value).toString();
 }

@@ -30,6 +30,7 @@ const packageConfigs = {
   'plugin-highlight': {},
   'plugin-math': {},
   'plugin-mermaid': {},
+  'plugin-footnotes': {},
 };
 
 if (umd) {

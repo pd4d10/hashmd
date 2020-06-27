@@ -4,6 +4,7 @@
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
+  import footnotes from '@bytemd/plugin-footnotes';
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
   import 'katex/dist/katex.css';
@@ -26,12 +27,14 @@
     highlight: true,
     math: true,
     mermaid: true,
+    footnotes: true,
   };
 
   $: plugins = [
     enabled.mermaid && mermaid(),
     enabled.highlight && highlight(),
     enabled.math && math(),
+    enabled.footnotes && footnotes(),
   ].filter((x) => x);
 </script>
 
@@ -46,7 +49,7 @@
 
 <div>
   Plugins:
-  {#each ['math', 'highlight', 'mermaid'] as p}
+  {#each Object.keys(enabled) as p}
     {' '}
     <label>
       <input type="checkbox" bind:checked={enabled[p]} />
