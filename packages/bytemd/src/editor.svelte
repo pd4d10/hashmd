@@ -10,6 +10,7 @@
   export let plugins = [];
   export let mode = 'split';
   export let editorConfig;
+  export let toolbar = true;
   export let toolbarItems = [];
   export let debounceMs = 300;
 
@@ -78,13 +79,15 @@
 </style>
 
 <div class="bytemd" style={containerStyle}>
-  <Toolbar
-    {cm}
-    {fileHandler}
-    {toolbarItems}
-    {mode}
-    {activeTab}
-    on:tab={setActiveTab} />
+  {#if toolbar}
+    <Toolbar
+      {cm}
+      {fileHandler}
+      {toolbarItems}
+      {mode}
+      {activeTab}
+      on:tab={setActiveTab} />
+  {/if}
   <div class="bytemd-body">
     <div class="bytemd-editor" class:hidden={mode === 'tab' && activeTab === 1}>
       <textarea bind:this={textarea} />

@@ -13,6 +13,7 @@ export default {
     'fileHandler',
     'plugins',
     'editorConfig',
+    'toolbar',
     'toolbarItems',
     'debounceMs',
   ],

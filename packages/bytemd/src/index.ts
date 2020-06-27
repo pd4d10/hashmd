@@ -22,6 +22,7 @@ export interface EditorProps {
   fileHandler?: (file: File) => Promise<string>;
   plugins?: BytemdPlugin[];
   editorConfig?: Omit<EditorConfiguration, 'value'>;
+  toolbar?: boolean;
   /**
    * Components which should be added to toolbar
    */
