@@ -3,12 +3,16 @@ import * as bytemd from 'bytemd';
 
 export interface ViewerProps extends bytemd.ViewerProps {}
 
-export const Viewer: React.FC<ViewerProps> = ({ value, plugins }) => {
+export const Viewer: React.FC<ViewerProps> = ({
+  value,
+  markdownOptions,
+  plugins,
+}) => {
   const el = useRef<HTMLDivElement>(null);
-  const html = useMemo(() => bytemd.processMarkdown(value, plugins), [
-    value,
-    plugins,
-  ]);
+  const html = useMemo(
+    () => bytemd.processMarkdown({ value, markdownOptions, plugins }),
+    [value, markdownOptions, plugins]
+  );
 
   useEffect(() => {
     plugins?.forEach(({ onMount }) => {

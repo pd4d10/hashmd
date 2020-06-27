@@ -2,6 +2,7 @@ import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
 import { EditorConfiguration } from 'codemirror';
 import * as unified from 'unified';
+import { RemarkParseOptions } from 'remark-parse';
 
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
@@ -15,12 +16,10 @@ export interface BytemdPlugin {
   onMount?(el: HTMLElement): void;
 }
 
-export interface EditorProps {
-  value: string;
+export interface EditorProps extends ViewerProps {
   mode?: 'split' | 'tab';
   containerStyle?: string;
   fileHandler?: (file: File) => Promise<string>;
-  plugins?: BytemdPlugin[];
   editorConfig?: Omit<EditorConfiguration, 'value'>;
   toolbar?: boolean;
   /**
@@ -35,5 +34,6 @@ export interface EditorProps {
 
 export interface ViewerProps {
   value: string;
+  markdownOptions?: Partial<RemarkParseOptions>;
   plugins?: BytemdPlugin[];
 }

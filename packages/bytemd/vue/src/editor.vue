@@ -8,10 +8,11 @@ import * as bytemd from 'bytemd';
 export default {
   props: [
     'value',
+    'markdownOptions',
+    'plugins',
     'mode',
     'containerStyle',
     'fileHandler',
-    'plugins',
     'editorConfig',
     'toolbar',
     'toolbarItems',

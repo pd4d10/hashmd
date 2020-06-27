@@ -3,20 +3,22 @@
   import { processMarkdown } from './utils';
 
   export let value = '';
-  export let plugins = [];
+  export let markdownOptions;
+  export let plugins;
 
   let el;
 
   afterUpdate(() => {
-    plugins.forEach((p) => {
-      if (p.onMount) {
-        p.onMount(el);
-      }
-    });
+    if (plugins) {
+      plugins.forEach((p) => {
+        if (p.onMount) {
+          p.onMount(el);
+        }
+      });
+    }
   });
 
-  $: html = processMarkdown(value, plugins);
-  // $: console.log(html);
+  $: html = processMarkdown({ value, plugins, markdownOptions });
 </script>
 
 <div bind:this={el} class="markdown-body">

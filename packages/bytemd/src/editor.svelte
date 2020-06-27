@@ -5,9 +5,10 @@
   import { dataUrlFileHandler, initEditor } from './editor';
 
   export let value = '';
+  export let markdownOptions = [];
+  export let plugins = [];
   export let containerStyle;
   export let fileHandler = dataUrlFileHandler;
-  export let plugins = [];
   export let mode = 'split';
   export let editorConfig;
   export let toolbar = true;
@@ -96,7 +97,7 @@
       class="bytemd-viewer"
       bind:this={viewer}
       class:hidden={mode === 'tab' && activeTab === 0}>
-      <Viewer {value} {plugins} />
+      <Viewer {value} {markdownOptions} {plugins} />
     </div>
   </div>
 </div>

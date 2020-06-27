@@ -6,7 +6,7 @@
 import { processMarkdown } from 'bytemd';
 
 export default {
-  props: ['value', 'plugins'],
+  props: ['value', 'markdownOptions', 'plugins'],
   mounted() {
     if (this.plugins) {
       this.plugins.forEach(({ onMount }) => {
@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     html() {
-      return processMarkdown(this.value, this.plugins);
+      return processMarkdown(this.$props);
     },
   },
 };
