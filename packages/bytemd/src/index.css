@@ -38,8 +38,10 @@
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
 .bytemd-preview {
-  padding: 20px;
   flex: 1;
   overflow: auto;
   border-left: 1px solid #eee;
+}
+.markdown-body {
+  padding: 20px;
 }
