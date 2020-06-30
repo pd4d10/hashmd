@@ -11,7 +11,6 @@
   export let fileHandler = dataUrlFileHandler;
   export let mode = 'split';
   export let editorConfig;
-  export let toolbar = true;
   export let toolbarItems = [];
   export let debounceMs = 300;
 
@@ -43,60 +42,24 @@
   });
 </script>
 
-<style>
-  .bytemd {
-    border: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-  }
-  .bytemd-body {
-    flex-grow: 1;
-    display: flex;
-    overflow: auto;
-  }
-  .bytemd-editor {
-    flex: 1;
-    overflow: hidden;
-    height: 100%;
-  }
-  .bytemd-editor textarea {
-    display: none;
-  }
-  .bytemd-editor :global(.CodeMirror) {
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  .bytemd-viewer {
-    padding: 20px;
-    flex: 1;
-    overflow: auto;
-    border-left: 1px solid #eee;
-  }
-  .hidden {
-    display: none;
-  }
-</style>
-
 <div class="bytemd" style={containerStyle}>
-  {#if toolbar}
-    <Toolbar
-      {cm}
-      {fileHandler}
-      {toolbarItems}
-      {mode}
-      {activeTab}
-      on:tab={setActiveTab} />
-  {/if}
+  <Toolbar
+    {cm}
+    {fileHandler}
+    {toolbarItems}
+    {mode}
+    {activeTab}
+    on:tab={setActiveTab} />
   <div class="bytemd-body">
-    <div class="bytemd-editor" class:hidden={mode === 'tab' && activeTab === 1}>
+    <div
+      class="bytemd-editor"
+      style={mode === 'tab' && activeTab === 1 ? 'display:none' : undefined}>
       <textarea bind:this={textarea} />
     </div>
     <div
-      class="bytemd-viewer"
+      class="bytemd-preview"
       bind:this={viewer}
-      class:hidden={mode === 'tab' && activeTab === 0}>
+      style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
       <Viewer {value} {markdownOptions} {plugins} />
     </div>
   </div>

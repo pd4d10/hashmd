@@ -1,5 +1,4 @@
 <script>
-  import 'tippy.js/dist/tippy.css';
   import { iconMap } from './icons';
 
   import { createEventDispatcher } from 'svelte';
@@ -28,27 +27,7 @@
   let fileInput;
 </script>
 
-<style>
-  div {
-    display: flex;
-    padding: 4px;
-    border-bottom: 1px solid #eee;
-  }
-  input {
-    display: none;
-  }
-  .bytemd-tab :global(span) {
-    cursor: pointer;
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: 26px;
-  }
-  .active {
-    color: #0366d6;
-  }
-</style>
-
-<div>
+<div class="bytemd-toolbar">
   <input
     bind:this={fileInput}
     type="file"
@@ -56,7 +35,7 @@
     on:input={(e) => handleImage(cm, e, fileHandler)} />
 
   {#if mode === 'tab'}
-    <span class="bytemd-tab">
+    <span class="bytemd-tabs">
       <span
         on:click={() => dispatch('tab', { value: 0 })}
         class:active={activeTab === 0}>

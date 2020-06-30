@@ -1,0 +1,47 @@
+.bytemd {
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+.bytemd-toolbar {
+  display: flex;
+  padding: 4px;
+  border-bottom: 1px solid #eee;
+}
+.bytemd-toolbar input {
+  display: none;
+}
+.bytemd-tabs span {
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 26px;
+}
+.bytemd-tabs span.active {
+  color: #0366d6;
+}
+.bytemd-body {
+  flex-grow: 1;
+  display: flex;
+  overflow: auto;
+}
+.bytemd-editor {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+.bytemd-editor textarea {
+  display: none;
+}
+.bytemd-editor .CodeMirror {
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.bytemd-preview {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+  border-left: 1px solid #eee;
+}

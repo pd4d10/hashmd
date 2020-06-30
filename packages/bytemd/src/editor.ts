@@ -1,6 +1,5 @@
 import debounce from 'lodash.debounce';
 import { EditorProps } from '.';
-import 'codemirror/lib/codemirror.css';
 
 export async function initEditor(
   textarea: HTMLTextAreaElement,

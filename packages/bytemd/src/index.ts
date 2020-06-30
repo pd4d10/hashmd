@@ -4,6 +4,10 @@ import { EditorConfiguration } from 'codemirror';
 import * as unified from 'unified';
 import { RemarkParseOptions } from 'remark-parse';
 
+import 'codemirror/lib/codemirror.css';
+import 'tippy.js/dist/tippy.css';
+import './index.css';
+
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
 

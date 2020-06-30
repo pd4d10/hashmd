@@ -14,7 +14,6 @@ export default {
     'containerStyle',
     'fileHandler',
     'editorConfig',
-    'toolbar',
     'toolbarItems',
     'debounceMs',
   ],
