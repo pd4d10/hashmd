@@ -33,7 +33,14 @@ export default {
   watch: {
     $props: {
       handler(newValue, oldValue) {
-        this.editor.$set({ ...newValue });
+        // TODO:
+        const copy = { ...newValue };
+        for (let k in copy) {
+          if (copy[k] === undefined) {
+            delete copy[k];
+          }
+        }
+        this.editor.$set(copy);
       },
       deep: true,
     },
