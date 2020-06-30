@@ -25,6 +25,9 @@ export default {
     editor.$on('change', (e) => {
       this.$emit('change', e.detail.value);
     });
+    editor.$on('mount', (e) => {
+      this.$emit('mount', e.detail.cm);
+    });
     this.editor = editor;
   },
   watch: {

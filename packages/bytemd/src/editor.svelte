@@ -39,6 +39,7 @@
       dispatch,
       debounceMs
     );
+    dispatch('mount', { cm });
   });
 </script>
 

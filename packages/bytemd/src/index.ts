@@ -1,6 +1,6 @@
 import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
-import { EditorConfiguration } from 'codemirror';
+import * as codemirror from 'codemirror';
 import * as unified from 'unified';
 import { RemarkParseOptions } from 'remark-parse';
 
@@ -24,7 +24,7 @@ export interface EditorProps extends ViewerProps {
   mode?: 'split' | 'tab';
   containerStyle?: string;
   fileHandler?: (file: File) => Promise<string>;
-  editorConfig?: Omit<EditorConfiguration, 'value'>;
+  editorConfig?: Omit<codemirror.EditorConfiguration, 'value'>;
   toolbar?: boolean;
   /**
    * Components which should be added to toolbar
