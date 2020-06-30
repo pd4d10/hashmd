@@ -42,6 +42,13 @@
   });
 </script>
 
+<style>
+  /* This cannot be global, because CodeMirror seems use textarea's style to determine initialization status */
+  .bytemd-editor textarea {
+    display: none;
+  }
+</style>
+
 <div class="bytemd" style={containerStyle}>
   <Toolbar
     {cm}

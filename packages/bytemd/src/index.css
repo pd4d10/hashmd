@@ -30,14 +30,12 @@
   overflow: hidden;
   height: 100%;
 }
-.bytemd-editor textarea {
-  display: none;
-}
 .bytemd-editor .CodeMirror {
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
   font-size: 14px;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
 .bytemd-preview {
   padding: 20px;
