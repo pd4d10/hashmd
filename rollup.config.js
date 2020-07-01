@@ -31,6 +31,7 @@ const packageConfigs = {
   'plugin-math': {},
   'plugin-mermaid': {},
   'plugin-footnotes': {},
+  'plugin-vega': {},
 };
 
 if (umd) {
