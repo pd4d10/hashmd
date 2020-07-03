@@ -6,10 +6,10 @@
     "examples/*"
   ],
   "scripts": {
-    "clean": "rm -rf packages/**/*/dist packages/bytemd/src/index.d.ts",
+    "clean": "rm -rf packages/**/*/dist",
     "build": "npm run clean && tsc; rollup -c",
     "dev": "npm run clean && rollup -cw",
-    "watch": "tsc --watch"
+    "watch": "tsc --build --watch"
   },
   "devDependencies": {
     "@primer/octicons-v2": "0.0.0-53e900d",
