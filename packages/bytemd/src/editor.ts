@@ -11,6 +11,7 @@ export async function initEditor(
   debounceMs: number
 ) {
   const codemirror = await import('codemirror');
+  // @ts-ignore
   await import('codemirror/mode/markdown/markdown.js');
   const cm = codemirror.fromTextArea(textarea, {
     mode: 'markdown',
@@ -35,13 +36,17 @@ export async function initEditor(
     });
   });
   cm.on('paste', async (_, e) => {
+    if (!e.clipboardData) return;
     const { items } = e.clipboardData;
     for (let i = 0; i < items.length; i++) {
       // console.log(items[i]);
       if (!items[i].type.startsWith('image/')) continue;
 
       e.preventDefault();
-      const url = await fileHandler(items[i].getAsFile());
+      const file = items[i].getAsFile();
+      if (!file) continue;
+
+      const url = await fileHandler(file);
       const text = cm.getSelection();
       cm.replaceSelection(`![${text}](${url})`);
       cm.focus();
@@ -49,12 +54,16 @@ export async function initEditor(
     }
   });
   cm.on('drop', async (_, e) => {
+    if (!e.dataTransfer) return;
     const { items } = e.dataTransfer;
     for (let i = 0; i < items.length; i++) {
       if (!items[i].type.startsWith('image/')) continue;
 
       e.preventDefault();
-      const url = await fileHandler(items[i].getAsFile());
+      const file = items[i].getAsFile();
+      if (!file) continue;
+
+      const url = await fileHandler(file);
       const text = cm.getSelection();
       cm.replaceSelection(`![${text}](${url})`);
       cm.focus();

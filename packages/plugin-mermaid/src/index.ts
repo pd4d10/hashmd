@@ -23,6 +23,7 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
             (svgCode) => {
               pre.innerHTML = svgCode;
             },
+            // @ts-ignore
             pre
           );
           pre.replaceWith(pre.children[0]);

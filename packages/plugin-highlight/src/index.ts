@@ -1,4 +1,5 @@
 import { BytemdPlugin } from 'bytemd';
+// @ts-ignore
 import rehypeHighlight from 'rehype-highlight';
 
 interface HighlightOptions {

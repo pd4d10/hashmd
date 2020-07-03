@@ -1,5 +1,7 @@
 import { BytemdPlugin } from 'bytemd';
+// @ts-ignore
 import remarkMath from 'remark-math';
+// @ts-ignore
 import rehypeKatex from 'rehype-katex';
 import { KatexOptions } from 'katex';
 

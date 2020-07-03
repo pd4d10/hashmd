@@ -23,6 +23,7 @@ export function handleTag(cm: Editor, tagName: string) {
 export function handleHeading(cm: Editor) {
   const { line } = cm.getCursor();
   const content = cm.getLine(line);
+  // @ts-ignore
   cm.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
   cm.focus();
 }
@@ -31,14 +32,17 @@ export function handleBlockquote(cm: Editor) {
   if (cm.somethingSelected()) {
     const [selection] = cm.listSelections();
     for (let i = selection.anchor.line; i <= selection.head.line; i++) {
+      // @ts-ignore
       cm.replaceRange('> ' + cm.getLine(i), { line: i, ch: 0 }, { line: i });
     }
   } else {
     const { line } = cm.getCursor();
     const content = cm.getLine(line);
     if (content.startsWith('> ')) {
+      // @ts-ignore
       cm.replaceRange(content.slice(2), { line, ch: 0 }, { line });
     } else {
+      // @ts-ignore
       cm.replaceRange('> ' + content, { line, ch: 0 }, { line });
     }
   }
@@ -91,6 +95,7 @@ export function handleOl(cm: Editor) {
       cm.replaceRange(
         `${i - selection.anchor.line + 1}. ${cm.getLine(i)}`,
         { line: i, ch: 0 },
+        // @ts-ignore
         { line: i }
       );
     }
@@ -104,6 +109,7 @@ export function handleUl(cm: Editor) {
   if (cm.somethingSelected()) {
     const [selection] = cm.listSelections();
     for (let i = selection.anchor.line; i <= selection.head.line; i++) {
+      // @ts-ignore
       cm.replaceRange(`- ${cm.getLine(i)}`, { line: i, ch: 0 }, { line: i });
     }
   } else {
@@ -119,6 +125,7 @@ export function handleTask(cm: Editor) {
       cm.replaceRange(
         `- [ ] ${cm.getLine(i)}`,
         { line: i, ch: 0 },
+        // @ts-ignore
         { line: i }
       );
     }

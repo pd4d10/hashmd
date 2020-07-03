@@ -1,6 +1,8 @@
+// @ts-ignore
 import Editor from './editor.svelte';
+// @ts-ignore
 import Viewer from './viewer.svelte';
-import * as codemirror from 'codemirror';
+import codemirror from 'codemirror';
 import * as unified from 'unified';
 import { RemarkParseOptions } from 'remark-parse';
 
