@@ -37,14 +37,22 @@ export default function imageViewer(): BytemdPlugin {
         img.style.left = `${left}px`;
         img.style.top = `${top}px`;
 
-        const container = document.createElement('div');
-        container.className = 'image-viewer';
-        container.appendChild(img);
+        const box = document.createElement('div');
+        box.className = 'image-viewer';
+        box.style.opacity = '0';
+        box.appendChild(img);
 
-        document.body.appendChild(container);
+        document.body.appendChild(box);
 
-        container.addEventListener('click', (e) => {
-          document.body.removeChild(container);
+        setTimeout(() => {
+          box.style.opacity = '1';
+        });
+
+        box.addEventListener('click', (e) => {
+          box.addEventListener('transitionend', () => {
+            document.body.removeChild(box);
+          });
+          box.style.opacity = '0';
         });
       };
 
