@@ -5,9 +5,12 @@
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
+  import imageViewer from '@bytemd/plugin-image-viewer';
+
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
   import 'katex/dist/katex.css';
+  import '@bytemd/plugin-image-viewer/dist/index.css';
 
   let value = '';
 
@@ -16,9 +19,7 @@
   }
 
   onMount(async () => {
-    const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/master/assets/demo.md'
-    );
+    const res = await fetch('demo.md');
     const text = await res.text();
     value = text;
   });
@@ -28,6 +29,7 @@
     math: true,
     mermaid: true,
     footnotes: true,
+    imageViewer: true,
   };
 
   $: plugins = [
@@ -35,6 +37,7 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
+    enabled.imageViewer && imageViewer(),
   ].filter((x) => x);
 </script>
 

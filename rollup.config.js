@@ -32,6 +32,7 @@ const packageConfigs = {
   'plugin-mermaid': {},
   'plugin-footnotes': {},
   'plugin-vega': {},
+  'plugin-image-viewer': {},
 };
 
 if (umd) {
@@ -77,7 +78,7 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
     builtins(),
     json(),
     css({
-      output: 'packages/bytemd/dist/index.css',
+      output: `packages/${key}/dist/index.css`,
     }),
     umd && terser(),
   ];

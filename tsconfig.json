@@ -8,6 +8,7 @@
     { "path": "packages/plugin-mermaid" },
     { "path": "packages/plugin-highlight" },
     { "path": "packages/plugin-footnotes" },
-    { "path": "packages/plugin-vega" }
+    { "path": "packages/plugin-vega" },
+    { "path": "packages/plugin-image-viewer" }
   ]
 }

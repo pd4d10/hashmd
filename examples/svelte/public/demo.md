@@ -1,5 +1,10 @@
 # bytemd [![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd)
 
+## Images
+
+<img alt="octocat" title="octocat" src="https://octodex.github.com/images/original.png" width="200" />
+<img alt="ironcat" title="ironcat" src="https://octodex.github.com/images/ironcat.jpg" width="200" />
+
 ## Math equation
 
 $$
