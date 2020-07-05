@@ -4,12 +4,12 @@ import mermaidAPI from 'mermaid/mermaidAPI';
 
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   return {
-    markdownSanitizeSchema: {
+    sanitizeSchema: {
       attributes: {
         code: ['className'],
       },
     },
-    onMount(el) {
+    effect(el) {
       if (options) {
         m.initialize(options);
       }

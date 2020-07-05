@@ -1,9 +1,9 @@
-import React, { useMemo, useEffect, useRef } from 'react';
+import React, { useMemo, useEffect, useRef, FC } from 'react';
 import * as bytemd from 'bytemd';
 
 export interface ViewerProps extends bytemd.ViewerProps {}
 
-export const Viewer: React.FC<ViewerProps> = ({
+export const Viewer: FC<ViewerProps> = ({
   value,
   markdownOptions,
   plugins,
@@ -15,9 +15,13 @@ export const Viewer: React.FC<ViewerProps> = ({
   );
 
   useEffect(() => {
-    plugins?.forEach(({ onMount }) => {
-      if (onMount && el.current) onMount(el.current);
-    });
+    const $ = el.current;
+    if (!$) return;
+
+    const cbs = plugins?.map(({ effect }) => effect && effect($));
+    return () => {
+      cbs?.forEach((cb) => cb && cb());
+    };
   }, [html]);
 
   return (

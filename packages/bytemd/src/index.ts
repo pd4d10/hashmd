@@ -13,13 +13,13 @@ import './index.css';
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
 
-type Transformer = (x: unified.Processor) => unified.Processor;
+type UnifiedProcessor = (x: unified.Processor) => unified.Processor;
 
 export interface BytemdPlugin {
-  remarkTransformer?: Transformer;
-  rehypeTransformer?: Transformer;
-  markdownSanitizeSchema?: any;
-  onMount?(el: HTMLElement): void;
+  remark?: UnifiedProcessor;
+  rehype?: UnifiedProcessor;
+  sanitizeSchema?: any;
+  effect?(el: HTMLElement): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {

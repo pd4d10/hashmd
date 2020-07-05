@@ -3,12 +3,12 @@ import embed from 'vega-embed';
 
 export default function veta(): BytemdPlugin {
   return {
-    markdownSanitizeSchema: {
+    sanitizeSchema: {
       attributes: {
         code: ['className'],
       },
     },
-    onMount(el) {
+    effect(el) {
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-vega');
       els.forEach((el) => {
         try {

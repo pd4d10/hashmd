@@ -1,5 +1,5 @@
 import unified from 'unified';
-import remark from 'remark-parse';
+import remarkParse from 'remark-parse';
 // @ts-ignore
 import remarkRehype from 'remark-rehype';
 // @ts-ignore
@@ -17,10 +17,10 @@ export function processMarkdown({
   markdownOptions,
   plugins = [],
 }: ViewerProps) {
-  let parser = unified().use(remark, markdownOptions);
+  let parser = unified().use(remarkParse, markdownOptions);
 
-  plugins.forEach(({ remarkTransformer }) => {
-    if (remarkTransformer) parser = remarkTransformer(parser);
+  plugins.forEach(({ remark }) => {
+    if (remark) parser = remark(parser);
   });
 
   parser = parser
@@ -28,14 +28,14 @@ export function processMarkdown({
     .use(rehypeRaw);
 
   let schema = ghSchema;
-  plugins.forEach(({ markdownSanitizeSchema }) => {
+  plugins.forEach(({ sanitizeSchema: markdownSanitizeSchema }) => {
     if (markdownSanitizeSchema) schema = merge(schema, markdownSanitizeSchema);
   });
 
   parser = parser.use(rehypeSanitize, schema);
 
-  plugins.forEach(({ rehypeTransformer }) => {
-    if (rehypeTransformer) parser = rehypeTransformer(parser);
+  plugins.forEach(({ rehype }) => {
+    if (rehype) parser = rehype(parser);
   });
 
   parser = parser.use(stringify);

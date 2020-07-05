@@ -18,9 +18,8 @@ export default function highlight({
   ...rest
 }: HighlightOptions = {}): BytemdPlugin {
   return {
-    rehypeTransformer: (u) =>
-      u.use(rehypeHighlight, { subset, ignoreMissing, ...rest }),
-    markdownSanitizeSchema: {
+    rehype: (u) => u.use(rehypeHighlight, { subset, ignoreMissing, ...rest }),
+    sanitizeSchema: {
       attributes: {
         code: ['className'],
       },

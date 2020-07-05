@@ -1,22 +1,24 @@
 <script>
-  import { afterUpdate } from 'svelte';
+  import { afterUpdate, beforeUpdate, onDestroy } from 'svelte';
   import { processMarkdown } from './utils';
 
   export let value = '';
   export let markdownOptions;
-  export let plugins;
+  export let plugins = [];
 
   let el;
+  let cbs = [];
 
-  afterUpdate(() => {
-    if (plugins) {
-      plugins.forEach((p) => {
-        if (p.onMount) {
-          p.onMount(el);
-        }
-      });
-    }
-  });
+  function on() {
+    cbs = plugins.map(({ effect }) => effect && effect(el));
+  }
+  function off() {
+    cbs.forEach((cb) => cb && cb());
+  }
+
+  beforeUpdate(off);
+  onDestroy(off);
+  afterUpdate(on);
 
   $: html = processMarkdown({ value, plugins, markdownOptions });
 </script>

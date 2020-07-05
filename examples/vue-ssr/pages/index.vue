@@ -11,7 +11,7 @@
         {{ p }}
       </label>
     </div>
-    <editor
+    <Editor
       :value="value"
       @change="handleChange"
       :plugins="enabledPlugins"
@@ -29,6 +29,7 @@ import math from '@bytemd/plugin-math';
 export default {
   components: {
     Editor,
+    Viewer,
   },
   data() {
     return {

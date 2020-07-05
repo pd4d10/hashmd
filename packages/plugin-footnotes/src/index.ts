@@ -6,8 +6,8 @@ export default function footnotes(options?: {
   inlineNotes?: boolean;
 }): BytemdPlugin {
   return {
-    remarkTransformer: (u) => u.use(remarkFootnotes, options),
-    markdownSanitizeSchema: {
+    remark: (u) => u.use(remarkFootnotes, options),
+    sanitizeSchema: {
       attributes: {
         div: ['className'],
         a: ['className'],
