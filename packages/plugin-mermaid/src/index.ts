@@ -9,7 +9,7 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
         code: ['className'],
       },
     },
-    effect(el) {
+    viewerEffect(el) {
       if (options) {
         m.initialize(options);
       }

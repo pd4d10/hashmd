@@ -27,7 +27,9 @@ export default {
   methods: {
     on() {
       if (this.plugins) {
-        this.cbs = this.plugins.map(({ effect }) => effect && effect(this.$el));
+        this.cbs = this.plugins.map(
+          ({ viewerEffect }) => viewerEffect && viewerEffect(this.$el)
+        );
       }
     },
     off() {

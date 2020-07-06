@@ -20,7 +20,7 @@ function calculate(w: number, h: number) {
 
 export default function imageViewer(): BytemdPlugin {
   return {
-    effect(el) {
+    viewerEffect(el) {
       const handler: EventListener = (e) => {
         if (!e.target) return;
         const $ = e.target as HTMLImageElement;

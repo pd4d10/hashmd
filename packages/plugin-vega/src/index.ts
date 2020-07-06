@@ -8,7 +8,7 @@ export default function veta(): BytemdPlugin {
         code: ['className'],
       },
     },
-    effect(el) {
+    viewerEffect(el) {
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-vega');
       els.forEach((el) => {
         try {

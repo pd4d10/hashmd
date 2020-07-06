@@ -18,7 +18,9 @@ export const Viewer: FC<ViewerProps> = ({
     const $ = el.current;
     if (!$) return;
 
-    const cbs = plugins?.map(({ effect }) => effect && effect($));
+    const cbs = plugins?.map(
+      ({ viewerEffect }) => viewerEffect && viewerEffect($)
+    );
     return () => {
       cbs?.forEach((cb) => cb && cb());
     };

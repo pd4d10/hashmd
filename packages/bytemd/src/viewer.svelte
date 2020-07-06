@@ -10,7 +10,7 @@
   let cbs = [];
 
   function on() {
-    cbs = plugins.map(({ effect }) => effect && effect(el));
+    cbs = plugins.map(({ viewerEffect }) => viewerEffect && viewerEffect(el));
   }
   function off() {
     cbs.forEach((cb) => cb && cb());
