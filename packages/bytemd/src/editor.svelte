@@ -1,5 +1,5 @@
 <script>
-  import { onMount, createEventDispatcher } from 'svelte';
+  import { onMount, createEventDispatcher, onDestroy } from 'svelte';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import { dataUrlFileHandler, initEditor } from './editor';
@@ -16,6 +16,7 @@
   let textarea;
   let viewer;
   let cm;
+  let cbs = [];
 
   let activeTab = 0;
   function setActiveTab(e) {
@@ -38,7 +39,11 @@
       dispatch,
       debounceMs
     );
-    dispatch('mount', { cm });
+    cbs = plugins.map(({ editorEffect }) => editorEffect && editorEffect());
+  });
+
+  onDestroy(() => {
+    cbs.forEach((cb) => cb && cb());
   });
 </script>
 
