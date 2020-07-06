@@ -11,7 +11,6 @@ export default {
     'markdownOptions',
     'plugins',
     'mode',
-    'containerStyle',
     'fileHandler',
     'editorConfig',
     'toolbarItems',

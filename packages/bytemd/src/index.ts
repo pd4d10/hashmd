@@ -24,7 +24,6 @@ export interface BytemdPlugin {
 
 export interface EditorProps extends ViewerProps {
   mode?: 'split' | 'tab';
-  containerStyle?: string;
   fileHandler?: (file: File) => Promise<string>;
   editorConfig?: Omit<codemirror.EditorConfiguration, 'value'>;
   toolbar?: boolean;

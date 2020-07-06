@@ -7,7 +7,6 @@
   export let value = '';
   export let markdownOptions = [];
   export let plugins = [];
-  export let containerStyle;
   export let fileHandler = dataUrlFileHandler;
   export let mode = 'split';
   export let editorConfig;
@@ -50,7 +49,7 @@
   }
 </style>
 
-<div class="bytemd" style={containerStyle}>
+<div class="bytemd">
   <Toolbar
     {cm}
     {fileHandler}
