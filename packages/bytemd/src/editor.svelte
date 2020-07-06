@@ -2,12 +2,11 @@
   import { onMount, createEventDispatcher, onDestroy } from 'svelte';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
-  import { dataUrlFileHandler, initEditor } from './editor';
+  import { initEditor } from './editor';
 
   export let value = '';
   export let markdownOptions = [];
   export let plugins = [];
-  export let fileHandler = dataUrlFileHandler;
   export let mode = 'split';
   export let editorConfig;
   export let toolbarItems = [];
@@ -35,11 +34,10 @@
       editorConfig,
       value,
       viewer,
-      fileHandler,
       dispatch,
       debounceMs
     );
-    cbs = plugins.map(({ editorEffect }) => editorEffect && editorEffect());
+    cbs = plugins.map(({ editorEffect }) => editorEffect && editorEffect(cm));
   });
 
   onDestroy(() => {
@@ -55,13 +53,7 @@
 </style>
 
 <div class="bytemd">
-  <Toolbar
-    {cm}
-    {fileHandler}
-    {toolbarItems}
-    {mode}
-    {activeTab}
-    on:tab={setActiveTab} />
+  <Toolbar {cm} {toolbarItems} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"

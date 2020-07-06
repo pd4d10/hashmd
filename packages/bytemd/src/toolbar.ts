@@ -1,5 +1,4 @@
 import { Editor } from 'codemirror';
-import { EditorProps } from '.';
 
 export function handleText(cm: Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
@@ -14,10 +13,6 @@ export function handleText(cm: Editor, before: string, after: string) {
 
 export function handleDec(cm: Editor, decorator: string) {
   return handleText(cm, decorator, decorator);
-}
-
-export function handleTag(cm: Editor, tagName: string) {
-  return handleText(cm, `<${tagName}>`, `</${tagName}>`);
 }
 
 export function handleHeading(cm: Editor) {
@@ -57,20 +52,6 @@ export function handleLink(cm: Editor) {
     const pos = cm.getCursor();
     cm.replaceRange('[]()', pos);
   }
-  cm.focus();
-}
-
-export async function handleImage(
-  cm: Editor,
-  e: InputEvent,
-  fileHandler: Exclude<EditorProps['fileHandler'], undefined>
-) {
-  const $ = e.target as HTMLInputElement;
-  if (!$.files || !$.files.length) return;
-  const file = $.files[0];
-  const url = await fileHandler(file);
-  const text = cm.getSelection();
-  cm.replaceSelection(`![${text}](${url})`);
   cm.focus();
 }
 

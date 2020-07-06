@@ -1,14 +1,11 @@
 <script>
   import { iconMap } from './icons';
-
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import {
     handleDec,
-    handleTag,
     handleBlockquote,
     handleLink,
-    handleImage,
     handleTable,
     handleHeading,
     handleOl,
@@ -19,21 +16,12 @@
   const dispatch = createEventDispatcher();
 
   export let cm;
-  export let fileHandler;
   export let mode;
   export let activeTab;
   export let toolbarItems = [];
-
-  let fileInput;
 </script>
 
 <div class="bytemd-toolbar">
-  <input
-    bind:this={fileInput}
-    type="file"
-    accept="image/*"
-    on:input={(e) => handleImage(cm, e, fileHandler)} />
-
   {#if mode === 'tab'}
     <span class="bytemd-tabs">
       <span
@@ -63,9 +51,6 @@
   </ToolbarButton>
   <ToolbarButton tooltip="link" on:click={() => handleLink(cm)}>
     {@html iconMap.link}
-  </ToolbarButton>
-  <ToolbarButton tooltip="image" on:click={() => fileInput.click()}>
-    {@html iconMap.image}
   </ToolbarButton>
   <ToolbarButton tooltip="table" on:click={() => handleTable(cm)}>
     {@html iconMap.table}

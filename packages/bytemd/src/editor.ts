@@ -1,12 +1,10 @@
 import debounce from 'lodash.debounce';
-import { EditorProps } from '.';
 
 export async function initEditor(
   textarea: HTMLTextAreaElement,
   editorConfig: any,
   value: string,
   viewer: HTMLElement,
-  fileHandler: NonNullable<EditorProps['fileHandler']>,
   dispatch: any,
   debounceMs: number
 ) {
@@ -35,57 +33,5 @@ export async function initEditor(
       viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight));
     });
   });
-  cm.on('paste', async (_, e) => {
-    if (!e.clipboardData) return;
-    const { items } = e.clipboardData;
-    for (let i = 0; i < items.length; i++) {
-      // console.log(items[i]);
-      if (!items[i].type.startsWith('image/')) continue;
-
-      e.preventDefault();
-      const file = items[i].getAsFile();
-      if (!file) continue;
-
-      const url = await fileHandler(file);
-      const text = cm.getSelection();
-      cm.replaceSelection(`![${text}](${url})`);
-      cm.focus();
-      return;
-    }
-  });
-  cm.on('drop', async (_, e) => {
-    if (!e.dataTransfer) return;
-    const { items } = e.dataTransfer;
-    for (let i = 0; i < items.length; i++) {
-      if (!items[i].type.startsWith('image/')) continue;
-
-      e.preventDefault();
-      const file = items[i].getAsFile();
-      if (!file) continue;
-
-      const url = await fileHandler(file);
-      const text = cm.getSelection();
-      cm.replaceSelection(`![${text}](${url})`);
-      cm.focus();
-      return;
-    }
-  });
-
   return cm;
 }
-
-export const dataUrlFileHandler: Exclude<
-  EditorProps['fileHandler'],
-  undefined
-> = async (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', (e) => {
-      resolve(e.target!.result as string);
-    });
-    reader.addEventListener('error', (e) => {
-      reject(new Error('readAsDataURL error'));
-    });
-    reader.readAsDataURL(file);
-  });
-};

@@ -33,6 +33,7 @@ const packageConfigs = {
   'plugin-footnotes': {},
   'plugin-vega': {},
   'plugin-image-viewer': {},
+  'plugin-image-upload': {},
 };
 
 if (umd) {

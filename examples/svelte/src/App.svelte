@@ -6,6 +6,7 @@
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
   import imageViewer from '@bytemd/plugin-image-viewer';
+  import imageUpload from '@bytemd/plugin-image-upload';
 
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
@@ -30,7 +31,21 @@
     mermaid: true,
     footnotes: true,
     imageViewer: true,
+    imageUpload: true,
   };
+
+  function toDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener('load', (e) => {
+        resolve(e.target.result);
+      });
+      reader.addEventListener('error', (e) => {
+        reject(new Error('readAsDataURL error'));
+      });
+      reader.readAsDataURL(file);
+    });
+  }
 
   $: plugins = [
     enabled.mermaid && mermaid(),
@@ -38,6 +53,7 @@
     enabled.math && math(),
     enabled.footnotes && footnotes(),
     enabled.imageViewer && imageViewer(),
+    enabled.imageUpload && imageUpload(toDataUrl),
   ].filter((x) => x);
 </script>
 

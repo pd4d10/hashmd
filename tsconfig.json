@@ -9,6 +9,7 @@
     { "path": "packages/plugin-highlight" },
     { "path": "packages/plugin-footnotes" },
     { "path": "packages/plugin-vega" },
-    { "path": "packages/plugin-image-viewer" }
+    { "path": "packages/plugin-image-viewer" },
+    { "path": "packages/plugin-image-upload" }
   ]
 }
