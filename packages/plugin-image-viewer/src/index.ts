@@ -1,5 +1,6 @@
 import { BytemdPlugin } from 'bytemd';
 import './index.css';
+import { doc } from 'prettier';
 
 function calculate(w: number, h: number) {
   const ratio = w / h;
@@ -18,9 +19,22 @@ function calculate(w: number, h: number) {
   };
 }
 
+function addStyle(style: string) {
+  const el = document.createElement('style');
+  el.innerHTML = style;
+  document.head.appendChild(el);
+  return () => {
+    document.head.removeChild(el);
+  };
+}
+
 export default function imageViewer(): BytemdPlugin {
   return {
     viewerEffect(el) {
+      const removeStyle = addStyle(`.markdown-body img {
+  cursor: zoom-in;
+}`);
+
       const handler: EventListener = (e) => {
         if (!e.target) return;
         const $ = e.target as HTMLImageElement;
@@ -58,6 +72,7 @@ export default function imageViewer(): BytemdPlugin {
 
       el.addEventListener('click', handler);
       return () => {
+        removeStyle();
         el.removeEventListener('click', handler);
       };
     },
