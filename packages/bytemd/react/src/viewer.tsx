@@ -24,7 +24,7 @@ export const Viewer: FC<ViewerProps> = ({
     return () => {
       cbs?.forEach((cb) => cb && cb());
     };
-  }, [html]);
+  }, [html, plugins]);
 
   return (
     <div

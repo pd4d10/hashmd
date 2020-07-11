@@ -7,22 +7,30 @@ import { processMarkdown } from 'bytemd';
 
 export default {
   props: ['value', 'markdownOptions', 'plugins'],
-  mounted() {
-    this.on(this.$el);
-  },
-  updated() {
-    this.on(this.$el);
-  },
-  beforeUpdate() {
-    this.off(this.$el);
-  },
-  beforeDestroy() {
-    this.off(this.$el);
-  },
   computed: {
     html() {
       return processMarkdown(this.$props);
     },
+    needUpdate() {
+      return [this.html, this.plugins];
+    },
+  },
+  watch: {
+    needUpdate: {
+      handler(val) {
+        this.off();
+        this.$nextTick(() => {
+          this.on();
+        });
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    this.on();
+  },
+  beforeDestroy() {
+    this.off();
   },
   methods: {
     on() {

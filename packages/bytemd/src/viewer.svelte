@@ -1,5 +1,10 @@
+<script context="module">
+  // Declare callbacks here to be non-reactive
+  const cbsMap = {};
+</script>
+
 <script>
-  import { afterUpdate, beforeUpdate, onDestroy } from 'svelte';
+  import { tick, onDestroy, onMount } from 'svelte';
   import { processMarkdown } from './utils';
 
   export let value = '';
@@ -7,20 +12,26 @@
   export let plugins = [];
 
   let el;
-  let cbs = [];
+  const id = Date.now();
 
   function on() {
-    cbs = plugins.map(({ viewerEffect }) => viewerEffect && viewerEffect(el));
+    cbsMap[id] = plugins.map(
+      ({ viewerEffect }) => viewerEffect && viewerEffect(el)
+    );
   }
   function off() {
-    cbs.forEach((cb) => cb && cb());
+    cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
   }
 
-  beforeUpdate(off);
+  onMount(on);
   onDestroy(off);
-  afterUpdate(on);
-
   $: html = processMarkdown({ value, plugins, markdownOptions });
+  $: if (html && plugins) {
+    off();
+    tick().then(() => {
+      on();
+    });
+  }
 </script>
 
 <div bind:this={el} class="markdown-body">

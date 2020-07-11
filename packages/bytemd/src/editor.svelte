@@ -1,5 +1,10 @@
+<script context="module">
+  // Declare callbacks here to be non-reactive
+  const cbsMap = {};
+</script>
+
 <script>
-  import { onMount, createEventDispatcher, onDestroy } from 'svelte';
+  import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import { initEditor } from './editor';
@@ -16,18 +21,32 @@
   let viewer;
   let cm;
   let cbs = [];
-
   let activeTab = 0;
+  const id = Date.now();
+  const dispatch = createEventDispatcher();
+
   function setActiveTab(e) {
     activeTab = e.detail.value;
+  }
+
+  function on() {
+    cbsMap[id] = plugins.map(
+      ({ editorEffect }) => editorEffect && editorEffect(cm)
+    );
+  }
+  function off() {
+    cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
   }
 
   $: if (cm && value !== cm.getValue()) {
     cm.setValue(value);
   }
-
-  const dispatch = createEventDispatcher();
-
+  $: if (cm && plugins) {
+    off();
+    tick().then(() => {
+      on();
+    });
+  }
   onMount(async () => {
     cm = await initEditor(
       textarea,
@@ -37,11 +56,10 @@
       dispatch,
       debounceMs
     );
-    cbs = plugins.map(({ editorEffect }) => editorEffect && editorEffect(cm));
+    on();
   });
-
   onDestroy(() => {
-    cbs.forEach((cb) => cb && cb());
+    off();
   });
 </script>
 
