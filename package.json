@@ -7,16 +7,21 @@
   ],
   "scripts": {
     "clean": "rm -rf packages/**/*/dist",
-    "build": "npm run clean && tsc; rollup -c",
+    "build": "tsc --build && rollup -c",
+    "build:umd": "tsc --build && UMD=1 rollup -c",
     "dev": "npm run clean && rollup -cw",
-    "watch": "tsc --build --watch"
+    "watch": "tsc --build --watch",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
     "@primer/octicons-v2": "0.0.0-53e900d",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
+    "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/svelte": "^3.0.0",
+    "@types/jest": "^26.0.4",
     "@types/react": "^16.9.36",
     "jest": "^26.0.1",
     "mustache": "^4.0.1",
@@ -33,15 +38,7 @@
     "rollup-plugin-vue": "^5.1.9",
     "svelte": "^3.23.2",
     "svelte-jester": "^1.0.6",
+    "ts-jest": "^26.1.1",
     "typescript": "^3.9.6"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.svelte$": "svelte-jester"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "svelte"
-    ]
   }
 }
