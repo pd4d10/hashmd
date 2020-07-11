@@ -6,7 +6,7 @@ export async function initEditor(
   value: string,
   viewer: HTMLElement,
   dispatch: any,
-  debounceMs: number
+  previewDebounce: number
 ) {
   const codemirror = await import('codemirror');
   // @ts-ignore
@@ -23,7 +23,7 @@ export async function initEditor(
       if (change.origin !== 'setValue') {
         dispatch('change', { value: cm.getValue() });
       }
-    }, debounceMs)
+    }, previewDebounce)
   );
   cm.on('scroll', (cm) => {
     requestAnimationFrame(() => {

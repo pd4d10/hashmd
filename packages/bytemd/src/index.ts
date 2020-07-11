@@ -26,7 +26,6 @@ export interface BytemdPlugin {
 export interface EditorProps extends ViewerProps {
   mode?: 'split' | 'tab';
   editorConfig?: Omit<codemirror.EditorConfiguration, 'value'>;
-  toolbar?: boolean;
   /**
    * Components which should be added to toolbar
    */
@@ -34,7 +33,7 @@ export interface EditorProps extends ViewerProps {
     tooltip?: string;
     bodyHtml: string;
   }[];
-  debounceMs?: number;
+  previewDebounce?: number;
 }
 
 export interface ViewerProps {

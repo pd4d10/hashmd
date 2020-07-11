@@ -11,10 +11,9 @@ export default {
     'markdownOptions',
     'plugins',
     'mode',
-    'fileHandler',
     'editorConfig',
     'toolbarItems',
-    'debounceMs',
+    'previewDebounce',
   ],
   mounted() {
     const editor = new bytemd.Editor({

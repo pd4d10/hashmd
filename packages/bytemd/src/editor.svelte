@@ -13,9 +13,9 @@
   export let markdownOptions = [];
   export let plugins = [];
   export let mode = 'split';
-  export let editorConfig;
+  export let editorConfig = {};
   export let toolbarItems = [];
-  export let debounceMs = 300;
+  export let previewDebounce = 300;
 
   let textarea;
   let viewer;
@@ -54,7 +54,7 @@
       value,
       viewer,
       dispatch,
-      debounceMs
+      previewDebounce
     );
     on();
   });
