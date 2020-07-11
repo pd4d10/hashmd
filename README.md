@@ -1,6 +1,6 @@
 # ByteMD
 
-[![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd) [![demo](https://github.com/bytedance/bytemd/workflows/demo/badge.svg)](https://bytedance.github.io/bytemd/)
+[![npm](https://img.shields.io/npm/v/bytemd.svg)](https://npm.im/bytemd) [![demo](https://github.com/bytedance/bytemd/workflows/demo/badge.svg)](https://bytedance.github.io/bytemd/) ![test](https://github.com/bytedance/bytemd/workflows/test/badge.svg)
 
 Markdown editor component built with Svelte.
 
