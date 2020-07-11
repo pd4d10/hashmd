@@ -8,7 +8,7 @@
   import { processMarkdown } from './utils';
 
   export let value = '';
-  export let markdownOptions;
+  export let markdownOptions = {};
   export let plugins = [];
 
   let el;

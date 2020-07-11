@@ -10,12 +10,26 @@ test('value', async () => {
   expect(document.querySelector('.markdown-body')?.innerHTML).toEqual(
     '<h1>title</h1>'
   );
+  $.component.$destroy();
+});
 
-  // preview debounce
+// test('change event', async () => {
+//   const $ = render(Editor, {});
+
+//   const mock = jest.fn();
+//   $.component.$on('change', mock);
+//   $.component.$set({ value: 'abc' });
+
+//   await sleep(400);
+//   expect(mock).toBeCalledTimes(1);
+//   $.component.$destroy();
+// });
+
+test('preview debounce', async () => {
+  const $ = render(Editor, {});
+
   $.component.$set({ value: 'abc' });
-  expect(document.querySelector('.markdown-body')?.innerHTML).toEqual(
-    '<h1>title</h1>'
-  );
+  expect(document.querySelector('.markdown-body')?.innerHTML).toEqual('');
   await sleep(400);
   expect(document.querySelector('.markdown-body')?.innerHTML).toEqual(
     '<p>abc</p>'
