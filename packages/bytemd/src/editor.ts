@@ -1,12 +1,9 @@
-import debounce from 'lodash.debounce';
-
 export async function initEditor(
   textarea: HTMLTextAreaElement,
   editorConfig: any,
   value: string,
   viewer: HTMLElement,
-  dispatch: any,
-  previewDebounce: number
+  dispatch: any
 ) {
   const codemirror = await import('codemirror');
   // @ts-ignore
@@ -17,14 +14,11 @@ export async function initEditor(
     ...editorConfig,
   });
   cm.setValue(value);
-  cm.on(
-    'change',
-    debounce((doc, change) => {
-      if (change.origin !== 'setValue') {
-        dispatch('change', { value: cm.getValue() });
-      }
-    }, previewDebounce)
-  );
+  cm.on('change', (doc, change) => {
+    if (change.origin !== 'setValue') {
+      dispatch('change', { value: cm.getValue() });
+    }
+  });
   cm.on('scroll', (cm) => {
     requestAnimationFrame(() => {
       const editorInfo = cm.getScrollInfo();

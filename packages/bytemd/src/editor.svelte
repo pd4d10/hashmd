@@ -5,6 +5,7 @@
 
 <script>
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
+  import debounce from 'lodash.debounce';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import { initEditor } from './editor';
@@ -17,6 +18,7 @@
   export let toolbarItems = [];
   export let previewDebounce = 300;
 
+  let viewerValue;
   let textarea;
   let viewer;
   let cm;
@@ -37,10 +39,15 @@
   function off() {
     cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
   }
+  const updateViewerValue = debounce(() => {
+    viewerValue = value;
+  }, previewDebounce);
 
   $: if (cm && value !== cm.getValue()) {
     cm.setValue(value);
   }
+  $: if (value != null) updateViewerValue();
+
   $: if (cm && plugins) {
     off();
     tick().then(() => {
@@ -48,14 +55,7 @@
     });
   }
   onMount(async () => {
-    cm = await initEditor(
-      textarea,
-      editorConfig,
-      value,
-      viewer,
-      dispatch,
-      previewDebounce
-    );
+    cm = await initEditor(textarea, editorConfig, value, viewer, dispatch);
     on();
   });
   onDestroy(() => {
@@ -82,7 +82,7 @@
       class="bytemd-preview"
       bind:this={viewer}
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
-      <Viewer {value} {markdownOptions} {plugins} />
+      <Viewer value={viewerValue} {markdownOptions} {plugins} />
     </div>
   </div>
 </div>
