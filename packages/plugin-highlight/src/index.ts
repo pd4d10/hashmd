@@ -10,8 +10,6 @@ interface HighlightOptions {
   aliases?: Record<string, string[]>;
 }
 
-const defaults: HighlightOptions = { subset: false, ignoreMissing: true };
-
 export default function highlight({
   subset = false,
   ignoreMissing = true,

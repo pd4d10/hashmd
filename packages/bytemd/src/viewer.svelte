@@ -23,10 +23,9 @@
     cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
   }
 
-  onMount(on);
   onDestroy(off);
   $: html = processMarkdown({ value, plugins, markdownOptions });
-  $: if (html && plugins) {
+  $: if (html != null && plugins) {
     off();
     tick().then(() => {
       on();

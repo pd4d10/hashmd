@@ -8,7 +8,7 @@
   import debounce from 'lodash.debounce';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
-  import { initEditor } from './editor';
+  import {} from './editor';
 
   export let value = '';
   export let markdownOptions = [];
@@ -55,8 +55,26 @@
     });
   }
   onMount(async () => {
-    cm = await initEditor(textarea, editorConfig, value, viewer, dispatch);
-    on();
+    const codemirror = await import('codemirror');
+    await import('codemirror/mode/markdown/markdown.js');
+    cm = codemirror.fromTextArea(textarea, {
+      mode: 'markdown',
+      lineWrapping: true,
+      ...editorConfig,
+    });
+    cm.setValue(value);
+    cm.on('change', (doc, change) => {
+      dispatch('change', { value: cm.getValue() });
+    });
+    cm.on('scroll', (cm) => {
+      requestAnimationFrame(() => {
+        const editorInfo = cm.getScrollInfo();
+        const ratio =
+          editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
+        viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight));
+      });
+    });
+    // No need to call `on` because cm instance would change once after init
   });
   onDestroy(() => {
     off();
