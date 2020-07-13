@@ -11,6 +11,7 @@ jobs:
       - run: |
           yarn
           yarn build
+          yarn test
           cd examples/svelte
           yarn build
       - uses: peaceiris/actions-gh-pages@v2.5.1
