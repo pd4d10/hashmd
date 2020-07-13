@@ -1,48 +1,58 @@
 import { Editor } from '../..';
-import { render, fireEvent } from '@testing-library/svelte';
+import * as cm from 'codemirror';
+import { render, fireEvent, act, RenderResult } from '@testing-library/svelte';
 
-function sleep(ms: number) {
+function sleep(ms: number = 0) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+function getCodeMirror($: RenderResult) {
+  const dom = $.container.querySelector('.CodeMirror') as any;
+  return dom.CodeMirror as cm.Editor;
+}
+
+const heading = '# title';
+const headingHtml = '<h1>title</h1>';
+const paragraph = 'abc';
+const paragraphHtml = '<p>abc</p>';
+
 test('value', async () => {
-  const $ = render(Editor, { value: '# title' });
-  expect(document.querySelector('.markdown-body')?.innerHTML).toEqual(
-    '<h1>title</h1>'
-  );
-  $.component.$destroy();
+  const $ = render(Editor, { value: heading });
+  const onChange = jest.fn();
+  $.component.$on('change', onChange);
+  await sleep();
+  expect(getCodeMirror($).getValue()).toEqual(heading);
+
+  // // change from UI
+  // getCodeMirror($).setValue(paragraph);
+  // await sleep();
+  // expect(getCodeMirror($).getValue()).toEqual(paragraph);
+  // expect(onChange).toBeCalled();
+  // expect(onChange).toBeCalledTimes(1);
+  // // expect(onChange).toBeCalledWith()
+
+  // change from props
+  $.component.$set({ value: heading });
+  expect(getCodeMirror($).getValue()).toEqual(heading);
+  expect(onChange).not.toBeCalled();
 });
-
-// test('change event', async () => {
-//   const $ = render(Editor, {});
-
-//   const mock = jest.fn();
-//   $.component.$on('change', mock);
-//   $.component.$set({ value: 'abc' });
-
-//   await sleep(400);
-//   expect(mock).toBeCalledTimes(1);
-//   $.component.$destroy();
-// });
 
 test('preview debounce', async () => {
   const $ = render(Editor, {});
-
-  $.component.$set({ value: 'abc' });
-  expect(document.querySelector('.markdown-body')?.innerHTML).toEqual('');
+  $.component.$set({ value: paragraph });
+  expect($.container.querySelector('.markdown-body')?.innerHTML).toEqual('');
   await sleep(400);
-  expect(document.querySelector('.markdown-body')?.innerHTML).toEqual(
-    '<p>abc</p>'
+  expect($.container.querySelector('.markdown-body')?.innerHTML).toEqual(
+    paragraphHtml
   );
-  $.component.$destroy();
 });
 
 describe('mode', () => {
-  test('split', () => {
+  test('split', async () => {
     const $ = render(Editor, { mode: 'split' });
-    expect(document.querySelector('.bytemd-editor')).toBeVisible();
-    expect(document.querySelector('.bytemd-preview')).toBeVisible();
-    $.component.$destroy();
+    await act();
+    expect($.container.querySelector('.bytemd-editor')).toBeVisible();
+    expect($.container.querySelector('.bytemd-preview')).toBeVisible();
   });
 
   test('tab', async () => {
@@ -50,17 +60,34 @@ describe('mode', () => {
     const write = $.getByText('Write');
     const preview = $.getByText('Preview');
 
-    expect(document.querySelector('.bytemd-editor')).toBeVisible();
+    expect($.container.querySelector('.bytemd-editor')).toBeVisible();
     expect(write).toHaveClass('active');
-    expect(document.querySelector('.bytemd-preview')).not.toBeVisible();
+    expect($.container.querySelector('.bytemd-preview')).not.toBeVisible();
     expect(preview).not.toHaveClass('active');
 
     await fireEvent.click(preview);
-    expect(document.querySelector('.bytemd-editor')).not.toBeVisible();
+    expect($.container.querySelector('.bytemd-editor')).not.toBeVisible();
     expect(write).not.toHaveClass('active');
-    expect(document.querySelector('.bytemd-preview')).toBeVisible();
+    expect($.container.querySelector('.bytemd-preview')).toBeVisible();
     expect(preview).toHaveClass('active');
+  });
+});
 
-    $.component.$destroy();
+describe('plugin', () => {
+  test('editor effect', async () => {
+    const $ = render(Editor, {});
+    const editorOff = jest.fn();
+    const editorEffect = jest.fn(() => editorOff);
+
+    $.component.$set({ plugins: [{ editorEffect }] });
+    await sleep();
+    expect(editorEffect).toBeCalled();
+    expect(editorEffect).toBeCalledTimes(1);
+    expect(editorEffect).toBeCalledWith(getCodeMirror($));
+
+    $.component.$set({ plugins: [] });
+    await sleep();
+    expect(editorOff).toBeCalled();
+    expect(editorOff).toBeCalledTimes(1);
   });
 });
