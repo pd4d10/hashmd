@@ -12,8 +12,7 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-mermaid');
       if (els.length === 0) return;
 
-      import('mermaid').then((x) => {
-        const m = x.default;
+      import('mermaid').then(({ default: m }) => {
         if (options) {
           m.initialize(options);
         }

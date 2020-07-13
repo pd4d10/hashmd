@@ -1,6 +1,5 @@
 import { BytemdPlugin } from 'bytemd';
 import './index.css';
-import { doc } from 'prettier';
 
 function calculate(w: number, h: number) {
   const ratio = w / h;

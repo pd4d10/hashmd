@@ -1,7 +1,6 @@
 import { BytemdPlugin } from 'bytemd';
-import embed from 'vega-embed';
 
-export default function veta(): BytemdPlugin {
+export default function vega(): BytemdPlugin {
   return {
     sanitizeSchema: {
       attributes: {
@@ -10,14 +9,18 @@ export default function veta(): BytemdPlugin {
     },
     viewerEffect(el) {
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-vega');
-      els.forEach((el) => {
-        try {
-          const pre = el.parentElement!;
-          embed(el, JSON.parse(el.innerText));
-          pre.replaceWith(pre.children[0]);
-        } catch (err) {
-          console.error(err);
-        }
+      if (els.length === 0) return;
+
+      import('vega-embed').then(({ default: embed }) => {
+        els.forEach((el) => {
+          try {
+            const pre = el.parentElement!;
+            embed(el, JSON.parse(el.innerText));
+            pre.replaceWith(pre.children[0]);
+          } catch (err) {
+            console.error(err);
+          }
+        });
       });
     },
   };
