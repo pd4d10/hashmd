@@ -1,11 +1,12 @@
 import { BytemdPlugin } from 'bytemd';
+import { Editor } from 'codemirror';
 
 export default function imageUpload(
   fileHandler: (file: File) => Promise<string>
 ): BytemdPlugin {
   return {
     editorEffect(cm) {
-      cm.on('paste', async (_, e) => {
+      const handlePaste = async (_: Editor, e: ClipboardEvent) => {
         if (!e.clipboardData) return;
         const { items } = e.clipboardData;
         for (let i = 0; i < items.length; i++) {
@@ -22,8 +23,9 @@ export default function imageUpload(
           cm.focus();
           return;
         }
-      });
-      cm.on('drop', async (_, e) => {
+      };
+
+      const handleDrop = async (_: Editor, e: DragEvent) => {
         if (!e.dataTransfer) return;
         const { items } = e.dataTransfer;
         for (let i = 0; i < items.length; i++) {
@@ -40,7 +42,15 @@ export default function imageUpload(
           cm.focus();
           return;
         }
-      });
+      };
+
+      cm.on('paste', handlePaste);
+      cm.on('drop', handleDrop);
+
+      return () => {
+        cm.off('paste', handlePaste);
+        cm.off('drop', handleDrop);
+      };
     },
   };
 }
