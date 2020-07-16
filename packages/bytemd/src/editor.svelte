@@ -8,7 +8,6 @@
   import debounce from 'lodash.debounce';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
-  import {} from './editor';
 
   export let value = '';
   export let markdownOptions = [];
@@ -18,9 +17,9 @@
   export let toolbarItems = [];
   export let previewDebounce = 300;
 
+  let el;
   let viewerValue;
   let textarea;
-  let viewer;
   let cm;
   let cbs = [];
   let activeTab = 0;
@@ -33,7 +32,7 @@
 
   function on() {
     cbsMap[id] = plugins.map(
-      ({ editorEffect }) => editorEffect && editorEffect(cm)
+      ({ editorEffect }) => editorEffect && editorEffect(cm, el)
     );
   }
   function off() {
@@ -48,7 +47,7 @@
   }
   $: if (value != null) updateViewerValue();
 
-  $: if (cm && plugins) {
+  $: if (cm && el && plugins) {
     off();
     tick().then(() => {
       on();
@@ -66,19 +65,9 @@
     cm.on('change', (doc, change) => {
       dispatch('change', { value: cm.getValue() });
     });
-    cm.on('scroll', (cm) => {
-      requestAnimationFrame(() => {
-        const editorInfo = cm.getScrollInfo();
-        const ratio =
-          editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
-        viewer.scrollTo(0, ratio * (viewer.scrollHeight - viewer.clientHeight));
-      });
-    });
     // No need to call `on` because cm instance would change once after init
   });
-  onDestroy(() => {
-    off();
-  });
+  onDestroy(off);
 </script>
 
 <style>
@@ -88,7 +77,7 @@
   }
 </style>
 
-<div class="bytemd">
+<div class="bytemd" bind:this={el}>
   <Toolbar {cm} {toolbarItems} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
@@ -98,7 +87,6 @@
     </div>
     <div
       class="bytemd-preview"
-      bind:this={viewer}
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
       <Viewer value={viewerValue} {markdownOptions} {plugins} />
     </div>

@@ -83,7 +83,10 @@ describe('plugin', () => {
     await sleep();
     expect(editorEffect).toBeCalled();
     expect(editorEffect).toBeCalledTimes(1);
-    expect(editorEffect).toBeCalledWith(getCodeMirror($));
+    expect(editorEffect).toBeCalledWith(
+      getCodeMirror($),
+      $.container.querySelector('.bytemd')
+    );
 
     $.component.$set({ plugins: [] });
     await sleep();

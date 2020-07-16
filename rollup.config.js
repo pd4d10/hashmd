@@ -34,6 +34,7 @@ const packageConfigs = {
   'plugin-vega': {},
   'plugin-image-viewer': {},
   'plugin-image-upload': {},
+  'plugin-scroll-sync': {},
 };
 
 if (umd) {

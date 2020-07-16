@@ -19,7 +19,7 @@ export interface BytemdPlugin {
   remark?: UnifiedProcessor;
   rehype?: UnifiedProcessor;
   sanitizeSchema?: any;
-  editorEffect?(cm: codemirror.Editor): void | (() => void);
+  editorEffect?(cm: codemirror.Editor, el: HTMLElement): void | (() => void);
   viewerEffect?(el: HTMLElement): void | (() => void);
 }
 

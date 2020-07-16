@@ -7,6 +7,7 @@
   import footnotes from '@bytemd/plugin-footnotes';
   import imageViewer from '@bytemd/plugin-image-viewer';
   import imageUpload from '@bytemd/plugin-image-upload';
+  import scrollSync from '@bytemd/plugin-scroll-sync';
 
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
@@ -32,6 +33,7 @@
     footnotes: true,
     imageViewer: true,
     imageUpload: true,
+    scrollSync: true,
   };
 
   function toDataUrl(file) {
@@ -54,6 +56,7 @@
     enabled.footnotes && footnotes(),
     enabled.imageViewer && imageViewer(),
     enabled.imageUpload && imageUpload(toDataUrl),
+    enabled.scrollSync && scrollSync(),
   ].filter((x) => x);
 </script>
 

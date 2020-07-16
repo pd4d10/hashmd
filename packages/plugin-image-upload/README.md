@@ -1,20 +1,20 @@
-# @bytemd/plugin-image-viewer
+# @bytemd/plugin-image-upload
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-image-viewer.svg)](https://npm.im/@bytemd/plugin-image-viewer)
+[![npm](https://img.shields.io/npm/v/@bytemd/plugin-image-upload.svg)](https://npm.im/@bytemd/plugin-image-upload)
 
-[bytemd](https://github.com/bytedance/bytemd) plugin to support image preview
+[bytemd](https://github.com/bytedance/bytemd) plugin to support image upload by paste or "drag and drop"
 
 ## Usage
 
 ```js
 import { Editor } from 'bytemd';
-import imageViewer from '@bytemd/plugin-image-viewer';
+import imageUpload from '@bytemd/plugin-image-upload';
 
 new Editor({
   target: document.body,
   props: {
     plugins: [
-      imageViewer(),
+      imageUpload(),
       // ... other plugins
     ],
   },
