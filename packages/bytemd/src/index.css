@@ -1,15 +1,32 @@
 .bytemd {
-  border: 1px solid #eee;
+  border: 1px solid #e1e4e8;
   display: flex;
   flex-direction: column;
 }
+
 .bytemd-toolbar {
   display: flex;
   padding: 4px;
-  border-bottom: 1px solid #eee;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
 }
 .bytemd-toolbar input {
   display: none;
+}
+.bytemd-toolbar span {
+  cursor: pointer;
+  border: 1px solid transparent;
+  margin-left: 6px;
+}
+.bytemd-toolbar span svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 4px;
+  fill: #586069;
+}
+.bytemd-toolbar span:hover svg {
+  fill: #0366d6;
 }
 .bytemd-tabs span {
   cursor: pointer;
@@ -20,6 +37,7 @@
 .bytemd-tabs span.active {
   color: #0366d6;
 }
+
 .bytemd-body {
   flex-grow: 1;
   display: flex;
@@ -40,8 +58,8 @@
 .bytemd-preview {
   flex: 1;
   overflow: auto;
-  border-left: 1px solid #eee;
+  border-left: 1px solid #e1e4e8;
 }
-.markdown-body {
+.bytemd-preview .markdown-body {
   padding: 20px;
 }
