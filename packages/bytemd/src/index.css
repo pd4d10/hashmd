@@ -10,13 +10,11 @@
   background-color: #f6f8fa;
   border-bottom: 1px solid #e1e4e8;
 }
-.bytemd-toolbar input {
-  display: none;
-}
 .bytemd-toolbar > span {
   cursor: pointer;
   border: 1px solid transparent;
-  margin-left: 6px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 .bytemd-toolbar > span svg {
   display: block;
@@ -43,6 +41,9 @@
 }
 .tippy-box {
   font-size: 13px;
+}
+.bytemd-info {
+  position: absolute;
 }
 
 .bytemd-body {

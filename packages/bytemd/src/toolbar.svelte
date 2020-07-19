@@ -74,4 +74,13 @@
       </ToolbarButton>
     {/if}
   {/each}
+
+  <span style="flex-grow:1" />
+  <ToolbarButton
+    tooltip="About ByteMD"
+    on:click={() => {
+      window.open('https://github.com/bytedance/bytemd');
+    }}>
+    {@html iconMap.info}
+  </ToolbarButton>
 </div>

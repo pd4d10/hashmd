@@ -13,7 +13,7 @@ const iconMap = {
   ol: { key: 'list-ordered' },
   ul: { key: 'list-unordered' },
   tasklist: {},
-  html: { key: 'code-review' },
+  info: {},
 };
 
 let code = 'export const iconMap = {';
