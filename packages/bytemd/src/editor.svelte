@@ -28,6 +28,11 @@
 
   function setActiveTab(e) {
     activeTab = e.detail.value;
+    if (cm && activeTab === 0) {
+      tick().then(() => {
+        cm.focus();
+      });
+    }
   }
 
   function on() {
@@ -70,20 +75,13 @@
   onDestroy(off);
 </script>
 
-<style>
-  /* This cannot be global, because CodeMirror seems use textarea's style to determine initialization status */
-  .bytemd-editor textarea {
-    display: none;
-  }
-</style>
-
 <div class="bytemd" bind:this={el}>
   <Toolbar {cm} {toolbarItems} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"
       style={mode === 'tab' && activeTab === 1 ? 'display:none' : undefined}>
-      <textarea bind:this={textarea} />
+      <textarea bind:this={textarea} style="display:none" />
     </div>
     <div
       class="bytemd-preview"

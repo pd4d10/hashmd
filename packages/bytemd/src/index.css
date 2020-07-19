@@ -13,12 +13,12 @@
 .bytemd-toolbar input {
   display: none;
 }
-.bytemd-toolbar span {
+.bytemd-toolbar > span {
   cursor: pointer;
   border: 1px solid transparent;
   margin-left: 6px;
 }
-.bytemd-toolbar span svg {
+.bytemd-toolbar > span svg {
   display: block;
   width: 16px;
   height: 16px;
@@ -28,14 +28,21 @@
 .bytemd-toolbar span:hover svg {
   fill: #0366d6;
 }
+.bytemd-tabs {
+  display: flex;
+}
 .bytemd-tabs span {
   cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
   line-height: 26px;
+  font-size: 14px;
 }
 .bytemd-tabs span.active {
   color: #0366d6;
+}
+.tippy-box {
+  font-size: 13px;
 }
 
 .bytemd-body {
