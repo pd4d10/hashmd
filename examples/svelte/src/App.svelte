@@ -15,6 +15,7 @@
   import '@bytemd/plugin-image-viewer/dist/index.css';
 
   let value = '';
+  let mode = 'split';
 
   function handleChange(e) {
     value = e.detail.value;
@@ -31,9 +32,9 @@
     math: true,
     mermaid: true,
     footnotes: true,
-    imageViewer: true,
-    imageUpload: true,
-    scrollSync: true,
+    'image-viewer': true,
+    'image-upload': true,
+    'scroll-sync': true,
   };
 
   function toDataUrl(file) {
@@ -54,29 +55,54 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled.imageViewer && imageViewer(),
-    enabled.imageUpload && imageUpload(toDataUrl),
-    enabled.scrollSync && scrollSync(),
+    enabled['image-viewer'] && imageViewer(),
+    enabled['image-upload'] && imageUpload(toDataUrl),
+    enabled['scroll-sync'] && scrollSync(),
+    // {
+    //   editorEffect(cm, el) {
+    //     console.log('on', cm, el);
+    //     return () => {
+    //       console.log('off', cm, el);
+    //     };
+    //   },
+    //   viewerEffect(el) {
+    //     console.log('on', el);
+    //     return () => {
+    //       console.log('off', el);
+    //     };
+    //   },
+    // },
   ].filter((x) => x);
 </script>
 
 <style>
-  div {
-    padding: 10px 0;
+  .line {
+    margin: 10px 0;
   }
   :global(.bytemd) {
-    height: 90vh !important;
+    height: calc(100vh - 100px);
   }
 </style>
 
 <div>
-  Plugins:
-  {#each Object.keys(enabled) as p}
-    {' '}
-    <label>
-      <input type="checkbox" bind:checked={enabled[p]} />
-      {p}
-    </label>
-  {/each}
+  <div class="line">
+    Mode:
+    {#each ['split', 'tab'] as m}
+      <label>
+        <input type="radio" bind:group={mode} value={m} />
+        {m}
+      </label>
+    {/each}
+  </div>
+  <div class="line">
+    Plugins:
+    {#each Object.keys(enabled) as p}
+      {' '}
+      <label>
+        <input type="checkbox" bind:checked={enabled[p]} />
+        {p}
+      </label>
+    {/each}
+  </div>
 </div>
-<Editor {value} {plugins} on:change={handleChange} />
+<Editor {value} {mode} {plugins} on:change={handleChange} />
