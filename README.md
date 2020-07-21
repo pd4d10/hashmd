@@ -103,6 +103,24 @@ instance.on('change', (e) => {
 });
 ```
 
+## Technical details
+
+ByteMD uses [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) ecosystem to process Markdown. The complete process is as follows:
+
+1. The markdown text is parsed to an [AST](https://github.com/syntax-tree/mdast)
+2. The Markdown AST could be manipulated by several [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md)
+3. The Markdown AST is transformed to a HTML AST
+4. The HTML AST is sanitized for security reason
+5. The HTML AST could be manipulated by several [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)
+6. The HTML AST is stringified to HTML
+7. Some extra DOM manipulation after the HTML being rendered
+
+It could also be described as a flowchart:
+
+![](./assets/process.svg)
+
+The 2,5,7 steps are designed for user customization via ByteMD plugin API.
+
 ## Plugins
 
 | Package | Version | Description |
@@ -111,6 +129,10 @@ instance.on('change', (e) => {
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | highlight code blocks |
 | [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | support math equation |
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | support [mermaid](https://mermaid-js.github.io/mermaid/) diagram and flowchart |
+
+## Write a plugin
+
+TODO
 
 ## License
 
