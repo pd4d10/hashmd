@@ -22,7 +22,7 @@
 
   onMount(async () => {
     const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/master/README.md'
+      'https://raw.githubusercontent.com/bytedance/bytemd/master/packages/bytemd/README.md'
     );
     const text = await res.text();
     value = text;
