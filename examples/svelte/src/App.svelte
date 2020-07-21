@@ -5,7 +5,6 @@
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
-  import imageViewer from '@bytemd/plugin-image-viewer';
   import imageUpload from '@bytemd/plugin-image-upload';
   import scrollSync from '@bytemd/plugin-scroll-sync';
 
@@ -22,7 +21,9 @@
   }
 
   onMount(async () => {
-    const res = await fetch('demo.md');
+    const res = await fetch(
+      'https://raw.githubusercontent.com/bytedance/bytemd/master/README.md'
+    );
     const text = await res.text();
     value = text;
   });
@@ -32,7 +33,6 @@
     math: true,
     mermaid: true,
     footnotes: true,
-    'image-viewer': true,
     'image-upload': true,
     'scroll-sync': true,
   };
@@ -55,7 +55,6 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled['image-viewer'] && imageViewer(),
     enabled['image-upload'] && imageUpload(toDataUrl),
     enabled['scroll-sync'] && scrollSync(),
     // {

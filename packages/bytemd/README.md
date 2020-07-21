@@ -4,6 +4,8 @@
 
 ByteMD is a Markdown editor component built with Svelte. It could also be used in other libraries/frameworks such as React, Vue and Angular.
 
+> Note: It is still in development
+
 ## Features
 
 1. **Lightweight and framework agnostic**: ByteMD is built with [Svelte](https://svelte.dev/). It compiles to vanilla JS DOM manipulation without importing any UI Framework runtime bundle, which makes it lightweight, and easily adapted to other libraries/frameworks.
@@ -117,7 +119,7 @@ ByteMD uses [remark](https://github.com/remarkjs/remark) and [rehype](https://gi
 
 It could also be described as a flowchart:
 
-![process](https://github.com/bytedance/bytemd/blob/master/assets/process.svg)
+![process](https://raw.githubusercontent.com/bytedance/bytemd/master/assets/process.svg)
 
 The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
