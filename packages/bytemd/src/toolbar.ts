@@ -23,27 +23,6 @@ export function handleHeading(cm: Editor) {
   cm.focus();
 }
 
-export function handleBlockquote(cm: Editor) {
-  if (cm.somethingSelected()) {
-    const [selection] = cm.listSelections();
-    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
-      // @ts-ignore
-      cm.replaceRange('> ' + cm.getLine(i), { line: i, ch: 0 }, { line: i });
-    }
-  } else {
-    const { line } = cm.getCursor();
-    const content = cm.getLine(line);
-    if (content.startsWith('> ')) {
-      // @ts-ignore
-      cm.replaceRange(content.slice(2), { line, ch: 0 }, { line });
-    } else {
-      // @ts-ignore
-      cm.replaceRange('> ' + content, { line, ch: 0 }, { line });
-    }
-  }
-  cm.focus();
-}
-
 export function handleLink(cm: Editor) {
   if (cm.somethingSelected()) {
     const text = cm.getSelection();
@@ -69,49 +48,60 @@ export function handleTable(cm: Editor) {
   cm.focus();
 }
 
-export function handleOl(cm: Editor) {
-  if (cm.somethingSelected()) {
-    const [selection] = cm.listSelections();
-    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
-      cm.replaceRange(
-        `${i - selection.anchor.line + 1}. ${cm.getLine(i)}`,
-        { line: i, ch: 0 },
-        // @ts-ignore
-        { line: i }
-      );
-    }
-  } else {
-    cm.replaceRange('\n\n1. \n\n', cm.getCursor());
+function handlePrepend(
+  cm: Editor,
+  prefixGen: (index: number) => string,
+  test: (line: string) => boolean
+) {
+  const [selection] = cm.listSelections();
+  const lines = cm
+    .getRange(
+      { line: selection.anchor.line, ch: 0 },
+      // @ts-ignore
+      { line: selection.head.line }
+    )
+    .split('\n');
+  if (lines.every(test)) {
+    // TODO:
   }
+  cm.replaceRange(
+    lines.map((line, i) => prefixGen(i) + line).join('\n'),
+    { line: selection.anchor.line, ch: 0 },
+    // @ts-ignore
+    { line: selection.head.line }
+  );
+
   cm.focus();
+}
+
+export function handleBlockquote(cm: Editor) {
+  return handlePrepend(
+    cm,
+    () => '> ',
+    (line) => line.startsWith('>')
+  );
+}
+
+export function handleOl(cm: Editor) {
+  return handlePrepend(
+    cm,
+    (i) => i + 1 + '. ',
+    (line) => /^\d+\./.test(line)
+  );
 }
 
 export function handleUl(cm: Editor) {
-  if (cm.somethingSelected()) {
-    const [selection] = cm.listSelections();
-    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
-      // @ts-ignore
-      cm.replaceRange(`- ${cm.getLine(i)}`, { line: i, ch: 0 }, { line: i });
-    }
-  } else {
-    cm.replaceRange('\n\n- \n\n', cm.getCursor());
-  }
-  cm.focus();
+  return handlePrepend(
+    cm,
+    () => '- ',
+    (line) => /^[-*]/.test(line)
+  );
 }
 
 export function handleTask(cm: Editor) {
-  if (cm.somethingSelected()) {
-    const [selection] = cm.listSelections();
-    for (let i = selection.anchor.line; i <= selection.head.line; i++) {
-      cm.replaceRange(
-        `- [ ] ${cm.getLine(i)}`,
-        { line: i, ch: 0 },
-        // @ts-ignore
-        { line: i }
-      );
-    }
-  } else {
-    cm.replaceRange('\n\n- [ ] \n\n', cm.getCursor());
-  }
-  cm.focus();
+  return handlePrepend(
+    cm,
+    () => '- [ ] ',
+    (line) => /^[-*] \[ \]/.test(line)
+  );
 }
