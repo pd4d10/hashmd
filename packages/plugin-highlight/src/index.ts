@@ -17,10 +17,5 @@ export default function highlight({
 }: HighlightOptions = {}): BytemdPlugin {
   return {
     rehype: (u) => u.use(rehypeHighlight, { subset, ignoreMissing, ...rest }),
-    sanitizeSchema: {
-      attributes: {
-        code: ['className'],
-      },
-    },
   };
 }

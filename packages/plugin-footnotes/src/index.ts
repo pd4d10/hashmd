@@ -7,11 +7,5 @@ export default function footnotes(options?: {
 }): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkFootnotes, options),
-    sanitizeSchema: {
-      attributes: {
-        div: ['className'],
-        a: ['className'],
-      },
-    },
   };
 }

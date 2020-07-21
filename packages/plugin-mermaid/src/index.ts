@@ -3,11 +3,6 @@ import mermaidAPI from 'mermaid/mermaidAPI';
 
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   return {
-    sanitizeSchema: {
-      attributes: {
-        code: ['className'],
-      },
-    },
     viewerEffect(el) {
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-mermaid');
       if (els.length === 0) return;

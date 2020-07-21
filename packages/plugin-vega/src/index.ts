@@ -2,11 +2,6 @@ import { BytemdPlugin } from 'bytemd';
 
 export default function vega(): BytemdPlugin {
   return {
-    sanitizeSchema: {
-      attributes: {
-        code: ['className'],
-      },
-    },
     viewerEffect(el) {
       const els = el.querySelectorAll<HTMLElement>('pre>code.language-vega');
       if (els.length === 0) return;

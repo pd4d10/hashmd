@@ -11,6 +11,7 @@
 
   export let value = '';
   export let plugins = [];
+  export let sanitize = null;
   export let mode = 'split';
   export let previewDebounce = 300;
 
@@ -82,7 +83,7 @@
     <div
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
-      <Viewer value={viewerValue} {plugins} />
+      <Viewer value={viewerValue} {plugins} {sanitize} />
     </div>
   </div>
 </div>

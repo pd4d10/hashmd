@@ -7,12 +7,15 @@ import rehypeRaw from 'rehype-raw';
 // @ts-ignore
 import rehypeSanitize from 'rehype-sanitize';
 import stringify from 'rehype-stringify';
-import merge from 'deepmerge';
 // @ts-ignore
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import { ViewerProps } from '.';
 
-export function processMarkdown({ value, plugins = [] }: ViewerProps) {
+export function processMarkdown({
+  value,
+  sanitize,
+  plugins = [],
+}: ViewerProps) {
   let parser = unified().use(remarkParse);
 
   plugins.forEach(({ remark }) => {
@@ -24,9 +27,8 @@ export function processMarkdown({ value, plugins = [] }: ViewerProps) {
     .use(rehypeRaw);
 
   let schema = ghSchema;
-  plugins.forEach(({ sanitizeSchema: markdownSanitizeSchema }) => {
-    if (markdownSanitizeSchema) schema = merge(schema, markdownSanitizeSchema);
-  });
+  schema.attributes['*'].push('className'); // Add className
+  if (sanitize) schema = sanitize(schema);
 
   parser = parser.use(rehypeSanitize, schema);
 

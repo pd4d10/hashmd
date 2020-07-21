@@ -15,10 +15,8 @@
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.96",
-    "@types/lodash-es": "^4.17.3",
     "@types/lodash.debounce": "^4.0.6",
     "codemirror": "^5.55.0",
-    "deepmerge": "^4.2.2",
     "lodash.debounce": "^4.0.8",
     "rehype-raw": "^4.0.1",
     "rehype-sanitize": "^3.0.1",

@@ -6,13 +6,13 @@
 import { processMarkdown } from 'bytemd';
 
 export default {
-  props: ['value', 'plugins'],
+  props: ['value', 'plugins', 'sanitize'],
   computed: {
     html() {
       return processMarkdown(this.$props);
     },
     needUpdate() {
-      return [this.html, this.plugins];
+      return [this.html, this.plugins, this.sanitize];
     },
   },
   watch: {

@@ -9,6 +9,7 @@
 
   export let value = '';
   export let plugins = [];
+  export let sanitize = null;
 
   let el;
   const id = Date.now();
@@ -23,7 +24,7 @@
   }
 
   onDestroy(off);
-  $: html = processMarkdown({ value, plugins });
+  $: html = processMarkdown({ value, plugins, sanitize });
   $: if (html != null && plugins) {
     off();
     tick().then(() => {

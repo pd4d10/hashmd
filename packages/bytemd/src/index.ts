@@ -27,7 +27,6 @@ export interface BytemdPlugin {
    * https://github.com/rehypejs/rehype/blob/main/doc/plugins.md
    */
   rehype?: UnifiedProcessor;
-  sanitizeSchema?: any;
   /**
    * Side effect for editor, triggers when plugin list changes
    */
@@ -82,4 +81,12 @@ export interface ViewerProps {
    * ByteMD plugin list
    */
   plugins?: BytemdPlugin[];
+  /**
+   * An option to change the default sanitize schema.
+   *
+   * Defaults to GitHub style sanitation except that the `class` attribute is allowed
+   *
+   * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
+   */
+  sanitize?: (schema: any) => any;
 }
