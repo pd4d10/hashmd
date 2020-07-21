@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math)
 
-[bytemd](https://github.com/bytedance/bytemd) plugin to support math equation
+ByteMD plugin to support Mermaid diagram and flowchart
 
 ## Usage
 
@@ -19,14 +19,6 @@ new Editor({
     ],
   },
 });
-```
-
-## Example
-
-```md
-$$
-c = \pm\sqrt{a^2 + b^2}
-$$
 ```
 
 ## License

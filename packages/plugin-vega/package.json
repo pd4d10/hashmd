@@ -1,7 +1,7 @@
 {
   "name": "@bytemd/plugin-vega",
   "version": "0.0.1",
-  "description": "@bytemd/plugin-vega",
+  "description": "ByteMD plugin to support vega charts",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",

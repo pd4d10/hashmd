@@ -22,9 +22,7 @@ plugins.forEach((p) => {
   const result = mustache.render(template, {
     name,
     camelName: _.camelCase(name),
-    desc: readFileSyncSafe(path.join(root, p, 'docs/desc.md')),
-    options: readFileSyncSafe(path.join(root, p, 'docs/options.md')),
-    example: readFileSyncSafe(path.join(root, p, 'docs/example.md')),
+    desc: require(path.join(root, p, 'package.json')).description,
   });
 
   fs.writeFileSync(path.join(root, p, 'README.md'), result);
@@ -37,10 +35,7 @@ const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
       .map((p) => {
         const name = p.split('-').slice(1).join('-');
         const badge = `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg)](https://npm.im/@bytemd/plugin-${name})`;
-        const desc = readFileSyncSafe(path.join(root, p, 'docs/desc.md')).slice(
-          0,
-          -1
-        );
+        const desc = require(path.join(root, p, 'package.json')).description;
         return `| [@bytemd/plugin-${name}](./packages/plugin-${name}) | ${badge} | ${desc} |`;
       })
       .join('\n');

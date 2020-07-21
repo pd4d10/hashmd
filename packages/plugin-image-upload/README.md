@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-image-upload.svg)](https://npm.im/@bytemd/plugin-image-upload)
 
-[bytemd](https://github.com/bytedance/bytemd) plugin to support image upload by paste or "drag and drop"
+ByteMD plugin to support image upload by paste or "drag and drop"
 
 ## Usage
 

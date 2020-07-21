@@ -1,7 +1,7 @@
 {
   "name": "@bytemd/plugin-math",
   "version": "0.0.3",
-  "description": "@bytemd/plugin-math",
+  "description": "ByteMD plugin to support Mermaid diagram and flowchart",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
