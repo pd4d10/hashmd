@@ -12,12 +12,8 @@ import merge from 'deepmerge';
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import { ViewerProps } from '.';
 
-export function processMarkdown({
-  value,
-  markdownOptions,
-  plugins = [],
-}: ViewerProps) {
-  let parser = unified().use(remarkParse, markdownOptions);
+export function processMarkdown({ value, plugins = [] }: ViewerProps) {
+  let parser = unified().use(remarkParse);
 
   plugins.forEach(({ remark }) => {
     if (remark) parser = remark(parser);

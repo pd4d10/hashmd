@@ -4,7 +4,6 @@ import Editor from './editor.svelte';
 import Viewer from './viewer.svelte';
 import codemirror from 'codemirror';
 import * as unified from 'unified';
-import { RemarkParseOptions } from 'remark-parse';
 
 import 'codemirror/lib/codemirror.css';
 import 'tippy.js/dist/tippy.css';
@@ -62,10 +61,6 @@ export interface EditorProps extends ViewerProps {
    */
   mode?: 'split' | 'tab';
   /**
-   * CodeMirror configuration
-   */
-  editorConfig?: Omit<codemirror.EditorConfiguration, 'value'>;
-  /**
    * Components which should be added to toolbar
    */
   toolbarItems?: {
@@ -83,7 +78,6 @@ export interface ViewerProps {
    * Markdown text
    */
   value: string;
-  markdownOptions?: Partial<RemarkParseOptions>;
   /**
    * ByteMD plugin list
    */

@@ -8,7 +8,6 @@
   import { processMarkdown } from './utils';
 
   export let value = '';
-  export let markdownOptions = {};
   export let plugins = [];
 
   let el;
@@ -24,7 +23,7 @@
   }
 
   onDestroy(off);
-  $: html = processMarkdown({ value, plugins, markdownOptions });
+  $: html = processMarkdown({ value, plugins });
   $: if (html != null && plugins) {
     off();
     tick().then(() => {

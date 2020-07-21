@@ -6,7 +6,7 @@
 import { processMarkdown } from 'bytemd';
 
 export default {
-  props: ['value', 'markdownOptions', 'plugins'],
+  props: ['value', 'plugins'],
   computed: {
     html() {
       return processMarkdown(this.$props);

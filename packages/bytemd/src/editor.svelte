@@ -10,11 +10,8 @@
   import Viewer from './viewer.svelte';
 
   export let value = '';
-  export let markdownOptions = [];
   export let plugins = [];
   export let mode = 'split';
-  export let editorConfig = {};
-  export let toolbarItems = [];
   export let previewDebounce = 300;
 
   let el;
@@ -64,7 +61,6 @@
     cm = codemirror.fromTextArea(textarea, {
       mode: 'markdown',
       lineWrapping: true,
-      ...editorConfig,
     });
     cm.setValue(value);
     cm.on('change', (doc, change) => {
@@ -76,7 +72,7 @@
 </script>
 
 <div class="bytemd" bind:this={el}>
-  <Toolbar {cm} {toolbarItems} {mode} {activeTab} on:tab={setActiveTab} />
+  <Toolbar {cm} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"
@@ -86,7 +82,7 @@
     <div
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
-      <Viewer value={viewerValue} {markdownOptions} {plugins} />
+      <Viewer value={viewerValue} {plugins} />
     </div>
   </div>
 </div>

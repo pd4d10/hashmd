@@ -6,15 +6,7 @@
 import * as bytemd from 'bytemd';
 
 export default {
-  props: [
-    'value',
-    'markdownOptions',
-    'plugins',
-    'mode',
-    'editorConfig',
-    'toolbarItems',
-    'previewDebounce',
-  ],
+  props: ['value', 'plugins', 'mode', 'previewDebounce'],
   mounted() {
     const editor = new bytemd.Editor({
       target: this.$el,
