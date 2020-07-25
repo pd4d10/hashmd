@@ -12,7 +12,6 @@
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
   import 'katex/dist/katex.css';
-  import '@bytemd/plugin-image-viewer/dist/index.css';
 
   let value = '';
   let mode = 'split';
@@ -79,9 +78,6 @@
   .line {
     margin: 10px 0;
   }
-  :global(.bytemd) {
-    height: calc(100vh - 100px);
-  }
 </style>
 
 <div>
@@ -105,4 +101,9 @@
     {/each}
   </div>
 </div>
-<Editor {value} {mode} {plugins} on:change={handleChange} />
+<Editor
+  {value}
+  {mode}
+  {plugins}
+  containerStyle="height:calc(100vh - 100px)"
+  on:change={handleChange} />

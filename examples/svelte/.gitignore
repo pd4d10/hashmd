@@ -1,6 +1,2 @@
 .DS_Store
 node_modules
-public/*.js
-public/*.css
-package-lock.json
-yarn.lock
