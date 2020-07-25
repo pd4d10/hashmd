@@ -1,0 +1,21 @@
+{
+  "name": "@bytemd/plugin-highlight-lazy",
+  "version": "0.0.1",
+  "description": "ByteMD plugin to lazy highlight code blocks",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "dist",
+    "src/*.d.ts"
+  ],
+  "dependencies": {
+    "highlight.js": "^10.1.1"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

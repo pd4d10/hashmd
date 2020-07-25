@@ -28,6 +28,7 @@ const packageConfigs = {
     external: ['vue'],
   },
   'plugin-highlight': {},
+  'plugin-highlight-lazy': {},
   'plugin-math': {},
   'plugin-mermaid': {},
   'plugin-footnotes': {},
@@ -43,6 +44,7 @@ if (umd) {
 }
 
 Object.entries(packageConfigs).forEach(([key, config]) => {
+  // config.inlineDynamicImports = true;
   const pkg = require(`./packages/${key}/package.json`);
   if (!config.input) {
     config.input = path.resolve('packages', key, 'src/index.js');
