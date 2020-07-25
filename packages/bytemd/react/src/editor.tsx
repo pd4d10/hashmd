@@ -17,7 +17,6 @@ export const Editor: React.FC<EditorProps> = ({
 
   useEffect(() => {
     if (!el.current) return;
-    if (ed.current) ed.current.$destroy();
 
     const editor = new bytemd.Editor({
       target: el.current,
@@ -28,7 +27,11 @@ export const Editor: React.FC<EditorProps> = ({
       if (onChange) onChange(e.detail.value);
     });
     ed.current = editor;
-  }, [el.current]);
+
+    return () => {
+      editor.$destroy();
+    };
+  }, []);
 
   useEffect(() => {
     // TODO: performance
