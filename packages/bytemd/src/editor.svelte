@@ -14,6 +14,7 @@
   export let sanitize = null;
   export let mode = 'split';
   export let previewDebounce = 300;
+  export let containerStyle = null;
 
   let el;
   let viewerValue;
@@ -72,7 +73,7 @@
   onDestroy(off);
 </script>
 
-<div class="bytemd" bind:this={el}>
+<div class="bytemd" bind:this={el} style={containerStyle}>
   <Toolbar {cm} {mode} {activeTab} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div

@@ -70,6 +70,10 @@ export interface EditorProps extends ViewerProps {
    * Debounce time (ms) for preview
    */
   previewDebounce?: number;
+  /**
+   * Inline style of the container, `$('.bytemd')`
+   */
+  containerStyle?: string;
 }
 
 export interface ViewerProps {
