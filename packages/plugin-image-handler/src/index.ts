@@ -1,7 +1,7 @@
 import { BytemdPlugin } from 'bytemd';
 import { Editor } from 'codemirror';
 
-export default function imageUpload(
+export default function imageHandler(
   fileHandler: (file: File) => Promise<string>
 ): BytemdPlugin {
   return {

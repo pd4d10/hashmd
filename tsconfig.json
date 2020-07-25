@@ -4,14 +4,14 @@
     { "path": "packages/bytemd" },
     { "path": "packages/bytemd/react" },
     { "path": "packages/bytemd/vue" },
-    { "path": "packages/plugin-math" },
-    { "path": "packages/plugin-mermaid" },
+    { "path": "packages/plugin-footnotes" },
     { "path": "packages/plugin-highlight" },
     { "path": "packages/plugin-highlight-lazy" },
-    { "path": "packages/plugin-footnotes" },
-    { "path": "packages/plugin-vega" },
+    { "path": "packages/plugin-image-handler" },
     { "path": "packages/plugin-image-viewer" },
-    { "path": "packages/plugin-image-upload" },
-    { "path": "packages/plugin-scroll-sync" }
+    { "path": "packages/plugin-math" },
+    { "path": "packages/plugin-mermaid" },
+    { "path": "packages/plugin-scroll-sync" },
+    { "path": "packages/plugin-vega" }
   ]
 }

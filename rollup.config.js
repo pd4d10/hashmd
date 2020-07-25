@@ -34,7 +34,7 @@ const packageConfigs = {
   'plugin-footnotes': {},
   'plugin-vega': {},
   'plugin-image-viewer': {},
-  'plugin-image-upload': {},
+  'plugin-image-handler': {},
   'plugin-scroll-sync': {},
 };
 
