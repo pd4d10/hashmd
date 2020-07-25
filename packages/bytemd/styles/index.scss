@@ -1,0 +1,86 @@
+@import '~codemirror/lib/codemirror.css';
+@import '~tippy.js/dist/tippy.css';
+@import '../../../node_modules/@primer/css/support/variables/color-system.scss';
+
+.bytemd {
+  border: 1px solid $gray-200;
+  display: flex;
+  flex-direction: column;
+}
+
+.bytemd-toolbar {
+  display: flex;
+  padding: 4px;
+  // background-color: $gray-100;
+  border-bottom: 1px solid $gray-200;
+  > span {
+    cursor: pointer;
+    border: 1px solid transparent;
+    margin-left: 4px;
+    margin-right: 4px;
+    svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+      padding: 4px;
+      fill: $gray-600;
+    }
+    &:hover svg {
+      fill: $blue;
+    }
+  }
+}
+
+.bytemd-tabs {
+  display: flex;
+  span {
+    cursor: pointer;
+    padding-left: 8px;
+    padding-right: 8px;
+    line-height: 26px;
+    font-size: 14px;
+    &.active {
+      color: $blue;
+    }
+  }
+}
+
+.tippy-box {
+  font-size: 13px;
+}
+
+.bytemd-info {
+  position: absolute;
+}
+
+.bytemd-body {
+  flex-grow: 1;
+  display: flex;
+  overflow: auto;
+}
+
+.bytemd-editor {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+  .CodeMirror {
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    pre.CodeMirror-placeholder {
+      color: $gray-400;
+    }
+  }
+}
+
+.bytemd-preview {
+  flex: 1;
+  overflow: auto;
+  border-left: 1px solid $gray-200;
+  .markdown-body {
+    padding: 20px;
+  }
+}

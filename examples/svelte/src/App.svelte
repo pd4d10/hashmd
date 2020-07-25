@@ -5,9 +5,10 @@
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
-  import imageUpload from '@bytemd/plugin-image-upload';
+  import imageHandler from '@bytemd/plugin-image-handler';
   import scrollSync from '@bytemd/plugin-scroll-sync';
 
+  import 'bytemd/dist/index.css';
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
   import 'katex/dist/katex.css';
@@ -33,7 +34,7 @@
     math: true,
     mermaid: true,
     footnotes: true,
-    'image-upload': true,
+    'image-handler': true,
     'scroll-sync': true,
   };
 
@@ -55,7 +56,7 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled['image-upload'] && imageUpload(toDataUrl),
+    enabled['image-handler'] && imageHandler(toDataUrl),
     enabled['scroll-sync'] && scrollSync(),
     // {
     //   editorEffect(cm, el) {

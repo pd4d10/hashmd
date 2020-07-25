@@ -1,5 +1,5 @@
 import { BytemdPlugin } from 'bytemd';
-import './index.css';
+// import './index.css'; // TODO:
 
 function calculate(w: number, h: number) {
   const ratio = w / h;

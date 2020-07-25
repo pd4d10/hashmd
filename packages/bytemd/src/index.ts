@@ -5,10 +5,6 @@ import Viewer from './viewer.svelte';
 import codemirror from 'codemirror';
 import * as unified from 'unified';
 
-import 'codemirror/lib/codemirror.css';
-import 'tippy.js/dist/tippy.css';
-import './index.css';
-
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
 

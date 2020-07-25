@@ -5,7 +5,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
-import css from 'rollup-plugin-css-only';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 // import visualizer from 'rollup-plugin-visualizer';
@@ -82,9 +81,6 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
     globals(),
     builtins(),
     json(),
-    css({
-      output: `packages/${key}/dist/index.css`,
-    }),
     umd && terser(),
   ];
 
