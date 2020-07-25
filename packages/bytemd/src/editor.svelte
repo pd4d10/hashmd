@@ -58,11 +58,15 @@
     });
   }
   onMount(async () => {
-    const codemirror = await import('codemirror');
-    await import('codemirror/mode/markdown/markdown.js');
+    const [codemirror] = await Promise.all([
+      import('codemirror'),
+      import('codemirror/mode/markdown/markdown.js'),
+      import('codemirror/addon/display/placeholder.js'),
+    ]);
     cm = codemirror.fromTextArea(textarea, {
       mode: 'markdown',
       lineWrapping: true,
+      placeholder: 'Start writing...',
     });
     cm.setValue(value);
     cm.on('change', (doc, change) => {

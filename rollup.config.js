@@ -18,6 +18,7 @@ const packageConfigs = {
   bytemd: {
     external: [
       'codemirror/mode/markdown/markdown.js',
+      'codemirror/addon/display/placeholder.js',
       'hast-util-sanitize/lib/github.json',
     ],
   },

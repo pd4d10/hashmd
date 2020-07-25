@@ -63,6 +63,9 @@
   font-size: 14px;
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
+.bytemd-editor .CodeMirror pre.CodeMirror-placeholder {
+  color: #999;
+}
 .bytemd-preview {
   flex: 1;
   overflow: auto;
