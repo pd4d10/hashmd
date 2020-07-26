@@ -7,7 +7,6 @@ const iconMap = {
   bold: {},
   italic: {},
   quote: {},
-  image: {},
   table: { key: 'server' },
   link: {},
   ol: { key: 'list-ordered' },
