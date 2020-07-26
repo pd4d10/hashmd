@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-image-viewer.svg)](https://npm.im/@bytemd/plugin-image-viewer)
 
-ByteMD plugin to support image zoom and preview
+ByteMD plugin to preview image
 
 ## Usage
 

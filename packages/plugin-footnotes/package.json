@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-footnotes",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ByteMD plugin to support footnotes",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",

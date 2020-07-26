@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-highlight-lazy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ByteMD plugin to lazy highlight code blocks",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
