@@ -19,11 +19,17 @@ export default function imageHandler({
   upload,
   test = (file: File) => file.type.startsWith('image/'),
 }: ImageHandlerOptions): BytemdPlugin {
-  const handleImage = async (file: File, cm: Editor) => {
-    const url = await upload(file);
-    const text = cm.getSelection();
-    cm.replaceSelection(`![${text}](${url})`);
+  const handleFiles = async (files: File[], cm: Editor) => {
+    const urls = await Promise.all(files.map((f) => upload(f)));
+    const text = urls.map((url) => `![](${url})`).join('\n\n');
+    cm.replaceRange(text, cm.getCursor());
     cm.focus();
+  };
+
+  const dtToFiles = (dt: DataTransferItemList) => {
+    return Array.from(dt)
+      .map((item) => item.getAsFile())
+      .filter((f): f is File => f != null && test(f));
   };
 
   return {
@@ -36,9 +42,8 @@ export default function imageHandler({
           input.type = 'file';
           input.multiple = true;
           input.addEventListener('input', (e) => {
-            if (!input.files) return;
-            for (let i = 0; i < input.files.length; i++) {
-              handleImage(input.files[i], cm);
+            if (input.files && input.files.length) {
+              handleFiles(Array.from(input.files), cm);
             }
           });
           input.click();
@@ -47,30 +52,22 @@ export default function imageHandler({
     },
     editorEffect(cm) {
       const handlePaste = async (_: Editor, e: ClipboardEvent) => {
-        if (!e.clipboardData) return;
-        let files: File[] = [];
-        for (let item of e.clipboardData.items) {
-          const f = item.getAsFile();
-          if (f && test(f)) files.push(f);
-        }
-
-        for (let file of files) {
-          e.preventDefault();
-          await handleImage(file, cm);
+        if (e.clipboardData) {
+          const files = dtToFiles(e.clipboardData.items);
+          if (files.length) {
+            e.preventDefault();
+            await handleFiles(files, cm);
+          }
         }
       };
 
       const handleDrop = async (_: Editor, e: DragEvent) => {
-        if (!e.dataTransfer) return;
-        let files: File[] = [];
-        for (let item of e.dataTransfer.items) {
-          const f = item.getAsFile();
-          if (f && test(f)) files.push(f);
-        }
-
-        for (let file of files) {
-          e.preventDefault();
-          await handleImage(file, cm);
+        if (e.dataTransfer) {
+          const files = dtToFiles(e.dataTransfer.items);
+          if (files.length) {
+            e.preventDefault();
+            await handleFiles(files, cm);
+          }
         }
       };
 
