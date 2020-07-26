@@ -7,7 +7,7 @@ export interface HighlightLazyOptions {
 
 export default function highlightLazy({
   init,
-}: HighlightLazyOptions): BytemdPlugin {
+}: HighlightLazyOptions = {}): BytemdPlugin {
   let hljs: typeof H;
   return {
     viewerEffect(el) {
