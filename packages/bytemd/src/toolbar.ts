@@ -1,6 +1,130 @@
 import { Editor } from 'codemirror';
+import { BytemdToolbarItem, BytemdPlugin } from '.';
+import { iconMap } from './icons';
 
-export function handleText(cm: Editor, before: string, after: string) {
+const leftItems: BytemdToolbarItem[] = [
+  {
+    tooltip: 'heading',
+    iconHtml: iconMap.heading,
+    onClick(cm) {
+      const { line } = cm.getCursor();
+      const content = cm.getLine(line);
+      // @ts-ignore
+      cm.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
+      cm.focus();
+    },
+  },
+  {
+    tooltip: 'bold',
+    iconHtml: iconMap.bold,
+    onClick(cm) {
+      handleText(cm, '**', '**');
+    },
+  },
+  {
+    tooltip: 'italic',
+    iconHtml: iconMap.italic,
+    onClick(cm) {
+      handleText(cm, '_', '_');
+    },
+  },
+  {
+    tooltip: 'blockquote',
+    iconHtml: iconMap.quote,
+    onClick(cm) {
+      handlePrepend(
+        cm,
+        () => '> ',
+        (line) => line.startsWith('>')
+      );
+    },
+  },
+  {
+    tooltip: 'link',
+    iconHtml: iconMap.link,
+    onClick(cm) {
+      if (cm.somethingSelected()) {
+        const text = cm.getSelection();
+        cm.replaceSelection(`[${text}]()`);
+      } else {
+        const pos = cm.getCursor();
+        cm.replaceRange('[]()', pos);
+      }
+      cm.focus();
+    },
+  },
+  {
+    tooltip: 'table',
+    iconHtml: iconMap.table,
+    onClick(cm) {
+      const pos = cm.getCursor();
+      cm.replaceRange(
+        `
+|  |  |
+| --- | --- |
+|  |  |
+    `,
+        pos
+      );
+      cm.setCursor({ line: pos.line + 1, ch: 2 });
+      cm.focus();
+    },
+  },
+  {
+    tooltip: 'ordered list',
+    iconHtml: iconMap.ol,
+    onClick(cm) {
+      handlePrepend(
+        cm,
+        (i) => i + 1 + '. ',
+        (line) => /^\d+\./.test(line)
+      );
+    },
+  },
+  {
+    tooltip: 'unordered list',
+    iconHtml: iconMap.ol,
+    onClick(cm) {
+      handlePrepend(
+        cm,
+        () => '- ',
+        (line) => /^[-*]/.test(line)
+      );
+    },
+  },
+  {
+    tooltip: 'task list',
+    iconHtml: iconMap.tasklist,
+    onClick(cm) {
+      handlePrepend(
+        cm,
+        () => '- [ ] ',
+        (line) => /^[-*] \[ \]/.test(line)
+      );
+    },
+  },
+];
+
+const rightItems: BytemdToolbarItem[] = [
+  {
+    tooltip: 'About ByteMD',
+    iconHtml: iconMap.info,
+    onClick() {
+      window.open('https://github.com/bytedance/bytemd');
+    },
+  },
+];
+
+export function getItems(plugins: BytemdPlugin[]) {
+  const left = [...leftItems];
+  const right = [...rightItems];
+  plugins.forEach((p) => {
+    p.toolbar?.(left, right);
+  });
+  return { left, right };
+}
+
+function handleText(cm: Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
     cm.replaceSelection(before + cm.getSelection() + after);
   } else {
@@ -8,43 +132,6 @@ export function handleText(cm: Editor, before: string, after: string) {
     const word = cm.getRange(anchor, head);
     cm.replaceRange(before + word + after, anchor, head);
   }
-  cm.focus();
-}
-
-export function handleDec(cm: Editor, decorator: string) {
-  return handleText(cm, decorator, decorator);
-}
-
-export function handleHeading(cm: Editor) {
-  const { line } = cm.getCursor();
-  const content = cm.getLine(line);
-  // @ts-ignore
-  cm.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
-  cm.focus();
-}
-
-export function handleLink(cm: Editor) {
-  if (cm.somethingSelected()) {
-    const text = cm.getSelection();
-    cm.replaceSelection(`[${text}]()`);
-  } else {
-    const pos = cm.getCursor();
-    cm.replaceRange('[]()', pos);
-  }
-  cm.focus();
-}
-
-export function handleTable(cm: Editor) {
-  const pos = cm.getCursor();
-  cm.replaceRange(
-    `
-|  |  |
-| --- | --- |
-|  |  |
-`,
-    pos
-  );
-  cm.setCursor({ line: pos.line + 1, ch: 2 });
   cm.focus();
 }
 
@@ -72,36 +159,4 @@ function handlePrepend(
   );
 
   cm.focus();
-}
-
-export function handleBlockquote(cm: Editor) {
-  return handlePrepend(
-    cm,
-    () => '> ',
-    (line) => line.startsWith('>')
-  );
-}
-
-export function handleOl(cm: Editor) {
-  return handlePrepend(
-    cm,
-    (i) => i + 1 + '. ',
-    (line) => /^\d+\./.test(line)
-  );
-}
-
-export function handleUl(cm: Editor) {
-  return handlePrepend(
-    cm,
-    () => '- ',
-    (line) => /^[-*]/.test(line)
-  );
-}
-
-export function handleTask(cm: Editor) {
-  return handlePrepend(
-    cm,
-    () => '- [ ] ',
-    (line) => /^[-*] \[ \]/.test(line)
-  );
 }

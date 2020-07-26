@@ -10,6 +10,21 @@ export { processMarkdown } from './utils';
 
 type UnifiedProcessor = (x: unified.Processor) => unified.Processor;
 
+export interface BytemdToolbarItem {
+  /**
+   * Tooltip of toolbar item
+   */
+  tooltip?: string;
+  /**
+   * Toolbar Icon (16x16), could be <img> or inline svg
+   */
+  iconHtml: string;
+  /**
+   * Toolbar icon click handler
+   */
+  onClick(cm: codemirror.Editor): void;
+}
+
 export interface BytemdPlugin {
   /**
    * Customize Markdown parse by remark plugins:
@@ -23,6 +38,10 @@ export interface BytemdPlugin {
    * https://github.com/rehypejs/rehype/blob/main/doc/plugins.md
    */
   rehype?: UnifiedProcessor;
+  /**
+   * Add toolbar items
+   */
+  toolbar?: (left: BytemdToolbarItem[], right: BytemdToolbarItem[]) => void;
   /**
    * Side effect for editor, triggers when plugin list changes
    */
@@ -55,13 +74,6 @@ export interface EditorProps extends ViewerProps {
    * - tab: click tabs to switch between edit and preview
    */
   mode?: 'split' | 'tab';
-  /**
-   * Components which should be added to toolbar
-   */
-  toolbarItems?: {
-    tooltip?: string;
-    bodyHtml: string;
-  }[];
   /**
    * Debounce time (ms) for preview
    */

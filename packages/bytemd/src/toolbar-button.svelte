@@ -5,10 +5,6 @@
 
   const dispatch = createEventDispatcher();
 
-  function handleClick() {
-    dispatch('click');
-  }
-
   onMount(() => {
     if (tooltip) {
       tippy(el, { content: tooltip });
@@ -17,8 +13,9 @@
 
   let el;
   export let tooltip;
+  export let iconHtml;
 </script>
 
-<span bind:this={el} on:click={handleClick}>
-  <slot />
+<span bind:this={el} on:click={() => dispatch('click')}>
+  {@html iconHtml}
 </span>

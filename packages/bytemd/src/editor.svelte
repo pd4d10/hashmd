@@ -78,7 +78,7 @@
 </script>
 
 <div class="bytemd" bind:this={el} style={containerStyle}>
-  <Toolbar {cm} {mode} {activeTab} on:tab={setActiveTab} />
+  <Toolbar {cm} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"
