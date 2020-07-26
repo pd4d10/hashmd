@@ -11,33 +11,34 @@ import stringify from 'rehype-stringify';
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import { ViewerProps } from '.';
 
-export function processMarkdown({
-  value,
+export function getProcessor({
   sanitize,
-  plugins = [],
-}: ViewerProps) {
-  let parser = unified().use(remarkParse);
+  plugins,
+}: Omit<ViewerProps, 'value'>) {
+  let p = unified().use(remarkParse);
 
-  plugins.forEach(({ remark }) => {
-    if (remark) parser = remark(parser);
+  plugins?.forEach(({ remark }) => {
+    if (remark) p = remark(p);
   });
 
-  parser = parser
-    .use(remarkRehype, { allowDangerousHTML: true })
-    .use(rehypeRaw);
+  p = p.use(remarkRehype, { allowDangerousHTML: true }).use(rehypeRaw);
 
   let schema = ghSchema;
   schema.attributes['*'].push('className'); // Add className
   if (sanitize) schema = sanitize(schema);
 
-  parser = parser.use(rehypeSanitize, schema);
+  p = p.use(rehypeSanitize, schema);
 
-  plugins.forEach(({ rehype }) => {
-    if (rehype) parser = rehype(parser);
+  plugins?.forEach(({ rehype }) => {
+    if (rehype) p = rehype(p);
   });
 
-  parser = parser.use(stringify);
+  p = p.use(stringify);
 
   // console.log(parser.parse(value));
-  return parser.processSync(value).toString();
+  return p;
+}
+
+export function processMarkdown({ value, ...rest }: ViewerProps) {
+  return getProcessor(rest).processSync(value).toString();
 }

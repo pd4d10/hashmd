@@ -5,16 +5,17 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { KatexOptions } from 'katex';
 
-interface Options {
-  math?: {
-    inlineMathDouble?: boolean;
-  };
+export interface MathOptions {
+  inlineMathDouble?: boolean;
   katex?: Omit<KatexOptions, 'displayMode'>;
 }
 
-export default function math(options: Options = {}): BytemdPlugin {
+export default function math({
+  inlineMathDouble,
+  katex,
+}: MathOptions = {}): BytemdPlugin {
   return {
-    remark: (u) => u.use(remarkMath, options.math),
-    rehype: (u) => u.use(rehypeKatex, options.katex),
+    remark: (u) => u.use(remarkMath, { inlineMathDouble }),
+    rehype: (u) => u.use(rehypeKatex, katex),
   };
 }

@@ -1,16 +1,24 @@
 import { BytemdPlugin } from 'bytemd';
+import { Mermaid } from 'mermaid';
 import mermaidAPI from 'mermaid/mermaidAPI';
 
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
+  let m: Mermaid;
   return {
     viewerEffect(el) {
-      const els = el.querySelectorAll<HTMLElement>('pre>code.language-mermaid');
-      if (els.length === 0) return;
+      (async () => {
+        const els = el.querySelectorAll<HTMLElement>(
+          'pre>code.language-mermaid'
+        );
+        if (els.length === 0) return;
 
-      import('mermaid').then(({ default: m }) => {
-        if (options) {
-          m.initialize(options);
+        if (!m) {
+          m = await import('mermaid').then((c) => c.default);
+          if (options) {
+            m.initialize(options);
+          }
         }
+
         els.forEach((el, i) => {
           try {
             const pre = el.parentElement!;
@@ -28,7 +36,7 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
             console.error(err);
           }
         });
-      });
+      })();
     },
   };
 }
