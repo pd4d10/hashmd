@@ -1,6 +1,5 @@
 import unified from 'unified';
 import remarkParse from 'remark-parse';
-// @ts-ignore
 import remarkRehype from 'remark-rehype';
 // @ts-ignore
 import rehypeRaw from 'rehype-raw';
@@ -21,7 +20,7 @@ export function getProcessor({
     if (remark) p = remark(p);
   });
 
-  p = p.use(remarkRehype, { allowDangerousHTML: true }).use(rehypeRaw);
+  p = p.use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw);
 
   let schema = ghSchema;
   schema.attributes['*'].push('className'); // Add className
