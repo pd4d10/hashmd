@@ -1,7 +1,7 @@
 {
   "name": "@bytemd/plugin-image-viewer",
   "version": "0.0.1",
-  "description": "ByteMD plugin to support image zoom and preview",
+  "description": "ByteMD plugin to preview image",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",

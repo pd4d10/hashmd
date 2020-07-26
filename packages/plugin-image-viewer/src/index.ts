@@ -1,5 +1,4 @@
 import { BytemdPlugin } from 'bytemd';
-// import './index.css'; // TODO:
 
 function calculate(w: number, h: number) {
   const ratio = w / h;
@@ -30,7 +29,22 @@ function addStyle(style: string) {
 export default function imageViewer(): BytemdPlugin {
   return {
     viewerEffect(el) {
-      const removeStyle = addStyle(`.markdown-body img {
+      const removeStyle = addStyle(`
+.image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: opacity 200ms;
+}
+.image-viewer img {
+  position: absolute;
+  cursor: zoom-out;
+}
+.markdown-body img {
   cursor: zoom-in;
 }`);
 
