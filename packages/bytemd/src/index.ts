@@ -41,7 +41,10 @@ export interface BytemdPlugin {
   /**
    * Add toolbar items
    */
-  toolbar?: (left: BytemdToolbarItem[], right: BytemdToolbarItem[]) => void;
+  toolbar?: {
+    left?: (items: BytemdToolbarItem[]) => BytemdToolbarItem[];
+    right?: (items: BytemdToolbarItem[]) => BytemdToolbarItem[];
+  };
   /**
    * Side effect for editor, triggers when plugin list changes
    */

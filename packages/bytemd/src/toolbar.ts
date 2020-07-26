@@ -116,12 +116,13 @@ const rightItems: BytemdToolbarItem[] = [
 ];
 
 export function getItems(plugins: BytemdPlugin[]) {
-  const left = [...leftItems];
-  const right = [...rightItems];
+  let l = [...leftItems];
+  let r = [...rightItems];
   plugins.forEach((p) => {
-    p.toolbar?.(left, right);
+    if (p.toolbar?.left) l = p.toolbar.left(l);
+    if (p.toolbar?.right) r = p.toolbar.right(r);
   });
-  return { left, right };
+  return { left: l, right: r };
 }
 
 function handleText(cm: Editor, before: string, after: string) {

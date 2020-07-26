@@ -55,7 +55,7 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled['image-handler'] && imageHandler({ toUrl: toDataUrl }),
+    enabled['image-handler'] && imageHandler({ upload: toDataUrl }),
     enabled['scroll-sync'] && scrollSync(),
     // {
     //   editorEffect(cm, el) {

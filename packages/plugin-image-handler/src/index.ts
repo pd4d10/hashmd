@@ -33,22 +33,27 @@ export default function imageHandler({
   };
 
   return {
-    toolbar(left) {
-      left.push({
-        tooltip: 'image',
-        iconHtml: imageIcon,
-        onClick(cm) {
-          const input = document.createElement('input');
-          input.type = 'file';
-          input.multiple = true;
-          input.addEventListener('input', (e) => {
-            if (input.files && input.files.length) {
-              handleFiles(Array.from(input.files), cm);
-            }
-          });
-          input.click();
-        },
-      });
+    toolbar: {
+      left(items) {
+        return [
+          ...items,
+          {
+            tooltip: 'image',
+            iconHtml: imageIcon,
+            onClick(cm) {
+              const input = document.createElement('input');
+              input.type = 'file';
+              input.multiple = true;
+              input.addEventListener('input', (e) => {
+                if (input.files && input.files.length) {
+                  handleFiles(Array.from(input.files), cm);
+                }
+              });
+              input.click();
+            },
+          },
+        ];
+      },
     },
     editorEffect(cm) {
       const handlePaste = async (_: Editor, e: ClipboardEvent) => {
