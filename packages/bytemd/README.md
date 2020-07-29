@@ -133,8 +133,10 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 | [@bytemd/plugin-image-handler](./packages/plugin-image-handler) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-image-handler.svg)](https://npm.im/@bytemd/plugin-image-handler) | ByteMD plugin to handle image upload by paste or "drag and drop" |
 | [@bytemd/plugin-image-viewer](./packages/plugin-image-viewer) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-image-viewer.svg)](https://npm.im/@bytemd/plugin-image-viewer) | ByteMD plugin to preview image |
 | [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | ByteMD plugin to support math equation |
+| [@bytemd/plugin-math-lazy](./packages/plugin-math-lazy) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-lazy.svg)](https://npm.im/@bytemd/plugin-math-lazy) | ByteMD plugin to lazy render math equation |
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | ByteMD plugin to support Mermaid diagram and flowchart |
 | [@bytemd/plugin-scroll-sync](./packages/plugin-scroll-sync) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-scroll-sync.svg)](https://npm.im/@bytemd/plugin-scroll-sync) | ByteMD plugin to sync scroll position of edit and preview area |
+| [@bytemd/plugin-vega](./packages/plugin-vega) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-vega.svg)](https://npm.im/@bytemd/plugin-vega) | ByteMD plugin to support vega charts |
 
 ## Write a plugin
 

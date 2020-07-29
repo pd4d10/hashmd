@@ -1,0 +1,23 @@
+{
+  "name": "@bytemd/plugin-math-lazy",
+  "version": "0.1.0",
+  "description": "ByteMD plugin to lazy render math equation",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "dist",
+    "src/*.d.ts"
+  ],
+  "dependencies": {
+    "@types/katex": "^0.11.0",
+    "katex": "^0.12.0",
+    "remark-math": "^2.0.1"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}

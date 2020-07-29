@@ -30,6 +30,7 @@ const packageConfigs = {
   'plugin-highlight': {},
   'plugin-highlight-lazy': {},
   'plugin-math': {},
+  'plugin-math-lazy': {},
   'plugin-mermaid': {},
   'plugin-footnotes': {},
   'plugin-vega': {},
