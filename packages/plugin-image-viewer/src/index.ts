@@ -26,9 +26,26 @@ function addStyle(style: string) {
   };
 }
 
+function hasAnchorParent($: HTMLElement | null, root: HTMLElement): boolean {
+  while ($ && $ !== root) {
+    if ($.tagName === 'A') return true;
+    $ = $.parentElement;
+  }
+  return false;
+}
+
 export default function imageViewer(): BytemdPlugin {
   return {
     viewerEffect(el) {
+      const imgs = [...el.querySelectorAll('img')].filter(
+        (e) => !hasAnchorParent(e, el)
+      );
+      if (imgs.length === 0) return;
+
+      imgs.forEach((img) => {
+        img.style.cursor = 'zoom-in';
+      });
+
       const removeStyle = addStyle(`
 .image-viewer {
   position: fixed;
@@ -43,15 +60,12 @@ export default function imageViewer(): BytemdPlugin {
 .image-viewer img {
   position: absolute;
   cursor: zoom-out;
-}
-.markdown-body img {
-  cursor: zoom-in;
 }`);
 
       const handler: EventListener = (e) => {
         if (!e.target) return;
         const $ = e.target as HTMLImageElement;
-        if ($.tagName !== 'IMG') return;
+        if ($.tagName !== 'IMG' || hasAnchorParent($, el)) return;
 
         const { width, height, left, top } = calculate(
           $.naturalWidth,
@@ -85,6 +99,10 @@ export default function imageViewer(): BytemdPlugin {
 
       el.addEventListener('click', handler);
       return () => {
+        imgs.forEach((img) => {
+          img.style.cursor = '';
+        });
+
         removeStyle();
         el.removeEventListener('click', handler);
       };

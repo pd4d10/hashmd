@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-image-viewer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ByteMD plugin to preview image",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
