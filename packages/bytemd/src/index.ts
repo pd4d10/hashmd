@@ -97,9 +97,12 @@ export interface ViewerProps {
    */
   plugins?: BytemdPlugin[];
   /**
-   * An option to change the default sanitize schema.
+   * Customize the default sanitize schema
    *
-   * Defaults to GitHub style sanitation except that the `class` attribute is allowed
+   * Defaults to GitHub style sanitation except:
+   *
+   * 1. `className` is allowed
+   * 2. `id` is kept as is without clobbering
    *
    * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
    */
