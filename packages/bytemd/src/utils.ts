@@ -10,6 +10,8 @@ import stringify from 'rehype-stringify';
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import { ViewerProps } from '.';
 
+const schemaStr = JSON.stringify(ghSchema);
+
 export function getProcessor({
   sanitize,
   plugins,
@@ -22,7 +24,7 @@ export function getProcessor({
 
   p = p.use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw);
 
-  let schema = ghSchema;
+  let schema = JSON.parse(schemaStr);
   schema.attributes['*'].push('className'); // Add className
   if (sanitize) schema = sanitize(schema);
 
