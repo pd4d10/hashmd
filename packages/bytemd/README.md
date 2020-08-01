@@ -119,7 +119,7 @@ ByteMD uses [remark](https://github.com/remarkjs/remark) and [rehype](https://gi
 
 It could also be described as a flowchart:
 
-![process](https://raw.githubusercontent.com/bytedance/bytemd/master/assets/process.svg)
+![process](https://raw.githubusercontent.com/bytedance/bytemd/main/assets/process.svg)
 
 The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 

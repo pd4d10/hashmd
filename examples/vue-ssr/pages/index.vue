@@ -60,7 +60,7 @@ export default {
   },
   async mounted() {
     const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/master/assets/demo.md'
+      'https://raw.githubusercontent.com/bytedance/bytemd/main/assets/demo.md'
     );
     const text = await res.text();
     this.value = text;
