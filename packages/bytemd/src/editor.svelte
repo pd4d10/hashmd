@@ -63,6 +63,10 @@
       import('codemirror/mode/markdown/markdown.js'),
       import('codemirror/addon/display/placeholder.js'),
     ]);
+
+    // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
+    codemirror.keyMap.default['Shift-Tab'] = 'indentLess';
+
     cm = codemirror.fromTextArea(textarea, {
       mode: 'markdown',
       lineWrapping: true,
