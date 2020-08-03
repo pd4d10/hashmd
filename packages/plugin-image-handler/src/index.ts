@@ -26,12 +26,6 @@ export default function imageHandler({
     cm.focus();
   };
 
-  const dtToFiles = (dt: DataTransferItemList) => {
-    return Array.from(dt)
-      .map((item) => item.getAsFile())
-      .filter((f): f is File => f != null && test(f));
-  };
-
   return {
     toolbar: {
       left(items) {
@@ -56,23 +50,25 @@ export default function imageHandler({
       },
     },
     editorEffect(cm) {
+      const getFilesFromDt = (items: DataTransferItem[]) => {
+        return items
+          .map((item) => item.getAsFile())
+          .filter((f): f is File => f != null && test(f));
+      };
+
       const handlePaste = async (_: Editor, e: ClipboardEvent) => {
-        if (e.clipboardData) {
-          const files = dtToFiles(e.clipboardData.items);
-          if (files.length) {
-            e.preventDefault();
-            await handleFiles(files, cm);
-          }
+        const files = getFilesFromDt(Array.from(e.clipboardData?.items ?? []));
+        if (files.length) {
+          e.preventDefault();
+          await handleFiles(files, cm);
         }
       };
 
       const handleDrop = async (_: Editor, e: DragEvent) => {
-        if (e.dataTransfer) {
-          const files = dtToFiles(e.dataTransfer.items);
-          if (files.length) {
-            e.preventDefault();
-            await handleFiles(files, cm);
-          }
+        const files = getFilesFromDt(Array.from(e.dataTransfer?.items ?? []));
+        if (files.length) {
+          e.preventDefault();
+          await handleFiles(files, cm);
         }
       };
 
