@@ -38,6 +38,7 @@ export default function imageHandler({
               const input = document.createElement('input');
               input.type = 'file';
               input.multiple = true;
+              input.accept = 'image/*';
               input.addEventListener('input', (e) => {
                 if (input.files && input.files.length) {
                   handleFiles(Array.from(input.files), cm);
