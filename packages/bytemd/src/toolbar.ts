@@ -54,6 +54,31 @@ const leftItems: BytemdToolbarItem[] = [
     },
   },
   {
+    tooltip: 'code',
+    iconHtml: iconMap.code,
+    onClick(cm) {
+      const [selection] = cm.listSelections();
+      const lines = cm
+        .getRange(
+          { line: selection.anchor.line, ch: 0 },
+          // @ts-ignore
+          { line: selection.head.line }
+        )
+        .split('\n');
+      if (lines.length > 1) {
+        cm.replaceRange(
+          ['```', ...lines, '```'].join('\n'),
+          { line: selection.anchor.line, ch: 0 },
+          // @ts-ignore
+          { line: selection.head.line }
+        );
+        cm.focus();
+      } else {
+        handleText(cm, '`', '`');
+      }
+    },
+  },
+  {
     tooltip: 'table',
     iconHtml: iconMap.table,
     onClick(cm) {
