@@ -1,4 +1,3 @@
-import { Editor } from 'codemirror';
 import { BytemdToolbarItem, BytemdPlugin } from '.';
 import { iconMap } from './icons';
 
@@ -32,11 +31,7 @@ const leftItems: BytemdToolbarItem[] = [
     tooltip: 'blockquote',
     iconHtml: iconMap.quote,
     onClick(cm) {
-      handlePrepend(
-        cm,
-        () => '> ',
-        (line) => line.startsWith('>')
-      );
+      handlePrepend(cm, (lines) => lines.map((line) => `> ${line}`));
     },
   },
   {
@@ -45,10 +40,13 @@ const leftItems: BytemdToolbarItem[] = [
     onClick(cm) {
       if (cm.somethingSelected()) {
         const text = cm.getSelection();
-        cm.replaceSelection(`[${text}]()`);
+        cm.replaceSelection(`[${text}](url)`);
+        const { line, ch } = cm.getCursor();
+        cm.setSelection({ line, ch: ch - 4 }, { line, ch: ch - 1 });
       } else {
-        const pos = cm.getCursor();
-        cm.replaceRange('[]()', pos);
+        cm.replaceRange('[](url)', cm.getCursor());
+        const { line, ch } = cm.getCursor();
+        cm.setCursor({ line, ch: ch - 6 });
       }
       cm.focus();
     },
@@ -57,25 +55,14 @@ const leftItems: BytemdToolbarItem[] = [
     tooltip: 'code',
     iconHtml: iconMap.code,
     onClick(cm) {
-      const [selection] = cm.listSelections();
-      const lines = cm
-        .getRange(
-          { line: selection.anchor.line, ch: 0 },
-          // @ts-ignore
-          { line: selection.head.line }
-        )
-        .split('\n');
-      if (lines.length > 1) {
-        cm.replaceRange(
-          ['```', ...lines, '```'].join('\n'),
-          { line: selection.anchor.line, ch: 0 },
-          // @ts-ignore
-          { line: selection.head.line }
-        );
-        cm.focus();
-      } else {
-        handleText(cm, '`', '`');
-      }
+      handleText(cm, '`', '`');
+    },
+  },
+  {
+    tooltip: 'code block',
+    iconHtml: iconMap.codeBlock,
+    onClick(cm) {
+      handlePrepend(cm, (lines) => ['```', ...lines, '```']);
     },
   },
   {
@@ -99,33 +86,21 @@ const leftItems: BytemdToolbarItem[] = [
     tooltip: 'ordered list',
     iconHtml: iconMap.ol,
     onClick(cm) {
-      handlePrepend(
-        cm,
-        (i) => i + 1 + '. ',
-        (line) => /^\d+\./.test(line)
-      );
+      handlePrepend(cm, (lines) => lines.map((line, i) => `${i + 1}. ${line}`));
     },
   },
   {
     tooltip: 'unordered list',
     iconHtml: iconMap.ol,
     onClick(cm) {
-      handlePrepend(
-        cm,
-        () => '- ',
-        (line) => /^[-*]/.test(line)
-      );
+      handlePrepend(cm, (lines) => lines.map((line) => `- ${line}`));
     },
   },
   {
     tooltip: 'task list',
     iconHtml: iconMap.tasklist,
     onClick(cm) {
-      handlePrepend(
-        cm,
-        () => '- [ ] ',
-        (line) => /^[-*] \[ \]/.test(line)
-      );
+      handlePrepend(cm, (lines) => lines.map((line) => `- [ ] ${line}`));
     },
   },
 ];
@@ -141,16 +116,16 @@ const rightItems: BytemdToolbarItem[] = [
 ];
 
 export function getItems(plugins: BytemdPlugin[]) {
-  let l = [...leftItems];
-  let r = [...rightItems];
+  let left = [...leftItems];
+  let right = [...rightItems];
   plugins.forEach((p) => {
-    if (p.toolbar?.left) l = p.toolbar.left(l);
-    if (p.toolbar?.right) r = p.toolbar.right(r);
+    if (p.toolbar?.left) left = p.toolbar.left(left);
+    if (p.toolbar?.right) right = p.toolbar.right(right);
   });
-  return { left: l, right: r };
+  return { left, right };
 }
 
-function handleText(cm: Editor, before: string, after: string) {
+function handleText(cm: CodeMirror.Editor, before: string, after: string) {
   if (cm.somethingSelected()) {
     cm.replaceSelection(before + cm.getSelection() + after);
   } else {
@@ -162,26 +137,21 @@ function handleText(cm: Editor, before: string, after: string) {
 }
 
 function handlePrepend(
-  cm: Editor,
-  prefixGen: (index: number) => string,
-  test: (line: string) => boolean
+  cm: CodeMirror.Editor,
+  replace: (lines: string[]) => string[]
 ) {
   const [selection] = cm.listSelections();
+  const fromLine = selection.from().line;
+  const toLine = selection.to().line;
   const lines = cm
-    .getRange(
-      { line: selection.anchor.line, ch: 0 },
-      // @ts-ignore
-      { line: selection.head.line }
-    )
-    .split('\n');
-  if (lines.every(test)) {
-    // TODO:
-  }
-  cm.replaceRange(
-    lines.map((line, i) => prefixGen(i) + line).join('\n'),
-    { line: selection.anchor.line, ch: 0 },
     // @ts-ignore
-    { line: selection.head.line }
+    .getRange({ line: fromLine, ch: 0 }, { line: toLine })
+    .split('\n');
+  cm.replaceRange(
+    replace(lines).join('\n'),
+    { line: fromLine, ch: 0 },
+    // @ts-ignore
+    { line: toLine }
   );
 
   cm.focus();

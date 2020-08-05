@@ -14,6 +14,9 @@ const iconMap = {
   tasklist: {},
   info: {},
   code: {},
+  codeBlock: {
+    key: 'code-square',
+  },
 };
 
 let code = 'export const iconMap = {';
