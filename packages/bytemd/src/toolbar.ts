@@ -91,7 +91,7 @@ const leftItems: BytemdToolbarItem[] = [
   },
   {
     tooltip: 'unordered list',
-    iconHtml: iconMap.ol,
+    iconHtml: iconMap.ul,
     onClick(cm) {
       handlePrepend(cm, (lines) => lines.map((line) => `- ${line}`));
     },
