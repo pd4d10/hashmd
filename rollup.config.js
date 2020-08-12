@@ -34,6 +34,7 @@ const packageConfigs = {
   'plugin-mermaid': {},
   'plugin-footnotes': {},
   'plugin-vega': {},
+  'plugin-html2md': {},
   'plugin-image-viewer': {},
   'plugin-image-handler': {},
   'plugin-scroll-sync': {},
