@@ -4,3 +4,6 @@ node_modules
 dist
 package-lock.json
 tsconfig.tsbuildinfo
+coverage
+**/*/src/**/*.js
+**/*/src/**/*.d.ts
