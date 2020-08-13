@@ -1,5 +1,4 @@
 import { BytemdPlugin } from 'bytemd';
-import { Editor } from 'codemirror';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 // @ts-ignore
@@ -21,57 +20,57 @@ export default function html2md({
 }: Html2mdOptions = {}): BytemdPlugin {
   return {
     editorEffect(cm) {
-      const handleItems = async (
-        items: DataTransferItem[],
+      const handler = async (
+        _: CodeMirror.Editor,
         e: ClipboardEvent | DragEvent
       ) => {
-        const htmlItem = items.find((item) => item.type === 'text/html');
-        if (htmlItem) {
-          e.preventDefault();
+        const itemList =
+          e instanceof ClipboardEvent
+            ? e.clipboardData?.items
+            : e.dataTransfer?.items;
+        const htmlItem = Array.from(itemList ?? []).find(
+          (item) => item.type === 'text/html'
+        );
+        if (!htmlItem) return;
 
-          let html: string;
-          switch (htmlItem.kind) {
-            case 'string': {
-              html = await new Promise<string>((resolve) =>
-                htmlItem.getAsString((v) => {
-                  resolve(v);
-                })
-              );
-              break;
-            }
-            case 'file': {
-              html = await htmlItem.getAsFile()!.text();
-              break;
-            }
-            default: {
-              throw new Error();
-            }
+        e.preventDefault();
+
+        let html: string;
+        switch (htmlItem.kind) {
+          case 'string': {
+            html = await new Promise<string>((resolve) =>
+              htmlItem.getAsString((v) => {
+                resolve(v);
+              })
+            );
+            break;
           }
-
-          let p = unified().use(rehypeParse, rehypeParseOptions);
-          p = rehype?.(p) ?? p;
-          p = p.use(rehypeRemark);
-          p = remark?.(p) ?? p;
-          p = p.use(remarkStringify, remarkStringifyOptions);
-          const result = await p.process(html);
-          cm.replaceSelection(result.toString());
+          case 'file': {
+            html = await htmlItem.getAsFile()!.text();
+            break;
+          }
+          default: {
+            throw new Error();
+          }
         }
+
+        // console.log(html);
+        let processor = unified().use(rehypeParse, rehypeParseOptions);
+        processor = rehype?.(processor) ?? processor;
+        processor = processor.use(rehypeRemark);
+        processor = remark?.(processor) ?? processor;
+        processor = processor.use(remarkStringify, remarkStringifyOptions);
+
+        const result = await processor.process(html);
+        cm.replaceSelection(result.toString());
       };
 
-      const handlePaste = async (_: Editor, e: ClipboardEvent) => {
-        handleItems(Array.from(e.clipboardData?.items ?? []), e);
-      };
-
-      const handleDrop = async (cm: Editor, e: DragEvent) => {
-        handleItems(Array.from(e.dataTransfer?.items ?? []), e);
-      };
-
-      cm.on('paste', handlePaste);
-      cm.on('drop', handleDrop);
+      cm.on('paste', handler);
+      cm.on('drop', handler);
 
       return () => {
-        cm.off('paste', handlePaste);
-        cm.off('drop', handleDrop);
+        cm.off('paste', handler);
+        cm.off('drop', handler);
       };
     },
   };
