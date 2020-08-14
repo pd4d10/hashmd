@@ -14,6 +14,8 @@
   $: items = getItems(plugins);
 </script>
 
+<svelte:options immutable={true} />
+
 <div class="bytemd-toolbar">
   {#if mode === 'tab'}
     <div class="bytemd-tabs">

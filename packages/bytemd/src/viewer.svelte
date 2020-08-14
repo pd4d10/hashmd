@@ -33,6 +33,8 @@
   }
 </script>
 
+<svelte:options immutable={true} />
+
 <div bind:this={el} class="markdown-body">
   {@html html}
 </div>

@@ -17,7 +17,7 @@
   export let containerStyle = null;
 
   let el;
-  let viewerValue;
+  let viewerProps;
   let textarea;
   let cm;
   let cbs = [];
@@ -43,7 +43,11 @@
     cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
   }
   const updateViewerValue = debounce(() => {
-    viewerValue = value;
+    viewerProps = {
+      value,
+      plugins,
+      sanitize,
+    };
   }, previewDebounce);
 
   $: if (cm && value !== cm.getValue()) {
@@ -81,6 +85,8 @@
   onDestroy(off);
 </script>
 
+<svelte:options immutable={true} />
+
 <div class="bytemd" bind:this={el} style={containerStyle}>
   <Toolbar {cm} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
   <div class="bytemd-body">
@@ -92,7 +98,9 @@
     <div
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
-      <Viewer value={viewerValue} {plugins} {sanitize} />
+      {#if viewerProps}
+        <Viewer {...viewerProps} />
+      {/if}
     </div>
   </div>
 </div>

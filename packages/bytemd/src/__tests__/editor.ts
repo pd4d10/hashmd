@@ -1,5 +1,4 @@
 import { Editor } from '../..';
-import * as cm from 'codemirror';
 import { render, fireEvent, act, RenderResult } from '@testing-library/svelte';
 
 function sleep(ms: number = 0) {
@@ -8,7 +7,7 @@ function sleep(ms: number = 0) {
 
 function getCodeMirror($: RenderResult) {
   const dom = $.container.querySelector('.CodeMirror') as any;
-  return dom.CodeMirror as cm.Editor;
+  return dom.CodeMirror as CodeMirror.Editor;
 }
 
 const heading = '# title';
@@ -40,7 +39,7 @@ test('value', async () => {
 test('preview debounce', async () => {
   const $ = render(Editor, {});
   $.component.$set({ value: paragraph });
-  expect($.container.querySelector('.markdown-body')?.innerHTML).toEqual('');
+  expect($.container.querySelector('.markdown-body')).toBeNull();
   await sleep(400);
   expect($.container.querySelector('.markdown-body')?.innerHTML).toEqual(
     paragraphHtml

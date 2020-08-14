@@ -16,6 +16,8 @@
   export let iconHtml;
 </script>
 
+<svelte:options immutable={true} />
+
 <span bind:this={el} on:click={() => dispatch('click')}>
   {@html iconHtml}
 </span>
