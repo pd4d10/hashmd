@@ -25,11 +25,17 @@ yarn add bytemd
 
 There are two components: `Editor` and `Viewer`. `Editor` is the Markdown editor, as the name suggests; `Viewer` is commonly used to display rendered Markdown results without editing.
 
+Before using the component, remember to import CSS file to make styles correct:
+
+```js
+import 'bytemd/dist/index.css';
+```
+
 ### Svelte
 
 ```svelte
 <template>
-  <Editor {value} on:change={handleChange} />
+  <Editor {value} on:change={handleChange} plugins={[{/* Add plugins here */}]} />
 </template>
 <script>
 import { Editor, Viewer } from 'bytemd'
@@ -55,6 +61,11 @@ const App = () => {
       onChange={(v) => {
         setValue(v);
       }}
+      plugins={
+        [
+          // Add plugins here
+        ]
+      }
     />
   );
 };
@@ -64,7 +75,7 @@ const App = () => {
 
 ```vue
 <template>
-  <Editor :value="value" @change="handleChange" />
+  <Editor :value="value" @change="handleChange" :plugins="plugins" />
 </template>
 
 <script>
@@ -77,6 +88,9 @@ export default {
   data() {
     return {
       value: '',
+      plugins: [
+        // Add plugins here
+      ],
     };
   },
   methods: {
@@ -95,7 +109,12 @@ import { Editor, Viewer } from 'bytemd';
 
 const instance = new Editor({
   target: document.body, // DOM to render
-  props: {},
+  props: {
+    value: '',
+    plugins: [
+      // Add plugins here
+    ],
+  },
 });
 
 instance.on('change', (e) => {
