@@ -1,11 +1,10 @@
 import { BytemdPlugin } from 'bytemd';
 // @ts-ignore
 import remarkMath from 'remark-math';
-import { KatexOptions } from 'katex';
 
 export interface MathOptions {
   inlineMathDouble?: boolean;
-  katexOptions?: Omit<KatexOptions, 'displayMode'>;
+  katexOptions?: Omit<katex.KatexOptions, 'displayMode'>;
 }
 
 export default function math({
