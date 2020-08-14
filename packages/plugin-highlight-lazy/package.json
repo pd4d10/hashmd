@@ -13,7 +13,7 @@
     "src/*.d.ts"
   ],
   "dependencies": {
-    "highlight.js": "^10.1.1"
+    "highlight.js": "^10.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

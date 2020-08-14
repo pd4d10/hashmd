@@ -13,9 +13,9 @@
     "src/*.d.ts"
   ],
   "dependencies": {
-    "vega": "^5.13.0",
-    "vega-embed": "^6.9.0",
-    "vega-lite": "^4.13.1"
+    "vega": "^5.0.0",
+    "vega-embed": "^6.0.0",
+    "vega-lite": "^4.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

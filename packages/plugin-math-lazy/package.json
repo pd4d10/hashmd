@@ -15,7 +15,7 @@
   "dependencies": {
     "@types/katex": "^0.11.0",
     "katex": "^0.12.0",
-    "remark-math": "^2.0.1"
+    "remark-math": "^2.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

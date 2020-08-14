@@ -14,19 +14,19 @@
     "**/src/*.{svelte,js,d.ts}"
   ],
   "dependencies": {
-    "@types/codemirror": "^0.0.96",
-    "@types/lodash.debounce": "^4.0.6",
-    "codemirror": "^5.55.0",
-    "lodash.debounce": "^4.0.8",
-    "rehype-raw": "^4.0.2",
-    "rehype-sanitize": "^3.0.1",
+    "@types/codemirror": "^0.0.97",
+    "@types/lodash.debounce": "^4.0.0",
+    "codemirror": "^5.0.0",
+    "lodash.debounce": "^4.0.0",
+    "rehype-raw": "^4.0.0",
+    "rehype-sanitize": "^3.0.0",
     "rehype-stringify": "^8.0.0",
-    "remark-parse": "^8.0.3",
+    "remark-parse": "^8.0.0",
     "remark-rehype": "^7.0.0",
-    "tippy.js": "^6.0.3",
-    "unified": "^9.1.0"
+    "tippy.js": "^6.0.0",
+    "unified": "^9.0.0"
   },
   "devDependencies": {
-    "svelte": "^3.23.2"
+    "svelte": "^3.24.1"
   }
 }

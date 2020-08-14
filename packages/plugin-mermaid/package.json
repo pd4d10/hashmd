@@ -13,8 +13,8 @@
     "src/*.d.ts"
   ],
   "dependencies": {
-    "@types/mermaid": "^8.2.1",
-    "mermaid": "^8.5.2"
+    "@types/mermaid": "^8.0.0",
+    "mermaid": "^8.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"
