@@ -1,5 +1,8 @@
 {
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "types": "src/index.d.ts"
+  "types": "src/index.d.ts",
+  "dependencies": {
+    "react": "*"
+  }
 }

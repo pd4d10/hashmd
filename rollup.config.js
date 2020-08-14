@@ -21,12 +21,8 @@ const packageConfigs = {
       'hast-util-sanitize/lib/github.json',
     ],
   },
-  'bytemd/react': {
-    external: ['react'],
-  },
-  'bytemd/vue': {
-    external: ['vue'],
-  },
+  'bytemd/react': {},
+  'bytemd/vue': {},
   'plugin-highlight': {},
   'plugin-highlight-lazy': {},
   'plugin-math': {},
