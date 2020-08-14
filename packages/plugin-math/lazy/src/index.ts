@@ -15,7 +15,9 @@ export default function math({
     remark: (u) => u.use(remarkMath, { inlineMathDouble }),
     viewerEffect(el) {
       const renderInline = async () => {
-        const els = el.querySelectorAll<HTMLElement>('.math.math-inline');
+        const els = el.querySelectorAll<HTMLElement>(
+          '.math.math-inline:not(.math-display)' // for `inlineMathDouble === true` case
+        );
         if (els.length === 0) return;
 
         const { render } = await import('katex');
