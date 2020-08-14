@@ -11,6 +11,7 @@
     { "path": "packages/plugin-image-handler" },
     { "path": "packages/plugin-image-viewer" },
     { "path": "packages/plugin-math" },
+    { "path": "packages/plugin-math-lazy" },
     { "path": "packages/plugin-mermaid" },
     { "path": "packages/plugin-scroll-sync" },
     { "path": "packages/plugin-vega" }
