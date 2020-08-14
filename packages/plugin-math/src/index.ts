@@ -3,19 +3,18 @@ import { BytemdPlugin } from 'bytemd';
 import remarkMath from 'remark-math';
 // @ts-ignore
 import rehypeKatex from 'rehype-katex';
-import { KatexOptions } from 'katex';
 
 export interface MathOptions {
   inlineMathDouble?: boolean;
-  katex?: Omit<KatexOptions, 'displayMode'>;
+  katexOptions?: Omit<katex.KatexOptions, 'displayMode'>;
 }
 
 export default function math({
   inlineMathDouble,
-  katex,
+  katexOptions,
 }: MathOptions = {}): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkMath, { inlineMathDouble }),
-    rehype: (u) => u.use(rehypeKatex, katex),
+    rehype: (u) => u.use(rehypeKatex, katexOptions),
   };
 }
