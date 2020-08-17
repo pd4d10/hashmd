@@ -39,9 +39,9 @@ test('value', async () => {
 test('preview debounce', async () => {
   const $ = render(Editor, {});
   $.component.$set({ value: paragraph });
-  expect($.container.querySelector('.markdown-body')).toBeNull();
+  expect($.container.querySelector('.markdown-body').innerHTML).toEqual('');
   await sleep(400);
-  expect($.container.querySelector('.markdown-body')?.innerHTML).toEqual(
+  expect($.container.querySelector('.markdown-body').innerHTML).toEqual(
     paragraphHtml
   );
 });

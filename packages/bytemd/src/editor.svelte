@@ -17,7 +17,11 @@
   export let containerStyle = null;
 
   let el;
-  let viewerProps;
+  let viewerProps = {
+    value,
+    plugins,
+    sanitize,
+  };
   let textarea;
   let cm;
   let cbs = [];
@@ -98,9 +102,7 @@
     <div
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
-      {#if viewerProps}
-        <Viewer {...viewerProps} />
-      {/if}
+      <Viewer {...viewerProps} />
     </div>
   </div>
 </div>
