@@ -3,8 +3,6 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import globals from 'rollup-plugin-node-globals';
-import builtins from 'rollup-plugin-node-builtins';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 // import visualizer from 'rollup-plugin-visualizer';
@@ -76,8 +74,6 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
       browser: true,
       dedupe: ['svelte'],
     }),
-    globals(),
-    builtins(),
     json(),
     umd && terser(),
   ];

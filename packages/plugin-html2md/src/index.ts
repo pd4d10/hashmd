@@ -2,7 +2,6 @@ import { BytemdPlugin } from 'bytemd';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 // @ts-ignore
-import rehypeRemark from 'rehype-remark';
 import remarkStringify from 'remark-stringify';
 
 export interface Html2mdOptions {
@@ -55,6 +54,20 @@ export default function html2md({
         }
 
         // console.log(html);
+
+        const [
+          { default: unified },
+          { default: rehypeParse },
+          { default: rehypeRemark },
+          { default: remarkStringify },
+        ] = await Promise.all([
+          import('unified'),
+          import('rehype-parse'),
+          // @ts-ignore
+          import('rehype-remark'),
+          import('remark-stringify'),
+        ]);
+
         let processor = unified().use(rehypeParse, rehypeParseOptions);
         processor = rehype?.(processor) ?? processor;
         processor = processor.use(rehypeRemark);

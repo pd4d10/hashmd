@@ -19,7 +19,7 @@
   "devDependencies": {
     "@primer/css": "^15.0.0",
     "@primer/octicons-v2": "0.0.0-53e900d",
-    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@testing-library/jest-dom": "^5.11.0",
@@ -33,8 +33,6 @@
     "react": "^16.13.1",
     "rollup": "^2.15.0",
     "rollup-plugin-livereload": "^1.3.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-svelte": "^5.2.2",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-visualizer": "^4.0.4",
