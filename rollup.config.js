@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
+import postcss from 'rollup-plugin-postcss';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -91,4 +92,17 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
   return config;
 });
 
-export default Object.values(packageConfigs);
+/** @type {import('rollup').RollupOptions} */
+const styleConfig = {
+  input: 'packages/bytemd/styles/index.scss',
+  output: {
+    file: 'style.js', // We don't need this file
+  },
+  plugins: [
+    postcss({
+      extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
+    }),
+  ],
+};
+
+export default [styleConfig, ...Object.values(packageConfigs)];
