@@ -1,10 +1,10 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
 module.exports = {
+  mode,
   entry: {
     bundle: ['./src/main.js'],
   },
@@ -35,14 +35,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          /**
-           * MiniCssExtractPlugin doesn't support HMR.
-           * For developing, use 'style-loader' instead.
-           * */
-          prod ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-        ],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(ttf|woff2?)$/,
@@ -55,11 +48,5 @@ module.exports = {
       },
     ],
   },
-  mode,
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-  ],
   devtool: prod ? false : 'source-map',
 };

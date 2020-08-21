@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "clean": "rm -rf packages/**/*/dist",
-    "build": "sass packages/bytemd/styles/index.scss packages/bytemd/dist/index.css && tsc --build && rollup -c",
+    "build": "tsc --build && rollup -c",
     "build:umd": "tsc --build && UMD=1 rollup -c",
     "dev": "run-p dev:bundle dev:tsc",
     "dev:bundle": "rollup -cw",
