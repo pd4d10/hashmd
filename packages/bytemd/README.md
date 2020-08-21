@@ -146,6 +146,7 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
 | Package | Status | Description |
 | --- | --- | --- |
+| [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | ByteMD plugin to support breaks |
 | [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) | ByteMD plugin to support footnotes |
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | ByteMD plugin to highlight code blocks |
 | [@bytemd/plugin-highlight-lazy](./packages/plugin-highlight-lazy) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-lazy.svg)](https://npm.im/@bytemd/plugin-highlight-lazy) | ByteMD plugin to lazy highlight code blocks |

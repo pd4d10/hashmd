@@ -4,6 +4,7 @@
     { "path": "packages/bytemd" },
     { "path": "packages/bytemd/react" },
     { "path": "packages/bytemd/vue" },
+    { "path": "packages/plugin-breaks" },
     { "path": "packages/plugin-footnotes" },
     { "path": "packages/plugin-highlight" },
     { "path": "packages/plugin-highlight-lazy" },

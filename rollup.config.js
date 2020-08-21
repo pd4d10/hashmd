@@ -21,6 +21,7 @@ const packageConfigs = {
   },
   'bytemd/react': {},
   'bytemd/vue': {},
+  'plugin-breaks': {},
   'plugin-highlight': {},
   'plugin-highlight-lazy': {},
   'plugin-math': {},
