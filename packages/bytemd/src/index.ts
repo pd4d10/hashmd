@@ -2,13 +2,10 @@
 import Editor from './editor.svelte';
 // @ts-ignore
 import Viewer from './viewer.svelte';
-import codemirror from 'codemirror';
-import * as unified from 'unified';
+import { Processor } from 'unified';
 
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
-
-type UnifiedProcessor = (x: unified.Processor) => unified.Processor;
 
 export interface BytemdToolbarItem {
   /**
@@ -22,7 +19,7 @@ export interface BytemdToolbarItem {
   /**
    * Toolbar icon click handler
    */
-  onClick(cm: codemirror.Editor): void;
+  onClick(cm: CodeMirror.Editor): void;
 }
 
 export interface BytemdPlugin {
@@ -31,13 +28,13 @@ export interface BytemdPlugin {
    *
    * https://github.com/remarkjs/remark/blob/main/doc/plugins.md
    */
-  remark?: UnifiedProcessor;
+  remark?: (p: Processor) => Processor;
   /**
    * Customize HTML parse by rehype plugins:
    *
    * https://github.com/rehypejs/rehype/blob/main/doc/plugins.md
    */
-  rehype?: UnifiedProcessor;
+  rehype?: (p: Processor) => Processor;
   /**
    * Add toolbar items
    */
@@ -52,7 +49,7 @@ export interface BytemdPlugin {
     /**
      * CodeMirror instance
      */
-    cm: codemirror.Editor,
+    cm: CodeMirror.Editor,
     /**
      * Root element, `$('.bytemd')`
      */
