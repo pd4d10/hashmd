@@ -13,7 +13,7 @@
     "src/*.d.ts"
   ],
   "dependencies": {
-    "remark-footnotes": "^1.0.0"
+    "remark-footnotes": "^2.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

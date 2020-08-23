@@ -19,7 +19,7 @@
     "codemirror": "^5.0.0",
     "lodash.debounce": "^4.0.0",
     "rehype-raw": "^4.0.0",
-    "rehype-sanitize": "^3.0.0",
+    "rehype-sanitize": "^4.0.0",
     "rehype-stringify": "^8.0.0",
     "remark-parse": "^8.0.0",
     "remark-rehype": "^7.0.0",

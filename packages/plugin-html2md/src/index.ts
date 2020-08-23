@@ -1,14 +1,13 @@
 import { BytemdPlugin } from 'bytemd';
-import unified from 'unified';
-import rehypeParse from 'rehype-parse';
-// @ts-ignore
-import remarkStringify from 'remark-stringify';
+import { Processor } from 'unified';
+import { RehypeParseOptions } from 'rehype-parse';
+import { PartialRemarkStringifyOptions } from 'remark-stringify';
 
 export interface Html2mdOptions {
-  rehype?: (p: unified.Processor) => unified.Processor;
-  remark?: (p: unified.Processor) => unified.Processor;
-  rehypeParseOptions?: rehypeParse.RehypeParseOptions;
-  remarkStringifyOptions?: remarkStringify.PartialRemarkStringifyOptions;
+  rehype?: (p: Processor) => Processor;
+  remark?: (p: Processor) => Processor;
+  rehypeParseOptions?: RehypeParseOptions;
+  remarkStringifyOptions?: PartialRemarkStringifyOptions;
 }
 
 export default function html2md({

@@ -1,10 +1,9 @@
 import { BytemdPlugin } from 'bytemd';
-// @ts-ignore
-import remarkFootnotes from 'remark-footnotes';
+import remarkFootnotes, { RemarkFootnotesOptions } from 'remark-footnotes';
 
-export default function footnotes(options?: {
-  inlineNotes?: boolean;
-}): BytemdPlugin {
+export default function footnotes(
+  options?: RemarkFootnotesOptions
+): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkFootnotes, options),
   };

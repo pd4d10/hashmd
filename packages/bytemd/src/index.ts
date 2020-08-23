@@ -3,6 +3,7 @@ import Editor from './editor.svelte';
 // @ts-ignore
 import Viewer from './viewer.svelte';
 import { Processor } from 'unified';
+import { Schema } from 'hast-util-sanitize';
 
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
@@ -103,5 +104,5 @@ export interface ViewerProps {
    *
    * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
    */
-  sanitize?: (schema: any) => any;
+  sanitize?: (schema: Schema) => Schema;
 }
