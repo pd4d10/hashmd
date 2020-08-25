@@ -1,7 +1,7 @@
 {
-  "name": "@bytemd/plugin-image-viewer",
-  "version": "0.1.1",
-  "description": "ByteMD plugin to preview image",
+  "name": "@bytemd/plugin-medium-zoom",
+  "version": "0.1.0",
+  "description": "ByteMD plugin to zoom images like Medium",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
@@ -12,7 +12,9 @@
     "dist",
     "src/*.d.ts"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "medium-zoom": "^1.0.0"
+  },
   "peerDependencies": {
     "bytemd": "*"
   }
