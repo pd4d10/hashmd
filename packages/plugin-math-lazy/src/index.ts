@@ -1,19 +1,17 @@
 import { BytemdPlugin } from 'bytemd';
-// @ts-ignore
-import remarkMath from 'remark-math';
+import remarkMath, { RemarkMathOptions } from 'remark-math';
 import { KatexOptions } from 'katex';
 
-export interface MathLazyOptions {
-  inlineMathDouble?: boolean;
+export interface MathLazyOptions extends RemarkMathOptions {
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
 export default function mathLazy({
-  inlineMathDouble,
   katexOptions,
+  ...remarkMathOptions
 }: MathLazyOptions = {}): BytemdPlugin {
   return {
-    remark: (u) => u.use(remarkMath, { inlineMathDouble }),
+    remark: (u) => u.use(remarkMath, remarkMathOptions),
     viewerEffect(el) {
       const renderInline = async () => {
         const els = el.querySelectorAll<HTMLElement>(
