@@ -1,10 +1,32 @@
 import { BytemdToolbarItem, BytemdPlugin } from '.';
-import { iconMap } from './icons';
+import * as icon from '@icon-park/svg';
 
 const leftItems: BytemdToolbarItem[] = [
   {
-    tooltip: 'heading',
-    iconHtml: iconMap.heading,
+    tooltip: 'H1',
+    iconHtml: icon.H1({}),
+    onClick(cm) {
+      const { line } = cm.getCursor();
+      const content = cm.getLine(line);
+      // @ts-ignore
+      cm.replaceRange(`# ${content}`, { line, ch: 0 }, { line });
+      cm.focus();
+    },
+  },
+  {
+    tooltip: 'H2',
+    iconHtml: icon.H2({}),
+    onClick(cm) {
+      const { line } = cm.getCursor();
+      const content = cm.getLine(line);
+      // @ts-ignore
+      cm.replaceRange(`## ${content}`, { line, ch: 0 }, { line });
+      cm.focus();
+    },
+  },
+  {
+    tooltip: 'H3',
+    iconHtml: icon.H3({}),
     onClick(cm) {
       const { line } = cm.getCursor();
       const content = cm.getLine(line);
@@ -15,28 +37,28 @@ const leftItems: BytemdToolbarItem[] = [
   },
   {
     tooltip: 'bold',
-    iconHtml: iconMap.bold,
+    iconHtml: icon.TextBold({}),
     onClick(cm) {
       handleText(cm, '**', '**');
     },
   },
   {
     tooltip: 'italic',
-    iconHtml: iconMap.italic,
+    iconHtml: icon.TextItalic({}),
     onClick(cm) {
       handleText(cm, '_', '_');
     },
   },
   {
     tooltip: 'blockquote',
-    iconHtml: iconMap.quote,
+    iconHtml: icon.Quote({}),
     onClick(cm) {
       handlePrepend(cm, (lines) => lines.map((line) => `> ${line}`));
     },
   },
   {
     tooltip: 'link',
-    iconHtml: iconMap.link,
+    iconHtml: icon.LinkOne({}),
     onClick(cm) {
       if (cm.somethingSelected()) {
         const text = cm.getSelection();
@@ -53,21 +75,21 @@ const leftItems: BytemdToolbarItem[] = [
   },
   {
     tooltip: 'code',
-    iconHtml: iconMap.code,
+    iconHtml: icon.Code({}),
     onClick(cm) {
       handleText(cm, '`', '`');
     },
   },
   {
     tooltip: 'code block',
-    iconHtml: iconMap.codeBlock,
+    iconHtml: icon.CodeBrackets({}),
     onClick(cm) {
       handlePrepend(cm, (lines) => ['```', ...lines, '```']);
     },
   },
   {
     tooltip: 'table',
-    iconHtml: iconMap.table,
+    iconHtml: icon.InsertTable({}),
     onClick(cm) {
       const pos = cm.getCursor();
       cm.replaceRange(
@@ -84,21 +106,21 @@ const leftItems: BytemdToolbarItem[] = [
   },
   {
     tooltip: 'ordered list',
-    iconHtml: iconMap.ol,
+    iconHtml: icon.OrderedList({}),
     onClick(cm) {
       handlePrepend(cm, (lines) => lines.map((line, i) => `${i + 1}. ${line}`));
     },
   },
   {
     tooltip: 'unordered list',
-    iconHtml: iconMap.ul,
+    iconHtml: icon.ListCheckbox({}),
     onClick(cm) {
       handlePrepend(cm, (lines) => lines.map((line) => `- ${line}`));
     },
   },
   {
     tooltip: 'task list',
-    iconHtml: iconMap.tasklist,
+    iconHtml: icon.CheckCorrect({}),
     onClick(cm) {
       handlePrepend(cm, (lines) => lines.map((line) => `- [ ] ${line}`));
     },
@@ -108,7 +130,7 @@ const leftItems: BytemdToolbarItem[] = [
 const rightItems: BytemdToolbarItem[] = [
   {
     tooltip: 'About ByteMD',
-    iconHtml: iconMap.info,
+    iconHtml: icon.Info({}),
     onClick() {
       window.open('https://github.com/bytedance/bytemd');
     },

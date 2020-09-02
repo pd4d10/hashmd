@@ -1,5 +1,4 @@
 <script>
-  import { iconMap } from './icons';
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import { getItems } from './toolbar';
