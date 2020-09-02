@@ -23,7 +23,7 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
           try {
             const pre = el.parentElement!;
             m.render(
-              `bytemd-mermaid-${i}`,
+              `bytemd-mermaid-${Date.now()}-${i}`,
               el.innerText,
               (svgCode) => {
                 pre.innerHTML = svgCode;
