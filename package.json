@@ -2,8 +2,7 @@
   "name": "bytemd",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
     "clean": "rm -rf packages/**/*/dist",
@@ -26,6 +25,8 @@
     "@testing-library/svelte": "^3.0.0",
     "@types/jest": "^26.0.4",
     "@types/react": "^16.9.36",
+    "esm": "^3.2.25",
+    "fs-extra": "^9.0.1",
     "jest": "^26.0.1",
     "mustache": "^4.0.1",
     "node-sass": "^4.14.1",
@@ -43,6 +44,7 @@
     "svelte-jester": "^1.0.6",
     "svelte-preprocess": "^4.3.2",
     "ts-jest": "^26.1.1",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "vue-template-compiler": "^2.6.12"
   }
 }
