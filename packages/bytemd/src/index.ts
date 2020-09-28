@@ -8,6 +8,8 @@ import { Schema } from 'hast-util-sanitize';
 export { Editor, Viewer };
 export { processMarkdown } from './utils';
 
+import '../styles/index.scss';
+
 export interface BytemdToolbarItem {
   /**
    * Tooltip of toolbar item
