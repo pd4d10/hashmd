@@ -7,11 +7,11 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",
-  "types": "src/index.d.ts",
+  "types": "lib/index.d.ts",
   "svelte": "src/index.js",
   "files": [
-    "**/dist",
-    "**/src/*.{svelte,js,d.ts}"
+    "dist",
+    "lib"
   ],
   "dependencies": {
     "@types/codemirror": "^0.0.97",

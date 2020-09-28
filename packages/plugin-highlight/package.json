@@ -7,10 +7,10 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",
-  "types": "src/index.d.ts",
+  "types": "lib/index.d.ts",
   "files": [
     "dist",
-    "src/*.d.ts"
+    "lib"
   ],
   "dependencies": {
     "rehype-highlight": "^4.0.0"

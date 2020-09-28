@@ -1,4 +1,16 @@
 {
   "extends": "../../tsconfig-base.json",
-  "references": [{ "path": "../bytemd" }]
+  "include": [
+    "src"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "references": [
+    {
+      "path": "../bytemd"
+    }
+  ]
 }
