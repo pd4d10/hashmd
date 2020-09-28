@@ -1,20 +1,50 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/bytemd" },
-    { "path": "packages/bytemd/react" },
-    { "path": "packages/bytemd/vue" },
-    { "path": "packages/plugin-breaks" },
-    { "path": "packages/plugin-footnotes" },
-    { "path": "packages/plugin-highlight" },
-    { "path": "packages/plugin-highlight-lazy" },
-    { "path": "packages/plugin-html2md" },
-    { "path": "packages/plugin-image-handler" },
-    { "path": "packages/plugin-math" },
-    { "path": "packages/plugin-math-lazy" },
-    { "path": "packages/plugin-medium-zoom" },
-    { "path": "packages/plugin-mermaid" },
-    { "path": "packages/plugin-scroll-sync" },
-    { "path": "packages/plugin-vega" }
+    {
+      "path": "packages/bytemd"
+    },
+    {
+      "path": "packages/plugin-breaks"
+    },
+    {
+      "path": "packages/plugin-footnotes"
+    },
+    {
+      "path": "packages/plugin-highlight"
+    },
+    {
+      "path": "packages/plugin-highlight-lazy"
+    },
+    {
+      "path": "packages/plugin-html2md"
+    },
+    {
+      "path": "packages/plugin-image-handler"
+    },
+    {
+      "path": "packages/plugin-math"
+    },
+    {
+      "path": "packages/plugin-math-lazy"
+    },
+    {
+      "path": "packages/plugin-medium-zoom"
+    },
+    {
+      "path": "packages/plugin-mermaid"
+    },
+    {
+      "path": "packages/plugin-scroll-sync"
+    },
+    {
+      "path": "packages/plugin-vega"
+    },
+    {
+      "path": "packages/react"
+    },
+    {
+      "path": "packages/vue"
+    }
   ]
 }

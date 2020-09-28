@@ -1,0 +1,18 @@
+{
+  "name": "@bytemd/vue",
+  "version": "0.1.6",
+  "description": "Full-featured markdown editor and viewer",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "peerDependencies": {
+    "vue": "*"
+  }
+}
