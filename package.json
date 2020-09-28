@@ -7,11 +7,12 @@
   ],
   "scripts": {
     "clean": "rm -rf packages/**/*/dist",
-    "build": "tsc --build && rollup -c",
+    "build": "tsc --build && node -r esm scripts/process.js && rollup -c",
     "build:umd": "tsc --build && UMD=1 rollup -c",
-    "dev": "run-p dev:bundle dev:tsc",
+    "dev": "run-p dev:bundle dev:tsc dev:process",
     "dev:bundle": "rollup -cw",
     "dev:tsc": "tsc --build --watch",
+    "dev:process": "node -r esm scripts/process.js --watch",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
@@ -40,6 +41,7 @@
     "rollup-plugin-vue": "^5.1.9",
     "svelte": "^3.23.2",
     "svelte-jester": "^1.0.6",
+    "svelte-preprocess": "^4.3.2",
     "ts-jest": "^26.1.1",
     "typescript": "^3.9.6"
   }

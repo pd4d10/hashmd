@@ -20,8 +20,8 @@ const packageConfigs = {
       'hast-util-sanitize/lib/github.json',
     ],
   },
-  'bytemd/react': {},
-  'bytemd/vue': {},
+  // 'bytemd/react': {},
+  // 'bytemd/vue': {},
   'plugin-breaks': {},
   'plugin-highlight': {},
   'plugin-highlight-lazy': {},
@@ -45,7 +45,7 @@ Object.entries(packageConfigs).forEach(([key, config]) => {
   // config.inlineDynamicImports = true;
   const pkg = require(`./packages/${key}/package.json`);
   if (!config.input) {
-    config.input = path.resolve('packages', key, 'src/index.js');
+    config.input = path.resolve('packages', key, 'lib/index.js');
   }
   if (!config.output) {
     if (umd) {

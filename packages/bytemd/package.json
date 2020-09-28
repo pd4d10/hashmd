@@ -8,7 +8,7 @@
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",
   "types": "lib/index.d.ts",
-  "svelte": "src/index.js",
+  "svelte": "lib/index.js",
   "files": [
     "dist",
     "lib"
