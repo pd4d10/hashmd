@@ -38,7 +38,7 @@
     {/each}
   {/if}
 
-  <span style="flex-grow:1" />
+  <div style="flex-grow:1" />
   {#each items.right as { tooltip, iconHtml, onClick }}
     <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(cm)} />
   {/each}
