@@ -6,30 +6,35 @@ import { preprocess } from 'svelte/compiler';
 import autoprocessor from 'svelte-preprocess';
 
 async function compile(file) {
-  const source = await fs.readFile(file, 'utf8');
-  const item = await preprocess(source, autoprocessor(), {
-    filename: file,
-  });
-  await fs.ensureDir(path.resolve(__dirname, '../packages/bytemd/lib'));
-  await fs.writeFile(file.replace('bytemd/src', 'bytemd/lib'), item.code);
+  const dest = file.replace('/src/', '/lib/');
+
+  if (file.endsWith('.svelte')) {
+    const source = await fs.readFile(file, 'utf8');
+    const item = await preprocess(source, autoprocessor(), {
+      filename: file,
+    });
+    await fs.writeFile(dest, item.code);
+  } else {
+    await fs.copyFile(file, dest);
+  }
 }
 
-if (process.argv.includes('--watch')) {
-  chokidar
-    .watch(path.resolve(__dirname, `../packages/bytemd/src/*.svelte`))
-    .on('all', (event, file) => {
-      console.log(event, file);
-      compile(file);
-    });
-} else {
-  glob(
-    path.resolve(__dirname, `../packages/bytemd/src/*.svelte`),
-    async (err, files) => {
-      if (err) throw err;
+const pattern = path.resolve(__dirname, `../packages/*/src/*.{svelte,vue}`);
 
-      for (let file of files) {
-        compile(file);
-      }
+if (process.argv.includes('--watch')) {
+  // fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
+  // fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
+
+  chokidar.watch(pattern).on('all', (event, file) => {
+    console.log(event, file);
+    compile(file);
+  });
+} else {
+  glob(pattern, (err, files) => {
+    if (err) throw err;
+
+    for (let file of files) {
+      compile(file);
     }
-  );
+  });
 }

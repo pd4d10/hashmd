@@ -1,3 +1,5 @@
+// @ts-check
+import fs from 'fs-extra';
 import path from 'path';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
@@ -11,89 +13,53 @@ import postcss from 'rollup-plugin-postcss';
 const production = !process.env.ROLLUP_WATCH;
 const umd = process.env.UMD; // TODO: dynamic import
 
-/** @type {Record<string, import('rollup').RollupOptions>} */
-const packageConfigs = {
-  bytemd: {
+const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
+
+/** @type {import('rollup').RollupOptions[]} */
+const configs = packages.map((key) => {
+  // config.inlineDynamicImports = true;
+  const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
+
+  return {
+    input: path.resolve('packages', key, 'lib/index.js'),
+    output: [
+      {
+        format: 'es',
+        sourcemap: true,
+        file: path.resolve('packages', key, pkg.module),
+      },
+      {
+        format: 'cjs',
+        sourcemap: true,
+        file: path.resolve('packages', key, pkg.main),
+      },
+    ],
+    plugins: [
+      commonjs(),
+      svelte({}),
+      vue(),
+      resolve({
+        browser: true,
+        dedupe: ['svelte'],
+      }),
+      json(),
+      key === 'bytemd' &&
+        postcss({
+          extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
+        }),
+      umd && terser(),
+    ],
     external: [
+      'bytemd',
       'codemirror/mode/markdown/markdown.js',
       'codemirror/addon/display/placeholder.js',
       'hast-util-sanitize/lib/github.json',
+      ...Object.keys(pkg.dependencies || {}),
     ],
-  },
-  // 'bytemd/react': {},
-  // 'bytemd/vue': {},
-  'plugin-breaks': {},
-  'plugin-highlight': {},
-  'plugin-highlight-lazy': {},
-  'plugin-math': {},
-  'plugin-math-lazy': {},
-  'plugin-mermaid': {},
-  'plugin-footnotes': {},
-  'plugin-vega': {},
-  'plugin-html2md': {},
-  'plugin-image-handler': {},
-  'plugin-scroll-sync': {},
-  'plugin-medium-zoom': {},
-};
-
-if (umd) {
-  delete packageConfigs['bytemd/react'];
-  delete packageConfigs['bytemd/vue'];
-}
-
-Object.entries(packageConfigs).forEach(([key, config]) => {
-  // config.inlineDynamicImports = true;
-  const pkg = require(`./packages/${key}/package.json`);
-  if (!config.input) {
-    config.input = path.resolve('packages', key, 'lib/index.js');
-  }
-  if (!config.output) {
-    if (umd) {
-      config.output = [
-        {
-          name: key,
-          format: 'umd',
-          file: path.resolve('packages', key, pkg.unpkg),
-        },
-      ];
-    } else {
-      config.output = [
-        { format: 'es', file: path.resolve('packages', key, pkg.module) },
-        { format: 'cjs', file: path.resolve('packages', key, pkg.main) },
-      ];
-    }
-  }
-  config.output.forEach((output) => {
-    output.sourcemap = true;
-  });
-  config.plugins = [
-    commonjs(),
-    svelte({
-      dev: !production,
-    }),
-    vue(),
-    resolve({
-      browser: true,
-      dedupe: ['svelte'],
-    }),
-    json(),
-    key === 'bytemd' &&
-      postcss({
-        extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
-      }),
-    umd && terser(),
-  ];
-
-  config.external = [
-    'bytemd',
-    ...(config.external || []),
-    ...(umd ? [] : Object.keys(pkg.dependencies || {})),
-  ];
-
-  // config.watch = {
-  //   clearScreen: false,
-  // };
-  return config;
+    watch: {
+      // clearScreen: false,
+    },
+  };
 });
 
-export default Object.values(packageConfigs);
+export default configs;
