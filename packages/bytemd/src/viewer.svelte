@@ -1,21 +1,27 @@
-<script context="module">
+<script lang="ts" context="module">
+  import type { BytemdPlugin } from './types';
+
   // Declare callbacks here to be non-reactive
-  const cbsMap = {};
+  const cbsMap: Record<
+    string,
+    ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[]
+  > = {};
 </script>
 
-<script>
-  import { tick, onDestroy, onMount } from 'svelte';
+<script lang="ts">
+  import type { ViewerProps } from './types';
+  import { tick, onDestroy } from 'svelte';
   import { processMarkdown } from './utils';
 
-  export let value = '';
-  export let plugins = [];
-  export let sanitize = null;
+  export let value: ViewerProps['value'] = '';
+  export let plugins: ViewerProps['plugins'];
+  export let sanitize: ViewerProps['sanitize'];
 
-  let el;
+  let el: HTMLElement;
   const id = Date.now();
 
   function on() {
-    cbsMap[id] = plugins.map(
+    cbsMap[id] = (plugins ?? []).map(
       ({ viewerEffect }) => viewerEffect && viewerEffect(el)
     );
   }

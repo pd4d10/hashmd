@@ -1,34 +1,40 @@
-<script context="module">
+<script lang="ts" context="module">
+  import type { BytemdPlugin } from './types';
+
   // Declare callbacks here to be non-reactive
-  const cbsMap = {};
+  const cbsMap: Record<
+    string,
+    ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[]
+  > = {};
 </script>
 
-<script>
+<script lang="ts">
+  import type { EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
 
-  export let value = '';
-  export let plugins = [];
-  export let sanitize = null;
-  export let mode = 'split';
-  export let previewDebounce = 300;
-  export let containerStyle = null;
+  export let value: EditorProps['value'] = '';
+  export let plugins: EditorProps['plugins'];
+  export let sanitize: EditorProps['sanitize'];
+  export let mode: EditorProps['mode'] = 'split';
+  export let previewDebounce: EditorProps['previewDebounce'] = 300;
+  export let containerStyle: EditorProps['containerStyle'];
 
-  let el;
-  let viewerProps = {
+  let el: HTMLElement;
+  let viewerProps: ViewerProps = {
     value,
     plugins,
     sanitize,
   };
-  let textarea;
-  let cm;
-  let cbs = [];
+  let textarea: HTMLTextAreaElement;
+  let cm: CodeMirror.Editor;
   let activeTab = 0;
   const id = Date.now();
   const dispatch = createEventDispatcher();
 
+  // @ts-ignore
   function setActiveTab(e) {
     activeTab = e.detail.value;
     if (cm && activeTab === 0) {
@@ -39,7 +45,7 @@
   }
 
   function on() {
-    cbsMap[id] = plugins.map(
+    cbsMap[id] = (plugins ?? []).map(
       ({ editorEffect }) => editorEffect && editorEffect(cm, el)
     );
   }
@@ -68,11 +74,13 @@
   onMount(async () => {
     const [codemirror] = await Promise.all([
       import('codemirror'),
+      // @ts-ignore
       import('codemirror/mode/markdown/markdown.js'),
       import('codemirror/addon/display/placeholder.js'),
     ]);
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
+    // @ts-ignore
     codemirror.keyMap.default['Shift-Tab'] = 'indentLess';
 
     cm = codemirror.fromTextArea(textarea, {

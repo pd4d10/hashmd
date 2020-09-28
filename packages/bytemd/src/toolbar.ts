@@ -1,4 +1,4 @@
-import { BytemdToolbarItem, BytemdPlugin } from '.';
+import type { BytemdToolbarItem, EditorProps } from './types';
 import * as icon from '@icon-park/svg';
 
 const leftItems: BytemdToolbarItem[] = [
@@ -137,10 +137,10 @@ const rightItems: BytemdToolbarItem[] = [
   },
 ];
 
-export function getItems(plugins: BytemdPlugin[]) {
+export function getItems(plugins: EditorProps['plugins']) {
   let left = [...leftItems];
   let right = [...rightItems];
-  plugins.forEach((p) => {
+  plugins?.forEach((p) => {
     if (p.toolbar?.left) left = p.toolbar.left(left);
     if (p.toolbar?.right) right = p.toolbar.right(right);
   });

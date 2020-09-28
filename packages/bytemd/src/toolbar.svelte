@@ -1,14 +1,15 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import { getItems } from './toolbar';
+  import type { EditorProps } from './types';
 
   const dispatch = createEventDispatcher();
 
-  export let cm;
-  export let mode;
-  export let activeTab;
-  export let plugins;
+  export let cm: CodeMirror.Editor;
+  export let mode: EditorProps['mode'];
+  export let activeTab: number;
+  export let plugins: EditorProps['plugins'];
 
   $: items = getItems(plugins);
 </script>

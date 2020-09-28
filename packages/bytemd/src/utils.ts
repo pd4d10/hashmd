@@ -8,7 +8,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import stringify from 'rehype-stringify';
 // @ts-ignore
 import ghSchema from 'hast-util-sanitize/lib/github.json';
-import { ViewerProps } from '.';
+import type { ViewerProps } from './types';
 
 const schemaStr = JSON.stringify(ghSchema);
 

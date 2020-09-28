@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
   import tippy from 'tippy.js';
   import { onMount } from 'svelte';
   import { createEventDispatcher } from 'svelte';
+  import type { BytemdToolbarItem } from './types';
 
   const dispatch = createEventDispatcher();
 
@@ -11,9 +12,9 @@
     }
   });
 
-  let el;
-  export let tooltip;
-  export let iconHtml;
+  let el: HTMLElement;
+  export let tooltip: BytemdToolbarItem['tooltip'];
+  export let iconHtml: BytemdToolbarItem['iconHtml'];
 </script>
 
 <svelte:options immutable={true} />
