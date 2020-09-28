@@ -12,6 +12,9 @@
     "dist",
     "lib"
   ],
+  "dependencies": {
+    "bytemd": "0.1.6"
+  },
   "peerDependencies": {
     "vue": "*"
   }
