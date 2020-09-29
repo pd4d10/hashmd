@@ -1,6 +1,5 @@
-// @ts-ignore
+/// <reference types="svelte" />
 import Editor from './editor.svelte';
-// @ts-ignore
 import Viewer from './viewer.svelte';
 
 export { Editor, Viewer };

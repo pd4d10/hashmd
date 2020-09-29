@@ -6,6 +6,4 @@ lib
 package-lock.json
 tsconfig.tsbuildinfo
 coverage
-**/*/src/**/*.js
-**/*/src/**/*.d.ts
 style.js
