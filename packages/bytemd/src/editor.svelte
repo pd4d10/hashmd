@@ -75,12 +75,14 @@
     const [codemirror] = await Promise.all([
       import('codemirror'),
       // @ts-ignore
-      import('codemirror/mode/markdown/markdown.js'),
-      import('codemirror/addon/display/placeholder.js'),
+      import('codemirror/mode/gfm/gfm'),
+      // @ts-ignore
+      import('codemirror/mode/yaml-frontmatter/yaml-frontmatter'),
+      import('codemirror/addon/display/placeholder'),
     ]);
 
     cm = codemirror.fromTextArea(textarea, {
-      mode: 'markdown',
+      mode: 'yaml-frontmatter',
       lineWrapping: true,
       placeholder: 'Start writing...',
     });

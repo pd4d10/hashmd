@@ -47,8 +47,9 @@ const configs = packages.map((key) => {
     ],
     external: [
       'bytemd',
-      'codemirror/mode/markdown/markdown.js',
-      'codemirror/addon/display/placeholder.js',
+      'codemirror/mode/gfm/gfm',
+      'codemirror/mode/yaml-frontmatter/yaml-frontmatter',
+      'codemirror/addon/display/placeholder',
       'hast-util-sanitize/lib/github.json',
       ...Object.keys(pkg.dependencies || {}),
     ],
