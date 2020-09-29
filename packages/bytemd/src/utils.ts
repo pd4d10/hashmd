@@ -3,11 +3,10 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 // @ts-ignore
 import rehypeRaw from 'rehype-raw';
-// @ts-ignore
 import rehypeSanitize from 'rehype-sanitize';
 import stringify from 'rehype-stringify';
-// @ts-ignore
 import ghSchema from 'hast-util-sanitize/lib/github.json';
+import type { Schema } from 'hast-util-sanitize';
 import type { ViewerProps } from './types';
 
 const schemaStr = JSON.stringify(ghSchema);
@@ -24,9 +23,9 @@ export function getProcessor({
 
   p = p.use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw);
 
-  let schema = JSON.parse(schemaStr);
-  schema.attributes['*'].push('className'); // Add className
-  schema.clobber = schema.clobber.filter((vs: string) => vs !== 'id'); // Keep id as is
+  let schema = JSON.parse(schemaStr) as Schema;
+  schema.attributes!['*'].push('className'); // Add className
+  schema.clobber = schema.clobber!.filter((vs) => vs !== 'id'); // Keep id as is
   if (sanitize) schema = sanitize(schema);
 
   p = p.use(rehypeSanitize, schema);

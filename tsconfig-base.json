@@ -10,7 +10,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "composite": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
   "exclude": ["**/__tests__"]
 }

@@ -79,14 +79,15 @@
       import('codemirror/addon/display/placeholder.js'),
     ]);
 
-    // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
-    // @ts-ignore
-    codemirror.keyMap.default['Shift-Tab'] = 'indentLess';
-
     cm = codemirror.fromTextArea(textarea, {
       mode: 'markdown',
       lineWrapping: true,
       placeholder: 'Start writing...',
+    });
+
+    // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
+    cm.addKeyMap({
+      'Shift-Tab': 'indentLess',
     });
     cm.setValue(value);
     cm.on('change', (doc, change) => {

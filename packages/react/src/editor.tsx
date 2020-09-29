@@ -22,8 +22,7 @@ export const Editor: React.FC<EditorProps> = ({
       target: el.current,
       props,
     });
-    // @ts-ignore
-    editor.$on('change', (e) => {
+    editor.$on('change', (e: CustomEvent<{ value: string }>) => {
       if (onChange) onChange(e.detail.value);
     });
     ed.current = editor;
