@@ -43,10 +43,6 @@ const configs = packages.map((key) => {
         dedupe: ['svelte'],
       }),
       json(),
-      key === 'bytemd' &&
-        postcss({
-          extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
-        }),
       umd && terser(),
     ],
     external: [
@@ -62,4 +58,17 @@ const configs = packages.map((key) => {
   };
 });
 
-export default configs;
+/** @type {import('rollup').RollupOptions} */
+const styleConfig = {
+  input: 'packages/bytemd/styles/index.scss',
+  output: {
+    file: 'style.js', // We don't need this file
+  },
+  plugins: [
+    postcss({
+      extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
+    }),
+  ],
+};
+
+export default [styleConfig, ...configs];
