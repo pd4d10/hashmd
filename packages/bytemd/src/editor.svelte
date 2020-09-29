@@ -1,15 +1,5 @@
-<script lang="ts" context="module">
-  import type { BytemdPlugin } from './types';
-
-  // Declare callbacks here to be non-reactive
-  const cbsMap: Record<
-    string,
-    ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[]
-  > = {};
-</script>
-
 <script lang="ts">
-  import type { EditorProps, ViewerProps } from './types';
+  import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
   import Toolbar from './toolbar.svelte';
@@ -31,7 +21,8 @@
   let textarea: HTMLTextAreaElement;
   let cm: CodeMirror.Editor;
   let activeTab = 0;
-  const id = Date.now();
+
+  let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
   const dispatch = createEventDispatcher();
 
   // @ts-ignore
@@ -45,12 +36,12 @@
   }
 
   function on() {
-    cbsMap[id] = (plugins ?? []).map(
+    cbs = (plugins ?? []).map(
       ({ editorEffect }) => editorEffect && editorEffect(cm, el)
     );
   }
   function off() {
-    cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
+    cbs.forEach((cb) => cb && cb());
   }
   const updateViewerValue = debounce(() => {
     viewerProps = {

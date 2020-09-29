@@ -4,7 +4,7 @@ import remarkRehype from 'remark-rehype';
 // @ts-ignore
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
-import stringify from 'rehype-stringify';
+import rehypeStringify from 'rehype-stringify';
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import type { Schema } from 'hast-util-sanitize';
 import type { ViewerProps } from './types';
@@ -34,10 +34,7 @@ export function getProcessor({
     if (rehype) p = rehype(p);
   });
 
-  p = p.use(stringify);
-
-  // console.log(parser.parse(value));
-  return p;
+  return p.use(rehypeStringify);
 }
 
 export function processMarkdown({ value, ...rest }: ViewerProps) {

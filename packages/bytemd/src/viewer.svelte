@@ -1,15 +1,5 @@
-<script lang="ts" context="module">
-  import type { BytemdPlugin } from './types';
-
-  // Declare callbacks here to be non-reactive
-  const cbsMap: Record<
-    string,
-    ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[]
-  > = {};
-</script>
-
 <script lang="ts">
-  import type { ViewerProps } from './types';
+  import type { BytemdPlugin, ViewerProps } from './types';
   import { tick, onDestroy } from 'svelte';
   import { processMarkdown } from './utils';
 
@@ -18,15 +8,15 @@
   export let sanitize: ViewerProps['sanitize'];
 
   let el: HTMLElement;
-  const id = Date.now();
+  let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = [];
 
   function on() {
-    cbsMap[id] = (plugins ?? []).map(
+    cbs = (plugins ?? []).map(
       ({ viewerEffect }) => viewerEffect && viewerEffect(el)
     );
   }
   function off() {
-    cbsMap[id] && cbsMap[id].forEach((cb) => cb && cb());
+    cbs.forEach((cb) => cb && cb());
   }
 
   onDestroy(off);
