@@ -20,6 +20,9 @@
       "path": "packages/plugin-html2md"
     },
     {
+      "path": "packages/plugin-html2md-transform-feishu"
+    },
+    {
       "path": "packages/plugin-image-handler"
     },
     {
