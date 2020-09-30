@@ -1,18 +1,22 @@
-import { BytemdPlugin } from 'bytemd';
-import { Processor } from 'unified';
-import { RehypeParseOptions } from 'rehype-parse';
-import { PartialRemarkStringifyOptions } from 'remark-stringify';
+import type { BytemdPlugin } from 'bytemd';
+import type { Processor } from 'unified';
+import type { RehypeParseOptions } from 'rehype-parse';
+import type { PartialRemarkStringifyOptions } from 'remark-stringify';
 
 export interface Html2mdOptions {
-  rehype?: (p: Processor) => Processor;
-  remark?: (p: Processor) => Processor;
+  transformers?: Html2mdTransformer[];
   rehypeParseOptions?: RehypeParseOptions;
   remarkStringifyOptions?: PartialRemarkStringifyOptions;
 }
 
+export interface Html2mdTransformer {
+  test: (html: string) => boolean;
+  rehype?: (p: Processor) => Processor;
+  remark?: (p: Processor) => Processor;
+}
+
 export default function html2md({
-  rehype,
-  remark,
+  transformers,
   rehypeParseOptions,
   remarkStringifyOptions,
 }: Html2mdOptions = {}): BytemdPlugin {
@@ -68,9 +72,13 @@ export default function html2md({
         ]);
 
         let processor = unified().use(rehypeParse, rehypeParseOptions);
-        processor = rehype?.(processor) ?? processor;
+        transformers?.forEach(({ test, rehype }) => {
+          if (test(html) && rehype) processor = rehype(processor);
+        });
         processor = processor.use(rehypeRemark);
-        processor = remark?.(processor) ?? processor;
+        transformers?.forEach(({ test, remark }) => {
+          if (test(html) && remark) processor = remark(processor);
+        });
         processor = processor.use(remarkStringify, remarkStringifyOptions);
 
         const result = await processor.process(html);
