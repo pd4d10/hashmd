@@ -10,9 +10,17 @@ async function compile(file) {
 
   if (file.endsWith('.svelte')) {
     const source = await fs.readFile(file, 'utf8');
-    const item = await preprocess(source, autoprocessor(), {
-      filename: file,
-    });
+    const item = await preprocess(
+      source,
+      autoprocessor({
+        typescript: {
+          tsconfigFile: path.resolve(__dirname, '../tsconfig-base.json'),
+        },
+      }),
+      {
+        filename: file,
+      }
+    );
     await fs.writeFile(dest, item.code);
   } else {
     await fs.copyFile(file, dest);
@@ -21,10 +29,10 @@ async function compile(file) {
 
 const pattern = path.resolve(__dirname, `../packages/*/src/*.{svelte,vue}`);
 
-if (process.argv.includes('--watch')) {
-  // fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
-  // fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
+fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
+fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
 
+if (process.argv.includes('--watch')) {
   chokidar.watch(pattern).on('all', (event, file) => {
     console.log(event, file);
     compile(file);
