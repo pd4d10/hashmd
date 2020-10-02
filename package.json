@@ -13,7 +13,8 @@
     "dev:tsc": "tsc --build --watch",
     "dev:process": "node -r esm scripts/process.js --watch",
     "test": "jest",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "postinstall": "node -r esm scripts/generate.js"
   },
   "devDependencies": {
     "@icon-park/svg": "^1.0.6",

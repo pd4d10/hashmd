@@ -1,9 +1,7 @@
-// Generate plugins README
-
-const fs = require('fs');
-const path = require('path');
-const mustache = require('mustache');
-const _ = require('lodash');
+import fs from 'fs-extra';
+import path from 'path';
+import mustache from 'mustache';
+import _ from 'lodash';
 
 function readFileSyncSafe(p) {
   try {
@@ -14,20 +12,79 @@ function readFileSyncSafe(p) {
 }
 
 const root = path.join(__dirname, '../packages');
-const plugins = fs.readdirSync(root).filter((x) => x.startsWith('plugin-'));
-const template = readFileSyncSafe(path.join(__dirname, 'plugin-template.md'));
+const packages = fs.readdirSync(root);
+const plugins = packages.filter(
+  (x) => x.startsWith('plugin-') && !x.includes('-transform')
+);
+const transformers = packages.filter((x) => x.includes('-transform-'));
 
-plugins.forEach((p) => {
-  const name = p.split('-').slice(1).join('-');
-  const result = mustache.render(template, {
-    name,
-    camelName: _.camelCase(name),
-    desc: require(path.join(root, p, 'package.json')).description,
+// tsconfig root
+fs.writeJsonSync(
+  path.resolve(__dirname, '../tsconfig.json'),
+  {
+    files: [],
+    references: packages.map((p) => {
+      return { path: 'packages/' + p };
+    }),
+  },
+  { spaces: 2 }
+);
+
+// package tsconfig
+packages.forEach((p) => {
+  let tsconfig = {
+    extends: '../../tsconfig-base.json',
+    include: ['src'],
+    compilerOptions: {
+      composite: true,
+      rootDir: 'src',
+      outDir: 'lib',
+    },
+  };
+  if (p !== 'bytemd') {
+    tsconfig.references = [{ path: '../bytemd' }];
+  }
+
+  fs.writeJsonSync(path.join(root, p, 'tsconfig.json'), tsconfig, {
+    spaces: 2,
   });
 
+  // package.json
+  const pkgPath = path.join(root, p, 'package.json');
+  const pkg = require(pkgPath);
+  pkg.types = 'lib/index.d.ts';
+  pkg.files = ['dist', 'lib'];
+  fs.writeJsonSync(pkgPath, pkg, { spaces: 2 });
+});
+
+// plugins readme
+plugins.forEach((p) => {
+  const name = p.split('-').slice(1).join('-');
+  const result = mustache.render(
+    readFileSyncSafe(path.join(__dirname, 'plugin-template.md')),
+    {
+      name,
+      camelName: _.camelCase(name),
+      desc: require(path.join(root, p, 'package.json')).description,
+    }
+  );
   fs.writeFileSync(path.join(root, p, 'README.md'), result);
 });
 
+// transformers readme
+transformers.forEach((p) => {
+  const name = p.split('-').slice(-1)[0];
+  const result = mustache.render(
+    readFileSyncSafe(path.join(__dirname, 'plugin-transformer.md')),
+    {
+      name,
+      desc: require(path.join(root, p, 'package.json')).description,
+    }
+  );
+  fs.writeFileSync(path.join(root, p, 'README.md'), result);
+});
+
+// bytemd readme
 const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
   /## Plugins\s+([\w\W])*?\s+##/,
   (match, p1, offset, string) => {
