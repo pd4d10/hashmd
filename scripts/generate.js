@@ -54,6 +54,11 @@ packages.forEach((p) => {
   const pkg = require(pkgPath);
   pkg.types = 'lib/index.d.ts';
   pkg.files = ['dist', 'lib'];
+  if (pkg.name.startsWith('@')) {
+    pkg.publishConfig = {
+      access: 'public',
+    };
+  }
   fs.writeJsonSync(pkgPath, pkg, { spaces: 2 });
 });
 

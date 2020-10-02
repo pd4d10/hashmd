@@ -17,5 +17,8 @@
   },
   "peerDependencies": {
     "bytemd": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
