@@ -1,7 +1,7 @@
 {
-  "name": "@bytemd/plugin-image-handler",
+  "name": "@bytemd/plugin-import-image",
   "version": "0.1.1",
-  "description": "ByteMD plugin to handle image upload by paste or \"drag and drop\"",
+  "description": "ByteMD plugin to import image by pasting or dropping",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",

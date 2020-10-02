@@ -1,7 +1,7 @@
 {
-  "name": "@bytemd/plugin-html2md",
+  "name": "@bytemd/plugin-import-html",
   "version": "0.1.0",
-  "description": "ByteMD plugin to convert copied HTML to Markdown",
+  "description": "ByteMD plugin to import HTML by pasting or dropping",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",

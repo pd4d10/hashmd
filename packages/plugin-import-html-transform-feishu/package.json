@@ -1,7 +1,7 @@
 {
-  "name": "@bytemd/plugin-html2md-transform-feishu",
+  "name": "@bytemd/plugin-import-html-transform-feishu",
   "version": "0.1.0",
-  "description": "ByteMD plugin to convert Feishu document on paste",
+  "description": "ByteMD plugin to import Feishu document by pasting or dropping",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",

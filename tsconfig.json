@@ -17,13 +17,13 @@
       "path": "packages/plugin-highlight-lazy"
     },
     {
-      "path": "packages/plugin-html2md"
+      "path": "packages/plugin-import-html"
     },
     {
-      "path": "packages/plugin-html2md-transform-feishu"
+      "path": "packages/plugin-import-html-transform-feishu"
     },
     {
-      "path": "packages/plugin-image-handler"
+      "path": "packages/plugin-import-image"
     },
     {
       "path": "packages/plugin-math"

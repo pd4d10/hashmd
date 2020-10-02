@@ -1,5 +1,5 @@
 import type { Plugin } from 'unified';
-import type { Html2mdTransformer } from '@bytemd/plugin-html2md';
+import type { ImportHtmlTransformer } from '@bytemd/plugin-import-html';
 import type { Element, Properties } from 'hast';
 
 interface MyElement extends Element {
@@ -65,7 +65,7 @@ const rehypeFeishu: Plugin<[FeishuTransformerOptions]> = ({ saveImages }) => {
 
     // save images then replace
     const newImgs = await saveImages(imgs);
-    visit<Element>(tree, 'element', (node) => {
+    visit<MyElement>(tree, 'element', (node) => {
       if (node.tagName === 'img' && typeof node.properties?.src === 'string') {
         const src = node.properties.src;
         const index = newImgs.findIndex((url) => url === src);
@@ -77,7 +77,7 @@ const rehypeFeishu: Plugin<[FeishuTransformerOptions]> = ({ saveImages }) => {
 
 export default function feishuTransformer(
   options: FeishuTransformerOptions
-): Html2mdTransformer {
+): ImportHtmlTransformer {
   return {
     test: (html) => html.includes('id="magicdomid'),
     rehype: (p) => p.use(rehypeFeishu, options),

@@ -1,7 +1,7 @@
-import { BytemdPlugin } from 'bytemd';
+import type { BytemdPlugin } from 'bytemd';
 import { Pic } from '@icon-park/svg';
 
-export interface ImageHandlerOptions {
+export interface ImportImageOptions {
   /**
    * Upload the file and return a URL
    */
@@ -12,10 +12,10 @@ export interface ImageHandlerOptions {
   test?(file: File): boolean;
 }
 
-export default function imageHandler({
+export default function importImage({
   upload,
   test = (file: File) => file.type.startsWith('image/'),
-}: ImageHandlerOptions): BytemdPlugin {
+}: ImportImageOptions): BytemdPlugin {
   const handleFiles = async (files: File[], cm: CodeMirror.Editor) => {
     const urls = await Promise.all(files.map((f) => upload(f)));
     const text = urls.map((url) => `![](${url})`).join('\n\n');

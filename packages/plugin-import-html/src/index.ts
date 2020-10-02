@@ -3,23 +3,23 @@ import type { Processor } from 'unified';
 import type { RehypeParseOptions } from 'rehype-parse';
 import type { PartialRemarkStringifyOptions } from 'remark-stringify';
 
-export interface Html2mdOptions {
-  transformers?: Html2mdTransformer[];
+export interface ImportHtmlOptions {
+  transformers?: ImportHtmlTransformer[];
   rehypeParseOptions?: RehypeParseOptions;
   remarkStringifyOptions?: PartialRemarkStringifyOptions;
 }
 
-export interface Html2mdTransformer {
+export interface ImportHtmlTransformer {
   test: (html: string) => boolean;
   rehype?: (p: Processor) => Processor;
   remark?: (p: Processor) => Processor;
 }
 
-export default function html2md({
+export default function importHtml({
   transformers,
   rehypeParseOptions,
   remarkStringifyOptions,
-}: Html2mdOptions = {}): BytemdPlugin {
+}: ImportHtmlOptions = {}): BytemdPlugin {
   return {
     editorEffect(cm) {
       const handler = async (
