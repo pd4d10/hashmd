@@ -1,4 +1,4 @@
-import { BytemdPlugin } from 'bytemd';
+import type { BytemdPlugin } from 'bytemd';
 import remarkFootnotes, { RemarkFootnotesOptions } from 'remark-footnotes';
 
 export default function footnotes(

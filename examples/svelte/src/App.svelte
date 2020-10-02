@@ -5,8 +5,11 @@
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
-  import imageHandler from '@bytemd/plugin-image-handler';
+  import importImage from '@bytemd/plugin-import-image';
   import scrollSync from '@bytemd/plugin-scroll-sync';
+  import frontmatter from '@bytemd/plugin-frontmatter';
+  import importHtml from '@bytemd/plugin-import-html';
+  import feishu from '@bytemd/plugin-import-html-transform-feishu';
 
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
@@ -55,8 +58,14 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled['image-handler'] && imageHandler({ upload: toDataUrl }),
+    enabled['image-handler'] && importImage({ upload: toDataUrl }),
     enabled['scroll-sync'] && scrollSync(),
+    frontmatter(),
+    importHtml({
+      transformers: [feishu({ saveImages: (urls) => urls })],
+    }),
+
+    // For test:
     // {
     //   editorEffect(cm, el) {
     //     console.log('on', cm, el);
@@ -84,20 +93,14 @@
   <div class="line">
     Mode:
     {#each ['split', 'tab'] as m}
-      <label>
-        <input type="radio" bind:group={mode} value={m} />
-        {m}
-      </label>
+      <label> <input type="radio" bind:group={mode} value={m} /> {m} </label>
     {/each}
   </div>
   <div class="line">
     Plugins:
     {#each Object.keys(enabled) as p}
       {' '}
-      <label>
-        <input type="checkbox" bind:checked={enabled[p]} />
-        {p}
-      </label>
+      <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
     {/each}
   </div>
 </div>
