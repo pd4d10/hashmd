@@ -15,11 +15,11 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 
 ## Installation
 
-```sh
-npm install bytemd
-# or
-yarn add bytemd
-```
+| Package | Status | Description |
+| --- | --- | --- |
+| [bytemd](./packages/bytemd) | [![npm](https://img.shields.io/npm/v/bytemd)](https://npm.im/bytemd) | Svelte/Vanilla JS component |
+| [@bytemd/react](./packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg)](https://npm.im/@bytemd/react) | React component |
+| [@bytemd/vue](./packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg)](https://npm.im/@bytemd/vue) | Vue component |
 
 ## Usage
 
@@ -50,7 +50,7 @@ function handleChange(e) {
 ### React
 
 ```js
-import { Editor, Viewer } from 'bytemd/react';
+import { Editor, Viewer } from '@bytemd/react';
 
 const App = () => {
   const [value, setValue] = useState('');
@@ -79,7 +79,7 @@ const App = () => {
 </template>
 
 <script>
-import { Editor, Viewer } from 'bytemd/vue';
+import { Editor, Viewer } from '@bytemd/vue';
 
 export default {
   components: {
