@@ -1,9 +1,11 @@
 import type { Plugin } from 'unified';
 import type { ImportHtmlTransformer } from '@bytemd/plugin-import-html';
-import type { Element, Properties } from 'hast';
+import type { Element, Text } from 'hast';
 
-interface MyElement extends Element {
-  properties: Properties & { className?: string[] };
+declare module 'hast' {
+  interface Properties {
+    className?: string[];
+  }
 }
 
 export interface FeishuTransformerOptions {
@@ -12,20 +14,18 @@ export interface FeishuTransformerOptions {
 
 const rehypeFeishu: Plugin<[FeishuTransformerOptions]> = ({ saveImages }) => {
   return async (tree) => {
-    // console.log(tree);
     const { default: visit } = await import('unist-util-visit');
 
-    const imgs: string[] = [];
-
-    visit<MyElement>(tree, 'element', (node, index, parent) => {
-      // remove `/` before images
+    // remove `/` before images
+    visit<Element>(tree, 'element', (node, index, parent) => {
       if (node.properties?.className?.includes('image-loading')) {
         parent?.children.splice(index, 1);
-        return;
       }
+    });
 
-      // replace h1-h9, pre and code with the correct tagNames
-      const mapping: Record<string, string> = {
+    // replace with the correct tag names
+    visit<Element>(tree, 'element', (node) => {
+      const tagMap: Record<string, string> = {
         'heading-h1': 'h1',
         'heading-h2': 'h2',
         'heading-h3': 'h3',
@@ -38,34 +38,55 @@ const rehypeFeishu: Plugin<[FeishuTransformerOptions]> = ({ saveImages }) => {
         'list-code': 'pre',
         'inline-code': 'code',
       };
-      for (const c of node.properties?.className ?? []) {
-        if (mapping[c]) {
-          // if (['ol', 'ul'].includes(node.tagName)) {
-          //   node.children[0] = {
-          //     type: 'element',
-          //     tagName: mapping[c],
-          //     children: node.children[0]?.children as typeof node.children,
-          //   };
-          // } else {
-          node.tagName = mapping[c];
+      node.properties?.className?.forEach((c) => {
+        if (tagMap[c]) node.tagName = tagMap[c];
+      });
+    });
 
-          if (c === 'inline-code') {
-            parent?.children.splice(index - 1, 1);
-            parent?.children.splice(index, 1);
-          }
-          // }
+    // ul>li,ul -> ul>li>ul
+    visit<Element>(tree, 'element', (node, index, parent) => {
+      if (parent && node.tagName === 'li') {
+        const next = parent.children[index + 1] as
+          | Element['children'][0]
+          | undefined;
+        if (next?.tagName === 'ol' || next?.tagName === 'ul') {
+          node.children.push(next);
+          parent.children.splice(index + 1, 1);
         }
       }
+    });
 
-      // collect images
+    // (pre>code)*n -> pre>(code*n)
+    visit<Element>(tree, 'element', (node, index, parent) => {
+      if (parent && node.tagName === 'pre') {
+        let next: Element['children'][0] | undefined;
+
+        do {
+          next = parent.children[index + 1] as any;
+          if (next?.type === 'element') {
+            node.children.push(
+              { type: 'element', tagName: 'br', children: [] },
+              ...next.children
+            );
+          }
+          parent.children.splice(index + 1, 1);
+        } while (next?.type === 'element' && next?.tagName === 'pre');
+      }
+    });
+
+    visit<Text>(tree, 'text', (node) => {
+      node.value = node.value.replace(/[\u2022\u200b]/, '');
+    });
+
+    // collect and replace images
+    const imgs: string[] = [];
+    visit<Element>(tree, 'element', (node) => {
       if (node.tagName === 'img' && typeof node.properties?.src === 'string') {
         imgs.push(node.properties.src);
       }
     });
-
-    // save images then replace
     const newImgs = await saveImages(imgs);
-    visit<MyElement>(tree, 'element', (node) => {
+    visit<Element>(tree, 'element', (node) => {
       if (node.tagName === 'img' && typeof node.properties?.src === 'string') {
         const src = node.properties.src;
         const index = newImgs.findIndex((url) => url === src);
