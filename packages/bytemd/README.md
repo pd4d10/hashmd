@@ -148,6 +148,7 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 | --- | --- | --- |
 | [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | ByteMD plugin to support breaks |
 | [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) | ByteMD plugin to support footnotes |
+| [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) | ByteMD plugin to support frontmatter |
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | ByteMD plugin to highlight code blocks |
 | [@bytemd/plugin-highlight-ssr](./packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) | ByteMD plugin to highlight code blocks (SSR compatible) |
 | [@bytemd/plugin-import-html](./packages/plugin-import-html) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-html.svg)](https://npm.im/@bytemd/plugin-import-html) | ByteMD plugin to import HTML by pasting or dropping |

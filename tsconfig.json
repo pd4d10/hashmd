@@ -11,6 +11,9 @@
       "path": "packages/plugin-footnotes"
     },
     {
+      "path": "packages/plugin-frontmatter"
+    },
+    {
       "path": "packages/plugin-highlight"
     },
     {

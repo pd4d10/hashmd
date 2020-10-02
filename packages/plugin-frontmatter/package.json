@@ -1,0 +1,24 @@
+{
+  "name": "@bytemd/plugin-frontmatter",
+  "version": "0.1.0",
+  "description": "ByteMD plugin to support frontmatter",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "dependencies": {
+    "@types/js-yaml": "^3.0.0",
+    "js-yaml": "^3.0.0",
+    "remark-frontmatter": "^2.0.0",
+    "unist-util-visit": "^2.0.0"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  }
+}
