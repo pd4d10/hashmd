@@ -13,7 +13,7 @@
     "lib"
   ],
   "dependencies": {
-    "rehype-highlight": "^4.0.0"
+    "highlight.js": "^10.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

@@ -1,21 +1,29 @@
 import type { BytemdPlugin } from 'bytemd';
-// @ts-ignore
-import rehypeHighlight from 'rehype-highlight';
+import type H from 'highlight.js';
 
-interface HighlightOptions {
-  prefix?: string;
-  subset?: boolean | string[];
-  ignoreMissing?: boolean;
-  plainText?: string[];
-  aliases?: Record<string, string[]>;
+export interface HighlightLazyOptions {
+  init?(hljs: typeof H): void | Promise<void>;
 }
 
 export default function highlight({
-  subset = false,
-  ignoreMissing = true,
-  ...rest
-}: HighlightOptions = {}): BytemdPlugin {
+  init,
+}: HighlightLazyOptions = {}): BytemdPlugin {
+  let hljs: typeof H;
   return {
-    rehype: (u) => u.use(rehypeHighlight, { subset, ignoreMissing, ...rest }),
+    viewerEffect(el) {
+      (async () => {
+        const els = el.querySelectorAll<HTMLElement>('pre>code');
+        if (els.length === 0) return;
+
+        if (!hljs) {
+          hljs = await import('highlight.js');
+          if (init) await init(hljs);
+        }
+
+        els.forEach((el) => {
+          hljs.highlightBlock(el);
+        });
+      })();
+    },
   };
 }

@@ -13,7 +13,8 @@
     "lib"
   ],
   "dependencies": {
-    "rehype-katex": "^4.0.0",
+    "@types/katex": "^0.11.0",
+    "katex": "^0.12.0",
     "remark-math": "^3.0.1"
   },
   "peerDependencies": {

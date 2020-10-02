@@ -14,7 +14,7 @@
       "path": "packages/plugin-highlight"
     },
     {
-      "path": "packages/plugin-highlight-lazy"
+      "path": "packages/plugin-highlight-ssr"
     },
     {
       "path": "packages/plugin-import-html"
@@ -29,7 +29,7 @@
       "path": "packages/plugin-math"
     },
     {
-      "path": "packages/plugin-math-lazy"
+      "path": "packages/plugin-math-ssr"
     },
     {
       "path": "packages/plugin-medium-zoom"
