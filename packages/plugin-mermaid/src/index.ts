@@ -1,6 +1,6 @@
-import { BytemdPlugin } from 'bytemd';
-import { Mermaid } from 'mermaid';
-import mermaidAPI from 'mermaid/mermaidAPI';
+import type { BytemdPlugin } from 'bytemd';
+import type { Mermaid } from 'mermaid';
+import type mermaidAPI from 'mermaid/mermaidAPI';
 
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   let m: Mermaid;

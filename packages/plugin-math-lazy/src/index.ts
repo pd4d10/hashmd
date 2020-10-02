@@ -1,6 +1,6 @@
-import { BytemdPlugin } from 'bytemd';
+import type { BytemdPlugin } from 'bytemd';
+import type { KatexOptions } from 'katex';
 import remarkMath, { RemarkMathOptions } from 'remark-math';
-import { KatexOptions } from 'katex';
 
 export interface MathLazyOptions extends RemarkMathOptions {
   katexOptions?: Omit<KatexOptions, 'displayMode'>;

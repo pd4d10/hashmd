@@ -1,4 +1,4 @@
-import { BytemdPlugin } from 'bytemd';
+import type { BytemdPlugin } from 'bytemd';
 
 export default function vega(): BytemdPlugin {
   return {

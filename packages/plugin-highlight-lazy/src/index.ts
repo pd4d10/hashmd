@@ -1,5 +1,5 @@
-import { BytemdPlugin } from 'bytemd';
-import H from 'highlight.js';
+import type { BytemdPlugin } from 'bytemd';
+import type H from 'highlight.js';
 
 export interface HighlightLazyOptions {
   init?(hljs: typeof H): void | Promise<void>;

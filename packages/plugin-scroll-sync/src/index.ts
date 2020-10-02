@@ -1,11 +1,10 @@
-import { BytemdPlugin } from 'bytemd';
-import { Editor } from 'codemirror';
+import type { BytemdPlugin } from 'bytemd';
 
 export default function scrollSync(): BytemdPlugin {
   return {
     editorEffect(cm, el) {
       const viewer = el.querySelector('.bytemd-preview')!;
-      const handleScroll = (cm: Editor) => {
+      const handleScroll = (cm: CodeMirror.Editor) => {
         requestAnimationFrame(() => {
           const editorInfo = cm.getScrollInfo();
           const ratio =

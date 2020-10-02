@@ -1,4 +1,4 @@
-import { BytemdPlugin } from 'bytemd';
+import type { BytemdPlugin } from 'bytemd';
 import remarkMath, { RemarkMathOptions } from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 

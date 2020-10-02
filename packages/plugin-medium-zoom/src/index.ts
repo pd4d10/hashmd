@@ -1,5 +1,5 @@
-import { BytemdPlugin } from 'bytemd';
-import { ZoomOptions } from 'medium-zoom';
+import type { BytemdPlugin } from 'bytemd';
+import type { ZoomOptions } from 'medium-zoom';
 
 export default function mediumZoom(options?: ZoomOptions): BytemdPlugin {
   return {

@@ -1,4 +1,4 @@
-import { BytemdPlugin } from 'bytemd';
+import type { BytemdPlugin } from 'bytemd';
 // @ts-ignore
 import rehypeHighlight from 'rehype-highlight';
 
