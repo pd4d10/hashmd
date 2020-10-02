@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/react",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "0.1.6"
+    "bytemd": "^0.1.7"
   },
   "peerDependencies": {
     "react": "*"

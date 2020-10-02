@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-scroll-sync",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "description": "ByteMD plugin to sync scroll position of edit and preview area",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -12,7 +12,6 @@
     "dist",
     "lib"
   ],
-  "dependencies": {},
   "peerDependencies": {
     "bytemd": "*"
   },

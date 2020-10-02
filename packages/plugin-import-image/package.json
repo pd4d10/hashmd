@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-import-image",
-  "version": "0.1.1",
+  "version": "0.1.7",
   "description": "ByteMD plugin to import image by pasting or dropping",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -12,7 +12,6 @@
     "dist",
     "lib"
   ],
-  "dependencies": {},
   "peerDependencies": {
     "bytemd": "*"
   },

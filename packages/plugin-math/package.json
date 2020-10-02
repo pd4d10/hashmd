@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "description": "ByteMD plugin to support math equation",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
