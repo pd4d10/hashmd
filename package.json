@@ -14,7 +14,8 @@
     "dev:process": "node -r esm scripts/process.js --watch",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
-    "postinstall": "node -r esm scripts/generate.js"
+    "postinstall": "node -r esm scripts/generate.js",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@icon-park/svg": "^1.0.6",
@@ -28,6 +29,7 @@
     "esm": "^3.2.25",
     "fs-extra": "^9.0.1",
     "jest": "^26.0.1",
+    "lerna": "^3.22.1",
     "mustache": "^4.0.1",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
@@ -39,7 +41,6 @@
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-visualizer": "^4.0.4",
     "rollup-plugin-vue": "^5.1.9",
-    "svelte": "^3.23.2",
     "svelte-jester": "^1.0.6",
     "svelte-preprocess": "^4.3.2",
     "ts-jest": "^26.1.1",
