@@ -8,6 +8,9 @@
       "path": "packages/plugin-breaks"
     },
     {
+      "path": "packages/plugin-external-links"
+    },
+    {
       "path": "packages/plugin-footnotes"
     },
     {

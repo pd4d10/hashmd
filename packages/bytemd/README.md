@@ -147,6 +147,7 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 | Package | Status | Description |
 | --- | --- | --- |
 | [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | ByteMD plugin to support breaks |
+| [@bytemd/plugin-external-links](./packages/plugin-external-links) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-external-links.svg)](https://npm.im/@bytemd/plugin-external-links) | ByteMD plugin to open external links in new window |
 | [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) | ByteMD plugin to support footnotes |
 | [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) | ByteMD plugin to support frontmatter |
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | ByteMD plugin to highlight code blocks |

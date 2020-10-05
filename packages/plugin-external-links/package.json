@@ -1,7 +1,7 @@
 {
-  "name": "@bytemd/plugin-frontmatter",
+  "name": "@bytemd/plugin-external-links",
   "version": "0.1.7",
-  "description": "ByteMD plugin to support frontmatter",
+  "description": "ByteMD plugin to open external links in new window",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "main": "dist/index.js",
@@ -12,13 +12,11 @@
     "dist",
     "lib"
   ],
-  "dependencies": {
-    "@types/js-yaml": "^3.0.0",
-    "js-yaml": "^3.0.0",
-    "remark-frontmatter": "^2.0.0"
-  },
   "peerDependencies": {
     "bytemd": "*"
+  },
+  "dependencies": {
+    "unist-util-visit": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

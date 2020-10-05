@@ -2,14 +2,14 @@ import type { BytemdPlugin } from 'bytemd';
 import type { KatexOptions } from 'katex';
 import remarkMath, { RemarkMathOptions } from 'remark-math';
 
-export interface MathLazyOptions extends RemarkMathOptions {
+export interface MathOptions extends RemarkMathOptions {
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
-export default function mathLazy({
+export default function math({
   katexOptions,
   ...remarkMathOptions
-}: MathLazyOptions = {}): BytemdPlugin {
+}: MathOptions = {}): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkMath, remarkMathOptions),
     viewerEffect(el) {
