@@ -5,8 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "rm -rf packages/**/*/dist",
-    "build": "tsc --build && node -r esm scripts/process.js && rollup -c",
+    "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
+    "build": "npm run clean && tsc --build && node -r esm scripts/process.js && rollup -c",
     "build:umd": "tsc --build && UMD=1 rollup -c",
     "dev": "run-p dev:bundle dev:tsc dev:process",
     "dev:bundle": "rollup -cw",
