@@ -52,6 +52,11 @@ packages.forEach((p) => {
   // package.json
   const pkgPath = path.join(root, p, 'package.json');
   const pkg = require(pkgPath);
+  pkg.repository = {
+    type: 'git',
+    url: 'https://github.com/bytedance/bytemd.git',
+    directory: `packages/${p}`,
+  };
   pkg.types = 'lib/index.d.ts';
   pkg.files = ['dist', 'lib'];
   if (pkg.name.startsWith('@')) {

@@ -4,6 +4,11 @@
   "description": "ByteMD plugin to import HTML by pasting or dropping",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/plugin-import-html"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",

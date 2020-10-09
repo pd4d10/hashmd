@@ -4,6 +4,11 @@
   "description": "ByteMD plugin to support footnotes",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/plugin-footnotes"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",
