@@ -18,7 +18,6 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@icon-park/svg": "^1.0.6",
     "@primer/css": "^15.0.0",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-json": "^4.1.0",
