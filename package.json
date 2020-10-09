@@ -15,7 +15,8 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "postinstall": "node -r esm scripts/generate.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "pub": "lerna publish --registry=https://registry.npmjs.org"
   },
   "devDependencies": {
     "@primer/css": "^15.0.0",
