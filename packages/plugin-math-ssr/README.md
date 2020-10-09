@@ -8,13 +8,13 @@ ByteMD plugin to support math equation (SSR compatible)
 
 ```js
 import { Editor } from 'bytemd';
-import mathSsr from '@bytemd/plugin-math-ssr';
+import math from '@bytemd/plugin-math-ssr';
 
 new Editor({
   target: document.body,
   props: {
     plugins: [
-      mathSsr(),
+      math(),
       // ... other plugins
     ],
   },

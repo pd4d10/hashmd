@@ -69,7 +69,7 @@ plugins.forEach((p) => {
     readFileSyncSafe(path.join(__dirname, 'plugin-template.md')),
     {
       name,
-      camelName: _.camelCase(name),
+      importedName: _.camelCase(name.replace('-ssr', '')),
       desc: require(path.join(root, p, 'package.json')).description,
     }
   );
