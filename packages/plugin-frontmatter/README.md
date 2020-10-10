@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter)
 
-ByteMD plugin to support frontmatter
+ByteMD plugin to parse frontmatter
 
 ## Usage
 
