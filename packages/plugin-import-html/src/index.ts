@@ -7,6 +7,7 @@ export interface ImportHtmlOptions {
   transformers?: ImportHtmlTransformer[];
   rehypeParseOptions?: RehypeParseOptions;
   remarkStringifyOptions?: PartialRemarkStringifyOptions;
+  transformersAll?: boolean;
 }
 
 export interface ImportHtmlTransformer {
@@ -14,11 +15,12 @@ export interface ImportHtmlTransformer {
   rehype?: (p: Processor) => Processor;
   remark?: (p: Processor) => Processor;
 }
-
+const normalClipboardItemTypes = ['text/plain', 'text/html'];
 export default function importHtml({
   transformers,
   rehypeParseOptions,
   remarkStringifyOptions,
+  transformersAll = false,
 }: ImportHtmlOptions = {}): BytemdPlugin {
   return {
     editorEffect(cm) {
@@ -26,10 +28,18 @@ export default function importHtml({
         _: CodeMirror.Editor,
         e: ClipboardEvent | DragEvent
       ) => {
-        const itemList =
-          e instanceof ClipboardEvent
+        const itemList = Array.from(
+          (e instanceof ClipboardEvent
             ? e.clipboardData?.items
-            : e.dataTransfer?.items;
+            : e.dataTransfer?.items) ?? []
+        );
+        // 默认不转换 clipboardData 含有其他特殊标记数据的
+        if (
+          !transformersAll &&
+          itemList.find(({ type }) => !normalClipboardItemTypes.includes(type))
+        ) {
+          return;
+        }
         const htmlItem = Array.from(itemList ?? []).find(
           (item) => item.type === 'text/html'
         );
