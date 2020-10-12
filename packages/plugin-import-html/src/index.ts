@@ -17,19 +17,18 @@ export interface ImportHtmlTransformer {
   rehype?: (p: Processor) => Processor;
   remark?: (p: Processor) => Processor;
 }
-export function defaultGetDataFromEvent(e: ClipboardEvent | DragEvent) {
-  const itemList = Array.from(
-    (e instanceof ClipboardEvent
-      ? e.clipboardData?.items
-      : e.dataTransfer?.items) ?? []
-  );
-  return itemList.find((item) => item.type === 'text/html');
-}
 export default function importHtml({
   transformers,
   rehypeParseOptions,
   remarkStringifyOptions,
-  getDataFromEvent = defaultGetDataFromEvent,
+  getDataFromEvent = (e) => {
+    const itemList = Array.from(
+      (e instanceof ClipboardEvent
+        ? e.clipboardData?.items
+        : e.dataTransfer?.items) ?? []
+    );
+    return itemList.find((item) => item.type === 'text/html');
+  },
 }: ImportHtmlOptions = {}): BytemdPlugin {
   return {
     editorEffect(cm) {
