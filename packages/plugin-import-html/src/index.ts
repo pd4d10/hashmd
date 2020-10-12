@@ -7,6 +7,9 @@ export interface ImportHtmlOptions {
   transformers?: ImportHtmlTransformer[];
   rehypeParseOptions?: RehypeParseOptions;
   remarkStringifyOptions?: PartialRemarkStringifyOptions;
+  getDataFromEvent?: (
+    e: ClipboardEvent | DragEvent
+  ) => DataTransferItem | undefined;
 }
 
 export interface ImportHtmlTransformer {
@@ -14,11 +17,18 @@ export interface ImportHtmlTransformer {
   rehype?: (p: Processor) => Processor;
   remark?: (p: Processor) => Processor;
 }
-
 export default function importHtml({
   transformers,
   rehypeParseOptions,
   remarkStringifyOptions,
+  getDataFromEvent = (e) => {
+    const itemList = Array.from(
+      (e instanceof ClipboardEvent
+        ? e.clipboardData?.items
+        : e.dataTransfer?.items) ?? []
+    );
+    return itemList.find((item) => item.type === 'text/html');
+  },
 }: ImportHtmlOptions = {}): BytemdPlugin {
   return {
     editorEffect(cm) {
@@ -26,15 +36,8 @@ export default function importHtml({
         _: CodeMirror.Editor,
         e: ClipboardEvent | DragEvent
       ) => {
-        const itemList =
-          e instanceof ClipboardEvent
-            ? e.clipboardData?.items
-            : e.dataTransfer?.items;
-        const htmlItem = Array.from(itemList ?? []).find(
-          (item) => item.type === 'text/html'
-        );
+        const htmlItem = getDataFromEvent(e);
         if (!htmlItem) return;
-
         e.preventDefault();
 
         let html: string;
