@@ -32,6 +32,9 @@
       "path": "packages/plugin-import-image"
     },
     {
+      "path": "packages/plugin-inject-style"
+    },
+    {
       "path": "packages/plugin-math"
     },
     {

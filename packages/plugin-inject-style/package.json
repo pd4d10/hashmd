@@ -1,0 +1,26 @@
+{
+  "name": "@bytemd/plugin-inject-style",
+  "version": "0.1.9",
+  "description": "ByteMD plugin to support footnotes",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/plugin-inject-style"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "peerDependencies": {
+    "bytemd": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
