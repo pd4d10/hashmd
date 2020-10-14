@@ -54,7 +54,7 @@ const configs = packages.map((key) => {
       ...Object.keys(pkg.dependencies || {}),
     ],
     watch: {
-      // clearScreen: false,
+      clearScreen: false,
     },
   };
 });

@@ -1,12 +1,12 @@
 import type { BytemdPlugin } from 'bytemd';
 import type { Processor } from 'unified';
 import type { RehypeParseOptions } from 'rehype-parse';
-import type { PartialRemarkStringifyOptions } from 'remark-stringify';
+import type { RemarkStringifyOptions } from 'remark-stringify';
 
 export interface ImportHtmlOptions {
   transformers?: ImportHtmlTransformer[];
   rehypeParseOptions?: RehypeParseOptions;
-  remarkStringifyOptions?: PartialRemarkStringifyOptions;
+  remarkStringifyOptions?: RemarkStringifyOptions;
   getDataFromEvent?: (
     e: ClipboardEvent | DragEvent
   ) => DataTransferItem | undefined;

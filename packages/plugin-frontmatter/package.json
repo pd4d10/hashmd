@@ -20,7 +20,7 @@
   "dependencies": {
     "@types/js-yaml": "^3.0.0",
     "js-yaml": "^3.0.0",
-    "remark-frontmatter": "^2.0.0"
+    "remark-frontmatter": "^3.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

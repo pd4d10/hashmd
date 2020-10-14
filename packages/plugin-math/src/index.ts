@@ -1,17 +1,14 @@
 import type { BytemdPlugin } from 'bytemd';
 import type { KatexOptions } from 'katex';
-import remarkMath, { RemarkMathOptions } from 'remark-math';
+import remarkMath from 'remark-math';
 
-export interface MathOptions extends RemarkMathOptions {
+export interface MathOptions {
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
-export default function math({
-  katexOptions,
-  ...remarkMathOptions
-}: MathOptions = {}): BytemdPlugin {
+export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
   return {
-    remark: (u) => u.use(remarkMath, remarkMathOptions),
+    remark: (u) => u.use(remarkMath),
     viewerEffect(el) {
       const renderInline = async () => {
         const els = el.querySelectorAll<HTMLElement>(

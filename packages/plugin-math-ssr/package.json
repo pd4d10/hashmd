@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "rehype-katex": "^4.0.0",
-    "remark-math": "^3.0.1"
+    "remark-math": "^4.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"

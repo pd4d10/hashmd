@@ -18,7 +18,7 @@
     "lib"
   ],
   "dependencies": {
-    "remark-footnotes": "^2.0.0"
+    "remark-footnotes": "^3.0.0"
   },
   "peerDependencies": {
     "bytemd": "*"
