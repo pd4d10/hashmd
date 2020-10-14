@@ -47,7 +47,7 @@ export default function importImage({
         ];
       },
     },
-    editorEffect(cm) {
+    editorEffect({ editor }) {
       const handler = async (
         _: CodeMirror.Editor,
         e: ClipboardEvent | DragEvent
@@ -62,16 +62,16 @@ export default function importImage({
           .filter((f): f is File => f != null && test(f));
         if (files.length) {
           e.preventDefault();
-          await handleFiles(files, cm);
+          await handleFiles(files, editor);
         }
       };
 
-      cm.on('paste', handler);
-      cm.on('drop', handler);
+      editor.on('paste', handler);
+      editor.on('drop', handler);
 
       return () => {
-        cm.off('paste', handler);
-        cm.off('drop', handler);
+        editor.off('paste', handler);
+        editor.off('drop', handler);
       };
     },
   };

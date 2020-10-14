@@ -12,7 +12,7 @@
 
   function on() {
     cbs = (plugins ?? []).map(
-      ({ viewerEffect }) => viewerEffect && viewerEffect(el, result)
+      ({ viewerEffect }) => viewerEffect && viewerEffect({ $el: el, result })
     );
   }
   function off() {

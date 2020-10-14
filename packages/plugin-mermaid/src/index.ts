@@ -5,9 +5,9 @@ import type mermaidAPI from 'mermaid/mermaidAPI';
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   let m: Mermaid;
   return {
-    viewerEffect(el) {
+    viewerEffect({ $el }) {
       (async () => {
-        const els = el.querySelectorAll<HTMLElement>(
+        const els = $el.querySelectorAll<HTMLElement>(
           'pre>code.language-mermaid'
         );
         if (els.length === 0) return;

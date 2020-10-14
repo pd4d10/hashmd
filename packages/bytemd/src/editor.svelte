@@ -19,7 +19,7 @@
     sanitize,
   };
   let textarea: HTMLTextAreaElement;
-  let cm: CodeMirror.Editor;
+  let editor: CodeMirror.Editor;
   let activeTab = 0;
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
@@ -28,16 +28,16 @@
   // @ts-ignore
   function setActiveTab(e) {
     activeTab = e.detail.value;
-    if (cm && activeTab === 0) {
+    if (editor && activeTab === 0) {
       tick().then(() => {
-        cm.focus();
+        editor.focus();
       });
     }
   }
 
   function on() {
-    cbs = (plugins ?? []).map(
-      ({ editorEffect }) => editorEffect && editorEffect(cm, el)
+    cbs = (plugins ?? []).map(({ editorEffect }) =>
+      editorEffect?.({ editor, $el: el })
     );
   }
   function off() {
@@ -51,12 +51,12 @@
     };
   }, previewDebounce);
 
-  $: if (cm && value !== cm.getValue()) {
-    cm.setValue(value);
+  $: if (editor && value !== editor.getValue()) {
+    editor.setValue(value);
   }
   $: if (value != null) updateViewerValue();
 
-  $: if (cm && el && plugins) {
+  $: if (editor && el && plugins) {
     off();
     tick().then(() => {
       on();
@@ -72,19 +72,19 @@
       import('codemirror/addon/display/placeholder'),
     ]);
 
-    cm = codemirror.fromTextArea(textarea, {
+    editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
       placeholder: 'Start writing...',
     });
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
-    cm.addKeyMap({
+    editor.addKeyMap({
       'Shift-Tab': 'indentLess',
     });
-    cm.setValue(value);
-    cm.on('change', (doc, change) => {
-      dispatch('change', { value: cm.getValue() });
+    editor.setValue(value);
+    editor.on('change', (doc, change) => {
+      dispatch('change', { value: editor.getValue() });
     });
     // No need to call `on` because cm instance would change once after init
   });
@@ -94,7 +94,7 @@
 <svelte:options immutable={true} />
 
 <div class="bytemd" bind:this={el} style={containerStyle}>
-  <Toolbar {cm} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
+  <Toolbar {editor} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"

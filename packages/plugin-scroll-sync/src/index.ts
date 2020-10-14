@@ -2,23 +2,23 @@ import type { BytemdPlugin } from 'bytemd';
 
 export default function scrollSync(): BytemdPlugin {
   return {
-    editorEffect(cm, el) {
-      const viewer = el.querySelector('.bytemd-preview')!;
+    editorEffect({ editor, $el }) {
+      const $preview = $el.querySelector('.bytemd-preview')!;
       const handleScroll = (cm: CodeMirror.Editor) => {
         requestAnimationFrame(() => {
           const editorInfo = cm.getScrollInfo();
           const ratio =
             editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
-          viewer.scrollTo(
+          $preview.scrollTo(
             0,
-            ratio * (viewer.scrollHeight - viewer.clientHeight)
+            ratio * ($preview.scrollHeight - $preview.clientHeight)
           );
         });
       };
 
-      cm.on('scroll', handleScroll);
+      editor.on('scroll', handleScroll);
       return () => {
-        cm.off('scroll', handleScroll);
+        editor.off('scroll', handleScroll);
       };
     },
   };

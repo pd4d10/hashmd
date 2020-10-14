@@ -40,29 +40,29 @@ export interface BytemdPlugin {
   /**
    * Side effect for editor, triggers when plugin list changes
    */
-  editorEffect?(
+  editorEffect?(context: {
     /**
-     * CodeMirror instance
+     * CodeMirror editor instance
      */
-    cm: CodeMirror.Editor,
+    editor: CodeMirror.Editor;
     /**
      * Root element, `$('.bytemd')`
      */
-    el: HTMLElement
-  ): void | (() => void);
+    $el: HTMLElement;
+  }): void | (() => void);
   /**
    * Side effect for viewer, triggers when HTML or plugin list changes
    */
-  viewerEffect?(
+  viewerEffect?(context: {
     /**
-     * Root element of Viewer, `$('.markdown-body')`
+     * Root element of the Viewer, `$('.markdown-body')`
      */
-    el: HTMLElement,
+    $el: HTMLElement;
     /**
      * Markdown process result
      */
-    result: VFile
-  ): void | (() => void);
+    result: VFile;
+  }): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {

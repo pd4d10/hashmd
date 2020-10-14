@@ -9,9 +9,9 @@ export interface MathOptions {
 export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkMath),
-    viewerEffect(el) {
+    viewerEffect({ $el }) {
       const renderInline = async () => {
-        const els = el.querySelectorAll<HTMLElement>(
+        const els = $el.querySelectorAll<HTMLElement>(
           '.math.math-inline:not(.math-display)' // for `inlineMathDouble === true` case
         );
         if (els.length === 0) return;
@@ -27,7 +27,7 @@ export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
       };
 
       const renderDisplay = async () => {
-        const els = el.querySelectorAll<HTMLElement>('.math.math-display');
+        const els = $el.querySelectorAll<HTMLElement>('.math.math-display');
         if (els.length === 0) return;
 
         const { render } = await import('katex');

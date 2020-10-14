@@ -2,8 +2,8 @@ import type { BytemdPlugin } from 'bytemd';
 
 export default function vega(): BytemdPlugin {
   return {
-    viewerEffect(el) {
-      const els = el.querySelectorAll<HTMLElement>('pre>code.language-vega');
+    viewerEffect({ $el }) {
+      const els = $el.querySelectorAll<HTMLElement>('pre>code.language-vega');
       if (els.length === 0) return;
 
       import('vega-embed').then(({ default: embed }) => {

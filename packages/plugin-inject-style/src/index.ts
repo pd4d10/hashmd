@@ -31,14 +31,14 @@ export default function injectStyle({
           });
         };
       }),
-    viewerEffect(el, result) {
+    viewerEffect({ $el, result }) {
       (async () => {
         const styleText = await lazyStyle?.(result.data);
         if (!styleText) return;
 
         const $style = document.createElement('style');
         $style.innerHTML = styleText;
-        el.appendChild($style);
+        $el.appendChild($style);
       })();
     },
   };

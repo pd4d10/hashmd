@@ -4,18 +4,18 @@ import * as bytemd from 'bytemd';
 export interface ViewerProps extends bytemd.ViewerProps {}
 
 export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
-  const el = useRef<HTMLDivElement>(null);
+  const elRef = useRef<HTMLDivElement>(null);
   const result = useMemo(
     () => bytemd.processMarkdown({ value, sanitize, plugins }),
     [value, sanitize, plugins]
   );
 
   useEffect(() => {
-    const $ = el.current;
-    if (!$) return;
+    const $el = elRef.current;
+    if (!$el) return;
 
     const cbs = plugins?.map(
-      ({ viewerEffect }) => viewerEffect && viewerEffect($, result)
+      ({ viewerEffect }) => viewerEffect && viewerEffect({ $el, result })
     );
     return () => {
       cbs?.forEach((cb) => cb && cb());
@@ -24,7 +24,7 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
 
   return (
     <div
-      ref={el}
+      ref={elRef}
       className="markdown-body"
       dangerouslySetInnerHTML={{ __html: result.toString() }}
     ></div>

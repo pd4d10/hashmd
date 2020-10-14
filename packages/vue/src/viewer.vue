@@ -40,7 +40,7 @@ export default {
       if (this.plugins) {
         this.cbs = this.plugins.map(
           ({ viewerEffect }) =>
-            viewerEffect && viewerEffect(this.$el, this.result)
+            viewerEffect && viewerEffect({ $el: this.$el, result: this.result })
         );
       }
     },

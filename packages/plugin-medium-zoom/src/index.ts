@@ -3,11 +3,11 @@ import type { ZoomOptions } from 'medium-zoom';
 
 export default function mediumZoom(options?: ZoomOptions): BytemdPlugin {
   return {
-    viewerEffect(el) {
-      const imgs = [...el.querySelectorAll('img')].filter((e) => {
+    viewerEffect({ $el }) {
+      const imgs = [...$el.querySelectorAll('img')].filter((e) => {
         // Exclude images with anchor parent
         let $: HTMLElement | null = e;
-        while ($ && $ !== el) {
+        while ($ && $ !== $el) {
           if ($.tagName === 'A') return false;
           $ = $.parentElement;
         }

@@ -31,7 +31,7 @@ export default function importHtml({
   },
 }: ImportHtmlOptions = {}): BytemdPlugin {
   return {
-    editorEffect(cm) {
+    editorEffect({ editor }) {
       const handler = async (
         _: CodeMirror.Editor,
         e: ClipboardEvent | DragEvent
@@ -85,15 +85,15 @@ export default function importHtml({
         processor = processor.use(remarkStringify, remarkStringifyOptions);
 
         const result = await processor.process(html);
-        cm.replaceSelection(result.toString());
+        editor.replaceSelection(result.toString());
       };
 
-      cm.on('paste', handler);
-      cm.on('drop', handler);
+      editor.on('paste', handler);
+      editor.on('drop', handler);
 
       return () => {
-        cm.off('paste', handler);
-        cm.off('drop', handler);
+        editor.off('paste', handler);
+        editor.off('drop', handler);
       };
     },
   };

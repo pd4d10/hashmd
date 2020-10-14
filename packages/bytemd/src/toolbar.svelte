@@ -6,7 +6,7 @@
 
   const dispatch = createEventDispatcher();
 
-  export let cm: CodeMirror.Editor;
+  export let editor: CodeMirror.Editor;
   export let mode: EditorProps['mode'];
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
@@ -34,12 +34,12 @@
 
   {#if !(mode === 'tab' && activeTab === 1)}
     {#each items.left as { tooltip, iconHtml, onClick }}
-      <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(cm)} />
+      <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(editor)} />
     {/each}
   {/if}
 
   <div style="flex-grow:1" />
   {#each items.right as { tooltip, iconHtml, onClick }}
-    <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(cm)} />
+    <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(editor)} />
   {/each}
 </div>
