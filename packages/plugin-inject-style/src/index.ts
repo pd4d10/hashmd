@@ -2,29 +2,44 @@ import type { BytemdPlugin } from 'bytemd';
 import type { Element } from 'hast';
 
 export interface InjectStyleOptions {
-  getStyle(data: any): string | undefined;
+  style?: string | ((data: any) => string | undefined);
+  lazyStyle?(data: any): Promise<string | undefined>;
 }
 
 export default function injectStyle({
-  getStyle,
+  style,
+  lazyStyle,
 }: InjectStyleOptions): BytemdPlugin {
   return {
-    rehype: (u) =>
-      u.use(() => (tree, file) => {
-        const style = getStyle(file.data);
-        if (!style) return;
+    rehype: (p) =>
+      p.use(() => {
+        return (tree, file) => {
+          const styleText =
+            typeof style === 'function' ? style(file.data) : style;
+          if (!styleText) return;
 
-        (tree as Element).children.unshift({
-          type: 'element',
-          tagName: 'style',
-          properties: {},
-          children: [
-            {
-              type: 'text',
-              value: style,
-            },
-          ],
-        });
+          (tree as Element).children.unshift({
+            type: 'element',
+            tagName: 'style',
+            properties: {},
+            children: [
+              {
+                type: 'text',
+                value: styleText,
+              },
+            ],
+          });
+        };
       }),
+    viewerEffect(el, result) {
+      (async () => {
+        const styleText = await lazyStyle?.(result.data);
+        if (!styleText) return;
+
+        const $style = document.createElement('style');
+        $style.innerHTML = styleText;
+        el.appendChild($style);
+      })();
+    },
   };
 }
