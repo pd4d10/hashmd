@@ -12,7 +12,7 @@
 
   function on() {
     cbs = (plugins ?? []).map(
-      ({ viewerEffect }) => viewerEffect && viewerEffect(el)
+      ({ viewerEffect }) => viewerEffect && viewerEffect(el, result)
     );
   }
   function off() {
@@ -20,8 +20,8 @@
   }
 
   onDestroy(off);
-  $: html = processMarkdown({ value, plugins, sanitize });
-  $: if (html != null && plugins) {
+  $: result = processMarkdown({ value, plugins, sanitize });
+  $: if (plugins) {
     off();
     tick().then(() => {
       on();
@@ -32,5 +32,5 @@
 <svelte:options immutable={true} />
 
 <div bind:this={el} class="markdown-body">
-  {@html html}
+  {@html result.toString()}
 </div>

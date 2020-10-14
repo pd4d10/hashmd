@@ -9,10 +9,13 @@ export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
     html() {
+      return this.result.toString();
+    },
+    result() {
       return processMarkdown(this.$props);
     },
     needUpdate() {
-      return [this.html, this.plugins, this.sanitize];
+      return [this.result, this.plugins, this.sanitize];
     },
   },
   watch: {
@@ -36,7 +39,8 @@ export default {
     on() {
       if (this.plugins) {
         this.cbs = this.plugins.map(
-          ({ viewerEffect }) => viewerEffect && viewerEffect(this.$el)
+          ({ viewerEffect }) =>
+            viewerEffect && viewerEffect(this.$el, this.result)
         );
       }
     },

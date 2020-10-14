@@ -37,5 +37,5 @@ export function getProcessor({
 }
 
 export function processMarkdown({ value, ...rest }: ViewerProps) {
-  return getProcessor(rest).processSync(value).toString();
+  return getProcessor(rest).processSync(value);
 }

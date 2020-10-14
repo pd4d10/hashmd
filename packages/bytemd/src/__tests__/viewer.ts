@@ -23,7 +23,11 @@ test('plugin', async () => {
   expect(viewerEffect).toBeCalled();
   expect(viewerEffect).toBeCalledTimes(1);
   expect(viewerEffect).toBeCalledWith(
-    $.container.querySelector('.markdown-body')
+    $.container.querySelector('.markdown-body'),
+    expect.objectContaining({
+      contents: '',
+      data: {},
+    })
   );
 
   $.component.$set({ plugins: [{ viewerEffect }] });

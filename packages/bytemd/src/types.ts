@@ -1,5 +1,6 @@
 import type { Processor } from 'unified';
 import type { Schema } from 'hast-util-sanitize';
+import type { VFile } from 'vfile';
 
 export interface BytemdToolbarItem {
   /**
@@ -56,7 +57,11 @@ export interface BytemdPlugin {
     /**
      * Root element of Viewer, `$('.markdown-body')`
      */
-    el: HTMLElement
+    el: HTMLElement,
+    /**
+     * Markdown process result
+     */
+    result: VFile
   ): void | (() => void);
 }
 
