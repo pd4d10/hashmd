@@ -158,22 +158,22 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
 | Package | Status | Description |
 | --- | --- | --- |
-| [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | ByteMD plugin to support breaks |
-| [@bytemd/plugin-external-links](./packages/plugin-external-links) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-external-links.svg)](https://npm.im/@bytemd/plugin-external-links) | ByteMD plugin to open external links in new window |
-| [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) | ByteMD plugin to support footnotes |
-| [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) | ByteMD plugin to parse frontmatter |
-| [@bytemd/plugin-gfm](./packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) | ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists) |
-| [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | ByteMD plugin to highlight code blocks |
-| [@bytemd/plugin-highlight-ssr](./packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) | ByteMD plugin to highlight code blocks (SSR compatible) |
-| [@bytemd/plugin-import-html](./packages/plugin-import-html) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-html.svg)](https://npm.im/@bytemd/plugin-import-html) | ByteMD plugin to import HTML by pasting or dropping |
-| [@bytemd/plugin-import-image](./packages/plugin-import-image) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-image.svg)](https://npm.im/@bytemd/plugin-import-image) | ByteMD plugin to import image by pasting or dropping |
-| [@bytemd/plugin-inject-style](./packages/plugin-inject-style) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-inject-style.svg)](https://npm.im/@bytemd/plugin-inject-style) | ByteMD plugin to support footnotes |
-| [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | ByteMD plugin to support math equation |
-| [@bytemd/plugin-math-ssr](./packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) | ByteMD plugin to support math equation (SSR compatible) |
-| [@bytemd/plugin-medium-zoom](./packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) | ByteMD plugin to zoom images like Medium |
-| [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | ByteMD plugin to support Mermaid diagram and flowchart |
-| [@bytemd/plugin-scroll-sync](./packages/plugin-scroll-sync) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-scroll-sync.svg)](https://npm.im/@bytemd/plugin-scroll-sync) | ByteMD plugin to sync scroll position of edit and preview area |
-| [@bytemd/plugin-vega](./packages/plugin-vega) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-vega.svg)](https://npm.im/@bytemd/plugin-vega) | ByteMD plugin to support vega charts |
+| [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | Support breaks |
+| [@bytemd/plugin-external-links](./packages/plugin-external-links) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-external-links.svg)](https://npm.im/@bytemd/plugin-external-links) | Open external links in new window |
+| [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) | Support footnotes |
+| [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) | Parse frontmatter |
+| [@bytemd/plugin-gfm](./packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) | Support GFM (autolink literals, strikethrough, tables, tasklists) |
+| [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | Highlight code blocks |
+| [@bytemd/plugin-highlight-ssr](./packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) | Highlight code blocks (SSR compatible) |
+| [@bytemd/plugin-import-html](./packages/plugin-import-html) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-html.svg)](https://npm.im/@bytemd/plugin-import-html) | Import HTML by pasting or dropping |
+| [@bytemd/plugin-import-image](./packages/plugin-import-image) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-image.svg)](https://npm.im/@bytemd/plugin-import-image) | Import image by pasting or dropping |
+| [@bytemd/plugin-inject-style](./packages/plugin-inject-style) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-inject-style.svg)](https://npm.im/@bytemd/plugin-inject-style) | Support footnotes |
+| [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | Support math equation |
+| [@bytemd/plugin-math-ssr](./packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) | Support math equation (SSR compatible) |
+| [@bytemd/plugin-medium-zoom](./packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
+| [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | Support Mermaid diagram and flowchart |
+| [@bytemd/plugin-scroll-sync](./packages/plugin-scroll-sync) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-scroll-sync.svg)](https://npm.im/@bytemd/plugin-scroll-sync) | Sync scroll position of edit and preview area |
+| [@bytemd/plugin-vega](./packages/plugin-vega) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-vega.svg)](https://npm.im/@bytemd/plugin-vega) | Support vega charts |
 
 ## Write a plugin
 

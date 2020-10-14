@@ -102,7 +102,12 @@ const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
       .map((p) => {
         const name = p.split('-').slice(1).join('-');
         const badge = `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg)](https://npm.im/@bytemd/plugin-${name})`;
-        const desc = require(path.join(root, p, 'package.json')).description;
+        const desc = _.upperFirst(
+          require(path.join(root, p, 'package.json')).description.replace(
+            'ByteMD plugin to ',
+            ''
+          )
+        );
         return `| [@bytemd/plugin-${name}](./packages/plugin-${name}) | ${badge} | ${desc} |`;
       })
       .join('\n');
