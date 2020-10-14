@@ -18,10 +18,10 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^0.1.10"
+    "bytemd": "0.1.10"
   },
   "peerDependencies": {
-    "vue": "*"
+    "vue": "^2.0.0"
   },
   "devDependencies": {
     "vue": "^2.6.12"

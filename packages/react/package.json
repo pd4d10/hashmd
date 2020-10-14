@@ -18,7 +18,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^0.1.10"
+    "bytemd": "0.1.10"
   },
   "peerDependencies": {
     "react": "*"
