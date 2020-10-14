@@ -21,7 +21,7 @@
 
   onDestroy(off);
   $: result = processMarkdown({ value, plugins, sanitize });
-  $: if (plugins) {
+  $: if (result && plugins) {
     off();
     tick().then(() => {
       on();
