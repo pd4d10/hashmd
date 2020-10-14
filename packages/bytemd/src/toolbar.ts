@@ -88,23 +88,6 @@ const leftItems: BytemdToolbarItem[] = [
     },
   },
   {
-    tooltip: 'table',
-    iconHtml: icon.InsertTable({}),
-    onClick(cm) {
-      const pos = cm.getCursor();
-      cm.replaceRange(
-        `
-|  |  |
-| --- | --- |
-|  |  |
-    `,
-        pos
-      );
-      cm.setCursor({ line: pos.line + 1, ch: 2 });
-      cm.focus();
-    },
-  },
-  {
     tooltip: 'ordered list',
     iconHtml: icon.OrderedList({}),
     onClick(cm) {
@@ -116,13 +99,6 @@ const leftItems: BytemdToolbarItem[] = [
     iconHtml: icon.ListCheckbox({}),
     onClick(cm) {
       handlePrepend(cm, (lines) => lines.map((line) => `- ${line}`));
-    },
-  },
-  {
-    tooltip: 'task list',
-    iconHtml: icon.CheckCorrect({}),
-    onClick(cm) {
-      handlePrepend(cm, (lines) => lines.map((line) => `- [ ] ${line}`));
     },
   },
 ];

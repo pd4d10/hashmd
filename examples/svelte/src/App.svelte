@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { Editor } from 'bytemd';
+  import gfm from '@bytemd/plugin-gfm';
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
   import mermaid from '@bytemd/plugin-mermaid';
@@ -32,6 +33,7 @@
   });
 
   let enabled = {
+    gfm: true,
     highlight: true,
     math: true,
     mermaid: true,
@@ -54,6 +56,7 @@
   }
 
   $: plugins = [
+    enabled.gfm && gfm(),
     enabled.mermaid && mermaid(),
     enabled.highlight && highlight(),
     enabled.math && math(),
@@ -73,10 +76,10 @@
     //       console.log('off', cm, el);
     //     };
     //   },
-    //   viewerEffect(el) {
-    //     console.log('on', el);
+    //   viewerEffect(el, result) {
+    //     console.log('on', el, result);
     //     return () => {
-    //       console.log('off', el);
+    //       console.log('off', el, result);
     //     };
     //   },
     // },

@@ -17,6 +17,9 @@
       "path": "packages/plugin-frontmatter"
     },
     {
+      "path": "packages/plugin-gfm"
+    },
+    {
       "path": "packages/plugin-highlight"
     },
     {
