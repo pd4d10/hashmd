@@ -34,23 +34,36 @@ import 'bytemd/dist/index.css';
 ### Svelte
 
 ```svelte
-<template>
-  <Editor {value} on:change={handleChange} plugins={[{/* Add plugins here */}]} />
-</template>
 <script>
-import { Editor, Viewer } from 'bytemd'
+  import { Editor, Viewer } from 'bytemd';
+  import gfm from '@bytemd/plugin-gfm';
 
-let value;
-function handleChange(e) {
-  value = e.detail.value
-}
+  let value;
+  const plugins = [
+    gfm(),
+    // Add more plugins here
+  ];
+
+  function handleChange(e) {
+    value = e.detail.value;
+  }
 </script>
+
+<template>
+  <Editor {value} {plugins} on:change={handleChange} />
+</template>
 ```
 
 ### React
 
 ```js
 import { Editor, Viewer } from '@bytemd/react';
+import gfm from '@bytemd/plugin-gfm';
+
+const plugins = [
+  gfm(),
+  // Add more plugins here
+];
 
 const App = () => {
   const [value, setValue] = useState('');
@@ -58,14 +71,10 @@ const App = () => {
   return (
     <Editor
       value={value}
+      plugins={plugins}
       onChange={(v) => {
         setValue(v);
       }}
-      plugins={
-        [
-          // Add plugins here
-        ]
-      }
     />
   );
 };
@@ -75,23 +84,22 @@ const App = () => {
 
 ```vue
 <template>
-  <Editor :value="value" @change="handleChange" :plugins="plugins" />
+  <Editor :value="value" :plugins="plugins" @change="handleChange" />
 </template>
 
 <script>
 import { Editor, Viewer } from '@bytemd/vue';
+import gfm from '@bytemd/plugin-gfm';
+
+const plugins = [
+  gfm(),
+  // Add more plugins here
+];
 
 export default {
-  components: {
-    Editor,
-  },
+  components: { Editor },
   data() {
-    return {
-      value: '',
-      plugins: [
-        // Add plugins here
-      ],
-    };
+    return { value: '', plugins };
   },
   methods: {
     handleChange(v) {
@@ -106,14 +114,18 @@ export default {
 
 ```js
 import { Editor, Viewer } from 'bytemd';
+import gfm from '@bytemd/plugin-gfm';
+
+const plugins = [
+  gfm(),
+  // Add more plugins here
+];
 
 const instance = new Editor({
   target: document.body, // DOM to render
   props: {
     value: '',
-    plugins: [
-      // Add plugins here
-    ],
+    plugins,
   },
 });
 
