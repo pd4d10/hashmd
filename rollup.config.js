@@ -46,12 +46,12 @@ const configs = packages.map((key) => {
       umd && terser(),
     ],
     external: [
-      'bytemd',
       'codemirror/mode/gfm/gfm',
       'codemirror/mode/yaml-frontmatter/yaml-frontmatter',
       'codemirror/addon/display/placeholder',
       'hast-util-sanitize/lib/github.json',
       ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
     ],
     watch: {
       clearScreen: false,
