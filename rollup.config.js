@@ -1,6 +1,7 @@
 // @ts-check
 import fs from 'fs-extra';
 import path from 'path';
+import _ from 'lodash';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -8,56 +9,84 @@ import json from '@rollup/plugin-json';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
+import polyfills from 'rollup-plugin-node-polyfills';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
-const umd = process.env.UMD; // TODO: dynamic import
 
 const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 
-/** @type {import('rollup').RollupOptions[]} */
-const configs = packages.map((key) => {
-  // config.inlineDynamicImports = true;
-  const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
+const configs = packages
+  .map((key) => {
+    const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
 
-  return {
-    input: path.resolve('packages', key, 'lib/index.js'),
-    output: [
-      {
-        format: 'es',
-        sourcemap: true,
-        file: path.resolve('packages', key, pkg.module),
+    /** @type {import('rollup').RollupOptions} */
+    const commonConfig = {
+      input: path.resolve('packages', key, 'lib/index.js'),
+      plugins: [
+        commonjs(),
+        svelte({}),
+        vue(),
+        resolve({
+          browser: true,
+          dedupe: ['svelte'],
+        }),
+        json(),
+        polyfills(),
+      ],
+    };
+
+    /** @type {import('rollup').RollupOptions} */
+    const config = {
+      ...commonConfig,
+      output: [
+        {
+          format: 'es',
+          sourcemap: true,
+          file: path.resolve('packages', key, pkg.module),
+        },
+        {
+          format: 'cjs',
+          sourcemap: true,
+          file: path.resolve('packages', key, pkg.main),
+        },
+      ],
+      external: [
+        'codemirror/mode/gfm/gfm',
+        'codemirror/mode/yaml-frontmatter/yaml-frontmatter',
+        'codemirror/addon/display/placeholder',
+        'hast-util-sanitize/lib/github.json',
+        ...Object.keys(pkg.dependencies || {}),
+        ...Object.keys(pkg.peerDependencies || {}),
+      ],
+      watch: {
+        clearScreen: false,
       },
-      {
-        format: 'cjs',
+    };
+
+    /** @type {import('rollup').RollupOptions} */
+    const umdConfig = {
+      ...commonConfig,
+      output: {
+        format: 'umd',
+        name: key.startsWith('plugin-')
+          ? _.camelCase(`bytemd-${key.replace(/-ssr$/, '')}`)
+          : 'bytemd',
         sourcemap: true,
-        file: path.resolve('packages', key, pkg.main),
+        inlineDynamicImports: true,
+        file: path.resolve('packages', key, pkg.unpkg),
+        plugins: [terser()],
       },
-    ],
-    plugins: [
-      commonjs(),
-      svelte({}),
-      vue(),
-      resolve({
-        browser: true,
-        dedupe: ['svelte'],
-      }),
-      json(),
-      umd && terser(),
-    ],
-    external: [
-      'codemirror/mode/gfm/gfm',
-      'codemirror/mode/yaml-frontmatter/yaml-frontmatter',
-      'codemirror/addon/display/placeholder',
-      'hast-util-sanitize/lib/github.json',
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
-    ],
-    watch: {
-      clearScreen: false,
-    },
-  };
-});
+      external: Object.keys(pkg.peerDependencies || {}),
+    };
+
+    if (production) {
+      return [config, umdConfig];
+    } else {
+      return [config];
+    }
+  })
+  .flat();
 
 /** @type {import('rollup').RollupOptions} */
 const styleConfig = {
