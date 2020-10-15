@@ -11,9 +11,7 @@
   let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = [];
 
   function on() {
-    cbs = (plugins ?? []).map(
-      ({ viewerEffect }) => viewerEffect && viewerEffect({ $el: el, result })
-    );
+    cbs = (plugins ?? []).map((p) => p.viewerEffect?.({ $el: el, result }));
   }
   function off() {
     cbs.forEach((cb) => cb && cb());

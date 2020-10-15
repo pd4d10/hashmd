@@ -1,104 +1,106 @@
 import type { BytemdToolbarItem, EditorProps } from './types';
-import * as icon from '@icon-park/svg';
+import * as iconpark from '@icon-park/svg';
 
 const leftItems: BytemdToolbarItem[] = [
   {
     tooltip: 'H1',
-    iconHtml: icon.H1({}),
-    onClick(cm) {
-      const { line } = cm.getCursor();
-      const content = cm.getLine(line);
+    icon: iconpark.H1({}),
+    onClick({ editor }) {
+      const { line } = editor.getCursor();
+      const content = editor.getLine(line);
       // @ts-ignore
-      cm.replaceRange(`# ${content}`, { line, ch: 0 }, { line });
-      cm.focus();
+      editor.replaceRange(`# ${content}`, { line, ch: 0 }, { line });
+      editor.focus();
     },
   },
   {
     tooltip: 'H2',
-    iconHtml: icon.H2({}),
-    onClick(cm) {
-      const { line } = cm.getCursor();
-      const content = cm.getLine(line);
+    icon: iconpark.H2({}),
+    onClick({ editor }) {
+      const { line } = editor.getCursor();
+      const content = editor.getLine(line);
       // @ts-ignore
-      cm.replaceRange(`## ${content}`, { line, ch: 0 }, { line });
-      cm.focus();
+      editor.replaceRange(`## ${content}`, { line, ch: 0 }, { line });
+      editor.focus();
     },
   },
   {
     tooltip: 'H3',
-    iconHtml: icon.H3({}),
-    onClick(cm) {
-      const { line } = cm.getCursor();
-      const content = cm.getLine(line);
+    icon: iconpark.H3({}),
+    onClick({ editor }) {
+      const { line } = editor.getCursor();
+      const content = editor.getLine(line);
       // @ts-ignore
-      cm.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
-      cm.focus();
+      editor.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
+      editor.focus();
     },
   },
   {
     tooltip: 'bold',
-    iconHtml: icon.TextBold({}),
-    onClick(cm) {
-      handleText(cm, '**', '**');
+    icon: iconpark.TextBold({}),
+    onClick({ editor }) {
+      handleText(editor, '**', '**');
     },
   },
   {
     tooltip: 'italic',
-    iconHtml: icon.TextItalic({}),
-    onClick(cm) {
-      handleText(cm, '_', '_');
+    icon: iconpark.TextItalic({}),
+    onClick({ editor }) {
+      handleText(editor, '_', '_');
     },
   },
   {
     tooltip: 'blockquote',
-    iconHtml: icon.Quote({}),
-    onClick(cm) {
-      handlePrepend(cm, (lines) => lines.map((line) => `> ${line}`));
+    icon: iconpark.Quote({}),
+    onClick({ editor }) {
+      handlePrepend(editor, (lines) => lines.map((line) => `> ${line}`));
     },
   },
   {
     tooltip: 'link',
-    iconHtml: icon.LinkOne({}),
-    onClick(cm) {
-      if (cm.somethingSelected()) {
-        const text = cm.getSelection();
-        cm.replaceSelection(`[${text}](url)`);
-        const { line, ch } = cm.getCursor();
-        cm.setSelection({ line, ch: ch - 4 }, { line, ch: ch - 1 });
+    icon: iconpark.LinkOne({}),
+    onClick({ editor }) {
+      if (editor.somethingSelected()) {
+        const text = editor.getSelection();
+        editor.replaceSelection(`[${text}](url)`);
+        const { line, ch } = editor.getCursor();
+        editor.setSelection({ line, ch: ch - 4 }, { line, ch: ch - 1 });
       } else {
-        cm.replaceRange('[](url)', cm.getCursor());
-        const { line, ch } = cm.getCursor();
-        cm.setCursor({ line, ch: ch - 6 });
+        editor.replaceRange('[](url)', editor.getCursor());
+        const { line, ch } = editor.getCursor();
+        editor.setCursor({ line, ch: ch - 6 });
       }
-      cm.focus();
+      editor.focus();
     },
   },
   {
     tooltip: 'code',
-    iconHtml: icon.Code({}),
-    onClick(cm) {
-      handleText(cm, '`', '`');
+    icon: iconpark.Code({}),
+    onClick({ editor }) {
+      handleText(editor, '`', '`');
     },
   },
   {
     tooltip: 'code block',
-    iconHtml: icon.CodeBrackets({}),
-    onClick(cm) {
-      handlePrepend(cm, (lines) => ['```', ...lines, '```']);
+    icon: iconpark.CodeBrackets({}),
+    onClick({ editor }) {
+      handlePrepend(editor, (lines) => ['```', ...lines, '```']);
     },
   },
   {
     tooltip: 'ordered list',
-    iconHtml: icon.OrderedList({}),
-    onClick(cm) {
-      handlePrepend(cm, (lines) => lines.map((line, i) => `${i + 1}. ${line}`));
+    icon: iconpark.OrderedList({}),
+    onClick({ editor }) {
+      handlePrepend(editor, (lines) =>
+        lines.map((line, i) => `${i + 1}. ${line}`)
+      );
     },
   },
   {
     tooltip: 'unordered list',
-    iconHtml: icon.ListCheckbox({}),
-    onClick(cm) {
-      handlePrepend(cm, (lines) => lines.map((line) => `- ${line}`));
+    icon: iconpark.ListCheckbox({}),
+    onClick({ editor }) {
+      handlePrepend(editor, (lines) => lines.map((line) => `- ${line}`));
     },
   },
 ];
@@ -106,7 +108,7 @@ const leftItems: BytemdToolbarItem[] = [
 const rightItems: BytemdToolbarItem[] = [
   {
     tooltip: 'About ByteMD',
-    iconHtml: icon.Info({}),
+    icon: iconpark.Info({}),
     onClick() {
       window.open('https://github.com/bytedance/bytemd');
     },
@@ -123,34 +125,34 @@ export function getItems(plugins: EditorProps['plugins']) {
   return { left, right };
 }
 
-function handleText(cm: CodeMirror.Editor, before: string, after: string) {
-  if (cm.somethingSelected()) {
-    cm.replaceSelection(before + cm.getSelection() + after);
+function handleText(editor: CodeMirror.Editor, before: string, after: string) {
+  if (editor.somethingSelected()) {
+    editor.replaceSelection(before + editor.getSelection() + after);
   } else {
-    const { anchor, head } = cm.findWordAt(cm.getCursor());
-    const word = cm.getRange(anchor, head);
-    cm.replaceRange(before + word + after, anchor, head);
+    const { anchor, head } = editor.findWordAt(editor.getCursor());
+    const word = editor.getRange(anchor, head);
+    editor.replaceRange(before + word + after, anchor, head);
   }
-  cm.focus();
+  editor.focus();
 }
 
 function handlePrepend(
-  cm: CodeMirror.Editor,
+  editor: CodeMirror.Editor,
   replace: (lines: string[]) => string[]
 ) {
-  const [selection] = cm.listSelections();
+  const [selection] = editor.listSelections();
   const fromLine = selection.from().line;
   const toLine = selection.to().line;
-  const lines = cm
+  const lines = editor
     // @ts-ignore
     .getRange({ line: fromLine, ch: 0 }, { line: toLine })
     .split('\n');
-  cm.replaceRange(
+  editor.replaceRange(
     replace(lines).join('\n'),
     { line: fromLine, ch: 0 },
     // @ts-ignore
     { line: toLine }
   );
 
-  cm.focus();
+  editor.focus();
 }

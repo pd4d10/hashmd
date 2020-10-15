@@ -30,15 +30,15 @@ export default function importImage({
           ...items,
           {
             tooltip: 'image',
-            iconHtml: Pic({}),
-            onClick(cm) {
+            icon: Pic({}),
+            onClick({ editor }) {
               const input = document.createElement('input');
               input.type = 'file';
               input.multiple = true;
               input.accept = 'image/*';
               input.addEventListener('input', (e) => {
                 if (input.files && input.files.length) {
-                  handleFiles(Array.from(input.files), cm);
+                  handleFiles(Array.from(input.files), editor);
                 }
               });
               input.click();

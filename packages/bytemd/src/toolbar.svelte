@@ -2,11 +2,11 @@
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import { getItems } from './toolbar';
-  import type { EditorProps } from './types';
+  import type { EditorProps, EditorContext } from './types';
 
   const dispatch = createEventDispatcher();
 
-  export let editor: CodeMirror.Editor;
+  export let context: EditorContext;
   export let mode: EditorProps['mode'];
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
@@ -33,13 +33,13 @@
   {/if}
 
   {#if !(mode === 'tab' && activeTab === 1)}
-    {#each items.left as { tooltip, iconHtml, onClick }}
-      <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(editor)} />
+    {#each items.left as { tooltip, icon, onClick }}
+      <ToolbarButton {tooltip} {icon} on:click={() => onClick(context)} />
     {/each}
   {/if}
 
   <div style="flex-grow:1" />
-  {#each items.right as { tooltip, iconHtml, onClick }}
-    <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(editor)} />
+  {#each items.right as { tooltip, icon, onClick }}
+    <ToolbarButton {tooltip} {icon} on:click={() => onClick(context)} />
   {/each}
 </div>

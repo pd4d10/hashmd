@@ -22,6 +22,8 @@
   let editor: CodeMirror.Editor;
   let activeTab = 0;
 
+  $: context = { editor, $el: el };
+
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
   const dispatch = createEventDispatcher();
 
@@ -36,9 +38,7 @@
   }
 
   function on() {
-    cbs = (plugins ?? []).map(({ editorEffect }) =>
-      editorEffect?.({ editor, $el: el })
-    );
+    cbs = (plugins ?? []).map((p) => p.editorEffect?.(context));
   }
   function off() {
     cbs.forEach((cb) => cb && cb());
@@ -94,7 +94,7 @@
 <svelte:options immutable={true} />
 
 <div class="bytemd" bind:this={el} style={containerStyle}>
-  <Toolbar {editor} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
+  <Toolbar {context} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"

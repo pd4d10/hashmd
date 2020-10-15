@@ -2,6 +2,17 @@ import type { Processor } from 'unified';
 import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 
+export interface EditorContext {
+  /**
+   * CodeMirror editor instance
+   */
+  editor: CodeMirror.Editor;
+  /**
+   * Root element, `$('.bytemd')`
+   */
+  $el: HTMLElement;
+}
+
 export interface BytemdToolbarItem {
   /**
    * Tooltip of toolbar item
@@ -10,11 +21,11 @@ export interface BytemdToolbarItem {
   /**
    * Toolbar Icon (16x16), could be <img> or inline svg
    */
-  iconHtml: string;
+  icon: string;
   /**
    * Toolbar icon click handler
    */
-  onClick(cm: CodeMirror.Editor): void;
+  onClick(context: EditorContext): void;
 }
 
 export interface BytemdPlugin {
@@ -40,16 +51,7 @@ export interface BytemdPlugin {
   /**
    * Side effect for editor, triggers when plugin list changes
    */
-  editorEffect?(context: {
-    /**
-     * CodeMirror editor instance
-     */
-    editor: CodeMirror.Editor;
-    /**
-     * Root element, `$('.bytemd')`
-     */
-    $el: HTMLElement;
-  }): void | (() => void);
+  editorEffect?(context: EditorContext): void | (() => void);
   /**
    * Side effect for viewer, triggers when HTML or plugin list changes
    */
