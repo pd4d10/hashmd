@@ -2,25 +2,33 @@ import type { BytemdPlugin } from 'bytemd';
 import type { Element } from 'hast';
 import visit from 'unist-util-visit';
 
+interface AnchorProps {
+  target?: string;
+  rel?: string;
+}
+
 export interface ExternalLinksOptions {
-  test?(href: String): boolean;
+  props?: AnchorProps | ((href: string) => AnchorProps);
 }
 
 export default function externalLinks({
-  test = () => true,
+  props = {
+    target: '_blank',
+    rel: 'nofollow noopener noreferrer',
+  },
 }: ExternalLinksOptions): BytemdPlugin {
   return {
     rehype: (p) =>
       p.use(() => {
         return (tree) => {
           visit<Element>(tree, 'element', (node) => {
-            if (
-              node.tagName === 'a' &&
-              node.properties?.href &&
-              test(node.properties.href as string)
-            ) {
-              node.properties.rel = 'nofollow noopener noreferrer';
-              node.properties.target = '_blank';
+            if (node.tagName === 'a' && node.properties?.href) {
+              Object.assign(
+                node.properties,
+                typeof props === 'function'
+                  ? props(node.properties.href as string)
+                  : props
+              );
             }
           });
         };
