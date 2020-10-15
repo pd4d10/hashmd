@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { BytemdPlugin, ViewerProps } from './types';
   import { tick, onDestroy } from 'svelte';
-  import { processMarkdown } from './utils';
+  import { getProcessor } from './utils';
 
   export let value: ViewerProps['value'] = '';
   export let plugins: ViewerProps['plugins'];
@@ -20,7 +20,7 @@
   }
 
   onDestroy(off);
-  $: result = processMarkdown({ value, plugins, sanitize });
+  $: result = getProcessor({ plugins, sanitize }).processSync(value);
   $: if (result && plugins) {
     off();
     tick().then(() => {

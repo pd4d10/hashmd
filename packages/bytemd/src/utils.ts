@@ -10,6 +10,9 @@ import type { ViewerProps } from './types';
 
 const schemaStr = JSON.stringify(ghSchema);
 
+/**
+ * Get unified processor with ByteMD plugins
+ */
 export function getProcessor({
   sanitize,
   plugins,
@@ -34,8 +37,4 @@ export function getProcessor({
   });
 
   return p.use(rehypeStringify);
-}
-
-export function processMarkdown({ value, ...rest }: ViewerProps) {
-  return getProcessor(rest).processSync(value);
 }

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { processMarkdown } from 'bytemd';
+import { getProcessor } from 'bytemd';
 
 export default {
   props: ['value', 'plugins', 'sanitize'],
@@ -12,7 +12,7 @@ export default {
       return this.result.toString();
     },
     result() {
-      return processMarkdown(this.$props);
+      return getProcessor(this.$props).processSync(this.$props.value);
     },
     needUpdate() {
       return [this.result, this.plugins, this.sanitize];

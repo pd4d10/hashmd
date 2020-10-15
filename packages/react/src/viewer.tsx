@@ -6,7 +6,7 @@ export interface ViewerProps extends bytemd.ViewerProps {}
 export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
   const elRef = useRef<HTMLDivElement>(null);
   const result = useMemo(
-    () => bytemd.processMarkdown({ value, sanitize, plugins }),
+    () => bytemd.getProcessor({ sanitize, plugins }).processSync(value),
     [value, sanitize, plugins]
   );
 
