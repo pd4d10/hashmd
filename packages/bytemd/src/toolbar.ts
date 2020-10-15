@@ -37,7 +37,7 @@ const leftItems: BytemdToolbarItem[] = [
   },
   {
     tooltip: 'bold',
-    icon: iconpark.TextBold({}),
+    icon: iconpark.TextBold({}).replace('<svg', `<svg style="width:14px"`), // TODO:
     onClick({ editor }) {
       handleText(editor, '**', '**');
     },
