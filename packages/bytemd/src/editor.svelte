@@ -11,6 +11,7 @@
   export let mode: EditorProps['mode'] = 'split';
   export let previewDebounce: EditorProps['previewDebounce'] = 300;
   export let containerStyle: EditorProps['containerStyle'];
+  export let toolbar: EditorProps['toolbar'];
 
   let el: HTMLElement;
   let viewerProps: ViewerProps = {
@@ -94,7 +95,13 @@
 <svelte:options immutable={true} />
 
 <div class="bytemd" bind:this={el} style={containerStyle}>
-  <Toolbar {context} {mode} {activeTab} {plugins} on:tab={setActiveTab} />
+  <Toolbar
+    {context}
+    {mode}
+    {activeTab}
+    {plugins}
+    {toolbar}
+    on:tab={setActiveTab} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"

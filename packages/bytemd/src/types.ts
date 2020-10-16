@@ -42,12 +42,9 @@ export interface BytemdPlugin {
    */
   rehype?: (p: Processor) => Processor;
   /**
-   * Add toolbar items
+   * Register toolbar items
    */
-  toolbar?: {
-    left?: (items: BytemdToolbarItem[]) => BytemdToolbarItem[];
-    right?: (items: BytemdToolbarItem[]) => BytemdToolbarItem[];
-  };
+  toolbar?: Record<string, BytemdToolbarItem>;
   /**
    * Side effect for editor, triggers when plugin list changes
    */
@@ -83,6 +80,14 @@ export interface EditorProps extends ViewerProps {
    * Inline style of the container, `$('.bytemd')`
    */
   containerStyle?: string;
+  /**
+   * Specify visible toolbar items and their orders
+   *
+   * Default: Show all available items, order: built-in -> plugin by apply order
+   */
+  toolbar?:
+    | string[]
+    | ((itemMap: Record<string, BytemdToolbarItem>) => string[]);
 }
 
 export interface ViewerProps {

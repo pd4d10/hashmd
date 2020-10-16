@@ -38,7 +38,7 @@
     math: true,
     mermaid: true,
     footnotes: true,
-    'image-handler': true,
+    'import-image': true,
     'scroll-sync': true,
   };
 
@@ -61,7 +61,7 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled['image-handler'] && importImage({ upload: toDataUrl }),
+    enabled['import-image'] && importImage({ upload: toDataUrl }),
     enabled['scroll-sync'] && scrollSync(),
     frontmatter(),
     importHtml({
@@ -87,12 +87,17 @@
 </script>
 
 <style>
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
   .line {
     margin: 10px 0;
+    text-align: center;
   }
 </style>
 
-<div>
+<div class="container">
   <div class="line">
     Mode:
     {#each ['split', 'tab'] as m}
@@ -106,10 +111,10 @@
       <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
     {/each}
   </div>
+  <Editor
+    {value}
+    {mode}
+    {plugins}
+    containerStyle="height:calc(100vh - 100px)"
+    on:change={handleChange} />
 </div>
-<Editor
-  {value}
-  {mode}
-  {plugins}
-  containerStyle="height:calc(100vh - 100px)"
-  on:change={handleChange} />

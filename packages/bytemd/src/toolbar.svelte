@@ -1,8 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
-  import { getItems } from './toolbar';
-  import type { EditorProps, EditorContext } from './types';
+  import { builtinMap } from './toolbar';
+  import type { EditorProps, EditorContext, BytemdPlugin } from './types';
+  import { Info } from '@icon-park/svg';
 
   const dispatch = createEventDispatcher();
 
@@ -10,8 +11,28 @@
   export let mode: EditorProps['mode'];
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
+  export let toolbar: EditorProps['toolbar'];
 
-  $: items = getItems(plugins);
+  export function getItemMap(plugins: EditorProps['plugins']) {
+    const map = { ...builtinMap };
+    plugins?.forEach((p) => {
+      Object.assign(map, p.toolbar);
+    });
+    return map;
+  }
+
+  function normalize(itemMap: NonNullable<BytemdPlugin['toolbar']>) {
+    if (toolbar == null) {
+      return Object.keys(itemMap);
+    }
+    if (typeof toolbar === 'function') {
+      return toolbar(itemMap);
+    }
+    return toolbar;
+  }
+
+  $: itemMap = getItemMap(plugins);
+  $: normalizedIds = normalize(itemMap);
 </script>
 
 <svelte:options immutable={true} />
@@ -33,13 +54,22 @@
   {/if}
 
   {#if !(mode === 'tab' && activeTab === 1)}
-    {#each items.left as { tooltip, icon, onClick }}
-      <ToolbarButton {tooltip} {icon} on:click={() => onClick(context)} />
+    {#each normalizedIds as id}
+      {#if itemMap[id]}
+        <ToolbarButton
+          tooltip={itemMap[id].tooltip}
+          icon={itemMap[id].icon}
+          on:click={() => itemMap[id].onClick(context)} />
+      {/if}
     {/each}
   {/if}
 
   <div style="flex-grow:1" />
-  {#each items.right as { tooltip, icon, onClick }}
-    <ToolbarButton {tooltip} {icon} on:click={() => onClick(context)} />
-  {/each}
+
+  <ToolbarButton
+    tooltip="About ByteMD"
+    icon={Info({})}
+    on:click={() => {
+      window.open('https://github.com/bytedance/bytemd');
+    }} />
 </div>

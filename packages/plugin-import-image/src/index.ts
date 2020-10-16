@@ -25,26 +25,21 @@ export default function importImage({
 
   return {
     toolbar: {
-      left(items) {
-        return [
-          ...items,
-          {
-            tooltip: 'image',
-            icon: Pic({}),
-            onClick({ editor }) {
-              const input = document.createElement('input');
-              input.type = 'file';
-              input.multiple = true;
-              input.accept = 'image/*';
-              input.addEventListener('input', (e) => {
-                if (input.files && input.files.length) {
-                  handleFiles(Array.from(input.files), editor);
-                }
-              });
-              input.click();
-            },
-          },
-        ];
+      image: {
+        tooltip: 'image',
+        icon: Pic({}),
+        onClick({ editor }) {
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.multiple = true;
+          input.accept = 'image/*';
+          input.addEventListener('input', (e) => {
+            if (input.files && input.files.length) {
+              handleFiles(Array.from(input.files), editor);
+            }
+          });
+          input.click();
+        },
       },
     },
     editorEffect({ editor }) {
