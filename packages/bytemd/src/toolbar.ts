@@ -1,7 +1,39 @@
-import type { BytemdToolbarItem } from './types';
+import type { BytemdToolbarItem, EditorProps } from './types';
 import * as iconpark from '@icon-park/svg';
 
-export const builtinMap: Record<string, BytemdToolbarItem> = {
+function handleText(editor: CodeMirror.Editor, before: string, after: string) {
+  if (editor.somethingSelected()) {
+    editor.replaceSelection(before + editor.getSelection() + after);
+  } else {
+    const { anchor, head } = editor.findWordAt(editor.getCursor());
+    const word = editor.getRange(anchor, head);
+    editor.replaceRange(before + word + after, anchor, head);
+  }
+  editor.focus();
+}
+
+function handlePrepend(
+  editor: CodeMirror.Editor,
+  replace: (lines: string[]) => string[]
+) {
+  const [selection] = editor.listSelections();
+  const fromLine = selection.from().line;
+  const toLine = selection.to().line;
+  const lines = editor
+    // @ts-ignore
+    .getRange({ line: fromLine, ch: 0 }, { line: toLine })
+    .split('\n');
+  editor.replaceRange(
+    replace(lines).join('\n'),
+    { line: fromLine, ch: 0 },
+    // @ts-ignore
+    { line: toLine }
+  );
+
+  editor.focus();
+}
+
+const builtinMap: Record<string, BytemdToolbarItem> = {
   h1: {
     tooltip: 'H1',
     icon: iconpark.H1({}),
@@ -105,34 +137,11 @@ export const builtinMap: Record<string, BytemdToolbarItem> = {
   },
 };
 
-function handleText(editor: CodeMirror.Editor, before: string, after: string) {
-  if (editor.somethingSelected()) {
-    editor.replaceSelection(before + editor.getSelection() + after);
-  } else {
-    const { anchor, head } = editor.findWordAt(editor.getCursor());
-    const word = editor.getRange(anchor, head);
-    editor.replaceRange(before + word + after, anchor, head);
-  }
-  editor.focus();
-}
-
-function handlePrepend(
-  editor: CodeMirror.Editor,
-  replace: (lines: string[]) => string[]
-) {
-  const [selection] = editor.listSelections();
-  const fromLine = selection.from().line;
-  const toLine = selection.to().line;
-  const lines = editor
-    // @ts-ignore
-    .getRange({ line: fromLine, ch: 0 }, { line: toLine })
-    .split('\n');
-  editor.replaceRange(
-    replace(lines).join('\n'),
-    { line: fromLine, ch: 0 },
-    // @ts-ignore
-    { line: toLine }
-  );
-
-  editor.focus();
+// TODO:
+export function getItemMap(plugins: EditorProps['plugins']) {
+  const map = { ...builtinMap };
+  plugins?.forEach((p) => {
+    Object.assign(map, p.toolbar);
+  });
+  return map;
 }

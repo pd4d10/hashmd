@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
-  import { builtinMap } from './toolbar';
+  import { getItemMap } from './toolbar';
   import type { EditorProps, EditorContext, BytemdPlugin } from './types';
   import { Info } from '@icon-park/svg';
 
@@ -12,14 +12,6 @@
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
   export let toolbar: EditorProps['toolbar'];
-
-  export function getItemMap(plugins: EditorProps['plugins']) {
-    const map = { ...builtinMap };
-    plugins?.forEach((p) => {
-      Object.assign(map, p.toolbar);
-    });
-    return map;
-  }
 
   function normalize(itemMap: NonNullable<BytemdPlugin['toolbar']>) {
     if (toolbar == null) {
