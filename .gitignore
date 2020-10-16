@@ -7,3 +7,4 @@ package-lock.json
 tsconfig.tsbuildinfo
 coverage
 style.js
+tsconfig.json
