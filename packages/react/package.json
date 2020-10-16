@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/react",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
