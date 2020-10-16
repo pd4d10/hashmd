@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-gfm",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
