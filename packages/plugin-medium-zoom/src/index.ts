@@ -1,7 +1,9 @@
 import type { BytemdPlugin } from 'bytemd';
-import type { ZoomOptions } from 'medium-zoom';
+import type * as M from 'medium-zoom';
 
-export default function mediumZoom(options?: ZoomOptions): BytemdPlugin {
+export default function mediumZoom(options?: M.ZoomOptions): BytemdPlugin {
+  let m: typeof M;
+
   return {
     viewerEffect({ $el }) {
       const imgs = [...$el.querySelectorAll('img')].filter((e) => {
@@ -15,9 +17,12 @@ export default function mediumZoom(options?: ZoomOptions): BytemdPlugin {
       });
       if (imgs.length === 0) return;
 
-      import('medium-zoom').then(({ default: init }) => {
-        init(imgs, options);
-      });
+      (async () => {
+        if (!m) {
+          m = await import('medium-zoom');
+        }
+        m.default(imgs, options);
+      })();
     },
   };
 }
