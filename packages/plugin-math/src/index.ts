@@ -1,47 +1,36 @@
 import type { BytemdPlugin } from 'bytemd';
-import type { KatexOptions } from 'katex';
+import type * as K from 'katex';
 import remarkMath from 'remark-math';
 
 export interface MathOptions {
-  katexOptions?: Omit<KatexOptions, 'displayMode'>;
+  katexOptions?: Omit<K.KatexOptions, 'displayMode'>;
 }
 
 export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
+  let katex: typeof K;
+
   return {
-    remark: (u) => u.use(remarkMath),
+    remark: (p) => p.use(remarkMath),
     viewerEffect({ $el }) {
-      const renderInline = async () => {
-        const els = $el.querySelectorAll<HTMLElement>(
-          '.math.math-inline:not(.math-display)' // for `inlineMathDouble === true` case
-        );
+      const renderMath = async (selector: string, displayMode: boolean) => {
+        const els = $el.querySelectorAll<HTMLElement>(selector);
         if (els.length === 0) return;
 
-        const { render } = await import('katex');
+        if (!katex) {
+          katex = await import('katex');
+        }
+
         els.forEach((el) => {
-          render(el.innerText, el, {
+          katex.render(el.innerText, el, {
             ...katexOptions,
             throwOnError: false,
-            displayMode: false,
+            displayMode,
           });
         });
       };
 
-      const renderDisplay = async () => {
-        const els = $el.querySelectorAll<HTMLElement>('.math.math-display');
-        if (els.length === 0) return;
-
-        const { render } = await import('katex');
-        els.forEach((el) => {
-          render(el.innerText, el, {
-            ...katexOptions,
-            throwOnError: false,
-            displayMode: true,
-          });
-        });
-      };
-
-      renderInline();
-      renderDisplay();
+      renderMath('.math.math-inline', false);
+      renderMath('.math.math-display', true);
     },
   };
 }
