@@ -14,6 +14,7 @@
   export let toolbar: EditorProps['toolbar'];
 
   let el: HTMLElement;
+  let previewEl: HTMLElement;
   let viewerProps: ViewerProps = {
     value,
     plugins,
@@ -87,6 +88,20 @@
     editor.on('change', (doc, change) => {
       dispatch('change', { value: editor.getValue() });
     });
+
+    // Scroll sync
+    editor.on('scroll', () => {
+      requestAnimationFrame(() => {
+        const editorInfo = editor.getScrollInfo();
+        const ratio =
+          editorInfo.top / (editorInfo.height - editorInfo.clientHeight);
+        previewEl.scrollTo(
+          0,
+          ratio * (previewEl.scrollHeight - previewEl.clientHeight)
+        );
+      });
+    });
+
     // No need to call `on` because cm instance would change once after init
   });
   onDestroy(off);
@@ -109,6 +124,7 @@
       <textarea bind:this={textarea} style="display:none" />
     </div>
     <div
+      bind:this={previewEl}
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
       <Viewer {...viewerProps} />
