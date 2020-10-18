@@ -102,10 +102,7 @@ export interface ViewerProps {
   /**
    * Customize the default sanitize schema
    *
-   * Defaults to GitHub style sanitation except:
-   *
-   * 1. `className` is allowed
-   * 2. `id` is kept as is without clobbering
+   * Defaults to GitHub style sanitation except the `className` property is allowed
    *
    * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
    */

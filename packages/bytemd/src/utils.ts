@@ -27,7 +27,6 @@ export function getProcessor({
 
   let schema = JSON.parse(schemaStr) as Schema;
   schema.attributes!['*'].push('className'); // Add className
-  schema.clobber = schema.clobber!.filter((vs) => vs !== 'id'); // Keep id as is
   if (sanitize) schema = sanitize(schema);
 
   p = p.use(rehypeSanitize, schema);

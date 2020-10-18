@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { BytemdPlugin, ViewerProps } from './types';
-  import { tick, onDestroy } from 'svelte';
+  import { tick, onDestroy, onMount } from 'svelte';
   import { getProcessor } from './utils';
 
   export let value: ViewerProps['value'] = '';
@@ -16,6 +16,18 @@
   function off() {
     cbs.forEach((cb) => cb && cb());
   }
+
+  onMount(() => {
+    el.addEventListener('click', (e) => {
+      const $ = e.target as HTMLElement;
+      if ($.tagName !== 'A') return;
+
+      const href = $.getAttribute('href');
+      if (!href?.startsWith('#')) return;
+
+      el.querySelector('#user-content-' + href.slice(1))?.scrollIntoView();
+    });
+  });
 
   onDestroy(off);
   $: result = getProcessor({ plugins, sanitize }).processSync(value);
