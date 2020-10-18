@@ -1,22 +1,33 @@
 import type { BytemdPlugin } from 'bytemd';
+import type { default as Embed, EmbedOptions } from 'vega-embed';
 
-export default function vega(): BytemdPlugin {
+export default function vega(options: EmbedOptions = {}): BytemdPlugin {
+  let embed: typeof Embed;
   return {
     viewerEffect({ $el }) {
       const els = $el.querySelectorAll<HTMLElement>('pre>code.language-vega');
       if (els.length === 0) return;
 
-      import('vega-embed').then(({ default: embed }) => {
+      (async () => {
+        if (!embed) {
+          embed = await import('vega-embed').then((m) => m.default);
+        }
+
         els.forEach((el) => {
           try {
             const pre = el.parentElement!;
-            embed(el, JSON.parse(el.innerText));
-            pre.replaceWith(pre.children[0]);
+            const source = el.innerText;
+
+            const container = document.createElement('div');
+            container.classList.add('bytemd-vega');
+            pre.replaceWith(container);
+
+            embed(container, source, options);
           } catch (err) {
-            console.error(err);
+            // console.error(err);
           }
         });
-      });
+      })();
     },
   };
 }
