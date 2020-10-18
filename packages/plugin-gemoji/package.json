@@ -1,0 +1,29 @@
+{
+  "name": "@bytemd/plugin-gemoji",
+  "version": "0.2.0",
+  "description": "ByteMD plugin to support Gemoji shortcodes",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/plugin-gemoji"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "dependencies": {
+    "remark-gemoji": "^6.0.0"
+  },
+  "peerDependencies": {
+    "bytemd": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
