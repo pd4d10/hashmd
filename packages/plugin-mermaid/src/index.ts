@@ -4,6 +4,7 @@ import type mermaidAPI from 'mermaid/mermaidAPI';
 
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   let m: Mermaid;
+
   return {
     viewerEffect({ $el }) {
       (async () => {
@@ -20,20 +21,25 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
         }
 
         els.forEach((el, i) => {
+          const pre = el.parentElement!;
+          const source = el.innerText;
+
+          const container = document.createElement('div');
+          container.classList.add('bytemd-mermaid');
+          pre.replaceWith(container);
+
           try {
-            const pre = el.parentElement!;
             m.render(
               `bytemd-mermaid-${Date.now()}-${i}`,
-              el.innerText,
+              source,
               (svgCode) => {
-                pre.innerHTML = svgCode;
+                container.innerHTML = svgCode;
               },
               // @ts-ignore
-              pre
+              container
             );
-            pre.replaceWith(pre.children[0]);
           } catch (err) {
-            console.error(err);
+            // console.error(err);
           }
         });
       })();
