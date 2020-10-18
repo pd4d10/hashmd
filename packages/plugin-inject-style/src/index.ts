@@ -1,9 +1,10 @@
 import type { BytemdPlugin } from 'bytemd';
 import type { Element } from 'hast';
+import type { VFile } from 'vfile';
 
 export interface InjectStyleOptions {
-  style?: string | ((data: any) => string | undefined);
-  lazyStyle?(data: any): Promise<string | undefined>;
+  style?: string | ((file: VFile) => string | undefined);
+  lazyStyle?(file: VFile): Promise<string | undefined>;
 }
 
 export default function injectStyle({
@@ -12,28 +13,25 @@ export default function injectStyle({
 }: InjectStyleOptions): BytemdPlugin {
   return {
     rehype: (p) =>
-      p.use(() => {
-        return (tree, file) => {
-          const styleText =
-            typeof style === 'function' ? style(file.data) : style;
-          if (!styleText) return;
+      p.use(() => (tree, file) => {
+        const styleText = typeof style === 'function' ? style(file) : style;
+        if (!styleText) return;
 
-          (tree as Element).children.unshift({
-            type: 'element',
-            tagName: 'style',
-            properties: {},
-            children: [
-              {
-                type: 'text',
-                value: styleText,
-              },
-            ],
-          });
-        };
+        (tree as Element).children.unshift({
+          type: 'element',
+          tagName: 'style',
+          properties: {},
+          children: [
+            {
+              type: 'text',
+              value: styleText,
+            },
+          ],
+        });
       }),
     viewerEffect({ $el, result }) {
       (async () => {
-        const styleText = await lazyStyle?.(result.data);
+        const styleText = await lazyStyle?.(result);
         if (!styleText) return;
 
         const $style = document.createElement('style');
