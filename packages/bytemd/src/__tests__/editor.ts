@@ -60,15 +60,15 @@ describe('mode', () => {
     const preview = $.getByText('Preview');
 
     expect($.container.querySelector('.bytemd-editor')).toBeVisible();
-    expect(write).toHaveClass('active');
+    expect(write).toHaveClass('bytemd-tab-active');
     expect($.container.querySelector('.bytemd-preview')).not.toBeVisible();
-    expect(preview).not.toHaveClass('active');
+    expect(preview).not.toHaveClass('bytemd-tab-active');
 
     await fireEvent.click(preview);
     expect($.container.querySelector('.bytemd-editor')).not.toBeVisible();
-    expect(write).not.toHaveClass('active');
+    expect(write).not.toHaveClass('bytemd-tab-active');
     expect($.container.querySelector('.bytemd-preview')).toBeVisible();
-    expect(preview).toHaveClass('active');
+    expect(preview).toHaveClass('bytemd-tab-active');
   });
 });
 
