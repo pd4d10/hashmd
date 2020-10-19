@@ -17,7 +17,10 @@ export interface ImportHtmlOptions {
 
 export default function importHtml({
   rehype,
-  markdownFormat,
+  markdownFormat = {
+    fences: true,
+    listItemIndent: 'one',
+  },
 }: ImportHtmlOptions = {}): BytemdPlugin {
   const handler = async (
     editor: CodeMirror.Editor,
@@ -63,12 +66,17 @@ export default function importHtml({
       { default: rehypeParse },
       { default: rehypeRemark },
       { default: remarkStringify },
+      { default: remarkGfm },
+      { toMarkdown: gfmExt },
     ] = await Promise.all([
       import('unified'),
       import('rehype-parse'),
       // @ts-ignore
       import('rehype-remark'),
       import('remark-stringify'),
+      import('remark-gfm'),
+      // @ts-ignore
+      import('mdast-util-gfm'),
     ]);
 
     let processor = unified().use(rehypeParse);
@@ -77,7 +85,12 @@ export default function importHtml({
     }
     processor = processor
       .use(rehypeRemark)
-      .use(remarkStringify, markdownFormat);
+      .use(remarkGfm)
+      .use(remarkStringify, {
+        ...markdownFormat,
+        listItemIndent: 'one',
+        extensions: [gfmExt()],
+      });
 
     const result = await processor.process(html);
     editor.replaceSelection(result.toString());
