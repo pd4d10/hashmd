@@ -109,7 +109,7 @@
 
 <svelte:options immutable={true} />
 
-<div class="bytemd" bind:this={el} style={containerStyle}>
+<div class={`bytemd bytemd-mode-${mode}`} bind:this={el} style={containerStyle}>
   <Toolbar
     {context}
     {mode}

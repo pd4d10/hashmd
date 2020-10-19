@@ -10,6 +10,7 @@
 
 .bytemd-toolbar {
   display: flex;
+  flex-wrap: wrap; // For mobile
   padding: 4px;
   border-bottom: 1px solid $gray-200;
   > span {
@@ -24,7 +25,8 @@
       padding: 4px;
     }
     &:hover {
-      background-color: $gray-100;
+      color: $blue;
+      background-color: $gray-000;
     }
   }
 }
@@ -37,14 +39,14 @@
     padding-right: 8px;
     line-height: 26px;
     font-size: 14px;
-    &.active {
+    &.bytemd-tab-active {
       color: $blue;
     }
   }
 }
 
 .tippy-box {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .bytemd-info {
@@ -63,7 +65,7 @@
   height: 100%;
   .CodeMirror {
     height: 100%;
-    padding: 20px;
+    padding: 12px;
     box-sizing: border-box;
     font-size: 14px;
     line-height: 1.5;
@@ -77,8 +79,11 @@
 .bytemd-preview {
   flex: 1;
   overflow: auto;
-  border-left: 1px solid $gray-200;
   .markdown-body {
     padding: 20px;
   }
+}
+
+.bytemd-mode-split .bytemd-preview {
+  border-left: 1px solid $gray-200;
 }

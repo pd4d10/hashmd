@@ -34,12 +34,12 @@
     <div class="bytemd-tabs">
       <span
         on:click={() => dispatch('tab', { value: 0 })}
-        class:active={activeTab === 0}>
+        class:bytemd-tab-active={activeTab === 0}>
         Write
       </span>
       <span
         on:click={() => dispatch('tab', { value: 1 })}
-        class:active={activeTab === 1}>
+        class:bytemd-tab-active={activeTab === 1}>
         Preview
       </span>
     </div>

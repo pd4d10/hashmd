@@ -8,7 +8,7 @@
 
   onMount(() => {
     if (tooltip) {
-      tippy(el, { content: tooltip });
+      tippy(el, { content: tooltip, delay: 100 });
     }
   });
 
