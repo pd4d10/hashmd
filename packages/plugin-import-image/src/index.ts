@@ -6,15 +6,10 @@ export interface ImportImageOptions {
    * Upload the file and return a URL
    */
   upload(files: File[]): Promise<string[]>;
-  /**
-   * Test if this file should be handled
-   */
-  test?(file: File): boolean;
 }
 
 export default function importImage({
   upload,
-  test = (file: File) => file.type.startsWith('image/'),
 }: ImportImageOptions): BytemdPlugin {
   const handleFiles = async (files: File[], editor: CodeMirror.Editor) => {
     const urls = await upload(files);
@@ -34,8 +29,13 @@ export default function importImage({
           input.multiple = true;
           input.accept = 'image/*';
           input.addEventListener('input', (e) => {
-            if (input.files?.length) {
-              handleFiles(Array.from(input.files), editor);
+            const files = Array.from(input.files ?? []).filter(
+              // input accept would not work if 'all files' is selected
+              (item) => item.type.startsWith('image/')
+            );
+
+            if (files?.length) {
+              handleFiles(files, editor);
             }
           });
           input.click();
@@ -53,8 +53,13 @@ export default function importImage({
             : e.dataTransfer?.items;
 
         const files = Array.from(itemList ?? [])
-          .map((item) => item.getAsFile())
-          .filter((f): f is File => f != null && test(f));
+          .map((item) => {
+            if (item.type.startsWith('image/')) {
+              return item.getAsFile();
+            }
+          })
+          .filter((f): f is File => f != null);
+
         if (files.length) {
           e.preventDefault();
           await handleFiles(files, editor);
