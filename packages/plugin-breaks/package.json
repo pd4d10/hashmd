@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-breaks",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "ByteMD plugin to support breaks",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
