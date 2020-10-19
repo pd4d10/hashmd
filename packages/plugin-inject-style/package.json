@@ -1,7 +1,7 @@
 {
   "name": "@bytemd/plugin-inject-style",
   "version": "0.2.0",
-  "description": "ByteMD plugin to support footnotes",
+  "description": "ByteMD plugin to inject style to markdown body",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
   "repository": {

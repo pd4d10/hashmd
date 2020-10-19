@@ -7,10 +7,9 @@
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
   import importImage from '@bytemd/plugin-import-image';
-  import scrollSync from '@bytemd/plugin-scroll-sync';
   import frontmatter from '@bytemd/plugin-frontmatter';
+  import mediumZoom from '@bytemd/plugin-medium-zoom';
   import importHtml from '@bytemd/plugin-import-html';
-  import feishu from '@bytemd/plugin-import-html-transform-feishu';
 
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
@@ -33,13 +32,13 @@
   });
 
   let enabled = {
+    breaks: false,
     gfm: true,
     highlight: true,
     math: true,
     mermaid: true,
     footnotes: true,
     'import-image': true,
-    'scroll-sync': true,
   };
 
   function toDataUrl(file) {
@@ -61,12 +60,15 @@
     enabled.highlight && highlight(),
     enabled.math && math(),
     enabled.footnotes && footnotes(),
-    enabled['import-image'] && importImage({ upload: toDataUrl }),
-    enabled['scroll-sync'] && scrollSync(),
+    enabled['import-image'] &&
+      importImage({
+        upload(files) {
+          return Promise.all(files.map((file) => toDataUrl(file)));
+        },
+      }),
     frontmatter(),
-    importHtml({
-      transformers: [feishu({ saveImages: (urls) => urls })],
-    }),
+    importHtml(),
+    mediumZoom(),
 
     // For test:
     // {
