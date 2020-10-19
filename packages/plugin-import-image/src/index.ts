@@ -5,7 +5,7 @@ export interface ImportImageOptions {
   /**
    * Upload the file and return a URL
    */
-  upload(file: File): Promise<string>;
+  upload(files: File[]): Promise<string[]>;
   /**
    * Test if this file should be handled
    */
@@ -16,11 +16,11 @@ export default function importImage({
   upload,
   test = (file: File) => file.type.startsWith('image/'),
 }: ImportImageOptions): BytemdPlugin {
-  const handleFiles = async (files: File[], cm: CodeMirror.Editor) => {
-    const urls = await Promise.all(files.map((f) => upload(f)));
+  const handleFiles = async (files: File[], editor: CodeMirror.Editor) => {
+    const urls = await upload(files);
     const text = urls.map((url) => `![](${url})`).join('\n\n');
-    cm.replaceRange(text, cm.getCursor());
-    cm.focus();
+    editor.replaceRange(text, editor.getCursor());
+    editor.focus();
   };
 
   return {
@@ -34,7 +34,7 @@ export default function importImage({
           input.multiple = true;
           input.accept = 'image/*';
           input.addEventListener('input', (e) => {
-            if (input.files && input.files.length) {
+            if (input.files?.length) {
               handleFiles(Array.from(input.files), editor);
             }
           });
