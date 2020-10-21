@@ -20,9 +20,6 @@
   "peerDependencies": {
     "bytemd": "*"
   },
-  "dependencies": {
-    "@icon-park/svg": "^1.0.11"
-  },
   "publishConfig": {
     "access": "public"
   }

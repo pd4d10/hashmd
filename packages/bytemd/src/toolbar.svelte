@@ -3,7 +3,7 @@
   import ToolbarButton from './toolbar-button.svelte';
   import { getItemMap } from './toolbar';
   import type { EditorProps, EditorContext, BytemdPlugin } from './types';
-  import { Info } from '@icon-park/svg';
+  import { icons } from './icons';
 
   const dispatch = createEventDispatcher();
 
@@ -60,7 +60,7 @@
 
   <ToolbarButton
     tooltip="About ByteMD"
-    icon={Info({})}
+    icon={icons.info}
     on:click={() => {
       window.open('https://github.com/bytedance/bytemd');
     }} />

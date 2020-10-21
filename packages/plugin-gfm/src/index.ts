@@ -1,6 +1,6 @@
 import type { BytemdPlugin } from 'bytemd';
 import remarkGfm, { RemarkGfmOptions } from 'remark-gfm';
-import { CheckCorrect, InsertTable } from '@icon-park/svg';
+import { icons } from './icons';
 
 export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
   return {
@@ -8,7 +8,7 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
     toolbar: {
       task: {
         tooltip: 'task list',
-        icon: CheckCorrect({}),
+        icon: icons.task,
         onClick({ editor }) {
           const [selection] = editor.listSelections();
           const fromLine = selection.from().line;
@@ -29,7 +29,7 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
       },
       table: {
         tooltip: 'table',
-        icon: InsertTable({}),
+        icon: icons.table,
         onClick({ editor }) {
           const pos = editor.getCursor();
           editor.replaceRange(

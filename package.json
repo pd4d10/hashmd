@@ -17,6 +17,7 @@
     "pub": "npm run clean && npm run build && lerna publish --registry=https://registry.npmjs.org"
   },
   "devDependencies": {
+    "@icon-park/svg": "^1.0.11",
     "@primer/css": "^15.0.0",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-json": "^4.1.0",

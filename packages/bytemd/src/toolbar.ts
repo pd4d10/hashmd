@@ -1,5 +1,5 @@
 import type { BytemdToolbarItem, EditorProps } from './types';
-import * as iconpark from '@icon-park/svg';
+import { icons } from './icons';
 
 function handleText(editor: CodeMirror.Editor, before: string, after: string) {
   if (editor.somethingSelected()) {
@@ -36,7 +36,7 @@ function handlePrepend(
 const builtinMap: Record<string, BytemdToolbarItem> = {
   h1: {
     tooltip: 'H1',
-    icon: iconpark.H1({}),
+    icon: icons.h1,
     onClick({ editor }) {
       const { line } = editor.getCursor();
       const content = editor.getLine(line);
@@ -47,7 +47,7 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
   },
   h2: {
     tooltip: 'H2',
-    icon: iconpark.H2({}),
+    icon: icons.h2,
     onClick({ editor }) {
       const { line } = editor.getCursor();
       const content = editor.getLine(line);
@@ -58,7 +58,7 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
   },
   h3: {
     tooltip: 'H3',
-    icon: iconpark.H3({}),
+    icon: icons.h3,
     onClick({ editor }) {
       const { line } = editor.getCursor();
       const content = editor.getLine(line);
@@ -69,28 +69,28 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
   },
   bold: {
     tooltip: 'bold',
-    icon: iconpark.TextBold({}).replace('<svg', `<svg style="width:14px"`), // TODO:
+    icon: icons.bold.replace('<svg', `<svg style="width:14px"`), // TODO:
     onClick({ editor }) {
       handleText(editor, '**', '**');
     },
   },
   italic: {
     tooltip: 'italic',
-    icon: iconpark.TextItalic({}),
+    icon: icons.italic,
     onClick({ editor }) {
       handleText(editor, '_', '_');
     },
   },
   quote: {
     tooltip: 'blockquote',
-    icon: iconpark.Quote({}),
+    icon: icons.quote,
     onClick({ editor }) {
       handlePrepend(editor, (lines) => lines.map((line) => `> ${line}`));
     },
   },
   link: {
     tooltip: 'link',
-    icon: iconpark.LinkOne({}),
+    icon: icons.link,
     onClick({ editor }) {
       if (editor.somethingSelected()) {
         const text = editor.getSelection();
@@ -107,21 +107,21 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
   },
   code: {
     tooltip: 'code',
-    icon: iconpark.Code({}),
+    icon: icons.code,
     onClick({ editor }) {
       handleText(editor, '`', '`');
     },
   },
   codeBlock: {
     tooltip: 'code block',
-    icon: iconpark.CodeBrackets({}),
+    icon: icons.codeBlock,
     onClick({ editor }) {
       handlePrepend(editor, (lines) => ['```', ...lines, '```']);
     },
   },
   ol: {
     tooltip: 'ordered list',
-    icon: iconpark.OrderedList({}),
+    icon: icons.ol,
     onClick({ editor }) {
       handlePrepend(editor, (lines) =>
         lines.map((line, i) => `${i + 1}. ${line}`)
@@ -130,7 +130,7 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
   },
   ul: {
     tooltip: 'unordered list',
-    icon: iconpark.ListCheckbox({}),
+    icon: icons.ul,
     onClick({ editor }) {
       handlePrepend(editor, (lines) => lines.map((line) => `- ${line}`));
     },

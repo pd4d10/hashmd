@@ -1,0 +1,6 @@
+export const icons = {
+  task:
+    '<?xml version="1.0" encoding="UTF-8"?><svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M42 18V39C42 40.6569 40.6569 42 39 42H9C7.34315 42 6 40.6569 6 39V9C6 7.34315 7.34315 6 9 6H32" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 20L24 28L42 6" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  table:
+    '<?xml version="1.0" encoding="UTF-8"?><svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M41 4H7C5.34315 4 4 5.34315 4 7V41C4 42.6569 5.34315 44 7 44H41C42.6569 44 44 42.6569 44 41V7C44 5.34315 42.6569 4 41 4Z" stroke="currentColor" stroke-width="4"/><path d="M17 4L17 44" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M31 4L31 44" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M4 17.0378L44 17" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M4 30.5187L44 30.481" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>',
+};

@@ -1,5 +1,5 @@
 import type { BytemdPlugin } from 'bytemd';
-import { Pic } from '@icon-park/svg';
+import { icons } from './icons';
 
 export interface ImportImageOptions {
   /**
@@ -22,7 +22,7 @@ export default function importImage({
     toolbar: {
       image: {
         tooltip: 'image',
-        icon: Pic({}),
+        icon: icons.image,
         onClick({ editor }) {
           const input = document.createElement('input');
           input.type = 'file';

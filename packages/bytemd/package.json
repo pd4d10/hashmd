@@ -19,7 +19,6 @@
     "lib"
   ],
   "dependencies": {
-    "@icon-park/svg": "^1.0.11",
     "@types/codemirror": "^0.0.97",
     "@types/lodash.debounce": "^4.0.0",
     "codemirror": "^5.0.0",
