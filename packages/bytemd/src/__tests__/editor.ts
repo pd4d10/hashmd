@@ -10,6 +10,10 @@ function getCodeMirror($: RenderResult) {
   return dom.CodeMirror as CodeMirror.Editor;
 }
 
+function stripComment(str: string) {
+  return str.replace(/<\!--.*?-->/g, '');
+}
+
 const heading = '# title';
 const headingHtml = '<h1>title</h1>';
 const paragraph = 'abc';
@@ -39,11 +43,13 @@ test('value', async () => {
 test('preview debounce', async () => {
   const $ = render(Editor, {});
   $.component.$set({ value: paragraph });
-  expect($.container.querySelector('.markdown-body').innerHTML).toEqual('');
+  expect(
+    stripComment($.container.querySelector('.markdown-body').innerHTML)
+  ).toEqual('');
   await sleep(400);
-  expect($.container.querySelector('.markdown-body').innerHTML).toEqual(
-    paragraphHtml
-  );
+  expect(
+    stripComment($.container.querySelector('.markdown-body').innerHTML)
+  ).toEqual(paragraphHtml);
 });
 
 describe('mode', () => {

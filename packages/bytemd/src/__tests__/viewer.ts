@@ -4,12 +4,15 @@ import { render, fireEvent, act } from '@testing-library/svelte';
 function sleep(ms: number = 0) {
   return new Promise((r) => setTimeout(r, ms));
 }
+function stripComment(str: string) {
+  return str.replace(/<\!--.*?-->/g, '');
+}
 
 test('value', async () => {
   const $ = render(Viewer, { value: '# title' });
-  expect($.container.querySelector('.markdown-body')?.innerHTML).toEqual(
-    '<h1>title</h1>'
-  );
+  expect(
+    stripComment($.container.querySelector('.markdown-body')?.innerHTML)
+  ).toEqual('<h1>title</h1>');
   $.component.$destroy();
 });
 
