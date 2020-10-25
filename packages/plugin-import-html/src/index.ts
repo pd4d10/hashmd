@@ -88,7 +88,6 @@ export default function importHtml({
       .use(remarkGfm)
       .use(remarkStringify, {
         ...markdownFormat,
-        listItemIndent: 'one',
         extensions: [gfmExt()],
       });
 
