@@ -4,8 +4,6 @@
 
 ByteMD is a Markdown editor component built with Svelte. It could also be used in other libraries/frameworks such as React, Vue and Angular.
 
-> Note: It is still in development
-
 ## Features
 
 1. **Lightweight and framework agnostic**: ByteMD is built with [Svelte](https://svelte.dev/). It compiles to vanilla JS DOM manipulation without importing any UI Framework runtime bundle, which makes it lightweight, and easily adapted to other libraries/frameworks.
@@ -121,7 +119,7 @@ const plugins = [
   // Add more plugins here
 ];
 
-const instance = new Editor({
+const editor = new Editor({
   target: document.body, // DOM to render
   props: {
     value: '',
@@ -129,10 +127,8 @@ const instance = new Editor({
   },
 });
 
-instance.on('change', (e) => {
-  const value = e.detail.value;
-  console.log(value);
-  // ...
+editor.on('change', (e) => {
+  editor.$set({ value: e.detail.value });
 });
 ```
 
