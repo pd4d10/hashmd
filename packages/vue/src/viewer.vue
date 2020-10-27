@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown-body" v-html="result"></div>
+  <div class="markdown-body" v-html="result" @click="handleClick($event)"></div>
 </template>
 
 <script>
@@ -49,6 +49,16 @@ export default {
       if (this.cbs) {
         this.cbs.forEach((cb) => cb && cb());
       }
+    },
+    handleClick(e) {
+      const $ = e.target;
+      if ($.tagName !== 'A') return;
+
+      const href = $.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+
+      const dest = this.$el.querySelector('#user-content-' + href.slice(1));
+      if (dest) dest.scrollIntoView();
     },
   },
 };

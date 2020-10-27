@@ -27,6 +27,17 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
 
   return (
     <div
+      onClick={(e) => {
+        const $ = e.target as HTMLElement;
+        if ($.tagName !== 'A') return;
+
+        const href = $.getAttribute('href');
+        if (!href?.startsWith('#')) return;
+
+        elRef.current
+          ?.querySelector('#user-content-' + href.slice(1))
+          ?.scrollIntoView();
+      }}
       ref={elRef}
       className="markdown-body"
       dangerouslySetInnerHTML={{ __html: result?.toString() ?? '' }}
