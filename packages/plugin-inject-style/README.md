@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-inject-style.svg)](https://npm.im/@bytemd/plugin-inject-style)
 
-ByteMD plugin to support footnotes
+ByteMD plugin to inject style to markdown body
 
 ## Usage
 

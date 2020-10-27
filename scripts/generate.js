@@ -16,7 +16,6 @@ const packages = fs.readdirSync(root);
 const plugins = packages.filter(
   (x) => x.startsWith('plugin-') && !x.includes('-transform')
 );
-const transformers = packages.filter((x) => x.includes('-transform-'));
 
 // tsconfig root
 fs.writeJsonSync(
@@ -30,8 +29,8 @@ fs.writeJsonSync(
   { spaces: 2 }
 );
 
-// package tsconfig
 packages.forEach((p) => {
+  // tsconfig
   let tsconfig = {
     extends: '../../tsconfig-base.json',
     include: ['src'],
@@ -48,6 +47,12 @@ packages.forEach((p) => {
   fs.writeJsonSync(path.join(root, p, 'tsconfig.json'), tsconfig, {
     spaces: 2,
   });
+
+  // license
+  fs.copyFileSync(
+    path.join(__dirname, '../LICENSE'),
+    path.join(root, p, 'LICENSE')
+  );
 
   // package.json
   const pkgPath = path.join(root, p, 'package.json');
@@ -75,19 +80,6 @@ plugins.forEach((p) => {
     {
       name,
       importedName: _.camelCase(name.replace('-ssr', '')),
-      desc: require(path.join(root, p, 'package.json')).description,
-    }
-  );
-  fs.writeFileSync(path.join(root, p, 'README.md'), result);
-});
-
-// transformers readme
-transformers.forEach((p) => {
-  const name = p.split('-').slice(-1)[0];
-  const result = mustache.render(
-    readFileSyncSafe(path.join(__dirname, 'plugin-transformer.md')),
-    {
-      name,
       desc: require(path.join(root, p, 'package.json')).description,
     }
   );
