@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { VFile } from 'vfile';
   import type { BytemdPlugin, ViewerProps } from './types';
   import { tick, onDestroy, onMount } from 'svelte';
   import { getProcessor } from './utils';
@@ -40,7 +41,14 @@
 
   onDestroy(off);
 
-  $: result = getProcessor({ plugins, sanitize }).processSync(value);
+  let result: VFile;
+
+  $: try {
+    result = getProcessor({ plugins, sanitize }).processSync(value);
+  } catch (err) {
+    console.error(err);
+  }
+
   $: html = `<!--${hashCode(value)}-->${result}`; // trigger re-render every time the value changes
 
   $: if (result && plugins) {

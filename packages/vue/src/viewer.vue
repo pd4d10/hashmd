@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown-body" v-html="html"></div>
+  <div class="markdown-body" v-html="result"></div>
 </template>
 
 <script>
@@ -8,11 +8,12 @@ import { getProcessor } from 'bytemd';
 export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
-    html() {
-      return this.result.toString();
-    },
     result() {
-      return getProcessor(this.$props).processSync(this.$props.value);
+      try {
+        return getProcessor(this.$props).processSync(this.$props.value);
+      } catch (err) {
+        console.error(err);
+      }
     },
     needUpdate() {
       return [this.result, this.plugins, this.sanitize];
@@ -37,7 +38,7 @@ export default {
   },
   methods: {
     on() {
-      if (this.plugins) {
+      if (this.plugins && this.result) {
         this.cbs = this.plugins.map(
           ({ viewerEffect }) =>
             viewerEffect && viewerEffect({ $el: this.$el, result: this.result })
