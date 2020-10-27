@@ -27,7 +27,7 @@ test('plugin', async () => {
   expect(viewerEffect).toBeCalledTimes(1);
   expect(viewerEffect).toBeCalledWith(
     expect.objectContaining({
-      $el: $.container.querySelector('.markdown-body'),
+      // $el: $.container.querySelector('.markdown-body'),
       result: expect.objectContaining({
         contents: '',
         data: {},
