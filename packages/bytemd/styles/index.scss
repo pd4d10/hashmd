@@ -55,6 +55,7 @@
 
 .bytemd-body {
   flex-grow: 1;
+  flex-basis: 0; // https://github.com/bytedance/bytemd/issues/8
   display: flex;
   overflow: auto;
 }
