@@ -11,10 +11,10 @@
     "dev:bundle": "rollup -cw",
     "dev:tsc": "tsc --build --watch",
     "dev:process": "node -r esm scripts/process.js --watch",
-    "test": "jest",
-    "test:watch": "npm run test -- --watch",
+    "test": "BABEL_ENV=test jest",
+    "test:watch": "BABEL_ENV=test npm run test -- --watch",
     "postinstall": "node -r esm scripts/generate.js",
-    "pub": "npm run clean && npm run build && lerna publish --registry=https://registry.npmjs.org"
+    "pub": "npm run clean && npm run build && npm test && lerna publish --registry=https://registry.npmjs.org"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
