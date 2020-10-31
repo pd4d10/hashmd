@@ -2,16 +2,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>IE9 Example</title>
-    <link rel="stylesheet" href="https://unpkg.com/bytemd/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bytemd/dist/index.min.css" />
     <script src="https://polyfill.io/v3/polyfill.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=Uint16Array,Array.prototype.find"></script>
-    <script src="https://unpkg.com/bytemd/dist/index.es5.js"></script>
-    <script src="https://unpkg.com/@bytemd/plugin-gfm/dist/index.es5.js"></script>
+    <script src="https://unpkg.com/bytemd/dist/index.es5.min.js"></script>
+    <script src="https://unpkg.com/@bytemd/plugin-gfm/dist/index.es5.min.js"></script>
   </head>
   <body>
     <body>
+      <!-- prettier-ignore -->
       <script>
         var plugins = [bytemdPluginGfm()];
         var editor = new bytemd.Editor({
