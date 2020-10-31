@@ -6,6 +6,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import babel from '@rollup/plugin-babel';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
@@ -16,29 +17,30 @@ const production = !process.env.ROLLUP_WATCH;
 
 const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 
+/** @type {import('rollup').Plugin[]} */
+const commonPlugins = [
+  commonjs(),
+  svelte({}),
+  vue(),
+  resolve({
+    browser: true,
+    dedupe: ['svelte'],
+  }),
+  json(),
+  polyfills(),
+];
+
 const configs = packages
   .map((key) => {
     const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
-
-    /** @type {import('rollup').RollupOptions} */
-    const commonConfig = {
-      input: path.resolve('packages', key, 'lib/index.js'),
-      plugins: [
-        commonjs(),
-        svelte({}),
-        vue(),
-        resolve({
-          browser: true,
-          dedupe: ['svelte'],
-        }),
-        json(),
-        polyfills(),
-      ],
-    };
+    const inputFile = path.resolve('packages', key, 'lib/index.js');
+    const umdName = key.startsWith('plugin-')
+      ? _.camelCase(`bytemd-${key.replace(/-ssr$/, '')}`)
+      : 'bytemd';
 
     /** @type {import('rollup').RollupOptions} */
     const config = {
-      ...commonConfig,
+      input: inputFile,
       output: [
         {
           format: 'es',
@@ -59,29 +61,50 @@ const configs = packages
         ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
       ],
+      plugins: commonPlugins,
       watch: {
         clearScreen: false,
       },
     };
 
     /** @type {import('rollup').RollupOptions} */
-    const umdConfig = {
-      ...commonConfig,
+    const minConfig = {
+      input: inputFile,
       output: {
         format: 'umd',
-        name: key.startsWith('plugin-')
-          ? _.camelCase(`bytemd-${key.replace(/-ssr$/, '')}`)
-          : 'bytemd',
+        name: umdName,
         sourcemap: true,
         inlineDynamicImports: true,
         file: path.resolve('packages', key, pkg.unpkg),
         plugins: [terser()],
       },
+      plugins: commonPlugins,
       external: Object.keys(pkg.peerDependencies || {}),
     };
 
+    /** @type {import('rollup').RollupOptions} */
+    const es5Config = {
+      input: path.resolve('packages', key, 'lib/index.js'),
+      output: {
+        format: 'umd',
+        name: umdName,
+        sourcemap: true,
+        inlineDynamicImports: true,
+        file: path.resolve('packages', key, 'dist/index.es5.js'),
+      },
+      plugins: [
+        ...commonPlugins,
+        babel({
+          babelHelpers: 'runtime',
+          extensions: ['.js', '.mjs', '.html', '.svelte'],
+        }),
+      ],
+    };
+
+    // return [es5Config];
+
     if (production) {
-      return [config, umdConfig];
+      return [config, minConfig, es5Config];
     } else {
       return [config];
     }
