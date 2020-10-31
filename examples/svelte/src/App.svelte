@@ -25,9 +25,7 @@
   }
 
   onMount(async () => {
-    const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/main/packages/bytemd/README.md'
-    );
+    const res = await fetch('example.md');
     const text = await res.text();
     value = text;
   });
@@ -104,6 +102,12 @@
   }
   :global(.bytemd-body) {
     height: calc(100vh - 140px);
+  }
+  :global(.medium-zoom-overlay) {
+    z-index: 100;
+  }
+  :global(.medium-zoom-image--opened) {
+    z-index: 101;
   }
 </style>
 
