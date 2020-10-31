@@ -77,10 +77,6 @@ export interface EditorProps extends ViewerProps {
    */
   previewDebounce?: number;
   /**
-   * Inline style of the container, `$('.bytemd')`
-   */
-  containerStyle?: string;
-  /**
    * Specify visible toolbar items and their orders
    *
    * Default: Show all available items, order: built-in -> plugin by apply order

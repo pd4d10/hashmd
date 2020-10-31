@@ -97,6 +97,9 @@
     margin: 10px 0;
     text-align: center;
   }
+  :global(.bytemd-body) {
+    height: calc(100vh - 140px);
+  }
 </style>
 
 <div class="container">
@@ -113,10 +116,5 @@
       <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
     {/each}
   </div>
-  <Editor
-    {value}
-    {mode}
-    {plugins}
-    containerStyle="height:calc(100vh - 100px)"
-    on:change={handleChange} />
+  <Editor {value} {mode} {plugins} on:change={handleChange} />
 </div>

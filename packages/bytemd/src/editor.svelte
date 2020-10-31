@@ -10,7 +10,6 @@
   export let sanitize: EditorProps['sanitize'];
   export let mode: EditorProps['mode'] = 'split';
   export let previewDebounce: EditorProps['previewDebounce'] = 300;
-  export let containerStyle: EditorProps['containerStyle'];
   export let toolbar: EditorProps['toolbar'];
 
   let el: HTMLElement;
@@ -109,7 +108,7 @@
 
 <svelte:options immutable={true} />
 
-<div class={`bytemd bytemd-mode-${mode}`} bind:this={el} style={containerStyle}>
+<div class={`bytemd bytemd-mode-${mode}`} bind:this={el}>
   <Toolbar
     {context}
     {mode}
