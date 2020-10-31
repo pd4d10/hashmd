@@ -62,7 +62,11 @@ packages.forEach((p) => {
     url: 'https://github.com/bytedance/bytemd.git',
     directory: `packages/${p}`,
   };
+  pkg.main = 'dist/index.cjs.js';
+  pkg.module = 'dist/index.esm.js';
   pkg.types = 'lib/index.d.ts';
+  pkg.unpkg = 'dist/index.min.js';
+  pkg.jsdelivr = 'dist/index.min.js';
   pkg.files = ['dist', 'lib'];
   if (pkg.name.startsWith('@')) {
     pkg.publishConfig = {

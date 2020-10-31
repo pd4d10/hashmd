@@ -17,19 +17,6 @@ const production = !process.env.ROLLUP_WATCH;
 
 const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 
-/** @type {import('rollup').Plugin[]} */
-const commonPlugins = [
-  commonjs(),
-  svelte({}),
-  vue(),
-  resolve({
-    browser: true,
-    dedupe: ['svelte'],
-  }),
-  json(),
-  polyfills(),
-];
-
 const configs = packages
   .map((key) => {
     const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
@@ -39,8 +26,27 @@ const configs = packages
       : 'bytemd';
 
     /** @type {import('rollup').RollupOptions} */
-    const config = {
+    const common = {
       input: inputFile,
+      plugins: [
+        commonjs(),
+        svelte({}),
+        vue(),
+        resolve({
+          browser: true,
+          dedupe: ['svelte'],
+        }),
+        json(),
+        polyfills(),
+      ],
+      watch: {
+        clearScreen: false,
+      },
+    };
+
+    /** @type {import('rollup').RollupOptions} */
+    const config = {
+      ...common,
       output: [
         {
           format: 'es',
@@ -61,39 +67,50 @@ const configs = packages
         ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
       ],
-      plugins: commonPlugins,
-      watch: {
-        clearScreen: false,
-      },
+    };
+
+    /** @type {import('rollup').OutputOptions} */
+    const umdOutputOption = {
+      format: 'umd',
+      name: umdName,
+      sourcemap: true,
+      inlineDynamicImports: true,
     };
 
     /** @type {import('rollup').RollupOptions} */
-    const minConfig = {
-      input: inputFile,
-      output: {
-        format: 'umd',
-        name: umdName,
-        sourcemap: true,
-        inlineDynamicImports: true,
-        file: path.resolve('packages', key, pkg.unpkg),
-        plugins: [terser()],
-      },
-      plugins: commonPlugins,
+    const umdConfig = {
+      ...common,
+      output: [
+        {
+          ...umdOutputOption,
+          file: path.resolve('packages', key, 'dist/index.js'),
+        },
+        {
+          ...umdOutputOption,
+          file: path.resolve('packages', key, 'dist/index.min.js'),
+          plugins: [terser()],
+        },
+      ],
       external: Object.keys(pkg.peerDependencies || {}),
     };
 
     /** @type {import('rollup').RollupOptions} */
     const es5Config = {
+      ...common,
       input: path.resolve('packages', key, 'lib/index.js'),
-      output: {
-        format: 'umd',
-        name: umdName,
-        sourcemap: true,
-        inlineDynamicImports: true,
-        file: path.resolve('packages', key, 'dist/index.es5.js'),
-      },
+      output: [
+        {
+          ...umdOutputOption,
+          file: path.resolve('packages', key, 'dist/index.es5.js'),
+        },
+        {
+          ...umdOutputOption,
+          file: path.resolve('packages', key, 'dist/index.es5.min.js'),
+          plugins: [terser()],
+        },
+      ],
       plugins: [
-        ...commonPlugins,
+        ...common.plugins,
         babel({
           babelHelpers: 'runtime',
           extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -104,7 +121,7 @@ const configs = packages
     // return [es5Config];
 
     if (production) {
-      return [config, minConfig, es5Config];
+      return [config, umdConfig, es5Config];
     } else {
       return [config];
     }
