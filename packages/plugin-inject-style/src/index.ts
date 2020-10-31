@@ -1,10 +1,11 @@
 import type { BytemdPlugin } from 'bytemd';
 import type { Element } from 'hast';
-import type { VFile } from 'vfile';
+
+type Data = Record<string, any>;
 
 export interface InjectStyleOptions {
-  style?: string | ((file: VFile) => string | undefined);
-  lazyStyle?(file: VFile): Promise<string | undefined>;
+  style?: string | ((data: Data) => string | undefined);
+  lazyStyle?(data: Data): Promise<string | undefined>;
 }
 
 export default function injectStyle({
@@ -14,7 +15,8 @@ export default function injectStyle({
   return {
     rehype: (p) =>
       p.use(() => (tree, file) => {
-        const styleText = typeof style === 'function' ? style(file) : style;
+        const styleText =
+          typeof style === 'function' ? style(file.data as Data) : style;
         if (!styleText) return;
 
         (tree as Element).children.unshift({
@@ -31,7 +33,7 @@ export default function injectStyle({
       }),
     viewerEffect({ $el, result }) {
       (async () => {
-        const styleText = await lazyStyle?.(result);
+        const styleText = await lazyStyle?.(result.data as Data);
         if (!styleText) return;
 
         const $style = document.createElement('style');
