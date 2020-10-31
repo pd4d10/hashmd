@@ -30,7 +30,7 @@ const configs = packages
       input: inputFile,
       plugins: [
         commonjs(),
-        svelte({}),
+        svelte(),
         vue(),
         resolve({
           browser: true,
