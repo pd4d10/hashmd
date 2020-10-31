@@ -4,6 +4,7 @@
   import gfm from '@bytemd/plugin-gfm';
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
+  import breaks from '@bytemd/plugin-breaks';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
   import importImage from '@bytemd/plugin-import-image';
@@ -37,8 +38,11 @@
     highlight: true,
     math: true,
     mermaid: true,
+    frontmatter: true,
     footnotes: true,
+    'import-html': true,
     'import-image': true,
+    'medium-zoom': true,
   };
 
   function toDataUrl(file) {
@@ -55,10 +59,11 @@
   }
 
   $: plugins = [
+    enabled.breaks && breaks(),
     enabled.gfm && gfm(),
-    enabled.mermaid && mermaid(),
     enabled.highlight && highlight(),
     enabled.math && math(),
+    enabled.mermaid && mermaid(),
     enabled.footnotes && footnotes(),
     enabled['import-image'] &&
       importImage({
@@ -66,9 +71,9 @@
           return Promise.all(files.map((file) => toDataUrl(file)));
         },
       }),
-    frontmatter(),
-    importHtml(),
-    mediumZoom(),
+    enabled.frontmatter && frontmatter(),
+    enabled['import-html'] && importHtml(),
+    enabled['medium-zoom'] && mediumZoom(),
 
     // For test:
     // {
