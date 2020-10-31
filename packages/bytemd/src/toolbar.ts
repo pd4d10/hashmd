@@ -69,7 +69,7 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
   },
   bold: {
     tooltip: 'bold',
-    icon: icons.bold.replace('<svg', `<svg style="width:14px"`), // TODO:
+    icon: icons.bold,
     onClick({ editor }) {
       handleText(editor, '**', '**');
     },

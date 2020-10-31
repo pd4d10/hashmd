@@ -1,6 +1,7 @@
 // @ts-check
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
+import Svgo from 'svgo';
 import {
   H1,
   H2,
@@ -19,37 +20,46 @@ import {
   Pic,
 } from '@icon-park/svg';
 
-fs.writeFileSync(
-  './packages/bytemd/src/icons.ts',
-  `export const icons=${JSON.stringify({
-    h1: H1({}),
-    h2: H2({}),
-    h3: H3({}),
-    bold: TextBold({}),
-    italic: TextItalic({}),
-    quote: Quote({}),
-    link: LinkOne({}),
-    code: Code({}),
-    codeBlock: CodeBrackets({}),
-    ol: OrderedList({}),
-    ul: ListCheckbox({}),
-    info: Info({}),
-  })}`
-);
+const svgo = new Svgo();
 
-fs.writeFileSync(
-  './packages/plugin-gfm/src/icons.ts',
-  `export const icons=${JSON.stringify({
-    task: CheckCorrect({}),
-    table: InsertTable({}),
-  })}`
-);
+const meta = {
+  bytemd: {
+    h1: H1,
+    h2: H2,
+    h3: H3,
+    bold: () =>
+      TextBold({}).replace('viewBox="0 0 48 48"', `viewBox="-4 -2 52 52"`),
+    italic: TextItalic,
+    quote: Quote,
+    link: LinkOne,
+    code: Code,
+    codeBlock: CodeBrackets,
+    ol: OrderedList,
+    ul: ListCheckbox,
+    info: Info,
+  },
+  'plugin-gfm': {
+    task: CheckCorrect,
+    table: InsertTable,
+  },
+  'plugin-import-image': {
+    image: Pic,
+  },
+};
 
-fs.writeFileSync(
-  './packages/plugin-import-image/src/icons.ts',
-  `export const icons=${JSON.stringify({
-    image: Pic({}),
-  })}`
-);
+(async () => {
+  for (let [p, mapper] of Object.entries(meta)) {
+    let obj = {};
+    for (let [key, factory] of Object.entries(mapper)) {
+      const svg = await svgo.optimize(factory({}));
+      obj[key] = svg.data;
+    }
 
-execSync('npx prettier --write packages/**/*.ts');
+    fs.writeFileSync(
+      `./packages/${p}/src/icons.ts`,
+      `export const icons=${JSON.stringify(obj)}`
+    );
+  }
+
+  execSync('npx prettier --write packages/**/*.ts');
+})();
