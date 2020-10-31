@@ -15,10 +15,11 @@
   let el: HTMLElement;
   export let tooltip: BytemdToolbarItem['tooltip'];
   export let icon: BytemdToolbarItem['icon'];
+  export let style: string | undefined;
 </script>
 
 <svelte:options immutable={true} />
 
-<span bind:this={el} on:click={() => dispatch('click')}>
+<span bind:this={el} on:click={() => dispatch('click')} {style}>
   {@html icon}
 </span>

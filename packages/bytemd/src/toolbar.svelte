@@ -51,16 +51,16 @@
         <ToolbarButton
           tooltip={itemMap[id].tooltip}
           icon={itemMap[id].icon}
+          style={undefined}
           on:click={() => itemMap[id].onClick(context)} />
       {/if}
     {/each}
   {/if}
 
-  <div style="flex-grow:1" />
-
   <ToolbarButton
     tooltip="About ByteMD"
     icon={icons.info}
+    style="float:right"
     on:click={() => {
       window.open('https://github.com/bytedance/bytemd');
     }} />

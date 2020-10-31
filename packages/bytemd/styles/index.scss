@@ -4,16 +4,14 @@
 
 .bytemd {
   border: 1px solid $gray-200;
-  display: flex;
-  flex-direction: column;
 }
 
 .bytemd-toolbar {
-  display: flex;
-  flex-wrap: wrap; // For mobile
   padding: 4px;
   border-bottom: 1px solid $gray-200;
+  font-size: 0;
   > span {
+    display: inline-block;
     cursor: pointer;
     border-radius: 2px;
     margin-left: 4px;
@@ -32,12 +30,13 @@
 }
 
 .bytemd-tabs {
-  display: flex;
+  display: inline-block;
+  vertical-align: top;
   span {
     cursor: pointer;
     padding-left: 8px;
     padding-right: 8px;
-    line-height: 26px;
+    line-height: 24px;
     font-size: 14px;
     &.bytemd-tab-active {
       color: $blue;
@@ -49,19 +48,12 @@
   font-size: 12px;
 }
 
-.bytemd-info {
-  position: absolute;
-}
-
 .bytemd-body {
-  flex-grow: 1;
-  flex-basis: 0; // https://github.com/bytedance/bytemd/issues/8
-  display: flex;
   overflow: auto;
+  height: 300px;
 }
 
 .bytemd-editor {
-  flex: 1;
   overflow: hidden;
   height: 100%;
   .CodeMirror {
@@ -78,13 +70,20 @@
 }
 
 .bytemd-preview {
-  flex: 1;
+  height: 100%;
   overflow: auto;
   .markdown-body {
     padding: 20px;
   }
 }
 
-.bytemd-mode-split .bytemd-preview {
-  border-left: 1px solid $gray-200;
+.bytemd-mode-split {
+  .bytemd-editor {
+    float: left;
+    width: 50%;
+  }
+  .bytemd-preview {
+    margin-left: 50%;
+    border-left: 1px solid $gray-200;
+  }
 }
