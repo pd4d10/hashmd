@@ -129,16 +129,32 @@ const configs = packages
   .flat();
 
 /** @type {import('rollup').RollupOptions} */
-const styleConfig = {
+const styleCommon = {
   input: 'packages/bytemd/styles/index.scss',
   output: {
     file: 'style.js', // We don't need this file
   },
-  plugins: [
-    postcss({
-      extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
-    }),
-  ],
 };
 
-export default [styleConfig, ...configs];
+/** @type {import('rollup').RollupOptions[]} */
+const styleConfigs = [
+  {
+    ...styleCommon,
+    plugins: [
+      postcss({
+        extract: path.resolve(__dirname, 'packages/bytemd/dist/index.css'),
+      }),
+    ],
+  },
+  {
+    ...styleCommon,
+    plugins: [
+      postcss({
+        extract: path.resolve(__dirname, 'packages/bytemd/dist/index.min.css'),
+        minimize: true,
+      }),
+    ],
+  },
+];
+
+export default [...styleConfigs, ...configs];
