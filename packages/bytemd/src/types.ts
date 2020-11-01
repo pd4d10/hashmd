@@ -1,16 +1,28 @@
 import type { Processor } from 'unified';
 import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
+import type { Editor, EditorConfiguration } from 'codemirror';
 
 export interface EditorContext {
   /**
    * CodeMirror editor instance
    */
-  editor: CodeMirror.Editor;
+  editor: Editor;
   /**
    * Root element, `$('.bytemd')`
    */
   $el: HTMLElement;
+}
+
+export interface ViewerContext {
+  /**
+   * Root element of the Viewer, `$('.markdown-body')`
+   */
+  $el: HTMLElement;
+  /**
+   * Markdown process result
+   */
+  result: VFile;
 }
 
 export interface BytemdToolbarItem {
@@ -52,16 +64,7 @@ export interface BytemdPlugin {
   /**
    * Side effect for viewer, triggers when HTML or plugin list changes
    */
-  viewerEffect?(context: {
-    /**
-     * Root element of the Viewer, `$('.markdown-body')`
-     */
-    $el: HTMLElement;
-    /**
-     * Markdown process result
-     */
-    result: VFile;
-  }): void | (() => void);
+  viewerEffect?(context: ViewerContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
@@ -84,6 +87,10 @@ export interface EditorProps extends ViewerProps {
   toolbar?:
     | string[]
     | ((itemMap: Record<string, BytemdToolbarItem>) => string[]);
+  /**
+   * CodeMirror editor config
+   */
+  editorConfig: Omit<EditorConfiguration, 'value' | 'mode'>;
 }
 
 export interface ViewerProps {

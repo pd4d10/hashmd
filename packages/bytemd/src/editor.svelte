@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Editor } from 'codemirror';
+  import type {} from 'codemirror/addon/display/placeholder';
   import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
@@ -11,6 +13,7 @@
   export let mode: EditorProps['mode'] = 'split';
   export let previewDebounce: EditorProps['previewDebounce'] = 300;
   export let toolbar: EditorProps['toolbar'];
+  export let editorConfig: EditorProps['editorConfig'];
 
   let el: HTMLElement;
   let previewEl: HTMLElement;
@@ -20,7 +23,7 @@
     sanitize,
   };
   let textarea: HTMLTextAreaElement;
-  let editor: CodeMirror.Editor;
+  let editor: Editor;
   let activeTab = 0;
 
   $: context = { editor, $el: el };
@@ -76,7 +79,7 @@
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
-      placeholder: 'Start writing...',
+      ...editorConfig,
     });
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423

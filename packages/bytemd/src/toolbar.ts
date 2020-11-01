@@ -1,7 +1,8 @@
 import type { BytemdToolbarItem, EditorProps } from './types';
+import type { Editor } from 'codemirror';
 import { icons } from './icons';
 
-function handleText(editor: CodeMirror.Editor, before: string, after: string) {
+function handleText(editor: Editor, before: string, after: string) {
   if (editor.somethingSelected()) {
     editor.replaceSelection(before + editor.getSelection() + after);
   } else {
@@ -12,10 +13,7 @@ function handleText(editor: CodeMirror.Editor, before: string, after: string) {
   editor.focus();
 }
 
-function handlePrepend(
-  editor: CodeMirror.Editor,
-  replace: (lines: string[]) => string[]
-) {
+function handlePrepend(editor: Editor, replace: (lines: string[]) => string[]) {
   const [selection] = editor.listSelections();
   const fromLine = selection.from().line;
   const toLine = selection.to().line;
