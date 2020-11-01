@@ -19,6 +19,10 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 | [@bytemd/react](./packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg)](https://npm.im/@bytemd/react) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/react/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/react) | React component |
 | [@bytemd/vue](./packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg)](https://npm.im/@bytemd/vue) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/vue/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/vue) | Vue component |
 
+### For legacy browsers
+
+The default entry of NPM package only supports modern browsers. For legacy browsers (IE9+), There is also a ES5 bundle(`dist/index.es5.js`) to get it work. Notice that polyfills are not included in these bundles and should be imported manually, see the [legacy browser example](https://github.com/bytedance/bytemd/blob/main/examples/legacy-browser/index.html).
+
 ## Usage
 
 There are two components: `Editor` and `Viewer`. `Editor` is the Markdown editor, as the name suggests; `Viewer` is commonly used to display rendered Markdown results without editing.
@@ -26,7 +30,7 @@ There are two components: `Editor` and `Viewer`. `Editor` is the Markdown editor
 Before using the component, remember to import CSS file to make styles correct:
 
 ```js
-import 'bytemd/dist/index.css';
+import 'bytemd/dist/index.min.css';
 ```
 
 ### Svelte
@@ -131,6 +135,26 @@ editor.on('change', (e) => {
   editor.$set({ value: e.detail.value });
 });
 ```
+
+## Options
+
+### Viewer
+
+| Key        | Type                         | Description        |
+| ---------- | ---------------------------- | ------------------ |
+| `value`    | `string` (required)          | Markdown text      |
+| `plugins`  | `BytemdPlugin[]`             | ByteMD plugin list |
+| `sanitize` | `(schema: Schema) => Schema` | Sanitize strategy  |
+
+### Editor
+
+`Editor` component also accepts the options of `Viewer`. Besides that, there are some other options:
+
+| Key | Type | Description |
+| --- | --- | --- |
+| `mode` | `'split' | 'tab'` | Editor display mode |
+| `previewDebounce` | `number` | Debounce time (ms) for preview |
+| `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
 
 ## Technical details
 

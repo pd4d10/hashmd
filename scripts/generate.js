@@ -120,4 +120,5 @@ ${content}
 ##`;
   }
 );
+
 fs.writeFileSync(path.join(__dirname, '../README.md'), readme);

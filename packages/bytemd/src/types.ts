@@ -89,6 +89,8 @@ export interface EditorProps extends ViewerProps {
     | ((itemMap: Record<string, BytemdToolbarItem>) => string[]);
   /**
    * CodeMirror editor config
+   *
+   * https://codemirror.net/doc/manual.html#config
    */
   editorConfig: Omit<EditorConfiguration, 'value' | 'mode'>;
 }
@@ -103,7 +105,7 @@ export interface ViewerProps {
    */
   plugins?: BytemdPlugin[];
   /**
-   * Customize the default sanitize schema
+   * Sanitize strategy
    *
    * Defaults to GitHub style sanitation except the `className` property is allowed
    *
