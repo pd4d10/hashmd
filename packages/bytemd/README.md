@@ -156,6 +156,38 @@ editor.on('change', (e) => {
 | `previewDebounce` | `number` | Debounce time (ms) for preview |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
 
+### Style customization
+
+The default height of ByteMD's body area (`.bytemd-body`) is `300px`. It could be overrided by CSS:
+
+```css
+.bytemd-body {
+  height: calc(100vh - 200px);
+}
+```
+
+or by JavaScript (via plugin) if you want more control:
+
+```js
+const stylePlugin = {
+  editorEffect({ $el }) {
+    const $body = $el.querySelector('.bytemd-body');
+    $body.style.height = 'calc(100vh - 200px)';
+  },
+};
+
+// Then apply this plugin:
+new Editor({
+  value: '',
+  plugins: [
+    stylePlugin,
+    //...
+  ],
+});
+```
+
+The other styles could also be overrided, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/styles/index.scss).
+
 ## Technical details
 
 ByteMD uses [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) ecosystem to process Markdown. The complete process is as follows:

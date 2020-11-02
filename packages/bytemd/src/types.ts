@@ -92,7 +92,7 @@ export interface EditorProps extends ViewerProps {
    *
    * https://codemirror.net/doc/manual.html#config
    */
-  editorConfig: Omit<EditorConfiguration, 'value' | 'mode'>;
+  editorConfig?: Omit<EditorConfiguration, 'value' | 'mode'>;
 }
 
 export interface ViewerProps {
