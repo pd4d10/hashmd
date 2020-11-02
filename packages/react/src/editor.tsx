@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, HTMLAttributes } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as bytemd from 'bytemd';
 
 export interface EditorProps extends bytemd.EditorProps {
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
   onChange?(value: string): void;
 }
 
 export const Editor: React.FC<EditorProps> = ({
   children,
-  wrapperProps,
   onChange,
   ...props
 }) => {
@@ -23,7 +21,7 @@ export const Editor: React.FC<EditorProps> = ({
       props,
     });
     editor.$on('change', (e: CustomEvent<{ value: string }>) => {
-      if (onChange) onChange(e.detail.value);
+      onChange?.(e.detail.value);
     });
     ed.current = editor;
 
@@ -37,5 +35,5 @@ export const Editor: React.FC<EditorProps> = ({
     ed.current?.$set(props);
   }, [props]);
 
-  return <div {...wrapperProps} ref={el}></div>;
+  return <div ref={el}></div>;
 };
