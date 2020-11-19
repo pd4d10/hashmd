@@ -5,8 +5,10 @@ import chokidar from 'chokidar';
 import { preprocess } from 'svelte/compiler';
 import autoprocessor from 'svelte-preprocess';
 
-async function compile(file) {
-  const dest = file.replace('/src/', '/lib/');
+// svelte file: compile
+// other files: copy
+async function transform(file, dir = 'lib') {
+  const dest = file.replace('/src/', `/${dir}/`);
 
   if (file.endsWith('.svelte')) {
     const source = await fs.readFile(file, 'utf8');
@@ -27,22 +29,40 @@ async function compile(file) {
   }
 }
 
-const pattern = path.resolve(__dirname, `../packages/*/src/*.{svelte,vue}`);
-
-fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
-fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
-
-if (process.argv.includes('--watch')) {
+function watch(pattern, dest) {
   chokidar.watch(pattern).on('all', (event, file) => {
     console.log(event, file);
-    compile(file);
+    transform(file, dest);
   });
-} else {
+}
+
+function build(pattern, dir) {
   glob(pattern, (err, files) => {
     if (err) throw err;
 
     for (let file of files) {
-      compile(file);
+      transform(file, dir);
     }
   });
+}
+
+fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
+fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
+fs.ensureDirSync(path.resolve(__dirname, '../packages/mp/lib'));
+
+const pattern = path.resolve(
+  __dirname,
+  `../packages/*/src/*.{svelte,vue,json,wxml,wxss}`
+);
+const mpPattern = path.resolve(
+  __dirname,
+  `../packages/mp/src/*.{svelte,vue,json,wxml,wxss}`
+);
+
+if (process.argv.includes('--watch')) {
+  watch(pattern);
+  watch(mpPattern, 'dist');
+} else {
+  build(pattern);
+  build(mpPattern, 'dist');
 }
