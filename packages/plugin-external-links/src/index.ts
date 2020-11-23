@@ -2,17 +2,20 @@ import type { BytemdPlugin } from 'bytemd';
 import type { Element } from 'hast';
 import visit from 'unist-util-visit';
 
-interface AnchorProps {
-  target?: string;
-  rel?: string;
-}
+type AnchorProps = Partial<Omit<HTMLAnchorElement, 'href'>>;
 
 export interface ExternalLinksOptions {
   /**
    * Test if it is an external url
    */
   test(href: string): boolean;
+  /**
+   * Internal links props
+   */
   internalProps?: AnchorProps;
+  /**
+   * External links props
+   */
   externalProps?: AnchorProps;
 }
 
