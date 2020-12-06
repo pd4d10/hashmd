@@ -1,12 +1,14 @@
 <script lang="ts">
   import type { VFile } from 'vfile';
   import type { BytemdPlugin, ViewerProps } from './types';
-  import { tick, onDestroy, onMount } from 'svelte';
+  import { tick, onDestroy, onMount, createEventDispatcher } from 'svelte';
   import { getProcessor } from './utils';
 
   export let value: ViewerProps['value'] = '';
   export let plugins: ViewerProps['plugins'];
   export let sanitize: ViewerProps['sanitize'];
+
+  const dispatch = createEventDispatcher();
 
   // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
   function hashCode(s: string) {
@@ -44,7 +46,19 @@
   let result: VFile;
 
   $: try {
-    result = getProcessor({ plugins, sanitize }).processSync(value);
+    const processor = getProcessor({
+      plugins: [
+        ...(plugins ?? []),
+        {
+          remark: (p) =>
+            p.use(() => (tree) => {
+              dispatch('ast', tree);
+            }),
+        },
+      ],
+      sanitize,
+    });
+    result = processor.processSync(value);
   } catch (err) {
     console.error(err);
   }

@@ -152,7 +152,7 @@ editor.on('change', (e) => {
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `mode` | `'split' | 'tab'` | Editor display mode |
+| `mode` | `'split', 'tab'` | Editor display mode |
 | `previewDebounce` | `number` | Debounce time (ms) for preview |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
 
