@@ -18,6 +18,6 @@ jobs:
           yarn build
       - uses: peaceiris/actions-gh-pages@v2.5.1
         env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./examples/svelte/public
