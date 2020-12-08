@@ -102,8 +102,8 @@
     margin: 10px 0;
     text-align: center;
   }
-  :global(.bytemd-body) {
-    height: calc(100vh - 140px);
+  :global(.bytemd) {
+    height: calc(100vh - 100px);
   }
   :global(.medium-zoom-overlay) {
     z-index: 100;
