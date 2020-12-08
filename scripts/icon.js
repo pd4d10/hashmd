@@ -18,6 +18,8 @@ import {
   CheckCorrect,
   InsertTable,
   Pic,
+  FullScreen,
+  OffScreen,
 } from '@icon-park/svg';
 
 const svgo = new Svgo();
@@ -37,6 +39,8 @@ const meta = {
     ol: OrderedList,
     ul: ListCheckbox,
     info: Info,
+    fullscreenOn: FullScreen,
+    fullscreenOff: OffScreen,
   },
   'plugin-gfm': {
     task: CheckCorrect,
