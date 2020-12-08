@@ -4,6 +4,8 @@
 
 .bytemd {
   border: 1px solid $gray-200;
+  box-sizing: border-box;
+  height: 300px;
 }
 
 .bytemd-toolbar {
@@ -49,8 +51,8 @@
 }
 
 .bytemd-body {
+  height: calc(100% - 33px);
   overflow: auto;
-  height: 300px;
 }
 
 .bytemd-editor {

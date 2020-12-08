@@ -19,9 +19,14 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 | [@bytemd/react](./packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg)](https://npm.im/@bytemd/react) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/react/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/react) | React component |
 | [@bytemd/vue](./packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg)](https://npm.im/@bytemd/vue) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/vue/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/vue) | Vue component |
 
-### For legacy browsers
+### Legacy browsers support
 
-The default entry of NPM package only supports modern browsers. For legacy browsers (IE9+), There is also a ES5 bundle(`dist/index.es5.js`) to get it work. Notice that polyfills are not included in these bundles and should be imported manually, see the [legacy browser example](https://github.com/bytedance/bytemd/blob/main/examples/legacy-browser/index.html).
+The default entry of NPM package only supports modern browsers. There are two ways to make legacy browsers (**IE9+**) work:
+
+1. Compile it with ESNext -> ES5 transpilers, such as [Babel](./babel.config.js)
+2. Use the ES5 bundle(`dist/index.es5.js`)
+
+Notice that polyfills are not included, and should be imported manually, see the [legacy browser example](https://github.com/bytedance/bytemd/blob/main/examples/legacy-browser/index.html).
 
 ## Usage
 
@@ -156,37 +161,23 @@ editor.on('change', (e) => {
 | `previewDebounce` | `number` | Debounce time (ms) for preview |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
 
-### Style customization
+## Style customization
 
-The default height of ByteMD's body area (`.bytemd-body`) is `300px`. It could be overrided by CSS:
+### Editor
+
+The default height of ByteMD Editor is `300px`. It could be overrided by CSS:
 
 ```css
-.bytemd-body {
+.bytemd {
   height: calc(100vh - 200px);
 }
 ```
 
-or by JavaScript (via plugin) if you want more control:
-
-```js
-const stylePlugin = {
-  editorEffect({ $el }) {
-    const $body = $el.querySelector('.bytemd-body');
-    $body.style.height = 'calc(100vh - 200px)';
-  },
-};
-
-// Then apply this plugin:
-new Editor({
-  value: '',
-  plugins: [
-    stylePlugin,
-    //...
-  ],
-});
-```
-
 The other styles could also be overrided, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/styles/index.scss).
+
+### Viewer
+
+There is no built-in styles for the Viewer. You could use third-party markdown themes, for example [juejin-markdown-themes](https://github.com/xitu/juejin-markdown-themes) and [github-markdown-css](https://github.com/sindresorhus/github-markdown-css).
 
 ## Technical details
 
