@@ -4,6 +4,7 @@
 
 .bytemd {
   border: 1px solid $gray-200;
+  background-color: #fff;
 }
 
 .bytemd-toolbar {
@@ -75,6 +76,15 @@
   .markdown-body {
     padding: 20px;
   }
+}
+
+.bytemd-fullscreen {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: none;
 }
 
 .bytemd-mode-split {

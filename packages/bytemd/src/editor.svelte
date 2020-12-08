@@ -26,6 +26,7 @@
   let textarea: HTMLTextAreaElement;
   let editor: Editor;
   let activeTab = 0;
+  let fullscreen = false;
 
   $: context = { editor, $el: el };
 
@@ -232,14 +233,20 @@
 
 <svelte:options immutable={true} />
 
-<div class={`bytemd bytemd-mode-${mode}`} bind:this={el}>
+<div
+  class={`bytemd bytemd-mode-${mode}${fullscreen ? ' bytemd-fullscreen' : ''}`}
+  bind:this={el}>
   <Toolbar
     {context}
     {mode}
     {activeTab}
     {plugins}
     {toolbar}
-    on:tab={setActiveTab} />
+    {fullscreen}
+    on:tab={setActiveTab}
+    on:fullscreen={() => {
+      fullscreen = !fullscreen;
+    }} />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"

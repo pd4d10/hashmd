@@ -12,6 +12,7 @@
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
   export let toolbar: EditorProps['toolbar'];
+  export let fullscreen: boolean;
 
   function normalize(itemMap: NonNullable<BytemdPlugin['toolbar']>) {
     if (toolbar == null) {
@@ -63,5 +64,12 @@
     style="float:right"
     on:click={() => {
       window.open('https://github.com/bytedance/bytemd');
+    }} />
+  <ToolbarButton
+    tooltip="Toggle Fullscreen"
+    icon={fullscreen ? icons.fullscreenOff : icons.fullscreenOn}
+    style="float:right"
+    on:click={() => {
+      dispatch('fullscreen');
     }} />
 </div>
