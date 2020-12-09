@@ -88,7 +88,7 @@ describe('plugin', () => {
     await sleep();
     expect(editorEffect).toBeCalled();
     expect(editorEffect).toBeCalledTimes(1);
-    expect(editorEffect).toBeCalledWith(
+    expect(editorEffect).toBeCalledWith<any>(
       expect.objectContaining({
         // $el: $.container.querySelector('.bytemd'),
         editor: getCodeMirror($),
