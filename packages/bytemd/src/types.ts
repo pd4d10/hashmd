@@ -2,6 +2,7 @@ import type { Processor } from 'unified';
 import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
+import type { EditorUtils } from './editor';
 
 export interface EditorContext {
   /**
@@ -12,6 +13,10 @@ export interface EditorContext {
    * Root element, `$('.bytemd')`
    */
   $el: HTMLElement;
+  /**
+   * Utilities for Editor
+   */
+  utils: EditorUtils;
 }
 
 export interface ViewerContext {

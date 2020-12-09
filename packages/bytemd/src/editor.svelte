@@ -7,6 +7,7 @@
   import debounce from 'lodash.debounce';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
+  import { createUtils } from './editor';
 
   export let value: EditorProps['value'] = '';
   export let plugins: EditorProps['plugins'];
@@ -28,7 +29,7 @@
   let activeTab = 0;
   let fullscreen = false;
 
-  $: context = { editor, $el: el };
+  $: context = { editor, $el: el, utils: createUtils(editor) };
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
   const dispatch = createEventDispatcher();

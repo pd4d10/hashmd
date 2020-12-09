@@ -1,93 +1,51 @@
 import type { BytemdToolbarItem, EditorProps } from './types';
-import type { Editor } from 'codemirror';
 import { icons } from './icons';
-
-function handleText(editor: Editor, before: string, after: string) {
-  if (editor.somethingSelected()) {
-    editor.replaceSelection(before + editor.getSelection() + after);
-  } else {
-    const { anchor, head } = editor.findWordAt(editor.getCursor());
-    const word = editor.getRange(anchor, head);
-    editor.replaceRange(before + word + after, anchor, head);
-  }
-  editor.focus();
-}
-
-function handlePrepend(editor: Editor, replace: (lines: string[]) => string[]) {
-  const [selection] = editor.listSelections();
-  const fromLine = selection.from().line;
-  const toLine = selection.to().line;
-  const lines = editor
-    // @ts-ignore
-    .getRange({ line: fromLine, ch: 0 }, { line: toLine })
-    .split('\n');
-  editor.replaceRange(
-    replace(lines).join('\n'),
-    { line: fromLine, ch: 0 },
-    // @ts-ignore
-    { line: toLine }
-  );
-
-  editor.focus();
-}
 
 const builtinMap: Record<string, BytemdToolbarItem> = {
   h1: {
-    tooltip: 'H1',
+    tooltip: 'Heading-1',
     icon: icons.h1,
-    onClick({ editor }) {
-      const { line } = editor.getCursor();
-      const content = editor.getLine(line);
-      // @ts-ignore
-      editor.replaceRange(`# ${content}`, { line, ch: 0 }, { line });
-      editor.focus();
+    onClick({ utils }) {
+      utils.replaceLines((lines) => lines.map((line) => '# ' + line));
     },
   },
   h2: {
-    tooltip: 'H2',
+    tooltip: 'Heading-2',
     icon: icons.h2,
-    onClick({ editor }) {
-      const { line } = editor.getCursor();
-      const content = editor.getLine(line);
-      // @ts-ignore
-      editor.replaceRange(`## ${content}`, { line, ch: 0 }, { line });
-      editor.focus();
+    onClick({ utils }) {
+      utils.replaceLines((lines) => lines.map((line) => '## ' + line));
     },
   },
   h3: {
-    tooltip: 'H3',
+    tooltip: 'Heading-3',
     icon: icons.h3,
-    onClick({ editor }) {
-      const { line } = editor.getCursor();
-      const content = editor.getLine(line);
-      // @ts-ignore
-      editor.replaceRange(`### ${content}`, { line, ch: 0 }, { line });
-      editor.focus();
+    onClick({ utils }) {
+      utils.replaceLines((lines) => lines.map((line) => '### ' + line));
     },
   },
   bold: {
-    tooltip: 'bold',
+    tooltip: 'Bold',
     icon: icons.bold,
-    onClick({ editor }) {
-      handleText(editor, '**', '**');
+    onClick({ utils }) {
+      utils.replaceText((text) => '**' + text + '**');
     },
   },
   italic: {
-    tooltip: 'italic',
+    tooltip: 'Italic',
     icon: icons.italic,
-    onClick({ editor }) {
-      handleText(editor, '_', '_');
+    onClick({ utils }) {
+      utils.replaceText((text) => '_' + text + '_');
     },
   },
   quote: {
-    tooltip: 'blockquote',
+    tooltip: 'Blockquote',
     icon: icons.quote,
-    onClick({ editor }) {
-      handlePrepend(editor, (lines) => lines.map((line) => `> ${line}`));
+    onClick({ utils }) {
+      utils.replaceLines((lines) => lines.map((line) => '> ' + line));
     },
   },
   link: {
-    tooltip: 'link',
+    tooltip: 'Link',
     icon: icons.link,
     onClick({ editor }) {
       if (editor.somethingSelected()) {
@@ -104,33 +62,33 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
     },
   },
   code: {
-    tooltip: 'code',
+    tooltip: 'Code',
     icon: icons.code,
-    onClick({ editor }) {
-      handleText(editor, '`', '`');
+    onClick({ utils }) {
+      utils.replaceText((text) => '`' + text + '`');
     },
   },
   codeBlock: {
-    tooltip: 'code block',
+    tooltip: 'Code block',
     icon: icons.codeBlock,
-    onClick({ editor }) {
-      handlePrepend(editor, (lines) => ['```', ...lines, '```']);
+    onClick({ utils }) {
+      utils.replaceLines((lines) => ['```', ...lines, '```']);
     },
   },
   ol: {
-    tooltip: 'ordered list',
+    tooltip: 'Ordered list',
     icon: icons.ol,
-    onClick({ editor }) {
-      handlePrepend(editor, (lines) =>
+    onClick({ utils }) {
+      utils.replaceLines((lines) =>
         lines.map((line, i) => `${i + 1}. ${line}`)
       );
     },
   },
   ul: {
-    tooltip: 'unordered list',
+    tooltip: 'Unordered list',
     icon: icons.ul,
-    onClick({ editor }) {
-      handlePrepend(editor, (lines) => lines.map((line) => `- ${line}`));
+    onClick({ utils }) {
+      utils.replaceLines((lines) => lines.map((line) => '- ' + line));
     },
   },
 };
