@@ -7,7 +7,7 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
     remark: (u) => u.use(remarkGfm, options),
     toolbar: {
       task: {
-        tooltip: 'task list',
+        tooltip: 'Task list',
         icon: icons.task,
         onClick({ editor }) {
           const [selection] = editor.listSelections();
@@ -28,7 +28,7 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
         },
       },
       table: {
-        tooltip: 'table',
+        tooltip: 'Table',
         icon: icons.table,
         onClick({ editor }) {
           const pos = editor.getCursor();

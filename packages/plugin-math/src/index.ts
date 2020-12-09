@@ -1,6 +1,7 @@
 import type { BytemdPlugin } from 'bytemd';
 import type * as K from 'katex';
 import remarkMath from 'remark-math';
+import { icons } from './icons';
 
 export interface MathOptions {
   katexOptions?: Omit<K.KatexOptions, 'displayMode'>;
@@ -31,6 +32,15 @@ export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
 
       renderMath('.math.math-inline', false);
       renderMath('.math.math-display', true);
+    },
+    toolbar: {
+      math: {
+        tooltip: 'Math formula',
+        icon: icons.formula,
+        onClick({ utils }) {
+          utils.replaceLines((lines) => ['$$', ...lines, '$$']);
+        },
+      },
     },
   };
 }

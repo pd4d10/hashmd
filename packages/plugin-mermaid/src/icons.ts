@@ -1,0 +1,4 @@
+export const icons = {
+  mermaid:
+    '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" d="M0 0h48v48H0z"/><path d="M6 24h36" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><rect x="6" y="32" width="12" height="12" rx="2" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><rect x="30" y="32" width="12" height="12" rx="2" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M24 24.008L24.008 16M36 32.008L36.008 24M12 32.008L12.008 24" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+};

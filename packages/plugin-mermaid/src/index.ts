@@ -1,6 +1,7 @@
 import type { BytemdPlugin } from 'bytemd';
 import type { Mermaid } from 'mermaid';
 import type mermaidAPI from 'mermaid/mermaidAPI';
+import { icons } from './icons';
 
 export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
   let m: Mermaid;
@@ -43,6 +44,15 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
           }
         });
       })();
+    },
+    toolbar: {
+      mermaid: {
+        tooltip: 'Mermaid diagram',
+        icon: icons.mermaid,
+        onClick({ utils }) {
+          utils.replaceLines((lines) => ['```mermaid', ...lines, '```']);
+        },
+      },
     },
   };
 }

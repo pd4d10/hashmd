@@ -2,52 +2,45 @@
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
 import Svgo from 'svgo';
-import {
-  H1,
-  H2,
-  H3,
-  TextBold,
-  TextItalic,
-  Quote,
-  LinkOne,
-  Code,
-  CodeBrackets,
-  OrderedList,
-  ListCheckbox,
-  Info,
-  CheckCorrect,
-  InsertTable,
-  Pic,
-  FullScreen,
-  OffScreen,
-} from '@icon-park/svg';
+import * as icons from '@icon-park/svg';
 
 const svgo = new Svgo();
 
 const meta = {
   bytemd: {
-    h1: H1,
-    h2: H2,
-    h3: H3,
+    h1: icons.H1,
+    h2: icons.H2,
+    h3: icons.H3,
     bold: () =>
-      TextBold({}).replace('viewBox="0 0 48 48"', `viewBox="-4 -2 52 52"`),
-    italic: TextItalic,
-    quote: Quote,
-    link: LinkOne,
-    code: Code,
-    codeBlock: CodeBrackets,
-    ol: OrderedList,
-    ul: ListCheckbox,
-    info: Info,
-    fullscreenOn: FullScreen,
-    fullscreenOff: OffScreen,
+      icons
+        .TextBold({})
+        .replace('viewBox="0 0 48 48"', `viewBox="-4 -2 52 52"`),
+    italic: icons.TextItalic,
+    quote: icons.Quote,
+    link: icons.LinkOne,
+    code: icons.Code,
+    codeBlock: icons.CodeBrackets,
+    ol: icons.OrderedList,
+    ul: icons.ListCheckbox,
+    info: icons.Info,
+    fullscreenOn: icons.FullScreen,
+    fullscreenOff: icons.OffScreen,
   },
   'plugin-gfm': {
-    task: CheckCorrect,
-    table: InsertTable,
+    task: icons.CheckCorrect,
+    table: icons.InsertTable,
   },
   'plugin-import-image': {
-    image: Pic,
+    image: icons.Pic,
+  },
+  'plugin-math': {
+    formula: icons.Formula,
+  },
+  'plugin-math-ssr': {
+    formula: icons.Formula,
+  },
+  'plugin-mermaid': {
+    mermaid: icons.ConnectionPoint,
   },
 };
 
