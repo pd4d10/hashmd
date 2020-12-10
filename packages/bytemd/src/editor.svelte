@@ -94,6 +94,8 @@
     }
 
     requestAnimationFrame(() => {
+      updateBlockPositions();
+
       const rightRatio =
         previewEl.scrollTop / (previewEl.scrollHeight - previewEl.clientHeight);
 

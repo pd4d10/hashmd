@@ -21,7 +21,7 @@ export default function importImage({
   return {
     toolbar: {
       image: {
-        tooltip: 'image',
+        tooltip: 'Image',
         icon: icons.image,
         onClick({ editor }) {
           const input = document.createElement('input');
