@@ -20,10 +20,12 @@
     "lib"
   ],
   "dependencies": {
-    "@types/codemirror": "^0.0.97",
+    "@types/codemirror": "^0.0.102",
     "@types/lodash.debounce": "^4.0.0",
+    "@types/lodash.throttle": "^4.0.0",
     "codemirror": "^5.0.0",
     "lodash.debounce": "^4.0.0",
+    "lodash.throttle": "^4.0.0",
     "rehype-raw": "^5.0.0",
     "rehype-sanitize": "^4.0.0",
     "rehype-stringify": "^8.0.0",

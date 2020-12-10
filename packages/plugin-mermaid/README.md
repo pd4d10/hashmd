@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid)
 
-ByteMD plugin to support Mermaid diagram and flowchart
+ByteMD plugin to support Mermaid diagram
 
 ## Usage
 

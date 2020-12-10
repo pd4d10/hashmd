@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr)
 
-ByteMD plugin to support math equation (SSR compatible)
+ByteMD plugin to support math formula (SSR compatible)
 
 ## Usage
 

@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math)
 
-ByteMD plugin to support math equation
+ByteMD plugin to support math formula
 
 ## Usage
 

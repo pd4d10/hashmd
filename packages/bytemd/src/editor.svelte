@@ -5,6 +5,7 @@
   import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
+  import throttle from 'lodash.throttle';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import { createUtils } from './editor';
@@ -153,7 +154,7 @@
   function updateAst({ detail }: { detail: Root }) {
     mdast = detail;
   }
-  function updateBlockPositions() {
+  const updateBlockPositions = throttle(() => {
     leftPs = [];
     rightPs = [];
 
@@ -202,7 +203,7 @@
     leftPs.push(1);
     rightPs.push(1);
     // console.log(leftPs, rightPs);
-  }
+  }, 1000);
 
   onMount(async () => {
     const [codemirror] = await Promise.all([
