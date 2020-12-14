@@ -102,6 +102,10 @@
     margin: 10px 0;
     text-align: center;
   }
+  :global(body) {
+    margin: 0 10px;
+    font-size: 14px;
+  }
   :global(.bytemd) {
     height: calc(100vh - 100px);
   }

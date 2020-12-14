@@ -10,7 +10,7 @@ import babel from '@rollup/plugin-babel';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
-import polyfills from 'rollup-plugin-node-polyfills';
+import replace from '@rollup/plugin-replace';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -26,7 +26,7 @@ const configs = packages
           file: path.resolve(__dirname, 'packages/mp/dist/viewer.js'),
           format: 'cjs',
         },
-        plugins: [commonjs(), resolve(), json(), polyfills()],
+        plugins: [commonjs(), resolve(), json()],
         watch: { clearScreen: false },
       };
     }
@@ -49,7 +49,11 @@ const configs = packages
           dedupe: ['svelte'],
         }),
         json(),
-        polyfills(),
+        replace({
+          'process.env.NODE_ENV': JSON.stringify(
+            production ? 'production' : 'development'
+          ),
+        }),
       ],
       watch: {
         clearScreen: false,
