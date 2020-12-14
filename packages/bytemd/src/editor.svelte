@@ -57,6 +57,7 @@
         break;
       }
     }
+    startIndex = Math.max(startIndex, 0); // ensure >= 0
     return startIndex;
   }
 
