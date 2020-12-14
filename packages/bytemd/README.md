@@ -216,7 +216,6 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 | [@bytemd/plugin-math-ssr](./packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math-ssr/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
 | [@bytemd/plugin-medium-zoom](./packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-medium-zoom/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
 | [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-mermaid/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-mermaid) | Support Mermaid diagram |
-| [@bytemd/plugin-vega](./packages/plugin-vega) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-vega.svg)](https://npm.im/@bytemd/plugin-vega) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-vega/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-vega) | Support vega charts |
 
 ## Write a plugin
 
