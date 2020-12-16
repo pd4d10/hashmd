@@ -1,4 +1,4 @@
-import type { BytemdPlugin } from 'bytemd';
+import { BytemdPlugin, EditorContext } from 'bytemd';
 import { icons } from './icons';
 
 export interface ImportImageOptions {
@@ -11,11 +11,9 @@ export interface ImportImageOptions {
 export default function importImage({
   upload,
 }: ImportImageOptions): BytemdPlugin {
-  const handleFiles = async (files: File[], editor: CodeMirror.Editor) => {
+  const handleFiles = async (files: File[], utils: EditorContext['utils']) => {
     const urls = await upload(files);
-    const text = urls.map((url) => `![](${url})`).join('\n\n');
-    editor.replaceRange(text, editor.getCursor());
-    editor.focus();
+    utils.appendBlock(urls.map((url) => `![](${url})`).join('\n\n'));
   };
 
   return {
@@ -23,7 +21,7 @@ export default function importImage({
       image: {
         tooltip: 'Image',
         icon: icons.image,
-        onClick({ editor }) {
+        onClick({ utils }) {
           const input = document.createElement('input');
           input.type = 'file';
           input.multiple = true;
@@ -35,14 +33,14 @@ export default function importImage({
             );
 
             if (files?.length) {
-              handleFiles(files, editor);
+              handleFiles(files, utils);
             }
           });
           input.click();
         },
       },
     },
-    editorEffect({ editor }) {
+    editorEffect({ editor, utils }) {
       const handler = async (
         _: CodeMirror.Editor,
         e: ClipboardEvent | DragEvent
@@ -62,7 +60,7 @@ export default function importImage({
 
         if (files.length) {
           e.preventDefault();
-          await handleFiles(files, editor);
+          await handleFiles(files, utils);
         }
       };
 

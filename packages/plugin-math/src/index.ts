@@ -37,8 +37,12 @@ export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
       math: {
         tooltip: 'Math formula',
         icon: icons.formula,
-        onClick({ utils }) {
-          utils.replaceLines((lines) => ['$$', ...lines, '$$']);
+        onClick({ editor, utils }) {
+          const { startLine } = utils.appendBlock('$$\n\\TeX\n$$');
+          editor.setSelection(
+            { line: startLine + 1, ch: 0 },
+            { line: startLine + 1, ch: 4 }
+          );
         },
       },
     },

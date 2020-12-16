@@ -9,39 +9,21 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
       task: {
         tooltip: 'Task list',
         icon: icons.task,
-        onClick({ editor }) {
-          const [selection] = editor.listSelections();
-          const fromLine = selection.from().line;
-          const toLine = selection.to().line;
-          const lines = editor
-            // @ts-ignore
-            .getRange({ line: fromLine, ch: 0 }, { line: toLine })
-            .split('\n');
-          editor.replaceRange(
-            lines.map((line) => `- [ ] ${line}`).join('\n'),
-            { line: fromLine, ch: 0 },
-            // @ts-ignore
-            { line: toLine }
-          );
-
-          editor.focus();
+        onClick({ utils }) {
+          utils.replaceLines((lines) => lines.map((line) => '- [ ] ' + line));
         },
       },
       table: {
         tooltip: 'Table',
         icon: icons.table,
-        onClick({ editor }) {
-          const pos = editor.getCursor();
-          editor.replaceRange(
-            `
-|  |  |
-| --- | --- |
-|  |  |
-          `,
-            pos
+        onClick({ editor, utils }) {
+          const { startLine } = utils.appendBlock(
+            '| heading |  |\n| --- | --- |\n|  |  |\n'
           );
-          editor.setCursor({ line: pos.line + 1, ch: 2 });
-          editor.focus();
+          editor.setSelection(
+            { line: startLine, ch: 2 },
+            { line: startLine, ch: 9 }
+          );
         },
       },
     },

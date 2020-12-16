@@ -11,17 +11,10 @@
   export let mode: EditorProps['mode'];
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
-  export let toolbar: EditorProps['toolbar'];
   export let fullscreen: boolean;
 
   function normalize(itemMap: NonNullable<BytemdPlugin['toolbar']>) {
-    if (toolbar == null) {
-      return Object.keys(itemMap);
-    }
-    if (typeof toolbar === 'function') {
-      return toolbar(itemMap);
-    }
-    return toolbar;
+    return Object.keys(itemMap);
   }
 
   $: itemMap = getItemMap(plugins);

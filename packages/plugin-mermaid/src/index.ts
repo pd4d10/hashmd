@@ -49,8 +49,14 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
       mermaid: {
         tooltip: 'Mermaid diagram',
         icon: icons.mermaid,
-        onClick({ utils }) {
-          utils.replaceLines((lines) => ['```mermaid', ...lines, '```']);
+        onClick({ editor, utils }) {
+          const { startLine } = utils.appendBlock(
+            '```mermaid\ngraph LR\nA--->B\n```'
+          );
+          editor.setSelection(
+            { line: startLine + 1, ch: 0 }, // @ts-ignore
+            { line: startLine + 2 }
+          );
         },
       },
     },

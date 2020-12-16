@@ -84,14 +84,15 @@ export interface EditorProps extends ViewerProps {
    * Debounce time (ms) for preview
    */
   previewDebounce?: number;
-  /**
-   * Specify visible toolbar items and their orders
-   *
-   * Default: Show all available items, order: built-in -> plugin by apply order
-   */
-  toolbar?:
-    | string[]
-    | ((itemMap: Record<string, BytemdToolbarItem>) => string[]);
+  // TODO:
+  // /**
+  //  * Specify visible toolbar items and their orders
+  //  *
+  //  * Default: Show all available items, order: built-in -> plugin by apply order
+  //  */
+  // toolbar?:
+  //   | string[]
+  //   | ((itemMap: Record<string, BytemdToolbarItem>) => string[]);
   /**
    * CodeMirror editor config
    *

@@ -15,7 +15,6 @@
   export let sanitize: EditorProps['sanitize'];
   export let mode: EditorProps['mode'] = 'split';
   export let previewDebounce: EditorProps['previewDebounce'] = 300;
-  export let toolbar: EditorProps['toolbar'];
   export let editorConfig: EditorProps['editorConfig'];
 
   let el: HTMLElement;
@@ -246,7 +245,6 @@
     {mode}
     {activeTab}
     {plugins}
-    {toolbar}
     {fullscreen}
     on:tab={setActiveTab}
     on:fullscreen={() => {
