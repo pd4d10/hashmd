@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math-ssr",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "ByteMD plugin to support math formula (SSR compatible)",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
