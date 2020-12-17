@@ -1,4 +1,4 @@
-import type { Editor, Position } from 'codemirror';
+import type { Editor } from 'codemirror';
 
 export type EditorUtils = ReturnType<typeof createUtils>;
 

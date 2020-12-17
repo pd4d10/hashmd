@@ -50,11 +50,11 @@
       plugins: [
         ...(plugins ?? []),
         {
-          remark: (p) =>
+          rehype: (p) =>
             p.use(() => (tree) => {
               // wait the next tick to make sure the initial AST could be dispatched
               tick().then(() => {
-                dispatch('ast', tree);
+                dispatch('hast', tree);
               });
             }),
         },

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Editor } from 'codemirror';
   import type {} from 'codemirror/addon/display/placeholder';
-  import type { Root } from 'mdast';
+  import type { Root, Element } from 'hast';
   import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
@@ -79,7 +79,7 @@
           (rightPs[startIndex + 1] - rightPs[startIndex])) /
           (leftPs[startIndex + 1] - leftPs[startIndex]) +
         rightPs[startIndex];
-      // const rightRatio = rightPs[startIndex];
+      // const rightRatio = rightPs[startIndex]; // for testing
 
       previewEl.scrollTo(
         0,
@@ -147,13 +147,14 @@
     });
   }
 
-  let mdast: Root;
+  let hast: Root;
   let leftPs: number[];
   let rightPs: number[];
 
-  function updateAst({ detail }: { detail: Root }) {
-    mdast = detail;
+  function updateHast({ detail }: { detail: Root }) {
+    hast = detail;
   }
+
   const updateBlockPositions = throttle(() => {
     leftPs = [];
     rightPs = [];
@@ -161,30 +162,19 @@
     const scrollInfo = editor.getScrollInfo();
     const body = previewEl.querySelector<HTMLElement>('.markdown-body')!;
 
-    let hasYaml = mdast.children[0]?.type === 'yaml';
+    const leftNodes = hast.children.filter(
+      (v) => v.type === 'element'
+    ) as Element[];
+    const rightNodes = [...body.childNodes].filter(
+      (v) => v instanceof HTMLElement
+    ) as HTMLElement[];
 
-    for (let i = 0; i < mdast.children.length; i++) {
-      const node = mdast.children[i];
-
-      // merge yaml and the second node
-      if (hasYaml) {
-        if (i === 0) {
-          leftPs.push(0);
-          rightPs.push(0);
-          continue;
-        }
-        if (i === 1) {
-          continue;
-        }
-      }
-
-      const rightIndex = hasYaml ? i - 1 : i;
+    for (let i = 0; i < leftNodes.length; i++) {
       const left =
-        editor.heightAtLine(node.position!.start.line - 1, 'local') /
+        editor.heightAtLine(leftNodes[i].position!.start.line - 1, 'local') /
         (scrollInfo.height - scrollInfo.clientHeight);
       const right =
-        ((body.children[rightIndex] as HTMLElement).offsetTop -
-          body.offsetTop) /
+        (rightNodes[i].offsetTop - body.offsetTop) /
         (previewEl.scrollHeight - previewEl.clientHeight);
 
       if (left >= 1 || right >= 1) {
@@ -193,11 +183,6 @@
 
       leftPs.push(left);
       rightPs.push(right);
-
-      if (node.type === 'footnoteDefinition') {
-        // reach the last
-        break;
-      }
     }
 
     leftPs.push(1);
@@ -260,7 +245,7 @@
       bind:this={previewEl}
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
-      <Viewer {...viewerProps} on:ast={updateAst} />
+      <Viewer {...viewerProps} on:hast={updateHast} />
     </div>
   </div>
 </div>
