@@ -170,11 +170,19 @@
     ) as HTMLElement[];
 
     for (let i = 0; i < leftNodes.length; i++) {
+      const leftNode = leftNodes[i];
+      const rightNode = rightNodes[i];
+
+      // if there is no position info, move to the next node
+      if (!leftNode.position) {
+        continue;
+      }
+
       const left =
-        editor.heightAtLine(leftNodes[i].position!.start.line - 1, 'local') /
+        editor.heightAtLine(leftNode.position.start.line - 1, 'local') /
         (scrollInfo.height - scrollInfo.clientHeight);
       const right =
-        (rightNodes[i].offsetTop - body.offsetTop) /
+        (rightNode.offsetTop - body.offsetTop) /
         (previewEl.scrollHeight - previewEl.clientHeight);
 
       if (left >= 1 || right >= 1) {
