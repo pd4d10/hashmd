@@ -1,0 +1,48 @@
+<block wx:if="{{_pnode}}" >
+    <template is="tags" data="{{..._pnode}}" />
+</block>
+<block wx:elif="{{_code}}" >
+    <template is="code" data="{{..._code}}" />
+</block>
+<block wx:else>
+  <view class="markdown-body" >
+    <template is="tags" data="{{...nodes}}" />
+  </view>
+</block>
+
+<template name="tags">
+  <block wx:for="{{children}}" wx:for-item="node" wx:key="index">
+    <template is="tag" data="{{node}}" />
+  </block>
+</template>
+<template name="tag">
+  <template is="content" data="{{node}}" wx:if="{{node.tagName ==='tr'||node.tagName ==='td'||node.tagName ==='table'||node.tagName ==='th'||node.tagName ==='tbody'||node.tagName ==='thead'}}" />
+  <view wx:else class="{{node.tagName || node.type}}">
+    <template is="content" data="{{node}}" />
+  </view>
+</template>
+<template name="content">
+    <block wx:if="{{!node.children || !node.children.length}}">
+      <image wx:if="{{node.tagName == 'img'}}" src="{{node.properties.src}}" alt="{{node.properties.alt}}" mode="aspectFit" bindtap="imagePreview" data-src="{{node.properties.src}}" />
+      <block wx:elif="{{node.type == 'text'}}">
+        {{ node.value }}
+      </block>
+    </block>
+    <block wx:else>
+        <block wx:if="{{node.tagName == 'code'}}">
+          <recursion-node _code="{{node}}" />
+        </block>
+        <navigator wx:elif="{{node.tagName == 'a'}}" url="{{node.properties.href}}" >{{node.properties.title}}</navigator>
+        <recursion-node  _pnode="{{node}}"  wx:elif="{{node.tagName ==='tr'||node.tagName ==='td'||node.tagName ==='table'||node.tagName ==='th'||node.tagName ==='tbody'||node.tagName ==='thead'}}" class="{{node.tagName || node.type}}" />
+        <recursion-node  _pnode="{{node}}" wx:else />
+    </block>
+</template>
+
+<template name="code">
+  <block wx:for="{{children}}" wx:for-item="node" wx:key="index">
+    <view wx:if="{{node.children}}" class="{{node.properties.className[0]}} span">
+      <recursion-node _code="{{node}}" />
+    </view>
+    <view wx:else class="span">{{node.value}}</view>
+  </block>
+</template>

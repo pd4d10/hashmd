@@ -1,0 +1,15 @@
+{
+  "name": "@miniprogram-component-plus/markdown",
+  "version": "1.0.0",
+  "description": "",
+  "main": "miniprogram_dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "markdown",
+    "miniprogram"
+  ],
+  "author": "baozhuona",
+  "license": "ISC"
+}

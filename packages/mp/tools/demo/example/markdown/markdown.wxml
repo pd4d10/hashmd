@@ -1,0 +1,3 @@
+<view class="markdown-wrap">
+    <mp-markdown md="{{markdown}}" highlight></mp-markdown>
+</view>
