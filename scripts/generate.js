@@ -30,6 +30,7 @@ fs.writeJsonSync(
 );
 
 packages.forEach((p) => {
+  if (p === 'mp') return;
   // tsconfig
   let tsconfig = {
     extends: '../../tsconfig-base.json',

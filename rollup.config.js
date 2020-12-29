@@ -17,19 +17,8 @@ const production = !process.env.ROLLUP_WATCH;
 
 const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 
-const configs = packages
+const configs = packages.filter(key => key !== 'mp')
   .map((key) => {
-    if (key === 'mp') {
-      return {
-        input: 'packages/mp/lib/viewer.js',
-        output: {
-          file: path.resolve(__dirname, 'packages/mp/dist/viewer.js'),
-          format: 'cjs',
-        },
-        plugins: [commonjs(), resolve(), json()],
-        watch: { clearScreen: false },
-      };
-    }
 
     const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
     const inputFile = path.resolve('packages', key, 'lib/index.js');

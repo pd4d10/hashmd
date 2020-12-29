@@ -13,5 +13,5 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["**/__tests__"]
+  "exclude": ["**/__tests__", "packages/mp"]
 }
