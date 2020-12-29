@@ -12,7 +12,7 @@ function readFileSyncSafe(p) {
 }
 
 const root = path.join(__dirname, '../packages');
-const packages = fs.readdirSync(root);
+const packages = fs.readdirSync(root).filter(key => key !== 'mp');
 const plugins = packages.filter(
   (x) => x.startsWith('plugin-') && !x.includes('-transform')
 );
