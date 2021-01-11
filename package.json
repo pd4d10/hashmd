@@ -14,7 +14,8 @@
     "test": "BABEL_ENV=test jest",
     "test:watch": "BABEL_ENV=test npm run test -- --watch",
     "postinstall": "node -r esm scripts/generate.js",
-    "pub": "npm run clean && npm run build && npm test && lerna publish --registry=https://registry.npmjs.org"
+    "pub": "npm run clean && npm run build && npm test && lerna publish --registry=https://registry.npmjs.org",
+    "deploy": "npm run build && cd examples/svelte && yarn && yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
