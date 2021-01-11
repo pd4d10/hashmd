@@ -14,6 +14,7 @@ import replace from '@rollup/plugin-replace';
 // import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
+const umd = process.env.UMD;
 
 const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 
@@ -136,7 +137,7 @@ const configs = packages
 
     // return [es5Config];
 
-    if (production) {
+    if (umd) {
       return [config, umdConfig, es5Config];
     } else {
       return [config];
