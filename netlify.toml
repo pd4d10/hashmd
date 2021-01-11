@@ -1,0 +1,5 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration/#configuration-details
+
+[build]
+  publish = "examples/svelte/public"
+  command = "yarn build && cd examples/svelte && yarn && yarn build"
