@@ -25,9 +25,7 @@
   }
 
   onMount(async () => {
-    const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/gh-pages/example.md'
-    );
+    const res = await fetch('/example.md');
     const text = await res.text();
     value = text;
   });
