@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "example/markdown/markdown"
+  ],
+  "usingComponents": {
+    "recursion-node": "components/markdown/index"
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "小程序拓展组件库",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "backgroundColor": "#f8f8f8"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "style": "v2"
+}

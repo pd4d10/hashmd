@@ -1,0 +1,3 @@
+[submodule "src/weui-wxss"]
+	path = src/weui-wxss
+	url = http://git.code.oa.com/modules/weui-wxss.git

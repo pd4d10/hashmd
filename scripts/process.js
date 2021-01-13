@@ -41,6 +41,7 @@ function build(pattern, dir) {
     if (err) throw err;
 
     for (let file of files) {
+      if(file.includes('packages/mp')) return 
       transform(file, dir);
     }
   });
@@ -48,21 +49,14 @@ function build(pattern, dir) {
 
 fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
 fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
-fs.ensureDirSync(path.resolve(__dirname, '../packages/mp/lib'));
 
 const pattern = path.resolve(
   __dirname,
   `../packages/*/src/*.{svelte,vue,json,wxml,wxss}`
 );
-const mpPattern = path.resolve(
-  __dirname,
-  `../packages/mp/src/*.{svelte,vue,json,wxml,wxss}`
-);
 
 if (process.argv.includes('--watch')) {
   watch(pattern);
-  watch(mpPattern, 'dist');
 } else {
   build(pattern);
-  build(mpPattern, 'dist');
 }
