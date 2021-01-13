@@ -34,9 +34,16 @@ export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
       renderMath('.math.math-display', true);
     },
     toolbar: {
-      math: {
+      mathInline: {
         tooltip: 'Math formula',
-        icon: icons.formula,
+        icon: icons.math,
+        onClick({ utils }) {
+          utils.wrapText('$');
+        },
+      },
+      math: {
+        tooltip: 'Math formula block',
+        icon: icons.mathBlock,
         onClick({ editor, utils }) {
           const { startLine } = utils.appendBlock('$$\n\\TeX\n$$');
           editor.setSelection(

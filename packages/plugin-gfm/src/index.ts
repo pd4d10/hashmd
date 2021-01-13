@@ -6,6 +6,13 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkGfm, options),
     toolbar: {
+      strikethrough: {
+        tooltip: 'Strikethrough',
+        icon: icons.strikethrough,
+        onClick({ utils }) {
+          utils.wrapText('~~');
+        },
+      },
       task: {
         tooltip: 'Task list',
         icon: icons.task,

@@ -94,6 +94,13 @@ const builtinMap: Record<string, BytemdToolbarItem> = {
       utils.replaceLines((lines) => lines.map((line) => '- ' + line));
     },
   },
+  hr: {
+    tooltip: 'Horizontal rule',
+    icon: icons.hr,
+    onClick({ utils }) {
+      utils.appendBlock('---');
+    },
+  },
 };
 
 // TODO:

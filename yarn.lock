@@ -937,10 +937,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@icon-park/svg@^1.1.1":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@icon-park/svg/-/svg-1.2.0.tgz#eb8c5d43bfccd40d5c308b3f9a67d0c412b954b0"
-  integrity sha512-OJEBPKSMjZUwJkYdMDCJUW9+xly7ZX3T7CSHVha1cwPnJw0MiGyDJsyxjMYi0gtZE8rRaoNgMw5bFuAl9bHJYg==
+"@icon-park/svg@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@icon-park/svg/-/svg-1.2.1.tgz#53bb1d5b2bbdf91037639d10cdaf38e4ff8fcd6f"
+  integrity sha512-ipVR4LYqVA1w0ESgA2Cra0mASFVa8XpTaaP1S53u/8AUw7X+NR7YqoBm5PaahSO8SC7vc7S9tW9UoPECdn+6iQ==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

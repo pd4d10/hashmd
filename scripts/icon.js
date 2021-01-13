@@ -21,12 +21,14 @@ const meta = {
     code: icons.Code,
     codeBlock: icons.CodeBrackets,
     ol: icons.OrderedList,
-    ul: icons.ListCheckbox,
+    ul: icons.ListTwo,
+    hr: icons.DividingLine,
     info: icons.Info,
     fullscreenOn: icons.FullScreen,
     fullscreenOff: icons.OffScreen,
   },
   'plugin-gfm': {
+    strikethrough: icons.Strikethrough,
     task: icons.CheckCorrect,
     table: icons.InsertTable,
   },
@@ -34,13 +36,15 @@ const meta = {
     image: icons.Pic,
   },
   'plugin-math': {
-    formula: icons.Formula,
+    math: icons.Dollar,
+    mathBlock: icons.Formula,
   },
   'plugin-math-ssr': {
-    formula: icons.Formula,
+    math: icons.Dollar,
+    mathBlock: icons.Formula,
   },
   'plugin-mermaid': {
-    mermaid: icons.ConnectionPoint,
+    mermaid: icons.MindMapping,
   },
 };
 
