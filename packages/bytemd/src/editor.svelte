@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
   import type { Editor } from 'codemirror';
   import type {} from 'codemirror/addon/display/placeholder';
@@ -8,6 +10,7 @@
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import { createUtils } from './editor';
+  import Status from './status.svelte';
 
   export let value: EditorProps['value'] = '';
   export let plugins: EditorProps['plugins'];
@@ -227,11 +230,10 @@
   onDestroy(off);
 </script>
 
-<svelte:options immutable={true} />
-
 <div
   class={`bytemd bytemd-mode-${mode}${fullscreen ? ' bytemd-fullscreen' : ''}`}
-  bind:this={el}>
+  bind:this={el}
+>
   <Toolbar
     {context}
     {mode}
@@ -241,18 +243,22 @@
     on:tab={setActiveTab}
     on:fullscreen={() => {
       fullscreen = !fullscreen;
-    }} />
+    }}
+  />
   <div class="bytemd-body">
     <div
       class="bytemd-editor"
-      style={mode === 'tab' && activeTab === 1 ? 'display:none' : undefined}>
+      style={mode === 'tab' && activeTab === 1 ? 'display:none' : undefined}
+    >
       <textarea bind:this={textarea} style="display:none" />
     </div>
     <div
       bind:this={previewEl}
       class="bytemd-preview"
-      style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}>
+      style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}
+    >
       <Viewer {...viewerProps} on:hast={updateHast} />
     </div>
   </div>
+  <Status {value} />
 </div>

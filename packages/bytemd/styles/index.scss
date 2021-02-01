@@ -13,18 +13,21 @@
 .bytemd-toolbar {
   padding: 4px;
   border-bottom: 1px solid $gray-200;
+  box-shadow: 0 2px 5px 0 #00000011;
   font-size: 0;
+  background-color: #fafafa;
   > span {
     display: inline-block;
     cursor: pointer;
     border-radius: 2px;
     margin-left: 4px;
     margin-right: 4px;
-    font-size: 16px;
+    font-size: 20px;
     color: $gray-800;
+    // color: #2e3135;
     svg {
       display: block;
-      padding: 4px;
+      padding: 6px 8px;
     }
     &:hover {
       color: $blue;
@@ -53,7 +56,7 @@
 }
 
 .bytemd-body {
-  height: calc(100% - 33px);
+  height: calc(100% - 41px - 32px);
   overflow: auto;
 }
 
@@ -84,6 +87,15 @@
   overflow: auto;
   .markdown-body {
     padding: 20px;
+  }
+}
+
+.bytemd-status {
+  font-size: 14px;
+  line-height: 32px;
+  border-top: 1px solid $gray-200;
+  & > span {
+    padding-left: 24px;
   }
 }
 
