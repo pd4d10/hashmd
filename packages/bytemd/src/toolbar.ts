@@ -2,25 +2,11 @@ import type { BytemdToolbarItem, EditorProps } from './types';
 import { icons } from './icons';
 
 const builtinMap: Record<string, BytemdToolbarItem> = {
-  h1: {
-    tooltip: 'Heading-1',
-    icon: icons.h1,
+  heading: {
+    tooltip: 'Heading',
+    icon: icons.heading,
     onClick({ utils }) {
       utils.replaceLines((lines) => lines.map((line) => '# ' + line));
-    },
-  },
-  h2: {
-    tooltip: 'Heading-2',
-    icon: icons.h2,
-    onClick({ utils }) {
-      utils.replaceLines((lines) => lines.map((line) => '## ' + line));
-    },
-  },
-  h3: {
-    tooltip: 'Heading-3',
-    icon: icons.h3,
-    onClick({ utils }) {
-      utils.replaceLines((lines) => lines.map((line) => '### ' + line));
     },
   },
   bold: {
