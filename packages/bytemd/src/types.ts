@@ -3,6 +3,8 @@ import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
+import type { Root as MdastRoot } from 'mdast';
+import type { Root as HastRoot } from 'hast';
 
 export interface EditorContext {
   /**
@@ -24,10 +26,10 @@ export interface ViewerContext {
    * Root element of the Viewer, `$('.markdown-body')`
    */
   $el: HTMLElement;
-  /**
-   * Markdown process result
-   */
-  result: VFile;
+  vfile: VFile;
+  html: string;
+  mdast: MdastRoot;
+  hast: HastRoot;
 }
 
 export interface BytemdToolbarItem {

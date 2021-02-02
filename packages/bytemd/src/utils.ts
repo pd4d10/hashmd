@@ -6,17 +6,14 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeStringify from 'rehype-stringify';
 import ghSchema from 'hast-util-sanitize/lib/github.json';
 import type { Schema } from 'hast-util-sanitize';
-import type { ViewerProps } from './types';
+import type { ViewerContext, ViewerProps } from './types';
 
 const schemaStr = JSON.stringify(ghSchema);
 
 /**
  * Get unified processor with ByteMD plugins
  */
-export function getProcessor({
-  sanitize,
-  plugins,
-}: Omit<ViewerProps, 'value'>) {
+function getProcessor({ sanitize, plugins }: Omit<ViewerProps, 'value'>) {
   let p = unified().use(remarkParse);
 
   plugins?.forEach(({ remark }) => {
@@ -41,4 +38,33 @@ export function getProcessor({
   });
 
   return p.use(rehypeStringify);
+}
+
+export function processSync(props: ViewerProps): Omit<ViewerContext, '$el'> {
+  let mdast: ViewerContext['mdast'] = { type: 'root', children: [] };
+  let hast: ViewerContext['hast'] = { type: 'root', children: [] };
+
+  const processor = getProcessor({
+    ...props,
+    plugins: [
+      ...(props.plugins ?? []),
+      {
+        remark: (p) =>
+          p.use(() => (tree) => {
+            mdast = tree as any;
+          }),
+        rehype: (p) =>
+          p.use(() => (tree) => {
+            hast = tree as any;
+          }),
+      },
+    ],
+  });
+  const vfile = processor.processSync(props.value);
+  return {
+    vfile,
+    html: vfile.toString(),
+    mdast,
+    hast,
+  };
 }
