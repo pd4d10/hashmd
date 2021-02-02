@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import { getProcessor } from 'bytemd';
+import { processSync } from 'bytemd';
 
 export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
     result() {
       try {
-        return getProcessor(this.$props).processSync(this.$props.value);
+        return processSync(this.$props);
       } catch (err) {
         console.error(err);
       }
@@ -41,7 +41,7 @@ export default {
       if (this.plugins && this.result) {
         this.cbs = this.plugins.map(
           ({ viewerEffect }) =>
-            viewerEffect && viewerEffect({ $el: this.$el, result: this.result })
+            viewerEffect && viewerEffect({ $el: this.$el, ...this.result })
         );
       }
     },
