@@ -2,7 +2,6 @@
 
 <script lang="ts">
   import type { Editor } from 'codemirror';
-  import type {} from 'codemirror/addon/display/placeholder';
   import type { Root, Element } from 'hast';
   import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
@@ -16,6 +15,7 @@
   export let sanitize: EditorProps['sanitize'];
   export let mode: EditorProps['mode'] = 'split';
   export let previewDebounce: EditorProps['previewDebounce'] = 300;
+  export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
 
   let el: HTMLElement;
@@ -212,6 +212,7 @@
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
+      placeholder,
       ...editorConfig,
     });
 
