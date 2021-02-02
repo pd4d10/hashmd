@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
   import type { VFile } from 'vfile';
   import type { BytemdPlugin, ViewerProps } from './types';
@@ -75,8 +77,6 @@
     });
   }
 </script>
-
-<svelte:options immutable={true} />
 
 <div bind:this={el} class="markdown-body">
   {@html html}

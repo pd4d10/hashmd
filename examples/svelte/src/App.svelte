@@ -87,6 +87,23 @@
   }
 </script>
 
+<div class="container">
+  <div class="line">
+    Mode:
+    {#each ['split', 'tab'] as m}
+      <label> <input type="radio" bind:group={mode} value={m} /> {m} </label>
+    {/each}
+  </div>
+  <div class="line">
+    Plugins:
+    {#each Object.keys(enabled) as p}
+      {' '}
+      <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
+    {/each}
+  </div>
+  <Editor {value} {mode} {plugins} {sanitize} on:change={handleChange} />
+</div>
+
 <style>
   .container {
     max-width: 1280px;
@@ -110,20 +127,3 @@
     z-index: 101;
   }
 </style>
-
-<div class="container">
-  <div class="line">
-    Mode:
-    {#each ['split', 'tab'] as m}
-      <label> <input type="radio" bind:group={mode} value={m} /> {m} </label>
-    {/each}
-  </div>
-  <div class="line">
-    Plugins:
-    {#each Object.keys(enabled) as p}
-      {' '}
-      <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
-    {/each}
-  </div>
-  <Editor {value} {mode} {plugins} {sanitize} on:change={handleChange} />
-</div>

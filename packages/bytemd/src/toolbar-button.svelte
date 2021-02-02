@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
   import tippy from 'tippy.js';
   import { onMount } from 'svelte';
@@ -22,8 +24,6 @@
   export let icon: BytemdToolbarItem['icon'];
   export let style: string | undefined;
 </script>
-
-<svelte:options immutable={true} />
 
 <span bind:this={el} on:click={() => dispatch('click')} {style}>
   {@html icon}
