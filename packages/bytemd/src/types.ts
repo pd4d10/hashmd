@@ -106,11 +106,18 @@ export interface ViewerProps {
    */
   plugins?: BytemdPlugin[];
   /**
-   * Sanitize strategy
-   *
-   * Defaults to GitHub style sanitation except the `className` property is allowed
+   * Sanitize strategy: Defaults to GitHub style sanitation with class names allowed
    *
    * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
+   *
+   * If you want further customization, pass a function to mutate sanitize schema.
    */
-  sanitize?: (schema: Schema) => Schema;
+  sanitize?:
+    | {
+        /**
+         * Allow inline styles. Default: `false`
+         */
+        allowStyle?: boolean;
+      }
+    | ((schema: Schema) => Schema);
 }

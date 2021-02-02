@@ -43,10 +43,6 @@
     'medium-zoom': true,
   };
 
-  function toBlobUrl(file) {
-    return URL.createObjectURL(file);
-  }
-
   $: plugins = [
     enabled.breaks && breaks(),
     enabled.gfm && gfm(),
@@ -57,7 +53,11 @@
     enabled['import-image'] &&
       importImage({
         upload(files) {
-          return Promise.all(files.map((file) => toBlobUrl(file)));
+          return Promise.all(
+            files.map((file) => {
+              return ['https://picsum.photos/300'];
+            })
+          );
         },
       }),
     enabled.frontmatter && frontmatter(),
@@ -80,11 +80,6 @@
     //   },
     // },
   ].filter((x) => x);
-
-  function sanitize(schema) {
-    schema.protocols.src.push('blob');
-    return schema;
-  }
 </script>
 
 <div class="container">
@@ -101,7 +96,7 @@
       <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
     {/each}
   </div>
-  <Editor {value} {mode} {plugins} {sanitize} on:change={handleChange} />
+  <Editor {value} {mode} {plugins} on:change={handleChange} />
 </div>
 
 <style>

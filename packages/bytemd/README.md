@@ -145,11 +145,11 @@ editor.on('change', (e) => {
 
 ### Viewer
 
-| Key        | Type                         | Description        |
-| ---------- | ---------------------------- | ------------------ |
-| `value`    | `string` (required)          | Markdown text      |
-| `plugins`  | `BytemdPlugin[]`             | ByteMD plugin list |
-| `sanitize` | `(schema: Schema) => Schema` | Sanitize strategy  |
+| Key | Type | Description |
+| --- | --- | --- |
+| `value` | `string` (required) | Markdown text |
+| `plugins` | `BytemdPlugin[]` | ByteMD plugin list |
+| `sanitize` | `{ allowStyle?: boolean }` or `(schema: Schema) => Schema` | Sanitize strategy |
 
 ### Editor
 
@@ -157,7 +157,7 @@ editor.on('change', (e) => {
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `mode` | `'split', 'tab'` | Editor display mode |
+| `mode` | `'split'` or `'tab'` | Editor display mode |
 | `previewDebounce` | `number` | Debounce time (ms) for preview |
 | `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
