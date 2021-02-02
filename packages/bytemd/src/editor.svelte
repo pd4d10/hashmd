@@ -9,6 +9,7 @@
   import Viewer from './viewer.svelte';
   import { createUtils } from './editor';
   import { scrollSync } from './plugins';
+  import Status from './status.svelte';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -18,11 +19,18 @@
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
 
-  let builtinPlugins: BytemdPlugin[] = [];
+  let scrollSyncInstance = scrollSync();
 
-  $: fullPlugins = [...builtinPlugins, ...plugins];
+  $: fullPlugins = (() => {
+    const ps = [...plugins];
+    if (mode === 'split' && scrollSyncEnabled) {
+      ps.push(scrollSyncInstance);
+    }
+    return ps;
+  })();
 
   let el: HTMLElement;
+  let previewEl: HTMLElement;
   let viewerProps: ViewerProps = {
     value,
     plugins,
@@ -32,6 +40,7 @@
   let editor: Editor;
   let activeTab = 0;
   let fullscreen = false;
+  let scrollSyncEnabled = true;
 
   $: context = { editor, $el: el, utils: createUtils(editor) };
 
@@ -78,8 +87,6 @@
   }
 
   onMount(async () => {
-    builtinPlugins = [scrollSync()];
-
     const [codemirror] = await Promise.all([
       import('codemirror'),
       // @ts-ignore
@@ -133,6 +140,7 @@
       <textarea bind:this={textarea} style="display:none" />
     </div>
     <div
+      bind:this={previewEl}
       class="bytemd-preview"
       style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}
     >
@@ -143,4 +151,15 @@
       />
     </div>
   </div>
+  <Status
+    scrollVisible={mode === 'split'}
+    {value}
+    {scrollSyncEnabled}
+    on:sync={(e) => {
+      scrollSyncEnabled = e.detail;
+    }}
+    on:top={() => {
+      previewEl.scrollTo({ top: 0, behavior: 'smooth' });
+    }}
+  />
 </div>
