@@ -111,6 +111,8 @@
   :global(body) {
     margin: 0 10px;
     font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   }
   :global(.bytemd) {
     height: calc(100vh - 100px);

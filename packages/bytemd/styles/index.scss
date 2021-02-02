@@ -15,6 +15,7 @@
   border-bottom: 1px solid $gray-200;
   font-size: 0;
   background-color: $gray-000;
+  user-select: none;
   > span {
     display: inline-block;
     cursor: pointer;
@@ -53,7 +54,7 @@
 }
 
 .bytemd-body {
-  height: calc(100% - 33px);
+  height: calc(100% - 33px - 25px);
   overflow: auto;
 }
 
@@ -84,6 +85,37 @@
   overflow: auto;
   .markdown-body {
     padding: 20px;
+  }
+}
+
+.bytemd-status {
+  font-size: 12px;
+  line-height: 24px;
+  color: $gray-900;
+  border-top: 1px solid $gray-200;
+  user-select: none;
+  &-left {
+    float: left;
+    span {
+      padding-left: 16px;
+    }
+    strong {
+      font-weight: 600;
+    }
+  }
+  &-right {
+    float: right;
+    label,
+    span {
+      padding-right: 16px;
+      cursor: pointer;
+    }
+    span:hover {
+      color: $blue;
+    }
+    input {
+      vertical-align: middle;
+    }
   }
 }
 

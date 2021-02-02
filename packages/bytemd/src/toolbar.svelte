@@ -28,16 +28,11 @@
     <div class="bytemd-tabs">
       <span
         on:click={() => dispatch('tab', { value: 0 })}
-        class:bytemd-tab-active={activeTab === 0}
-      >
-        Write
-      </span>
-      <span
+        class:bytemd-tab-active={activeTab === 0}>Write</span
+      ><span
         on:click={() => dispatch('tab', { value: 1 })}
-        class:bytemd-tab-active={activeTab === 1}
+        class:bytemd-tab-active={activeTab === 1}>Preview</span
       >
-        Preview
-      </span>
     </div>
   {/if}
 
@@ -61,8 +56,7 @@
     on:click={() => {
       window.open('https://github.com/bytedance/bytemd');
     }}
-  />
-  <ToolbarButton
+  /><ToolbarButton
     tooltip="Toggle Fullscreen"
     icon={fullscreen ? icons.fullscreenOff : icons.fullscreenOn}
     style="float:right"
