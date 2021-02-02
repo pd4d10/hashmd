@@ -159,6 +159,7 @@ editor.on('change', (e) => {
 | --- | --- | --- |
 | `mode` | `'split', 'tab'` | Editor display mode |
 | `previewDebounce` | `number` | Debounce time (ms) for preview |
+| `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
 
 ## Style customization
