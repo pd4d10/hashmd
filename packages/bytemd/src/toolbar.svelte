@@ -14,6 +14,7 @@
   export let activeTab: number;
   export let plugins: EditorProps['plugins'];
   export let fullscreen: boolean;
+  export let sidebar: false | 'help' | 'toc';
 
   function normalize(itemMap: NonNullable<BytemdPlugin['toolbar']>) {
     return Object.keys(itemMap);
@@ -27,10 +28,10 @@
   {#if mode === 'tab'}
     <div class="bytemd-tabs">
       <span
-        on:click={() => dispatch('tab', { value: 0 })}
+        on:click={() => dispatch('tab', 0)}
         class:bytemd-tab-active={activeTab === 0}>Write</span
       ><span
-        on:click={() => dispatch('tab', { value: 1 })}
+        on:click={() => dispatch('tab', 1)}
         class:bytemd-tab-active={activeTab === 1}>Preview</span
       >
     </div>
@@ -43,6 +44,7 @@
           tooltip={itemMap[id].tooltip}
           icon={itemMap[id].icon}
           style={undefined}
+          active={false}
           on:click={() => itemMap[id].onClick(context)}
         />
       {/if}
@@ -53,6 +55,7 @@
     tooltip="About ByteMD"
     icon={icons.info}
     style="float:right"
+    active={false}
     on:click={() => {
       window.open('https://github.com/bytedance/bytemd');
     }}
@@ -60,8 +63,25 @@
     tooltip="Toggle Fullscreen"
     icon={fullscreen ? icons.fullscreenOff : icons.fullscreenOn}
     style="float:right"
+    active={false}
     on:click={() => {
-      dispatch('fullscreen');
+      dispatch('click', 'fullscreen');
+    }}
+  /><ToolbarButton
+    tooltip="Cheat Sheet and shortcuts"
+    icon={icons.help}
+    style="float:right"
+    active={sidebar === 'help'}
+    on:click={() => {
+      dispatch('click', 'help');
+    }}
+  /><ToolbarButton
+    tooltip="Table of contents"
+    icon={icons.toc}
+    style="float:right"
+    active={sidebar === 'toc'}
+    on:click={() => {
+      dispatch('click', 'toc');
     }}
   />
 </div>

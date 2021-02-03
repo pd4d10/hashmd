@@ -3,8 +3,6 @@ import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
-import type { Root as MdastRoot } from 'mdast';
-import type { Root as HastRoot } from 'hast';
 
 export interface EditorContext {
   /**
@@ -27,9 +25,6 @@ export interface ViewerContext {
    */
   $el: HTMLElement;
   vfile: VFile;
-  html: string;
-  mdast: MdastRoot;
-  hast: HastRoot;
 }
 
 export interface BytemdToolbarItem {
@@ -64,6 +59,10 @@ export interface BytemdPlugin {
    * Register toolbar items
    */
   toolbar?: Record<string, BytemdToolbarItem>;
+  /**
+   *
+   */
+  cheatsheet?: { icon: string; text: string; syntax: string }[];
   /**
    * Side effect for editor, triggers when plugin list changes
    */

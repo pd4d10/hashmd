@@ -5,9 +5,9 @@ export interface ViewerProps extends bytemd.ViewerProps {}
 
 export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
   const elRef = useRef<HTMLDivElement>(null);
-  const res = useMemo(() => {
+  const vfile = useMemo(() => {
     try {
-      return bytemd.processSync({ value, sanitize, plugins });
+      return bytemd.getProcessor({ sanitize, plugins }).processSync(value);
     } catch (err) {
       console.error(err);
     }
@@ -15,15 +15,15 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
 
   useEffect(() => {
     const $el = elRef.current;
-    if (!$el || !res) return;
+    if (!$el || !vfile) return;
 
     const cbs = plugins?.map(
-      ({ viewerEffect }) => viewerEffect && viewerEffect({ $el, ...res })
+      ({ viewerEffect }) => viewerEffect && viewerEffect({ $el, vfile })
     );
     return () => {
       cbs?.forEach((cb) => cb && cb());
     };
-  }, [res, plugins]);
+  }, [vfile, plugins]);
 
   return (
     <div
@@ -40,7 +40,7 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
       }}
       ref={elRef}
       className="markdown-body"
-      dangerouslySetInnerHTML={{ __html: res?.toString() ?? '' }}
+      dangerouslySetInnerHTML={{ __html: vfile?.toString() ?? '' }}
     ></div>
   );
 };

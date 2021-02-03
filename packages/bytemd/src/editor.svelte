@@ -2,14 +2,18 @@
 
 <script lang="ts">
   import type { Editor } from 'codemirror';
+  import type { Root, Element } from 'hast';
   import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
-  import { debounce } from 'lodash-es';
+  import { debounce, throttle } from 'lodash-es';
+  import cx from 'classnames';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
-  import { createUtils } from './editor';
-  import { scrollSync } from './plugins';
+  import Toc from './toc.svelte';
+  import { createUtils, findStartIndex } from './editor';
   import Status from './status.svelte';
+  import Help from './help.svelte';
+  import { icons } from './icons';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -19,59 +23,57 @@
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
 
-  let scrollSyncInstance = scrollSync();
-
-  $: fullPlugins = (() => {
-    const ps = [...plugins];
-    if (mode === 'split' && scrollSyncEnabled) {
-      ps.push(scrollSyncInstance);
-    }
-    return ps;
-  })();
-
   let el: HTMLElement;
   let previewEl: HTMLElement;
-  let viewerProps: ViewerProps = {
-    value,
-    plugins,
-    sanitize,
-  };
   let textarea: HTMLTextAreaElement;
+
+  let viewerProps: ViewerProps = { value, plugins, sanitize };
   let editor: Editor;
   let activeTab = 0;
   let fullscreen = false;
-  let scrollSyncEnabled = true;
+  let sidebar: false | 'help' | 'toc' = 'toc'; // false;
+
+  $: styles = (() => {
+    let edit: string;
+    let preview: string;
+
+    if (mode === 'tab') {
+      if (activeTab === 0) {
+        edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
+        preview = 'display:none';
+      } else {
+        edit = 'display:none';
+        preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
+      }
+    } else {
+      if (sidebar) {
+        edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
+        preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
+      } else {
+        edit = 'width:50%';
+        preview = 'width:50%';
+      }
+    }
+
+    return { edit, preview };
+  })();
 
   $: context = { editor, $el: el, utils: createUtils(editor) };
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
   const dispatch = createEventDispatcher();
 
-  // @ts-ignore
-  function setActiveTab(e) {
-    activeTab = e.detail.value;
-    if (editor && activeTab === 0) {
-      tick().then(() => {
-        editor.focus();
-      });
-    }
-  }
-
   function on() {
-    // console.log('on', fullPlugins);
-    cbs = fullPlugins.map((p) => p.editorEffect?.(context));
+    // console.log('on', plugins);
+    cbs = plugins.map((p) => p.editorEffect?.(context));
   }
   function off() {
-    // console.log('off', fullPlugins);
+    // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb());
   }
 
   const updateViewerValue = debounce(() => {
-    viewerProps = {
-      value,
-      plugins: fullPlugins,
-      sanitize,
-    };
+    viewerProps = { value, plugins, sanitize };
   }, previewDebounce);
 
   $: if (editor && value !== editor.getValue()) {
@@ -79,12 +81,21 @@
   }
   $: if (value != null) updateViewerValue();
 
-  $: if (editor && el && fullPlugins) {
+  $: if (editor && el && plugins && hast) {
     off();
     tick().then(() => {
       on();
     });
   }
+
+  // Scroll sync vars
+  let scrollSyncEnabled = true;
+  let editCalled = false;
+  let previewCalled = false;
+  let editPs: number[];
+  let previewPs: number[];
+  let hast: Root = { type: 'root', children: [] };
+  let currentBlockIndex = 0;
 
   onMount(async () => {
     const [codemirror] = await Promise.all([
@@ -104,12 +115,116 @@
     });
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
-    editor.addKeyMap({
-      'Shift-Tab': 'indentLess',
-    });
+    editor.addKeyMap({ 'Shift-Tab': 'indentLess' });
     editor.setValue(value);
     editor.on('change', (doc, change) => {
       dispatch('change', { value: editor.getValue() });
+    });
+
+    const updateBlockPositions = throttle(() => {
+      editPs = [];
+      previewPs = [];
+
+      const scrollInfo = editor.getScrollInfo();
+      const body = previewEl.querySelector<HTMLElement>('.markdown-body')!;
+
+      const leftNodes = hast.children.filter(
+        (v) => v.type === 'element'
+      ) as Element[];
+      const rightNodes = [...body.childNodes].filter(
+        (v): v is HTMLElement => v instanceof HTMLElement
+      );
+
+      for (let i = 0; i < leftNodes.length; i++) {
+        const leftNode = leftNodes[i];
+        const rightNode = rightNodes[i];
+
+        // if there is no position info, move to the next node
+        if (!leftNode.position) {
+          continue;
+        }
+
+        const left =
+          editor.heightAtLine(leftNode.position.start.line - 1, 'local') /
+          (scrollInfo.height - scrollInfo.clientHeight);
+        const right =
+          (rightNode.offsetTop - body.offsetTop) /
+          (previewEl.scrollHeight - previewEl.clientHeight);
+
+        if (left >= 1 || right >= 1) {
+          break;
+        }
+
+        editPs.push(left);
+        previewPs.push(right);
+      }
+
+      editPs.push(1);
+      previewPs.push(1);
+      // console.log(editPs, previewPs);
+    }, 1000);
+    const editorScrollHandler = () => {
+      if (!scrollSyncEnabled) return;
+
+      if (previewCalled) {
+        previewCalled = false;
+        return;
+      }
+
+      updateBlockPositions();
+
+      const info = editor.getScrollInfo();
+      const leftRatio = info.top / (info.height - info.clientHeight);
+
+      const startIndex = findStartIndex(leftRatio, editPs);
+
+      const rightRatio =
+        ((leftRatio - editPs[startIndex]) *
+          (previewPs[startIndex + 1] - previewPs[startIndex])) /
+          (editPs[startIndex + 1] - editPs[startIndex]) +
+        previewPs[startIndex];
+      // const rightRatio = rightPs[startIndex]; // for testing
+
+      previewEl.scrollTo(
+        0,
+        rightRatio * (previewEl.scrollHeight - previewEl.clientHeight)
+      );
+      editCalled = true;
+    };
+    const previewScrollHandler = () => {
+      // find the current block in the view
+      updateBlockPositions();
+      currentBlockIndex = findStartIndex(
+        previewEl.scrollTop / (previewEl.scrollHeight - previewEl.offsetHeight),
+        previewPs
+      );
+
+      if (!scrollSyncEnabled) return;
+
+      if (editCalled) {
+        editCalled = false;
+        return;
+      }
+
+      const rightRatio =
+        previewEl.scrollTop / (previewEl.scrollHeight - previewEl.clientHeight);
+
+      const startIndex = findStartIndex(rightRatio, previewPs);
+
+      const leftRatio =
+        ((rightRatio - previewPs[startIndex]) *
+          (editPs[startIndex + 1] - editPs[startIndex])) /
+          (previewPs[startIndex + 1] - previewPs[startIndex]) +
+        editPs[startIndex];
+
+      const info = editor.getScrollInfo();
+      editor.scrollTo(0, leftRatio * (info.height - info.clientHeight));
+      previewCalled = true;
+    };
+
+    editor.on('scroll', editorScrollHandler);
+    previewEl.addEventListener('scroll', previewScrollHandler, {
+      passive: true,
     });
 
     // No need to call `on` because cm instance would change once after init
@@ -118,37 +233,84 @@
 </script>
 
 <div
-  class={`bytemd bytemd-mode-${mode}${fullscreen ? ' bytemd-fullscreen' : ''}`}
+  class={cx('bytemd', `bytemd-mode-${mode}`, {
+    'bytemd-fullscreen': fullscreen,
+    // 'bytemd-sidebar-open': sidebar,
+  })}
   bind:this={el}
 >
   <Toolbar
     {context}
     {mode}
     {activeTab}
+    {sidebar}
     {plugins}
     {fullscreen}
-    on:tab={setActiveTab}
-    on:fullscreen={() => {
-      fullscreen = !fullscreen;
+    on:tab={(e) => {
+      activeTab = e.detail;
+      if (activeTab === 0 && editor) {
+        tick().then(() => {
+          editor.focus();
+        });
+      }
+    }}
+    on:click={(e) => {
+      switch (e.detail) {
+        case 'fullscreen':
+          fullscreen = !fullscreen;
+          break;
+        case 'help':
+          if (sidebar === 'help') {
+            sidebar = false;
+          } else {
+            sidebar = 'help';
+          }
+          break;
+        case 'toc':
+          if (sidebar === 'toc') {
+            sidebar = false;
+          } else {
+            sidebar = 'toc';
+          }
+          break;
+      }
     }}
   />
   <div class="bytemd-body">
-    <div
-      class="bytemd-editor"
-      style={mode === 'tab' && activeTab === 1 ? 'display:none' : undefined}
-    >
+    <div class="bytemd-editor" style={styles.edit}>
       <textarea bind:this={textarea} style="display:none" />
     </div>
-    <div
-      bind:this={previewEl}
-      class="bytemd-preview"
-      style={mode === 'tab' && activeTab === 0 ? 'display:none' : undefined}
-    >
+    <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       <Viewer
         value={viewerProps.value}
         plugins={viewerProps.plugins}
         sanitize={viewerProps.sanitize}
+        on:hast={(e) => {
+          hast = e.detail;
+        }}
       />
+    </div>
+    <div class="bytemd-sidebar" style={sidebar ? undefined : 'display:none'}>
+      <div
+        class="bytemd-sidebar-close"
+        on:click={() => {
+          sidebar = false;
+        }}
+      >
+        {@html icons.close}
+      </div>
+      {#if sidebar === 'help'}
+        <Help {plugins} />
+      {:else if sidebar === 'toc'}
+        <Toc
+          {hast}
+          {currentBlockIndex}
+          on:click={(e) => {
+            const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
+            headings[e.detail].scrollIntoView();
+          }}
+        />
+      {/if}
     </div>
   </div>
   <Status

@@ -23,8 +23,15 @@
   export let tooltip: BytemdToolbarItem['tooltip'];
   export let icon: BytemdToolbarItem['icon'];
   export let style: string | undefined;
+  export let active: boolean;
 </script>
 
-<span bind:this={el} on:click={() => dispatch('click')} {style}>
+<span
+  bind:this={el}
+  on:click={() => dispatch('click')}
+  {style}
+  class="bytemd-toolbar-icon"
+  class:bytemd-toolbar-icon-active={active}
+>
   {@html icon}
 </span>
