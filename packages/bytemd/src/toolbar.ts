@@ -97,3 +97,24 @@ export function getItemMap(plugins: EditorProps['plugins']) {
   });
   return map;
 }
+
+export function getCheatsheetItems(plugins: EditorProps['plugins']) {
+  let items = [
+    { icon: icons.heading, text: 'Heading', syntax: '## heading' },
+    { icon: icons.bold, text: 'Bold', syntax: '**bold text**' },
+    { icon: icons.italic, text: 'Italic', syntax: '*italic text*' },
+    { icon: icons.quote, text: 'Quote', syntax: '> text' },
+    { icon: icons.link, text: 'Link', syntax: '[text](url)' },
+    { icon: icons.code, text: 'Code', syntax: '`code`' },
+    { icon: icons.codeBlock, text: 'Code block', syntax: '```lang' },
+    { icon: icons.ol, text: 'Ordered list', syntax: '1. item' },
+    { icon: icons.ul, text: 'Unordered list', syntax: '* item' },
+    { icon: icons.hr, text: 'Horizontal rule', syntax: '---' },
+  ];
+  plugins?.forEach((p) => {
+    if (p.cheatsheet) {
+      items = [...items, ...p.cheatsheet];
+    }
+  });
+  return items;
+}

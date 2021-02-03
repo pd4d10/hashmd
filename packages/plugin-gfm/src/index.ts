@@ -34,5 +34,22 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
         },
       },
     },
+    cheatsheet: [
+      {
+        icon: icons.strikethrough,
+        text: 'Strikethrough',
+        syntax: '~~text~~',
+      },
+      {
+        icon: icons.task,
+        text: 'Task list',
+        syntax: '- [x] text',
+      },
+      {
+        icon: icons.table,
+        text: 'Table',
+        syntax: '| text | text |',
+      },
+    ],
   };
 }

@@ -1,9 +1,12 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
+  import type { VFile } from 'vfile';
   import type { BytemdPlugin, ViewerProps } from './types';
-  import { tick, onDestroy, onMount } from 'svelte';
-  import { processSync } from './utils';
+  import { tick, onDestroy, onMount, createEventDispatcher } from 'svelte';
+  import { getProcessor } from './utils';
+
+  const dispatch = createEventDispatcher();
 
   export let value: ViewerProps['value'] = '';
   export let plugins: NonNullable<ViewerProps['plugins']> = [];
@@ -23,7 +26,7 @@
 
   function on() {
     // console.log('von');
-    cbs = plugins.map((p) => p.viewerEffect?.({ $el: el, ...res }));
+    cbs = plugins.map((p) => p.viewerEffect?.({ $el: el, vfile }));
   }
   function off() {
     // console.log('voff');
@@ -44,10 +47,23 @@
 
   onDestroy(off);
 
-  let res: ReturnType<typeof processSync>;
+  let vfile: VFile;
+
+  $: _plugins = [
+    ...plugins,
+    {
+      rehype: (p) =>
+        p.use(() => (tree) => {
+          tick().then(() => {
+            dispatch('hast', tree);
+          });
+        }),
+    },
+  ];
 
   $: try {
-    res = processSync({ value, plugins, sanitize });
+    vfile = getProcessor({ sanitize, plugins: _plugins }).processSync(value);
+
     off();
     tick().then(() => {
       on();
@@ -56,7 +72,7 @@
     console.error(err);
   }
 
-  $: html = `<!--${hashCode(value)}-->${res.html}`; // trigger re-render every time the value changes
+  $: html = `<!--${hashCode(value)}-->${vfile.toString()}`; // trigger re-render every time the value changes
 </script>
 
 <div bind:this={el} class="markdown-body">

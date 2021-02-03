@@ -9,9 +9,9 @@ const svgo = new Svgo();
 const meta = {
   bytemd: {
     heading: () => `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3 1V14.33" stroke="#333333" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.9971 1V14.33" stroke="#333333" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3 7.66498H12.9975" stroke="#333333" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.9971 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3 7.66498H12.9975" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,
     bold: icons.TextBold,
     italic: icons.TextItalic,
@@ -25,6 +25,9 @@ const meta = {
     info: icons.Info,
     fullscreenOn: icons.FullScreen,
     fullscreenOff: icons.OffScreen,
+    help: icons.Helpcenter,
+    toc: icons.AlignTextLeftOne,
+    close: icons.Close,
   },
   'plugin-gfm': {
     strikethrough: icons.Strikethrough,

@@ -1,22 +1,22 @@
 <template>
-  <div class="markdown-body" v-html="result" @click="handleClick($event)"></div>
+  <div class="markdown-body" v-html="vfile" @click="handleClick($event)"></div>
 </template>
 
 <script>
-import { processSync } from 'bytemd';
+import { getProcessor } from 'bytemd';
 
 export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
-    result() {
+    vfile() {
       try {
-        return processSync(this.$props);
+        return getProcessor(this.$props).processSync(this.value);
       } catch (err) {
         console.error(err);
       }
     },
     needUpdate() {
-      return [this.result, this.plugins, this.sanitize];
+      return [this.vfile, this.plugins, this.sanitize];
     },
   },
   watch: {
@@ -38,10 +38,10 @@ export default {
   },
   methods: {
     on() {
-      if (this.plugins && this.result) {
+      if (this.plugins && this.vfile) {
         this.cbs = this.plugins.map(
           ({ viewerEffect }) =>
-            viewerEffect && viewerEffect({ $el: this.$el, ...this.result })
+            viewerEffect && viewerEffect({ $el: this.$el, vfile: this.vfile })
         );
       }
     },

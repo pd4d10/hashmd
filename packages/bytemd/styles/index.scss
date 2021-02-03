@@ -3,141 +3,254 @@
 @import '~tippy.js/animations/scale.css';
 @import '~@primer/css/support/variables/color-system.scss';
 
+$border-color: $gray-200;
+$primary: $blue;
+$sidebar-width: 280px;
+
 .bytemd {
-  border: 1px solid $gray-200;
+  color: $gray-900;
+  border: 1px solid $border-color;
   background-color: $white;
   box-sizing: border-box;
   height: 300px;
-}
 
-.bytemd-toolbar {
-  padding: 4px 12px;
-  border-bottom: 1px solid $gray-200;
-  font-size: 0;
-  background-color: $gray-000;
-  user-select: none;
-  > span {
+  &-toolbar {
+    padding: 4px 12px;
+    border-bottom: 1px solid $border-color;
+    font-size: 0;
+    background-color: $gray-000;
+    user-select: none;
+    &-icon {
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-left: 6px;
+      margin-right: 6px;
+      font-size: 16px;
+      svg {
+        display: block;
+        padding: 4px;
+      }
+      &:hover {
+        background-color: $gray-200;
+      }
+      &-active {
+        color: $blue-400;
+        background-color: $blue-000;
+        &:hover {
+          background-color: $blue-100;
+        }
+      }
+    }
+  }
+
+  &-tabs {
     display: inline-block;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-left: 6px;
-    margin-right: 6px;
-    font-size: 16px;
-    color: $gray-900;
-    svg {
-      display: block;
-      padding: 4px;
-    }
-    &:hover {
-      background-color: $gray-200;
+    vertical-align: top;
+    span {
+      cursor: pointer;
+      padding-left: 8px;
+      padding-right: 8px;
+      line-height: 24px;
+      font-size: 14px;
+      &.bytemd-tab-active {
+        color: $primary;
+      }
     }
   }
-}
 
-.bytemd-tabs {
-  display: inline-block;
-  vertical-align: top;
-  span {
-    cursor: pointer;
-    padding-left: 8px;
-    padding-right: 8px;
-    line-height: 24px;
-    font-size: 14px;
-    &.bytemd-tab-active {
-      color: $blue;
+  &-body {
+    height: calc(100% - 33px - 25px);
+    overflow: auto;
+    font-size: 0;
+  }
+
+  &-editor {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    .CodeMirror {
+      height: 100%;
+      box-sizing: border-box;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+      pre.CodeMirror-placeholder {
+        color: $gray-400;
+      }
+      .CodeMirror-lines {
+        padding: 16px 0;
+      }
+      pre.CodeMirror-line,
+      pre.CodeMirror-line-like {
+        padding: 0 16px;
+      }
     }
   }
+
+  &-preview {
+    display: inline-block;
+    height: 100%;
+    overflow: auto;
+    .markdown-body {
+      padding: 20px;
+    }
+  }
+
+  &-sidebar {
+    display: inline-block;
+    height: 100%;
+    overflow: auto;
+
+    font-size: 16px;
+    box-sizing: border-box;
+    border-left: 1px solid $border-color;
+    display: inline-block;
+    width: $sidebar-width;
+    position: relative;
+    padding: 16px;
+    &-close {
+      position: absolute;
+      padding: 16px;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      &:hover {
+        color: $primary;
+      }
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 16px 0;
+    }
+    ul {
+      padding-left: 0;
+      color: $gray-500;
+    }
+  }
+
+  &-cheatsheet {
+    ul {
+      line-height: 20px;
+      font-size: 0;
+      svg {
+        font-size: 16px;
+        display: block;
+      }
+      span {
+        font-size: 13px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+    &-text {
+      padding-left: 8px;
+    }
+    &-syntax {
+      float: right;
+    }
+  }
+
+  &-toc {
+    li {
+      list-style: none;
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 2;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    &-active {
+      color: $primary;
+      background-color: $gray-100;
+    }
+    &-first {
+      font-weight: 500;
+    }
+  }
+
+  &-status {
+    font-size: 12px;
+    line-height: 24px;
+    border-top: 1px solid $border-color;
+    user-select: none;
+    &-left {
+      float: left;
+      span {
+        padding-left: 16px;
+      }
+      strong {
+        font-weight: 600;
+      }
+    }
+    &-right {
+      float: right;
+      label,
+      span {
+        padding-right: 16px;
+        cursor: pointer;
+      }
+      span:hover {
+        color: $primary;
+      }
+      input {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &-fullscreen {
+    &.bytemd {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border: none;
+      height: 100vh;
+    }
+  }
+
+  // &-mode-split {
+  //   font-size: 0;
+  //   .bytemd-editor {
+  //     display: inline-block;
+  //     width: 50%;
+  //   }
+  //   .bytemd-preview {
+  //     display: inline-block;
+  //     width: 50%;
+  //     box-sizing: border-box;
+  //     border-left: 1px solid $border-color;
+  //   }
+  // }
+
+  // &-sidebar-open {
+  //   .bytemd-editor {
+  //     display: inline-block;
+  //     width: calc(50% - #{$sidebar-width} / 2);
+  //   }
+  //   .bytemd-preview {
+  //     display: inline-block;
+  //     width: calc(50% - #{$sidebar-width} / 2);
+  //   }
+  //   .bytemd-sidebar {
+  //     font-size: 16px;
+  //     box-sizing: border-box;
+  //     border-left: 1px solid $border-color;
+  //     display: inline-block;
+  //     width: $sidebar-width;
+  //   }
+  // }
 }
 
 .tippy-box {
   font-size: 12px;
-}
-
-.bytemd-body {
-  height: calc(100% - 33px - 25px);
-  overflow: auto;
-}
-
-.bytemd-editor {
-  overflow: hidden;
-  height: 100%;
-  .CodeMirror {
-    height: 100%;
-    box-sizing: border-box;
-    font-size: 14px;
-    line-height: 1.5;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    pre.CodeMirror-placeholder {
-      color: $gray-400;
-    }
-    .CodeMirror-lines {
-      padding: 16px 0;
-    }
-    pre.CodeMirror-line,
-    pre.CodeMirror-line-like {
-      padding: 0 16px;
-    }
-  }
-}
-
-.bytemd-preview {
-  height: 100%;
-  overflow: auto;
-  .markdown-body {
-    padding: 20px;
-  }
-}
-
-.bytemd-status {
-  font-size: 12px;
-  line-height: 24px;
-  color: $gray-900;
-  border-top: 1px solid $gray-200;
-  user-select: none;
-  &-left {
-    float: left;
-    span {
-      padding-left: 16px;
-    }
-    strong {
-      font-weight: 600;
-    }
-  }
-  &-right {
-    float: right;
-    label,
-    span {
-      padding-right: 16px;
-      cursor: pointer;
-    }
-    span:hover {
-      color: $blue;
-    }
-    input {
-      vertical-align: middle;
-    }
-  }
-}
-
-.bytemd-fullscreen {
-  &.bytemd {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border: none;
-    height: 100vh;
-  }
-}
-
-.bytemd-mode-split {
-  .bytemd-editor {
-    float: left;
-    width: 50%;
-  }
-  .bytemd-preview {
-    margin-left: 50%;
-    border-left: 1px solid $gray-200;
-  }
 }

@@ -78,3 +78,15 @@ export function createUtils(editor: Editor) {
     },
   };
 }
+
+export function findStartIndex(num: number, nums: number[]) {
+  let startIndex = nums.length - 2;
+  for (let i = 0; i < nums.length; i++) {
+    if (num < nums[i]) {
+      startIndex = i - 1;
+      break;
+    }
+  }
+  startIndex = Math.max(startIndex, 0); // ensure >= 0
+  return startIndex;
+}
