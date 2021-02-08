@@ -1,4 +1,7 @@
 import type { Editor } from 'codemirror';
+import type { BytemdPlugin, BytemdToolbarItem } from './types';
+import type { BytemdLocale } from './locales/en-US';
+import { icons } from './icons';
 
 export type EditorUtils = ReturnType<typeof createUtils>;
 
@@ -89,4 +92,115 @@ export function findStartIndex(num: number, nums: number[]) {
   }
   startIndex = Math.max(startIndex, 0); // ensure >= 0
   return startIndex;
+}
+export function getBuiltinItems(
+  locale: BytemdLocale,
+  plugins: BytemdPlugin[]
+): BytemdToolbarItem[] {
+  const items: BytemdToolbarItem[] = [
+    {
+      icon: icons.heading,
+      title: locale.toolbar.heading,
+      cheatsheet: locale.help.heading,
+      onClick({ utils }) {
+        utils.replaceLines((lines) => lines.map((line) => '# ' + line));
+      },
+    },
+    {
+      icon: icons.bold,
+      title: locale.toolbar.bold,
+      cheatsheet: locale.help.bold,
+      onClick({ utils }) {
+        utils.wrapText('**');
+      },
+    },
+    {
+      title: locale.toolbar.italic,
+      icon: icons.italic,
+      cheatsheet: locale.help.italic,
+      onClick({ utils }) {
+        utils.wrapText('*');
+      },
+    },
+    {
+      icon: icons.quote,
+      title: locale.toolbar.quote,
+      cheatsheet: locale.help.quote,
+      onClick({ utils }) {
+        utils.replaceLines((lines) => lines.map((line) => '> ' + line));
+      },
+    },
+    {
+      icon: icons.link,
+      title: locale.toolbar.link,
+      cheatsheet: locale.help.link,
+      onClick({ editor, utils }) {
+        if (editor.somethingSelected()) {
+          utils.wrapText('[', '](url)');
+          const cursor = editor.getCursor();
+          editor.setSelection(
+            { line: cursor.line, ch: cursor.ch + 2 },
+            { line: cursor.line, ch: cursor.ch + 5 }
+          );
+        } else {
+          utils.wrapText('[', '](url)');
+        }
+      },
+    },
+    {
+      icon: icons.code,
+      title: locale.toolbar.code,
+      cheatsheet: locale.help.code,
+      onClick({ utils }) {
+        utils.wrapText('`');
+      },
+    },
+    {
+      icon: icons.codeBlock,
+      title: locale.toolbar.codeBlock,
+      cheatsheet: locale.help.codeBlock,
+      onClick({ editor, utils }) {
+        const { startLine } = utils.appendBlock('```lang\n```');
+        editor.setSelection(
+          { line: startLine, ch: 3 },
+          { line: startLine, ch: 5 }
+        );
+      },
+    },
+    {
+      icon: icons.ul,
+      title: locale.toolbar.ul,
+      cheatsheet: locale.help.ul,
+      onClick({ utils }) {
+        utils.replaceLines((lines) => lines.map((line) => '- ' + line));
+      },
+    },
+    {
+      icon: icons.ol,
+      title: locale.toolbar.ol,
+      cheatsheet: locale.help.ol,
+      onClick({ utils }) {
+        utils.replaceLines((lines) =>
+          lines.map((line, i) => `${i + 1}. ${line}`)
+        );
+      },
+    },
+    {
+      icon: icons.hr,
+      title: locale.toolbar.hr,
+      cheatsheet: locale.help.hr,
+      onClick({ utils }) {
+        utils.appendBlock('---');
+      },
+    },
+  ];
+
+  plugins.forEach((p) => {
+    if (Array.isArray(p.toolbar)) {
+      items.push(...p.toolbar);
+    } else if (p.toolbar) {
+      items.push(p.toolbar);
+    }
+  });
+  return items;
 }

@@ -2,12 +2,21 @@ import type { BytemdPlugin } from 'bytemd';
 import type { Mermaid } from 'mermaid';
 import type mermaidAPI from 'mermaid/mermaidAPI';
 import { icons } from './icons';
+import enUS, { Locale } from './locales/en-US';
 
-export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
+export interface BytemdPluginMermaidOptions {
+  locale?: Locale;
+  mermaidConfig?: mermaidAPI.Config;
+}
+
+export default function mermaid({
+  locale = enUS,
+  mermaidConfig,
+}: BytemdPluginMermaidOptions = {}): BytemdPlugin {
   let m: Mermaid;
 
   return {
-    viewerEffect({ $el }) {
+    effect({ $el }) {
       (async () => {
         const els = $el.querySelectorAll<HTMLElement>(
           'pre>code.language-mermaid'
@@ -16,8 +25,8 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
 
         if (!m) {
           m = await import('mermaid').then((c) => c.default);
-          if (options) {
-            m.initialize(options);
+          if (mermaidConfig) {
+            m.initialize(mermaidConfig);
           }
         }
 
@@ -46,19 +55,17 @@ export default function mermaid(options?: mermaidAPI.Config): BytemdPlugin {
       })();
     },
     toolbar: {
-      mermaid: {
-        tooltip: 'Mermaid diagram',
-        icon: icons.mermaid,
-        onClick({ editor, utils }) {
-          const { startLine } = utils.appendBlock(
-            '```mermaid\ngraph LR\nA--->B\n```'
-          );
-          editor.setSelection(
-            { line: startLine + 1, ch: 0 }, // @ts-ignore
-            { line: startLine + 2 }
-          );
-        },
+      icon: icons.mermaid,
+      onClick({ editor, utils }) {
+        const { startLine } = utils.appendBlock(
+          '```mermaid\ngraph LR\nA--->B\n```'
+        );
+        editor.setSelection(
+          { line: startLine + 1, ch: 0 }, // @ts-ignore
+          { line: startLine + 2 }
+        );
       },
+      ...locale,
     },
   };
 }

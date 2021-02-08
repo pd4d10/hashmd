@@ -1,16 +1,18 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
+  import type { Instance } from 'tippy.js';
   import tippy from 'tippy.js';
-  import { onMount } from 'svelte';
+  import { afterUpdate, onMount } from 'svelte';
   import { createEventDispatcher } from 'svelte';
-  import type { BytemdToolbarItem } from './types';
 
   const dispatch = createEventDispatcher();
 
+  let instance: Instance;
+
   onMount(() => {
     if (tooltip) {
-      tippy(el, {
+      instance = tippy(el, {
         content: tooltip,
         animation: 'scale',
         duration: 100,
@@ -19,9 +21,15 @@
     }
   });
 
+  afterUpdate(() => {
+    instance.setProps({
+      content: tooltip,
+    });
+  });
+
   let el: HTMLElement;
-  export let tooltip: BytemdToolbarItem['tooltip'];
-  export let icon: BytemdToolbarItem['icon'];
+  export let tooltip: string;
+  export let icon: string;
   export let style: string | undefined;
   export let active: boolean;
 </script>

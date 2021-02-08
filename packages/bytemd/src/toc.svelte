@@ -2,10 +2,12 @@
 
 <script lang="ts">
   import type { Root, Element } from 'hast';
+  import type { EditorProps } from './types';
   import { createEventDispatcher } from 'svelte';
 
   export let hast: Root;
   export let currentBlockIndex: number;
+  export let locale: NonNullable<EditorProps['locale']>;
 
   const dispatch = createEventDispatcher();
 
@@ -39,7 +41,7 @@
 </script>
 
 <div class="bytemd-toc">
-  <h2>Table of contents</h2>
+  <h2>{locale.toc.title}</h2>
   <ul>
     {#each items as item, index}
       <li

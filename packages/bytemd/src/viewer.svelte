@@ -22,11 +22,11 @@
   }
 
   let el: HTMLElement;
-  let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = [];
+  let cbs: ReturnType<NonNullable<BytemdPlugin['effect']>>[] = [];
 
   function on() {
     // console.log('von');
-    cbs = plugins.map((p) => p.viewerEffect?.({ $el: el, vfile }));
+    cbs = plugins.map((p) => p.effect?.({ $el: el, vfile }));
   }
   function off() {
     // console.log('voff');

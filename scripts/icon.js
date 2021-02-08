@@ -38,12 +38,12 @@ const meta = {
     image: icons.Pic,
   },
   'plugin-math': {
-    math: icons.Dollar,
-    mathBlock: icons.Formula,
+    inline: icons.Dollar,
+    display: icons.Formula,
   },
   'plugin-math-ssr': {
-    math: icons.Dollar,
-    mathBlock: icons.Formula,
+    inline: icons.Dollar,
+    display: icons.Formula,
   },
   'plugin-mermaid': {
     mermaid: icons.MindMapping,

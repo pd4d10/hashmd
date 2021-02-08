@@ -3,6 +3,7 @@ import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
+import type { BytemdLocale } from './locales/en-US';
 
 export interface EditorContext {
   /**
@@ -29,17 +30,25 @@ export interface ViewerContext {
 
 export interface BytemdToolbarItem {
   /**
-   * Tooltip of toolbar item
-   */
-  tooltip?: string;
-  /**
    * Toolbar Icon (16x16), could be <img> or inline svg
    */
   icon: string;
   /**
+   * Tooltip of toolbar item
+   */
+  title: string;
+  /**
    * Toolbar icon click handler
    */
   onClick(context: EditorContext): void;
+  /**
+   * Markdown syntax cheat sheet
+   */
+  cheatsheet?: string;
+  /**
+   * Keyboard shortcut
+   */
+  shortcut?: string;
 }
 
 export interface BytemdPlugin {
@@ -58,11 +67,7 @@ export interface BytemdPlugin {
   /**
    * Register toolbar items
    */
-  toolbar?: Record<string, BytemdToolbarItem>;
-  /**
-   *
-   */
-  cheatsheet?: { icon: string; text: string; syntax: string }[];
+  toolbar?: BytemdToolbarItem | BytemdToolbarItem[];
   /**
    * Side effect for editor, triggers when plugin list changes
    */
@@ -70,7 +75,7 @@ export interface BytemdPlugin {
   /**
    * Side effect for viewer, triggers when HTML or plugin list changes
    */
-  viewerEffect?(context: ViewerContext): void | (() => void);
+  effect?(context: ViewerContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
@@ -95,6 +100,10 @@ export interface EditorProps extends ViewerProps {
    * https://codemirror.net/doc/manual.html#config
    */
   editorConfig?: Omit<EditorConfiguration, 'value' | 'mode' | 'placeholder'>;
+  /**
+   * Locale
+   */
+  locale?: BytemdLocale;
 }
 
 export interface ViewerProps {

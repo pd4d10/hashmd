@@ -10,7 +10,7 @@ export default function highlight({
 }: HighlightLazyOptions = {}): BytemdPlugin {
   let hljs: typeof H;
   return {
-    viewerEffect({ $el }) {
+    effect({ $el }) {
       (async () => {
         const els = $el.querySelectorAll<HTMLElement>('pre>code');
         if (els.length === 0) return;

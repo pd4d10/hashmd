@@ -1,8 +1,11 @@
 <script lang="ts">
+  import type { EditorProps } from './types';
   import { createEventDispatcher } from 'svelte';
+
   export let scrollVisible: boolean;
   export let value: string;
-  export let scrollSyncEnabled: boolean;
+  export let syncEnabled: boolean;
+  export let locale: NonNullable<EditorProps['locale']>;
 
   const dispatch = createEventDispatcher();
 
@@ -12,8 +15,8 @@
 
 <div class="bytemd-status">
   <div class="bytemd-status-left">
-    <span>Bytes: <strong>{bytes}</strong></span><span
-      >Lines: <strong>{lines}</strong></span
+    <span>{locale.status.bytes}: <strong>{bytes}</strong></span><span
+      >{locale.status.lines}: <strong>{lines}</strong></span
     >
   </div>
   {#if scrollVisible}
@@ -21,10 +24,10 @@
       <label
         ><input
           type="checkbox"
-          checked={scrollSyncEnabled}
-          on:change={(e) => dispatch('sync', !scrollSyncEnabled)}
-        />Scroll sync</label
-      ><span on:click={(e) => dispatch('top')}>Scroll to top</span>
+          checked={syncEnabled}
+          on:change={() => dispatch('sync', !syncEnabled)}
+        />{locale.status.sync}</label
+      ><span on:click={() => dispatch('top')}>{locale.status.top}</span>
     </div>
   {/if}
 </div>

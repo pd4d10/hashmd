@@ -18,26 +18,24 @@ export default function importImage({
 
   return {
     toolbar: {
-      image: {
-        tooltip: 'Image',
-        icon: icons.image,
-        onClick({ utils }) {
-          const input = document.createElement('input');
-          input.type = 'file';
-          input.multiple = true;
-          input.accept = 'image/*';
-          input.addEventListener('input', (e) => {
-            const files = Array.from(input.files ?? []).filter(
-              // input accept would not work if 'all files' is selected
-              (item) => item.type.startsWith('image/')
-            );
+      title: 'Image',
+      icon: icons.image,
+      onClick({ utils }) {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.multiple = true;
+        input.accept = 'image/*';
+        input.addEventListener('input', (e) => {
+          const files = Array.from(input.files ?? []).filter(
+            // input accept would not work if 'all files' is selected
+            (item) => item.type.startsWith('image/')
+          );
 
-            if (files?.length) {
-              handleFiles(files, utils);
-            }
-          });
-          input.click();
-        },
+          if (files?.length) {
+            handleFiles(files, utils);
+          }
+        });
+        input.click();
       },
     },
     editorEffect({ editor, utils }) {
