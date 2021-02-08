@@ -5,7 +5,7 @@ const locale: Locale = {
     title: '行内公式',
     cheatsheet: '$\\TeX$',
   },
-  block: {
+  display: {
     title: '块级公式',
     cheatsheet: '$$↵\\TeX↵$$',
   },
