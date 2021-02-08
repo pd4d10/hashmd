@@ -10,10 +10,10 @@
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import Toc from './toc.svelte';
-  import { createUtils, findStartIndex } from './editor';
+  import { createUtils, findStartIndex, getBuiltinItems } from './editor';
   import Status from './status.svelte';
-  import Help from './help.svelte';
   import { icons } from './icons';
+  import enUS from './locales/en-US';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -22,6 +22,9 @@
   export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300;
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
+  export let locale: NonNullable<EditorProps['locale']> = enUS;
+
+  $: toolbarItems = getBuiltinItems(locale, plugins);
 
   let el: HTMLElement;
   let previewEl: HTMLElement;
@@ -89,7 +92,7 @@
   }
 
   // Scroll sync vars
-  let scrollSyncEnabled = true;
+  let syncEnabled = true;
   let editCalled = false;
   let previewCalled = false;
   let editPs: number[];
@@ -164,7 +167,7 @@
       // console.log(editPs, previewPs);
     }, 1000);
     const editorScrollHandler = () => {
-      if (!scrollSyncEnabled) return;
+      if (!syncEnabled) return;
 
       if (previewCalled) {
         previewCalled = false;
@@ -199,7 +202,7 @@
         previewPs
       );
 
-      if (!scrollSyncEnabled) return;
+      if (!syncEnabled) return;
 
       if (editCalled) {
         editCalled = false;
@@ -235,7 +238,6 @@
 <div
   class={cx('bytemd', `bytemd-mode-${mode}`, {
     'bytemd-fullscreen': fullscreen,
-    // 'bytemd-sidebar-open': sidebar,
   })}
   bind:this={el}
 >
@@ -244,8 +246,9 @@
     {mode}
     {activeTab}
     {sidebar}
-    {plugins}
     {fullscreen}
+    {locale}
+    {toolbarItems}
     on:tab={(e) => {
       activeTab = e.detail;
       if (activeTab === 0 && editor) {
@@ -300,10 +303,25 @@
         {@html icons.close}
       </div>
       {#if sidebar === 'help'}
-        <Help {plugins} />
+        <div class="bytemd-cheatsheet">
+          <h2>{locale.help.cheatsheet}</h2>
+          <ul>
+            {#each toolbarItems as item}
+              {#if item.cheatsheet}
+                <li>
+                  <span class="bytemd-cheatsheet-icon">{@html item.icon}</span
+                  ><span class="bytemd-cheatsheet-text">{item.title}</span><span
+                    class="bytemd-cheatsheet-syntax">{item.cheatsheet}</span
+                  >
+                </li>
+              {/if}
+            {/each}
+          </ul>
+        </div>
       {:else if sidebar === 'toc'}
         <Toc
           {hast}
+          {locale}
           {currentBlockIndex}
           on:click={(e) => {
             const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
@@ -314,11 +332,12 @@
     </div>
   </div>
   <Status
+    {locale}
     scrollVisible={mode === 'split'}
     {value}
-    {scrollSyncEnabled}
+    {syncEnabled}
     on:sync={(e) => {
-      scrollSyncEnabled = e.detail;
+      syncEnabled = e.detail;
     }}
     on:top={() => {
       previewEl.scrollTo({ top: 0, behavior: 'smooth' });

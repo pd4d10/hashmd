@@ -12,6 +12,20 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom';
   import importHtml from '@bytemd/plugin-import-html';
 
+  import en from 'bytemd/lib/locales/en-US';
+  import zh from 'bytemd/lib/locales/zh-CN';
+  import gfmEn from '@bytemd/plugin-gfm/lib/locales/en-US';
+  import gfmZh from '@bytemd/plugin-gfm/lib/locales/zh-CN';
+  import mathEn from '@bytemd/plugin-math/lib/locales/en-US';
+  import mathZh from '@bytemd/plugin-math/lib/locales/zh-CN';
+  import mermaidEn from '@bytemd/plugin-mermaid/lib/locales/en-US';
+  import mermaidZh from '@bytemd/plugin-mermaid/lib/locales/zh-CN';
+
+  const locales = {
+    'en-US': { bytemd: en, gfm: gfmEn, math: mathEn, mermaid: mermaidEn },
+    'zh-CN': { bytemd: zh, gfm: gfmZh, math: mathZh, mermaid: mermaidZh },
+  };
+
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
   import 'highlight.js/styles/vs.css';
@@ -19,6 +33,9 @@
 
   let value = '';
   let mode = 'split';
+  let localeKey = 'en-US';
+
+  $: currentLocale = locales[localeKey];
 
   function handleChange(e) {
     value = e.detail.value;
@@ -45,10 +62,10 @@
 
   $: plugins = [
     enabled.breaks && breaks(),
-    enabled.gfm && gfm(),
+    enabled.gfm && gfm({ locale: currentLocale.gfm }),
     enabled.highlight && highlight(),
-    enabled.math && math(),
-    enabled.mermaid && mermaid(),
+    enabled.math && math({ locale: currentLocale.math }),
+    enabled.mermaid && mermaid({ locale: currentLocale.mermaid }),
     enabled.footnotes && footnotes(),
     enabled['import-image'] &&
       importImage({
@@ -86,17 +103,27 @@
   <div class="line">
     Mode:
     {#each ['split', 'tab'] as m}
-      <label> <input type="radio" bind:group={mode} value={m} /> {m} </label>
+      <label> <input type="radio" bind:group={mode} value={m} />{m}</label>
+    {/each}
+    , Locale:
+    {#each Object.keys(locales) as l}
+      <label> <input type="radio" bind:group={localeKey} value={l} />{l}</label>
     {/each}
   </div>
   <div class="line">
     Plugins:
     {#each Object.keys(enabled) as p}
       {' '}
-      <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
+      <label> <input type="checkbox" bind:checked={enabled[p]} />{p}</label>
     {/each}
   </div>
-  <Editor {value} {mode} {plugins} on:change={handleChange} />
+  <Editor
+    {value}
+    {mode}
+    {plugins}
+    locale={currentLocale.bytemd}
+    on:change={handleChange}
+  />
 </div>
 
 <style>

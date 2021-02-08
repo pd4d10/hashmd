@@ -126,7 +126,7 @@ $sidebar-width: 280px;
     }
     ul {
       padding-left: 0;
-      color: $gray-500;
+      color: $gray-400;
     }
   }
 
@@ -218,37 +218,12 @@ $sidebar-width: 280px;
     }
   }
 
-  // &-mode-split {
-  //   font-size: 0;
-  //   .bytemd-editor {
-  //     display: inline-block;
-  //     width: 50%;
-  //   }
-  //   .bytemd-preview {
-  //     display: inline-block;
-  //     width: 50%;
-  //     box-sizing: border-box;
-  //     border-left: 1px solid $border-color;
-  //   }
-  // }
-
-  // &-sidebar-open {
-  //   .bytemd-editor {
-  //     display: inline-block;
-  //     width: calc(50% - #{$sidebar-width} / 2);
-  //   }
-  //   .bytemd-preview {
-  //     display: inline-block;
-  //     width: calc(50% - #{$sidebar-width} / 2);
-  //   }
-  //   .bytemd-sidebar {
-  //     font-size: 16px;
-  //     box-sizing: border-box;
-  //     border-left: 1px solid $border-color;
-  //     display: inline-block;
-  //     width: $sidebar-width;
-  //   }
-  // }
+  &-mode-split {
+    .bytemd-preview {
+      box-sizing: border-box;
+      border-left: 1px solid $border-color;
+    }
+  }
 }
 
 .tippy-box {

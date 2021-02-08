@@ -19,13 +19,13 @@ test('value', async () => {
 test('plugin', async () => {
   const $ = render(Viewer);
   const off = jest.fn();
-  const viewerEffect = jest.fn(() => off);
+  const effect = jest.fn(() => off);
 
-  $.component.$set({ plugins: [{ viewerEffect }] });
+  $.component.$set({ plugins: [{ effect }] });
   await sleep();
-  expect(viewerEffect).toBeCalled();
-  expect(viewerEffect).toBeCalledTimes(1);
-  expect(viewerEffect).toBeCalledWith<any>(
+  expect(effect).toBeCalled();
+  expect(effect).toBeCalledTimes(1);
+  expect(effect).toBeCalledWith<any>(
     expect.objectContaining({
       // $el: $.container.querySelector('.markdown-body'),
       result: expect.objectContaining({
@@ -35,7 +35,7 @@ test('plugin', async () => {
     })
   );
 
-  $.component.$set({ plugins: [{ viewerEffect }] });
+  $.component.$set({ plugins: [{ effect }] });
   await sleep();
   expect(off).toBeCalled();
   expect(off).toBeCalledTimes(1);

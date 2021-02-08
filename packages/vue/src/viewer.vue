@@ -40,8 +40,7 @@ export default {
     on() {
       if (this.plugins && this.vfile) {
         this.cbs = this.plugins.map(
-          ({ viewerEffect }) =>
-            viewerEffect && viewerEffect({ $el: this.$el, vfile: this.vfile })
+          ({ effect }) => effect && effect({ $el: this.$el, vfile: this.vfile })
         );
       }
     },

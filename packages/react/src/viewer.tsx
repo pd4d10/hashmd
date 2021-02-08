@@ -17,9 +17,7 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
     const $el = elRef.current;
     if (!$el || !vfile) return;
 
-    const cbs = plugins?.map(
-      ({ viewerEffect }) => viewerEffect && viewerEffect({ $el, vfile })
-    );
+    const cbs = plugins?.map(({ effect }) => effect?.({ $el, vfile }));
     return () => {
       cbs?.forEach((cb) => cb && cb());
     };

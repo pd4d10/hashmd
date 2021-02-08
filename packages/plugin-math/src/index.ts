@@ -2,17 +2,22 @@ import type { BytemdPlugin } from 'bytemd';
 import type * as K from 'katex';
 import remarkMath from 'remark-math';
 import { icons } from './icons';
+import enUS, { Locale } from './locales/en-US';
 
-export interface MathOptions {
+export interface BytemdPluginMathOptions {
+  locale?: Locale;
   katexOptions?: Omit<K.KatexOptions, 'displayMode'>;
 }
 
-export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
+export default function math({
+  locale = enUS,
+  katexOptions,
+}: BytemdPluginMathOptions = {}): BytemdPlugin {
   let katex: typeof K;
 
   return {
     remark: (p) => p.use(remarkMath),
-    viewerEffect({ $el }) {
+    effect({ $el }) {
       const renderMath = async (selector: string, displayMode: boolean) => {
         const els = $el.querySelectorAll<HTMLElement>(selector);
         if (els.length === 0) return;
@@ -33,17 +38,16 @@ export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
       renderMath('.math.math-inline', false);
       renderMath('.math.math-display', true);
     },
-    toolbar: {
-      mathInline: {
-        tooltip: 'Math formula',
-        icon: icons.math,
+    toolbar: [
+      {
+        icon: icons.inline,
         onClick({ utils }) {
           utils.wrapText('$');
         },
+        ...locale.inline,
       },
-      math: {
-        tooltip: 'Math formula block',
-        icon: icons.mathBlock,
+      {
+        icon: icons.display,
         onClick({ editor, utils }) {
           const { startLine } = utils.appendBlock('$$\n\\TeX\n$$');
           editor.setSelection(
@@ -51,7 +55,8 @@ export default function math({ katexOptions }: MathOptions = {}): BytemdPlugin {
             { line: startLine + 1, ch: 4 }
           );
         },
+        ...locale.display,
       },
-    },
+    ],
   };
 }

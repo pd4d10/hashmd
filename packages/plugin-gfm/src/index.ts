@@ -1,27 +1,35 @@
 import type { BytemdPlugin } from 'bytemd';
+import enUS, { Locale } from './locales/en-US';
 import remarkGfm, { RemarkGfmOptions } from 'remark-gfm';
 import { icons } from './icons';
 
-export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
+export interface BytemdPluginGfmOptions {
+  locale?: Locale;
+  remarkGfmOptions?: RemarkGfmOptions;
+}
+
+export default function gfm({
+  locale = enUS,
+  remarkGfmOptions,
+}: BytemdPluginGfmOptions = {}): BytemdPlugin {
   return {
-    remark: (u) => u.use(remarkGfm, options),
-    toolbar: {
-      strikethrough: {
-        tooltip: 'Strikethrough',
+    remark: (p) => p.use(remarkGfm, remarkGfmOptions),
+    toolbar: [
+      {
         icon: icons.strikethrough,
         onClick({ utils }) {
           utils.wrapText('~~');
         },
+        ...locale.strike,
       },
-      task: {
-        tooltip: 'Task list',
+      {
         icon: icons.task,
         onClick({ utils }) {
           utils.replaceLines((lines) => lines.map((line) => '- [ ] ' + line));
         },
+        ...locale.task,
       },
-      table: {
-        tooltip: 'Table',
+      {
         icon: icons.table,
         onClick({ editor, utils }) {
           const { startLine } = utils.appendBlock(
@@ -32,23 +40,7 @@ export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
             { line: startLine, ch: 9 }
           );
         },
-      },
-    },
-    cheatsheet: [
-      {
-        icon: icons.strikethrough,
-        text: 'Strikethrough',
-        syntax: '~~text~~',
-      },
-      {
-        icon: icons.task,
-        text: 'Task list',
-        syntax: '- [x] text',
-      },
-      {
-        icon: icons.table,
-        text: 'Table',
-        syntax: '| text | text |',
+        ...locale.table,
       },
     ],
   };
