@@ -84,12 +84,17 @@ export interface EditorProps extends ViewerProps {
   /**
    * Editor display mode
    *
-   * - split: edit on the left and preview on the right
-   * - tab: click tabs to switch between edit and preview
+   * - `split`: edit on the left and preview on the right
+   * - `tab`: click tabs to switch between edit and preview
+   * - `auto`: auto determined by the width of editor container
+   *
+   * @defaultValue `auto`
    */
-  mode?: 'split' | 'tab';
+  mode?: 'split' | 'tab' | 'auto';
   /**
    * Debounce time (ms) for preview
+   *
+   * @defaultValue 300
    */
   previewDebounce?: number;
   /**

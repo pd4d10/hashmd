@@ -10,7 +10,7 @@
   const dispatch = createEventDispatcher();
 
   export let context: EditorContext;
-  export let mode: EditorProps['mode'];
+  export let split: boolean;
   export let activeTab: number;
   export let fullscreen: boolean;
   export let sidebar: false | 'help' | 'toc';
@@ -19,7 +19,7 @@
 </script>
 
 <div class="bytemd-toolbar">
-  {#if mode === 'tab'}
+  {#if !split}
     <div class="bytemd-tabs">
       <span
         on:click={() => dispatch('tab', 0)}
@@ -32,7 +32,7 @@
     </div>
   {/if}
 
-  {#if !(mode === 'tab' && activeTab === 1)}
+  {#if split || activeTab === 0}
     {#each toolbarItems as item}
       <ToolbarButton
         tooltip={item.title}

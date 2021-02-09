@@ -3,7 +3,7 @@
 <script lang="ts">
   import type { Editor, KeyMap } from 'codemirror';
   import type { Root, Element } from 'hast';
-  import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
+  import type { BytemdPlugin, EditorProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import { debounce, throttle } from 'lodash-es';
   import cx from 'classnames';
@@ -19,7 +19,7 @@
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
   export let sanitize: EditorProps['sanitize'];
-  export let mode: EditorProps['mode'] = 'split';
+  export let mode: NonNullable<EditorProps['mode']> = 'auto';
   export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300;
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
@@ -28,10 +28,12 @@
   const dispatch = createEventDispatcher();
 
   $: toolbarItems = getBuiltinItems(locale, plugins);
+  $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800);
 
   let el: HTMLElement;
   let previewEl: HTMLElement;
   let textarea: HTMLTextAreaElement;
+  let containerWidth = Infinity;
 
   let editor: Editor;
   let activeTab = 0;
@@ -42,21 +44,21 @@
     let edit: string;
     let preview: string;
 
-    if (mode === 'tab') {
-      if (activeTab === 0) {
-        edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
-        preview = 'display:none';
-      } else {
-        edit = 'display:none';
-        preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
-      }
-    } else {
+    if (split) {
       if (sidebar) {
         edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
         preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
       } else {
         edit = 'width:50%';
         preview = 'width:50%';
+      }
+    } else {
+      if (activeTab === 0) {
+        edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
+        preview = 'display:none';
+      } else {
+        edit = 'display:none';
+        preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
       }
     }
 
@@ -241,20 +243,27 @@
       passive: true,
     });
 
+    // @ts-ignore
+    new ResizeObserver((entries) => {
+      containerWidth = entries[0].borderBoxSize[0].inlineSize;
+      // console.log(containerWidth);
+    }).observe(el, { box: 'border-box' });
+
     // No need to call `on` because cm instance would change once after init
   });
   onDestroy(off);
 </script>
 
 <div
-  class={cx('bytemd', `bytemd-mode-${mode}`, {
+  class={cx('bytemd', {
+    'bytemd-mode-split': split,
     'bytemd-fullscreen': fullscreen,
   })}
   bind:this={el}
 >
   <Toolbar
     {context}
-    {mode}
+    {split}
     {activeTab}
     {sidebar}
     {fullscreen}
@@ -330,14 +339,18 @@
   </div>
   <Status
     {locale}
-    scrollVisible={mode === 'split'}
+    {split}
     value={debouncedValue}
     {syncEnabled}
     on:sync={(e) => {
       syncEnabled = e.detail;
     }}
     on:top={() => {
-      previewEl.scrollTo({ top: 0, behavior: 'smooth' });
+      if (split || activeTab === 1) {
+        previewEl.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        editor.scrollTo(0, 0);
+      }
     }}
   />
 </div>
