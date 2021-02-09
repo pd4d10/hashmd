@@ -1,13 +1,13 @@
 import type { BytemdPlugin } from 'bytemd';
 import type H from 'highlight.js';
 
-export interface HighlightLazyOptions {
+export interface BytemdPluginHighlightOptions {
   init?(hljs: typeof H): void | Promise<void>;
 }
 
 export default function highlight({
   init,
-}: HighlightLazyOptions = {}): BytemdPlugin {
+}: BytemdPluginHighlightOptions = {}): BytemdPlugin {
   let hljs: typeof H;
   return {
     effect({ $el }) {

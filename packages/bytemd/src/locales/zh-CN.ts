@@ -2,44 +2,63 @@ import { BytemdLocale } from './en-US';
 
 const locale: BytemdLocale = {
   toolbar: {
-    write: '写作',
+    write: '编辑',
     preview: '预览',
     help: '帮助',
     toc: '目录',
     fullscreen: '全屏',
     about: '关于',
-    heading: '标题',
-    bold: '粗体',
-    italic: '斜体',
-    quote: '引用',
-    link: '链接',
-    code: '代码',
-    codeBlock: '代码块',
-    ul: '无序列表',
-    ol: '有序列表',
-    hr: '水平线',
   },
-  help: {
+  sidebar: {
+    toc: '目录',
     cheatsheet: 'Markdown 语法',
-    heading: '## 标题',
-    bold: '**粗体文本**',
-    italic: '*斜体文本*',
-    quote: '> 引用',
-    link: '[链接](url)',
-    code: '`代码`',
-    codeBlock: '```编程语言',
-    ol: '1. 项目',
-    ul: '* 项目',
-    hr: '---',
-  },
-  toc: {
-    title: '目录',
+    shortcuts: '快捷键',
   },
   status: {
-    bytes: '字节数',
+    bytes: '字节',
     lines: '行数',
     sync: '滚动同步',
     top: '回到顶部',
+  },
+  heading: {
+    title: '标题',
+    cheatsheet: '## 标题',
+  },
+  bold: {
+    title: '粗体',
+    cheatsheet: '**粗体文本**',
+  },
+  italic: {
+    title: '斜体',
+    cheatsheet: '_斜体文本_',
+  },
+  quote: {
+    title: '引用',
+    cheatsheet: '> 引用',
+  },
+  link: {
+    title: '链接',
+    cheatsheet: '[链接](url)',
+  },
+  code: {
+    title: '代码',
+    cheatsheet: '`代码`',
+  },
+  pre: {
+    title: '代码块',
+    cheatsheet: '```编程语言',
+  },
+  ul: {
+    title: '无序列表',
+    cheatsheet: '- 项目 1',
+  },
+  ol: {
+    title: '有序列表',
+    cheatsheet: '1. 项目 1',
+  },
+  hr: {
+    title: '水平线',
+    cheatsheet: '---',
   },
 };
 

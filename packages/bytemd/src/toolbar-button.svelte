@@ -11,14 +11,12 @@
   let instance: Instance;
 
   onMount(() => {
-    if (tooltip) {
-      instance = tippy(el, {
-        content: tooltip,
-        animation: 'scale',
-        duration: 100,
-        delay: 100,
-      });
-    }
+    instance = tippy(el, {
+      content: tooltip,
+      animation: 'scale',
+      duration: 100,
+      delay: 100,
+    });
   });
 
   afterUpdate(() => {

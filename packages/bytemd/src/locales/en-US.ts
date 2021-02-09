@@ -6,38 +6,57 @@ const locale = {
     toc: 'Table of contents',
     fullscreen: 'Toggle fullscreen',
     about: 'About',
-    heading: 'Heading',
-    bold: 'Bold',
-    italic: 'Italic',
-    quote: 'Quote',
-    link: 'Link',
-    code: 'Code',
-    codeBlock: 'Code block',
-    ul: 'Unordered list',
-    ol: 'Ordered list',
-    hr: 'Horizontal rule',
   },
-  help: {
-    cheatsheet: 'Markdown Cheat Sheet',
-    heading: '## heading',
-    bold: '**bold text**',
-    italic: '*italic text*',
-    quote: '> quote',
-    link: '[text](url)',
-    code: '`code`',
-    codeBlock: '```lang',
-    ol: '1. item',
-    ul: '* item',
-    hr: '---',
-  },
-  toc: {
-    title: 'Table of contents',
+  sidebar: {
+    toc: 'Table of contents',
+    cheatsheet: 'Cheat Sheet',
+    shortcuts: 'Shortcuts',
   },
   status: {
     bytes: 'Bytes',
     lines: 'Lines',
     sync: 'Scroll sync',
     top: 'Scroll to top',
+  },
+  heading: {
+    title: 'Heading',
+    cheatsheet: '## heading',
+  },
+  bold: {
+    title: 'Bold',
+    cheatsheet: '**bold text**',
+  },
+  italic: {
+    title: 'Italic',
+    cheatsheet: '_italic text_',
+  },
+  quote: {
+    title: 'Quote',
+    cheatsheet: '> quote',
+  },
+  link: {
+    title: 'Link',
+    cheatsheet: '[text](url)',
+  },
+  code: {
+    title: 'Code',
+    cheatsheet: '`code`',
+  },
+  pre: {
+    title: 'Code block',
+    cheatsheet: '```lang',
+  },
+  ul: {
+    title: 'Unordered list',
+    cheatsheet: '- item 1',
+  },
+  ol: {
+    title: 'Ordered list',
+    cheatsheet: '1. item 1',
+  },
+  hr: {
+    title: 'Horizontal rule',
+    cheatsheet: '---',
   },
 };
 
