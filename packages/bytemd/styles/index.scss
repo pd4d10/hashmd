@@ -35,11 +35,7 @@ $sidebar-width: 280px;
         background-color: $gray-200;
       }
       &-active {
-        color: $blue-400;
-        background-color: $blue-000;
-        &:hover {
-          background-color: $blue-100;
-        }
+        color: $blue-500;
       }
     }
   }
@@ -74,7 +70,7 @@ $sidebar-width: 280px;
       box-sizing: border-box;
       font-size: 14px;
       line-height: 1.5;
-      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+      // font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
       pre.CodeMirror-placeholder {
         color: $gray-400;
       }
@@ -130,7 +126,7 @@ $sidebar-width: 280px;
     }
   }
 
-  &-cheatsheet {
+  &-help {
     ul {
       line-height: 20px;
       font-size: 0;
@@ -148,10 +144,10 @@ $sidebar-width: 280px;
       list-style: none;
       margin-bottom: 10px;
     }
-    &-text {
+    &-title {
       padding-left: 8px;
     }
-    &-syntax {
+    &-content {
       float: right;
     }
   }

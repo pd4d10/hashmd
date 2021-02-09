@@ -41,7 +41,7 @@
 </script>
 
 <div class="bytemd-toc">
-  <h2>{locale.toc.title}</h2>
+  <h2>{locale.sidebar.toc}</h2>
   <ul>
     {#each items as item, index}
       <li

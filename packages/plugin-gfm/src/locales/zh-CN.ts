@@ -7,7 +7,7 @@ const locale: Locale = {
   },
   task: {
     title: '任务列表',
-    cheatsheet: '- [ ] todo',
+    cheatsheet: '- [ ] 待办事项',
   },
   table: {
     title: '表格',

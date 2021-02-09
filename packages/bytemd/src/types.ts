@@ -42,11 +42,13 @@ export interface BytemdToolbarItem {
    */
   onClick(context: EditorContext): void;
   /**
-   * Markdown syntax cheat sheet
+   * If specified, this record will be added to the Markdown cheat sheet
    */
   cheatsheet?: string;
   /**
-   * Keyboard shortcut
+   * shortcut handler
+   *
+   * If specified, this record will be added to the Keyboard shortcut
    */
   shortcut?: string;
 }

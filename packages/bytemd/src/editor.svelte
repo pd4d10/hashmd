@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { Editor } from 'codemirror';
+  import type { Editor, KeyMap } from 'codemirror';
   import type { Root, Element } from 'hast';
   import type { BytemdPlugin, EditorProps, ViewerProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
@@ -14,6 +14,7 @@
   import Status from './status.svelte';
   import { icons } from './icons';
   import enUS from './locales/en-US';
+  import Help from './help.svelte';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -24,17 +25,18 @@
   export let editorConfig: EditorProps['editorConfig'];
   export let locale: NonNullable<EditorProps['locale']> = enUS;
 
+  const dispatch = createEventDispatcher();
+
   $: toolbarItems = getBuiltinItems(locale, plugins);
 
   let el: HTMLElement;
   let previewEl: HTMLElement;
   let textarea: HTMLTextAreaElement;
 
-  let viewerProps: ViewerProps = { value, plugins, sanitize };
   let editor: Editor;
   let activeTab = 0;
   let fullscreen = false;
-  let sidebar: false | 'help' | 'toc' = 'toc'; // false;
+  let sidebar: false | 'help' | 'toc' = false;
 
   $: styles = (() => {
     let edit: string;
@@ -64,25 +66,34 @@
   $: context = { editor, $el: el, utils: createUtils(editor) };
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
-  const dispatch = createEventDispatcher();
+  let keyMap: KeyMap = {};
 
   function on() {
     // console.log('on', plugins);
     cbs = plugins.map((p) => p.editorEffect?.(context));
+    keyMap = {};
+    toolbarItems.forEach((item) => {
+      if (item.shortcut) {
+        keyMap[item.shortcut] = () => item.onClick(context);
+      }
+    });
+    editor.addKeyMap(keyMap);
   }
   function off() {
     // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb());
+    editor.removeKeyMap(keyMap);
   }
 
-  const updateViewerValue = debounce(() => {
-    viewerProps = { value, plugins, sanitize };
+  let debouncedValue = value;
+  const setDebouncedValue = debounce((value: string) => {
+    debouncedValue = value;
   }, previewDebounce);
+  $: setDebouncedValue(value);
 
   $: if (editor && value !== editor.getValue()) {
     editor.setValue(value);
   }
-  $: if (value != null) updateViewerValue();
 
   $: if (editor && el && plugins && hast) {
     off();
@@ -285,9 +296,9 @@
     </div>
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       <Viewer
-        value={viewerProps.value}
-        plugins={viewerProps.plugins}
-        sanitize={viewerProps.sanitize}
+        value={debouncedValue}
+        {plugins}
+        {sanitize}
         on:hast={(e) => {
           hast = e.detail;
         }}
@@ -303,21 +314,7 @@
         {@html icons.close}
       </div>
       {#if sidebar === 'help'}
-        <div class="bytemd-cheatsheet">
-          <h2>{locale.help.cheatsheet}</h2>
-          <ul>
-            {#each toolbarItems as item}
-              {#if item.cheatsheet}
-                <li>
-                  <span class="bytemd-cheatsheet-icon">{@html item.icon}</span
-                  ><span class="bytemd-cheatsheet-text">{item.title}</span><span
-                    class="bytemd-cheatsheet-syntax">{item.cheatsheet}</span
-                  >
-                </li>
-              {/if}
-            {/each}
-          </ul>
-        </div>
+        <Help {locale} {toolbarItems} />
       {:else if sidebar === 'toc'}
         <Toc
           {hast}
@@ -334,7 +331,7 @@
   <Status
     {locale}
     scrollVisible={mode === 'split'}
-    {value}
+    value={debouncedValue}
     {syncEnabled}
     on:sync={(e) => {
       syncEnabled = e.detail;

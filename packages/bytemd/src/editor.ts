@@ -93,6 +93,15 @@ export function findStartIndex(num: number, nums: number[]) {
   startIndex = Math.max(startIndex, 0); // ensure >= 0
   return startIndex;
 }
+
+const getShortcutWithPrefix = (key: string) => {
+  if (typeof navigator !== 'undefined' && /Mac/.test(navigator.platform)) {
+    return 'Cmd-' + key;
+  } else {
+    return 'Ctrl-' + key;
+  }
+};
+
 export function getBuiltinItems(
   locale: BytemdLocale,
   plugins: BytemdPlugin[]
@@ -100,40 +109,37 @@ export function getBuiltinItems(
   const items: BytemdToolbarItem[] = [
     {
       icon: icons.heading,
-      title: locale.toolbar.heading,
-      cheatsheet: locale.help.heading,
       onClick({ utils }) {
         utils.replaceLines((lines) => lines.map((line) => '# ' + line));
       },
+      ...locale.heading,
     },
     {
       icon: icons.bold,
-      title: locale.toolbar.bold,
-      cheatsheet: locale.help.bold,
+      shortcut: getShortcutWithPrefix('B'),
       onClick({ utils }) {
         utils.wrapText('**');
       },
+      ...locale.bold,
     },
     {
-      title: locale.toolbar.italic,
       icon: icons.italic,
-      cheatsheet: locale.help.italic,
+      shortcut: getShortcutWithPrefix('I'),
       onClick({ utils }) {
-        utils.wrapText('*');
+        utils.wrapText('_');
       },
+      ...locale.italic,
     },
     {
       icon: icons.quote,
-      title: locale.toolbar.quote,
-      cheatsheet: locale.help.quote,
       onClick({ utils }) {
         utils.replaceLines((lines) => lines.map((line) => '> ' + line));
       },
+      ...locale.quote,
     },
     {
       icon: icons.link,
-      title: locale.toolbar.link,
-      cheatsheet: locale.help.link,
+      shortcut: getShortcutWithPrefix('K'),
       onClick({ editor, utils }) {
         if (editor.somethingSelected()) {
           utils.wrapText('[', '](url)');
@@ -146,52 +152,48 @@ export function getBuiltinItems(
           utils.wrapText('[', '](url)');
         }
       },
+      ...locale.link,
     },
     {
       icon: icons.code,
-      title: locale.toolbar.code,
-      cheatsheet: locale.help.code,
       onClick({ utils }) {
         utils.wrapText('`');
       },
+      ...locale.code,
     },
     {
       icon: icons.codeBlock,
-      title: locale.toolbar.codeBlock,
-      cheatsheet: locale.help.codeBlock,
       onClick({ editor, utils }) {
-        const { startLine } = utils.appendBlock('```lang\n```');
+        const { startLine } = utils.appendBlock('```js\n```');
         editor.setSelection(
           { line: startLine, ch: 3 },
           { line: startLine, ch: 5 }
         );
       },
+      ...locale.pre,
     },
     {
       icon: icons.ul,
-      title: locale.toolbar.ul,
-      cheatsheet: locale.help.ul,
       onClick({ utils }) {
         utils.replaceLines((lines) => lines.map((line) => '- ' + line));
       },
+      ...locale.ul,
     },
     {
       icon: icons.ol,
-      title: locale.toolbar.ol,
-      cheatsheet: locale.help.ol,
       onClick({ utils }) {
         utils.replaceLines((lines) =>
           lines.map((line, i) => `${i + 1}. ${line}`)
         );
       },
+      ...locale.ol,
     },
     {
       icon: icons.hr,
-      title: locale.toolbar.hr,
-      cheatsheet: locale.help.hr,
       onClick({ utils }) {
         utils.appendBlock('---');
       },
+      ...locale.hr,
     },
   ];
 
