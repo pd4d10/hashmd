@@ -32,7 +32,7 @@
   import 'katex/dist/katex.css';
 
   let value = '';
-  let mode = 'split';
+  let mode = 'auto';
   let localeKey = 'en-US';
 
   $: currentLocale = locales[localeKey];
@@ -89,7 +89,7 @@
     //       console.log('off', cm, el);
     //     };
     //   },
-    //   viewerEffect(el, result) {
+    //   effect(el, result) {
     //     console.log('on', el, result);
     //     return () => {
     //       console.log('off', el, result);
@@ -102,7 +102,7 @@
 <div class="container">
   <div class="line">
     Mode:
-    {#each ['split', 'tab'] as m}
+    {#each ['auto', 'split', 'tab'] as m}
       <label> <input type="radio" bind:group={mode} value={m} />{m}</label>
     {/each}
     , Locale:
@@ -128,7 +128,7 @@
 
 <style>
   .container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   .line {

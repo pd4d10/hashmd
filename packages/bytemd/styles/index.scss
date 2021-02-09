@@ -97,14 +97,13 @@ $sidebar-width: 280px;
     display: inline-block;
     height: 100%;
     overflow: auto;
-
     font-size: 16px;
     box-sizing: border-box;
     border-left: 1px solid $border-color;
-    display: inline-block;
     width: $sidebar-width;
     position: relative;
     padding: 16px;
+    vertical-align: top; // Safari
     &-close {
       position: absolute;
       padding: 16px;
@@ -190,7 +189,7 @@ $sidebar-width: 280px;
       float: right;
       label,
       span {
-        padding-right: 16px;
+        margin-right: 16px;
         cursor: pointer;
       }
       span:hover {
