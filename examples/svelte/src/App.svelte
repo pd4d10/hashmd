@@ -7,10 +7,8 @@
   import breaks from '@bytemd/plugin-breaks';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
-  import importImage from '@bytemd/plugin-import-image';
   import frontmatter from '@bytemd/plugin-frontmatter';
   import mediumZoom from '@bytemd/plugin-medium-zoom';
-  import importHtml from '@bytemd/plugin-import-html';
 
   import en from 'bytemd/lib/locales/en-US';
   import zh from 'bytemd/lib/locales/zh-CN';
@@ -49,53 +47,24 @@
 
   let enabled = {
     breaks: false,
+    footnotes: true,
+    frontmatter: true,
     gfm: true,
     highlight: true,
     math: true,
-    mermaid: true,
-    frontmatter: true,
-    footnotes: true,
-    'import-html': true,
-    'import-image': true,
     'medium-zoom': true,
+    mermaid: true,
   };
 
   $: plugins = [
     enabled.breaks && breaks(),
+    enabled.footnotes && footnotes(),
+    enabled.frontmatter && frontmatter(),
     enabled.gfm && gfm({ locale: currentLocale.gfm }),
     enabled.highlight && highlight(),
     enabled.math && math({ locale: currentLocale.math }),
-    enabled.mermaid && mermaid({ locale: currentLocale.mermaid }),
-    enabled.footnotes && footnotes(),
-    enabled['import-image'] &&
-      importImage({
-        upload(files) {
-          return Promise.all(
-            files.map((file) => {
-              return ['https://picsum.photos/300'];
-            })
-          );
-        },
-      }),
-    enabled.frontmatter && frontmatter(),
-    enabled['import-html'] && importHtml(),
     enabled['medium-zoom'] && mediumZoom(),
-
-    // For test:
-    // {
-    //   editorEffect(cm, el) {
-    //     console.log('on', cm, el);
-    //     return () => {
-    //       console.log('off', cm, el);
-    //     };
-    //   },
-    //   effect(el, result) {
-    //     console.log('on', el, result);
-    //     return () => {
-    //       console.log('off', el, result);
-    //     };
-    //   },
-    // },
+    enabled.mermaid && mermaid({ locale: currentLocale.mermaid }),
   ].filter((x) => x);
 </script>
 
@@ -122,6 +91,14 @@
     {mode}
     {plugins}
     locale={currentLocale.bytemd}
+    uploadImages={(files) => {
+      return Promise.all(
+        files.map((file) => {
+          // TODO:
+          return 'https://picsum.photos/300';
+        })
+      );
+    }}
     on:change={handleChange}
   />
 </div>

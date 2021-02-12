@@ -28,14 +28,12 @@
   let el: HTMLElement;
   export let tooltip: string;
   export let icon: string;
-  export let style: string | undefined;
   export let active: boolean;
 </script>
 
 <span
   bind:this={el}
   on:click={() => dispatch('click')}
-  {style}
   class="bytemd-toolbar-icon"
   class:bytemd-toolbar-icon-active={active}
 >

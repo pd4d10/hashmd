@@ -16,9 +16,9 @@ export default function mermaid({
   let m: Mermaid;
 
   return {
-    effect({ $el }) {
+    effect({ markdownBody }) {
       (async () => {
-        const els = $el.querySelectorAll<HTMLElement>(
+        const els = markdownBody.querySelectorAll<HTMLElement>(
           'pre>code.language-mermaid'
         );
         if (els.length === 0) return;
@@ -54,12 +54,10 @@ export default function mermaid({
         });
       })();
     },
-    toolbar: {
+    action: {
       icon: icons.mermaid,
-      onClick({ editor, utils }) {
-        const { startLine } = utils.appendBlock(
-          '```mermaid\ngraph LR\nA--->B\n```'
-        );
+      handler({ editor, appendBlock }) {
+        const { startLine } = appendBlock('```mermaid\ngraph LR\nA--->B\n```');
         editor.setSelection(
           { line: startLine + 1, ch: 0 }, // @ts-ignore
           { line: startLine + 2 }

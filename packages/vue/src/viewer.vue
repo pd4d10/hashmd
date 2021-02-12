@@ -40,7 +40,9 @@ export default {
     on() {
       if (this.plugins && this.vfile) {
         this.cbs = this.plugins.map(
-          ({ effect }) => effect && effect({ $el: this.$el, vfile: this.vfile })
+          ({ effect }) =>
+            effect &&
+            effect({ markdownBody: this.markdownBody, vfile: this.vfile })
         );
       }
     },
@@ -56,7 +58,9 @@ export default {
       const href = $.getAttribute('href');
       if (!href || !href.startsWith('#')) return;
 
-      const dest = this.$el.querySelector('#user-content-' + href.slice(1));
+      const dest = this.markdownBody.querySelector(
+        '#user-content-' + href.slice(1)
+      );
       if (dest) dest.scrollIntoView();
     },
   },

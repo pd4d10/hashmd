@@ -30,7 +30,7 @@ export function getProcessor({
 
   if (typeof sanitize === 'function') {
     schema = sanitize(schema);
-  } else if (sanitize?.allowStyle) {
+  } else if (sanitize?.allowInlineStyle) {
     schema.attributes!['*'].push('style');
   }
 

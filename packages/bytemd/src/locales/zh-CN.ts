@@ -38,7 +38,11 @@ const locale: BytemdLocale = {
   },
   link: {
     title: '链接',
-    cheatsheet: '[链接](url)',
+    cheatsheet: '[文本](url)',
+  },
+  image: {
+    title: '图片',
+    cheatsheet: '![alt](url)',
   },
   code: {
     title: '代码',

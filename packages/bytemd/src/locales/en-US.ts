@@ -9,7 +9,7 @@ const locale = {
   },
   sidebar: {
     toc: 'Table of contents',
-    cheatsheet: 'Cheat Sheet',
+    cheatsheet: 'Markdown Cheat Sheet',
     shortcuts: 'Shortcuts',
   },
   status: {
@@ -37,6 +37,10 @@ const locale = {
   link: {
     title: 'Link',
     cheatsheet: '[text](url)',
+  },
+  image: {
+    title: 'Image',
+    cheatsheet: '![alt](url)',
   },
   code: {
     title: 'Code',

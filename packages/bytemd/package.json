@@ -39,6 +39,7 @@
     "@types/classnames": "^2.2.11",
     "@types/lodash-es": "^4.17.4",
     "classnames": "^2.2.6",
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.15",
+    "select-files": "^1.0.1"
   }
 }

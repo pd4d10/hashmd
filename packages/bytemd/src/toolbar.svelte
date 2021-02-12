@@ -4,77 +4,77 @@
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import { capitalize } from 'lodash-es';
-  import type { EditorProps, EditorContext, BytemdToolbarItem } from './types';
+  import type { EditorProps, BytemdEditorContext, BytemdAction } from './types';
   import { icons } from './icons';
 
   const dispatch = createEventDispatcher();
 
-  export let context: EditorContext;
+  export let context: BytemdEditorContext;
   export let split: boolean;
   export let activeTab: number;
   export let fullscreen: boolean;
   export let sidebar: false | 'help' | 'toc';
   export let locale: NonNullable<EditorProps['locale']>;
-  export let toolbarItems: BytemdToolbarItem[];
+  export let actions: BytemdAction[];
 </script>
 
 <div class="bytemd-toolbar">
-  {#if !split}
-    <div class="bytemd-tabs">
+  <div class="bytemd-toolbar-left">
+    {#if split}
+      {#each actions as item}
+        {#if item.handler}
+          <ToolbarButton
+            tooltip={item.title + (item.shortcut ? ` <${item.shortcut}>` : '')}
+            icon={item.icon}
+            active={false}
+            on:click={() => item.handler && item.handler(context)}
+          />
+        {/if}
+      {/each}
+    {:else}
       <span
         on:click={() => dispatch('tab', 0)}
-        class:bytemd-tab-active={activeTab === 0}>{locale.toolbar.write}</span
+        class="bytemd-toolbar-tab"
+        class:bytemd-toolbar-tab-active={activeTab === 0}
+        >{locale.toolbar.write}</span
       ><span
         on:click={() => dispatch('tab', 1)}
-        class:bytemd-tab-active={activeTab === 1}
+        class="bytemd-toolbar-tab"
+        class:bytemd-toolbar-tab-active={activeTab === 1}
         >{capitalize(locale.toolbar.preview)}</span
       >
-    </div>
-  {/if}
+    {/if}
+  </div>
 
-  {#if split || activeTab === 0}
-    {#each toolbarItems as item}
-      <ToolbarButton
-        tooltip={item.title}
-        icon={item.icon}
-        style={undefined}
-        active={false}
-        on:click={() => item.onClick(context)}
-      />
-    {/each}
-  {/if}
-
-  <ToolbarButton
-    tooltip={locale.toolbar.about}
-    icon={icons.info}
-    style="float:right"
-    active={false}
-    on:click={() => {
-      window.open('https://github.com/bytedance/bytemd');
-    }}
-  /><ToolbarButton
-    tooltip={locale.toolbar.fullscreen}
-    icon={fullscreen ? icons.fullscreenOff : icons.fullscreenOn}
-    style="float:right"
-    active={false}
-    on:click={() => {
-      dispatch('click', 'fullscreen');
-    }}
-  /><ToolbarButton
-    tooltip={locale.toolbar.help}
-    icon={icons.help}
-    style="float:right"
-    active={sidebar === 'help'}
-    on:click={() => {
-      dispatch('click', 'help');
-    }}
-  /><ToolbarButton
-    tooltip={locale.toolbar.toc}
-    icon={icons.toc}
-    style="float:right"
-    active={sidebar === 'toc'}
-    on:click={() => {
-      dispatch('click', 'toc');
-    }}
-  />
+  <div class="bytemd-toolbar-right">
+    <ToolbarButton
+      tooltip={locale.toolbar.toc}
+      icon={icons.toc}
+      active={sidebar === 'toc'}
+      on:click={() => {
+        dispatch('click', 'toc');
+      }}
+    /><ToolbarButton
+      tooltip={locale.toolbar.help}
+      icon={icons.help}
+      active={sidebar === 'help'}
+      on:click={() => {
+        dispatch('click', 'help');
+      }}
+    /><ToolbarButton
+      tooltip={locale.toolbar.fullscreen}
+      icon={fullscreen ? icons.fullscreenOff : icons.fullscreenOn}
+      active={false}
+      on:click={() => {
+        dispatch('click', 'fullscreen');
+      }}
+    /><ToolbarButton
+      tooltip={locale.toolbar.about}
+      icon={icons.info}
+      active={false}
+      on:click={() => {
+        window.open('https://github.com/bytedance/bytemd');
+      }}
+    />
+  </div>
 </div>

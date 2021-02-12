@@ -1,14 +1,15 @@
 <script lang="ts">
   import type { BytemdLocale } from './locales/en-US';
-  import type { BytemdToolbarItem } from './types';
-  export let toolbarItems: BytemdToolbarItem[];
+  import type { BytemdAction } from './types';
+
+  export let actions: BytemdAction[];
   export let locale: BytemdLocale;
 </script>
 
 <div class="bytemd-help">
   <h2>{locale.sidebar.cheatsheet}</h2>
   <ul>
-    {#each toolbarItems as item}
+    {#each actions as item}
       {#if item.cheatsheet}
         <li>
           <span class="bytemd-help-icon">{@html item.icon}</span><span
@@ -22,7 +23,7 @@
   </ul>
   <h2>{locale.sidebar.shortcuts}</h2>
   <ul>
-    {#each toolbarItems as item}
+    {#each actions as item}
       {#if item.shortcut}
         <li>
           <span class="bytemd-help-icon">{@html item.icon}</span><span

@@ -1,11 +1,12 @@
 import type { Editor } from 'codemirror';
-import type { BytemdPlugin, BytemdToolbarItem } from './types';
+import type { BytemdPlugin, BytemdAction, EditorProps } from './types';
 import type { BytemdLocale } from './locales/en-US';
 import { icons } from './icons';
+import selectFiles from 'select-files';
 
-export type EditorUtils = ReturnType<typeof createUtils>;
+export type EditorUtils = ReturnType<typeof createEditorUtils>;
 
-export function createUtils(editor: Editor) {
+export function createEditorUtils(editor: Editor) {
   return {
     /**
      * Wrap text with decorators, for example:
@@ -102,106 +103,117 @@ const getShortcutWithPrefix = (key: string) => {
   }
 };
 
-export function getBuiltinItems(
+export function getBuiltinActions(
   locale: BytemdLocale,
-  plugins: BytemdPlugin[]
-): BytemdToolbarItem[] {
-  const items: BytemdToolbarItem[] = [
+  plugins: BytemdPlugin[],
+  uploadImages: EditorProps['uploadImages']
+): BytemdAction[] {
+  const items: BytemdAction[] = [
     {
-      icon: icons.heading,
-      onClick({ utils }) {
-        utils.replaceLines((lines) => lines.map((line) => '# ' + line));
-      },
       ...locale.heading,
+      icon: icons.heading,
+      handler({ replaceLines }) {
+        replaceLines((lines) => lines.map((line) => '# ' + line));
+      },
     },
     {
+      ...locale.bold,
       icon: icons.bold,
       shortcut: getShortcutWithPrefix('B'),
-      onClick({ utils }) {
-        utils.wrapText('**');
+      handler({ wrapText }) {
+        wrapText('**');
       },
-      ...locale.bold,
     },
     {
+      ...locale.italic,
       icon: icons.italic,
       shortcut: getShortcutWithPrefix('I'),
-      onClick({ utils }) {
-        utils.wrapText('_');
+      handler({ wrapText }) {
+        wrapText('_');
       },
-      ...locale.italic,
     },
     {
-      icon: icons.quote,
-      onClick({ utils }) {
-        utils.replaceLines((lines) => lines.map((line) => '> ' + line));
-      },
       ...locale.quote,
+      icon: icons.quote,
+      handler({ replaceLines }) {
+        replaceLines((lines) => lines.map((line) => '> ' + line));
+      },
     },
     {
+      ...locale.link,
       icon: icons.link,
       shortcut: getShortcutWithPrefix('K'),
-      onClick({ editor, utils }) {
+      handler({ editor, wrapText }) {
         if (editor.somethingSelected()) {
-          utils.wrapText('[', '](url)');
+          wrapText('[', '](url)');
           const cursor = editor.getCursor();
           editor.setSelection(
             { line: cursor.line, ch: cursor.ch + 2 },
             { line: cursor.line, ch: cursor.ch + 5 }
           );
         } else {
-          utils.wrapText('[', '](url)');
+          wrapText('[', '](url)');
         }
       },
-      ...locale.link,
     },
     {
-      icon: icons.code,
-      onClick({ utils }) {
-        utils.wrapText('`');
-      },
+      ...locale.image,
+      icon: icons.image,
+      handler: uploadImages
+        ? async ({ appendBlock }) => {
+            const fileList = await selectFiles({
+              accept: 'image/*',
+              multiple: true,
+            });
+            const files = Array.from(fileList ?? []);
+            const urls = await uploadImages(files);
+            appendBlock(urls.map((url) => `![](${url})`).join('\n\n'));
+          }
+        : undefined,
+    },
+    {
       ...locale.code,
+      icon: icons.code,
+      handler({ wrapText }) {
+        wrapText('`');
+      },
     },
     {
+      ...locale.pre,
       icon: icons.codeBlock,
-      onClick({ editor, utils }) {
-        const { startLine } = utils.appendBlock('```js\n```');
+      handler({ editor, appendBlock }) {
+        const { startLine } = appendBlock('```js\n```');
         editor.setSelection(
           { line: startLine, ch: 3 },
           { line: startLine, ch: 5 }
         );
       },
-      ...locale.pre,
     },
     {
-      icon: icons.ul,
-      onClick({ utils }) {
-        utils.replaceLines((lines) => lines.map((line) => '- ' + line));
-      },
       ...locale.ul,
+      icon: icons.ul,
+      handler({ replaceLines }) {
+        replaceLines((lines) => lines.map((line) => '- ' + line));
+      },
     },
     {
-      icon: icons.ol,
-      onClick({ utils }) {
-        utils.replaceLines((lines) =>
-          lines.map((line, i) => `${i + 1}. ${line}`)
-        );
-      },
       ...locale.ol,
+      icon: icons.ol,
+      handler({ replaceLines }) {
+        replaceLines((lines) => lines.map((line, i) => `${i + 1}. ${line}`));
+      },
     },
     {
-      icon: icons.hr,
-      onClick({ utils }) {
-        utils.appendBlock('---');
-      },
       ...locale.hr,
+      icon: icons.hr,
     },
   ];
 
   plugins.forEach((p) => {
-    if (Array.isArray(p.toolbar)) {
-      items.push(...p.toolbar);
-    } else if (p.toolbar) {
-      items.push(p.toolbar);
+    if (Array.isArray(p.action)) {
+      items.push(...p.action);
+    } else if (p.action) {
+      items.push(p.action);
     }
   });
   return items;

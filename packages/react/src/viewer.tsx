@@ -14,10 +14,10 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
   }, [value, sanitize, plugins]);
 
   useEffect(() => {
-    const $el = elRef.current;
-    if (!$el || !vfile) return;
+    const markdownBody = elRef.current;
+    if (!markdownBody || !vfile) return;
 
-    const cbs = plugins?.map(({ effect }) => effect?.({ $el, vfile }));
+    const cbs = plugins?.map(({ effect }) => effect?.({ markdownBody, vfile }));
     return () => {
       cbs?.forEach((cb) => cb && cb());
     };

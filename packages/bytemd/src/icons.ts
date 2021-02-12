@@ -2,6 +2,10 @@
 export const icons = {
   heading:
     '<svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1v13.33M12.997 1v13.33M3 7.665h9.998" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  h1:
+    '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 8v32M25 8v32M6 24h19M34.226 24L39 19.017V40" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  h2:
+    '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 8v32M24 8v32M7 24h16M32 25c0-3.167 2.667-5 5-5s5 1.833 5 5c0 5.7-10 9.933-10 15h10" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   bold:
     '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M24 24c5.506 0 9.969-4.477 9.969-10S29.506 4 24 4H11v20h13zM28.031 44C33.537 44 38 39.523 38 34s-4.463-10-9.969-10H11v20h17.031z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   italic:
@@ -10,6 +14,8 @@ export const icons = {
     '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.853 9.116c-7.53 4.836-11.714 10.465-12.55 16.887C5 36 13.94 40.893 18.47 36.497 23 32.1 20.285 26.52 17.005 24.994c-3.28-1.525-5.286-.994-4.936-3.032.35-2.039 5.016-7.69 9.116-10.323a.749.749 0 00.114-1.02L20.285 9.3c-.44-.572-.862-.55-1.432-.185zM38.679 9.116c-7.53 4.836-11.714 10.465-12.55 16.887-1.303 9.997 7.637 14.89 12.167 10.494 4.53-4.397 1.815-9.977-1.466-11.503-3.28-1.525-5.286-.994-4.936-3.032.35-2.039 5.017-7.69 9.117-10.323a.749.749 0 00.113-1.02L40.11 9.3c-.44-.572-.862-.55-1.431-.185z" fill="currentColor"/></svg>',
   link:
     '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.24 16.373l-9.14-9.14c-2.661-2.661-7.035-2.603-9.769.131-2.733 2.734-2.792 7.107-.13 9.768l7.935 7.936M32.903 23.003l7.935 7.936c2.661 2.66 2.603 7.034-.13 9.768-2.735 2.734-7.108 2.792-9.77.131l-9.14-9.14M26.11 26.142c2.733-2.734 2.791-7.108.13-9.769M21.799 21.799c-2.734 2.733-2.793 7.107-.131 9.768" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  image:
+    '<svg width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity=".01" fill-rule="evenodd" d="M0 0h48v48H0z"/><g transform="translate(5 8)" stroke-width="4" stroke-linejoin="round" stroke="currentColor" fill="none"><path d="M2 0h34a2 2 0 012 2v28a2 2 0 01-2 2H2a2 2 0 01-2-2V2a2 2 0 012-2z" stroke-linecap="round"/><circle stroke-linecap="round" cx="9.5" cy="8.5" r="1.5"/><path d="M10 16l5 4 6-7 17 13v4a2 2 0 01-2 2H2a2 2 0 01-2-2v-4l10-10z"/></g></svg>',
   code:
     '<svg width="1em" height="1em" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 13L4 25.432 16 37M32 13l12 12.432L32 37" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 4l-7 40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>',
   codeBlock:

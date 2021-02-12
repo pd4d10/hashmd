@@ -8,15 +8,15 @@ const svgo = new Svgo();
 
 const meta = {
   bytemd: {
-    heading: () => `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.9971 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3 7.66498H12.9975" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,
+    heading: () =>
+      `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.9971 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 7.66498H12.9975" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    h1: icons.H1,
+    h2: icons.H2,
     bold: icons.TextBold,
     italic: icons.TextItalic,
     quote: icons.Quote,
     link: icons.LinkOne,
+    image: icons.Pic,
     code: icons.Code,
     codeBlock: icons.CodeBrackets,
     ol: icons.OrderedList,
@@ -34,19 +34,16 @@ const meta = {
     task: icons.CheckCorrect,
     table: icons.InsertTable,
   },
-  'plugin-import-image': {
-    image: icons.Pic,
-  },
   'plugin-math': {
-    inline: icons.Dollar,
+    inline: icons.Inline,
     display: icons.Formula,
   },
   'plugin-math-ssr': {
-    inline: icons.Dollar,
+    inline: icons.Inline,
     display: icons.Formula,
   },
   'plugin-mermaid': {
-    mermaid: icons.MindMapping,
+    mermaid: icons.ChartGraph,
   },
 };
 
