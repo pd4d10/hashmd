@@ -11,7 +11,7 @@
 
   export let context: BytemdEditorContext;
   export let split: boolean;
-  export let activeTab: number;
+  export let activeTab: number | undefined;
   export let fullscreen: boolean;
   export let sidebar: false | 'help' | 'toc';
   export let locale: NonNullable<EditorProps['locale']>;
@@ -35,7 +35,7 @@
       <span
         on:click={() => dispatch('tab', 0)}
         class="bytemd-toolbar-tab"
-        class:bytemd-toolbar-tab-active={activeTab === 0}
+        class:bytemd-toolbar-tab-active={activeTab !== 1}
         >{locale.toolbar.write}</span
       ><span
         on:click={() => dispatch('tab', 1)}
@@ -47,7 +47,21 @@
   </div>
 
   <div class="bytemd-toolbar-right">
-    <ToolbarButton
+    {#if split}<ToolbarButton
+        tooltip={locale.toolbar.left}
+        icon={icons.left}
+        active={activeTab === 0}
+        on:click={() => {
+          dispatch('tab', 0);
+        }}
+      /><ToolbarButton
+        tooltip={locale.toolbar.right}
+        icon={icons.right}
+        active={activeTab === 1}
+        on:click={() => {
+          dispatch('tab', 1);
+        }}
+      />{/if}<ToolbarButton
       tooltip={locale.toolbar.toc}
       icon={icons.toc}
       active={sidebar === 'toc'}

@@ -34,6 +34,10 @@
 
   $: actions = getBuiltinActions(locale, plugins, uploadImages);
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800);
+  $: ((v) => {
+    // reset active tab
+    if (split) activeTab = undefined;
+  })(split);
 
   let root: HTMLElement;
   let previewEl: HTMLElement;
@@ -41,7 +45,7 @@
   let containerWidth = Infinity;
 
   let editor: Editor;
-  let activeTab = 0;
+  let activeTab: number | undefined;
   let fullscreen = false;
   let sidebar: false | 'help' | 'toc' = false;
 
@@ -49,7 +53,7 @@
     let edit: string;
     let preview: string;
 
-    if (split) {
+    if (split && activeTab == null) {
       if (sidebar) {
         edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
         preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
@@ -57,14 +61,12 @@
         edit = 'width:50%';
         preview = 'width:50%';
       }
+    } else if (activeTab === 1) {
+      edit = 'width:0'; // width:0 instead of display:none to make scroll sync work
+      preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
     } else {
-      if (activeTab === 0) {
-        edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
-        preview = 'display:none';
-      } else {
-        edit = 'display:none';
-        preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
-      }
+      edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
+      preview = 'width:0';
     }
 
     return { edit, preview };
@@ -282,7 +284,7 @@
 
 <div
   class={cx('bytemd', {
-    'bytemd-mode-split': split,
+    'bytemd-mode-split': split && activeTab == null,
     'bytemd-fullscreen': fullscreen,
   })}
   bind:this={root}
@@ -296,10 +298,16 @@
     {locale}
     {actions}
     on:tab={(e) => {
-      activeTab = e.detail;
-      if (activeTab === 0 && editor) {
+      const v = e.detail;
+      if (split) {
+        activeTab = activeTab === v ? undefined : v;
+      } else {
+        activeTab = v;
+      }
+
+      if (activeTab === 0) {
         tick().then(() => {
-          editor.focus();
+          editor && editor.focus();
         });
       }
     }}
@@ -309,18 +317,10 @@
           fullscreen = !fullscreen;
           break;
         case 'help':
-          if (sidebar === 'help') {
-            sidebar = false;
-          } else {
-            sidebar = 'help';
-          }
+          sidebar = sidebar === 'help' ? false : 'help';
           break;
         case 'toc':
-          if (sidebar === 'toc') {
-            sidebar = false;
-          } else {
-            sidebar = 'toc';
-          }
+          sidebar = sidebar === 'toc' ? false : 'toc';
           break;
       }
     }}

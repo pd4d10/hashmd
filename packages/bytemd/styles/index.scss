@@ -6,6 +6,7 @@
 $border-color: $gray-200;
 $primary: $blue;
 $sidebar-width: 280px;
+$max-width: 800px;
 
 .bytemd {
   color: $gray-900;
@@ -81,6 +82,8 @@ $sidebar-width: 280px;
         color: $gray-400;
       }
       .CodeMirror-lines {
+        max-width: $max-width;
+        margin: 0 auto;
         padding: 16px 0;
       }
       pre.CodeMirror-line,
@@ -95,7 +98,10 @@ $sidebar-width: 280px;
     vertical-align: top;
     height: 100%;
     overflow: auto;
+    box-sizing: border-box;
     .markdown-body {
+      max-width: $max-width;
+      margin: 0 auto;
       padding: 20px;
     }
   }
@@ -225,7 +231,6 @@ $sidebar-width: 280px;
 
   &-mode-split {
     .bytemd-preview {
-      box-sizing: border-box;
       border-left: 1px solid $border-color;
     }
   }

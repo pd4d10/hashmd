@@ -28,6 +28,8 @@ const meta = {
     help: icons.Helpcenter,
     toc: icons.AlignTextLeftOne,
     close: icons.Close,
+    left: icons.LeftExpand,
+    right: icons.RightExpand,
   },
   'plugin-gfm': {
     strikethrough: icons.Strikethrough,

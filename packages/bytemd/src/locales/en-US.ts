@@ -2,6 +2,8 @@ const locale = {
   toolbar: {
     write: 'Write',
     preview: 'Preview',
+    left: 'Write only',
+    right: 'Preview only',
     help: 'Help',
     toc: 'Table of contents',
     fullscreen: 'Toggle fullscreen',
