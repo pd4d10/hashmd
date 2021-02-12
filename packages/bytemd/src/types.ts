@@ -5,50 +5,55 @@ import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
 import type { BytemdLocale } from './locales/en-US';
 
-export interface EditorContext {
+export interface BytemdContext {
+  /**
+   * The root element of the viewer
+   */
+  markdownBody: HTMLElement;
+  /**
+   * Virtual file format used in [unified](https://unifiedjs.com/)
+   *
+   * Get the HTML output by calling `vfile.toString()`
+   */
+  vfile: VFile;
+}
+
+export interface BytemdEditorContext extends EditorUtils {
   /**
    * CodeMirror editor instance
    */
   editor: Editor;
   /**
-   * Root element, `$('.bytemd')`
+   * The root element
    */
-  $el: HTMLElement;
-  /**
-   * Utilities for Editor
-   */
-  utils: EditorUtils;
+  root: HTMLElement;
 }
 
-export interface ViewerContext {
+export interface BytemdAction {
   /**
-   * Root element of the Viewer, `$('.markdown-body')`
-   */
-  $el: HTMLElement;
-  vfile: VFile;
-}
-
-export interface BytemdToolbarItem {
-  /**
-   * Toolbar Icon (16x16), could be <img> or inline svg
+   * Action icon (16x16), could be <img> or inline svg
    */
   icon: string;
   /**
-   * Tooltip of toolbar item
+   * Action title
    */
   title: string;
   /**
-   * Toolbar icon click handler
+   * Action handler, used for toolbar icon click and shortcut trigger
    */
-  onClick(context: EditorContext): void;
+  handler?(context: BytemdEditorContext): void;
   /**
-   * If specified, this record will be added to the Markdown cheat sheet
+   * Markdown syntax cheat sheet
+   *
+   * If specified, this record will be added to the Markdown cheat sheet section
    */
   cheatsheet?: string;
   /**
-   * shortcut handler
+   * Keyboard shortcut
    *
-   * If specified, this record will be added to the Keyboard shortcut
+   * If specified, this record will be added to the Keyboard shortcut section
+   *
+   * https://codemirror.net/doc/manual.html#keymaps
    */
   shortcut?: string;
 }
@@ -67,17 +72,17 @@ export interface BytemdPlugin {
    */
   rehype?: (p: Processor) => Processor;
   /**
-   * Register toolbar items
+   * Side effect for viewer, triggers when viewer props changes
    */
-  toolbar?: BytemdToolbarItem | BytemdToolbarItem[];
+  effect?(context: BytemdContext): void | (() => void);
   /**
-   * Side effect for editor, triggers when plugin list changes
+   * Register actions in toolbar, cheatsheet and shortcuts
    */
-  editorEffect?(context: EditorContext): void | (() => void);
+  action?: BytemdAction | BytemdAction[];
   /**
-   * Side effect for viewer, triggers when HTML or plugin list changes
+   * Side effect for editor, triggers when editor props changes
    */
-  effect?(context: ViewerContext): void | (() => void);
+  editorEffect?(context: BytemdEditorContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
@@ -108,9 +113,13 @@ export interface EditorProps extends ViewerProps {
    */
   editorConfig?: Omit<EditorConfiguration, 'value' | 'mode' | 'placeholder'>;
   /**
-   * Locale
+   * i18n locale
    */
   locale?: BytemdLocale;
+  /**
+   * Handle image uplodaer
+   */
+  uploadImages?(files: File[]): Promise<string[]>;
 }
 
 export interface ViewerProps {
@@ -134,7 +143,7 @@ export interface ViewerProps {
         /**
          * Allow inline styles. Default: `false`
          */
-        allowStyle?: boolean;
+        allowInlineStyle?: boolean;
       }
     | ((schema: Schema) => Schema);
 }

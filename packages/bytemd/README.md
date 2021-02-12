@@ -149,7 +149,7 @@ editor.on('change', (e) => {
 | --- | --- | --- |
 | `value` | `string` (required) | Markdown text |
 | `plugins` | `BytemdPlugin[]` | ByteMD plugin list |
-| `sanitize` | `{ allowStyle?: boolean }` or `(schema: Schema) => Schema` | Sanitize strategy |
+| `sanitize` | `{ allowInlineStyle?: boolean }` or `(schema: Schema) => Schema` | Sanitize strategy |
 
 ### Editor
 
@@ -157,10 +157,11 @@ editor.on('change', (e) => {
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `mode` | `'split'` or `'tab'` | Editor display mode |
+| `mode` | `split`, `tab`, `auto` | Editor display mode |
 | `previewDebounce` | `number` | Debounce time (ms) for preview, default: `300` |
 | `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
+| `locale` | i18n locale. Available locales could be found at `bytemd/lib/locales` |
 
 ## Style customization
 
@@ -203,15 +204,12 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 | Package | Status | Description |
 | --- | --- | --- |
 | [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-breaks/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-breaks) | Support breaks |
-| [@bytemd/plugin-external-links](./packages/plugin-external-links) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-external-links.svg)](https://npm.im/@bytemd/plugin-external-links) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-external-links/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-external-links) | Open external links in new window |
 | [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-footnotes/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-footnotes) | Support footnotes |
 | [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-frontmatter/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-frontmatter) | Parse frontmatter |
 | [@bytemd/plugin-gemoji](./packages/plugin-gemoji) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gemoji.svg)](https://npm.im/@bytemd/plugin-gemoji) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-gemoji/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-gemoji) | Support Gemoji shortcodes |
 | [@bytemd/plugin-gfm](./packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-gfm/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-gfm) | Support GFM (autolink literals, strikethrough, tables, tasklists) |
 | [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-highlight/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-highlight) | Highlight code blocks |
 | [@bytemd/plugin-highlight-ssr](./packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-highlight-ssr/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-highlight-ssr) | Highlight code blocks (SSR compatible) |
-| [@bytemd/plugin-import-html](./packages/plugin-import-html) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-html.svg)](https://npm.im/@bytemd/plugin-import-html) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-import-html/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-import-html) | Import HTML by pasting or dropping |
-| [@bytemd/plugin-import-image](./packages/plugin-import-image) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-import-image.svg)](https://npm.im/@bytemd/plugin-import-image) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-import-image/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-import-image) | Import image by pasting or dropping |
 | [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-math) | Support math formula |
 | [@bytemd/plugin-math-ssr](./packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math-ssr/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
 | [@bytemd/plugin-medium-zoom](./packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-medium-zoom/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-medium-zoom) | Zoom images like Medium |

@@ -16,24 +16,21 @@ export default function math({
   return {
     remark: (u) => u.use(remarkMath),
     rehype: (u) => u.use(rehypeKatex, katexOptions),
-    toolbar: [
+    action: [
       {
-        icon: icons.inline,
-        onClick({ utils }) {
-          utils.wrapText('$');
-        },
         ...locale.inline,
+        icon: icons.inline,
       },
       {
+        ...locale.display,
         icon: icons.display,
-        onClick({ editor, utils }) {
-          const { startLine } = utils.appendBlock('$$\n\\TeX\n$$');
+        handler({ editor, appendBlock }) {
+          const { startLine } = appendBlock('$$\n\\TeX\n$$');
           editor.setSelection(
             { line: startLine + 1, ch: 0 },
             { line: startLine + 1, ch: 4 }
           );
         },
-        ...locale.display,
       },
     ],
   };

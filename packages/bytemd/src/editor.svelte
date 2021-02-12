@@ -10,7 +10,11 @@
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import Toc from './toc.svelte';
-  import { createUtils, findStartIndex, getBuiltinItems } from './editor';
+  import {
+    createEditorUtils,
+    findStartIndex,
+    getBuiltinActions,
+  } from './editor';
   import Status from './status.svelte';
   import { icons } from './icons';
   import enUS from './locales/en-US';
@@ -24,13 +28,14 @@
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
   export let locale: NonNullable<EditorProps['locale']> = enUS;
+  export let uploadImages: EditorProps['uploadImages'];
 
   const dispatch = createEventDispatcher();
 
-  $: toolbarItems = getBuiltinItems(locale, plugins);
+  $: actions = getBuiltinActions(locale, plugins, uploadImages);
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800);
 
-  let el: HTMLElement;
+  let root: HTMLElement;
   let previewEl: HTMLElement;
   let textarea: HTMLTextAreaElement;
   let containerWidth = Infinity;
@@ -65,7 +70,7 @@
     return { edit, preview };
   })();
 
-  $: context = { editor, $el: el, utils: createUtils(editor) };
+  $: context = { editor, root, ...createEditorUtils(editor) };
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
   let keyMap: KeyMap = {};
@@ -74,9 +79,9 @@
     // console.log('on', plugins);
     cbs = plugins.map((p) => p.editorEffect?.(context));
     keyMap = {};
-    toolbarItems.forEach((item) => {
-      if (item.shortcut) {
-        keyMap[item.shortcut] = () => item.onClick(context);
+    actions.forEach(({ shortcut, handler }) => {
+      if (shortcut && handler) {
+        keyMap[shortcut] = () => handler(context);
       }
     });
     editor.addKeyMap(keyMap);
@@ -97,7 +102,7 @@
     editor.setValue(value);
   }
 
-  $: if (editor && el && plugins && hast) {
+  $: if (editor && root && plugins && hast) {
     off();
     tick().then(() => {
       on();
@@ -243,11 +248,32 @@
       passive: true,
     });
 
+    // handle image drop and paste
+    const handleImages = async (itemList: DataTransferItemList | undefined) => {
+      if (!uploadImages) return;
+      const files = Array.from(itemList ?? [])
+        .map((item) => {
+          if (item.type.startsWith('image/')) {
+            return item.getAsFile();
+          }
+        })
+        .filter((f): f is File => f != null);
+      const urls = await uploadImages(files);
+      context.appendBlock(urls.map((url) => `![](${url})`).join('\n\n'));
+    };
+
+    editor.on('drop', async (_, e) => {
+      handleImages(e.dataTransfer?.items);
+    });
+    editor.on('paste', async (_, e) => {
+      handleImages(e.clipboardData?.items);
+    });
+
     // @ts-ignore
     new ResizeObserver((entries) => {
       containerWidth = entries[0].borderBoxSize[0].inlineSize;
       // console.log(containerWidth);
-    }).observe(el, { box: 'border-box' });
+    }).observe(root, { box: 'border-box' });
 
     // No need to call `on` because cm instance would change once after init
   });
@@ -259,7 +285,7 @@
     'bytemd-mode-split': split,
     'bytemd-fullscreen': fullscreen,
   })}
-  bind:this={el}
+  bind:this={root}
 >
   <Toolbar
     {context}
@@ -268,7 +294,7 @@
     {sidebar}
     {fullscreen}
     {locale}
-    {toolbarItems}
+    {actions}
     on:tab={(e) => {
       activeTab = e.detail;
       if (activeTab === 0 && editor) {
@@ -300,10 +326,13 @@
     }}
   />
   <div class="bytemd-body">
-    <div class="bytemd-editor" style={styles.edit}>
+    <span class="bytemd-editor" style={styles.edit}>
       <textarea bind:this={textarea} style="display:none" />
-    </div>
-    <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
+    </span><span
+      bind:this={previewEl}
+      class="bytemd-preview"
+      style={styles.preview}
+    >
       <Viewer
         value={debouncedValue}
         {plugins}
@@ -312,8 +341,10 @@
           hast = e.detail;
         }}
       />
-    </div>
-    <div class="bytemd-sidebar" style={sidebar ? undefined : 'display:none'}>
+    </span><span
+      class="bytemd-sidebar"
+      style={sidebar ? undefined : 'display:none'}
+    >
       <div
         class="bytemd-sidebar-close"
         on:click={() => {
@@ -323,7 +354,7 @@
         {@html icons.close}
       </div>
       {#if sidebar === 'help'}
-        <Help {locale} {toolbarItems} />
+        <Help {locale} {actions} />
       {:else if sidebar === 'toc'}
         <Toc
           {hast}
@@ -335,7 +366,7 @@
           }}
         />
       {/if}
-    </div>
+    </span>
   </div>
   <Status
     {locale}

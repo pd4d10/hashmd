@@ -21,12 +21,12 @@
     return h;
   }
 
-  let el: HTMLElement;
+  let markdownBody: HTMLElement;
   let cbs: ReturnType<NonNullable<BytemdPlugin['effect']>>[] = [];
 
   function on() {
     // console.log('von');
-    cbs = plugins.map((p) => p.effect?.({ $el: el, vfile }));
+    cbs = plugins.map((p) => p.effect?.({ markdownBody, vfile }));
   }
   function off() {
     // console.log('voff');
@@ -34,14 +34,16 @@
   }
 
   onMount(() => {
-    el.addEventListener('click', (e) => {
+    markdownBody.addEventListener('click', (e) => {
       const $ = e.target as HTMLElement;
       if ($.tagName !== 'A') return;
 
       const href = $.getAttribute('href');
       if (!href?.startsWith('#')) return;
 
-      el.querySelector('#user-content-' + href.slice(1))?.scrollIntoView();
+      markdownBody
+        .querySelector('#user-content-' + href.slice(1))
+        ?.scrollIntoView();
     });
   });
 
@@ -75,6 +77,6 @@
   $: html = `<!--${hashCode(value)}-->${vfile.toString()}`; // trigger re-render every time the value changes
 </script>
 
-<div bind:this={el} class="markdown-body">
+<div bind:this={markdownBody} class="markdown-body">
   {@html html}
 </div>

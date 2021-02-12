@@ -17,11 +17,32 @@ $sidebar-width: 280px;
   &-toolbar {
     padding: 4px 12px;
     border-bottom: 1px solid $border-color;
-    font-size: 0;
     background-color: $gray-000;
     user-select: none;
+    overflow: hidden;
+
+    &-left {
+      float: left;
+    }
+
+    &-right {
+      float: right;
+    }
+
+    &-tab {
+      cursor: pointer;
+      padding-left: 8px;
+      padding-right: 8px;
+      line-height: 24px;
+      font-size: 14px;
+      &-active {
+        color: $primary;
+      }
+    }
+
     &-icon {
       display: inline-block;
+      vertical-align: top;
       cursor: pointer;
       border-radius: 4px;
       margin-left: 6px;
@@ -40,29 +61,14 @@ $sidebar-width: 280px;
     }
   }
 
-  &-tabs {
-    display: inline-block;
-    vertical-align: top;
-    span {
-      cursor: pointer;
-      padding-left: 8px;
-      padding-right: 8px;
-      line-height: 24px;
-      font-size: 14px;
-      &.bytemd-tab-active {
-        color: $primary;
-      }
-    }
-  }
-
   &-body {
     height: calc(100% - 33px - 25px);
     overflow: auto;
-    font-size: 0;
   }
 
   &-editor {
     display: inline-block;
+    vertical-align: top;
     height: 100%;
     overflow: hidden;
     .CodeMirror {
@@ -86,6 +92,7 @@ $sidebar-width: 280px;
 
   &-preview {
     display: inline-block;
+    vertical-align: top;
     height: 100%;
     overflow: auto;
     .markdown-body {
@@ -95,6 +102,7 @@ $sidebar-width: 280px;
 
   &-sidebar {
     display: inline-block;
+    vertical-align: top; // Safari
     height: 100%;
     overflow: auto;
     font-size: 16px;
@@ -103,7 +111,6 @@ $sidebar-width: 280px;
     width: $sidebar-width;
     position: relative;
     padding: 16px;
-    vertical-align: top; // Safari
     &-close {
       position: absolute;
       padding: 16px;
@@ -128,20 +135,23 @@ $sidebar-width: 280px;
   &-help {
     ul {
       line-height: 20px;
-      font-size: 0;
       svg {
-        font-size: 16px;
+        width: 16px;
+        height: 16px;
         display: block;
       }
       span {
         font-size: 13px;
         display: inline-block;
-        vertical-align: middle;
+        vertical-align: top;
       }
     }
     li {
       list-style: none;
       margin-bottom: 10px;
+    }
+    &-icon {
+      padding: 2px 0;
     }
     &-title {
       padding-left: 8px;

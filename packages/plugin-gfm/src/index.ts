@@ -14,25 +14,26 @@ export default function gfm({
 }: BytemdPluginGfmOptions = {}): BytemdPlugin {
   return {
     remark: (p) => p.use(remarkGfm, remarkGfmOptions),
-    toolbar: [
+    action: [
       {
-        icon: icons.strikethrough,
-        onClick({ utils }) {
-          utils.wrapText('~~');
-        },
         ...locale.strike,
-      },
-      {
-        icon: icons.task,
-        onClick({ utils }) {
-          utils.replaceLines((lines) => lines.map((line) => '- [ ] ' + line));
+        icon: icons.strikethrough,
+        handler({ wrapText }) {
+          wrapText('~~');
         },
-        ...locale.task,
       },
       {
+        ...locale.task,
+        icon: icons.task,
+        handler({ replaceLines }) {
+          replaceLines((lines) => lines.map((line) => '- [ ] ' + line));
+        },
+      },
+      {
+        ...locale.table,
         icon: icons.table,
-        onClick({ editor, utils }) {
-          const { startLine } = utils.appendBlock(
+        handler({ editor, appendBlock }) {
+          const { startLine } = appendBlock(
             '| heading |  |\n| --- | --- |\n|  |  |\n'
           );
           editor.setSelection(
@@ -40,7 +41,6 @@ export default function gfm({
             { line: startLine, ch: 9 }
           );
         },
-        ...locale.table,
       },
     ],
   };

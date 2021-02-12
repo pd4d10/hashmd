@@ -17,9 +17,9 @@ export default function math({
 
   return {
     remark: (p) => p.use(remarkMath),
-    effect({ $el }) {
+    effect({ markdownBody }) {
       const renderMath = async (selector: string, displayMode: boolean) => {
-        const els = $el.querySelectorAll<HTMLElement>(selector);
+        const els = markdownBody.querySelectorAll<HTMLElement>(selector);
         if (els.length === 0) return;
 
         if (!katex) {
@@ -38,24 +38,21 @@ export default function math({
       renderMath('.math.math-inline', false);
       renderMath('.math.math-display', true);
     },
-    toolbar: [
+    action: [
       {
-        icon: icons.inline,
-        onClick({ utils }) {
-          utils.wrapText('$');
-        },
         ...locale.inline,
+        icon: icons.inline,
       },
       {
+        ...locale.display,
         icon: icons.display,
-        onClick({ editor, utils }) {
-          const { startLine } = utils.appendBlock('$$\n\\TeX\n$$');
+        handler({ editor, appendBlock }) {
+          const { startLine } = appendBlock('$$\n\\TeX\n$$');
           editor.setSelection(
             { line: startLine + 1, ch: 0 },
             { line: startLine + 1, ch: 4 }
           );
         },
-        ...locale.display,
       },
     ],
   };
