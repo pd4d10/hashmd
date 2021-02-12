@@ -4,6 +4,8 @@ const locale: BytemdLocale = {
   toolbar: {
     write: '编辑',
     preview: '预览',
+    left: '仅编辑',
+    right: '仅预览',
     help: '帮助',
     toc: '目录',
     fullscreen: '全屏',
