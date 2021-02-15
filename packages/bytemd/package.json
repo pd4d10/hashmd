@@ -27,6 +27,7 @@
   "dependencies": {
     "@types/codemirror": "^0.0.102",
     "codemirror": "^5.0.0",
+    "lodash-es": "^4.17.15",
     "rehype-raw": "^5.0.0",
     "rehype-sanitize": "^4.0.0",
     "rehype-stringify": "^8.0.0",
@@ -36,7 +37,6 @@
     "unified": "^9.0.0"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.4",
-    "lodash-es": "^4.17.15"
+    "@types/lodash-es": "^4.17.4"
   }
 }
