@@ -41,7 +41,7 @@ export interface BytemdAction {
   /**
    * Action handler, used for toolbar icon click and shortcut trigger
    */
-  handler?(context: BytemdEditorContext): void;
+  handler?: (context: BytemdEditorContext) => void;
   /**
    * Markdown syntax cheat sheet
    *
@@ -80,6 +80,10 @@ export interface BytemdPlugin {
    */
   action?: BytemdAction | BytemdAction[];
   /**
+   *
+   */
+  shortcut?: Record<string, (context: BytemdEditorContext) => void>;
+  /**
    * Side effect for editor, triggers when editor props changes
    */
   editorEffect?(context: BytemdEditorContext): void | (() => void);
@@ -111,7 +115,7 @@ export interface EditorProps extends ViewerProps {
    *
    * https://codemirror.net/doc/manual.html#config
    */
-  editorConfig?: Omit<EditorConfiguration, 'value' | 'mode' | 'placeholder'>;
+  editorConfig?: Omit<EditorConfiguration, 'value' | 'placeholder'>;
   /**
    * i18n locale
    */
@@ -119,7 +123,15 @@ export interface EditorProps extends ViewerProps {
   /**
    * Handle image uplodaer
    */
-  uploadImages?(files: File[]): Promise<string[]>;
+  uploadImages?(
+    files: File[]
+  ): Promise<
+    {
+      src: string;
+      alt?: string;
+      title?: string;
+    }[]
+  >;
 }
 
 export interface ViewerProps {

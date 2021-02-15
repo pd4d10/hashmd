@@ -1,5 +1,6 @@
 @import '~codemirror/lib/codemirror.css';
 @import '~tippy.js/dist/tippy.css';
+@import '~tippy.js/themes/light.css';
 @import '~tippy.js/animations/scale.css';
 @import '~@primer/css/support/variables/color-system.scss';
 
@@ -9,10 +10,17 @@ $sidebar-width: 280px;
 $max-width: 800px;
 
 .bytemd {
+  // reset
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
   color: $gray-900;
   border: 1px solid $border-color;
   background-color: $white;
-  box-sizing: border-box;
   height: 300px;
 
   &-toolbar {
@@ -48,16 +56,36 @@ $max-width: 800px;
       border-radius: 4px;
       margin-left: 6px;
       margin-right: 6px;
-      font-size: 16px;
-      svg {
+      svg,
+      img {
         display: block;
         padding: 4px;
+        width: 24px;
+        height: 24px;
       }
       &:hover {
-        background-color: $gray-200;
+        background-color: $border-color;
       }
       &-active {
         color: $blue-500;
+      }
+    }
+
+    .tippy-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &-select {
+    // background: $white;
+    &-option {
+      padding: 6px 12px;
+      line-height: 1;
+      font-size: 14px;
+      cursor: pointer;
+      &:hover {
+        background-color: $border-color;
       }
     }
   }
@@ -74,10 +102,9 @@ $max-width: 800px;
     overflow: hidden;
     .CodeMirror {
       height: 100%;
-      box-sizing: border-box;
       font-size: 14px;
       line-height: 1.5;
-      // font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
       pre.CodeMirror-placeholder {
         color: $gray-400;
       }
@@ -88,7 +115,7 @@ $max-width: 800px;
       }
       pre.CodeMirror-line,
       pre.CodeMirror-line-like {
-        padding: 0 16px;
+        padding: 0 5%;
       }
     }
   }
@@ -98,11 +125,10 @@ $max-width: 800px;
     vertical-align: top;
     height: 100%;
     overflow: auto;
-    box-sizing: border-box;
     .markdown-body {
       max-width: $max-width;
       margin: 0 auto;
-      padding: 20px;
+      padding: 16px 5%;
     }
   }
 
@@ -112,7 +138,6 @@ $max-width: 800px;
     height: 100%;
     overflow: auto;
     font-size: 16px;
-    box-sizing: border-box;
     border-left: 1px solid $border-color;
     width: $sidebar-width;
     position: relative;
@@ -213,6 +238,7 @@ $max-width: 800px;
       }
       input {
         vertical-align: middle;
+        margin-right: 3px; // CSS reset
       }
     }
   }
@@ -225,11 +251,11 @@ $max-width: 800px;
       top: 0;
       bottom: 0;
       border: none;
-      height: 100vh;
+      height: 100vh !important; // override user set height
     }
   }
 
-  &-mode-split {
+  &-split {
     .bytemd-preview {
       border-left: 1px solid $border-color;
     }

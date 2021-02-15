@@ -80,6 +80,10 @@ export function createEditorUtils(editor: Editor) {
         startLine: cursor.line + 1,
       };
     },
+    /**
+     * Triggers a virtual file input and return user selected files
+     */
+    selectFiles,
   };
 }
 
@@ -112,8 +116,10 @@ export function getBuiltinActions(
     {
       ...locale.heading,
       icon: icons.heading,
-      handler({ replaceLines }) {
-        replaceLines((lines) => lines.map((line) => '# ' + line));
+      async handler({ replaceLines }) {
+        replaceLines((lines) =>
+          lines.map((line) => `${'#'.repeat(1 + 1)} ${line}`)
+        );
       },
     },
     {
@@ -160,14 +166,21 @@ export function getBuiltinActions(
       ...locale.image,
       icon: icons.image,
       handler: uploadImages
-        ? async ({ appendBlock }) => {
+        ? async ({ appendBlock, selectFiles }) => {
             const fileList = await selectFiles({
               accept: 'image/*',
               multiple: true,
             });
             const files = Array.from(fileList ?? []);
-            const urls = await uploadImages(files);
-            appendBlock(urls.map((url) => `![](${url})`).join('\n\n'));
+            const imgs = await uploadImages(files);
+            appendBlock(
+              imgs
+                .map(({ src, alt, title }, i) => {
+                  alt = alt ?? files[i].name;
+                  return `![${alt}](${src}${title ? ` "${title}"` : ''})`;
+                })
+                .join('\n\n')
+            );
           }
         : undefined,
     },

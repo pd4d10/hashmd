@@ -30,6 +30,7 @@ const meta = {
     close: icons.Close,
     left: icons.LeftExpand,
     right: icons.RightExpand,
+    more: icons.More,
   },
   'plugin-gfm': {
     strikethrough: icons.Strikethrough,

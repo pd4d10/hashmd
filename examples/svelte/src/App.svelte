@@ -9,6 +9,7 @@
   import footnotes from '@bytemd/plugin-footnotes';
   import frontmatter from '@bytemd/plugin-frontmatter';
   import mediumZoom from '@bytemd/plugin-medium-zoom';
+  import gemoji from '@bytemd/plugin-gemoji';
 
   import en from 'bytemd/lib/locales/en-US';
   import zh from 'bytemd/lib/locales/zh-CN';
@@ -26,8 +27,10 @@
 
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
+  // import 'juejin-markdown-themes/dist/juejin.css';
   import 'highlight.js/styles/vs.css';
   import 'katex/dist/katex.css';
+  // import 'normalize.css';
 
   let value = '';
   let mode = 'auto';
@@ -49,6 +52,7 @@
     breaks: false,
     footnotes: true,
     frontmatter: true,
+    gemoji: true,
     gfm: true,
     highlight: true,
     math: true,
@@ -60,6 +64,7 @@
     enabled.breaks && breaks(),
     enabled.footnotes && footnotes(),
     enabled.frontmatter && frontmatter(),
+    enabled.gemoji && gemoji(),
     enabled.gfm && gfm({ locale: currentLocale.gfm }),
     enabled.highlight && highlight(),
     enabled.math && math({ locale: currentLocale.math }),
@@ -90,12 +95,15 @@
     {value}
     {mode}
     {plugins}
+    placeholder={localeKey === 'en-US' ? 'Start writing' : '开始写作'}
     locale={currentLocale.bytemd}
     uploadImages={(files) => {
       return Promise.all(
         files.map((file) => {
           // TODO:
-          return 'https://picsum.photos/300';
+          return {
+            src: 'https://picsum.photos/300',
+          };
         })
       );
     }}
