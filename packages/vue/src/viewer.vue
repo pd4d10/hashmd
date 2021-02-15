@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown-body" v-html="vfile" @click="handleClick($event)"></div>
+  <div class="markdown-body" v-html="file" @click="handleClick($event)"></div>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import { getProcessor } from 'bytemd';
 export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
-    vfile() {
+    file() {
       try {
         return getProcessor(this.$props).processSync(this.value);
       } catch (err) {
@@ -16,7 +16,7 @@ export default {
       }
     },
     needUpdate() {
-      return [this.vfile, this.plugins, this.sanitize];
+      return [this.file, this.plugins, this.sanitize];
     },
   },
   watch: {
@@ -38,11 +38,11 @@ export default {
   },
   methods: {
     on() {
-      if (this.plugins && this.vfile) {
+      if (this.plugins && this.file) {
         this.cbs = this.plugins.map(
           ({ effect }) =>
             effect &&
-            effect({ markdownBody: this.markdownBody, vfile: this.vfile })
+            effect({ markdownBody: this.markdownBody, file: this.file })
         );
       }
     },

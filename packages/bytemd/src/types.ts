@@ -4,6 +4,7 @@ import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
 import type { BytemdLocale } from './locales/en-US';
+import type { createPopper } from '@popperjs/core';
 
 export interface BytemdContext {
   /**
@@ -15,7 +16,7 @@ export interface BytemdContext {
    *
    * Get the HTML output by calling `vfile.toString()`
    */
-  vfile: VFile;
+  file: VFile;
 }
 
 export interface BytemdEditorContext extends EditorUtils {
@@ -27,6 +28,18 @@ export interface BytemdEditorContext extends EditorUtils {
    * The root element
    */
   root: HTMLElement;
+  /**
+   * Show a dropdown menu to select items
+   */
+  showDropdown(payload: {
+    popperOptions?: Parameters<typeof createPopper>[2];
+    items: {
+      text: string;
+      onClick?(): void;
+      onMouseEnter?(): void;
+      onMouseLeave?(): void;
+    }[];
+  }): void;
 }
 
 export interface BytemdAction {

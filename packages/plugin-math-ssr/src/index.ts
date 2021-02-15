@@ -1,4 +1,5 @@
 import type { BytemdPlugin } from 'bytemd';
+import type { KatexOptions } from 'katex';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { icons } from './icons';
@@ -6,7 +7,7 @@ import enUS, { Locale } from './locales/en-US';
 
 export interface MathOptions {
   locale?: Locale;
-  katexOptions?: Omit<katex.KatexOptions, 'displayMode'>;
+  katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
 export default function math({

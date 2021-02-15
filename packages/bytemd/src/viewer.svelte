@@ -17,7 +17,7 @@
 
   function on() {
     // console.log('von');
-    cbs = plugins.map((p) => p.effect?.({ markdownBody, vfile }));
+    cbs = plugins.map((p) => p.effect?.({ markdownBody, file }));
   }
   function off() {
     // console.log('voff');
@@ -40,22 +40,23 @@
 
   onDestroy(off);
 
-  let vfile: VFile;
-
-  $: _plugins = [
-    ...plugins,
-    {
-      rehype: (p) =>
-        p.use(() => (tree) => {
-          tick().then(() => {
-            dispatch('hast', tree);
-          });
-        }),
-    },
-  ];
+  let file: VFile;
 
   $: try {
-    vfile = getProcessor({ sanitize, plugins: _plugins }).processSync(value);
+    file = getProcessor({
+      sanitize,
+      plugins: [
+        ...plugins,
+        {
+          rehype: (p) =>
+            p.use(() => (tree) => {
+              tick().then(() => {
+                dispatch('hast', tree);
+              });
+            }),
+        },
+      ],
+    }).processSync(value);
 
     off();
     tick().then(() => {
@@ -64,10 +65,8 @@
   } catch (err) {
     console.error(err);
   }
-
-  $: html = `<!--${Date.now()}-->${vfile}`; // add timestamp to trigger re-render every time
 </script>
 
 <div bind:this={markdownBody} class="markdown-body">
-  {@html html}
+  {@html file.toString()}
 </div>
