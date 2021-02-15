@@ -1,6 +1,6 @@
 import type { Locale } from './en-US';
 
-const locale: Partial<Locale> = {
+const locale: Locale = {
   title: 'Mermaid 图表',
   cheatsheet: '```mermaid',
 };

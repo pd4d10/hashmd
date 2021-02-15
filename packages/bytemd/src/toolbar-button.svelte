@@ -3,7 +3,7 @@
 <script lang="ts">
   import type { Instance } from 'tippy.js';
   import tippy from 'tippy.js';
-  import { afterUpdate, onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
@@ -12,28 +12,32 @@
 
   onMount(() => {
     instance = tippy(el, {
-      content: tooltip,
+      content: title,
       animation: 'scale',
       duration: 100,
       delay: 100,
     });
   });
 
-  afterUpdate(() => {
-    instance.setProps({
-      content: tooltip,
-    });
+  onDestroy(() => {
+    instance?.destroy();
   });
 
+  $: ((title) => {
+    instance?.setProps({
+      content: title,
+    });
+  })(title);
+
   let el: HTMLElement;
-  export let tooltip: string;
+  export let title: string;
   export let icon: string;
-  export let active: boolean;
+  export let active = false;
 </script>
 
 <span
   bind:this={el}
-  on:click={() => dispatch('click')}
+  on:click={() => dispatch('click', el)}
   class="bytemd-toolbar-icon"
   class:bytemd-toolbar-icon-active={active}
 >

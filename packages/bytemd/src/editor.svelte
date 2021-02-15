@@ -3,7 +3,7 @@
 <script lang="ts">
   import type { Editor, KeyMap } from 'codemirror';
   import type { Root, Element } from 'hast';
-  import type { BytemdPlugin, EditorProps } from './types';
+  import type { BytemdEditorContext, BytemdPlugin, EditorProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import { debounce, throttle } from 'lodash-es';
   import cx from 'classnames';
@@ -34,9 +34,9 @@
 
   $: actions = getBuiltinActions(locale, plugins, uploadImages);
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800);
-  $: ((v) => {
+  $: ((_) => {
     // reset active tab
-    if (split) activeTab = undefined;
+    if (split) activeTab = false;
   })(split);
 
   let root: HTMLElement;
@@ -45,7 +45,7 @@
   let containerWidth = Infinity;
 
   let editor: Editor;
-  let activeTab: number | undefined;
+  let activeTab: false | 'write' | 'preview';
   let fullscreen = false;
   let sidebar: false | 'help' | 'toc' = false;
 
@@ -53,7 +53,7 @@
     let edit: string;
     let preview: string;
 
-    if (split && activeTab == null) {
+    if (split && activeTab === false) {
       if (sidebar) {
         edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
         preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
@@ -61,7 +61,7 @@
         edit = 'width:50%';
         preview = 'width:50%';
       }
-    } else if (activeTab === 1) {
+    } else if (activeTab === 'preview') {
       edit = 'width:0'; // width:0 instead of display:none to make scroll sync work
       preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
     } else {
@@ -72,7 +72,14 @@
     return { edit, preview };
   })();
 
-  $: context = { editor, root, ...createEditorUtils(editor) };
+  $: context = (() => {
+    const ctx: BytemdEditorContext = {
+      editor,
+      root,
+      ...createEditorUtils(editor),
+    };
+    return ctx;
+  })();
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
   let keyMap: KeyMap = {};
@@ -260,8 +267,15 @@
           }
         })
         .filter((f): f is File => f != null);
-      const urls = await uploadImages(files);
-      context.appendBlock(urls.map((url) => `![](${url})`).join('\n\n'));
+      const imgs = await uploadImages(files);
+      context.appendBlock(
+        imgs
+          .map(({ src, alt, title }, i) => {
+            alt = alt ?? files[i].name;
+            return `![${alt}](${src}${title ? ` "${title}"` : ''})`;
+          })
+          .join('\n\n')
+      );
     };
 
     editor.on('drop', async (_, e) => {
@@ -284,7 +298,7 @@
 
 <div
   class={cx('bytemd', {
-    'bytemd-mode-split': split && activeTab == null,
+    'bytemd-split': split && activeTab === false,
     'bytemd-fullscreen': fullscreen,
   })}
   bind:this={root}
@@ -300,12 +314,12 @@
     on:tab={(e) => {
       const v = e.detail;
       if (split) {
-        activeTab = activeTab === v ? undefined : v;
+        activeTab = activeTab === v ? false : v;
       } else {
         activeTab = v;
       }
 
-      if (activeTab === 0) {
+      if (activeTab === 'write') {
         tick().then(() => {
           editor && editor.focus();
         });
@@ -377,11 +391,8 @@
       syncEnabled = e.detail;
     }}
     on:top={() => {
-      if (split || activeTab === 1) {
-        previewEl.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        editor.scrollTo(0, 0);
-      }
+      editor.scrollTo(null, 0);
+      previewEl.scrollTo({ top: 0 });
     }}
   />
 </div>

@@ -24,7 +24,7 @@
   <h2>{locale.sidebar.shortcuts}</h2>
   <ul>
     {#each actions as item}
-      {#if item.shortcut}
+      {#if item.shortcut && item.handler}
         <li>
           <span class="bytemd-help-icon">{@html item.icon}</span><span
             class="bytemd-help-title">{item.title}</span

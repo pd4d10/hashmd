@@ -12,15 +12,6 @@
   export let plugins: NonNullable<ViewerProps['plugins']> = [];
   export let sanitize: ViewerProps['sanitize'];
 
-  // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
-  function hashCode(s: string) {
-    var h = 0,
-      l = s.length,
-      i = 0;
-    if (l > 0) while (i < l) h = ((h << 5) - h + s.charCodeAt(i++)) | 0;
-    return h;
-  }
-
   let markdownBody: HTMLElement;
   let cbs: ReturnType<NonNullable<BytemdPlugin['effect']>>[] = [];
 
@@ -74,7 +65,7 @@
     console.error(err);
   }
 
-  $: html = `<!--${hashCode(value)}-->${vfile.toString()}`; // trigger re-render every time the value changes
+  $: html = `<!--${Date.now()}-->${vfile}`; // add timestamp to trigger re-render every time
 </script>
 
 <div bind:this={markdownBody} class="markdown-body">

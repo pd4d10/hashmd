@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import { capitalize } from 'lodash-es';
   import type { EditorProps, BytemdEditorContext, BytemdAction } from './types';
@@ -11,7 +11,7 @@
 
   export let context: BytemdEditorContext;
   export let split: boolean;
-  export let activeTab: number | undefined;
+  export let activeTab: false | 'write' | 'preview';
   export let fullscreen: boolean;
   export let sidebar: false | 'help' | 'toc';
   export let locale: NonNullable<EditorProps['locale']>;
@@ -24,23 +24,24 @@
       {#each actions as item}
         {#if item.handler}
           <ToolbarButton
-            tooltip={item.title + (item.shortcut ? ` <${item.shortcut}>` : '')}
+            title={item.title + (item.shortcut ? ` <${item.shortcut}>` : '')}
             icon={item.icon}
-            active={false}
-            on:click={() => item.handler && item.handler(context)}
+            on:click={(e) => {
+              item.handler && item.handler(context);
+            }}
           />
         {/if}
       {/each}
     {:else}
       <span
-        on:click={() => dispatch('tab', 0)}
+        on:click={() => dispatch('tab', 'write')}
         class="bytemd-toolbar-tab"
-        class:bytemd-toolbar-tab-active={activeTab !== 1}
+        class:bytemd-toolbar-tab-active={activeTab !== 'preview'}
         >{locale.toolbar.write}</span
       ><span
-        on:click={() => dispatch('tab', 1)}
+        on:click={() => dispatch('tab', 'preview')}
         class="bytemd-toolbar-tab"
-        class:bytemd-toolbar-tab-active={activeTab === 1}
+        class:bytemd-toolbar-tab-active={activeTab === 'preview'}
         >{capitalize(locale.toolbar.preview)}</span
       >
     {/if}
@@ -48,44 +49,42 @@
 
   <div class="bytemd-toolbar-right">
     {#if split}<ToolbarButton
-        tooltip={locale.toolbar.left}
+        title={locale.toolbar.left}
         icon={icons.left}
-        active={activeTab === 0}
+        active={activeTab === 'write'}
         on:click={() => {
-          dispatch('tab', 0);
+          dispatch('tab', 'write');
         }}
       /><ToolbarButton
-        tooltip={locale.toolbar.right}
+        title={locale.toolbar.right}
         icon={icons.right}
-        active={activeTab === 1}
+        active={activeTab === 'preview'}
         on:click={() => {
-          dispatch('tab', 1);
+          dispatch('tab', 'preview');
         }}
       />{/if}<ToolbarButton
-      tooltip={locale.toolbar.toc}
+      title={locale.toolbar.toc}
       icon={icons.toc}
       active={sidebar === 'toc'}
       on:click={() => {
         dispatch('click', 'toc');
       }}
     /><ToolbarButton
-      tooltip={locale.toolbar.help}
+      title={locale.toolbar.help}
       icon={icons.help}
       active={sidebar === 'help'}
       on:click={() => {
         dispatch('click', 'help');
       }}
     /><ToolbarButton
-      tooltip={locale.toolbar.fullscreen}
+      title={locale.toolbar.fullscreen}
       icon={fullscreen ? icons.fullscreenOff : icons.fullscreenOn}
-      active={false}
       on:click={() => {
         dispatch('click', 'fullscreen');
       }}
     /><ToolbarButton
-      tooltip={locale.toolbar.about}
+      title={locale.toolbar.about}
       icon={icons.info}
-      active={false}
       on:click={() => {
         window.open('https://github.com/bytedance/bytemd');
       }}

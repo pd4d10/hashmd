@@ -7,6 +7,8 @@
     "css-loader": "^2.1.1",
     "file-loader": "^6.0.0",
     "github-markdown-css": "^4.0.0",
+    "juejin-markdown-themes": "^1.17.0",
+    "normalize.css": "^8.0.1",
     "style-loader": "^0.23.1",
     "svelte": "^3.0.0",
     "svelte-loader": "2.13.3",
