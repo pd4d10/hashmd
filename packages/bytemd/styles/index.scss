@@ -1,7 +1,7 @@
 @import '~codemirror/lib/codemirror.css';
 @import '~tippy.js/dist/tippy.css';
-@import '~tippy.js/themes/light.css';
-@import '~tippy.js/animations/scale.css';
+// @import '~tippy.js/themes/light.css';
+// @import '~tippy.js/animations/scale.css';
 @import '~@primer/css/support/variables/color-system.scss';
 
 $border-color: $gray-200;
@@ -77,12 +77,17 @@ $max-width: 800px;
     }
   }
 
-  &-select {
-    // background: $white;
-    &-option {
+  &-dropdown {
+    background-color: $white;
+    padding: 3px 0;
+    border: 1px solid $border-color;
+    z-index: 999;
+    max-height: 50%;
+    overflow: auto;
+    &-item {
       padding: 6px 12px;
       line-height: 1;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       &:hover {
         background-color: $border-color;
@@ -115,7 +120,7 @@ $max-width: 800px;
       }
       pre.CodeMirror-line,
       pre.CodeMirror-line-like {
-        padding: 0 5%;
+        padding: 0 4%;
       }
     }
   }
@@ -128,7 +133,7 @@ $max-width: 800px;
     .markdown-body {
       max-width: $max-width;
       margin: 0 auto;
-      padding: 16px 5%;
+      padding: 16px 4%;
     }
   }
 

@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
   import { capitalize } from 'lodash-es';
   import type { EditorProps, BytemdEditorContext, BytemdAction } from './types';
@@ -27,6 +27,7 @@
             title={item.title + (item.shortcut ? ` <${item.shortcut}>` : '')}
             icon={item.icon}
             on:click={(e) => {
+              dispatch('active', e.detail);
               item.handler && item.handler(context);
             }}
           />

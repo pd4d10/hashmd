@@ -13,9 +13,9 @@
   onMount(() => {
     instance = tippy(el, {
       content: title,
-      animation: 'scale',
+      // animation: 'scale',
       duration: 100,
-      delay: 100,
+      delay: 300,
     });
   });
 
@@ -37,7 +37,7 @@
 
 <span
   bind:this={el}
-  on:click={() => dispatch('click', el)}
+  on:click|stopPropagation={() => dispatch('click', el)}
   class="bytemd-toolbar-icon"
   class:bytemd-toolbar-icon-active={active}
 >

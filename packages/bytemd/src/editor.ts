@@ -41,7 +41,7 @@ export function createEditorUtils(editor: Editor) {
      *
      * `line -> # line`
      */
-    replaceLines(replace: (lines: string[]) => string[]) {
+    replaceLines(replace: Parameters<Array<string>['map']>[0]) {
       editor.focus();
 
       const [selection] = editor.listSelections();
@@ -57,7 +57,7 @@ export function createEditorUtils(editor: Editor) {
         .split('\n');
 
       editor.replaceRange(
-        replace(lines).join('\n'),
+        lines.map(replace).join('\n'),
         { line: from.line, ch: 0 },
         // @ts-ignore
         { line: to.line }
@@ -116,10 +116,30 @@ export function getBuiltinActions(
     {
       ...locale.heading,
       icon: icons.heading,
-      async handler({ replaceLines }) {
-        replaceLines((lines) =>
-          lines.map((line) => `${'#'.repeat(1 + 1)} ${line}`)
-        );
+      async handler({ replaceLines, showDropdown }) {
+        const levels = [1, 2, 3, 4, 5, 6] as const;
+        showDropdown({
+          items: [
+            ...levels.map((level) => ({
+              text: locale.heading[`h${level}` as keyof typeof locale.heading],
+              onMouseEnter() {
+                replaceLines((line) => {
+                  line = line.replace(/^#*/, '');
+                  line = '#'.repeat(level) + ' ' + line.trim();
+                  return line;
+                });
+              },
+            })),
+            {
+              text: locale.heading.p,
+              onMouseEnter() {
+                replaceLines((line) => {
+                  return line.replace(/^#*/, '').trim();
+                });
+              },
+            },
+          ],
+        });
       },
     },
     {
@@ -142,7 +162,7 @@ export function getBuiltinActions(
       ...locale.quote,
       icon: icons.quote,
       handler({ replaceLines }) {
-        replaceLines((lines) => lines.map((line) => '> ' + line));
+        replaceLines((line) => '> ' + line);
       },
     },
     {
@@ -206,14 +226,14 @@ export function getBuiltinActions(
       ...locale.ul,
       icon: icons.ul,
       handler({ replaceLines }) {
-        replaceLines((lines) => lines.map((line) => '- ' + line));
+        replaceLines((line) => '- ' + line);
       },
     },
     {
       ...locale.ol,
       icon: icons.ol,
       handler({ replaceLines }) {
-        replaceLines((lines) => lines.map((line, i) => `${i + 1}. ${line}`));
+        replaceLines((line, i) => `${i + 1}. ${line}`);
       },
     },
     {

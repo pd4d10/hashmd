@@ -25,6 +25,7 @@
     "lib"
   ],
   "dependencies": {
+    "@popperjs/core": "^2.6.0",
     "@types/codemirror": "^0.0.108",
     "codemirror": "^5.59.2",
     "rehype-raw": "^5.0.0",

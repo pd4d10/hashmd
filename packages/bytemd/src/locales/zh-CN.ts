@@ -25,6 +25,13 @@ const locale: BytemdLocale = {
   heading: {
     title: '标题',
     cheatsheet: '## 标题',
+    h1: '一级标题',
+    h2: '二级标题',
+    h3: '三级标题',
+    h4: '四级标题',
+    h5: '五级标题',
+    h6: '六级标题',
+    p: '段落',
   },
   bold: {
     title: '粗体',

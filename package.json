@@ -43,7 +43,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^4.1.2",
     "rollup-plugin-vue": "^5.1.9",
-    "svelte": "^3.29.4",
+    "svelte": "^3.32.3",
     "svelte-jester": "^1.1.5",
     "svelte-preprocess": "^4.5.2",
     "ts-jest": "^26.4.3",
