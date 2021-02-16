@@ -26,8 +26,14 @@
   ],
   "dependencies": {
     "@popperjs/core": "^2.6.0",
+    "@types/classnames": "^2.2.11",
     "@types/codemirror": "^0.0.108",
+    "@types/lodash.debounce": "^4.0.6",
+    "@types/lodash.throttle": "^4.1.6",
+    "classnames": "^2.2.6",
     "codemirror": "^5.59.2",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "rehype-raw": "^5.0.0",
     "rehype-sanitize": "^4.0.0",
     "rehype-stringify": "^8.0.0",
@@ -36,11 +42,5 @@
     "select-files": "^1.0.1",
     "tippy.js": "^6.2.7",
     "unified": "^9.2.0"
-  },
-  "devDependencies": {
-    "@types/classnames": "^2.2.11",
-    "@types/lodash-es": "^4.17.4",
-    "classnames": "^2.2.6",
-    "lodash-es": "^4.17.20"
   }
 }

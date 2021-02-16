@@ -5,7 +5,8 @@
   import type { Root, Element } from 'hast';
   import type { BytemdEditorContext, BytemdPlugin, EditorProps } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
-  import { debounce, throttle } from 'lodash-es';
+  import debounce from 'lodash.debounce';
+  import throttle from 'lodash.throttle';
   import cx from 'classnames';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
