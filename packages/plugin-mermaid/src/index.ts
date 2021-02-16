@@ -4,19 +4,18 @@ import type mermaidAPI from 'mermaid/mermaidAPI';
 import { icons } from './icons';
 import enUS, { Locale } from './locales/en-US';
 
-export interface BytemdPluginMermaidOptions {
+export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
   locale?: Locale;
-  mermaidConfig?: mermaidAPI.Config;
 }
 
 export default function mermaid({
   locale = enUS,
-  mermaidConfig,
+  ...mermaidConfig
 }: BytemdPluginMermaidOptions = {}): BytemdPlugin {
   let m: Mermaid;
 
   return {
-    effect({ markdownBody }) {
+    viewerEffect({ markdownBody }) {
       (async () => {
         const els = markdownBody.querySelectorAll<HTMLElement>(
           'pre>code.language-mermaid'
@@ -36,6 +35,7 @@ export default function mermaid({
 
           const container = document.createElement('div');
           container.classList.add('bytemd-mermaid');
+          container.style.lineHeight = 'initial'; // reset line-height
           pre.replaceWith(container);
 
           try {

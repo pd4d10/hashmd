@@ -10,7 +10,7 @@ export interface MathOptions {
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
-export default function math({
+export default function mathSsr({
   locale = enUS,
   katexOptions,
 }: MathOptions = {}): BytemdPlugin {

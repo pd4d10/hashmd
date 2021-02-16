@@ -6,19 +6,6 @@ import type { EditorUtils } from './editor';
 import type { BytemdLocale } from './locales/en-US';
 import type { createPopper } from '@popperjs/core';
 
-export interface BytemdContext {
-  /**
-   * The root element of the viewer
-   */
-  markdownBody: HTMLElement;
-  /**
-   * Virtual file format used in [unified](https://unifiedjs.com/)
-   *
-   * Get the HTML output by calling `vfile.toString()`
-   */
-  file: VFile;
-}
-
 export interface BytemdEditorContext extends EditorUtils {
   /**
    * CodeMirror editor instance
@@ -40,6 +27,19 @@ export interface BytemdEditorContext extends EditorUtils {
       onMouseLeave?(): void;
     }[];
   }): void;
+}
+
+export interface BytemdViewerContext {
+  /**
+   * The root element of the viewer
+   */
+  markdownBody: HTMLElement;
+  /**
+   * Virtual file format used in [unified](https://unifiedjs.com/)
+   *
+   * Get the HTML output by calling `vfile.toString()`
+   */
+  file: VFile;
 }
 
 export interface BytemdAction {
@@ -85,21 +85,17 @@ export interface BytemdPlugin {
    */
   rehype?: (p: Processor) => Processor;
   /**
-   * Side effect for viewer, triggers when viewer props changes
-   */
-  effect?(context: BytemdContext): void | (() => void);
-  /**
    * Register actions in toolbar, cheatsheet and shortcuts
    */
   action?: BytemdAction | BytemdAction[];
   /**
-   *
-   */
-  shortcut?: Record<string, (context: BytemdEditorContext) => void>;
-  /**
-   * Side effect for editor, triggers when editor props changes
+   * Side effect for the editor, triggers when plugin changes
    */
   editorEffect?(context: BytemdEditorContext): void | (() => void);
+  /**
+   * Side effect for the viewer, triggers when viewer props changes
+   */
+  viewerEffect?(context: BytemdViewerContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
@@ -131,14 +127,16 @@ export interface EditorProps extends ViewerProps {
   editorConfig?: Omit<EditorConfiguration, 'value' | 'placeholder'>;
   /**
    * i18n locale
+   *
+   * @defaultValue enUS
    */
   locale?: BytemdLocale;
   /**
-   * Handle image uplodaer
+   * Handle images upload
    */
-  uploadImages?(
+  uploadImages?: (
     files: File[]
-  ): Promise<
+  ) => Promise<
     {
       src: string;
       alt?: string;
@@ -163,12 +161,5 @@ export interface ViewerProps {
    *
    * If you want further customization, pass a function to mutate sanitize schema.
    */
-  sanitize?:
-    | {
-        /**
-         * Allow inline styles. Default: `false`
-         */
-        allowInlineStyle?: boolean;
-      }
-    | ((schema: Schema) => Schema);
+  sanitize?: (schema: Schema) => Schema;
 }

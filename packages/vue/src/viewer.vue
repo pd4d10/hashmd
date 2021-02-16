@@ -40,9 +40,9 @@ export default {
     on() {
       if (this.plugins && this.file) {
         this.cbs = this.plugins.map(
-          ({ effect }) =>
-            effect &&
-            effect({ markdownBody: this.markdownBody, file: this.file })
+          ({ viewerEffect }) =>
+            viewerEffect &&
+            viewerEffect({ markdownBody: this.markdownBody, file: this.file })
         );
       }
     },

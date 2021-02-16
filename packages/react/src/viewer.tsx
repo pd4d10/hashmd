@@ -17,7 +17,9 @@ export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
     const markdownBody = elRef.current;
     if (!markdownBody || !file) return;
 
-    const cbs = plugins?.map(({ effect }) => effect?.({ markdownBody, file }));
+    const cbs = plugins?.map(({ viewerEffect }) =>
+      viewerEffect?.({ markdownBody, file })
+    );
     return () => {
       cbs?.forEach((cb) => cb && cb());
     };

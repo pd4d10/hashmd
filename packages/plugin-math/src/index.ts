@@ -17,7 +17,7 @@ export default function math({
 
   return {
     remark: (p) => p.use(remarkMath),
-    effect({ markdownBody }) {
+    viewerEffect({ markdownBody }) {
       const renderMath = async (selector: string, displayMode: boolean) => {
         const els = markdownBody.querySelectorAll<HTMLElement>(selector);
         if (els.length === 0) return;

@@ -3,14 +3,13 @@ import enUS, { Locale } from './locales/en-US';
 import remarkGfm, { RemarkGfmOptions } from 'remark-gfm';
 import { icons } from './icons';
 
-export interface BytemdPluginGfmOptions {
+export interface BytemdPluginGfmOptions extends RemarkGfmOptions {
   locale?: Locale;
-  remarkGfmOptions?: RemarkGfmOptions;
 }
 
 export default function gfm({
   locale = enUS,
-  remarkGfmOptions,
+  ...remarkGfmOptions
 }: BytemdPluginGfmOptions = {}): BytemdPlugin {
   return {
     remark: (p) => p.use(remarkGfm, remarkGfmOptions),
@@ -36,9 +35,12 @@ export default function gfm({
         icon: icons.table,
         handler({ editor, appendBlock }) {
           const { line } = appendBlock(
-            '| heading |  |\n| --- | --- |\n|  |  |\n'
+            `| ${locale.table.heading} |  |\n| --- | --- |\n|  |  |\n`
           );
-          editor.setSelection({ line: line, ch: 2 }, { line: line, ch: 9 });
+          editor.setSelection(
+            { line: line, ch: 2 },
+            { line: line, ch: 2 + locale.table.heading.length }
+          );
           editor.focus();
         },
       },

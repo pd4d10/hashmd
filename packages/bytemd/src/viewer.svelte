@@ -13,11 +13,11 @@
   export let sanitize: ViewerProps['sanitize'];
 
   let markdownBody: HTMLElement;
-  let cbs: ReturnType<NonNullable<BytemdPlugin['effect']>>[] = [];
+  let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = [];
 
   function on() {
     // console.log('von');
-    cbs = plugins.map((p) => p.effect?.({ markdownBody, file }));
+    cbs = plugins.map((p) => p.viewerEffect?.({ markdownBody, file }));
   }
   function off() {
     // console.log('voff');
@@ -41,6 +41,7 @@
   onDestroy(off);
 
   let file: VFile;
+  let i = 0;
 
   $: try {
     file = getProcessor({
@@ -57,6 +58,7 @@
         },
       ],
     }).processSync(value);
+    i++;
 
     off();
     tick().then(() => {
@@ -65,8 +67,10 @@
   } catch (err) {
     console.error(err);
   }
+
+  $: html = `${file}<!--${i}-->`;
 </script>
 
 <div bind:this={markdownBody} class="markdown-body">
-  {@html file.toString()}
+  {@html html}
 </div>

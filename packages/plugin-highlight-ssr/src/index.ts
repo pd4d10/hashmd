@@ -10,7 +10,7 @@ export interface BytemdPluginHighlightSsrOptions {
   aliases?: Record<string, string[]>;
 }
 
-export default function highlight({
+export default function highlightSsr({
   subset = false,
   ignoreMissing = true,
   ...rest

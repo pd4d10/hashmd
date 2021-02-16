@@ -11,6 +11,7 @@ const locale: Locale = {
   },
   table: {
     title: '表格',
+    heading: '标题',
   },
 };
 
