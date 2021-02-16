@@ -1,4 +1,4 @@
-import type { Editor } from 'codemirror';
+import type { Editor, Position } from 'codemirror';
 import type { BytemdPlugin, BytemdAction, EditorProps } from './types';
 import type { BytemdLocale } from './locales/en-US';
 import { icons } from './icons';
@@ -14,13 +14,13 @@ export function createEditorUtils(editor: Editor) {
      * `text -> *text*`
      */
     wrapText(before: string, after = before) {
-      editor.focus();
+      const range = editor.somethingSelected()
+        ? editor.listSelections()[0] // only handle the first selection
+        : editor.findWordAt(editor.getCursor());
 
-      const [selection] = editor.listSelections(); // only handle the first selection
-      const from = selection.from(); // use from/to instead of anchor/head for reverse select
-      const to = selection.to();
-
-      const text = editor.getRange(from, to) || 'text';
+      const from = range.from(); // use from/to instead of anchor/head for reverse select
+      const to = range.to();
+      const text = editor.getRange(from, to);
       editor.replaceRange(before + text + after, from, to);
 
       // select the original text
@@ -42,46 +42,49 @@ export function createEditorUtils(editor: Editor) {
      * `line -> # line`
      */
     replaceLines(replace: Parameters<Array<string>['map']>[0]) {
-      editor.focus();
-
       const [selection] = editor.listSelections();
-      const from = selection.from();
-      const to = selection.to();
 
-      const lines = editor
-        .getRange(
-          { line: from.line, ch: 0 },
-          // @ts-ignore
-          { line: to.line }
-        )
-        .split('\n');
-
-      editor.replaceRange(
-        lines.map(replace).join('\n'),
-        { line: from.line, ch: 0 },
-        // @ts-ignore
-        { line: to.line }
-      );
+      const range = [
+        { line: selection.from().line, ch: 0 },
+        { line: selection.to().line, ch: Infinity },
+      ] as const;
+      const lines = editor.getRange(...range).split('\n');
+      editor.replaceRange(lines.map(replace).join('\n'), ...range);
+      editor.setSelection(...range);
     },
     /**
      * Append a block based on the cursor position
      */
-    appendBlock(content: string) {
-      editor.focus();
-
+    appendBlock(content: string): Position {
       const cursor = editor.getCursor();
-      editor.replaceRange(
-        '\n' + content,
-        // @ts-ignore
-        { line: cursor.line }
-      );
+      // find the first blank line
 
+      let emptyLine = -1;
+      for (let i = cursor.line; i < editor.lineCount(); i++) {
+        if (!editor.getLine(i).trim()) {
+          emptyLine = i;
+          break;
+        }
+      }
+      if (emptyLine === -1) {
+        // insert a new line to the bottom
+        editor.replaceRange('\n', { line: editor.lineCount(), ch: Infinity });
+        emptyLine = editor.lineCount();
+      }
+
+      editor.replaceRange('\n' + content, {
+        line: emptyLine,
+        ch: Infinity,
+      });
       return {
-        startLine: cursor.line + 1,
+        line: emptyLine + 1,
+        ch: 0,
       };
     },
     /**
-     * Triggers a virtual file input and return user selected files
+     * Triggers a virtual file input and let user select files
+     *
+     * https://www.npmjs.com/package/select-files
      */
     selectFiles,
   };
@@ -116,28 +119,28 @@ export function getBuiltinActions(
     {
       ...locale.heading,
       icon: icons.heading,
-      async handler({ replaceLines, showDropdown }) {
-        const levels = [1, 2, 3, 4, 5, 6] as const;
+      async handler({ replaceLines, showDropdown, editor }) {
+        const levels = [1, 2, 3, 4, 5, 6, 0];
         showDropdown({
           items: [
             ...levels.map((level) => ({
-              text: locale.heading[`h${level}` as keyof typeof locale.heading],
+              text:
+                level === 0
+                  ? locale.heading.p
+                  : locale.heading[`h${level}` as keyof typeof locale.heading],
               onMouseEnter() {
                 replaceLines((line) => {
-                  line = line.replace(/^#*/, '');
-                  line = '#'.repeat(level) + ' ' + line.trim();
+                  line = line.trim().replace(/^#*/, '').trim();
+                  if (level > 0) {
+                    line = '#'.repeat(level) + ' ' + line;
+                  }
                   return line;
                 });
               },
-            })),
-            {
-              text: locale.heading.p,
-              onMouseEnter() {
-                replaceLines((line) => {
-                  return line.replace(/^#*/, '').trim();
-                });
+              onClick() {
+                editor.focus();
               },
-            },
+            })),
           ],
         });
       },
@@ -146,23 +149,26 @@ export function getBuiltinActions(
       ...locale.bold,
       icon: icons.bold,
       shortcut: getShortcutWithPrefix('B'),
-      handler({ wrapText }) {
+      handler({ wrapText, editor }) {
         wrapText('**');
+        editor.focus();
       },
     },
     {
       ...locale.italic,
       icon: icons.italic,
       shortcut: getShortcutWithPrefix('I'),
-      handler({ wrapText }) {
+      handler({ wrapText, editor }) {
         wrapText('_');
+        editor.focus();
       },
     },
     {
       ...locale.quote,
       icon: icons.quote,
-      handler({ replaceLines }) {
+      handler({ replaceLines, editor }) {
         replaceLines((line) => '> ' + line);
+        editor.focus();
       },
     },
     {
@@ -170,30 +176,27 @@ export function getBuiltinActions(
       icon: icons.link,
       shortcut: getShortcutWithPrefix('K'),
       handler({ editor, wrapText }) {
-        if (editor.somethingSelected()) {
-          wrapText('[', '](url)');
-          const cursor = editor.getCursor();
-          editor.setSelection(
-            { line: cursor.line, ch: cursor.ch + 2 },
-            { line: cursor.line, ch: cursor.ch + 5 }
-          );
-        } else {
-          wrapText('[', '](url)');
-        }
+        wrapText('[', '](url)');
+        const cursor = editor.getCursor();
+        editor.setSelection(
+          { line: cursor.line, ch: cursor.ch + 2 },
+          { line: cursor.line, ch: cursor.ch + 5 }
+        );
+        editor.focus();
       },
     },
     {
       ...locale.image,
       icon: icons.image,
       handler: uploadImages
-        ? async ({ appendBlock, selectFiles }) => {
+        ? async ({ appendBlock, selectFiles, editor }) => {
             const fileList = await selectFiles({
               accept: 'image/*',
               multiple: true,
             });
             const files = Array.from(fileList ?? []);
             const imgs = await uploadImages(files);
-            appendBlock(
+            const { line, ch } = appendBlock(
               imgs
                 .map(({ src, alt, title }, i) => {
                   alt = alt ?? files[i].name;
@@ -201,39 +204,45 @@ export function getBuiltinActions(
                 })
                 .join('\n\n')
             );
+            editor.setSelection(
+              { line, ch },
+              { line: line + imgs.length * 2 - 2, ch: Infinity }
+            );
+            editor.focus();
           }
         : undefined,
     },
     {
       ...locale.code,
       icon: icons.code,
-      handler({ wrapText }) {
+      handler({ wrapText, editor }) {
         wrapText('`');
+        editor.focus();
       },
     },
     {
       ...locale.pre,
       icon: icons.codeBlock,
       handler({ editor, appendBlock }) {
-        const { startLine } = appendBlock('```js\n```');
-        editor.setSelection(
-          { line: startLine, ch: 3 },
-          { line: startLine, ch: 5 }
-        );
+        const { line } = appendBlock('```js\n```');
+        editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
+        editor.focus();
       },
     },
     {
       ...locale.ul,
       icon: icons.ul,
-      handler({ replaceLines }) {
+      handler({ replaceLines, editor }) {
         replaceLines((line) => '- ' + line);
+        editor.focus();
       },
     },
     {
       ...locale.ol,
       icon: icons.ol,
-      handler({ replaceLines }) {
+      handler({ replaceLines, editor }) {
         replaceLines((line, i) => `${i + 1}. ${line}`);
+        editor.focus();
       },
     },
     {

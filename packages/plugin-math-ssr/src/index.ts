@@ -26,10 +26,10 @@ export default function math({
         ...locale.display,
         icon: icons.display,
         handler({ editor, appendBlock }) {
-          const { startLine } = appendBlock('$$\n\\TeX\n$$');
+          const { line } = appendBlock('$$\n\\TeX\n$$');
           editor.setSelection(
-            { line: startLine + 1, ch: 0 },
-            { line: startLine + 1, ch: 4 }
+            { line: line + 1, ch: 0 },
+            { line: line + 1, ch: 4 }
           );
         },
       },

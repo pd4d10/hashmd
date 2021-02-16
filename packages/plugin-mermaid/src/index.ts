@@ -57,11 +57,12 @@ export default function mermaid({
     action: {
       icon: icons.mermaid,
       handler({ editor, appendBlock }) {
-        const { startLine } = appendBlock('```mermaid\ngraph LR\nA--->B\n```');
+        const { line } = appendBlock('```mermaid\ngraph LR\nA--->B\n```');
         editor.setSelection(
-          { line: startLine + 1, ch: 0 }, // @ts-ignore
-          { line: startLine + 2 }
+          { line: line + 1, ch: 0 },
+          { line: line + 2, ch: Infinity }
         );
+        editor.focus();
       },
       ...locale,
     },
