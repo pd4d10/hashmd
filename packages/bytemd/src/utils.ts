@@ -26,8 +26,11 @@ export function getProcessor({
   p = p.use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw);
 
   let schema = JSON.parse(schemaStr) as Schema;
-  schema.attributes!['*'].push('className'); // Add className
-  if (sanitize) schema = sanitize(schema);
+  schema.attributes!['*'].push('className'); // Allow class names by default
+
+  if (typeof sanitize === 'function') {
+    schema = sanitize(schema);
+  }
 
   p = p.use(rehypeSanitize, schema);
 

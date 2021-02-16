@@ -1,18 +1,18 @@
 import type { BytemdPlugin } from 'bytemd';
 import type H from 'highlight.js';
 
-export interface HighlightLazyOptions {
+export interface BytemdPluginHighlightOptions {
   init?(hljs: typeof H): void | Promise<void>;
 }
 
 export default function highlight({
   init,
-}: HighlightLazyOptions = {}): BytemdPlugin {
+}: BytemdPluginHighlightOptions = {}): BytemdPlugin {
   let hljs: typeof H;
   return {
-    viewerEffect({ $el }) {
+    viewerEffect({ markdownBody }) {
       (async () => {
-        const els = $el.querySelectorAll<HTMLElement>('pre>code');
+        const els = markdownBody.querySelectorAll<HTMLElement>('pre>code');
         if (els.length === 0) return;
 
         if (!hljs) {

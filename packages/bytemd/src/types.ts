@@ -3,46 +3,72 @@ import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
+import type { BytemdLocale } from './locales/en-US';
+import type { createPopper } from '@popperjs/core';
 
-export interface EditorContext {
+export interface BytemdEditorContext extends EditorUtils {
   /**
    * CodeMirror editor instance
    */
   editor: Editor;
   /**
-   * Root element, `$('.bytemd')`
+   * The root element
    */
-  $el: HTMLElement;
+  root: HTMLElement;
   /**
-   * Utilities for Editor
+   * Show a dropdown menu to select items
    */
-  utils: EditorUtils;
+  showDropdown(payload: {
+    popperOptions?: Parameters<typeof createPopper>[2];
+    items: {
+      text: string;
+      onClick?(): void;
+      onMouseEnter?(): void;
+      onMouseLeave?(): void;
+    }[];
+  }): void;
 }
 
-export interface ViewerContext {
+export interface BytemdViewerContext {
   /**
-   * Root element of the Viewer, `$('.markdown-body')`
+   * The root element of the viewer
    */
-  $el: HTMLElement;
+  markdownBody: HTMLElement;
   /**
-   * Markdown process result
+   * Virtual file format used in [unified](https://unifiedjs.com/)
+   *
+   * Get the HTML output by calling `vfile.toString()`
    */
-  result: VFile;
+  file: VFile;
 }
 
-export interface BytemdToolbarItem {
+export interface BytemdAction {
   /**
-   * Tooltip of toolbar item
-   */
-  tooltip?: string;
-  /**
-   * Toolbar Icon (16x16), could be <img> or inline svg
+   * Action icon (16x16), could be <img> or inline svg
    */
   icon: string;
   /**
-   * Toolbar icon click handler
+   * Action title
    */
-  onClick(context: EditorContext): void;
+  title: string;
+  /**
+   * Action handler, used for toolbar icon click and shortcut trigger
+   */
+  handler?: (context: BytemdEditorContext) => void;
+  /**
+   * Markdown syntax cheat sheet
+   *
+   * If specified, this record will be added to the Markdown cheat sheet section
+   */
+  cheatsheet?: string;
+  /**
+   * Keyboard shortcut
+   *
+   * If specified, this record will be added to the Keyboard shortcut section
+   *
+   * https://codemirror.net/doc/manual.html#keymaps
+   */
+  shortcut?: string;
 }
 
 export interface BytemdPlugin {
@@ -59,46 +85,64 @@ export interface BytemdPlugin {
    */
   rehype?: (p: Processor) => Processor;
   /**
-   * Register toolbar items
+   * Register actions in toolbar, cheatsheet and shortcuts
    */
-  toolbar?: Record<string, BytemdToolbarItem>;
+  action?: BytemdAction | BytemdAction[];
   /**
-   * Side effect for editor, triggers when plugin list changes
+   * Side effect for the editor, triggers when plugin changes
    */
-  editorEffect?(context: EditorContext): void | (() => void);
+  editorEffect?(context: BytemdEditorContext): void | (() => void);
   /**
-   * Side effect for viewer, triggers when HTML or plugin list changes
+   * Side effect for the viewer, triggers when viewer props changes
    */
-  viewerEffect?(context: ViewerContext): void | (() => void);
+  viewerEffect?(context: BytemdViewerContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
   /**
    * Editor display mode
    *
-   * - split: edit on the left and preview on the right
-   * - tab: click tabs to switch between edit and preview
+   * - `split`: edit on the left and preview on the right
+   * - `tab`: click tabs to switch between edit and preview
+   * - `auto`: auto determined by the width of editor container
+   *
+   * @defaultValue `auto`
    */
-  mode?: 'split' | 'tab';
+  mode?: 'split' | 'tab' | 'auto';
   /**
    * Debounce time (ms) for preview
+   *
+   * @defaultValue 300
    */
   previewDebounce?: number;
-  // TODO:
-  // /**
-  //  * Specify visible toolbar items and their orders
-  //  *
-  //  * Default: Show all available items, order: built-in -> plugin by apply order
-  //  */
-  // toolbar?:
-  //   | string[]
-  //   | ((itemMap: Record<string, BytemdToolbarItem>) => string[]);
+  /**
+   * Editor placeholder
+   */
+  placeholder?: string;
   /**
    * CodeMirror editor config
    *
    * https://codemirror.net/doc/manual.html#config
    */
-  editorConfig?: Omit<EditorConfiguration, 'value' | 'mode'>;
+  editorConfig?: Omit<EditorConfiguration, 'value' | 'placeholder'>;
+  /**
+   * i18n locale
+   *
+   * @defaultValue enUS
+   */
+  locale?: BytemdLocale;
+  /**
+   * Handle images upload
+   */
+  uploadImages?: (
+    files: File[]
+  ) => Promise<
+    {
+      src: string;
+      alt?: string;
+      title?: string;
+    }[]
+  >;
 }
 
 export interface ViewerProps {
@@ -111,11 +155,11 @@ export interface ViewerProps {
    */
   plugins?: BytemdPlugin[];
   /**
-   * Sanitize strategy
-   *
-   * Defaults to GitHub style sanitation except the `className` property is allowed
+   * Sanitize strategy: Defaults to GitHub style sanitation with class names allowed
    *
    * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
+   *
+   * If you want further customization, pass a function to mutate sanitize schema.
    */
   sanitize?: (schema: Schema) => Schema;
 }

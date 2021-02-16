@@ -43,7 +43,11 @@ const configs = packages
       input: inputFile,
       plugins: [
         commonjs(),
-        svelte(),
+        svelte({
+          compilerOptions: {
+            dev: !production,
+          },
+        }),
         vue(),
         resolve({
           browser: true,

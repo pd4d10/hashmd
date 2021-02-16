@@ -1,3 +1,4 @@
+// @ts-check
 import fs from 'fs-extra';
 import path from 'path';
 import glob from 'glob';
@@ -23,7 +24,10 @@ async function transform(file, dir = 'lib') {
         filename: file,
       }
     );
-    await fs.writeFile(dest, item.code);
+    await fs.writeFile(
+      dest,
+      item.code.replace('<script lang="ts">', '<script>')
+    );
   } else {
     await fs.copyFile(file, dest);
   }

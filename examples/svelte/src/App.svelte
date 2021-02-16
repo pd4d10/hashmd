@@ -7,18 +7,36 @@
   import breaks from '@bytemd/plugin-breaks';
   import mermaid from '@bytemd/plugin-mermaid';
   import footnotes from '@bytemd/plugin-footnotes';
-  import importImage from '@bytemd/plugin-import-image';
   import frontmatter from '@bytemd/plugin-frontmatter';
   import mediumZoom from '@bytemd/plugin-medium-zoom';
-  import importHtml from '@bytemd/plugin-import-html';
+  import gemoji from '@bytemd/plugin-gemoji';
+
+  import en from 'bytemd/lib/locales/en-US';
+  import zh from 'bytemd/lib/locales/zh-CN';
+  import gfmEn from '@bytemd/plugin-gfm/lib/locales/en-US';
+  import gfmZh from '@bytemd/plugin-gfm/lib/locales/zh-CN';
+  import mathEn from '@bytemd/plugin-math/lib/locales/en-US';
+  import mathZh from '@bytemd/plugin-math/lib/locales/zh-CN';
+  import mermaidEn from '@bytemd/plugin-mermaid/lib/locales/en-US';
+  import mermaidZh from '@bytemd/plugin-mermaid/lib/locales/zh-CN';
+
+  const locales = {
+    'en-US': { bytemd: en, gfm: gfmEn, math: mathEn, mermaid: mermaidEn },
+    'zh-CN': { bytemd: zh, gfm: gfmZh, math: mathZh, mermaid: mermaidZh },
+  };
 
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
+  // import 'juejin-markdown-themes/dist/juejin.css';
   import 'highlight.js/styles/vs.css';
   import 'katex/dist/katex.css';
+  // import 'normalize.css';
 
   let value = '';
-  let mode = 'split';
+  let mode = 'auto';
+  let localeKey = 'en-US';
+
+  $: currentLocale = locales[localeKey];
 
   function handleChange(e) {
     value = e.detail.value;
@@ -32,64 +50,70 @@
 
   let enabled = {
     breaks: false,
+    footnotes: true,
+    frontmatter: true,
+    gemoji: true,
     gfm: true,
     highlight: true,
     math: true,
-    mermaid: true,
-    frontmatter: true,
-    footnotes: true,
-    'import-html': true,
-    'import-image': true,
     'medium-zoom': true,
+    mermaid: true,
   };
-
-  function toBlobUrl(file) {
-    return URL.createObjectURL(file);
-  }
 
   $: plugins = [
     enabled.breaks && breaks(),
-    enabled.gfm && gfm(),
-    enabled.highlight && highlight(),
-    enabled.math && math(),
-    enabled.mermaid && mermaid(),
     enabled.footnotes && footnotes(),
-    enabled['import-image'] &&
-      importImage({
-        upload(files) {
-          return Promise.all(files.map((file) => toBlobUrl(file)));
-        },
-      }),
     enabled.frontmatter && frontmatter(),
-    enabled['import-html'] && importHtml(),
+    enabled.gemoji && gemoji(),
+    enabled.gfm && gfm({ locale: currentLocale.gfm }),
+    enabled.highlight && highlight(),
+    enabled.math && math({ locale: currentLocale.math }),
     enabled['medium-zoom'] && mediumZoom(),
-
-    // For test:
-    // {
-    //   editorEffect(cm, el) {
-    //     console.log('on', cm, el);
-    //     return () => {
-    //       console.log('off', cm, el);
-    //     };
-    //   },
-    //   viewerEffect(el, result) {
-    //     console.log('on', el, result);
-    //     return () => {
-    //       console.log('off', el, result);
-    //     };
-    //   },
-    // },
+    enabled.mermaid && mermaid({ locale: currentLocale.mermaid }),
   ].filter((x) => x);
-
-  function sanitize(schema) {
-    schema.protocols.src.push('blob');
-    return schema;
-  }
 </script>
+
+<div class="container">
+  <div class="line">
+    Mode:
+    {#each ['auto', 'split', 'tab'] as m}
+      <label> <input type="radio" bind:group={mode} value={m} />{m}</label>
+    {/each}
+    , Locale:
+    {#each Object.keys(locales) as l}
+      <label> <input type="radio" bind:group={localeKey} value={l} />{l}</label>
+    {/each}
+  </div>
+  <div class="line">
+    Plugins:
+    {#each Object.keys(enabled) as p}
+      {' '}
+      <label> <input type="checkbox" bind:checked={enabled[p]} />{p}</label>
+    {/each}
+  </div>
+  <Editor
+    {value}
+    {mode}
+    {plugins}
+    placeholder={localeKey === 'en-US' ? 'Start writing' : '开始写作'}
+    locale={currentLocale.bytemd}
+    uploadImages={(files) => {
+      return Promise.all(
+        files.map((file) => {
+          // TODO:
+          return {
+            src: 'https://picsum.photos/300',
+          };
+        })
+      );
+    }}
+    on:change={handleChange}
+  />
+</div>
 
 <style>
   .container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   .line {
@@ -99,6 +123,8 @@
   :global(body) {
     margin: 0 10px;
     font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   }
   :global(.bytemd) {
     height: calc(100vh - 100px);
@@ -110,20 +136,3 @@
     z-index: 101;
   }
 </style>
-
-<div class="container">
-  <div class="line">
-    Mode:
-    {#each ['split', 'tab'] as m}
-      <label> <input type="radio" bind:group={mode} value={m} /> {m} </label>
-    {/each}
-  </div>
-  <div class="line">
-    Plugins:
-    {#each Object.keys(enabled) as p}
-      {' '}
-      <label> <input type="checkbox" bind:checked={enabled[p]} /> {p} </label>
-    {/each}
-  </div>
-  <Editor {value} {mode} {plugins} {sanitize} on:change={handleChange} />
-</div>

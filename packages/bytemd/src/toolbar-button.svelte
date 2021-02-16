@@ -1,30 +1,45 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
+  import type { Instance } from 'tippy.js';
   import tippy from 'tippy.js';
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { createEventDispatcher } from 'svelte';
-  import type { BytemdToolbarItem } from './types';
 
   const dispatch = createEventDispatcher();
 
+  let instance: Instance;
+
   onMount(() => {
-    if (tooltip) {
-      tippy(el, {
-        content: tooltip,
-        animation: 'scale',
-        duration: 100,
-        delay: 100,
-      });
-    }
+    instance = tippy(el, {
+      content: title,
+      // animation: 'scale',
+      duration: 100,
+      delay: 300,
+    });
   });
 
+  onDestroy(() => {
+    instance?.destroy();
+  });
+
+  $: ((title) => {
+    instance?.setProps({
+      content: title,
+    });
+  })(title);
+
   let el: HTMLElement;
-  export let tooltip: BytemdToolbarItem['tooltip'];
-  export let icon: BytemdToolbarItem['icon'];
-  export let style: string | undefined;
+  export let title: string;
+  export let icon: string;
+  export let active = false;
 </script>
 
-<svelte:options immutable={true} />
-
-<span bind:this={el} on:click={() => dispatch('click')} {style}>
+<span
+  bind:this={el}
+  on:click|stopPropagation={() => dispatch('click', el)}
+  class="bytemd-toolbar-icon"
+  class:bytemd-toolbar-icon-active={active}
+>
   {@html icon}
 </span>

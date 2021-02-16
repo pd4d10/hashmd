@@ -1,38 +1,49 @@
 import type { BytemdPlugin } from 'bytemd';
+import enUS, { Locale } from './locales/en-US';
 import remarkGfm, { RemarkGfmOptions } from 'remark-gfm';
 import { icons } from './icons';
 
-export default function gfm(options?: RemarkGfmOptions): BytemdPlugin {
+export interface BytemdPluginGfmOptions extends RemarkGfmOptions {
+  locale?: Locale;
+}
+
+export default function gfm({
+  locale = enUS,
+  ...remarkGfmOptions
+}: BytemdPluginGfmOptions = {}): BytemdPlugin {
   return {
-    remark: (u) => u.use(remarkGfm, options),
-    toolbar: {
-      strikethrough: {
-        tooltip: 'Strikethrough',
+    remark: (p) => p.use(remarkGfm, remarkGfmOptions),
+    action: [
+      {
+        ...locale.strike,
         icon: icons.strikethrough,
-        onClick({ utils }) {
-          utils.wrapText('~~');
+        handler({ wrapText, editor }) {
+          wrapText('~~');
+          editor.focus();
         },
       },
-      task: {
-        tooltip: 'Task list',
+      {
+        ...locale.task,
         icon: icons.task,
-        onClick({ utils }) {
-          utils.replaceLines((lines) => lines.map((line) => '- [ ] ' + line));
+        handler({ replaceLines, editor }) {
+          replaceLines((line) => '- [ ] ' + line);
+          editor.focus();
         },
       },
-      table: {
-        tooltip: 'Table',
+      {
+        ...locale.table,
         icon: icons.table,
-        onClick({ editor, utils }) {
-          const { startLine } = utils.appendBlock(
-            '| heading |  |\n| --- | --- |\n|  |  |\n'
+        handler({ editor, appendBlock }) {
+          const { line } = appendBlock(
+            `| ${locale.table.heading} |  |\n| --- | --- |\n|  |  |\n`
           );
           editor.setSelection(
-            { line: startLine, ch: 2 },
-            { line: startLine, ch: 9 }
+            { line: line, ch: 2 },
+            { line: line, ch: 2 + locale.table.heading.length }
           );
+          editor.focus();
         },
       },
-    },
+    ],
   };
 }

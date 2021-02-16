@@ -1,111 +1,272 @@
 @import '~codemirror/lib/codemirror.css';
 @import '~tippy.js/dist/tippy.css';
-@import '~tippy.js/animations/scale.css';
+// @import '~tippy.js/themes/light.css';
+// @import '~tippy.js/animations/scale.css';
 @import '~@primer/css/support/variables/color-system.scss';
 
-.bytemd {
-  border: 1px solid $gray-200;
-  background-color: $white;
-  box-sizing: border-box;
-  height: 300px;
-}
+$border-color: $gray-200;
+$primary: $blue;
+$sidebar-width: 280px;
+$max-width: 800px;
 
-.bytemd-toolbar {
-  padding: 4px;
-  border-bottom: 1px solid $gray-200;
-  font-size: 0;
-  > span {
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 2px;
-    margin-left: 4px;
-    margin-right: 4px;
-    font-size: 16px;
-    color: $gray-800;
-    svg {
-      display: block;
-      padding: 4px;
+.bytemd {
+  // reset
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  color: $gray-900;
+  border: 1px solid $border-color;
+  background-color: $white;
+  height: 300px;
+
+  &-toolbar {
+    padding: 4px 12px;
+    border-bottom: 1px solid $border-color;
+    background-color: $gray-000;
+    user-select: none;
+    overflow: hidden;
+
+    &-left {
+      float: left;
     }
-    &:hover {
-      color: $blue;
-      background-color: $gray-000;
+
+    &-right {
+      float: right;
+    }
+
+    &-tab {
+      cursor: pointer;
+      padding-left: 8px;
+      padding-right: 8px;
+      line-height: 24px;
+      font-size: 14px;
+      &-active {
+        color: $primary;
+      }
+    }
+
+    &-icon {
+      display: inline-block;
+      vertical-align: top;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-left: 6px;
+      margin-right: 6px;
+      svg,
+      img {
+        display: block;
+        padding: 4px;
+        width: 24px;
+        height: 24px;
+      }
+      &:hover {
+        background-color: $border-color;
+      }
+      &-active {
+        color: $blue-500;
+      }
+    }
+
+    .tippy-content {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
-}
 
-.bytemd-tabs {
-  display: inline-block;
-  vertical-align: top;
-  span {
-    cursor: pointer;
-    padding-left: 8px;
-    padding-right: 8px;
+  &-dropdown {
+    background-color: $white;
+    padding: 3px 0;
+    border: 1px solid $border-color;
+    z-index: 999;
+    max-height: 50%;
+    overflow: auto;
+    &-item {
+      padding: 6px 12px;
+      line-height: 1;
+      font-size: 13px;
+      cursor: pointer;
+      &:hover {
+        background-color: $border-color;
+      }
+    }
+  }
+
+  &-body {
+    height: calc(100% - 33px - 25px);
+    overflow: auto;
+  }
+
+  &-editor {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    overflow: hidden;
+    .CodeMirror {
+      height: 100%;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+      pre.CodeMirror-placeholder {
+        color: $gray-400;
+      }
+      .CodeMirror-lines {
+        max-width: $max-width;
+        margin: 0 auto;
+        padding: 16px 0;
+      }
+      pre.CodeMirror-line,
+      pre.CodeMirror-line-like {
+        padding: 0 4%;
+      }
+    }
+  }
+
+  &-preview {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    overflow: auto;
+    .markdown-body {
+      max-width: $max-width;
+      margin: 0 auto;
+      padding: 16px 4%;
+    }
+  }
+
+  &-sidebar {
+    display: inline-block;
+    vertical-align: top; // Safari
+    height: 100%;
+    overflow: auto;
+    font-size: 16px;
+    border-left: 1px solid $border-color;
+    width: $sidebar-width;
+    position: relative;
+    padding: 16px;
+    &-close {
+      position: absolute;
+      padding: 16px;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      &:hover {
+        color: $primary;
+      }
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 16px 0;
+    }
+    ul {
+      padding-left: 0;
+      color: $gray-400;
+    }
+  }
+
+  &-help {
+    ul {
+      line-height: 20px;
+      svg {
+        width: 16px;
+        height: 16px;
+        display: block;
+      }
+      span {
+        font-size: 13px;
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+    &-icon {
+      padding: 2px 0;
+    }
+    &-title {
+      padding-left: 8px;
+    }
+    &-content {
+      float: right;
+    }
+  }
+
+  &-toc {
+    li {
+      list-style: none;
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 2;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    &-active {
+      color: $primary;
+      background-color: $gray-100;
+    }
+    &-first {
+      font-weight: 500;
+    }
+  }
+
+  &-status {
+    font-size: 12px;
     line-height: 24px;
-    font-size: 14px;
-    &.bytemd-tab-active {
-      color: $blue;
+    border-top: 1px solid $border-color;
+    user-select: none;
+    &-left {
+      float: left;
+      span {
+        padding-left: 16px;
+      }
+      strong {
+        font-weight: 600;
+      }
+    }
+    &-right {
+      float: right;
+      label,
+      span {
+        margin-right: 16px;
+        cursor: pointer;
+      }
+      span:hover {
+        color: $primary;
+      }
+      input {
+        vertical-align: middle;
+        margin-right: 3px; // CSS reset
+      }
+    }
+  }
+
+  &-fullscreen {
+    &.bytemd {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border: none;
+      height: 100vh !important; // override user set height
+    }
+  }
+
+  &-split {
+    .bytemd-preview {
+      border-left: 1px solid $border-color;
     }
   }
 }
 
 .tippy-box {
   font-size: 12px;
-}
-
-.bytemd-body {
-  height: calc(100% - 33px);
-  overflow: auto;
-}
-
-.bytemd-editor {
-  overflow: hidden;
-  height: 100%;
-  .CodeMirror {
-    height: 100%;
-    box-sizing: border-box;
-    font-size: 14px;
-    line-height: 1.5;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    pre.CodeMirror-placeholder {
-      color: $gray-400;
-    }
-    .CodeMirror-lines {
-      padding: 16px 0;
-    }
-    pre.CodeMirror-line,
-    pre.CodeMirror-line-like {
-      padding: 0 16px;
-    }
-  }
-}
-
-.bytemd-preview {
-  height: 100%;
-  overflow: auto;
-  .markdown-body {
-    padding: 20px;
-  }
-}
-
-.bytemd-fullscreen {
-  &.bytemd {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border: none;
-    height: 100vh;
-  }
-}
-
-.bytemd-mode-split {
-  .bytemd-editor {
-    float: left;
-    width: 50%;
-  }
-  .bytemd-preview {
-    margin-left: 50%;
-    border-left: 1px solid $gray-200;
-  }
 }
