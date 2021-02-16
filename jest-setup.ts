@@ -14,3 +14,18 @@ document.createRange = () => {
 
   return range;
 };
+
+// https://github.com/facebook/jest/issues/9983#issuecomment-626489847
+if (typeof TextEncoder === 'undefined') {
+  global.TextEncoder = require('util').TextEncoder;
+}
+
+// https://stackoverflow.com/a/65095454
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {
+    // do nothing
+  }
+  unobserve() {
+    // do nothing
+  }
+};

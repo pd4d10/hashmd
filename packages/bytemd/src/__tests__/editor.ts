@@ -66,15 +66,15 @@ describe('mode', () => {
     const preview = $.getByText('Preview');
 
     expect($.container.querySelector('.bytemd-editor')).toBeVisible();
-    expect(write).toHaveClass('bytemd-tab-active');
-    expect($.container.querySelector('.bytemd-preview')).not.toBeVisible();
-    expect(preview).not.toHaveClass('bytemd-tab-active');
+    expect(write).toHaveClass('bytemd-toolbar-tab-active');
+    expect($.container.querySelector('.bytemd-preview')).toHaveStyle('width:0');
+    expect(preview).not.toHaveClass('bytemd-toolbar-tab-active');
 
     await fireEvent.click(preview);
-    expect($.container.querySelector('.bytemd-editor')).not.toBeVisible();
-    expect(write).not.toHaveClass('bytemd-tab-active');
+    expect($.container.querySelector('.bytemd-editor')).toHaveStyle('width:0');
+    expect(write).not.toHaveClass('bytemd-toolbar-tab-active');
     expect($.container.querySelector('.bytemd-preview')).toBeVisible();
-    expect(preview).toHaveClass('bytemd-tab-active');
+    expect(preview).toHaveClass('bytemd-toolbar-tab-active');
   });
 });
 
@@ -85,7 +85,7 @@ describe('plugin', () => {
     const editorEffect = jest.fn(() => editorOff);
 
     $.component.$set({ plugins: [{ editorEffect }] });
-    await sleep();
+    await act();
     expect(editorEffect).toBeCalled();
     expect(editorEffect).toBeCalledTimes(1);
     expect(editorEffect).toBeCalledWith<any>(
@@ -96,7 +96,7 @@ describe('plugin', () => {
     );
 
     $.component.$set({ plugins: [] });
-    await sleep();
+    await act();
     expect(editorOff).toBeCalled();
     expect(editorOff).toBeCalledTimes(1);
   });
