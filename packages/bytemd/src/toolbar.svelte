@@ -3,7 +3,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import ToolbarButton from './toolbar-button.svelte';
-  import { capitalize } from 'lodash-es';
   import type { EditorProps, BytemdEditorContext, BytemdAction } from './types';
   import { icons } from './icons';
 
@@ -43,7 +42,7 @@
         on:click={() => dispatch('tab', 'preview')}
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab === 'preview'}
-        >{capitalize(locale.toolbar.preview)}</span
+        >{locale.toolbar.preview}</span
       >
     {/if}
   </div>
