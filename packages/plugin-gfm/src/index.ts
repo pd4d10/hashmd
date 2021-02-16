@@ -18,28 +18,28 @@ export default function gfm({
       {
         ...locale.strike,
         icon: icons.strikethrough,
-        handler({ wrapText }) {
+        handler({ wrapText, editor }) {
           wrapText('~~');
+          editor.focus();
         },
       },
       {
         ...locale.task,
         icon: icons.task,
-        handler({ replaceLines }) {
-          replaceLines((lines) => lines.map((line) => '- [ ] ' + line));
+        handler({ replaceLines, editor }) {
+          replaceLines((line) => '- [ ] ' + line);
+          editor.focus();
         },
       },
       {
         ...locale.table,
         icon: icons.table,
         handler({ editor, appendBlock }) {
-          const { startLine } = appendBlock(
+          const { line } = appendBlock(
             '| heading |  |\n| --- | --- |\n|  |  |\n'
           );
-          editor.setSelection(
-            { line: startLine, ch: 2 },
-            { line: startLine, ch: 9 }
-          );
+          editor.setSelection({ line: line, ch: 2 }, { line: line, ch: 9 });
+          editor.focus();
         },
       },
     ],
