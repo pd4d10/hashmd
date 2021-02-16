@@ -145,15 +145,15 @@ editor.on('change', (e) => {
 
 ### Viewer
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `value` | `string` (required) | Markdown text |
-| `plugins` | `BytemdPlugin[]` | ByteMD plugin list |
-| `sanitize` | `{ allowInlineStyle?: boolean }` or `(schema: Schema) => Schema` | Sanitize strategy |
+| Key        | Type                         | Description        |
+| ---------- | ---------------------------- | ------------------ |
+| `value`    | `string` (required)          | Markdown text      |
+| `plugins`  | `BytemdPlugin[]`             | ByteMD plugin list |
+| `sanitize` | `(schema: Schema) => Schema` | Sanitize strategy  |
 
 ### Editor
 
-`Editor` component also accepts the options of `Viewer`. Besides that, there are some other options:
+`Editor` component also accepts the options of `Viewer` for preview. Besides that, there are some other options:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -161,7 +161,8 @@ editor.on('change', (e) => {
 | `previewDebounce` | `number` | Debounce time (ms) for preview, default: `300` |
 | `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
-| `locale` | i18n locale. Available locales could be found at `bytemd/lib/locales` |
+| `locale` |  | i18n locale. Available locales could be found at `bytemd/lib/locales` |
+| `uploadImages` | `function` | Specify how to upload images |
 
 ## Style customization
 

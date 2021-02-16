@@ -10,7 +10,7 @@ export default function highlight({
 }: BytemdPluginHighlightOptions = {}): BytemdPlugin {
   let hljs: typeof H;
   return {
-    effect({ markdownBody }) {
+    viewerEffect({ markdownBody }) {
       (async () => {
         const els = markdownBody.querySelectorAll<HTMLElement>('pre>code');
         if (els.length === 0) return;

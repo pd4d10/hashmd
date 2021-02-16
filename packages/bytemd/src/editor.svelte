@@ -130,7 +130,7 @@
     editor.setValue(value);
   }
 
-  $: if (editor && root && plugins && hast) {
+  $: if (editor && plugins) {
     off();
     tick().then(() => {
       on();

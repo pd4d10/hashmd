@@ -9,6 +9,7 @@ const locale = {
   },
   table: {
     title: 'Table',
+    heading: 'Heading',
   },
 };
 
