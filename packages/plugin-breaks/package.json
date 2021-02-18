@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "remark-breaks": "^2.0.0"
+    "remark-breaks": "^2.0.1"
   },
   "peerDependencies": {
     "bytemd": "*"

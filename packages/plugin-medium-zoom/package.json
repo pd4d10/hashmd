@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "medium-zoom": "^1.0.0"
+    "medium-zoom": "^1.0.6"
   },
   "peerDependencies": {
     "bytemd": "*"

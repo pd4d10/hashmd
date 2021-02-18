@@ -19,8 +19,8 @@
     "lib"
   ],
   "dependencies": {
-    "@types/js-yaml": "^3.0.0",
-    "js-yaml": "^3.0.0",
+    "@types/js-yaml": "^3.12.6",
+    "js-yaml": "^3.14.1",
     "remark-frontmatter": "^3.0.0"
   },
   "peerDependencies": {

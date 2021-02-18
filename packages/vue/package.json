@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^1.3.4"
+    "bytemd": "workspace:^1.3.4"
   },
   "peerDependencies": {
     "vue": "^2.0.0"

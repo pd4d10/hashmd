@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "rehype-highlight": "^4.0.0"
+    "rehype-highlight": "^4.0.1"
   },
   "peerDependencies": {
     "bytemd": "*"
