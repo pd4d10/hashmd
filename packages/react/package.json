@@ -25,10 +25,7 @@
     "react": "*"
   },
   "devDependencies": {
-    "@types/react": "^16.14.4",
-    "react": "^16.14.0"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@types/react": "^17.0.2",
+    "react": "^17.0.1"
   }
 }

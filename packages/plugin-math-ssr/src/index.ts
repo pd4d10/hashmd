@@ -5,7 +5,7 @@ import rehypeKatex from 'rehype-katex';
 import { icons } from './icons';
 import enUS, { Locale } from './locales/en-US';
 
-export interface MathOptions {
+export interface BytemdPluginMathSsrOptions {
   locale?: Locale;
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
@@ -13,7 +13,7 @@ export interface MathOptions {
 export default function mathSsr({
   locale = enUS,
   katexOptions,
-}: MathOptions = {}): BytemdPlugin {
+}: BytemdPluginMathSsrOptions = {}): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkMath),
     rehype: (u) => u.use(rehypeKatex, katexOptions),

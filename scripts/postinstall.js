@@ -68,11 +68,6 @@ packages.forEach((p) => {
   pkg.unpkg = 'dist/index.min.js';
   pkg.jsdelivr = 'dist/index.min.js';
   pkg.files = ['dist', 'lib'];
-  if (pkg.name.startsWith('@')) {
-    pkg.publishConfig = {
-      access: 'public',
-    };
-  }
   fs.writeJsonSync(pkgPath, pkg, { spaces: 2 });
 });
 

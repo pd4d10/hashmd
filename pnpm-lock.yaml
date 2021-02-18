@@ -8,9 +8,9 @@ importers:
       '@icon-park/svg': 1.2.7
       '@primer/css': 15.2.0
       '@rollup/plugin-babel': 5.3.0_4d4951a2c09e717687c6a23a85fa0df3
-      '@rollup/plugin-commonjs': 16.0.0_rollup@2.39.0
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.39.0
       '@rollup/plugin-json': 4.1.0_rollup@2.39.0
-      '@rollup/plugin-node-resolve': 10.0.0_rollup@2.39.0
+      '@rollup/plugin-node-resolve': 11.2.0_rollup@2.39.0
       '@rollup/plugin-replace': 2.3.4_rollup@2.39.0
       '@testing-library/jest-dom': 5.11.9
       '@testing-library/svelte': 3.0.3_svelte@3.32.3
@@ -20,7 +20,7 @@ importers:
       jest: 26.6.3
       lodash: 4.17.20
       mustache: 4.1.0
-      node-sass: 4.14.1
+      node-sass: 5.0.0
       npm-run-all: 4.1.5
       rollup: 2.39.0
       rollup-plugin-livereload: 2.0.0
@@ -31,7 +31,7 @@ importers:
       rollup-plugin-vue: 5.1.9_vue-template-compiler@2.6.12
       svelte: 3.32.3
       svelte-jester: 1.3.0_svelte@3.32.3
-      svelte-preprocess: 4.6.9_2b6bac8eba9de6d95308f75dfad62fb1
+      svelte-preprocess: 4.6.9_2a226cc776c303222bce7af63359badc
       ts-jest: 26.5.1_jest@26.6.3+typescript@4.1.5
       typescript: 4.1.5
       vue-template-compiler: 2.6.12
@@ -43,9 +43,9 @@ importers:
       '@icon-park/svg': ^1.2.7
       '@primer/css': ^15.2.0
       '@rollup/plugin-babel': ^5.3.0
-      '@rollup/plugin-commonjs': ^16.0.0
+      '@rollup/plugin-commonjs': ^17.1.0
       '@rollup/plugin-json': ^4.1.0
-      '@rollup/plugin-node-resolve': ^10.0.0
+      '@rollup/plugin-node-resolve': ^11.2.0
       '@rollup/plugin-replace': ^2.3.4
       '@testing-library/jest-dom': ^5.11.9
       '@testing-library/svelte': ^3.0.3
@@ -55,7 +55,7 @@ importers:
       jest: ^26.6.3
       lodash: ^4.17.20
       mustache: ^4.1.0
-      node-sass: ^4.14.1
+      node-sass: ^5.0.0
       npm-run-all: ^4.1.5
       rollup: ^2.39.0
       rollup-plugin-livereload: ^2.0.0
@@ -65,7 +65,7 @@ importers:
       rollup-plugin-visualizer: ^4.2.0
       rollup-plugin-vue: ^5.1.9
       svelte: ^3.32.3
-      svelte-jester: ^1.2.0
+      svelte-jester: ^1.3.0
       svelte-preprocess: ^4.6.9
       ts-jest: ^26.5.1
       typescript: ^4.1.5
@@ -79,6 +79,7 @@ importers:
       '@types/lodash.throttle': 4.1.6
       classnames: 2.2.6
       codemirror: 5.59.2
+      hast-util-sanitize: 3.0.2
       lodash.debounce: 4.0.8
       lodash.throttle: 4.1.1
       rehype-raw: 5.0.0
@@ -89,6 +90,7 @@ importers:
       select-files: 1.0.1
       tippy.js: 6.2.7
       unified: 9.2.0
+      vfile: 4.2.1
     specifiers:
       '@popperjs/core': ^2.7.0
       '@types/classnames': ^2.2.11
@@ -97,6 +99,7 @@ importers:
       '@types/lodash.throttle': ^4.1.6
       classnames: ^2.2.6
       codemirror: ^5.59.2
+      hast-util-sanitize: ^3.0.2
       lodash.debounce: ^4.0.8
       lodash.throttle: ^4.1.1
       rehype-raw: ^5.0.0
@@ -107,6 +110,7 @@ importers:
       select-files: ^1.0.1
       tippy.js: ^6.2.7
       unified: ^9.2.0
+      vfile: ^4.2.1
   packages/mp:
     dependencies:
       bytemd: link:../bytemd
@@ -118,80 +122,115 @@ importers:
   packages/plugin-breaks:
     dependencies:
       remark-breaks: 2.0.1
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       remark-breaks: ^2.0.1
   packages/plugin-footnotes:
     dependencies:
       remark-footnotes: 3.0.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       remark-footnotes: ^3.0.0
   packages/plugin-frontmatter:
     dependencies:
       '@types/js-yaml': 3.12.6
       js-yaml: 3.14.1
       remark-frontmatter: 3.0.0
+    devDependencies:
+      bytemd: link:../bytemd
+      vfile: 4.2.1
     specifiers:
       '@types/js-yaml': ^3.12.6
+      bytemd: workspace:^1.3.4
       js-yaml: ^3.14.1
       remark-frontmatter: ^3.0.0
+      vfile: ^4.2.1
   packages/plugin-gemoji:
     dependencies:
       remark-gemoji: 6.0.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       remark-gemoji: ^6.0.0
   packages/plugin-gfm:
     dependencies:
       remark-gfm: 1.0.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       remark-gfm: ^1.0.0
   packages/plugin-highlight:
     dependencies:
       highlight.js: 10.6.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       highlight.js: ^10.6.0
   packages/plugin-highlight-ssr:
     dependencies:
       rehype-highlight: 4.0.1
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       rehype-highlight: ^4.0.1
   packages/plugin-math:
     dependencies:
       '@types/katex': 0.11.0
       katex: 0.12.0
       remark-math: 4.0.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
       '@types/katex': ^0.11.0
+      bytemd: workspace:^1.3.4
       katex: ^0.12.0
       remark-math: ^4.0.0
   packages/plugin-math-ssr:
     dependencies:
       rehype-katex: 4.0.0
       remark-math: 4.0.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       rehype-katex: ^4.0.0
       remark-math: ^4.0.0
   packages/plugin-medium-zoom:
     dependencies:
       medium-zoom: 1.0.6
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
+      bytemd: workspace:^1.3.4
       medium-zoom: ^1.0.6
   packages/plugin-mermaid:
     dependencies:
       '@types/mermaid': 8.2.1
       mermaid: 8.9.0
+    devDependencies:
+      bytemd: link:../bytemd
     specifiers:
       '@types/mermaid': ^8.2.1
+      bytemd: workspace:^1.3.4
       mermaid: ^8.9.0
   packages/react:
     dependencies:
       bytemd: link:../bytemd
     devDependencies:
-      '@types/react': 16.14.4
-      react: 16.14.0
+      '@types/react': 17.0.2
+      react: 17.0.1
     specifiers:
-      '@types/react': ^16.14.4
+      '@types/react': ^17.0.2
       bytemd: workspace:^1.3.4
-      react: ^16.14.0
+      react: ^17.0.1
   packages/vue:
     dependencies:
       bytemd: link:../bytemd
@@ -1614,7 +1653,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-9uIC8HZOnVLrLHxayq/PTzw+uS25E14KPUBh5ktF+18Mjo5yK0ToMMx6epY0uEgkjwJw0aBW4x2horYXh8juWw==
-  /@rollup/plugin-commonjs/16.0.0_rollup@2.39.0:
+  /@rollup/plugin-commonjs/17.1.0_rollup@2.39.0:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.39.0
       commondir: 1.0.1
@@ -1630,7 +1669,7 @@ packages:
     peerDependencies:
       rollup: ^2.30.0
     resolution:
-      integrity: sha512-LuNyypCP3msCGVQJ7ki8PqYdpjfEkE/xtFa5DqlF+7IBD0JsfMZ87C58heSwIMint58sAUZbt3ITqOmdQv/dXw==
+      integrity: sha512-PoMdXCw0ZyvjpCMT5aV4nkL0QywxP29sODQsSGeDpr/oI49Qq9tRtAsb/LbYbDzFlOydVEqHmmZWFtXJEAX9ew==
   /@rollup/plugin-json/4.1.0_rollup@2.39.0:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.39.0
@@ -1640,7 +1679,7 @@ packages:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
-  /@rollup/plugin-node-resolve/10.0.0_rollup@2.39.0:
+  /@rollup/plugin-node-resolve/11.2.0_rollup@2.39.0:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.39.0
       '@types/resolve': 1.17.1
@@ -1655,7 +1694,7 @@ packages:
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
     resolution:
-      integrity: sha512-sNijGta8fqzwA1VwUEtTvWCx2E7qC70NMsDh4ZG13byAXYigBNZMxALhKUSycBks5gupJdq0lFrKumFrRZ8H3A==
+      integrity: sha512-qHjNIKYt5pCcn+5RUBQxK8krhRvf1HnyVgUCcFFcweDS7fhkOLZeYh0mhHK6Ery8/bb9tvN/ubPzmfF0qjDCTA==
   /@rollup/plugin-replace/2.3.4_rollup@2.39.0:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.39.0
@@ -1905,13 +1944,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
-  /@types/react/16.14.4:
+  /@types/react/17.0.2:
     dependencies:
       '@types/prop-types': 15.7.3
       csstype: 3.0.6
     dev: true
     resolution:
-      integrity: sha512-ETj7GbkPGjca/A4trkVeGvoIakmLV6ZtX3J8dcmOpzKzWVybbrOxanwaIPG71GZwImoMDY6Fq4wIe34lEqZ0FQ==
+      integrity: sha512-Xt40xQsrkdvjn1EyWe1Bc0dJLcil/9x2vAuW7ya+PuQip4UYUaXyhzWmAbwRsdMgwOFHpfp7/FFZebDU6Y8VHA==
   /@types/resolve/1.17.1:
     dependencies:
       '@types/node': 14.14.28
@@ -1945,7 +1984,6 @@ packages:
     resolution:
       integrity: sha512-ggn3ws+yRbOHog9GxnXiEZ/35Mow6YtPZpd7Z5mKDeZS/o7zx3yAle0ov/wjhVB5QT4N2Dt+GNoGCdqkBGCajQ==
   /@types/unist/2.0.3:
-    dev: false
     resolution:
       integrity: sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
   /@types/yargs-parser/20.2.0:
@@ -2431,14 +2469,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
-  /block-stream/0.0.9:
-    dependencies:
-      inherits: 2.0.4
-    dev: true
-    engines:
-      node: 0.4 || >=0.5.8
-    resolution:
-      integrity: sha1-E+v+d4oDIFz+A3UUgeu0szAMEmo=
   /bluebird/3.7.2:
     dev: true
     resolution:
@@ -2775,6 +2805,12 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==
+  /chownr/2.0.0:
+    dev: true
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
   /ci-info/2.0.0:
     dev: true
     resolution:
@@ -3050,13 +3086,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-xb3ZL6+L8b9JLLCx3ZdoZy4+2ECphCMo2PwqgP1tlfVq6M6YReyzBJtvWWtbDSpNr9hn96pkCiZqUcFEc+54Qg==
-  /cross-spawn/3.0.1:
-    dependencies:
-      lru-cache: 4.1.5
-      which: 1.3.1
-    dev: true
-    resolution:
-      integrity: sha1-ElYDfsufDF9549bvE14wdwGEuYI=
   /cross-spawn/5.1.0:
     dependencies:
       lru-cache: 4.1.5
@@ -3827,6 +3856,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-5CCY/3ci4MC1m2jlumNjWd7VBFt4VfFnmSqSNmVcXq4gxM3Vmarxtt+SvmBnzwLS669MWdVuXboNVj1qN2esVg==
+  /env-paths/2.2.0:
+    dev: true
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-6u0VYSCo/OW6IoD5WCLLy9JUGARbamfSavcNXry/eu8aHVFei6CD3Sw+VGX5alea1i9pgPHW0mbu6Xj0uBh7gA==
   /errno/0.1.8:
     dependencies:
       prr: 1.0.1
@@ -4277,6 +4312,14 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
+  /fs-minipass/2.1.0:
+    dependencies:
+      minipass: 3.1.3
+    dev: true
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==
   /fs.realpath/1.0.0:
     dev: true
     resolution:
@@ -4290,17 +4333,6 @@ packages:
       - darwin
     resolution:
       integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
-  /fstream/1.0.12:
-    dependencies:
-      graceful-fs: 4.2.6
-      inherits: 2.0.4
-      mkdirp: 0.5.5
-      rimraf: 2.7.1
-    dev: true
-    engines:
-      node: '>=0.6'
-    resolution:
-      integrity: sha512-WvJ193OHa0GHPEL+AycEJgxvBEwyfRkN1vhjca23OaPVMCaLCXTd5qAu82AjTcgP1UJmytkOKb63Ypde7raDIg==
   /function-bind/1.1.1:
     dev: true
     resolution:
@@ -4850,11 +4882,6 @@ packages:
       node: '>=0.8.19'
     resolution:
       integrity: sha1-khi5srkoojixPcT7a21XbyMUU+o=
-  /in-publish/2.0.1:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-oDM0kUSNFC31ShNxHKUyfZKy8ZeXZBWMjMdZHKLOk13uvT27VTL/QzRGfRUcevJhpkZAvlhPYuXkF7eNWrtyxQ==
   /indent-string/2.1.0:
     dependencies:
       repeating: 2.0.1
@@ -4948,7 +4975,6 @@ packages:
     resolution:
       integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
   /is-buffer/2.0.5:
-    dev: false
     engines:
       node: '>=4'
     resolution:
@@ -6592,10 +6618,27 @@ packages:
     dev: true
     resolution:
       integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  /minipass/3.1.3:
+    dependencies:
+      yallist: 4.0.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-Mgd2GdMVzY+x3IJ+oHnVM+KG3lA5c8tnabyJKmHSaG2kAGpudxuOf8ToDkhumF7UzME7DecbQE9uOZhNm7PuJg==
   /miniprogram-api-typings/3.2.2:
     dev: true
     resolution:
       integrity: sha512-7TSeYV3Z4sUAw802K+bIFTRlQNUzl2GZ4zWnh5fMETjDsU7e8+uLzK7vF9Nd9TGYcePPhoHee25K86oHfDnxLA==
+  /minizlib/2.1.2:
+    dependencies:
+      minipass: 3.1.3
+      yallist: 4.0.0
+    dev: true
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==
   /mixin-deep/1.3.2:
     dependencies:
       for-in: 1.0.2
@@ -6689,26 +6732,24 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
-  /node-gyp/3.8.0:
+  /node-gyp/7.1.2:
     dependencies:
-      fstream: 1.0.12
+      env-paths: 2.2.0
       glob: 7.1.6
       graceful-fs: 4.2.6
-      mkdirp: 0.5.5
-      nopt: 3.0.6
+      nopt: 5.0.0
       npmlog: 4.1.2
-      osenv: 0.1.5
       request: 2.88.2
-      rimraf: 2.7.1
-      semver: 5.3.0
-      tar: 2.2.2
-      which: 1.3.1
+      rimraf: 3.0.2
+      semver: 7.3.4
+      tar: 6.1.0
+      which: 2.0.2
     dev: true
     engines:
-      node: '>= 0.8.0'
+      node: '>= 10.12.0'
     hasBin: true
     resolution:
-      integrity: sha512-3g8lYefrRRzvGeSowdJKAKyks8oUpLEd/DyPV4eMhVlhJ0aNaZqIrNUIPuEWWTAoPqyFkfGrM67MC69baqn6vA==
+      integrity: sha512-CbpcIo7C3eMu3dL1c3d0xw449fHIGALIJsRP4DDPHpyiW8vcriNY7ubh9TE4zEKfSxscY7PjeFnshE7h75ynjQ==
   /node-int64/0.4.0:
     dev: true
     resolution:
@@ -6735,20 +6776,19 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Slf2s69+2/uAD79pVVQo8uSiC34+g8GWY8UH2Qtqv34ZfhYrxpYpfzs9Js9d6O0mbDmALuxaTlplnBTnSELcrw==
-  /node-sass/4.14.1:
+  /node-sass/5.0.0:
     dependencies:
       async-foreach: 0.1.3
       chalk: 1.1.3
-      cross-spawn: 3.0.1
+      cross-spawn: 7.0.3
       gaze: 1.1.3
       get-stdin: 4.0.1
       glob: 7.1.6
-      in-publish: 2.0.1
       lodash: 4.17.20
       meow: 3.7.0
       mkdirp: 0.5.5
       nan: 2.14.2
-      node-gyp: 3.8.0
+      node-gyp: 7.1.2
       npmlog: 4.1.2
       request: 2.88.2
       sass-graph: 2.2.5
@@ -6756,18 +6796,20 @@ packages:
       true-case-path: 1.0.3
     dev: true
     engines:
-      node: '>=0.10.0'
+      node: '>=10'
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-sjCuOlvGyCJS40R8BscF5vhVlQjNN069NtQ1gSxyK1u9iqvn6tf7O1R4GNowVZfiZUCRt5MmMs1xd+4V/7Yr0g==
-  /nopt/3.0.6:
+      integrity: sha512-opNgmlu83ZCF792U281Ry7tak9IbVC+AKnXGovcQ8LG8wFaJv6cLnRlc6DIHlmNxWEexB5bZxi9SZ9JyUuOYjw==
+  /nopt/5.0.0:
     dependencies:
       abbrev: 1.1.1
     dev: true
+    engines:
+      node: '>=6'
     hasBin: true
     resolution:
-      integrity: sha1-xkZdvwirzU2zWTF/eaxopkayj/k=
+      integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==
   /normalize-package-data/2.5.0:
     dependencies:
       hosted-git-info: 2.8.8
@@ -6973,25 +7015,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-k41FwbcLnlgnFh69f4qdUfvDQ+5vaSDnVPFI/y5XuhKRq97EnVVneO9F1ESVCdiVu4fCS2L8usX3mU331hB7pg==
-  /os-homedir/1.0.2:
-    dev: true
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-/7xJiDNuDoM94MFox+8VISGqf7M=
   /os-tmpdir/1.0.2:
     dev: true
     engines:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
-  /osenv/0.1.5:
-    dependencies:
-      os-homedir: 1.0.2
-      os-tmpdir: 1.0.2
-    dev: true
-    resolution:
-      integrity: sha512-0CWcCECdMVc2Rw3U5w9ZjqX6ga6ubk1xDVKxtBQPK7wis/0F2r9T6k4ydGYhecl7YUBxBVxhL5oisPsNxAPe2g==
   /outdent/0.5.0:
     dev: true
     resolution:
@@ -7745,14 +7774,6 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-awZAKrk3vN6CroQukBL+R9051a4R3zCZBlJm/HBfrSZ8iTpYix3VX1vU4mveiLpiwmOJT4wokTF9m6HUk4KqWQ==
-  /prop-types/15.7.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react-is: 16.13.1
-    dev: true
-    resolution:
-      integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
   /property-information/5.6.0:
     dependencies:
       xtend: 4.0.2
@@ -7925,24 +7946,19 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
-  /react-is/16.13.1:
-    dev: true
-    resolution:
-      integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
   /react-is/17.0.1:
     dev: true
     resolution:
       integrity: sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
-  /react/16.14.0:
+  /react/17.0.1:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-      prop-types: 15.7.2
     dev: true
     engines:
       node: '>=0.10.0'
     resolution:
-      integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+      integrity: sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
   /read-pkg-up/1.0.1:
     dependencies:
       find-up: 1.1.2
@@ -8361,13 +8377,6 @@ packages:
     optional: true
     resolution:
       integrity: sha1-YTObci/mo1FWiSENJOFMlhSGE+8=
-  /rimraf/2.7.1:
-    dependencies:
-      glob: 7.1.6
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
   /rimraf/3.0.2:
     dependencies:
       glob: 7.1.6
@@ -8574,11 +8583,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8h4DSpjfFa0hyMP3z3ye4SxyhdaE5RgaXeScRpH7xl4YblnZSHwexmLdLNdSKwTO8H9ccDKj7Votz0io+18+BQ==
-  /semver/5.3.0:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha1-myzl094C0XxgEq0yaqa00M9U+U8=
   /semver/5.7.1:
     dev: true
     hasBin: true
@@ -9150,13 +9154,13 @@ packages:
       svelte: '>= 3'
     resolution:
       integrity: sha512-WzWm+S98+RE623/JYzyjh5G8s8oSIaM6KeLLLXxxBFh/c0TlmuhPYIFhgA9GuovnQy6d/eBgJ8ogHyuBX29W3Q==
-  /svelte-preprocess/4.6.9_2b6bac8eba9de6d95308f75dfad62fb1:
+  /svelte-preprocess/4.6.9_2a226cc776c303222bce7af63359badc:
     dependencies:
       '@babel/core': 7.12.16
       '@types/pug': 2.0.4
       '@types/sass': 1.16.0
       detect-indent: 6.0.0
-      node-sass: 4.14.1
+      node-sass: 5.0.0
       strip-indent: 3.0.0
       svelte: 3.32.3
       typescript: 4.1.5
@@ -9233,14 +9237,19 @@ packages:
     dev: true
     resolution:
       integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
-  /tar/2.2.2:
+  /tar/6.1.0:
     dependencies:
-      block-stream: 0.0.9
-      fstream: 1.0.12
-      inherits: 2.0.4
+      chownr: 2.0.0
+      fs-minipass: 2.1.0
+      minipass: 3.1.3
+      minizlib: 2.1.2
+      mkdirp: 1.0.4
+      yallist: 4.0.0
     dev: true
+    engines:
+      node: '>= 10'
     resolution:
-      integrity: sha512-FCEhQ/4rE1zYv9rYXJw/msRqsnmlje5jHP6huWeBZ704jUTy02c5AZyWujpMR1ax6mVw9NyJMfuK2CMDWVIfgA==
+      integrity: sha512-DUCttfhsnLCjwoDoFcI+B2iJgYa93vBnDUATYEeRx6sntCTdN01VnqsIuTlALXla/LWooNg0yEGeB+Y8WdFxGA==
   /term-size/1.2.0:
     dependencies:
       execa: 0.7.0
@@ -9646,7 +9655,6 @@ packages:
   /unist-util-stringify-position/2.0.3:
     dependencies:
       '@types/unist': 2.0.3
-    dev: false
     resolution:
       integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==
   /unist-util-visit-parents/3.1.1:
@@ -9773,7 +9781,6 @@ packages:
     dependencies:
       '@types/unist': 2.0.3
       unist-util-stringify-position: 2.0.3
-    dev: false
     resolution:
       integrity: sha512-DjssxRGkMvifUOJre00juHoP9DPWuzjxKuMDrhNbk2TdaYYBNMStsNhEOt3idrtI12VQYM/1+iM0KOzXi4pxwQ==
   /vfile/4.2.1:
@@ -9782,7 +9789,6 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
-    dev: false
     resolution:
       integrity: sha512-O6AE4OskCG5S1emQ/4gl8zK586RqA3srz3nfK/Viy0UPToBc5Trp9BVFb1u0CjsKrAWwnpr4ifM/KBXPWwJbCA==
   /void-elements/2.0.1:

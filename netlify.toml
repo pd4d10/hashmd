@@ -2,4 +2,4 @@
 
 [build]
   publish = "examples/svelte/public"
-  command = "yarn build && cd examples/svelte && yarn && yarn build"
+  command = "npm run build && cd examples/svelte && npm install && npm run build"
