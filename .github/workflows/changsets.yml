@@ -18,7 +18,7 @@ jobs:
       - run: npm i pnpm@latest -g && pnpm install
       - uses: changesets/action@master
         with:
-          publish: npm run build:ci
+          publish: npm run build:ci && npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
