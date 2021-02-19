@@ -4,6 +4,7 @@
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
     "build": "tsc --build && node -r esm scripts/process.js && rollup -c",
+    "build:ci": "UMD=1 npm run build",
     "dev": "run-p dev:bundle dev:tsc dev:process",
     "dev:bundle": "rollup -cw",
     "dev:tsc": "tsc --build --watch",

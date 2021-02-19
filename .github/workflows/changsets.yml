@@ -7,22 +7,18 @@ env:
   CI: true
 jobs:
   version:
-    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: setup node.js
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - name: install pnpm
-        run: npm i pnpm@latest -g
-      - name: install dependencies
-        run: pnpm install
-      - name: create versions
-        uses: changesets/action@master
+      - run: npm i pnpm@latest -g && pnpm install
+      - uses: changesets/action@master
+        with:
+          publish: npm run build:ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
