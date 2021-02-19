@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "ByteMD plugin to support math formula",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -24,6 +24,6 @@
     "remark-math": "^4.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.3.4"
+    "bytemd": "workspace:^1.4.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-highlight-ssr",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "ByteMD plugin to highlight code blocks (SSR compatible)",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -22,6 +22,6 @@
     "rehype-highlight": "^4.0.1"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.3.4"
+    "bytemd": "workspace:^1.4.0"
   }
 }
