@@ -15,8 +15,10 @@ importers:
       '@testing-library/jest-dom': 5.11.9
       '@testing-library/svelte': 3.0.3_svelte@3.32.3
       '@types/jest': 26.0.20
+      chokidar: 3.5.1
       esm: 3.2.25
       fs-extra: 9.1.0
+      glob: 7.1.6
       jest: 26.6.3
       lodash: 4.17.20
       mustache: 4.1.0
@@ -50,8 +52,10 @@ importers:
       '@testing-library/jest-dom': ^5.11.9
       '@testing-library/svelte': ^3.0.3
       '@types/jest': ^26.0.20
+      chokidar: ^3.5.1
       esm: ^3.2.25
       fs-extra: ^9.1.0
+      glob: ^7.1.6
       jest: ^26.6.3
       lodash: ^4.17.20
       mustache: ^4.1.0
