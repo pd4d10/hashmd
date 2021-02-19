@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-frontmatter",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "ByteMD plugin to parse frontmatter",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "remark-frontmatter": "^3.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.3.4",
+    "bytemd": "workspace:^1.4.0",
     "vfile": "^4.2.1"
   }
 }
