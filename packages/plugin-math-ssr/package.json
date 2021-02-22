@@ -19,6 +19,7 @@
     "lib"
   ],
   "dependencies": {
+    "@bytemd/plugin-math": "^1.4.0",
     "rehype-katex": "^4.0.0",
     "remark-math": "^4.0.0"
   },

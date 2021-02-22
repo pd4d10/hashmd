@@ -1,10 +1,8 @@
 // @ts-check
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
-import Svgo from 'svgo';
+import svgo from 'svgo';
 import * as icons from '@icon-park/svg';
-
-const svgo = new Svgo();
 
 const meta = {
   bytemd: {
@@ -38,12 +36,9 @@ const meta = {
     table: icons.InsertTable,
   },
   'plugin-math': {
+    math: icons.Formula,
     inline: icons.Inline,
-    display: icons.Formula,
-  },
-  'plugin-math-ssr': {
-    inline: icons.Inline,
-    display: icons.Formula,
+    block: icons.Block,
   },
   'plugin-mermaid': {
     mermaid: icons.ChartGraph,

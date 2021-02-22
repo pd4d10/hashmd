@@ -1,10 +1,11 @@
 const locale = {
+  formula: 'Formula',
   inline: {
-    title: 'Formula',
+    title: 'Inline formula',
     cheatsheet: '$\\TeX$',
   },
-  display: {
-    title: 'Formula block',
+  block: {
+    title: 'Block formula',
     cheatsheet: '$$↵\\TeX↵$$',
   },
 };

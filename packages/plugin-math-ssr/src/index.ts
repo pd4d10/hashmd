@@ -2,7 +2,7 @@ import type { BytemdPlugin } from 'bytemd';
 import type { KatexOptions } from 'katex';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import { icons } from './icons';
+import pluginMath from '@bytemd/plugin-math';
 import enUS, { Locale } from './locales/en-US';
 
 export interface BytemdPluginMathSsrOptions {
@@ -17,22 +17,6 @@ export default function mathSsr({
   return {
     remark: (u) => u.use(remarkMath),
     rehype: (u) => u.use(rehypeKatex, katexOptions),
-    action: [
-      {
-        ...locale.inline,
-        icon: icons.inline,
-      },
-      {
-        ...locale.display,
-        icon: icons.display,
-        handler({ editor, appendBlock }) {
-          const { line } = appendBlock('$$\n\\TeX\n$$');
-          editor.setSelection(
-            { line: line + 1, ch: 0 },
-            { line: line + 1, ch: 4 }
-          );
-        },
-      },
-    ],
+    action: pluginMath({ locale }).action,
   };
 }
