@@ -19,10 +19,10 @@
     "lib"
   ],
   "dependencies": {
-    "@types/mermaid": "^8.2.1",
-    "mermaid": "^8.9.0"
+    "@types/mermaid": "^8.2.2",
+    "mermaid": "^8.9.1"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.4.0"
+    "bytemd": "^1.4.0"
   }
 }

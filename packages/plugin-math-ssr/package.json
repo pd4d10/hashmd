@@ -23,6 +23,6 @@
     "remark-math": "^4.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.4.0"
+    "bytemd": "^1.4.0"
   }
 }

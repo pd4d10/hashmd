@@ -22,6 +22,6 @@
     "highlight.js": "^10.6.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.4.0"
+    "bytemd": "^1.4.0"
   }
 }

@@ -24,7 +24,7 @@
     "remark-frontmatter": "^3.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.4.0",
+    "bytemd": "^1.4.0",
     "vfile": "^4.2.1"
   }
 }

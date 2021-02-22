@@ -22,6 +22,6 @@
     "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.4.0"
+    "bytemd": "^1.4.0"
   }
 }

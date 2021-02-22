@@ -19,9 +19,9 @@
     "lib"
   ],
   "dependencies": {
-    "rehype-highlight": "^4.0.1"
+    "rehype-highlight": "^4.1.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:^1.4.0"
+    "bytemd": "^1.4.0"
   }
 }
