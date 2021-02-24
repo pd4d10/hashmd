@@ -81,9 +81,7 @@ const configs = packages
         },
       ],
       external: [
-        'codemirror/mode/gfm/gfm',
-        'codemirror/mode/yaml-frontmatter/yaml-frontmatter',
-        'codemirror/addon/display/placeholder',
+        /^codemirror-ssr/,
         'hast-util-sanitize/lib/github.json',
         ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),

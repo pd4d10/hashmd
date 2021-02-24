@@ -21,6 +21,13 @@
   import enUS from './locales/en-US';
   import Help from './help.svelte';
   import { createPopper } from '@popperjs/core';
+  import factory from 'codemirror-ssr';
+  import usePlaceholder from 'codemirror-ssr/addon/display/placeholder';
+  import useOverlay from 'codemirror-ssr/addon/mode/overlay.js';
+  import useMarkdown from 'codemirror-ssr/mode/markdown/markdown';
+  import useGfm from 'codemirror-ssr/mode/gfm/gfm';
+  import useYaml from 'codemirror-ssr/mode/yaml/yaml';
+  import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -148,14 +155,13 @@
   let currentBlockIndex = 0;
 
   onMount(async () => {
-    const [codemirror] = await Promise.all([
-      import('codemirror'),
-      // @ts-ignore
-      import('codemirror/mode/gfm/gfm'),
-      // @ts-ignore
-      import('codemirror/mode/yaml-frontmatter/yaml-frontmatter'),
-      import('codemirror/addon/display/placeholder'),
-    ]);
+    const codemirror = factory();
+    usePlaceholder(codemirror);
+    useOverlay(codemirror);
+    useMarkdown(codemirror);
+    useGfm(codemirror);
+    useYaml(codemirror);
+    useYamlFrontmatter(codemirror);
 
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
