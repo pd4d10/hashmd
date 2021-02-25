@@ -7,13 +7,7 @@ export default function mediumZoom(options?: M.ZoomOptions): BytemdPlugin {
   return {
     viewerEffect({ markdownBody }) {
       const imgs = [...markdownBody.querySelectorAll('img')].filter((e) => {
-        // Exclude images with anchor parent
-        let $: HTMLElement | null = e;
-        while ($ && $ !== markdownBody) {
-          if ($.tagName === 'A') return false;
-          $ = $.parentElement;
-        }
-        return true;
+        return !e.closest('a');
       });
       if (imgs.length === 0) return;
 
