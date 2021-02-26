@@ -4,7 +4,6 @@ import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
 import type { BytemdLocale } from './locales/en-US';
-import type { createPopper } from '@popperjs/core';
 
 export interface BytemdEditorContext extends EditorUtils {
   /**
@@ -15,18 +14,6 @@ export interface BytemdEditorContext extends EditorUtils {
    * The root element
    */
   root: HTMLElement;
-  /**
-   * Show a dropdown menu to select items
-   */
-  showDropdown(payload: {
-    popperOptions?: Parameters<typeof createPopper>[2];
-    items: {
-      text: string;
-      onClick?(): void;
-      onMouseEnter?(): void;
-      onMouseLeave?(): void;
-    }[];
-  }): void;
 }
 
 export interface BytemdViewerContext {
@@ -44,23 +31,23 @@ export interface BytemdViewerContext {
 
 export interface BytemdAction {
   /**
-   * Action icon (16x16), could be <img> or inline svg
-   */
-  icon: string;
-  /**
    * Action title
    */
   title: string;
   /**
-   * Action handler, used for toolbar icon click and shortcut trigger
+   * Action icon (16x16), could be <img> or inline svg
    */
-  handler?: (context: BytemdEditorContext) => void;
+  icon?: string;
   /**
    * Markdown syntax cheat sheet
    *
    * If specified, this record will be added to the Markdown cheat sheet section
    */
   cheatsheet?: string;
+  /**
+   * Action handler, used for action item click and shortcut trigger
+   */
+  handler?(context: BytemdEditorContext): void;
   /**
    * Keyboard shortcut
    *
@@ -69,6 +56,7 @@ export interface BytemdAction {
    * https://codemirror.net/doc/manual.html#keymaps
    */
   shortcut?: string;
+  children?: BytemdAction[];
 }
 
 export interface BytemdPlugin {

@@ -49,9 +49,13 @@
       plugins: [
         ...plugins,
         {
+          remark: (p) =>
+            p.use(() => (tree) => {
+              console.log(tree)
+            }),
           rehype: (p) =>
             p.use(() => (tree) => {
-              tick().then(() => {
+              tick().then(() => {console.log(tree)
                 dispatch('hast', tree);
               });
             }),

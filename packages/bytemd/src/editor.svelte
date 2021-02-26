@@ -20,7 +20,6 @@
   import { icons } from './icons';
   import enUS from './locales/en-US';
   import Help from './help.svelte';
-  import { createPopper } from '@popperjs/core';
   import factory from 'codemirror-ssr';
   import usePlaceholder from 'codemirror-ssr/addon/display/placeholder';
   import useOverlay from 'codemirror-ssr/addon/mode/overlay.js';
@@ -81,29 +80,11 @@
     return { edit, preview };
   })();
 
-  // dropdown
-  let dropdownEl: HTMLElement;
-  let activeEl: HTMLElement;
-  let dropdownItems: Parameters<
-    BytemdEditorContext['showDropdown']
-  >[0]['items'] = [];
-
   $: context = (() => {
     const ctx: BytemdEditorContext = {
       editor,
       root,
       ...createEditorUtils(editor),
-      showDropdown({ popperOptions, items }) {
-        dropdownItems = items;
-
-        // wait for the style take effect, then set position
-        tick().then(() => {
-          createPopper(activeEl, dropdownEl, {
-            placement: 'bottom-start',
-            ...popperOptions,
-          });
-        });
-      },
     };
     return ctx;
   })();
@@ -322,12 +303,6 @@
   onDestroy(off);
 </script>
 
-<svelte:window
-  on:click={() => {
-    dropdownItems = [];
-  }}
-/>
-
 <div
   class={cx('bytemd', {
     'bytemd-split': split && activeTab === false,
@@ -343,12 +318,6 @@
     {fullscreen}
     {locale}
     {actions}
-    on:active={(e) => {
-      if (activeEl !== e.detail) {
-        dropdownItems = [];
-      }
-      activeEl = e.detail;
-    }}
     on:tab={(e) => {
       const v = e.detail;
       if (split) {
@@ -433,27 +402,4 @@
       previewEl.scrollTo({ top: 0 });
     }}
   />
-  <div
-    class="bytemd-dropdown"
-    bind:this={dropdownEl}
-    style={dropdownItems.length ? undefined : 'display:none'}
-  >
-    {#each dropdownItems as item}
-      <div
-        class="bytemd-dropdown-item"
-        on:click|stopPropagation={() => {
-          item.onClick && item.onClick();
-          dropdownItems = [];
-        }}
-        on:mouseenter={() => {
-          item.onMouseEnter && item.onMouseEnter();
-        }}
-        on:mouseleave={() => {
-          item.onMouseLeave && item.onMouseLeave();
-        }}
-      >
-        {item.text}
-      </div>
-    {/each}
-  </div>
 </div>

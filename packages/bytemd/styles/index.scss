@@ -1,6 +1,6 @@
 @import '~codemirror-ssr/lib/codemirror.css';
 @import '~tippy.js/dist/tippy.css';
-// @import '~tippy.js/themes/light.css';
+@import '~tippy.js/themes/light-border.css';
 // @import '~tippy.js/animations/scale.css';
 @import '~@primer/css/support/variables/color-system.scss';
 
@@ -87,20 +87,30 @@ $max-width: 800px;
   }
 
   &-dropdown {
-    background-color: $white;
-    padding: 3px 0;
-    border: 1px solid $border-color;
-    z-index: 999;
     max-height: 50%;
     overflow: auto;
     &-item {
-      padding: 6px 12px;
-      line-height: 1;
-      font-size: 13px;
+      padding: 4px 8px;
+      height: 32px;
       cursor: pointer;
       &:hover {
         background-color: $border-color;
       }
+    }
+    &-icon {
+      display: inline-block;
+      svg {
+        display: block;
+        padding: 4px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+    &-title {
+      padding-left: 4px;
+      font-size: 14px;
+      line-height: 24px;
+      vertical-align: top;
     }
   }
 

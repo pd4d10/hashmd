@@ -117,33 +117,21 @@ export function getBuiltinActions(
 ): BytemdAction[] {
   const items: BytemdAction[] = [
     {
-      ...locale.heading,
+      title: locale.heading.title,
+      cheatsheet: locale.heading.cheatsheet,
       icon: icons.heading,
-      async handler({ replaceLines, showDropdown, editor }) {
-        const levels = [1, 2, 3, 4, 5, 6, 0];
-        showDropdown({
-          items: [
-            ...levels.map((level) => ({
-              text:
-                level === 0
-                  ? locale.heading.p
-                  : locale.heading[`h${level}` as keyof typeof locale.heading],
-              onMouseEnter() {
-                replaceLines((line) => {
-                  line = line.trim().replace(/^#*/, '').trim();
-                  if (level > 0) {
-                    line = '#'.repeat(level) + ' ' + line;
-                  }
-                  return line;
-                });
-              },
-              onClick() {
-                editor.focus();
-              },
-            })),
-          ],
-        });
-      },
+      children: [1, 2, 3, 4, 5, 6].map((level) => ({
+        title: locale.heading[`h${level}` as keyof typeof locale.heading],
+        icon: icons[`h${level}` as keyof typeof icons],
+        handler({ replaceLines, editor }) {
+          replaceLines((line) => {
+            line = line.trim().replace(/^#*/, '').trim();
+            line = '#'.repeat(level) + ' ' + line;
+            return line;
+          });
+          editor.focus();
+        },
+      })),
     },
     {
       ...locale.bold,

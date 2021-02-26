@@ -40,40 +40,30 @@ export default function math({
     },
     action: [
       {
-        ...locale.inline,
-        icon: icons.inline,
-      },
-      {
-        ...locale.block,
-        icon: icons.block,
-      },
-      {
         title: locale.formula,
         icon: icons.math,
-        handler({ editor, wrapText, appendBlock, showDropdown }) {
-          showDropdown({
-            items: [
-              {
-                text: locale.inline.title,
-                onClick() {
-                  wrapText('$');
-                  editor.focus();
-                },
-              },
-              {
-                text: locale.block.title,
-                onClick() {
-                  const { line } = appendBlock('$$\n\\TeX\n$$');
-                  editor.setSelection(
-                    { line: line + 1, ch: 0 },
-                    { line: line + 1, ch: 4 }
-                  );
-                  editor.focus();
-                },
-              },
-            ],
-          });
-        },
+        children: [
+          {
+            ...locale.inline,
+            icon: icons.inline,
+            handler({ wrapText, editor }) {
+              wrapText('$');
+              editor.focus();
+            },
+          },
+          {
+            ...locale.block,
+            icon: icons.block,
+            handler({ appendBlock, editor }) {
+              const { line } = appendBlock('$$\n\\TeX\n$$');
+              editor.setSelection(
+                { line: line + 1, ch: 0 },
+                { line: line + 1, ch: 4 }
+              );
+              editor.focus();
+            },
+          },
+        ],
       },
     ],
   };
