@@ -4,6 +4,7 @@ import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
 import type { BytemdLocale } from './locales/en-US';
+import type { Image } from 'mdast';
 
 export interface BytemdEditorContext extends EditorUtils {
   /**
@@ -124,13 +125,7 @@ export interface EditorProps extends ViewerProps {
    */
   uploadImages?: (
     files: File[]
-  ) => Promise<
-    {
-      src: string;
-      alt?: string;
-      title?: string;
-    }[]
-  >;
+  ) => Promise<Pick<Image, 'url' | 'alt' | 'title'>[]>;
 }
 
 export interface ViewerProps {

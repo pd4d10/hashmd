@@ -277,9 +277,9 @@
       const imgs = await uploadImages(files);
       context.appendBlock(
         imgs
-          .map(({ src, alt, title }, i) => {
+          .map(({ url, alt, title }, i) => {
             alt = alt ?? files[i].name;
-            return `![${alt}](${src}${title ? ` "${title}"` : ''})`;
+            return `![${alt}](${url}${title ? ` "${title}"` : ''})`;
           })
           .join('\n\n')
       );

@@ -25,11 +25,12 @@
     "lib"
   ],
   "dependencies": {
-    "@popperjs/core": "^2.8.3",
+    "@popperjs/core": "^2.8.4",
     "@types/classnames": "^2.2.11",
     "@types/codemirror": "^0.0.108",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
+    "@types/mdast": "^3.0.3",
     "classnames": "^2.2.6",
     "codemirror-ssr": "^0.0.6",
     "hast-util-sanitize": "^3.0.2",
@@ -41,8 +42,8 @@
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.0.0",
     "select-files": "^1.0.1",
-    "tippy.js": "^6.3.0",
-    "unified": "^9.2.0",
+    "tippy.js": "^6.3.1",
+    "unified": "^9.2.1",
     "vfile": "^4.2.1"
   }
 }
