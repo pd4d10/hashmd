@@ -21,6 +21,7 @@
     "@bytemd/plugin-gfm": "^1.4.0",
     "@bytemd/plugin-highlight": "^1.4.0",
     "@bytemd/plugin-math": "^1.4.0",
+    "@bytemd/plugin-mdx": "^1.4.0",
     "@bytemd/plugin-medium-zoom": "^1.4.0",
     "@bytemd/plugin-mermaid": "^1.4.0",
     "bytemd": "^1.4.0",

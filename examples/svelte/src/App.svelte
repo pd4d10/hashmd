@@ -7,6 +7,7 @@
   import gfm from '@bytemd/plugin-gfm';
   import highlight from '@bytemd/plugin-highlight';
   import math from '@bytemd/plugin-math';
+  // import mdx from '@bytemd/plugin-mdx';
   import mediumZoom from '@bytemd/plugin-medium-zoom';
   import mermaid from '@bytemd/plugin-mermaid';
   import gemoji from '@bytemd/plugin-gemoji';
@@ -56,6 +57,7 @@
     gfm: true,
     highlight: true,
     math: true,
+    // mdx: true,
     'medium-zoom': true,
     mermaid: true,
   };
@@ -68,6 +70,7 @@
     enabled.gfm && gfm({ locale: currentLocale.gfm }),
     enabled.highlight && highlight(),
     enabled.math && math({ locale: currentLocale.math }),
+    // enabled.mdx && mdx(),
     enabled['medium-zoom'] && mediumZoom(),
     enabled.mermaid && mermaid({ locale: currentLocale.mermaid }),
   ].filter((x) => x);

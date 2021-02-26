@@ -94,6 +94,7 @@ importers:
       '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
       '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
       '@bytemd/plugin-math': link:../../packages/plugin-math
+      '@bytemd/plugin-mdx': link:../../packages/plugin-mdx
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
       bytemd: link:../../packages/bytemd
@@ -119,6 +120,7 @@ importers:
       '@bytemd/plugin-gfm': ^1.4.0
       '@bytemd/plugin-highlight': ^1.4.0
       '@bytemd/plugin-math': ^1.4.0
+      '@bytemd/plugin-mdx': ^1.4.0
       '@bytemd/plugin-medium-zoom': ^1.4.0
       '@bytemd/plugin-mermaid': ^1.4.0
       bytemd: ^1.4.0
@@ -175,6 +177,7 @@ importers:
       '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
       '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
       '@bytemd/plugin-math': link:../../packages/plugin-math
+      '@bytemd/plugin-mdx': link:../../packages/plugin-mdx
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
       bytemd: link:../../packages/bytemd
@@ -194,6 +197,7 @@ importers:
       '@bytemd/plugin-gfm': ^1.4.0
       '@bytemd/plugin-highlight': ^1.4.0
       '@bytemd/plugin-math': ^1.4.0
+      '@bytemd/plugin-mdx': ^1.4.0
       '@bytemd/plugin-medium-zoom': ^1.4.0
       '@bytemd/plugin-mermaid': ^1.4.0
       bytemd: ^1.4.0
@@ -348,6 +352,16 @@ importers:
       bytemd: ^1.4.0
       rehype-katex: ^4.0.0
       remark-math: ^4.0.0
+  packages/plugin-mdx:
+    dependencies:
+      mdast-util-mdx: 0.1.1
+      micromark-extension-mdx: 0.2.1
+    devDependencies:
+      bytemd: link:../bytemd
+    specifiers:
+      bytemd: ^1.4.0
+      mdast-util-mdx: ^0.1.1
+      micromark-extension-mdx: ^0.2.1
   packages/plugin-medium-zoom:
     dependencies:
       medium-zoom: 1.0.6
@@ -7731,6 +7745,10 @@ packages:
       node: '>=4.0'
     resolution:
       integrity: sha512-BxbNGGNm0RyRYvUdHpIwv9IWzeM9XClbOxwoATuFdOE7ZE6wHL+HQ5T8hoPM+zHvmKzzsEqhgy0GrQ5X13afiQ==
+  /estree-util-is-identifier-name/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-QM4F0ZUqsVDYLSefbbMgx0rVClS5YgFgBV7PFUyIOb6t9M7IhKGuaeLNIfCj6m11NxT8bXfGjMcFWTjMnYoDbg==
   /estree-walker/0.6.1:
     dev: true
     resolution:
@@ -11121,6 +11139,35 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fogAitds+wH+QRas78Yr1TwmQGN4cW/G2WRw5ePuNoJbBSPJCxIOCE8MTzHgWHVSpgkRaPQTgfzXRE1CrwWSlg==
+  /mdast-util-mdx-expression/0.1.1:
+    dependencies:
+      strip-indent: 3.0.0
+    dev: false
+    resolution:
+      integrity: sha512-SoO8y1B9NjMOYlNdwXMchuTVvqSTlUmXm1P5QvZNPv7OH7aa8qJV+3aA+vl1DHK9Vk1uZAlgwokjvDQhS6bINA==
+  /mdast-util-mdx-jsx/0.1.3:
+    dependencies:
+      mdast-util-to-markdown: 0.6.5
+      parse-entities: 2.0.0
+      stringify-entities: 3.1.0
+      unist-util-remove-position: 3.0.0
+      vfile-message: 2.0.4
+    dev: false
+    resolution:
+      integrity: sha512-MIAop4fMALAAVMpXIZqSq2T9/3d/hiiSTdPTJ9AOIZL1td2JBbUOBSnBSMfEk4GOyiQSsla+NFziJbNBwBH1sw==
+  /mdast-util-mdx/0.1.1:
+    dependencies:
+      mdast-util-mdx-expression: 0.1.1
+      mdast-util-mdx-jsx: 0.1.3
+      mdast-util-mdxjs-esm: 0.1.1
+      mdast-util-to-markdown: 0.6.5
+    dev: false
+    resolution:
+      integrity: sha512-9nncdnHNYSb4HNxY3AwE6gU632jhbXsDGXe9PkkJoEawYWJ8tTwmEOHGlGa2TCRidtkd6FF5I8ogDU9pTDlQyA==
+  /mdast-util-mdxjs-esm/0.1.1:
+    dev: false
+    resolution:
+      integrity: sha512-kBiYeashz+nuhfv+712nc4THQhzXIH2gBFUDbuLxuDCqU/fZeg+9FAcdRBx9E13dkpk1p2Xwufzs3wsGJ+mISQ==
   /mdast-util-to-hast/10.2.0:
     dependencies:
       '@types/mdast': 3.0.3
@@ -11358,6 +11405,35 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ZJXsT2eVPM8VTmcw0CPSDeyonOn9SziGK3Z+nkf9Vb6xMPeU+4JMEnO6vzDL10562Favw8Vste74f54rxJ/i6Q==
+  /micromark-extension-mdx-expression/0.3.1:
+    dependencies:
+      micromark: 2.11.4
+      vfile-message: 2.0.4
+    dev: false
+    resolution:
+      integrity: sha512-ItcdfbfpSAF3QPEuZAcox3p1tGSp5g0qrKCtw210tkogL3LvrqHUYY/mUDqPkStTo+b0Fqu7PxqazeILoY0GDw==
+  /micromark-extension-mdx-jsx/0.3.2:
+    dependencies:
+      estree-util-is-identifier-name: 1.0.0
+      micromark: 2.11.4
+      micromark-extension-mdx-expression: 0.3.1
+      vfile-message: 2.0.4
+    dev: false
+    resolution:
+      integrity: sha512-Ax5EZiouSg9v/R3GWymW7PPc9Wvq1aVo6EzmHf7kcwwdu43cF3ByLNluUt517AS1W7fZe7bECRQwPL+xw5LF+w==
+  /micromark-extension-mdx-md/0.1.1:
+    dev: false
+    resolution:
+      integrity: sha512-emlFQEyfx/2aPhwyEqeNDfKE6jPH1cvLTb5ANRo4qZBjaUObnzjLRdzK8RJ4Xc8+/dOmKN8TTRxFnOYF5/EAwQ==
+  /micromark-extension-mdx/0.2.1:
+    dependencies:
+      micromark: 2.11.4
+      micromark-extension-mdx-expression: 0.3.1
+      micromark-extension-mdx-jsx: 0.3.2
+      micromark-extension-mdx-md: 0.1.1
+    dev: false
+    resolution:
+      integrity: sha512-J+nZegf1ExPz1Ft6shxu8M9WfRom1gwRIx6gpJK1SEEqKzY5LjOR1d/WHRtjwV4KoMXrL53+PoN7T1Rw1euJew==
   /micromark/2.11.4:
     dependencies:
       debug: 4.3.1
@@ -11441,7 +11517,6 @@ packages:
     resolution:
       integrity: sha512-Ysbi9uYW9hFyfrThdDEQuykN4Ey6BuwPD2kpI5ES/nFTDn/98yxYNLZJcgUAKPT/mcrLLKaGzJR9YVxJrIdASQ==
   /min-indent/1.0.1:
-    dev: true
     engines:
       node: '>=4'
     resolution:
@@ -15842,7 +15917,6 @@ packages:
   /strip-indent/3.0.0:
     dependencies:
       min-indent: 1.0.1
-    dev: true
     engines:
       node: '>=8'
     resolution:
@@ -16820,6 +16894,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-w+PkwCbYSFw8vpgWD0v7zRCl1FpY3fjDSQ3/N/wNd9Ffa4gPi8+4keqt99N3XW6F99t/mUzp2xAhNmfKWp95QA==
+  /unist-util-remove-position/3.0.0:
+    dependencies:
+      unist-util-visit: 2.0.3
+    dev: false
+    resolution:
+      integrity: sha512-17kIOuolVuK16LMb9KyMJlqdfCtlfQY5FjY3Sdo9iC7F5wqdXhNjMq0PBvMpkVNNnAmHxXssUW+rZ9T2zbP0Rg==
   /unist-util-stringify-position/2.0.3:
     dependencies:
       '@types/unist': 2.0.3

@@ -91,19 +91,20 @@ const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
   (match, p1, offset, string) => {
     const content = plugins
       .map((p) => {
+        const pkg = require(path.join(root, p, 'package.json'));
+        if (pkg.private) return;
+
         const name = p.split('-').slice(1).join('-');
         const badge =
           `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg)](https://npm.im/@bytemd/plugin-${name})` +
           ' ' +
           `[![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-${name}/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-${name})`;
         const desc = _.upperFirst(
-          require(path.join(root, p, 'package.json')).description.replace(
-            'ByteMD plugin to ',
-            ''
-          )
+          pkg.description.replace('ByteMD plugin to ', '')
         );
         return `| [@bytemd/plugin-${name}](./packages/plugin-${name}) | ${badge} | ${desc} |`;
       })
+      .filter((x) => x)
       .join('\n');
 
     return `## Plugins
