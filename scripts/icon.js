@@ -24,7 +24,7 @@ const meta = {
     ol: icons.OrderedList,
     ul: icons.ListTwo,
     hr: icons.DividingLine,
-    info: icons.Info,
+    source: icons.GithubOne,
     fullscreenOn: icons.FullScreen,
     fullscreenOff: icons.OffScreen,
     help: icons.Helpcenter,

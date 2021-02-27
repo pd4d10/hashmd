@@ -9,7 +9,7 @@ const locale: BytemdLocale = {
     help: '帮助',
     toc: '目录',
     fullscreen: '全屏',
-    about: '关于',
+    source: '源代码',
   },
   sidebar: {
     toc: '目录',

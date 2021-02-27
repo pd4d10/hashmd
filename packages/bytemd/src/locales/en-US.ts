@@ -7,7 +7,7 @@ const locale = {
     help: 'Help',
     toc: 'Table of contents',
     fullscreen: 'Toggle fullscreen',
-    about: 'About',
+    source: 'Source code',
   },
   sidebar: {
     toc: 'Table of contents',

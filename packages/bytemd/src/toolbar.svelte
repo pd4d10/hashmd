@@ -66,8 +66,8 @@
       },
     },
     {
-      title: locale.toolbar.about,
-      icon: icons.info,
+      title: locale.toolbar.source,
+      icon: icons.source,
       handler() {
         window.open('https://github.com/bytedance/bytemd');
       },
