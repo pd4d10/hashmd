@@ -183,15 +183,7 @@
   <div class="bytemd-toolbar-left">
     {#if split}
       {#each actions as item, index}
-        {#if item.children || item.title}
-          <!-- <ToolbarButton
-            title={item.title + (item.shortcut ? ` <${item.shortcut}>` : '')}
-            icon={item.icon}
-            on:click={(e) => {
-              dispatch('active', e.detail);
-              item.handler && item.handler(context);
-            }}
-          /> -->
+        {#if item.children || item.handler}
           <div
             class={clsx('bytemd-toolbar-icon', tippyClass)}
             bytemd-tippy-path={index}

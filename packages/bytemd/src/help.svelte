@@ -4,12 +4,29 @@
 
   export let actions: BytemdAction[];
   export let locale: BytemdLocale;
+
+  function flatItems(actions: BytemdAction[]) {
+    let items: BytemdAction[] = [];
+
+    actions.forEach((item) => {
+      const { children, cheatsheet } = item;
+      if (children) {
+        items.push(...flatItems(children));
+      } else if (cheatsheet) {
+        items.push(item);
+      }
+    });
+
+    return items;
+  }
+
+  $: items = flatItems(actions);
 </script>
 
 <div class="bytemd-help">
   <h2>{locale.sidebar.cheatsheet}</h2>
   <ul>
-    {#each actions as item}
+    {#each items as item}
       {#if item.cheatsheet}
         <li>
           <div class="bytemd-help-icon">{@html item.icon}</div>
@@ -21,7 +38,7 @@
   </ul>
   <h2>{locale.sidebar.shortcuts}</h2>
   <ul>
-    {#each actions as item}
+    {#each items as item}
       {#if item.shortcut && item.handler}
         <li>
           <div class="bytemd-help-icon">{@html item.icon}</div>

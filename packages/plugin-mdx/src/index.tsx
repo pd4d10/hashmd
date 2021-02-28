@@ -1,4 +1,3 @@
-import { render } from 'react-dom';
 import type { BytemdPlugin } from 'bytemd';
 import remarkMdx from './remark-mdx';
 

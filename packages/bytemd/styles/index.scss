@@ -173,7 +173,7 @@ $max-width: 800px;
     border-left: 1px solid $border-color;
     width: $sidebar-width;
     position: relative;
-    padding: 16px;
+    padding: 0 16px;
     &-close {
       position: absolute;
       padding: 16px;
@@ -187,7 +187,7 @@ $max-width: 800px;
     h2 {
       font-size: 16px;
       font-weight: 600;
-      margin: 16px 0;
+      margin: 32px 0 16px;
     }
     ul {
       padding-left: 0;
@@ -211,7 +211,7 @@ $max-width: 800px;
     }
     li {
       list-style: none;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     &-icon {
       padding: 2px 0;
