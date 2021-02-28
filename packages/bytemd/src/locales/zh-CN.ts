@@ -4,12 +4,15 @@ const locale: BytemdLocale = {
   toolbar: {
     write: '编辑',
     preview: '预览',
-    left: '仅编辑',
-    right: '仅预览',
+    writeOnly: '仅编辑区',
+    previewOnly: '仅预览区',
     help: '帮助',
+    closeHelp: '关闭帮助',
     toc: '目录',
+    closeToc: '关闭目录',
     fullscreen: '全屏',
-    source: '源代码',
+    exitFullscreen: '退出全屏',
+    sourceCode: '源代码',
   },
   sidebar: {
     toc: '目录',
@@ -19,11 +22,10 @@ const locale: BytemdLocale = {
   status: {
     bytes: '字节',
     lines: '行数',
-    sync: '滚动同步',
+    sync: '同步滚动',
     top: '回到顶部',
   },
   heading: {
-    title: '标题',
     cheatsheet: '## 标题',
     h1: '一级标题',
     h2: '二级标题',

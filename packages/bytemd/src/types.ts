@@ -34,7 +34,7 @@ export interface BytemdAction {
   /**
    * Action title
    */
-  title: string;
+  title?: string;
   /**
    * Action icon (16x16), could be <img> or inline svg
    */

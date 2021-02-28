@@ -40,7 +40,6 @@ export default function math({
     },
     action: [
       {
-        title: locale.formula,
         icon: icons.math,
         children: [
           {

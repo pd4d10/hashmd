@@ -87,31 +87,38 @@ $max-width: 800px;
   }
 
   &-dropdown {
-    max-height: 50%;
+    max-height: 300px;
     overflow: auto;
+    font-size: 14px;
+    &-title {
+      margin: 0 12px;
+      font-weight: 500;
+      border-bottom: 1px solid $border-color;
+      line-height: 32px;
+      color: $gray-700;
+    }
     &-item {
-      padding: 4px 8px;
+      padding: 4px 12px;
       height: 32px;
       cursor: pointer;
       &:hover {
         background-color: $border-color;
       }
-    }
-    &-icon {
-      display: inline-block;
-      svg {
-        display: block;
-        padding: 4px;
-        width: 24px;
-        height: 24px;
+
+      &-icon {
+        display: inline-block;
+        svg {
+          display: block;
+          padding: 4px;
+          width: 24px;
+          height: 24px;
+        }
       }
-    }
-    &-title {
-      display: inline-block;
-      padding-left: 4px;
-      font-size: 14px;
-      line-height: 24px;
-      vertical-align: top;
+      &-title {
+        display: inline-block;
+        line-height: 24px;
+        vertical-align: top;
+      }
     }
   }
 

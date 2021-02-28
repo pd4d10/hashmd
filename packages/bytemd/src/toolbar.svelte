@@ -25,7 +25,7 @@
 
   $: rightActions = [
     {
-      title: locale.toolbar.toc,
+      title: sidebar === 'toc' ? locale.toolbar.closeToc : locale.toolbar.toc,
       icon: icons.toc,
       handler() {
         dispatch('click', 'toc');
@@ -33,7 +33,8 @@
       active: sidebar === 'toc',
     },
     {
-      title: locale.toolbar.help,
+      title:
+        sidebar === 'help' ? locale.toolbar.closeHelp : locale.toolbar.help,
       icon: icons.help,
       handler() {
         dispatch('click', 'help');
@@ -41,7 +42,7 @@
       active: sidebar === 'help',
     },
     {
-      title: locale.toolbar.left,
+      title: locale.toolbar.writeOnly,
       icon: icons.left,
       handler() {
         dispatch('tab', 'write');
@@ -50,7 +51,7 @@
       hidden: !split,
     },
     {
-      title: locale.toolbar.right,
+      title: locale.toolbar.previewOnly,
       icon: icons.right,
       handler() {
         dispatch('tab', 'preview');
@@ -59,14 +60,16 @@
       hidden: !split,
     },
     {
-      title: locale.toolbar.fullscreen,
+      title: fullscreen
+        ? locale.toolbar.exitFullscreen
+        : locale.toolbar.fullscreen,
       icon: fullscreen ? icons.fullscreenOff : icons.fullscreenOn,
       handler() {
         dispatch('click', 'fullscreen');
       },
     },
     {
-      title: locale.toolbar.source,
+      title: locale.toolbar.sourceCode,
       icon: icons.source,
       handler() {
         window.open('https://github.com/bytedance/bytemd');
@@ -118,6 +121,32 @@
           };
         }
 
+        const dropdown = document.createElement('div');
+        dropdown.classList.add('bytemd-dropdown');
+
+        if (item.title) {
+          const dropdownTitle = document.createElement('div');
+          dropdownTitle.classList.add('bytemd-dropdown-title');
+          dropdownTitle.appendChild(document.createTextNode(item.title));
+          dropdown.appendChild(dropdownTitle);
+        }
+
+        item.children.forEach((item0, i) => {
+          const dropdownItem = document.createElement('div');
+          dropdownItem.classList.add('bytemd-dropdown-item');
+          dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'));
+          if (item0.children) {
+            dropdownItem.classList.add(tippyClass);
+          }
+          // div.setAttribute('data-tippy-placement', 'right');
+          dropdownItem.innerHTML = `${
+            item0.icon
+              ? `<div class="bytemd-dropdown-item-icon">${item0.icon}</div>`
+              : ''
+          }<div class="bytemd-dropdown-item-title">${item0.title}</div>`;
+          dropdown.appendChild(dropdownItem);
+        });
+
         return {
           allowHTML: true,
           showOnCreate: true,
@@ -127,23 +156,7 @@
           interactiveDebounce: 100,
           arrow: false,
           offset: [0, 4],
-          content: `<div class="bytemd-dropdown-items">${item.children
-            .map((item0, i) => {
-              const div = document.createElement('div');
-              div.classList.add('bytemd-dropdown-item');
-              div.setAttribute(tippyPathKey, [...paths, i].join('-'));
-              if (item0.children) {
-                div.classList.add(tippyClass);
-              }
-              // div.setAttribute('data-tippy-placement', 'right');
-              div.innerHTML = `${
-                item0.icon
-                  ? `<div class="bytemd-dropdown-icon">${item0.icon}</div>`
-                  : ''
-              }<div class="bytemd-dropdown-title">${item0.title}</div>`;
-              return div.outerHTML;
-            })
-            .join('')}</div>`,
+          content: dropdown.outerHTML,
           onHidden(ins) {
             ins.destroy();
           },

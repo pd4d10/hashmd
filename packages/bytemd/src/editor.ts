@@ -117,7 +117,6 @@ export function getBuiltinActions(
 ): BytemdAction[] {
   const items: BytemdAction[] = [
     {
-      title: locale.heading.title,
       cheatsheet: locale.heading.cheatsheet,
       icon: icons.heading,
       children: [1, 2, 3, 4, 5, 6].map((level) => ({

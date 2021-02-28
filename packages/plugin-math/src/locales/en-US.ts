@@ -1,5 +1,4 @@
 const locale = {
-  formula: 'Formula',
   inline: {
     title: 'Inline formula',
     cheatsheet: '$\\TeX$',

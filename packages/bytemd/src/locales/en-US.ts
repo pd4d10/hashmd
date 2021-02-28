@@ -2,12 +2,15 @@ const locale = {
   toolbar: {
     write: 'Write',
     preview: 'Preview',
-    left: 'Write only',
-    right: 'Preview only',
+    writeOnly: 'Write only',
+    previewOnly: 'Preview only',
     help: 'Help',
+    closeHelp: 'Close help',
     toc: 'Table of contents',
-    fullscreen: 'Toggle fullscreen',
-    source: 'Source code',
+    closeToc: 'Close table of contents',
+    fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit fullscreen',
+    sourceCode: 'Source code',
   },
   sidebar: {
     toc: 'Table of contents',
@@ -21,7 +24,6 @@ const locale = {
     top: 'Scroll to top',
   },
   heading: {
-    title: 'Heading',
     cheatsheet: '## heading',
     h1: 'Heading 1',
     h2: 'Heading 2',
