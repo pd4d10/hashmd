@@ -3,7 +3,7 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
   import type { EditorProps, BytemdEditorContext, BytemdAction } from './types';
-  import cx from 'classnames';
+  import clsx from 'clsx';
   import { icons } from './icons';
   import delegate from './delegate';
 
@@ -180,7 +180,7 @@
             }}
           /> -->
           <div
-            class={cx('bytemd-toolbar-icon', tippyClass)}
+            class={clsx('bytemd-toolbar-icon', tippyClass)}
             bytemd-tippy-path={index}
           >
             {@html item.icon}
@@ -209,7 +209,7 @@
     {#each rightActions as item, index}
       {#if !item.hidden}
         <div
-          class={cx('bytemd-toolbar-icon', tippyClass, tippyClassRight)}
+          class={clsx('bytemd-toolbar-icon', tippyClass, tippyClassRight)}
           class:bytemd-toolbar-icon-active={item.active}
           bytemd-tippy-path={index}
         >

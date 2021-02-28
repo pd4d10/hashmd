@@ -220,12 +220,11 @@ importers:
   packages/bytemd:
     dependencies:
       '@popperjs/core': 2.8.4
-      '@types/classnames': 2.2.11
       '@types/codemirror': 0.0.108
       '@types/lodash.debounce': 4.0.6
       '@types/lodash.throttle': 4.1.6
       '@types/mdast': 3.0.3
-      classnames: 2.2.6
+      clsx: 1.1.1
       codemirror-ssr: 0.0.6
       hast-util-sanitize: 3.0.2
       lodash.debounce: 4.0.8
@@ -241,12 +240,11 @@ importers:
       vfile: 4.2.1
     specifiers:
       '@popperjs/core': ^2.8.4
-      '@types/classnames': ^2.2.11
       '@types/codemirror': ^0.0.108
       '@types/lodash.debounce': ^4.0.6
       '@types/lodash.throttle': ^4.1.6
       '@types/mdast': ^3.0.3
-      classnames: ^2.2.6
+      clsx: ^1.1.1
       codemirror-ssr: ^0.0.6
       hast-util-sanitize: ^3.0.2
       lodash.debounce: ^4.0.8
@@ -3990,10 +3988,6 @@ packages:
     optional: true
     resolution:
       integrity: sha512-xH2e58elpj1X4ynnKp9qSnWlsRTIs6n3tgLGNfwAGHwePw0mulHQllV34n0T25uYSu1k0hRKkWXF890B1yS47w==
-  /@types/classnames/2.2.11:
-    dev: false
-    resolution:
-      integrity: sha512-2koNhpWm3DgWRp5tpkiJ8JGc1xTn2q0l+jUNUE7oMKXUf5NpI9AIdC4kbjGNFBdHtcxBD18LAksoudAVhFKCjw==
   /@types/codemirror/0.0.108:
     dependencies:
       '@types/tern': 0.23.3
@@ -5908,6 +5902,12 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+  /clsx/1.1.1:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
   /co/4.6.0:
     dev: true
     engines:

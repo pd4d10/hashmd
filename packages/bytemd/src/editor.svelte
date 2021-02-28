@@ -7,7 +7,7 @@
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
   import throttle from 'lodash.throttle';
-  import cx from 'classnames';
+  import clsx from 'clsx';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import Toc from './toc.svelte';
@@ -304,7 +304,7 @@
 </script>
 
 <div
-  class={cx('bytemd', {
+  class={clsx('bytemd', {
     'bytemd-split': split && activeTab === false,
     'bytemd-fullscreen': fullscreen,
   })}

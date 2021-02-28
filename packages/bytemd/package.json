@@ -26,12 +26,11 @@
   ],
   "dependencies": {
     "@popperjs/core": "^2.8.4",
-    "@types/classnames": "^2.2.11",
     "@types/codemirror": "^0.0.108",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
     "@types/mdast": "^3.0.3",
-    "classnames": "^2.2.6",
+    "clsx": "^1.1.1",
     "codemirror-ssr": "^0.0.6",
     "hast-util-sanitize": "^3.0.2",
     "lodash.debounce": "^4.0.8",
