@@ -21,13 +21,13 @@
 
     hast.children
       .filter((v): v is Element => v.type === 'element')
-      .forEach((child, index) => {
+      .forEach(({ tagName, children }, index) => {
         for (let i = 6; i > 0; i--) {
-          if (child.tagName === 'h' + i) {
+          if (tagName === 'h' + i && children[0]) {
             minLevel = Math.min(minLevel, i);
             items.push({
               level: i,
-              text: child.children[0].value as string, // TODO:
+              text: children[0].value as string, // TODO: complicated children
             });
 
             // console.log(currentBlockIndex, index);
