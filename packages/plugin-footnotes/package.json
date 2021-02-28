@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-footnotes",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "ByteMD plugin to support footnotes",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -22,6 +22,6 @@
     "remark-footnotes": "^3.0.0"
   },
   "devDependencies": {
-    "bytemd": "^1.4.0"
+    "bytemd": "^1.5.0"
   }
 }

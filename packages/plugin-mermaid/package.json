@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-mermaid",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "ByteMD plugin to support Mermaid diagram",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -23,6 +23,6 @@
     "mermaid": "^8.9.1"
   },
   "devDependencies": {
-    "bytemd": "^1.4.0"
+    "bytemd": "^1.5.0"
   }
 }

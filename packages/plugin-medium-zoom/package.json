@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-medium-zoom",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "ByteMD plugin to zoom images like Medium",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -22,6 +22,6 @@
     "medium-zoom": "^1.0.6"
   },
   "devDependencies": {
-    "bytemd": "^1.4.0"
+    "bytemd": "^1.5.0"
   }
 }
