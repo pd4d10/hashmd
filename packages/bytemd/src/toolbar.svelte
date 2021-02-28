@@ -138,9 +138,9 @@
               // div.setAttribute('data-tippy-placement', 'right');
               div.innerHTML = `${
                 item0.icon
-                  ? `<span class="bytemd-dropdown-icon">${item0.icon}</span>`
+                  ? `<div class="bytemd-dropdown-icon">${item0.icon}</div>`
                   : ''
-              }<span class="bytemd-dropdown-title">${item0.title}</span>`;
+              }<div class="bytemd-dropdown-title">${item0.title}</div>`;
               return div.outerHTML;
             })
             .join('')}</div>`,
@@ -179,37 +179,42 @@
               item.handler && item.handler(context);
             }}
           /> -->
-          <span
+          <div
             class={cx('bytemd-toolbar-icon', tippyClass)}
             bytemd-tippy-path={index}
           >
             {@html item.icon}
-          </span>
+          </div>
         {/if}
       {/each}
     {:else}
-      <span
+      <div
         on:click={() => dispatch('tab', 'write')}
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab !== 'preview'}
-        >{locale.toolbar.write}</span
-      ><span
+      >
+        {locale.toolbar.write}
+      </div>
+      <div
         on:click={() => dispatch('tab', 'preview')}
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab === 'preview'}
-        >{locale.toolbar.preview}</span
       >
+        {locale.toolbar.preview}
+      </div>
     {/if}
   </div>
 
   <div class="bytemd-toolbar-right">
     {#each rightActions as item, index}
       {#if !item.hidden}
-        <span
+        <div
           class={cx('bytemd-toolbar-icon', tippyClass, tippyClassRight)}
           class:bytemd-toolbar-icon-active={item.active}
-          bytemd-tippy-path={index}>{@html item.icon}</span
+          bytemd-tippy-path={index}
         >
+          {@html item.icon}
+        </div>
       {/if}
     {/each}
   </div>

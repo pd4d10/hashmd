@@ -107,6 +107,7 @@ $max-width: 800px;
       }
     }
     &-title {
+      display: inline-block;
       padding-left: 4px;
       font-size: 14px;
       line-height: 24px;
@@ -195,7 +196,7 @@ $max-width: 800px;
         height: 16px;
         display: block;
       }
-      span {
+      div {
         font-size: 13px;
         display: inline-block;
         vertical-align: top;

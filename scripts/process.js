@@ -19,6 +19,13 @@ async function transform(file, dir = 'lib') {
         typescript: {
           tsconfigFile: path.resolve(__dirname, '../tsconfig-base.json'),
         },
+        // https://github.com/sveltejs/svelte/issues/189#issuecomment-586142198
+        replace: [
+          [/(>)[\s]*([<{])/g, '$1$2'],
+          [/({[/:][a-z]+})[\s]*([<{])/g, '$1$2'],
+          [/({[#:][a-z]+ .+?})[\s]*([<{])/g, '$1$2'],
+          [/([>}])[\s]+(<|{[/#:][a-z][^}]*})/g, '$1$2'],
+        ],
       }),
       {
         filename: file,

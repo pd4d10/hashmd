@@ -15,18 +15,25 @@
 
 <div class="bytemd-status">
   <div class="bytemd-status-left">
-    <span>{locale.status.bytes}: <strong>{bytes}</strong></span><span
-      >{locale.status.lines}: <strong>{lines}</strong></span
-    >
+    <span>
+      {locale.status.bytes}: <strong>{bytes}</strong>
+    </span>
+    <span>
+      {locale.status.lines}: <strong>{lines}</strong>
+    </span>
   </div>
 
   <div class="bytemd-status-right">
-    {#if split}<label
-        ><input
+    {#if split}
+      <label>
+        <input
           type="checkbox"
           checked={syncEnabled}
           on:change={() => dispatch('sync', !syncEnabled)}
-        />{locale.status.sync}</label
-      >{/if}<span on:click={() => dispatch('top')}>{locale.status.top}</span>
+        />
+        {locale.status.sync}
+      </label>
+    {/if}
+    <span on:click={() => dispatch('top')}>{locale.status.top}</span>
   </div>
 </div>

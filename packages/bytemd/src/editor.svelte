@@ -347,13 +347,10 @@
     }}
   />
   <div class="bytemd-body">
-    <span class="bytemd-editor" style={styles.edit}>
+    <div class="bytemd-editor" style={styles.edit}>
       <textarea bind:this={textarea} style="display:none" />
-    </span><span
-      bind:this={previewEl}
-      class="bytemd-preview"
-      style={styles.preview}
-    >
+    </div>
+    <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       <Viewer
         value={debouncedValue}
         {plugins}
@@ -362,10 +359,8 @@
           hast = e.detail;
         }}
       />
-    </span><span
-      class="bytemd-sidebar"
-      style={sidebar ? undefined : 'display:none'}
-    >
+    </div>
+    <div class="bytemd-sidebar" style={sidebar ? undefined : 'display:none'}>
       <div
         class="bytemd-sidebar-close"
         on:click={() => {
@@ -387,7 +382,7 @@
           }}
         />
       {/if}
-    </span>
+    </div>
   </div>
   <Status
     {locale}

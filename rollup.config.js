@@ -35,7 +35,7 @@ const configs = packages
     const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
     const inputFile = path.resolve('packages', key, 'lib/index.js');
     const umdName = key.startsWith('plugin-')
-      ? _.camelCase(`bytemd-${key.replace(/-ssr$/, '')}`)
+      ? _.camelCase(`bytemd-${key}`)
       : 'bytemd';
 
     /** @type {import('rollup').RollupOptions} */

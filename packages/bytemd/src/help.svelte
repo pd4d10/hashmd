@@ -12,11 +12,9 @@
     {#each actions as item}
       {#if item.cheatsheet}
         <li>
-          <span class="bytemd-help-icon">{@html item.icon}</span><span
-            class="bytemd-help-title">{item.title}</span
-          ><span class="bytemd-help-content"
-            ><code>{item.cheatsheet}</code></span
-          >
+          <div class="bytemd-help-icon">{@html item.icon}</div>
+          <div class="bytemd-help-title">{item.title}</div>
+          <div class="bytemd-help-content"><code>{item.cheatsheet}</code></div>
         </li>
       {/if}
     {/each}
@@ -26,9 +24,9 @@
     {#each actions as item}
       {#if item.shortcut && item.handler}
         <li>
-          <span class="bytemd-help-icon">{@html item.icon}</span><span
-            class="bytemd-help-title">{item.title}</span
-          ><span class="bytemd-help-content"><kbd>{item.shortcut}</kbd></span>
+          <div class="bytemd-help-icon">{@html item.icon}</div>
+          <div class="bytemd-help-title">{item.title}</div>
+          <div class="bytemd-help-content"><kbd>{item.shortcut}</kbd></div>
         </li>
       {/if}
     {/each}
