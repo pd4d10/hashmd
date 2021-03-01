@@ -2,14 +2,14 @@ import type { BytemdPlugin } from 'bytemd';
 import type { Mermaid } from 'mermaid';
 import type mermaidAPI from 'mermaid/mermaidAPI';
 import { icons } from './icons';
-import enUS, { Locale } from './locales/en-US';
+import en from './locales/en.json';
 
 export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
-  locale?: Locale;
+  locale?: typeof en;
 }
 
 export default function mermaid({
-  locale = enUS,
+  locale = en,
   ...mermaidConfig
 }: BytemdPluginMermaidOptions = {}): BytemdPlugin {
   let m: Mermaid;
@@ -55,7 +55,9 @@ export default function mermaid({
       })();
     },
     action: {
+      title: locale.mermaid,
       icon: icons.mermaid,
+      cheatsheet: '```mermaid',
       handler({ editor, appendBlock }) {
         const { line } = appendBlock('```mermaid\ngraph LR\nA--->B\n```');
         editor.setSelection(
@@ -64,7 +66,6 @@ export default function mermaid({
         );
         editor.focus();
       },
-      ...locale,
     },
   };
 }

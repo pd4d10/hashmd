@@ -3,15 +3,15 @@ import type { KatexOptions } from 'katex';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import pluginMath from '@bytemd/plugin-math';
-import enUS, { Locale } from '@bytemd/plugin-math/lib/locales/en-US';
+import en from './locales/en.json';
 
 export interface BytemdPluginMathSsrOptions {
-  locale?: Locale;
+  locale?: typeof en;
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
 export default function mathSsr({
-  locale = enUS,
+  locale = en,
   katexOptions,
 }: BytemdPluginMathSsrOptions = {}): BytemdPlugin {
   return {
