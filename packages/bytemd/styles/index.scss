@@ -48,6 +48,7 @@ $max-width: 800px;
     }
 
     &-tab {
+      display: inline-block;
       cursor: pointer;
       padding-left: 8px;
       padding-right: 8px;
