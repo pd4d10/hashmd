@@ -26,7 +26,7 @@ export default function gfm({
       {
         title: locale.task,
         icon: icons.task,
-        cheatsheet: `- [x] ${locale.taskText}`,
+        cheatsheet: `- [ ] ${locale.taskText}`,
         handler({ replaceLines, editor }) {
           replaceLines((line) => '- [ ] ' + line);
           editor.focus();

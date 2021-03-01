@@ -1,5 +1,5 @@
 <script lang="ts">
-  import en from './locales/en.json';
+  import type en from './locales/en.json';
   import type { BytemdAction } from './types';
 
   export let actions: BytemdAction[];
