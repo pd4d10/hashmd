@@ -43,6 +43,7 @@
     "select-files": "^1.0.1",
     "tippy.js": "^6.3.1",
     "unified": "^9.2.1",
-    "vfile": "^4.2.1"
+    "vfile": "^4.2.1",
+    "word-count": "^0.2.2"
   }
 }

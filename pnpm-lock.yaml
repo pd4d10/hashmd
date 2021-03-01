@@ -238,6 +238,7 @@ importers:
       tippy.js: 6.3.1
       unified: 9.2.1
       vfile: 4.2.1
+      word-count: 0.2.2
     specifiers:
       '@popperjs/core': ^2.8.4
       '@types/codemirror': ^0.0.108
@@ -258,6 +259,7 @@ importers:
       tippy.js: ^6.3.1
       unified: ^9.2.1
       vfile: ^4.2.1
+      word-count: ^0.2.2
   packages/mp:
     dependencies:
       bytemd: link:../bytemd
@@ -17695,6 +17697,10 @@ packages:
     optional: true
     resolution:
       integrity: sha1-+k2qktrzLE6pTtRTyB8EaGtXXf4=
+  /word-count/0.2.2:
+    dev: false
+    resolution:
+      integrity: sha1-aZGS/KaCn+k21Byw2V25JIxXBFE=
   /word-wrap/1.2.3:
     dev: true
     engines:
