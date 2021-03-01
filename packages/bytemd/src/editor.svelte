@@ -18,7 +18,7 @@
   } from './editor';
   import Status from './status.svelte';
   import { icons } from './icons';
-  import enUS from './locales/en-US';
+  import enUS from './locales/en.json';
   import Help from './help.svelte';
   import factory from 'codemirror-ssr';
   import usePlaceholder from 'codemirror-ssr/addon/display/placeholder';

@@ -10,6 +10,7 @@ import autoprocessor from 'svelte-preprocess';
 // other files: copy
 async function transform(file, dir = 'lib') {
   const dest = file.replace('/src/', `/${dir}/`);
+  await fs.ensureDir(path.dirname(dest));
 
   if (file.endsWith('.svelte')) {
     const source = await fs.readFile(file, 'utf8');
@@ -57,17 +58,13 @@ function build(pattern, dir) {
   });
 }
 
-fs.ensureDirSync(path.resolve(__dirname, '../packages/bytemd/lib'));
-fs.ensureDirSync(path.resolve(__dirname, '../packages/vue/lib'));
-fs.ensureDirSync(path.resolve(__dirname, '../packages/mp/lib'));
-
 const pattern = path.resolve(
   __dirname,
-  `../packages/*/src/*.{svelte,vue,json,wxml,wxss}`
+  `../packages/*/src/**/*.{svelte,vue,json,wxml,wxss}`
 );
 const mpPattern = path.resolve(
   __dirname,
-  `../packages/mp/src/*.{svelte,vue,json,wxml,wxss}`
+  `../packages/mp/src/**/*.{svelte,vue,json,wxml,wxss}`
 );
 
 if (process.argv.includes('--watch')) {

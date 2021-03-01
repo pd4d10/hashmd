@@ -3,7 +3,7 @@ import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
-import type { BytemdLocale } from './locales/en-US';
+import type en from './locales/en.json';
 import type { Image } from 'mdast';
 
 export interface BytemdEditorContext extends EditorUtils {
@@ -46,10 +46,6 @@ export interface BytemdAction {
    */
   cheatsheet?: string;
   /**
-   * Action handler, used for action item click and shortcut trigger
-   */
-  handler?(context: BytemdEditorContext): void;
-  /**
    * Keyboard shortcut
    *
    * If specified, this record will be added to the Keyboard shortcut section
@@ -57,6 +53,10 @@ export interface BytemdAction {
    * https://codemirror.net/doc/manual.html#keymaps
    */
   shortcut?: string;
+  /**
+   * Action handler, used for action item click and shortcut trigger
+   */
+  handler?(context: BytemdEditorContext): void;
   children?: BytemdAction[];
 }
 
@@ -117,9 +117,9 @@ export interface EditorProps extends ViewerProps {
   /**
    * i18n locale
    *
-   * @defaultValue enUS
+   * @defaultValue en
    */
-  locale?: BytemdLocale;
+  locale?: typeof en;
   /**
    * Handle images upload
    */

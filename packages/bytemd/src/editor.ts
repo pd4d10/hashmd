@@ -1,6 +1,6 @@
 import type { Editor, Position } from 'codemirror';
 import type { BytemdPlugin, BytemdAction, EditorProps } from './types';
-import type { BytemdLocale } from './locales/en-US';
+import en from './locales/en.json';
 import { icons } from './icons';
 import selectFiles from 'select-files';
 
@@ -111,16 +111,16 @@ const getShortcutWithPrefix = (key: string) => {
 };
 
 export function getBuiltinActions(
-  locale: BytemdLocale,
+  locale: typeof en,
   plugins: BytemdPlugin[],
   uploadImages: EditorProps['uploadImages']
 ): BytemdAction[] {
   const items: BytemdAction[] = [
     {
-      cheatsheet: locale.heading.cheatsheet,
+      cheatsheet: `## ${locale.action.headingText}`,
       icon: icons.heading,
       children: [1, 2, 3, 4, 5, 6].map((level) => ({
-        title: locale.heading[`h${level}` as keyof typeof locale.heading],
+        title: locale.action[`h${level}` as keyof typeof locale.action],
         icon: icons[`h${level}` as keyof typeof icons],
         handler({ replaceLines, editor }) {
           replaceLines((line) => {
@@ -133,8 +133,9 @@ export function getBuiltinActions(
       })),
     },
     {
-      ...locale.bold,
+      title: locale.action.bold,
       icon: icons.bold,
+      cheatsheet: `**${locale.action.boldText}**`,
       shortcut: getShortcutWithPrefix('B'),
       handler({ wrapText, editor }) {
         wrapText('**');
@@ -142,8 +143,9 @@ export function getBuiltinActions(
       },
     },
     {
-      ...locale.italic,
+      title: locale.action.italic,
       icon: icons.italic,
+      cheatsheet: `_${locale.action.italicText}_`,
       shortcut: getShortcutWithPrefix('I'),
       handler({ wrapText, editor }) {
         wrapText('_');
@@ -151,16 +153,18 @@ export function getBuiltinActions(
       },
     },
     {
-      ...locale.quote,
+      title: locale.action.quote,
       icon: icons.quote,
+      cheatsheet: `> ${locale.action.quoteText}`,
       handler({ replaceLines, editor }) {
         replaceLines((line) => '> ' + line);
         editor.focus();
       },
     },
     {
-      ...locale.link,
+      title: locale.action.link,
       icon: icons.link,
+      cheatsheet: `[${locale.action.linkText}](url)`,
       shortcut: getShortcutWithPrefix('K'),
       handler({ editor, wrapText }) {
         wrapText('[', '](url)');
@@ -173,8 +177,9 @@ export function getBuiltinActions(
       },
     },
     {
-      ...locale.image,
+      title: locale.action.image,
       icon: icons.image,
+      cheatsheet: '![alt](url) "title"',
       handler: uploadImages
         ? async ({ appendBlock, selectFiles, editor }) => {
             const fileList = await selectFiles({
@@ -200,16 +205,18 @@ export function getBuiltinActions(
         : undefined,
     },
     {
-      ...locale.code,
+      title: locale.action.code,
       icon: icons.code,
+      cheatsheet: '`' + locale.action.codeText + '`',
       handler({ wrapText, editor }) {
         wrapText('`');
         editor.focus();
       },
     },
     {
-      ...locale.pre,
+      title: locale.action.codeBlock,
       icon: icons.codeBlock,
+      cheatsheet: '```lang',
       handler({ editor, appendBlock }) {
         const { line } = appendBlock('```js\n```');
         editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
@@ -217,24 +224,27 @@ export function getBuiltinActions(
       },
     },
     {
-      ...locale.ul,
+      title: locale.action.ul,
       icon: icons.ul,
+      cheatsheet: `- ${locale.action.ulText}`,
       handler({ replaceLines, editor }) {
         replaceLines((line) => '- ' + line);
         editor.focus();
       },
     },
     {
-      ...locale.ol,
+      title: locale.action.ol,
       icon: icons.ol,
+      cheatsheet: `1. ${locale.action.olText}`,
       handler({ replaceLines, editor }) {
         replaceLines((line, i) => `${i + 1}. ${line}`);
         editor.focus();
       },
     },
     {
-      ...locale.hr,
+      title: locale.action.hr,
       icon: icons.hr,
+      cheatsheet: '---',
     },
   ];
 
