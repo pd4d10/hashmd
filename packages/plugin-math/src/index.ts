@@ -2,15 +2,15 @@ import type { BytemdPlugin } from 'bytemd';
 import type * as K from 'katex';
 import remarkMath from 'remark-math';
 import { icons } from './icons';
-import enUS, { Locale } from './locales/en-US';
+import en from './locales/en.json';
 
 export interface BytemdPluginMathOptions {
-  locale?: Locale;
+  locale?: typeof en;
   katexOptions?: Omit<K.KatexOptions, 'displayMode'>;
 }
 
 export default function math({
-  locale = enUS,
+  locale = en,
   katexOptions,
 }: BytemdPluginMathOptions = {}): BytemdPlugin {
   let katex: typeof K;
@@ -43,16 +43,18 @@ export default function math({
         icon: icons.math,
         children: [
           {
-            ...locale.inline,
+            title: locale.inline,
             icon: icons.inline,
+            cheatsheet: '$\\TeX$',
             handler({ wrapText, editor }) {
               wrapText('$');
               editor.focus();
             },
           },
           {
-            ...locale.block,
+            title: locale.block,
             icon: icons.block,
+            cheatsheet: '$$↵\\TeX↵$$',
             handler({ appendBlock, editor }) {
               const { line } = appendBlock('$$\n\\TeX\n$$');
               editor.setSelection(

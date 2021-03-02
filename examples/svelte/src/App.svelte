@@ -12,18 +12,18 @@
   import mermaid from '@bytemd/plugin-mermaid';
   import gemoji from '@bytemd/plugin-gemoji';
 
-  import en from 'bytemd/lib/locales/en-US';
-  import zh from 'bytemd/lib/locales/zh-CN';
-  import gfmEn from '@bytemd/plugin-gfm/lib/locales/en-US';
-  import gfmZh from '@bytemd/plugin-gfm/lib/locales/zh-CN';
-  import mathEn from '@bytemd/plugin-math/lib/locales/en-US';
-  import mathZh from '@bytemd/plugin-math/lib/locales/zh-CN';
-  import mermaidEn from '@bytemd/plugin-mermaid/lib/locales/en-US';
-  import mermaidZh from '@bytemd/plugin-mermaid/lib/locales/zh-CN';
+  import en from 'bytemd/lib/locales/en';
+  // import zh from 'bytemd/lib/locales/zh-CN';
+  import gfmEn from '@bytemd/plugin-gfm/lib/locales/en';
+  // import gfmZh from '@bytemd/plugin-gfm/lib/locales/zh-CN';
+  import mathEn from '@bytemd/plugin-math/lib/locales/en';
+  // import mathZh from '@bytemd/plugin-math/lib/locales/zh-CN';
+  import mermaidEn from '@bytemd/plugin-mermaid/lib/locales/en';
+  // import mermaidZh from '@bytemd/plugin-mermaid/lib/locales/zh-CN';
 
   const locales = {
-    'en-US': { bytemd: en, gfm: gfmEn, math: mathEn, mermaid: mermaidEn },
-    'zh-CN': { bytemd: zh, gfm: gfmZh, math: mathZh, mermaid: mermaidZh },
+    en: { bytemd: en, gfm: gfmEn, math: mathEn, mermaid: mermaidEn },
+    // 'zh-CN': { bytemd: zh, gfm: gfmZh, math: mathZh, mermaid: mermaidZh },
   };
 
   import 'bytemd/dist/index.css';
@@ -35,7 +35,7 @@
 
   let value = '';
   let mode = 'auto';
-  let localeKey = 'en-US';
+  let localeKey = 'en';
 
   $: currentLocale = locales[localeKey];
 
@@ -83,9 +83,11 @@
       <label> <input type="radio" bind:group={mode} value={m} />{m}</label>
     {/each}
     , Locale:
-    {#each Object.keys(locales) as l}
-      <label> <input type="radio" bind:group={localeKey} value={l} />{l}</label>
-    {/each}
+    <select bind:value={localeKey}>
+      {#each Object.keys(locales) as l}
+        <option value={l}>{l}</option>
+      {/each}
+    </select>
   </div>
   <div class="line">
     Plugins:
@@ -98,7 +100,7 @@
     {value}
     {mode}
     {plugins}
-    placeholder={localeKey === 'en-US' ? 'Start writing' : '开始写作'}
+    placeholder={localeKey === 'en' ? 'Start writing' : '开始写作'}
     locale={currentLocale.bytemd}
     uploadImages={(files) => {
       return Promise.all(

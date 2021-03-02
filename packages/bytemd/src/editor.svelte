@@ -18,7 +18,7 @@
   } from './editor';
   import Status from './status.svelte';
   import { icons } from './icons';
-  import enUS from './locales/en-US';
+  import en from './locales/en.json';
   import Help from './help.svelte';
   import factory from 'codemirror-ssr';
   import usePlaceholder from 'codemirror-ssr/addon/display/placeholder';
@@ -35,7 +35,7 @@
   export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300;
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
-  export let locale: NonNullable<EditorProps['locale']> = enUS;
+  export let locale: NonNullable<EditorProps['locale']> = en;
   export let uploadImages: EditorProps['uploadImages'];
   export let overridePreview: EditorProps['overridePreview'];
 

@@ -2,14 +2,14 @@ import type { BytemdPlugin } from 'bytemd';
 import type { Mermaid } from 'mermaid';
 import type mermaidAPI from 'mermaid/mermaidAPI';
 import { icons } from './icons';
-import enUS, { Locale } from './locales/en-US';
+import en from './locales/en.json';
 
 export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
-  locale?: Locale;
+  locale?: typeof en;
 }
 
 export default function mermaid({
-  locale = enUS,
+  locale = en,
   ...mermaidConfig
 }: BytemdPluginMermaidOptions = {}): BytemdPlugin {
   let m: Mermaid;
@@ -55,22 +55,23 @@ export default function mermaid({
       })();
     },
     action: {
+      title: locale.mermaid,
       icon: icons.mermaid,
       children: [
         {
-          title: 'Flowchart',
+          title: locale.flowchart,
           code: `graph TD
 Start --> Stop`,
         },
         {
-          title: 'Sequence diagram',
+          title: locale.sequence,
           code: `sequenceDiagram
 Alice->>John: Hello John, how are you?
 John-->>Alice: Great!
 Alice-)John: See you later!`,
         },
         {
-          title: 'Class diagrams',
+          title: locale.class,
           code: `classDiagram
 Animal <|-- Duck
 Animal <|-- Fish
@@ -94,7 +95,7 @@ class Zebra{
 }`,
         },
         {
-          title: 'State diagram',
+          title: locale.state,
           code: `stateDiagram-v2
 [*] --> Still
 Still --> [*]
@@ -105,14 +106,14 @@ Moving --> Crash
 Crash --> [*]`,
         },
         {
-          title: 'Entity relationship diagram',
+          title: locale.er,
           code: `erDiagram
 CUSTOMER ||--o{ ORDER : places
 ORDER ||--|{ LINE-ITEM : contains
 CUSTOMER }|..|{ DELIVERY-ADDRESS : uses`,
         },
         {
-          title: 'User journey diagram',
+          title: locale.uj,
           code: `journey
 title My working day
 section Go to work
@@ -124,7 +125,7 @@ section Go home
   Sit down: 5: Me`,
         },
         {
-          title: 'Gantt chart',
+          title: locale.gantt,
           code: `gantt
 title A Gantt Diagram
 dateFormat  YYYY-MM-DD
@@ -136,7 +137,7 @@ Task in sec      :2014-01-12  , 12d
 another task      : 24d`,
         },
         {
-          title: 'Pie chart',
+          title: locale.pie,
           code: `pie title Pets adopted by volunteers
 "Dogs" : 386
 "Cats" : 85

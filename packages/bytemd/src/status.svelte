@@ -10,14 +10,14 @@
 
   const dispatch = createEventDispatcher();
 
-  $: bytes = wordCount(value);
+  $: words = wordCount(value);
   $: lines = value.split('\n').length;
 </script>
 
 <div class="bytemd-status">
   <div class="bytemd-status-left">
     <span>
-      {locale.status.bytes}: <strong>{bytes}</strong>
+      {locale.status.words}: <strong>{words}</strong>
     </span>
     <span>
       {locale.status.lines}: <strong>{lines}</strong>

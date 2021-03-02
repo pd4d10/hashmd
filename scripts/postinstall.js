@@ -33,7 +33,7 @@ packages.forEach((p) => {
   // tsconfig
   let tsconfig = {
     extends: '../../tsconfig-base.json',
-    include: ['src'],
+    include: ['src', 'src/**/*.json'], // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
     compilerOptions: {
       composite: true,
       rootDir: 'src',
