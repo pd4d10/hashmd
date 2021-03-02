@@ -126,6 +126,12 @@ export interface EditorProps extends ViewerProps {
   uploadImages?: (
     files: File[]
   ) => Promise<Pick<Image, 'url' | 'alt' | 'title'>[]>;
+  /**
+   * Override the default preview area render
+   *
+   * If specified, the built-in viewer would not take effect.
+   */
+  overridePreview?(el: HTMLElement, props: ViewerProps): void;
 }
 
 export interface ViewerProps {

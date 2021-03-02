@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { EditorProps } from './types';
+  import wordCount from 'word-count';
   import { createEventDispatcher } from 'svelte';
 
   export let split: boolean;
@@ -9,7 +10,7 @@
 
   const dispatch = createEventDispatcher();
 
-  $: bytes = new TextEncoder().encode(value).length;
+  $: bytes = wordCount(value);
   $: lines = value.split('\n').length;
 </script>
 

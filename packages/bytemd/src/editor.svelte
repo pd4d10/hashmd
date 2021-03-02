@@ -37,6 +37,7 @@
   export let editorConfig: EditorProps['editorConfig'];
   export let locale: NonNullable<EditorProps['locale']> = en;
   export let uploadImages: EditorProps['uploadImages'];
+  export let overridePreview: EditorProps['overridePreview'];
 
   const dispatch = createEventDispatcher();
 
@@ -70,7 +71,7 @@
         preview = 'width:50%';
       }
     } else if (activeTab === 'preview') {
-      edit = 'width:0'; // width:0 instead of display:none to make scroll sync work
+      edit = 'width:0'; // width:0 instead of display:none to make scroll sync and effects work
       preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
     } else {
       edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
@@ -112,6 +113,8 @@
   let debouncedValue = value;
   const setDebouncedValue = debounce((value: string) => {
     debouncedValue = value;
+
+    overridePreview?.(previewEl, { value: debouncedValue, plugins, sanitize });
   }, previewDebounce);
   $: setDebouncedValue(value);
 
@@ -147,6 +150,7 @@
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
+      tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
       placeholder,
       ...editorConfig,
     });
@@ -163,7 +167,8 @@
       previewPs = [];
 
       const scrollInfo = editor.getScrollInfo();
-      const body = previewEl.querySelector<HTMLElement>('.markdown-body')!;
+      const body = previewEl.childNodes[0];
+      if (!body) return;
 
       const leftNodes = hast.children.filter(
         (v) => v.type === 'element'
@@ -351,14 +356,16 @@
       <textarea bind:this={textarea} style="display:none" />
     </div>
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
-      <Viewer
-        value={debouncedValue}
-        {plugins}
-        {sanitize}
-        on:hast={(e) => {
-          hast = e.detail;
-        }}
-      />
+      {#if !overridePreview}
+        <Viewer
+          value={debouncedValue}
+          {plugins}
+          {sanitize}
+          on:hast={(e) => {
+            hast = e.detail;
+          }}
+        />
+      {/if}
     </div>
     <div class="bytemd-sidebar" style={sidebar ? undefined : 'display:none'}>
       <div
