@@ -18,7 +18,7 @@
     "shortcuts": "Shortcuts"
   },
   "status": {
-    "bytes": "Bytes",
+    "words": "Words",
     "lines": "Lines",
     "sync": "Scroll sync",
     "top": "Scroll to top"
