@@ -3,7 +3,12 @@
 <script lang="ts">
   import type { Editor, KeyMap } from 'codemirror';
   import type { Root, Element } from 'hast';
-  import type { BytemdEditorContext, BytemdPlugin, EditorProps } from './types';
+  import type {
+    BytemdEditorContext,
+    BytemdLocale,
+    BytemdPlugin,
+    EditorProps,
+  } from './types';
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
   import throttle from 'lodash.throttle';
@@ -19,6 +24,7 @@
   import Status from './status.svelte';
   import { icons } from './icons';
   import en from './locales/en.json';
+  import deepmerge from 'deepmerge';
   import Help from './help.svelte';
   import factory from 'codemirror-ssr';
   import usePlaceholder from 'codemirror-ssr/addon/display/placeholder';
@@ -35,13 +41,16 @@
   export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300;
   export let placeholder: EditorProps['placeholder'];
   export let editorConfig: EditorProps['editorConfig'];
-  export let locale: NonNullable<EditorProps['locale']> = en;
+  export let locale: EditorProps['locale'];
   export let uploadImages: EditorProps['uploadImages'];
   export let overridePreview: EditorProps['overridePreview'];
 
+  // do deep merge to support incomplete locales, use en as fallback
+  $: mergedLocale = deepmerge(en, locale ?? {}) as BytemdLocale;
+
   const dispatch = createEventDispatcher();
 
-  $: actions = getBuiltinActions(locale, plugins, uploadImages);
+  $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages);
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800);
   $: ((_) => {
     // reset active tab
@@ -168,7 +177,7 @@
 
       const scrollInfo = editor.getScrollInfo();
       const body = previewEl.childNodes[0];
-      if (!body) return;
+      if (!(body instanceof HTMLElement)) return;
 
       const leftNodes = hast.children.filter(
         (v) => v.type === 'element'
@@ -321,7 +330,7 @@
     {activeTab}
     {sidebar}
     {fullscreen}
-    {locale}
+    locale={mergedLocale}
     {actions}
     on:tab={(e) => {
       const v = e.detail;
@@ -377,11 +386,11 @@
         {@html icons.close}
       </div>
       {#if sidebar === 'help'}
-        <Help {locale} {actions} />
+        <Help locale={mergedLocale} {actions} />
       {:else if sidebar === 'toc'}
         <Toc
           {hast}
-          {locale}
+          locale={mergedLocale}
           {currentBlockIndex}
           on:click={(e) => {
             const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
@@ -392,7 +401,7 @@
     </div>
   </div>
   <Status
-    {locale}
+    locale={mergedLocale}
     {split}
     value={debouncedValue}
     {syncEnabled}

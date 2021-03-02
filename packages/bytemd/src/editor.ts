@@ -1,6 +1,10 @@
 import type { Editor, Position } from 'codemirror';
-import type { BytemdPlugin, BytemdAction, EditorProps } from './types';
-import en from './locales/en.json';
+import type {
+  BytemdPlugin,
+  BytemdAction,
+  EditorProps,
+  BytemdLocale,
+} from './types';
 import { icons } from './icons';
 import selectFiles from 'select-files';
 
@@ -111,7 +115,7 @@ const getShortcutWithPrefix = (key: string) => {
 };
 
 export function getBuiltinActions(
-  locale: typeof en,
+  locale: BytemdLocale,
   plugins: BytemdPlugin[],
   uploadImages: EditorProps['uploadImages']
 ): BytemdAction[] {

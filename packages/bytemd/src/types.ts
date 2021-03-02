@@ -5,6 +5,9 @@ import type { Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
 import type en from './locales/en.json';
 import type { Image } from 'mdast';
+import type { DeepPartial } from 'tsdef';
+
+export type BytemdLocale = typeof en;
 
 export interface BytemdEditorContext extends EditorUtils {
   /**
@@ -119,7 +122,7 @@ export interface EditorProps extends ViewerProps {
    *
    * @defaultValue en
    */
-  locale?: typeof en;
+  locale?: DeepPartial<BytemdLocale>;
   /**
    * Handle images upload
    */

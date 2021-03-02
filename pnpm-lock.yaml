@@ -226,6 +226,7 @@ importers:
       '@types/mdast': 3.0.3
       clsx: 1.1.1
       codemirror-ssr: 0.0.6
+      deepmerge: 4.2.2
       hast-util-sanitize: 3.0.2
       lodash.debounce: 4.0.8
       lodash.throttle: 4.1.1
@@ -236,6 +237,7 @@ importers:
       remark-rehype: 8.0.0
       select-files: 1.0.1
       tippy.js: 6.3.1
+      tsdef: 0.0.14
       unified: 9.2.1
       vfile: 4.2.1
       word-count: 0.2.2
@@ -247,6 +249,7 @@ importers:
       '@types/mdast': ^3.0.3
       clsx: ^1.1.1
       codemirror-ssr: ^0.0.6
+      deepmerge: ^4.2.2
       hast-util-sanitize: ^3.0.2
       lodash.debounce: ^4.0.8
       lodash.throttle: ^4.1.1
@@ -257,6 +260,7 @@ importers:
       remark-rehype: ^8.0.0
       select-files: ^1.0.1
       tippy.js: ^6.3.1
+      tsdef: ^0.0.14
       unified: ^9.2.1
       vfile: ^4.2.1
       word-count: ^0.2.2
@@ -16672,6 +16676,10 @@ packages:
         optional: true
     resolution:
       integrity: sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==
+  /tsdef/0.0.14:
+    dev: false
+    resolution:
+      integrity: sha512-UjMD4XKRWWFlFBfwKVQmGFT5YzW/ZaF8x6KpCDf92u9wgKeha/go3FU0e5WqDjXsCOdfiavCkfwfVHNDxRDGMA==
   /tslib/1.14.1:
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==

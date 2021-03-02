@@ -1,9 +1,8 @@
 <script lang="ts">
-  import type en from './locales/en.json';
-  import type { BytemdAction } from './types';
+  import type { BytemdAction, BytemdLocale } from './types';
 
   export let actions: BytemdAction[];
-  export let locale: typeof en;
+  export let locale: BytemdLocale;
 
   function flatItems(actions: BytemdAction[]) {
     let items: BytemdAction[] = [];

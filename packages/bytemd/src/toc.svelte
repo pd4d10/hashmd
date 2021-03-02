@@ -2,12 +2,12 @@
 
 <script lang="ts">
   import type { Root, Element } from 'hast';
-  import type { EditorProps } from './types';
+  import type { BytemdLocale } from './types';
   import { createEventDispatcher } from 'svelte';
 
   export let hast: Root;
   export let currentBlockIndex: number;
-  export let locale: NonNullable<EditorProps['locale']>;
+  export let locale: BytemdLocale;
 
   const dispatch = createEventDispatcher();
 

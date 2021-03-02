@@ -2,7 +2,11 @@
 
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
-  import type { EditorProps, BytemdEditorContext, BytemdAction } from './types';
+  import type {
+    BytemdEditorContext,
+    BytemdAction,
+    BytemdLocale,
+  } from './types';
   import clsx from 'clsx';
   import { icons } from './icons';
   import delegate from './delegate';
@@ -15,7 +19,7 @@
   export let activeTab: false | 'write' | 'preview';
   export let fullscreen: boolean;
   export let sidebar: false | 'help' | 'toc';
-  export let locale: NonNullable<EditorProps['locale']>;
+  export let locale: BytemdLocale;
   export let actions: BytemdAction[];
 
   interface RightAction extends BytemdAction {

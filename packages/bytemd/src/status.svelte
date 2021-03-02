@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { EditorProps } from './types';
+  import type { BytemdLocale } from './types';
   import wordCount from 'word-count';
   import { createEventDispatcher } from 'svelte';
 
   export let split: boolean;
   export let value: string;
   export let syncEnabled: boolean;
-  export let locale: NonNullable<EditorProps['locale']>;
+  export let locale: BytemdLocale;
 
   const dispatch = createEventDispatcher();
 
