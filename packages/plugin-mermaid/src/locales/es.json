@@ -1,0 +1,11 @@
+{
+    "mermaid": "Diagramas de Mermaid",
+    "pie": "Gráfico sectorial",
+    "gantt": "Diagrama de Gantt",
+    "uj": "Diagrama de trayecto de usuario",
+    "er": "Diagrama de relación entre entidades",
+    "state": "Diagrama de estado",
+    "class": "Diagramas de clases",
+    "sequence": "Diagrama de secuencia",
+    "flowchart": "Diagrama de flujo"
+}

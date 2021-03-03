@@ -1,0 +1,50 @@
+{
+    "toolbar": {
+        "write": "Escribir",
+        "source": "Código fuente",
+        "exitFullscreen": "Salir de pantalla completa",
+        "fullscreen": "Pantalla completa",
+        "closeToc": "Cerrar sumario",
+        "toc": "Sumario",
+        "help": "Ayuda",
+        "preview": "Previsualizar",
+        "closeHelp": "Cerrar ayuda"
+    },
+    "action": {
+        "hr": "Línea horizontal",
+        "linkText": "texto de enlace",
+        "link": "Enlace",
+        "quotedText": "texto citado",
+        "quote": "Cita",
+        "codeBlock": "Bloque de código",
+        "codeText": "código",
+        "code": "Código",
+        "image": "Imagen",
+        "italicText": "texto en itálicas",
+        "italic": "Itálica",
+        "boldText": "texto en negritas",
+        "bold": "Negrita",
+        "headingText": "título",
+        "h6": "Título 6",
+        "h5": "Título 5",
+        "h4": "Título 4",
+        "h3": "Título 3",
+        "h2": "Título 2",
+        "h1": "Título 1",
+        "olItem": "elemento",
+        "ol": "Lista numerada",
+        "ulItem": "elemento",
+        "ul": "Lista con bolos"
+    },
+    "sidebar": {
+        "cheatsheet": "Referencia rápida de Markdown",
+        "shortcuts": "Atajos",
+        "toc": "Sumario"
+    },
+    "status": {
+        "sync": "Desplazamiento sincrónico",
+        "lines": "Renglones",
+        "words": "Palabras",
+        "top": "Desplazarse hasta arriba"
+    }
+}
