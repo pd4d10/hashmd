@@ -1,6 +1,6 @@
 {
-  "mermaid": "Mermaid diagram",
-  "flowchart": "Flowchart",
+  "mermaid": "Mermaid diagrams",
+  "flowchart": "Flow chart",
   "sequence": "Sequence diagram",
   "class": "Class diagrams",
   "state": "State diagram",

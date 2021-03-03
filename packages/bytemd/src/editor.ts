@@ -121,11 +121,14 @@ export function getBuiltinActions(
 ): BytemdAction[] {
   const items: BytemdAction[] = [
     {
-      cheatsheet: `## ${locale.action.headingText}`,
       icon: icons.heading,
       children: [1, 2, 3, 4, 5, 6].map((level) => ({
         title: locale.action[`h${level}` as keyof typeof locale.action],
         icon: icons[`h${level}` as keyof typeof icons],
+        cheatsheet:
+          level <= 3
+            ? `${'#'.repeat(level)} ${locale.action.headingText}`
+            : undefined,
         handler({ replaceLines, editor }) {
           replaceLines((line) => {
             line = line.trim().replace(/^#*/, '').trim();
@@ -149,17 +152,17 @@ export function getBuiltinActions(
     {
       title: locale.action.italic,
       icon: icons.italic,
-      cheatsheet: `_${locale.action.italicText}_`,
+      cheatsheet: `*${locale.action.italicText}*`,
       shortcut: getShortcutWithPrefix('I'),
       handler({ wrapText, editor }) {
-        wrapText('_');
+        wrapText('*');
         editor.focus();
       },
     },
     {
       title: locale.action.quote,
       icon: icons.quote,
-      cheatsheet: `> ${locale.action.quoteText}`,
+      cheatsheet: `> ${locale.action.quotedText}`,
       handler({ replaceLines, editor }) {
         replaceLines((line) => '> ' + line);
         editor.focus();
@@ -183,7 +186,7 @@ export function getBuiltinActions(
     {
       title: locale.action.image,
       icon: icons.image,
-      cheatsheet: '![alt](url) "title"',
+      cheatsheet: `![${locale.action.imageAlt}](url "${locale.action.imageTitle}")`,
       handler: uploadImages
         ? async ({ appendBlock, selectFiles, editor }) => {
             const fileList = await selectFiles({
@@ -220,7 +223,7 @@ export function getBuiltinActions(
     {
       title: locale.action.codeBlock,
       icon: icons.codeBlock,
-      cheatsheet: '```lang',
+      cheatsheet: '```' + locale.action.codeLang + '↵',
       handler({ editor, appendBlock }) {
         const { line } = appendBlock('```js\n```');
         editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
@@ -230,7 +233,7 @@ export function getBuiltinActions(
     {
       title: locale.action.ul,
       icon: icons.ul,
-      cheatsheet: `- ${locale.action.ulText}`,
+      cheatsheet: `- ${locale.action.ulItem}`,
       handler({ replaceLines, editor }) {
         replaceLines((line) => '- ' + line);
         editor.focus();
@@ -239,7 +242,7 @@ export function getBuiltinActions(
     {
       title: locale.action.ol,
       icon: icons.ol,
-      cheatsheet: `1. ${locale.action.olText}`,
+      cheatsheet: `1. ${locale.action.olItem}`,
       handler({ replaceLines, editor }) {
         replaceLines((line, i) => `${i + 1}. ${line}`);
         editor.focus();

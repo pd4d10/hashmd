@@ -27,40 +27,48 @@
     hidden?: boolean;
   }
 
+  $: tocActive = sidebar === 'toc';
+  $: helpActive = sidebar === 'help';
+  $: writeActive = activeTab === 'write';
+  $: previewActive = activeTab === 'preview';
+
   $: rightActions = [
     {
-      title: sidebar === 'toc' ? locale.toolbar.closeToc : locale.toolbar.toc,
+      title: tocActive ? locale.toolbar.closeToc : locale.toolbar.toc,
       icon: icons.toc,
       handler() {
         dispatch('click', 'toc');
       },
-      active: sidebar === 'toc',
+      active: tocActive,
     },
     {
-      title:
-        sidebar === 'help' ? locale.toolbar.closeHelp : locale.toolbar.help,
+      title: helpActive ? locale.toolbar.closeHelp : locale.toolbar.help,
       icon: icons.help,
       handler() {
         dispatch('click', 'help');
       },
-      active: sidebar === 'help',
+      active: helpActive,
     },
     {
-      title: locale.toolbar.writeOnly,
+      title: writeActive
+        ? locale.toolbar.exitWriteOnly
+        : locale.toolbar.writeOnly,
       icon: icons.left,
       handler() {
         dispatch('tab', 'write');
       },
-      active: activeTab === 'write',
+      active: writeActive,
       hidden: !split,
     },
     {
-      title: locale.toolbar.previewOnly,
+      title: previewActive
+        ? locale.toolbar.exitPreviewOnly
+        : locale.toolbar.previewOnly,
       icon: icons.right,
       handler() {
         dispatch('tab', 'preview');
       },
-      active: activeTab === 'preview',
+      active: previewActive,
       hidden: !split,
     },
     {
@@ -157,7 +165,7 @@
           theme: 'light-border',
           placement: 'bottom-start',
           interactive: true,
-          interactiveDebounce: 100,
+          interactiveDebounce: 50,
           arrow: false,
           offset: [0, 4],
           content: dropdown.outerHTML,

@@ -1,4 +1,6 @@
 {
   "inline": "Inline formula",
-  "block": "Block formula"
+  "inlineText": "formula",
+  "block": "Block formula",
+  "blockText": "formula"
 }

@@ -45,7 +45,7 @@ export default function math({
           {
             title: locale.inline,
             icon: icons.inline,
-            cheatsheet: '$\\TeX$',
+            cheatsheet: `$${locale.inlineText}$`,
             handler({ wrapText, editor }) {
               wrapText('$');
               editor.focus();
@@ -54,7 +54,7 @@ export default function math({
           {
             title: locale.block,
             icon: icons.block,
-            cheatsheet: '$$↵\\TeX↵$$',
+            cheatsheet: `$$↵${locale.blockText}↵$$`,
             handler({ appendBlock, editor }) {
               const { line } = appendBlock('$$\n\\TeX\n$$');
               editor.setSelection(

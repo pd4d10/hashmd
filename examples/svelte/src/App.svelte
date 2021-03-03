@@ -107,7 +107,7 @@
         files.map((file) => {
           // TODO:
           return {
-            src: 'https://picsum.photos/300',
+            url: 'https://picsum.photos/300',
           };
         })
       );
