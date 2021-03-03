@@ -57,10 +57,12 @@ export interface BytemdAction {
    */
   shortcut?: string;
   /**
-   * Action handler, used for action item click and shortcut trigger
+   * Action handler
+   *
+   * function: action item click and shortcut handler
+   * array: show dropdown items
    */
-  handler?(context: BytemdEditorContext): void;
-  children?: BytemdAction[];
+  handler?: ((context: BytemdEditorContext) => void) | BytemdAction[];
 }
 
 export interface BytemdPlugin {

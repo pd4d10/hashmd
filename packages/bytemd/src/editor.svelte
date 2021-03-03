@@ -106,8 +106,9 @@
     // console.log('on', plugins);
     cbs = plugins.map((p) => p.editorEffect?.(context));
     keyMap = {};
+    // TODO: nested shortcuts
     actions.forEach(({ shortcut, handler }) => {
-      if (shortcut && handler) {
+      if (shortcut && typeof handler === 'function') {
         keyMap[shortcut] = () => handler(context);
       }
     });

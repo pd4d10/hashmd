@@ -8,9 +8,9 @@
     let items: BytemdAction[] = [];
 
     actions.forEach((item) => {
-      const { children, cheatsheet } = item;
-      if (children) {
-        items.push(...flatItems(children));
+      const { handler, cheatsheet } = item;
+      if (Array.isArray(handler)) {
+        items.push(...flatItems(handler));
       } else if (cheatsheet) {
         items.push(item);
       }

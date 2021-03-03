@@ -57,7 +57,7 @@ export default function mermaid({
     action: {
       title: locale.mermaid,
       icon: icons.mermaid,
-      children: [
+      handler: [
         {
           title: locale.flowchart,
           code: `graph TD

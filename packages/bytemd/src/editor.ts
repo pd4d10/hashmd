@@ -122,7 +122,7 @@ export function getBuiltinActions(
   const items: BytemdAction[] = [
     {
       icon: icons.heading,
-      children: [1, 2, 3, 4, 5, 6].map((level) => ({
+      handler: [1, 2, 3, 4, 5, 6].map((level) => ({
         title: locale.action[`h${level}` as keyof typeof locale.action],
         icon: icons[`h${level}` as keyof typeof icons],
         cheatsheet:

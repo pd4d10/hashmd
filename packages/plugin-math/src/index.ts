@@ -41,7 +41,7 @@ export default function math({
     action: [
       {
         icon: icons.math,
-        children: [
+        handler: [
           {
             title: locale.inline,
             icon: icons.inline,

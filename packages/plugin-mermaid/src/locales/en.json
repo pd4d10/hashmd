@@ -2,7 +2,7 @@
   "mermaid": "Mermaid diagrams",
   "flowchart": "Flow chart",
   "sequence": "Sequence diagram",
-  "class": "Class diagrams",
+  "class": "Class diagram",
   "state": "State diagram",
   "er": "Entity relationship diagram",
   "uj": "User journey diagram",

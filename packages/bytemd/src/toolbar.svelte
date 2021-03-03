@@ -99,19 +99,27 @@
       ?.split('-')
       ?.map((x) => parseInt(x, 10));
     if (!paths) return;
+    // if (!paths) {
+    //   return {
+    //     paths: [],
+    //     item: {
+    //       title: 'test',
+    //       handler: actions,
+    //     },
+    //   };
+    // }
 
-    let item: BytemdAction | undefined;
+    let item: BytemdAction = {
+      title: '',
+      handler: e.classList.contains(tippyClassRight) ? rightActions : actions,
+    };
     paths?.forEach((index) => {
-      item = (
-        item ?? {
-          children: e.classList.contains(tippyClassRight)
-            ? rightActions
-            : actions,
-        }
-      )?.children?.[index];
+      if (Array.isArray(item.handler)) {
+        item = item.handler[index];
+      }
     });
 
-    return { paths, item: item! };
+    return { paths, item: item };
   }
 
   let delegateInstance: ReturnType<typeof delegate>;
@@ -123,8 +131,10 @@
         const payload = getPayloadFromElement(target);
         if (!payload) return;
         const { item, paths } = payload;
+        if (!item.handler) return;
 
-        if (!item.children) {
+        // tooltip
+        if (typeof item.handler === 'function') {
           return {
             content: item.title,
             onHidden(ins) {
@@ -133,6 +143,7 @@
           };
         }
 
+        // dropdown
         const dropdown = document.createElement('div');
         dropdown.classList.add('bytemd-dropdown');
 
@@ -143,11 +154,11 @@
           dropdown.appendChild(dropdownTitle);
         }
 
-        item.children.forEach((item0, i) => {
+        item.handler.forEach((item0, i) => {
           const dropdownItem = document.createElement('div');
           dropdownItem.classList.add('bytemd-dropdown-item');
           dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'));
-          if (item0.children) {
+          if (Array.isArray(item0.handler)) {
             dropdownItem.classList.add(tippyClass);
           }
           // div.setAttribute('data-tippy-placement', 'right');
@@ -184,8 +195,10 @@
   function handleClick(e: MouseEvent) {
     const target = (e.target as Element).closest(`[${tippyPathKey}]`);
     if (!target) return;
-    getPayloadFromElement(target)?.item?.handler?.(context);
-
+    const handler = getPayloadFromElement(target)?.item?.handler;
+    if (typeof handler === 'function') {
+      handler(context);
+    }
     delegateInstance?.destroy();
     init();
   }
@@ -195,7 +208,7 @@
   <div class="bytemd-toolbar-left">
     {#if split}
       {#each actions as item, index}
-        {#if item.children || item.handler}
+        {#if item.handler}
           <div
             class={clsx('bytemd-toolbar-icon', tippyClass)}
             bytemd-tippy-path={index}
@@ -219,6 +232,9 @@
       >
         {locale.toolbar.preview}
       </div>
+      <!-- <div class={clsx('bytemd-toolbar-icon', tippyClass)}>
+        {@html icons.more}
+      </div> -->
     {/if}
   </div>
 
