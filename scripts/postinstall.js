@@ -118,3 +118,31 @@ ${content}
 );
 
 fs.writeFileSync(path.join(__dirname, '../README.md'), readme);
+
+// locales
+let importCode = '';
+let exportObject = {};
+packages.forEach((p) => {
+  const localeDir = path.join(root, p, 'src/locales');
+  if (fs.existsSync(localeDir) && fs.lstatSync(localeDir).isDirectory()) {
+    const locales = fs
+      .readdirSync(localeDir)
+      .map((x) => x.replace('.json', ''));
+    const libName = p.startsWith('plugin') ? `@bytemd/${p}` : p;
+
+    locales.forEach((l) => {
+      if (!exportObject[l]) exportObject[l] = {};
+
+      const varName = _.snakeCase(l + '-' + p);
+
+      importCode += `import ${varName} from '${libName}/lib/locales/${l}';\n`;
+      exportObject[l][_.snakeCase(p)] = varName;
+    });
+  }
+});
+fs.writeFileSync(
+  'examples/svelte/src/locales.js',
+  importCode +
+    'export default ' +
+    JSON.stringify(exportObject, null, 2).replace(/"/g, '')
+);

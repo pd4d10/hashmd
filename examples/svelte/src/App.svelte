@@ -11,20 +11,7 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom';
   import mermaid from '@bytemd/plugin-mermaid';
   import gemoji from '@bytemd/plugin-gemoji';
-
-  import en from 'bytemd/lib/locales/en';
-  // import zh from 'bytemd/lib/locales/zh-CN';
-  import gfmEn from '@bytemd/plugin-gfm/lib/locales/en';
-  // import gfmZh from '@bytemd/plugin-gfm/lib/locales/zh-CN';
-  import mathEn from '@bytemd/plugin-math/lib/locales/en';
-  // import mathZh from '@bytemd/plugin-math/lib/locales/zh-CN';
-  import mermaidEn from '@bytemd/plugin-mermaid/lib/locales/en';
-  // import mermaidZh from '@bytemd/plugin-mermaid/lib/locales/zh-CN';
-
-  const locales = {
-    en: { bytemd: en, gfm: gfmEn, math: mathEn, mermaid: mermaidEn },
-    // 'zh-CN': { bytemd: zh, gfm: gfmZh, math: mathZh, mermaid: mermaidZh },
-  };
+  import locales from './locales';
 
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
