@@ -2,7 +2,7 @@
 # https://answers.netlify.com/t/using-pnpm-and-pnpm-workspaces/2759
 
 [build.environment]
-  NPM_FLAGS="--prefix=/"
+  NPM_FLAGS="--prefix=/dev/null"
 
 [build]
   publish = "examples/svelte/public"
