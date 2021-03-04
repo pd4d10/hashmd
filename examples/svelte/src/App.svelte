@@ -54,12 +54,12 @@
     enabled.footnotes && footnotes(),
     enabled.frontmatter && frontmatter(),
     enabled.gemoji && gemoji(),
-    enabled.gfm && gfm({ locale: currentLocale.gfm }),
+    enabled.gfm && gfm({ locale: currentLocale.plugin_gfm }),
     enabled.highlight && highlight(),
-    enabled.math && math({ locale: currentLocale.math }),
+    enabled.math && math({ locale: currentLocale.plugin_math }),
     // enabled.mdx && mdx(),
     enabled['medium-zoom'] && mediumZoom(),
-    enabled.mermaid && mermaid({ locale: currentLocale.mermaid }),
+    enabled.mermaid && mermaid({ locale: currentLocale.plugin_mermaid }),
   ].filter((x) => x);
 </script>
 
