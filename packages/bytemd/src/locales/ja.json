@@ -1,0 +1,57 @@
+{
+    "sidebar": {
+        "cheatsheet": "マークダウン カンニングペーパー",
+        "shortcuts": "ショートカット",
+        "toc": "目次"
+    },
+    "status": {
+        "lines": "線",
+        "top": "トップにスクロールします",
+        "sync": "スクロール同期",
+        "words": "言葉"
+    },
+    "toolbar": {
+        "preview": "プレビュー",
+        "exitPreviewOnly": "プレビューのみを終了",
+        "source": "原始コード",
+        "exitFullscreen": "全画面を閉じます",
+        "fullscreen": "全画面",
+        "closeToc": "目次を閉じます",
+        "toc": "目次",
+        "help": "ヘルプビューア",
+        "closeHelp": "ヘルプビューアを閉じます",
+        "previewOnly": "試写専用",
+        "exitWriteOnly": "Exit 書き込み専用",
+        "writeOnly": "書き込み専用",
+        "write": "書く"
+    },
+    "action": {
+        "hr": "区切り線",
+        "olItem": "アイテム",
+        "ol": "番号付きリスト",
+        "ulItem": "アイテム",
+        "ul": "順序なしリスト",
+        "codeLang": "lang",
+        "codeBlock": "コードブロック",
+        "codeText": "コード",
+        "code": "コード",
+        "imageTitle": "タイトル",
+        "imageAlt": "alt",
+        "image": "イメージ",
+        "linkText": "リンクテキスト",
+        "link": "リンク",
+        "quotedText": "引用テキスト",
+        "quote": "見積もり",
+        "italicText": "斜体のテキスト",
+        "italic": "イタリック",
+        "boldText": "ボールドテキスト",
+        "bold": "太字",
+        "headingText": "見出し",
+        "h6": "見出し6",
+        "h5": "見出し5",
+        "h3": "見出し3",
+        "h4": "見出し4",
+        "h2": "見出し2",
+        "h1": "見出し1"
+    }
+}
