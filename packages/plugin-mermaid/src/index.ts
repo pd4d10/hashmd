@@ -147,6 +147,7 @@ another task      : 24d`,
       {
         title: locale.mermaid,
         icon: icons.mermaid,
+        cheatsheet: '```mermaid',
         handler: {
           type: 'dropdown',
           actions: actionItems.map(({ title, code }) => ({
