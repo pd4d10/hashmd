@@ -8,7 +8,9 @@
         "toc": "Sumario",
         "help": "Ayuda",
         "preview": "Previsualizar",
-        "closeHelp": "Cerrar ayuda"
+        "closeHelp": "Cerrar ayuda",
+        "previewOnly": "Previsualizar solo",
+        "writeOnly": "Escribir solo"
     },
     "action": {
         "hr": "Línea horizontal",
@@ -34,7 +36,9 @@
         "olItem": "elemento",
         "ol": "Lista numerada",
         "ulItem": "elemento",
-        "ul": "Lista con bolos"
+        "ul": "Lista con bolos",
+        "codeLang": "lenguaje",
+        "imageTitle": "título"
     },
     "sidebar": {
         "cheatsheet": "Referencia rápida de Markdown",
