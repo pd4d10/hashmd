@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/bytedance/bytemd/compare/v1.5.0...v1.6.0) (2021-03-04)
+
+
+### Bug Fixes
+
+* editor only white screen ([ea921a8](https://github.com/bytedance/bytemd/commit/ea921a89278925ce60dc34bf460ee05bb4c99e44))
+* tab mode style ([452bac0](https://github.com/bytedance/bytemd/commit/452bac0a45689a68009b90507c63475cab18fc9e))
+* tab size ([a06cded](https://github.com/bytedance/bytemd/commit/a06cded39f936ceb3c1d3f22872a31a24bd8080f))
+* word count ([3c976fb](https://github.com/bytedance/bytemd/commit/3c976fb1da8f52669545c169f9f1c1be88636cf4))
+
+
+### Features
+
+* override preview ([dd7b4c5](https://github.com/bytedance/bytemd/commit/dd7b4c596d995487ff862a17651f6f6edfe0a557))
+* support incomplete locales ([4f9becd](https://github.com/bytedance/bytemd/commit/4f9becdcb2b5e332434f5ebc573d8bfa27243f16))
+
+
+
+
+
 # [1.5.0](https://github.com/bytedance/bytemd/compare/v1.4.0...v1.5.0) (2021-02-28)
 
 
