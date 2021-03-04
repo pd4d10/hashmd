@@ -218,7 +218,7 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
 ## Write a plugin
 
-TODO
+TODO: plugin API not stable yet
 
 ## License
 

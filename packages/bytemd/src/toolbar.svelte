@@ -87,7 +87,13 @@
         window.open('https://github.com/bytedance/bytemd');
       },
     },
-  ] as RightAction[];
+  ].map((v) => ({
+    ...v,
+    handler: {
+      type: 'action',
+      click: v.handler,
+    },
+  })) as RightAction[];
 
   const tippyClass = 'bytemd-tippy';
   const tippyClassRight = 'bytemd-tippy-right';
@@ -111,11 +117,14 @@
 
     let item: BytemdAction = {
       title: '',
-      handler: e.classList.contains(tippyClassRight) ? rightActions : actions,
+      handler: {
+        type: 'dropdown',
+        actions: e.classList.contains(tippyClassRight) ? rightActions : actions,
+      },
     };
     paths?.forEach((index) => {
-      if (Array.isArray(item.handler)) {
-        item = item.handler[index];
+      if (item.handler?.type === 'dropdown') {
+        item = item.handler.actions[index];
       }
     });
 
@@ -131,59 +140,79 @@
         const payload = getPayloadFromElement(target);
         if (!payload) return;
         const { item, paths } = payload;
-        if (!item.handler) return;
+        const { handler } = item;
+        if (!handler) return;
 
-        // tooltip
-        if (typeof item.handler === 'function') {
+        if (handler.type === 'action') {
           return {
             content: item.title,
             onHidden(ins) {
               ins.destroy();
             },
           };
-        }
+        } else if (handler.type === 'dropdown') {
+          // dropdown
+          const dropdown = document.createElement('div');
+          dropdown.classList.add('bytemd-dropdown');
 
-        // dropdown
-        const dropdown = document.createElement('div');
-        dropdown.classList.add('bytemd-dropdown');
-
-        if (item.title) {
-          const dropdownTitle = document.createElement('div');
-          dropdownTitle.classList.add('bytemd-dropdown-title');
-          dropdownTitle.appendChild(document.createTextNode(item.title));
-          dropdown.appendChild(dropdownTitle);
-        }
-
-        item.handler.forEach((item0, i) => {
-          const dropdownItem = document.createElement('div');
-          dropdownItem.classList.add('bytemd-dropdown-item');
-          dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'));
-          if (Array.isArray(item0.handler)) {
-            dropdownItem.classList.add(tippyClass);
+          if (item.title) {
+            const dropdownTitle = document.createElement('div');
+            dropdownTitle.classList.add('bytemd-dropdown-title');
+            dropdownTitle.appendChild(document.createTextNode(item.title));
+            dropdown.appendChild(dropdownTitle);
           }
-          // div.setAttribute('data-tippy-placement', 'right');
-          dropdownItem.innerHTML = `${
-            item0.icon
-              ? `<div class="bytemd-dropdown-item-icon">${item0.icon}</div>`
-              : ''
-          }<div class="bytemd-dropdown-item-title">${item0.title}</div>`;
-          dropdown.appendChild(dropdownItem);
-        });
 
-        return {
-          allowHTML: true,
-          showOnCreate: true,
-          theme: 'light-border',
-          placement: 'bottom-start',
-          interactive: true,
-          interactiveDebounce: 50,
-          arrow: false,
-          offset: [0, 4],
-          content: dropdown.outerHTML,
-          onHidden(ins) {
-            ins.destroy();
-          },
-        };
+          handler.actions.forEach((subAction, i) => {
+            const dropdownItem = document.createElement('div');
+            dropdownItem.classList.add('bytemd-dropdown-item');
+            dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'));
+            if (Array.isArray(subAction.handler)) {
+              dropdownItem.classList.add(tippyClass);
+            }
+            // div.setAttribute('data-tippy-placement', 'right');
+            dropdownItem.innerHTML = `${
+              subAction.icon
+                ? `<div class="bytemd-dropdown-item-icon">${subAction.icon}</div>`
+                : ''
+            }<div class="bytemd-dropdown-item-title">${subAction.title}</div>`;
+            dropdown.appendChild(dropdownItem);
+          });
+
+          return {
+            allowHTML: true,
+            showOnCreate: true,
+            theme: 'light-border',
+            placement: 'bottom-start',
+            interactive: true,
+            interactiveDebounce: 50,
+            arrow: false,
+            offset: [0, 4],
+            content: dropdown.outerHTML,
+            onHidden(ins) {
+              ins.destroy();
+            },
+            onCreate(ins) {
+              [...ins.popper.querySelectorAll('.bytemd-dropdown-item')].forEach(
+                (el, i) => {
+                  const actionHandler = handler.actions[i]?.handler;
+                  if (actionHandler?.type === 'action') {
+                    const { mouseenter, mouseleave } = actionHandler;
+                    if (mouseenter) {
+                      el.addEventListener('mouseenter', () => {
+                        mouseenter(context);
+                      });
+                    }
+                    if (mouseleave) {
+                      el.addEventListener('mouseleave', () => {
+                        mouseleave(context);
+                      });
+                    }
+                  }
+                }
+              );
+            },
+          };
+        }
       },
     });
   }
@@ -196,8 +225,8 @@
     const target = (e.target as Element).closest(`[${tippyPathKey}]`);
     if (!target) return;
     const handler = getPayloadFromElement(target)?.item?.handler;
-    if (typeof handler === 'function') {
-      handler(context);
+    if (handler?.type === 'action') {
+      handler.click(context);
     }
     delegateInstance?.destroy();
     init();

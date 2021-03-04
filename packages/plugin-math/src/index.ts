@@ -38,33 +38,42 @@ export default function math({
       renderMath('.math.math-inline', false);
       renderMath('.math.math-display', true);
     },
-    action: [
+    actions: [
       {
         icon: icons.math,
-        handler: [
-          {
-            title: locale.inline,
-            icon: icons.inline,
-            cheatsheet: `$${locale.inlineText}$`,
-            handler({ wrapText, editor }) {
-              wrapText('$');
-              editor.focus();
+        handler: {
+          type: 'dropdown',
+          actions: [
+            {
+              title: locale.inline,
+              icon: icons.inline,
+              cheatsheet: `$${locale.inlineText}$`,
+              handler: {
+                type: 'action',
+                click({ wrapText, editor }) {
+                  wrapText('$');
+                  editor.focus();
+                },
+              },
             },
-          },
-          {
-            title: locale.block,
-            icon: icons.block,
-            cheatsheet: `$$↵${locale.blockText}↵$$`,
-            handler({ appendBlock, editor }) {
-              const { line } = appendBlock('$$\n\\TeX\n$$');
-              editor.setSelection(
-                { line: line + 1, ch: 0 },
-                { line: line + 1, ch: 4 }
-              );
-              editor.focus();
+            {
+              title: locale.block,
+              icon: icons.block,
+              cheatsheet: `$$↵${locale.blockText}↵$$`,
+              handler: {
+                type: 'action',
+                click({ appendBlock, editor }) {
+                  const { line } = appendBlock('$$\n\\TeX\n$$');
+                  editor.setSelection(
+                    { line: line + 1, ch: 0 },
+                    { line: line + 1, ch: 4 }
+                  );
+                  editor.focus();
+                },
+              },
             },
-          },
-        ],
+          ],
+        },
       },
     ],
   };

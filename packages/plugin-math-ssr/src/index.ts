@@ -17,6 +17,6 @@ export default function mathSsr({
   return {
     remark: (u) => u.use(remarkMath),
     rehype: (u) => u.use(rehypeKatex, katexOptions),
-    action: pluginMath({ locale }).action,
+    actions: pluginMath({ locale }).actions,
   };
 }

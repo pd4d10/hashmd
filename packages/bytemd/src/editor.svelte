@@ -109,9 +109,9 @@
     cbs = plugins.map((p) => p.editorEffect?.(context));
     keyMap = {};
     // TODO: nested shortcuts
-    actions.forEach(({ shortcut, handler }) => {
-      if (shortcut && typeof handler === 'function') {
-        keyMap[shortcut] = () => handler(context);
+    actions.forEach(({ handler }) => {
+      if (handler?.type === 'action' && handler.shortcut) {
+        keyMap[handler.shortcut] = () => handler.click(context);
       }
     });
     editor.addKeyMap(keyMap);

@@ -13,37 +13,46 @@ export default function gfm({
 }: BytemdPluginGfmOptions = {}): BytemdPlugin {
   return {
     remark: (p) => p.use(remarkGfm, remarkGfmOptions),
-    action: [
+    actions: [
       {
         title: locale.strike,
         icon: icons.strikethrough,
         cheatsheet: `~~${locale.strikeText}~~`,
-        handler({ wrapText, editor }) {
-          wrapText('~~');
-          editor.focus();
+        handler: {
+          type: 'action',
+          click({ wrapText, editor }) {
+            wrapText('~~');
+            editor.focus();
+          },
         },
       },
       {
         title: locale.task,
         icon: icons.task,
         cheatsheet: `- [ ] ${locale.taskText}`,
-        handler({ replaceLines, editor }) {
-          replaceLines((line) => '- [ ] ' + line);
-          editor.focus();
+        handler: {
+          type: 'action',
+          click({ replaceLines, editor }) {
+            replaceLines((line) => '- [ ] ' + line);
+            editor.focus();
+          },
         },
       },
       {
         title: locale.table,
         icon: icons.table,
-        handler({ editor, appendBlock }) {
-          const { line } = appendBlock(
-            `| ${locale.tableHeading} |  |\n| --- | --- |\n|  |  |\n`
-          );
-          editor.setSelection(
-            { line: line, ch: 2 },
-            { line: line, ch: 2 + locale.tableHeading.length }
-          );
-          editor.focus();
+        handler: {
+          type: 'action',
+          click({ editor, appendBlock }) {
+            const { line } = appendBlock(
+              `| ${locale.tableHeading} |  |\n| --- | --- |\n|  |  |\n`
+            );
+            editor.setSelection(
+              { line: line, ch: 2 },
+              { line: line, ch: 2 + locale.tableHeading.length }
+            );
+            editor.focus();
+          },
         },
       },
     ],

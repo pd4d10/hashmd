@@ -122,65 +122,83 @@ export function getBuiltinActions(
   const items: BytemdAction[] = [
     {
       icon: icons.heading,
-      handler: [1, 2, 3, 4, 5, 6].map((level) => ({
-        title: locale.action[`h${level}` as keyof typeof locale.action],
-        icon: icons[`h${level}` as keyof typeof icons],
-        cheatsheet:
-          level <= 3
-            ? `${'#'.repeat(level)} ${locale.action.headingText}`
-            : undefined,
-        handler({ replaceLines, editor }) {
-          replaceLines((line) => {
-            line = line.trim().replace(/^#*/, '').trim();
-            line = '#'.repeat(level) + ' ' + line;
-            return line;
-          });
-          editor.focus();
-        },
-      })),
+      handler: {
+        type: 'dropdown',
+        actions: [1, 2, 3, 4, 5, 6].map((level) => ({
+          title: locale.action[`h${level}` as keyof typeof locale.action],
+          icon: icons[`h${level}` as keyof typeof icons],
+          cheatsheet:
+            level <= 3
+              ? `${'#'.repeat(level)} ${locale.action.headingText}`
+              : undefined,
+          handler: {
+            type: 'action',
+            click({ replaceLines, editor }) {
+              replaceLines((line) => {
+                line = line.trim().replace(/^#*/, '').trim();
+                line = '#'.repeat(level) + ' ' + line;
+                return line;
+              });
+              editor.focus();
+            },
+          },
+        })),
+      },
     },
     {
       title: locale.action.bold,
       icon: icons.bold,
       cheatsheet: `**${locale.action.boldText}**`,
-      shortcut: getShortcutWithPrefix('B'),
-      handler({ wrapText, editor }) {
-        wrapText('**');
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ wrapText, editor }) {
+          wrapText('**');
+          editor.focus();
+        },
+        shortcut: getShortcutWithPrefix('B'),
       },
     },
     {
       title: locale.action.italic,
       icon: icons.italic,
       cheatsheet: `*${locale.action.italicText}*`,
-      shortcut: getShortcutWithPrefix('I'),
-      handler({ wrapText, editor }) {
-        wrapText('*');
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ wrapText, editor }) {
+          wrapText('*');
+          editor.focus();
+        },
+        shortcut: getShortcutWithPrefix('I'),
       },
     },
     {
       title: locale.action.quote,
       icon: icons.quote,
       cheatsheet: `> ${locale.action.quotedText}`,
-      handler({ replaceLines, editor }) {
-        replaceLines((line) => '> ' + line);
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ replaceLines, editor }) {
+          replaceLines((line) => '> ' + line);
+          editor.focus();
+        },
       },
     },
     {
       title: locale.action.link,
       icon: icons.link,
       cheatsheet: `[${locale.action.linkText}](url)`,
-      shortcut: getShortcutWithPrefix('K'),
-      handler({ editor, wrapText }) {
-        wrapText('[', '](url)');
-        const cursor = editor.getCursor();
-        editor.setSelection(
-          { line: cursor.line, ch: cursor.ch + 2 },
-          { line: cursor.line, ch: cursor.ch + 5 }
-        );
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ editor, wrapText }) {
+          wrapText('[', '](url)');
+          const cursor = editor.getCursor();
+          editor.setSelection(
+            { line: cursor.line, ch: cursor.ch + 2 },
+            { line: cursor.line, ch: cursor.ch + 5 }
+          );
+          editor.focus();
+        },
+        shortcut: getShortcutWithPrefix('K'),
       },
     },
     {
@@ -188,26 +206,29 @@ export function getBuiltinActions(
       icon: icons.image,
       cheatsheet: `![${locale.action.imageAlt}](url "${locale.action.imageTitle}")`,
       handler: uploadImages
-        ? async ({ appendBlock, selectFiles, editor }) => {
-            const fileList = await selectFiles({
-              accept: 'image/*',
-              multiple: true,
-            });
-            const files = Array.from(fileList ?? []);
-            const imgs = await uploadImages(files);
-            const { line, ch } = appendBlock(
-              imgs
-                .map(({ url, alt, title }, i) => {
-                  alt = alt ?? files[i].name;
-                  return `![${alt}](${url}${title ? ` "${title}"` : ''})`;
-                })
-                .join('\n\n')
-            );
-            editor.setSelection(
-              { line, ch },
-              { line: line + imgs.length * 2 - 2, ch: Infinity }
-            );
-            editor.focus();
+        ? {
+            type: 'action',
+            async click({ appendBlock, selectFiles, editor }) {
+              const fileList = await selectFiles({
+                accept: 'image/*',
+                multiple: true,
+              });
+              const files = Array.from(fileList ?? []);
+              const imgs = await uploadImages(files);
+              const { line, ch } = appendBlock(
+                imgs
+                  .map(({ url, alt, title }, i) => {
+                    alt = alt ?? files[i].name;
+                    return `![${alt}](${url}${title ? ` "${title}"` : ''})`;
+                  })
+                  .join('\n\n')
+              );
+              editor.setSelection(
+                { line, ch },
+                { line: line + imgs.length * 2 - 2, ch: Infinity }
+              );
+              editor.focus();
+            },
           }
         : undefined,
     },
@@ -215,37 +236,49 @@ export function getBuiltinActions(
       title: locale.action.code,
       icon: icons.code,
       cheatsheet: '`' + locale.action.codeText + '`',
-      handler({ wrapText, editor }) {
-        wrapText('`');
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ wrapText, editor }) {
+          wrapText('`');
+          editor.focus();
+        },
       },
     },
     {
       title: locale.action.codeBlock,
       icon: icons.codeBlock,
       cheatsheet: '```' + locale.action.codeLang + '↵',
-      handler({ editor, appendBlock }) {
-        const { line } = appendBlock('```js\n```');
-        editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ editor, appendBlock }) {
+          const { line } = appendBlock('```js\n```');
+          editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
+          editor.focus();
+        },
       },
     },
     {
       title: locale.action.ul,
       icon: icons.ul,
       cheatsheet: `- ${locale.action.ulItem}`,
-      handler({ replaceLines, editor }) {
-        replaceLines((line) => '- ' + line);
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ replaceLines, editor }) {
+          replaceLines((line) => '- ' + line);
+          editor.focus();
+        },
       },
     },
     {
       title: locale.action.ol,
       icon: icons.ol,
       cheatsheet: `1. ${locale.action.olItem}`,
-      handler({ replaceLines, editor }) {
-        replaceLines((line, i) => `${i + 1}. ${line}`);
-        editor.focus();
+      handler: {
+        type: 'action',
+        click({ replaceLines, editor }) {
+          replaceLines((line, i) => `${i + 1}. ${line}`);
+          editor.focus();
+        },
       },
     },
     {
@@ -255,12 +288,8 @@ export function getBuiltinActions(
     },
   ];
 
-  plugins.forEach((p) => {
-    if (Array.isArray(p.action)) {
-      items.push(...p.action);
-    } else if (p.action) {
-      items.push(p.action);
-    }
+  plugins.forEach(({ actions }) => {
+    if (actions) items.push(...actions);
   });
   return items;
 }

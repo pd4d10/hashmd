@@ -7,12 +7,13 @@
   function flatItems(actions: BytemdAction[]) {
     let items: BytemdAction[] = [];
 
-    actions.forEach((item) => {
-      const { handler, cheatsheet } = item;
-      if (Array.isArray(handler)) {
-        items.push(...flatItems(handler));
-      } else if (cheatsheet) {
-        items.push(item);
+    actions.forEach((action) => {
+      const { handler, cheatsheet } = action;
+      if (handler?.type === 'dropdown') {
+        items.push(...flatItems(handler.actions));
+      }
+      if (cheatsheet) {
+        items.push(action);
       }
     });
 
@@ -25,24 +26,28 @@
 <div class="bytemd-help">
   <h2>{locale.sidebar.cheatsheet}</h2>
   <ul>
-    {#each items as item}
-      {#if item.cheatsheet}
+    {#each items as action}
+      {#if action.cheatsheet}
         <li>
-          <div class="bytemd-help-icon">{@html item.icon}</div>
-          <div class="bytemd-help-title">{item.title}</div>
-          <div class="bytemd-help-content"><code>{item.cheatsheet}</code></div>
+          <div class="bytemd-help-icon">{@html action.icon}</div>
+          <div class="bytemd-help-title">{action.title}</div>
+          <div class="bytemd-help-content">
+            <code>{action.cheatsheet}</code>
+          </div>
         </li>
       {/if}
     {/each}
   </ul>
   <h2>{locale.sidebar.shortcuts}</h2>
   <ul>
-    {#each items as item}
-      {#if item.shortcut && item.handler}
+    {#each items as action}
+      {#if action.handler && action.handler.type === 'action' && action.handler.shortcut}
         <li>
-          <div class="bytemd-help-icon">{@html item.icon}</div>
-          <div class="bytemd-help-title">{item.title}</div>
-          <div class="bytemd-help-content"><kbd>{item.shortcut}</kbd></div>
+          <div class="bytemd-help-icon">{@html action.icon}</div>
+          <div class="bytemd-help-title">{action.title}</div>
+          <div class="bytemd-help-content">
+            <kbd>{action.handler.shortcut}</kbd>
+          </div>
         </li>
       {/if}
     {/each}

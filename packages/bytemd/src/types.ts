@@ -33,36 +33,54 @@ export interface BytemdViewerContext {
   file: VFile;
 }
 
+type Listener = (context: BytemdEditorContext) => void;
+
+type BytemdActionHandler =
+  | {
+      type: 'action';
+      click: Listener;
+      /**
+       * Keyboard shortcut
+       *
+       * If specified, this shortcut will bind to click listener
+       * and will be added to the Keyboard shortcut section
+       *
+       * https://codemirror.net/doc/manual.html#keymaps
+       */
+      shortcut?: string;
+      /**
+       * mouseenter event listener, only takes effect in dropdown items
+       */
+      mouseenter?: Listener;
+      /**
+       * mouseleave event listener, only takes effect in dropdown items
+       */
+      mouseleave?: Listener;
+    }
+  | {
+      type: 'dropdown';
+      actions: BytemdAction[];
+    };
+
 export interface BytemdAction {
   /**
    * Action title
    */
   title?: string;
   /**
-   * Action icon (16x16), could be <img> or inline svg
+   * Action icon (16x16), usually inline svg
    */
   icon?: string;
   /**
-   * Markdown syntax cheat sheet
+   * Markdown syntax cheatsheet
    *
-   * If specified, this record will be added to the Markdown cheat sheet section
+   * If specified, this record will be added to the Markdown cheatsheet section
    */
   cheatsheet?: string;
   /**
-   * Keyboard shortcut
-   *
-   * If specified, this record will be added to the Keyboard shortcut section
-   *
-   * https://codemirror.net/doc/manual.html#keymaps
-   */
-  shortcut?: string;
-  /**
    * Action handler
-   *
-   * function: action item click and shortcut handler
-   * array: show dropdown items
    */
-  handler?: ((context: BytemdEditorContext) => void) | BytemdAction[];
+  handler?: BytemdActionHandler;
 }
 
 export interface BytemdPlugin {
@@ -81,7 +99,7 @@ export interface BytemdPlugin {
   /**
    * Register actions in toolbar, cheatsheet and shortcuts
    */
-  action?: BytemdAction | BytemdAction[];
+  actions?: BytemdAction[];
   /**
    * Side effect for the editor, triggers when plugin changes
    */
