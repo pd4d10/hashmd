@@ -5,14 +5,15 @@ import { icons } from './icons';
 import en from './locales/en.json';
 
 export interface BytemdPluginMathOptions {
-  locale?: typeof en;
+  locale?: Partial<typeof en>;
   katexOptions?: Omit<K.KatexOptions, 'displayMode'>;
 }
 
 export default function math({
-  locale = en,
+  locale: _locale,
   katexOptions,
 }: BytemdPluginMathOptions = {}): BytemdPlugin {
+  const locale = { ...en, ..._locale } as typeof en;
   let katex: typeof K;
 
   return {

@@ -6,14 +6,15 @@ import pluginMath from '@bytemd/plugin-math';
 import en from './locales/en.json';
 
 export interface BytemdPluginMathSsrOptions {
-  locale?: typeof en;
+  locale?: Partial<typeof en>;
   katexOptions?: Omit<KatexOptions, 'displayMode'>;
 }
 
 export default function mathSsr({
-  locale = en,
+  locale: _locale,
   katexOptions,
 }: BytemdPluginMathSsrOptions = {}): BytemdPlugin {
+  const locale = { ...en, ..._locale } as typeof en;
   return {
     remark: (u) => u.use(remarkMath),
     rehype: (u) => u.use(rehypeKatex, katexOptions),

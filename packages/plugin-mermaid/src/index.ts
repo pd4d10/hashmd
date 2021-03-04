@@ -5,13 +5,14 @@ import { icons } from './icons';
 import en from './locales/en.json';
 
 export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
-  locale?: typeof en;
+  locale?: Partial<typeof en>;
 }
 
 export default function mermaid({
-  locale = en,
+  locale: _locale,
   ...mermaidConfig
 }: BytemdPluginMermaidOptions = {}): BytemdPlugin {
+  const locale = { ...en, ..._locale } as typeof en;
   let m: Mermaid;
 
   const actionItems = [

@@ -4,13 +4,15 @@ import remarkGfm, { RemarkGfmOptions } from 'remark-gfm';
 import { icons } from './icons';
 
 export interface BytemdPluginGfmOptions extends RemarkGfmOptions {
-  locale?: typeof en;
+  locale?: Partial<typeof en>;
 }
 
 export default function gfm({
-  locale = en,
+  locale: _locale,
   ...remarkGfmOptions
 }: BytemdPluginGfmOptions = {}): BytemdPlugin {
+  const locale = { ...en, ..._locale } as typeof en;
+
   return {
     remark: (p) => p.use(remarkGfm, remarkGfmOptions),
     actions: [
