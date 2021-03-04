@@ -25,20 +25,34 @@ export function createEditorUtils(editor: Editor) {
       const from = range.from(); // use from/to instead of anchor/head for reverse select
       const to = range.to();
       const text = editor.getRange(from, to);
-      editor.replaceRange(before + text + after, from, to);
+      const fromBefore = { line: from.line, ch: from.ch - before.length };
+      const toAfter = { line: to.line, ch: to.ch + after.length };
 
-      // select the original text
-      const cursor = editor.getCursor();
-      editor.setSelection(
-        {
-          line: cursor.line,
-          ch: cursor.ch - after.length - text.length,
-        },
-        {
-          line: cursor.line,
-          ch: cursor.ch - after.length,
-        }
-      );
+      if (
+        editor.getRange(fromBefore, from) === before &&
+        editor.getRange(to, toAfter) === after
+      ) {
+        editor.replaceRange(text, fromBefore, toAfter);
+        editor.setSelection(fromBefore, {
+          line: fromBefore.line,
+          ch: fromBefore.ch + text.length,
+        });
+      } else {
+        editor.replaceRange(before + text + after, from, to);
+
+        // select the original text
+        const cursor = editor.getCursor();
+        editor.setSelection(
+          {
+            line: cursor.line,
+            ch: cursor.ch - after.length - text.length,
+          },
+          {
+            line: cursor.line,
+            ch: cursor.ch - after.length,
+          }
+        );
+      }
     },
     /**
      * replace multiple lines
