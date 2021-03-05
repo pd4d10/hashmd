@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/bytedance/bytemd/compare/v1.6.0...v1.7.0) (2021-03-05)
+
+
+### Bug Fixes
+
+* **mermaid:** add cheatsheet ([3bba2de](https://github.com/bytedance/bytemd/commit/3bba2dee744a041b4d75f8a825fd6c2b92951439))
+
+
+### Features
+
+* improve wrap text ([be2748a](https://github.com/bytedance/bytemd/commit/be2748a96a0b350f67df309eb841de4ce989fffb))
+
+
+
+
+
 # [1.6.0](https://github.com/bytedance/bytemd/compare/v1.5.0...v1.6.0) (2021-03-04)
 
 
