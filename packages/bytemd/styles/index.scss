@@ -15,6 +15,9 @@ $max-width: 800px;
   * {
     box-sizing: border-box;
   }
+  &-hidden {
+    display: none !important;
+  }
 
   /* Force content-box sizing for the elements where we expect it */
   .CodeMirror-scroll,

@@ -365,7 +365,7 @@
   />
   <div class="bytemd-body">
     <div class="bytemd-editor" style={styles.edit}>
-      <textarea bind:this={textarea} style="display:none" />
+      <textarea bind:this={textarea} class="bytemd-hidden" />
     </div>
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       {#if !overridePreview}
@@ -379,7 +379,7 @@
         />
       {/if}
     </div>
-    <div class="bytemd-sidebar" style={sidebar ? undefined : 'display:none'}>
+    <div class={clsx('bytemd-sidebar', { 'bytemd-hidden': sidebar === false })}>
       <div
         class="bytemd-sidebar-close"
         on:click={() => {
@@ -388,19 +388,17 @@
       >
         {@html icons.close}
       </div>
-      {#if sidebar === 'help'}
-        <Help locale={mergedLocale} {actions} />
-      {:else if sidebar === 'toc'}
-        <Toc
-          {hast}
-          locale={mergedLocale}
-          {currentBlockIndex}
-          on:click={(e) => {
-            const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
-            headings[e.detail].scrollIntoView();
-          }}
-        />
-      {/if}
+      <Help locale={mergedLocale} {actions} visible={sidebar === 'help'} />
+      <Toc
+        {hast}
+        locale={mergedLocale}
+        {currentBlockIndex}
+        on:click={(e) => {
+          const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
+          headings[e.detail].scrollIntoView();
+        }}
+        visible={sidebar === 'toc'}
+      />
     </div>
   </div>
   <Status
