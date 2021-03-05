@@ -12,7 +12,7 @@
     "test": "BABEL_ENV=test jest",
     "test:watch": "BABEL_ENV=test npm run test -- --watch",
     "postinstall": "node -r esm scripts/postinstall.js",
-    "pub": "lerna publish --yes"
+    "pub": "npm run clean && npm run build:ci && lerna publish --yes"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

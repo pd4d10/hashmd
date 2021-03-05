@@ -42,7 +42,7 @@ export default {
         this.cbs = this.plugins.map(
           ({ viewerEffect }) =>
             viewerEffect &&
-            viewerEffect({ markdownBody: this.markdownBody, file: this.file })
+            viewerEffect({ markdownBody: this.$el, file: this.file })
         );
       }
     },
