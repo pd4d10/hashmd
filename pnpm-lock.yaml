@@ -270,7 +270,7 @@ importers:
     devDependencies:
       miniprogram-api-typings: 3.2.3
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       miniprogram-api-typings: ^3.2.3
   packages/plugin-breaks:
     dependencies:
@@ -278,7 +278,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       remark-breaks: ^2.0.1
   packages/plugin-footnotes:
     dependencies:
@@ -286,7 +286,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       remark-footnotes: ^3.0.0
   packages/plugin-frontmatter:
     dependencies:
@@ -298,7 +298,7 @@ importers:
       vfile: 4.2.1
     specifiers:
       '@types/js-yaml': ^3.12.6
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       js-yaml: ^3.14.1
       remark-frontmatter: ^3.0.0
       vfile: ^4.2.1
@@ -308,7 +308,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       remark-gemoji: ^6.0.0
   packages/plugin-gfm:
     dependencies:
@@ -316,7 +316,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       remark-gfm: ^1.0.0
   packages/plugin-highlight:
     dependencies:
@@ -324,7 +324,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       highlight.js: ^10.6.0
   packages/plugin-highlight-ssr:
     dependencies:
@@ -332,7 +332,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       rehype-highlight: ^4.1.0
   packages/plugin-math:
     dependencies:
@@ -343,7 +343,7 @@ importers:
       bytemd: link:../bytemd
     specifiers:
       '@types/katex': ^0.11.0
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       katex: ^0.12.0
       remark-math: ^4.0.0
   packages/plugin-math-ssr:
@@ -354,8 +354,8 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      '@bytemd/plugin-math': ^1.6.0
-      bytemd: ^1.6.0
+      '@bytemd/plugin-math': ^1.7.0
+      bytemd: ^1.7.0
       rehype-katex: ^4.0.0
       remark-math: ^4.0.0
   packages/plugin-mdx:
@@ -365,7 +365,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       mdast-util-mdx: ^0.1.1
       micromark-extension-mdx: ^0.2.1
   packages/plugin-medium-zoom:
@@ -374,7 +374,7 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       medium-zoom: ^1.0.6
   packages/plugin-mermaid:
     dependencies:
@@ -384,7 +384,7 @@ importers:
       bytemd: link:../bytemd
     specifiers:
       '@types/mermaid': ^8.2.2
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       mermaid: ^8.9.1
   packages/react:
     dependencies:
@@ -394,7 +394,7 @@ importers:
       react: 17.0.1
     specifiers:
       '@types/react': ^17.0.2
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       react: ^17.0.1
   packages/vue:
     dependencies:
@@ -402,7 +402,7 @@ importers:
     devDependencies:
       vue: 2.6.12
     specifiers:
-      bytemd: ^1.6.0
+      bytemd: ^1.7.0
       vue: ^2.6.12
 lockfileVersion: 5.2
 packages:
