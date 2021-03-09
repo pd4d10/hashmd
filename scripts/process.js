@@ -12,6 +12,8 @@ async function transform(file, dir = 'lib') {
   const dest = file.replace('/src/', `/${dir}/`);
   await fs.ensureDir(path.dirname(dest));
 
+  if (fs.statSync(file).isDirectory()) return;
+
   if (file.endsWith('.svelte')) {
     const source = await fs.readFile(file, 'utf8');
     const item = await preprocess(
