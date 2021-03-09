@@ -33,6 +33,7 @@ const meta = {
     left: icons.LeftExpand,
     right: icons.RightExpand,
     more: icons.More,
+    keyboard: icons.EnterTheKeyboard,
   },
   'plugin-gfm': {
     strikethrough: icons.Strikethrough,

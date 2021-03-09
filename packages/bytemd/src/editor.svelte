@@ -32,6 +32,8 @@
   import useGfm from 'codemirror-ssr/mode/gfm/gfm';
   import useYaml from 'codemirror-ssr/mode/yaml/yaml';
   import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter';
+  import useVim from 'codemirror-ssr/keymap/vim';
+  import useEmacs from 'codemirror-ssr/keymap/emacs';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -157,6 +159,8 @@
     useGfm(codemirror);
     useYaml(codemirror);
     useYamlFrontmatter(codemirror);
+    useVim(codemirror);
+    useEmacs(codemirror);
 
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
@@ -333,6 +337,10 @@
     {fullscreen}
     locale={mergedLocale}
     {actions}
+    on:key={(e) => {
+      editor.setOption('keyMap', e.detail);
+      editor.focus();
+    }}
     on:tab={(e) => {
       const v = e.detail;
       if (split) {

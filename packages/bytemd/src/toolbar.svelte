@@ -34,18 +34,60 @@
 
   $: rightActions = [
     {
+      title: 'Key binding',
+      icon: icons.keyboard,
+      handler: {
+        type: 'dropdown',
+        actions: [
+          {
+            title: 'Normal',
+            handler: {
+              type: 'action',
+              click() {
+                dispatch('key', 'default');
+              },
+            },
+          },
+          {
+            title: 'Vim',
+            handler: {
+              type: 'action',
+              click() {
+                dispatch('key', 'vim');
+              },
+            },
+          },
+          {
+            title: 'Emacs',
+            handler: {
+              type: 'action',
+              click() {
+                dispatch('key', 'emacs');
+              },
+            },
+          },
+        ],
+      },
+    },
+    {
       title: tocActive ? locale.toolbar.closeToc : locale.toolbar.toc,
       icon: icons.toc,
-      handler() {
-        dispatch('click', 'toc');
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('click', 'toc');
+        },
       },
       active: tocActive,
     },
     {
       title: helpActive ? locale.toolbar.closeHelp : locale.toolbar.help,
       icon: icons.help,
-      handler() {
-        dispatch('click', 'help');
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('click', 'help');
+        },
       },
       active: helpActive,
     },
@@ -54,8 +96,11 @@
         ? locale.toolbar.exitWriteOnly
         : locale.toolbar.writeOnly,
       icon: icons.left,
-      handler() {
-        dispatch('tab', 'write');
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('tab', 'write');
+        },
       },
       active: writeActive,
       hidden: !split,
@@ -65,8 +110,11 @@
         ? locale.toolbar.exitPreviewOnly
         : locale.toolbar.previewOnly,
       icon: icons.right,
-      handler() {
-        dispatch('tab', 'preview');
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('tab', 'preview');
+        },
       },
       active: previewActive,
       hidden: !split,
@@ -76,24 +124,24 @@
         ? locale.toolbar.exitFullscreen
         : locale.toolbar.fullscreen,
       icon: fullscreen ? icons.fullscreenOff : icons.fullscreenOn,
-      handler() {
-        dispatch('click', 'fullscreen');
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('click', 'fullscreen');
+        },
       },
     },
     {
       title: locale.toolbar.source,
       icon: icons.source,
-      handler() {
-        window.open('https://github.com/bytedance/bytemd');
+      handler: {
+        type: 'action',
+        click() {
+          window.open('https://github.com/bytedance/bytemd');
+        },
       },
     },
-  ].map((v) => ({
-    ...v,
-    handler: {
-      type: 'action',
-      click: v.handler,
-    },
-  })) as RightAction[];
+  ] as RightAction[];
 
   const tippyClass = 'bytemd-tippy';
   const tippyClassRight = 'bytemd-tippy-right';
@@ -166,8 +214,11 @@
             const dropdownItem = document.createElement('div');
             dropdownItem.classList.add('bytemd-dropdown-item');
             dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'));
-            if (Array.isArray(subAction.handler)) {
+            if (subAction.handler?.type === 'dropdown') {
               dropdownItem.classList.add(tippyClass);
+            }
+            if (reference.classList.contains(tippyClassRight)) {
+              dropdownItem.classList.add(tippyClassRight);
             }
             // div.setAttribute('data-tippy-placement', 'right');
             dropdownItem.innerHTML = `${
