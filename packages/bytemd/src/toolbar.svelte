@@ -8,7 +8,8 @@
     BytemdLocale,
   } from './types';
   import { icons } from './icons';
-  import delegate from './delegate';
+  import type { DelegateInstance } from 'tippy.js';
+  import { delegate } from 'tippy.js';
 
   const dispatch = createEventDispatcher();
   let toolbar: HTMLElement;
@@ -130,25 +131,25 @@
     return { paths, item: item };
   }
 
-  let delegateInstance: ReturnType<typeof delegate>;
+  let delegateInstance: DelegateInstance;
 
   function init() {
     delegateInstance = delegate(toolbar, {
       target: `.${tippyClass}`,
-      getTargetProps(target) {
-        const payload = getPayloadFromElement(target);
+      onCreate({ setProps, reference }) {
+        const payload = getPayloadFromElement(reference);
         if (!payload) return;
         const { item, paths } = payload;
         const { handler } = item;
         if (!handler) return;
 
         if (handler.type === 'action') {
-          return {
+          setProps({
             content: item.title,
             onHidden(ins) {
               ins.destroy();
             },
-          };
+          });
         } else if (handler.type === 'dropdown') {
           // dropdown
           const dropdown = document.createElement('div');
@@ -177,7 +178,7 @@
             dropdown.appendChild(dropdownItem);
           });
 
-          return {
+          setProps({
             allowHTML: true,
             showOnCreate: true,
             theme: 'light-border',
@@ -210,7 +211,7 @@
                 }
               );
             },
-          };
+          });
         }
       },
     });
