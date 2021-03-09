@@ -224,7 +224,6 @@ importers:
       '@types/lodash.debounce': 4.0.6
       '@types/lodash.throttle': 4.1.6
       '@types/mdast': 3.0.3
-      clsx: 1.1.1
       codemirror-ssr: 0.0.6
       deepmerge: 4.2.2
       hast-util-sanitize: 3.0.2
@@ -247,7 +246,6 @@ importers:
       '@types/lodash.debounce': ^4.0.6
       '@types/lodash.throttle': ^4.1.6
       '@types/mdast': ^3.0.3
-      clsx: ^1.1.1
       codemirror-ssr: ^0.0.6
       deepmerge: ^4.2.2
       hast-util-sanitize: ^3.0.2
@@ -5914,12 +5912,6 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
-  /clsx/1.1.1:
-    dev: false
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
   /co/4.6.0:
     dev: true
     engines:

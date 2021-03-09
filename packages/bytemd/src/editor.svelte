@@ -12,7 +12,6 @@
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
   import debounce from 'lodash.debounce';
   import throttle from 'lodash.throttle';
-  import clsx from 'clsx';
   import Toolbar from './toolbar.svelte';
   import Viewer from './viewer.svelte';
   import Toc from './toc.svelte';
@@ -321,10 +320,9 @@
 </script>
 
 <div
-  class={clsx('bytemd', {
-    'bytemd-split': split && activeTab === false,
-    'bytemd-fullscreen': fullscreen,
-  })}
+  class="bytemd"
+  class:bytemd-split={split && activeTab === false}
+  class:bytemd-fullscreen={fullscreen}
   bind:this={root}
 >
   <Toolbar
@@ -379,7 +377,7 @@
         />
       {/if}
     </div>
-    <div class={clsx('bytemd-sidebar', { 'bytemd-hidden': sidebar === false })}>
+    <div class="bytemd-sidebar" class:bytemd-hidden={sidebar === false}>
       <div
         class="bytemd-sidebar-close"
         on:click={() => {

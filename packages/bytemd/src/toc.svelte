@@ -4,7 +4,6 @@
   import type { Root, Element } from 'hast';
   import type { BytemdLocale } from './types';
   import { createEventDispatcher } from 'svelte';
-  import clsx from 'clsx';
 
   export let hast: Root;
   export let currentBlockIndex: number;
@@ -42,7 +41,7 @@
   })();
 </script>
 
-<div class={clsx('bytemd-toc', { 'bytemd-hidden': !visible })}>
+<div class="bytemd-toc" class:bytemd-hidden={!visible}>
   <h2>{locale.sidebar.toc}</h2>
   <ul>
     {#each items as item, index}

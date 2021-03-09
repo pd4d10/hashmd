@@ -1,6 +1,4 @@
 <script lang="ts">
-  import clsx from 'clsx';
-
   import type { BytemdAction, BytemdLocale } from './types';
 
   export let actions: BytemdAction[];
@@ -26,7 +24,7 @@
   $: items = flatItems(actions);
 </script>
 
-<div class={clsx('bytemd-help', { 'bytemd-hidden': !visible })}>
+<div class="bytemd-help" class:bytemd-hidden={!visible}>
   <h2>{locale.sidebar.cheatsheet}</h2>
   <ul>
     {#each items as action}

@@ -7,7 +7,6 @@
     BytemdAction,
     BytemdLocale,
   } from './types';
-  import clsx from 'clsx';
   import { icons } from './icons';
   import delegate from './delegate';
 
@@ -239,7 +238,7 @@
       {#each actions as item, index}
         {#if item.handler}
           <div
-            class={clsx('bytemd-toolbar-icon', tippyClass)}
+            class={['bytemd-toolbar-icon', tippyClass].join(' ')}
             bytemd-tippy-path={index}
           >
             {@html item.icon}
@@ -261,7 +260,7 @@
       >
         {locale.toolbar.preview}
       </div>
-      <!-- <div class={clsx('bytemd-toolbar-icon', tippyClass)}>
+      <!-- <div class={['bytemd-toolbar-icon', tippyClass].join(' ')}>
         {@html icons.more}
       </div> -->
     {/if}
@@ -271,7 +270,7 @@
     {#each rightActions as item, index}
       {#if !item.hidden}
         <div
-          class={clsx('bytemd-toolbar-icon', tippyClass, tippyClassRight)}
+          class={['bytemd-toolbar-icon', tippyClass, tippyClassRight].join(' ')}
           class:bytemd-toolbar-icon-active={item.active}
           bytemd-tippy-path={index}
         >
