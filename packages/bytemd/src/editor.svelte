@@ -177,7 +177,11 @@
     });
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
-    editor.addKeyMap({ 'Shift-Tab': 'indentLess' });
+    // https://github.com/codemirror/CodeMirror/issues/988#issuecomment-392232020
+    editor.addKeyMap({
+      Tab: 'indentMore',
+      'Shift-Tab': 'indentLess',
+    });
     editor.setValue(value);
     editor.on('change', (doc, change) => {
       dispatch('change', { value: editor.getValue() });
