@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/bytedance/bytemd/compare/v1.8.0...v1.9.0) (2021-03-10)
+
+
+### Bug Fixes
+
+* copy without images ([e846f87](https://github.com/bytedance/bytemd/commit/e846f87d5adeb0a3a7443eda2025422d798705d2)), closes [#44](https://github.com/bytedance/bytemd/issues/44)
+* use 4 space indent to make nested ol works ([e344abf](https://github.com/bytedance/bytemd/commit/e344abf758c82ecdcf7758421a72764a5fbeb478))
+
+
+### Features
+
+* lint ([4638830](https://github.com/bytedance/bytemd/commit/4638830823c4dcc250af52997565abd88024c2b5))
+* markdownlint plugin wip ([58136aa](https://github.com/bytedance/bytemd/commit/58136aa8f1a64170ceec8788cb3b849640215613))
+
+
+
+
+
 # [1.8.0](https://github.com/bytedance/bytemd/compare/v1.7.1...v1.8.0) (2021-03-10)
 
 
