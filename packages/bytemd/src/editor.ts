@@ -1,4 +1,5 @@
 import type { Editor, Position } from 'codemirror';
+import type CodeMirror from 'codemirror';
 import type {
   BytemdPlugin,
   BytemdAction,
@@ -10,7 +11,10 @@ import selectFiles from 'select-files';
 
 export type EditorUtils = ReturnType<typeof createEditorUtils>;
 
-export function createEditorUtils(editor: Editor) {
+export function createEditorUtils(
+  codemirror: typeof CodeMirror,
+  editor: Editor
+) {
   return {
     /**
      * Wrap text with decorators, for example:
@@ -25,32 +29,26 @@ export function createEditorUtils(editor: Editor) {
       const from = range.from(); // use from/to instead of anchor/head for reverse select
       const to = range.to();
       const text = editor.getRange(from, to);
-      const fromBefore = { line: from.line, ch: from.ch - before.length };
-      const toAfter = { line: to.line, ch: to.ch + after.length };
+      const fromBefore = codemirror.Pos(from.line, from.ch - before.length);
+      const toAfter = codemirror.Pos(to.line, to.ch + after.length);
 
       if (
         editor.getRange(fromBefore, from) === before &&
         editor.getRange(to, toAfter) === after
       ) {
         editor.replaceRange(text, fromBefore, toAfter);
-        editor.setSelection(fromBefore, {
-          line: fromBefore.line,
-          ch: fromBefore.ch + text.length,
-        });
+        editor.setSelection(
+          fromBefore,
+          codemirror.Pos(fromBefore.line, fromBefore.ch + text.length)
+        );
       } else {
         editor.replaceRange(before + text + after, from, to);
 
         // select the original text
         const cursor = editor.getCursor();
         editor.setSelection(
-          {
-            line: cursor.line,
-            ch: cursor.ch - after.length - text.length,
-          },
-          {
-            line: cursor.line,
-            ch: cursor.ch - after.length,
-          }
+          codemirror.Pos(cursor.line, cursor.ch - after.length - text.length),
+          codemirror.Pos(cursor.line, cursor.ch - after.length)
         );
       }
     },
@@ -63,8 +61,8 @@ export function createEditorUtils(editor: Editor) {
       const [selection] = editor.listSelections();
 
       const range = [
-        { line: selection.from().line, ch: 0 },
-        { line: selection.to().line, ch: Infinity },
+        codemirror.Pos(selection.from().line, 0),
+        codemirror.Pos(selection.to().line),
       ] as const;
       const lines = editor.getRange(...range).split('\n');
       editor.replaceRange(lines.map(replace).join('\n'), ...range);
@@ -86,18 +84,12 @@ export function createEditorUtils(editor: Editor) {
       }
       if (emptyLine === -1) {
         // insert a new line to the bottom
-        editor.replaceRange('\n', { line: editor.lineCount(), ch: Infinity });
+        editor.replaceRange('\n', codemirror.Pos(editor.lineCount()));
         emptyLine = editor.lineCount();
       }
 
-      editor.replaceRange('\n' + content, {
-        line: emptyLine,
-        ch: Infinity,
-      });
-      return {
-        line: emptyLine + 1,
-        ch: 0,
-      };
+      editor.replaceRange('\n' + content, codemirror.Pos(emptyLine));
+      return codemirror.Pos(emptyLine + 1, 0);
     },
     /**
      * Triggers a virtual file input and let user select files
@@ -205,12 +197,12 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('K'),
-        click({ editor, wrapText }) {
+        click({ editor, wrapText, codemirror }) {
           wrapText('[', '](url)');
           const cursor = editor.getCursor();
           editor.setSelection(
-            { line: cursor.line, ch: cursor.ch + 2 },
-            { line: cursor.line, ch: cursor.ch + 5 }
+            codemirror.Pos(cursor.line, cursor.ch + 2),
+            codemirror.Pos(cursor.line, cursor.ch + 5)
           );
           editor.focus();
         },
@@ -224,14 +216,14 @@ export function getBuiltinActions(
         ? {
             type: 'action',
             shortcut: getShortcutWithPrefix('I', true),
-            async click({ appendBlock, selectFiles, editor }) {
+            async click({ appendBlock, selectFiles, editor, codemirror }) {
               const fileList = await selectFiles({
                 accept: 'image/*',
                 multiple: true,
               });
               const files = Array.from(fileList ?? []);
               const imgs = await uploadImages(files);
-              const { line, ch } = appendBlock(
+              const pos = appendBlock(
                 imgs
                   .map(({ url, alt, title }, i) => {
                     alt = alt ?? files[i].name;
@@ -240,8 +232,8 @@ export function getBuiltinActions(
                   .join('\n\n')
               );
               editor.setSelection(
-                { line, ch },
-                { line: line + imgs.length * 2 - 2, ch: Infinity }
+                pos,
+                codemirror.Pos(pos.line + imgs.length * 2 - 2)
               );
               editor.focus();
             },
@@ -268,9 +260,12 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('C', true),
-        click({ editor, appendBlock }) {
-          const { line } = appendBlock('```js\n```');
-          editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
+        click({ editor, appendBlock, codemirror }) {
+          const pos = appendBlock('```js\n```');
+          editor.setSelection(
+            codemirror.Pos(pos.line, 3),
+            codemirror.Pos(pos.line, 5)
+          );
           editor.focus();
         },
       },

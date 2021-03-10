@@ -45,13 +45,13 @@ export default function gfm({
         icon: icons.table,
         handler: {
           type: 'action',
-          click({ editor, appendBlock }) {
+          click({ editor, appendBlock, codemirror }) {
             const { line } = appendBlock(
               `| ${locale.tableHeading} |  |\n| --- | --- |\n|  |  |\n`
             );
             editor.setSelection(
-              { line: line, ch: 2 },
-              { line: line, ch: 2 + locale.tableHeading.length }
+              codemirror.Pos(line, 2),
+              codemirror.Pos(line, 2 + locale.tableHeading.length)
             );
             editor.focus();
           },

@@ -63,11 +63,11 @@ export default function math({
               cheatsheet: `$$↵${locale.blockText}↵$$`,
               handler: {
                 type: 'action',
-                click({ appendBlock, editor }) {
+                click({ appendBlock, editor, codemirror }) {
                   const { line } = appendBlock('$$\n\\TeX\n$$');
                   editor.setSelection(
-                    { line: line + 1, ch: 0 },
-                    { line: line + 1, ch: 4 }
+                    codemirror.Pos(line + 1, 0),
+                    codemirror.Pos(line + 1, 4)
                   );
                   editor.focus();
                 },

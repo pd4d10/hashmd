@@ -102,7 +102,8 @@
       codemirror,
       editor,
       root,
-      ...createEditorUtils(editor),
+      // @ts-ignore
+      ...createEditorUtils(codemirror, editor),
     };
     return context;
   })();

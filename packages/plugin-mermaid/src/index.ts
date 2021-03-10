@@ -154,11 +154,11 @@ another task      : 24d`,
             title,
             handler: {
               type: 'action',
-              click({ editor, appendBlock }) {
+              click({ editor, appendBlock, codemirror }) {
                 const { line } = appendBlock('```mermaid\n' + code + '\n```');
                 editor.setSelection(
-                  { line: line + 1, ch: 0 },
-                  { line: line + code.split('\n').length, ch: Infinity }
+                  codemirror.Pos(line + 1, 0),
+                  codemirror.Pos(line + code.split('\n').length)
                 );
                 editor.focus();
               },
