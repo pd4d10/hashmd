@@ -33,6 +33,8 @@ const configs = packages
     }
 
     const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
+    if (pkg.private) return [];
+
     const inputFile = path.resolve('packages', key, 'lib/index.js');
     const umdName = key.startsWith('plugin-')
       ? _.camelCase(`bytemd-${key}`)
