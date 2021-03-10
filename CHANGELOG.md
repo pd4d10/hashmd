@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/bytedance/bytemd/compare/v1.7.1...v1.8.0) (2021-03-10)
+
+
+### Bug Fixes
+
+* tab indent behavior ([24f100d](https://github.com/bytedance/bytemd/commit/24f100d60b02a7455b124acb066941f5d6b9654e))
+
+
+### Features
+
+* add more shortcuts ([a46c91c](https://github.com/bytedance/bytemd/commit/a46c91cf5abd846335ab749e81113bad9d56a70d))
+* add vim and emacs key bindings ([af8af8f](https://github.com/bytedance/bytemd/commit/af8af8f2e6a7f34d6087086354abba29e6ea9a48))
+* add xml mode to enable inline html highlight ([97b9593](https://github.com/bytedance/bytemd/commit/97b9593ab213e8ca786d5efc1a9469172480a62a))
+
+
+
+
+
 ## [1.7.1](https://github.com/bytedance/bytemd/compare/v1.7.0...v1.7.1) (2021-03-08)
 
 
