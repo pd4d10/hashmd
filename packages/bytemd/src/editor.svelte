@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { Editor, KeyMap } from 'codemirror';
+  import type { Editor, KeyMap, Linter, Annotation } from 'codemirror';
   import type { Root, Element } from 'hast';
   import type {
     BytemdEditorContext,
@@ -35,7 +35,7 @@
   import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter';
   import useVim from 'codemirror-ssr/keymap/vim';
   import useEmacs from 'codemirror-ssr/keymap/emacs';
-  // import useLint from 'codemirror-ssr/addon/lint/lint';
+  import useLint from 'codemirror-ssr/addon/lint/lint';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -110,6 +110,7 @@
   function on() {
     // console.log('on', plugins);
     cbs = plugins.map((p) => p.editorEffect?.(context));
+
     keyMap = {};
     // TODO: nested shortcuts
     actions.forEach(({ handler }) => {
@@ -118,11 +119,21 @@
       }
     });
     editor.addKeyMap(keyMap);
+
+    const linter: Linter = async (content) => {
+      const res = await Promise.all(plugins.map((p) => p.lint?.(content)));
+      const annotations = res.flat().filter((a): a is Annotation => a != null);
+      return annotations;
+    };
+    editor.setOption('lint', linter);
   }
   function off() {
     // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb());
+
     editor.removeKeyMap(keyMap);
+
+    editor.setOption('lint', false);
   }
 
   let debouncedValue = value;
@@ -164,19 +175,15 @@
     useYamlFrontmatter(codemirror);
     useVim(codemirror);
     useEmacs(codemirror);
-    // useLint(codemirror);
-    // codemirror.registerHelper('lint', 'yaml-frontmatter', (text: string) => {
-    //   debugger;
-    // });
+    useLint(codemirror);
 
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
       tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
       indentUnit: 4, // nested ordered list does not work with 2 spaces
-      placeholder,
-      // lint: true,
       ...editorConfig,
+      placeholder,
     });
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423

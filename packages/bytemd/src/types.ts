@@ -1,7 +1,7 @@
 import type { Processor } from 'unified';
 import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
-import type { Editor, EditorConfiguration } from 'codemirror';
+import type { Annotation, Editor, EditorConfiguration } from 'codemirror';
 import type { EditorUtils } from './editor';
 import type en from './locales/en.json';
 import type { Image } from 'mdast';
@@ -108,6 +108,10 @@ export interface BytemdPlugin {
    * Side effect for the viewer, triggers when viewer props changes
    */
   viewerEffect?(context: BytemdViewerContext): void | (() => void);
+  /**
+   *
+   */
+  lint?: (value: string) => Promise<Annotation[]>;
 }
 
 export interface EditorProps extends ViewerProps {
