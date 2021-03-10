@@ -65,6 +65,7 @@
   let textarea: HTMLTextAreaElement;
   let containerWidth = Infinity;
 
+  let codemirror: ReturnType<typeof factory>;
   let editor: Editor;
   let activeTab: false | 'write' | 'preview';
   let fullscreen = false;
@@ -96,12 +97,14 @@
   })();
 
   $: context = (() => {
-    const ctx: BytemdEditorContext = {
+    const context: BytemdEditorContext = {
+      // @ts-ignore
+      codemirror,
       editor,
       root,
       ...createEditorUtils(editor),
     };
-    return ctx;
+    return context;
   })();
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
@@ -115,13 +118,17 @@
     // TODO: nested shortcuts
     actions.forEach(({ handler }) => {
       if (handler?.type === 'action' && handler.shortcut) {
-        keyMap[handler.shortcut] = () => handler.click(context);
+        keyMap[handler.shortcut] = () => {
+          handler.click(context);
+        };
       }
     });
     editor.addKeyMap(keyMap);
 
     const linter: Linter = async (content) => {
-      const res = await Promise.all(plugins.map((p) => p.lint?.(content)));
+      const res = await Promise.all(
+        plugins.map((p) => p.lint?.(content, context))
+      );
       const annotations = res.flat().filter((a): a is Annotation => a != null);
       return annotations;
     };
@@ -165,7 +172,7 @@
   let currentBlockIndex = 0;
 
   onMount(async () => {
-    const codemirror = factory();
+    codemirror = factory();
     usePlaceholder(codemirror);
     useOverlay(codemirror);
     useXml(codemirror); // inline html highlight

@@ -11,6 +11,7 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom';
   import mermaid from '@bytemd/plugin-mermaid';
   import gemoji from '@bytemd/plugin-gemoji';
+  // import markdownlint from '@bytemd/plugin-markdownlint';
   import locales from './locales';
 
   import 'bytemd/dist/index.css';
@@ -28,6 +29,17 @@
 
   function handleChange(e) {
     value = e.detail.value;
+  }
+
+  function uploadImages(files) {
+    return Promise.all(
+      files.map((file) => {
+        // TODO:
+        return {
+          url: 'https://picsum.photos/300',
+        };
+      })
+    );
   }
 
   onMount(async () => {
@@ -60,6 +72,7 @@
     // enabled.mdx && mdx(),
     enabled['medium-zoom'] && mediumZoom(),
     enabled.mermaid && mermaid({ locale: currentLocale.plugin_mermaid }),
+    // markdownlint(),
   ].filter((x) => x);
 </script>
 
@@ -89,16 +102,7 @@
     {plugins}
     placeholder={localeKey === 'en' ? 'Start writing' : '开始写作'}
     locale={currentLocale.bytemd}
-    uploadImages={(files) => {
-      return Promise.all(
-        files.map((file) => {
-          // TODO:
-          return {
-            url: 'https://picsum.photos/300',
-          };
-        })
-      );
-    }}
+    {uploadImages}
     on:change={handleChange}
   />
 </div>

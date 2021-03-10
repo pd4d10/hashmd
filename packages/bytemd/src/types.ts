@@ -2,6 +2,7 @@ import type { Processor } from 'unified';
 import type { Schema } from 'hast-util-sanitize';
 import type { VFile } from 'vfile';
 import type { Annotation, Editor, EditorConfiguration } from 'codemirror';
+import type CodeMirror from 'codemirror';
 import type { EditorUtils } from './editor';
 import type en from './locales/en.json';
 import type { Image } from 'mdast';
@@ -10,6 +11,7 @@ import type { DeepPartial } from 'tsdef';
 export type BytemdLocale = typeof en;
 
 export interface BytemdEditorContext extends EditorUtils {
+  codemirror: typeof CodeMirror;
   /**
    * CodeMirror editor instance
    */
@@ -103,15 +105,15 @@ export interface BytemdPlugin {
   /**
    * Side effect for the editor, triggers when plugin changes
    */
-  editorEffect?(context: BytemdEditorContext): void | (() => void);
+  editorEffect?(ctx: BytemdEditorContext): void | (() => void);
   /**
    * Side effect for the viewer, triggers when viewer props changes
    */
-  viewerEffect?(context: BytemdViewerContext): void | (() => void);
+  viewerEffect?(ctx: BytemdViewerContext): void | (() => void);
   /**
    *
    */
-  lint?: (value: string) => Promise<Annotation[]>;
+  lint?: (value: string, ctx: BytemdEditorContext) => Promise<Annotation[]>;
 }
 
 export interface EditorProps extends ViewerProps {

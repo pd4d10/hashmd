@@ -11,6 +11,7 @@
     "@bytemd/plugin-highlight": "^1.7.0",
     "@bytemd/plugin-math": "^1.7.0",
     "@bytemd/plugin-mdx": "^1.7.0",
+    "@bytemd/plugin-markdownlint": "^1.7.0",
     "@bytemd/plugin-medium-zoom": "^1.7.0",
     "@bytemd/plugin-mermaid": "^1.7.0",
     "bytemd": "^1.7.0",

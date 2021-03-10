@@ -93,6 +93,7 @@ importers:
       '@bytemd/plugin-gemoji': link:../../packages/plugin-gemoji
       '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
       '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
+      '@bytemd/plugin-markdownlint': link:../../packages/plugin-markdownlint
       '@bytemd/plugin-math': link:../../packages/plugin-math
       '@bytemd/plugin-mdx': link:../../packages/plugin-mdx
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
@@ -119,6 +120,7 @@ importers:
       '@bytemd/plugin-gemoji': ^1.7.0
       '@bytemd/plugin-gfm': ^1.7.0
       '@bytemd/plugin-highlight': ^1.7.0
+      '@bytemd/plugin-markdownlint': ^1.7.0
       '@bytemd/plugin-math': ^1.7.0
       '@bytemd/plugin-mdx': ^1.7.0
       '@bytemd/plugin-medium-zoom': ^1.7.0
@@ -332,6 +334,14 @@ importers:
     specifiers:
       bytemd: ^1.8.0
       rehype-highlight: ^4.1.0
+  packages/plugin-markdownlint:
+    dependencies:
+      markdownlint: 0.23.1
+    devDependencies:
+      bytemd: link:../bytemd
+    specifiers:
+      bytemd: ^1.8.0
+      markdownlint: ^0.23.1
   packages/plugin-math:
     dependencies:
       '@types/katex': 0.11.0
@@ -4759,6 +4769,10 @@ packages:
       sprintf-js: 1.0.3
     resolution:
       integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
+  /argparse/2.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
   /aria-query/4.2.2:
     dependencies:
       '@babel/runtime': 7.13.10
@@ -7553,6 +7567,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
+  /entities/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-hCx1oky9PFrJ611mf0ifBLBRW8lUUVRlFolb5gWRfIELabBlbp9xZvrqZLZAs+NxFnbfQoeGd8wDkygjg7U85w==
   /entities/2.2.0:
     resolution:
       integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
@@ -10705,6 +10723,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
+  /linkify-it/3.0.2:
+    dependencies:
+      uc.micro: 1.0.6
+    dev: false
+    resolution:
+      integrity: sha512-gDBO4aHNZS6coiZCKVhSNh43F9ioIL4JwRjLZPkoLIY4yZFwg264Y5lu2x6rb1Js42Gh6Yqm2f6L2AJcnkzinQ==
   /livereload-js/3.3.1:
     dev: true
     resolution:
@@ -11059,12 +11083,31 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
+  /markdown-it/12.0.4:
+    dependencies:
+      argparse: 2.0.1
+      entities: 2.1.0
+      linkify-it: 3.0.2
+      mdurl: 1.0.1
+      uc.micro: 1.0.6
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-34RwOXZT8kyuOJy25oJNJoulO8L0bTHYWXcdZBYZqFnjIy3NgjeoM3FmPXIOFQ26/lSHYMr8oc62B6adxXcb3Q==
   /markdown-table/2.0.0:
     dependencies:
       repeat-string: 1.6.1
     dev: false
     resolution:
       integrity: sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==
+  /markdownlint/0.23.1:
+    dependencies:
+      markdown-it: 12.0.4
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-iOEwhDfNmq2IJlaA8mzEkHYUi/Hwoa6Ss+HO5jkwUR6wQ4quFr0WzSx+Z9rsWZKUaPbyirIdL1zGmJRkWawr4Q==
   /md5.js/1.3.5:
     dependencies:
       hash-base: 3.1.0
@@ -16784,6 +16827,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
+  /uc.micro/1.0.6:
+    dev: false
+    resolution:
+      integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
   /ufo/0.6.9:
     dev: false
     resolution:
