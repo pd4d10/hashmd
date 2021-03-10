@@ -33,42 +33,42 @@
   $: previewActive = activeTab === 'preview';
 
   $: rightActions = [
-    {
-      title: 'Key binding',
-      icon: icons.keyboard,
-      handler: {
-        type: 'dropdown',
-        actions: [
-          {
-            title: 'Normal',
-            handler: {
-              type: 'action',
-              click() {
-                dispatch('key', 'default');
-              },
-            },
-          },
-          {
-            title: 'Vim',
-            handler: {
-              type: 'action',
-              click() {
-                dispatch('key', 'vim');
-              },
-            },
-          },
-          {
-            title: 'Emacs',
-            handler: {
-              type: 'action',
-              click() {
-                dispatch('key', 'emacs');
-              },
-            },
-          },
-        ],
-      },
-    },
+    // {
+    //   title: 'Key binding',
+    //   icon: icons.keyboard,
+    //   handler: {
+    //     type: 'dropdown',
+    //     actions: [
+    //       {
+    //         title: 'Normal',
+    //         handler: {
+    //           type: 'action',
+    //           click() {
+    //             dispatch('key', 'default');
+    //           },
+    //         },
+    //       },
+    //       {
+    //         title: 'Vim',
+    //         handler: {
+    //           type: 'action',
+    //           click() {
+    //             dispatch('key', 'vim');
+    //           },
+    //         },
+    //       },
+    //       {
+    //         title: 'Emacs',
+    //         handler: {
+    //           type: 'action',
+    //           click() {
+    //             dispatch('key', 'emacs');
+    //           },
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
     {
       title: tocActive ? locale.toolbar.closeToc : locale.toolbar.toc,
       icon: icons.toc,

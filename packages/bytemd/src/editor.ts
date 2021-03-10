@@ -120,12 +120,13 @@ export function findStartIndex(num: number, nums: number[]) {
   return startIndex;
 }
 
-const getShortcutWithPrefix = (key: string) => {
-  if (typeof navigator !== 'undefined' && /Mac/.test(navigator.platform)) {
-    return 'Cmd-' + key;
-  } else {
-    return 'Ctrl-' + key;
-  }
+const getShortcutWithPrefix = (key: string, shift = false) => {
+  const shiftPrefix = shift ? 'Shift-' : '';
+  const CmdPrefix =
+    typeof navigator !== 'undefined' && /Mac/.test(navigator.platform)
+      ? 'Cmd-'
+      : 'Ctrl-';
+  return shiftPrefix + CmdPrefix + key;
 };
 
 export function getBuiltinActions(
@@ -165,11 +166,11 @@ export function getBuiltinActions(
       cheatsheet: `**${locale.action.boldText}**`,
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('B'),
         click({ wrapText, editor }) {
           wrapText('**');
           editor.focus();
         },
-        shortcut: getShortcutWithPrefix('B'),
       },
     },
     {
@@ -178,11 +179,11 @@ export function getBuiltinActions(
       cheatsheet: `*${locale.action.italicText}*`,
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('I'),
         click({ wrapText, editor }) {
           wrapText('*');
           editor.focus();
         },
-        shortcut: getShortcutWithPrefix('I'),
       },
     },
     {
@@ -203,6 +204,7 @@ export function getBuiltinActions(
       cheatsheet: `[${locale.action.linkText}](url)`,
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('K'),
         click({ editor, wrapText }) {
           wrapText('[', '](url)');
           const cursor = editor.getCursor();
@@ -212,7 +214,6 @@ export function getBuiltinActions(
           );
           editor.focus();
         },
-        shortcut: getShortcutWithPrefix('K'),
       },
     },
     {
@@ -222,6 +223,7 @@ export function getBuiltinActions(
       handler: uploadImages
         ? {
             type: 'action',
+            shortcut: getShortcutWithPrefix('I', true),
             async click({ appendBlock, selectFiles, editor }) {
               const fileList = await selectFiles({
                 accept: 'image/*',
@@ -252,6 +254,7 @@ export function getBuiltinActions(
       cheatsheet: '`' + locale.action.codeText + '`',
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('K', true),
         click({ wrapText, editor }) {
           wrapText('`');
           editor.focus();
@@ -264,6 +267,7 @@ export function getBuiltinActions(
       cheatsheet: '```' + locale.action.codeLang + '↵',
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('C', true),
         click({ editor, appendBlock }) {
           const { line } = appendBlock('```js\n```');
           editor.setSelection({ line, ch: 3 }, { line, ch: 5 });
@@ -277,6 +281,7 @@ export function getBuiltinActions(
       cheatsheet: `- ${locale.action.ulItem}`,
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('U', true),
         click({ replaceLines, editor }) {
           replaceLines((line) => '- ' + line);
           editor.focus();
@@ -289,6 +294,7 @@ export function getBuiltinActions(
       cheatsheet: `1. ${locale.action.olItem}`,
       handler: {
         type: 'action',
+        shortcut: getShortcutWithPrefix('O', true),
         click({ replaceLines, editor }) {
           replaceLines((line, i) => `${i + 1}. ${line}`);
           editor.focus();

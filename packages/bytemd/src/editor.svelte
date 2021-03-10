@@ -34,6 +34,7 @@
   import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter';
   import useVim from 'codemirror-ssr/keymap/vim';
   import useEmacs from 'codemirror-ssr/keymap/emacs';
+  // import useLint from 'codemirror-ssr/addon/lint/lint';
 
   export let value: EditorProps['value'] = '';
   export let plugins: NonNullable<EditorProps['plugins']> = [];
@@ -161,12 +162,17 @@
     useYamlFrontmatter(codemirror);
     useVim(codemirror);
     useEmacs(codemirror);
+    // useLint(codemirror);
+    // codemirror.registerHelper('lint', 'yaml-frontmatter', (text: string) => {
+    //   debugger;
+    // });
 
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
       tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
       placeholder,
+      // lint: true,
       ...editorConfig,
     });
 
