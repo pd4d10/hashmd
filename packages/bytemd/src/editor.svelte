@@ -173,6 +173,7 @@
       mode: 'yaml-frontmatter',
       lineWrapping: true,
       tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
+      indentUnit: 4, // nested ordered list does not work with 2 spaces
       placeholder,
       // lint: true,
       ...editorConfig,
