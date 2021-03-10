@@ -315,6 +315,8 @@
         })
         .filter((f): f is File => f != null);
       const imgs = await uploadImages(files);
+      if (!imgs.length) return;
+
       context.appendBlock(
         imgs
           .map(({ url, alt, title }, i) => {
