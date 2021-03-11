@@ -8,8 +8,21 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.4.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "next": "10.0.8",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "@bytemd/plugin-breaks": "latest",
+    "@bytemd/plugin-footnotes": "latest",
+    "@bytemd/plugin-frontmatter": "latest",
+    "@bytemd/plugin-gemoji": "latest",
+    "@bytemd/plugin-gfm": "latest",
+    "@bytemd/plugin-highlight": "latest",
+    "@bytemd/plugin-math": "latest",
+    "@bytemd/plugin-mdx": "latest",
+    "@bytemd/plugin-markdownlint": "latest",
+    "@bytemd/plugin-medium-zoom": "latest",
+    "@bytemd/plugin-mermaid": "latest",
+    "@bytemd/react": "latest",
+    "bytemd": "latest"
   }
 }
