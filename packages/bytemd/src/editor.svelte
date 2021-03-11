@@ -3,6 +3,7 @@
 <script lang="ts">
   import type { Editor, KeyMap, Linter, Annotation } from 'codemirror';
   import type { Root, Element } from 'hast';
+  import type { VFile } from 'vfile';
   import type {
     BytemdEditorContext,
     BytemdLocale,
@@ -125,23 +126,12 @@
       }
     });
     editor.addKeyMap(keyMap);
-
-    const linter: Linter = async (content) => {
-      const res = await Promise.all(
-        plugins.map((p) => p.lint?.(content, context))
-      );
-      const annotations = res.flat().filter((a): a is Annotation => a != null);
-      return annotations;
-    };
-    editor.setOption('lint', linter);
   }
   function off() {
     // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb());
 
     editor.removeKeyMap(keyMap);
-
-    editor.setOption('lint', false);
   }
 
   let debouncedValue = value;
@@ -170,6 +160,7 @@
   let editPs: number[];
   let previewPs: number[];
   let hast: Root = { type: 'root', children: [] };
+  let vfile: VFile;
   let currentBlockIndex = 0;
 
   onMount(async () => {
@@ -185,6 +176,28 @@
     useEmacs(codemirror);
     useLint(codemirror);
 
+    // lint
+    const linter: Linter = () => {
+      if (!vfile) return [];
+
+      const annotations = vfile.messages.map((m) => {
+        const a: Annotation = {
+          from: codemirror.Pos(
+            m.location.start.line - 1,
+            m.location.start.column - 1
+          ),
+          to: codemirror.Pos(
+            m.location.end.line - 1,
+            m.location.end.column - 1
+          ),
+          message: m.message,
+        };
+        return a;
+      });
+      // console.log(annotations);
+      return annotations;
+    };
+
     editor = codemirror.fromTextArea(textarea, {
       mode: 'yaml-frontmatter',
       lineWrapping: true,
@@ -192,6 +205,7 @@
       indentUnit: 4, // nested ordered list does not work with 2 spaces
       ...editorConfig,
       placeholder,
+      lint: linter,
     });
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
@@ -410,7 +424,8 @@
           {plugins}
           {sanitize}
           on:hast={(e) => {
-            hast = e.detail;
+            hast = e.detail.hast;
+            vfile = e.detail.file;
           }}
         />
       {/if}

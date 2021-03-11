@@ -11,8 +11,8 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom';
   import mermaid from '@bytemd/plugin-mermaid';
   import gemoji from '@bytemd/plugin-gemoji';
-  // import markdownlint from '@bytemd/plugin-markdownlint';
   import locales from './locales';
+  // import lintConsistent from 'remark-preset-lint-consistent';
 
   import 'bytemd/dist/index.css';
   import 'github-markdown-css';
@@ -62,6 +62,12 @@
   };
 
   $: plugins = [
+    // {
+    //   remark: (p) => p.use(lintConsistent),
+    //   viewerEffect(ctx) {
+    //     console.log(ctx.file.messages);
+    //   },
+    // },
     enabled.breaks && breaks(),
     enabled.footnotes && footnotes(),
     enabled.frontmatter && frontmatter(),
@@ -72,7 +78,6 @@
     // enabled.mdx && mdx(),
     enabled['medium-zoom'] && mediumZoom(),
     enabled.mermaid && mermaid({ locale: currentLocale.plugin_mermaid }),
-    // markdownlint(),
   ].filter((x) => x);
 </script>
 

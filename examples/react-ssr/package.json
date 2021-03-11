@@ -19,7 +19,6 @@
     "@bytemd/plugin-highlight": "latest",
     "@bytemd/plugin-math": "latest",
     "@bytemd/plugin-mdx": "latest",
-    "@bytemd/plugin-markdownlint": "latest",
     "@bytemd/plugin-medium-zoom": "latest",
     "@bytemd/plugin-mermaid": "latest",
     "@bytemd/react": "latest",

@@ -54,10 +54,10 @@
           //     console.log(tree)
           //   }),
           rehype: (p) =>
-            p.use(() => (tree) => {
+            p.use(() => (tree, file) => {
               tick().then(() => {
                 // console.log(tree);
-                dispatch('hast', tree);
+                dispatch('hast', { hast: tree, file });
               });
             }),
         },
