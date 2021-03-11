@@ -6,15 +6,26 @@ import frontmatter from '@bytemd/plugin-frontmatter';
 import gfm from '@bytemd/plugin-gfm';
 import highlight from '@bytemd/plugin-highlight';
 import math from '@bytemd/plugin-math';
-// import mdx from '@bytemd/plugin-mdx';
 import mediumZoom from '@bytemd/plugin-medium-zoom';
 import mermaid from '@bytemd/plugin-mermaid';
 import gemoji from '@bytemd/plugin-gemoji';
-// import mermaid from '@bytemd/plugin-mermaid';
 import { useMemo, useState, useEffect, Fragment } from 'react';
 
-const pluginNames = ['breaks', 'gfm', 'footnotes', 'frontmatter', 'gemoji', 'highlight', 'math', 'medium-zoom', 'mermaid'];
-const pluginNamesEnable = pluginNames.reduce((acc, p) => (acc[p] = true, acc), {})
+const pluginNames = [
+  'breaks',
+  'gfm',
+  'footnotes',
+  'frontmatter',
+  'gemoji',
+  'highlight',
+  'math',
+  'medium-zoom',
+  'mermaid',
+];
+const pluginNamesEnable = pluginNames.reduce(
+  (acc, p) => ((acc[p] = true), acc),
+  {}
+);
 
 export default function Home() {
   const [value, setValue] = useState('');
@@ -59,24 +70,24 @@ export default function Home() {
       <div style={{ padding: '10px 0' }}>
         Plugins:
         {pluginNames.map((p) => (
-        <Fragment key={p}>
-          {' '}
-          <label>
-            <input
-              type="checkbox"
-              checked={enabled[p]}
-              onChange={(e) => {
-                const { checked } = e.target;
-                setEnabled((v) => ({
-                  ...v,
-                  [p]: checked,
-                }));
-              }}
-            />
-            {p}
-          </label>
-        </Fragment>
-      ))}
+          <Fragment key={p}>
+            {' '}
+            <label>
+              <input
+                type="checkbox"
+                checked={enabled[p]}
+                onChange={(e) => {
+                  const { checked } = e.target;
+                  setEnabled((v) => ({
+                    ...v,
+                    [p]: checked,
+                  }));
+                }}
+              />
+              {p}
+            </label>
+          </Fragment>
+        ))}
       </div>
       <Editor
         value={value}

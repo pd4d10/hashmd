@@ -7202,7 +7202,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.0.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
     engines:
       node: '>= 10.13.0'
     peerDependencies:
@@ -15404,7 +15404,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
     engines:

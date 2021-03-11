@@ -74,7 +74,11 @@
     enabled.gemoji && gemoji(),
     enabled.gfm && gfm({ locale: currentLocale.plugin_gfm }),
     enabled.highlight && highlight(),
-    enabled.math && math({ locale: currentLocale.plugin_math }),
+    enabled.math &&
+      math({
+        locale: currentLocale.plugin_math,
+        katexOptions: { output: 'html' }, // https://github.com/KaTeX/KaTeX/issues/2796
+      }),
     // enabled.mdx && mdx(),
     enabled['medium-zoom'] && mediumZoom(),
     enabled.mermaid && mermaid({ locale: currentLocale.plugin_mermaid }),
@@ -105,7 +109,7 @@
     {value}
     {mode}
     {plugins}
-    placeholder={localeKey === 'en' ? 'Start writing' : '开始写作'}
+    placeholder={'Start writing with ByteMD'}
     locale={currentLocale.bytemd}
     {uploadImages}
     on:change={handleChange}
