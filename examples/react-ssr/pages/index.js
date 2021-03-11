@@ -1,22 +1,29 @@
 import Head from 'next/head';
-import { Editor } from 'bytemd/react';
+import { Editor } from '@bytemd/react';
+import breaks from '@bytemd/plugin-breaks';
+import footnotes from '@bytemd/plugin-footnotes';
+import frontmatter from '@bytemd/plugin-frontmatter';
+import gfm from '@bytemd/plugin-gfm';
 import highlight from '@bytemd/plugin-highlight';
 import math from '@bytemd/plugin-math';
+// import mdx from '@bytemd/plugin-mdx';
+import mediumZoom from '@bytemd/plugin-medium-zoom';
+import mermaid from '@bytemd/plugin-mermaid';
+import gemoji from '@bytemd/plugin-gemoji';
 // import mermaid from '@bytemd/plugin-mermaid';
 import { useMemo, useState, useEffect, Fragment } from 'react';
 
+const pluginNames = ['breaks', 'gfm', 'footnotes', 'frontmatter', 'gemoji', 'highlight', 'math', 'medium-zoom', 'mermaid'];
+const pluginNamesEnable = pluginNames.reduce((acc, p) => (acc[p] = true, acc), {})
+
 export default function Home() {
   const [value, setValue] = useState('');
-  const [enabled, setEnabled] = useState({
-    mermaid: true,
-    highlight: true,
-    math: true,
-  });
+  const [enabled, setEnabled] = useState(pluginNamesEnable);
 
   useEffect(() => {
     const init = async () => {
       const res = await fetch(
-        'https://raw.githubusercontent.com/bytedance/bytemd/master/assets/demo.md'
+        'https://raw.githubusercontent.com/bytedance/bytemd/main/examples/svelte/public/example.md'
       );
       const text = await res.text();
       setValue(text);
@@ -28,9 +35,16 @@ export default function Home() {
   const plugins = useMemo(
     () =>
       [
-        // enabled.mermaid && mermaid(), // TODO: https://github.com/vercel/next.js/issues/706
+        enabled.breaks && breaks(),
+        enabled.footnotes && footnotes(),
+        enabled.frontmatter && frontmatter(),
+        enabled.gemoji && gemoji(),
+        enabled.gfm && gfm(),
         enabled.highlight && highlight(),
         enabled.math && math(),
+        // enabled.mdx && mdx(),
+        enabled['medium-zoom'] && mediumZoom(),
+        enabled.mermaid && mermaid(),
       ].filter((x) => x),
     [enabled]
   );
@@ -44,25 +58,25 @@ export default function Home() {
 
       <div style={{ padding: '10px 0' }}>
         Plugins:
-        {['math', 'highlight', 'mermaid'].map((p) => (
-          <Fragment key={p}>
-            {' '}
-            <label>
-              <input
-                type="checkbox"
-                checked={enabled[p]}
-                onChange={(e) => {
-                  const { checked } = e.target;
-                  setEnabled((v) => ({
-                    ...v,
-                    [p]: checked,
-                  }));
-                }}
-              />
-              {p}
-            </label>
-          </Fragment>
-        ))}
+        {pluginNames.map((p) => (
+        <Fragment key={p}>
+          {' '}
+          <label>
+            <input
+              type="checkbox"
+              checked={enabled[p]}
+              onChange={(e) => {
+                const { checked } = e.target;
+                setEnabled((v) => ({
+                  ...v,
+                  [p]: checked,
+                }));
+              }}
+            />
+            {p}
+          </label>
+        </Fragment>
+      ))}
       </div>
       <Editor
         value={value}
