@@ -58,9 +58,7 @@ export default {
       const href = $.getAttribute('href');
       if (!href || !href.startsWith('#')) return;
 
-      const dest = this.markdownBody.querySelector(
-        '#user-content-' + href.slice(1)
-      );
+      const dest = this.$el.querySelector('#user-content-' + href.slice(1));
       if (dest) dest.scrollIntoView();
     },
   },
