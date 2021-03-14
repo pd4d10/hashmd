@@ -186,15 +186,18 @@
             m.location.start.line - 1,
             m.location.start.column - 1
           ),
-          to: codemirror.Pos(
-            m.location.end.line - 1,
-            m.location.end.column - 1
-          ),
+          to:
+            m.location.end.line == null // TODO: why null?
+              ? codemirror.Pos(m.location.start.line - 1)
+              : codemirror.Pos(
+                  m.location.end.line - 1,
+                  m.location.end.column - 1
+                ),
           message: m.message,
         };
         return a;
       });
-      // console.log(annotations);
+      console.log(annotations);
       return annotations;
     };
 
