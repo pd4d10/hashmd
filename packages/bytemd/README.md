@@ -136,7 +136,7 @@ const editor = new Editor({
   },
 });
 
-editor.on('change', (e) => {
+editor.$on('change', (e) => {
   editor.$set({ value: e.detail.value });
 });
 ```
