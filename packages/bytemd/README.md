@@ -9,7 +9,7 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 1. **Lightweight and framework agnostic**: ByteMD is built with [Svelte](https://svelte.dev/). It compiles to vanilla JS DOM manipulation without importing any UI Framework runtime bundle, which makes it lightweight, and easily adapted to other libraries/frameworks.
 2. **Easy to extend**: ByteMD has a plugin system to extend the basic Markdown syntax, which makes it easy to add additional features such as code syntax highlight, math equation and [Mermaid](https://mermaid-js.github.io/mermaid/) flowcharts. You can also [write your own plugin](#write-a-plugin) if these ones don't meet your needs.
 3. **Secure by default**: [Cross-site scripting(XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack such as `<script>` and `<img onerror>` have been correctly handled by ByteMD. No need to introduce extra DOM sanitize steps.
-4. **SSR compatiable**: ByteMD could be used in the [Server-side rendering(SSR)](https://ssr.vuejs.org/) environment without extra config. SSR is widely used in some cases due to its better SEO and fast time-to-content in slow network connection.
+4. **SSR compatible**: ByteMD could be used in the [Server-side rendering(SSR)](https://ssr.vuejs.org/) environment without extra config. SSR is widely used in some cases due to its better SEO and fast time-to-content in slow network connection.
 
 ## Installation
 
@@ -168,7 +168,7 @@ editor.$on('change', (e) => {
 
 ### Editor
 
-The default height of ByteMD Editor is `300px`. It could be overrided by CSS:
+The default height of ByteMD Editor is `300px`. It could be overridden by CSS:
 
 ```css
 .bytemd {
@@ -176,7 +176,7 @@ The default height of ByteMD Editor is `300px`. It could be overrided by CSS:
 }
 ```
 
-The other styles could also be overrided, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/styles/index.scss).
+The other styles could also be overridden, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/styles/index.scss).
 
 ### Viewer
 
