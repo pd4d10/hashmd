@@ -1,5 +1,5 @@
 import type { BytemdPlugin } from 'bytemd';
-import remarkMdx from './remark-mdx';
+import remarkMdx from 'remark-mdx';
 
 export interface BytemdPluginMdxOptions {}
 

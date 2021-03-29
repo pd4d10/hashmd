@@ -193,7 +193,7 @@ importers:
   examples/svelte-ssr:
     dependencies:
       compression: 1.7.4
-      polka: 1.0.0-next.11
+      polka: 1.0.0-next.13
       sirv: 0.4.6
     devDependencies:
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
@@ -384,14 +384,12 @@ importers:
       remark-math: ^4.0.0
   packages/plugin-mdx:
     dependencies:
-      mdast-util-mdx: 0.1.1
-      micromark-extension-mdx: 0.2.1
+      remark-mdx: 2.0.0-next.9
     devDependencies:
       bytemd: link:../bytemd
     specifiers:
       bytemd: ^1.9.0
-      mdast-util-mdx: ^0.1.1
-      micromark-extension-mdx: ^0.2.1
+      remark-mdx: ^2.0.0-next.9
   packages/plugin-medium-zoom:
     dependencies:
       medium-zoom: 1.0.6
@@ -3014,6 +3012,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
+  /@polka/url/1.0.0-next.12:
+    dev: false
+    resolution:
+      integrity: sha512-6RglhutqrGFMO1MNUXp95RBuYIuc8wTnMAV5MUhLmjTOy78ncwOw7RgeQ/HeymkKXRhZd0s2DNrM1rL7unk3MQ==
   /@popperjs/core/2.9.1:
     dev: false
     resolution:
@@ -3768,6 +3770,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ZQl7LOWaF5ePqqcX4hLuv/bLXYQNfNWw2c0/yX/TsPRKamzHcTGQnlCjHT3TsmkOUVEPS3crCxiPfdzE/Trlhg==
+  /acorn-jsx/5.3.1_acorn@8.1.0:
+    dependencies:
+      acorn: 8.1.0
+    dev: false
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    resolution:
+      integrity: sha512-K0Ptm/47OKfQRpNQ2J/oIN/3QYiK6FwW+eJbILhsdxh2WTLdl+30o8aGdTbm5JbffpFFAg/g+zi1E+jvJha5ng==
   /acorn-walk/7.2.0:
     dev: true
     engines:
@@ -3815,6 +3825,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-v+DieK/HJkJOpFBETDJioequtc3PfxsWMaxIdIwujtF7FEV/MAyDQLlm6/zPvr7Mix07mLh6ccVwIsloceodlg==
+  /acorn/8.1.0:
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-LWCF/Wn0nfHOmJ9rzQApGnxnvgfROzGilS8936rqN/lfcYkY9MYZzdMqN+2NJ4SlTc+m5HiSa+kNfDtI64dwUA==
   /agent-base/4.2.1:
     dependencies:
       es6-promisify: 5.0.0
@@ -6869,10 +6886,10 @@ packages:
       node: '>=4.0'
     resolution:
       integrity: sha512-BxbNGGNm0RyRYvUdHpIwv9IWzeM9XClbOxwoATuFdOE7ZE6wHL+HQ5T8hoPM+zHvmKzzsEqhgy0GrQ5X13afiQ==
-  /estree-util-is-identifier-name/1.0.0:
+  /estree-util-is-identifier-name/1.1.0:
     dev: false
     resolution:
-      integrity: sha512-QM4F0ZUqsVDYLSefbbMgx0rVClS5YgFgBV7PFUyIOb6t9M7IhKGuaeLNIfCj6m11NxT8bXfGjMcFWTjMnYoDbg==
+      integrity: sha512-OVJZ3fGGt9By77Ix9NhaRbzfbDV/2rx9EP7YIDJTmsZSEc5kYn2vWcNccYyahJL2uAQZK2a5Or2i0wtIKTPoRQ==
   /estree-walker/0.6.1:
     dev: true
     resolution:
@@ -10537,7 +10554,7 @@ packages:
       integrity: sha512-Sh8YHLSAlbm/7TZkVKEC4wDcJE8XhVpZ9hUXBue1TcAicrrzs/oXu7PHH3NcyMemjGyMkiVS34Y0AHC5KG3y4A==
   /micromark-extension-mdx-jsx/0.3.3:
     dependencies:
-      estree-util-is-identifier-name: 1.0.0
+      estree-util-is-identifier-name: 1.1.0
       micromark: 2.11.4
       micromark-extension-mdx-expression: 0.3.2
       vfile-message: 2.0.4
@@ -10557,6 +10574,26 @@ packages:
     dev: false
     resolution:
       integrity: sha512-J+nZegf1ExPz1Ft6shxu8M9WfRom1gwRIx6gpJK1SEEqKzY5LjOR1d/WHRtjwV4KoMXrL53+PoN7T1Rw1euJew==
+  /micromark-extension-mdxjs-esm/0.3.0:
+    dependencies:
+      micromark: 2.11.4
+      micromark-extension-mdx-expression: 0.3.2
+      vfile-message: 2.0.4
+    dev: false
+    resolution:
+      integrity: sha512-ZkI/cneSGQFdmB3iOT34n9Zq0Gc6vknAd1o2G7SaiCUY5D9a5ZCvGP/vCjHmlB7f2Y4b4+O1YMLywxYmQeUFwQ==
+  /micromark-extension-mdxjs/0.3.0:
+    dependencies:
+      acorn: 8.1.0
+      acorn-jsx: 5.3.1_acorn@8.1.0
+      micromark: 2.11.4
+      micromark-extension-mdx-expression: 0.3.2
+      micromark-extension-mdx-jsx: 0.3.3
+      micromark-extension-mdx-md: 0.1.1
+      micromark-extension-mdxjs-esm: 0.3.0
+    dev: false
+    resolution:
+      integrity: sha512-NQuiYA0lw+eFDtSG4+c7ao3RG9dM4P0Kx/sn8OLyPhxtIc6k+9n14k5VfLxRKfAxYRTo8c5PLZPaRNmslGWxJw==
   /micromark/2.11.4:
     dependencies:
       debug: 4.3.1
@@ -12051,15 +12088,15 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
-  /polka/1.0.0-next.11:
+  /polka/1.0.0-next.13:
     dependencies:
-      '@polka/url': 1.0.0-next.11
+      '@polka/url': 1.0.0-next.12
       trouter: 3.1.0
     dev: false
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-M/HBkS6ILksrDq7uvktCTev81OzuLwNtpxMyYdUhxLKQlMWdsu789XMotQU+p8JY8CM8vx8ML0HudyWjRus/lg==
+      integrity: sha512-ISFBSJ3hHeSDOhbEUwBn0Jp8Rd9iOdXJa5LUaYyECw6lQOSkr0wJ7Shl5pRRS/u0t+uQpw9jJPypHRyX8mPpPQ==
   /portfinder/1.0.28:
     dependencies:
       async: 2.6.3
@@ -13726,6 +13763,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-lH7SoQenXtQrvL0bm+mjZbvOk//YWNuyR+MxV18Qyv8rgFmMEGNuB0TSCQDkoDaiJ40FCnG8lxErc/zhcedYbw==
+  /remark-mdx/2.0.0-next.9:
+    dependencies:
+      mdast-util-mdx: 0.1.1
+      micromark-extension-mdx: 0.2.1
+      micromark-extension-mdxjs: 0.3.0
+    dev: false
+    resolution:
+      integrity: sha512-I5dCKP5VE18SMd5ycIeeEk8Hl6oaldUY6PIvjrfm65l7d0QRnLqknb62O2g3QEmOxCswcHTtwITtz6rfUIVs+A==
   /remark-message-control/6.0.0:
     dependencies:
       mdast-comment-marker: 1.1.2
