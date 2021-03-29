@@ -1,0 +1,36 @@
+{
+  "name": "svelte-kit",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "start": "svelte-kit start"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "next",
+    "@sveltejs/kit": "next",
+    "svelte": "^3.29.0",
+    "vite": "^2.1.0",
+    "typescript": "^4.0.0",
+    "tslib": "^2.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "sass": "^1.0.0"
+  },
+  "dependencies": {
+    "@bytemd/plugin-breaks": "^1.7.0",
+    "@bytemd/plugin-footnotes": "^1.7.0",
+    "@bytemd/plugin-frontmatter": "^1.7.0",
+    "@bytemd/plugin-gemoji": "^1.7.0",
+    "@bytemd/plugin-gfm": "^1.7.0",
+    "@bytemd/plugin-highlight": "^1.7.0",
+    "@bytemd/plugin-math": "^1.7.0",
+    "@bytemd/plugin-mdx": "^1.7.0",
+    "@bytemd/plugin-medium-zoom": "^1.7.0",
+    "@bytemd/plugin-mermaid": "^1.7.0",
+    "bytemd": "^1.7.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">= 12.17.0"
+  }
+}
