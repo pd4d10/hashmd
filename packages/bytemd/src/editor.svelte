@@ -65,7 +65,7 @@
   let root: HTMLElement;
   let previewEl: HTMLElement;
   let textarea: HTMLTextAreaElement;
-  let containerWidth = Infinity;
+  let containerWidth = Infinity; // TODO: first screen
 
   let codemirror: ReturnType<typeof factory>;
   let editor: Editor;
@@ -360,7 +360,7 @@
 
     // @ts-ignore
     new ResizeObserver((entries) => {
-      containerWidth = entries[0].borderBoxSize[0].inlineSize;
+      containerWidth = entries[0].contentRect.width;
       // console.log(containerWidth);
     }).observe(root, { box: 'border-box' });
 
