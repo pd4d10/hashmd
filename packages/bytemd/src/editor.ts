@@ -5,6 +5,7 @@ import type {
   BytemdAction,
   EditorProps,
   BytemdLocale,
+  BytemdEditorContext,
 } from './types';
 import { icons } from './icons';
 import selectFiles from 'select-files';
@@ -121,6 +122,24 @@ const getShortcutWithPrefix = (key: string, shift = false) => {
   return shiftPrefix + CmdPrefix + key;
 };
 
+export async function handleImageUpload(
+  { editor, appendBlock, codemirror }: BytemdEditorContext,
+  uploadImages: NonNullable<EditorProps['uploadImages']>,
+  files: File[]
+) {
+  const imgs = await uploadImages(files);
+  const pos = appendBlock(
+    imgs
+      .map(({ url, alt, title }, i) => {
+        alt = alt ?? files[i].name;
+        return `![${alt}](${url}${title ? ` "${title}"` : ''})`;
+      })
+      .join('\n\n')
+  );
+  editor.setSelection(pos, codemirror.Pos(pos.line + imgs.length * 2 - 2));
+  editor.focus();
+}
+
 export function getBuiltinActions(
   locale: BytemdLocale,
   plugins: BytemdPlugin[],
@@ -216,26 +235,19 @@ export function getBuiltinActions(
         ? {
             type: 'action',
             shortcut: getShortcutWithPrefix('I', true),
-            async click({ appendBlock, selectFiles, editor, codemirror }) {
+            async click(ctx) {
               const fileList = await selectFiles({
                 accept: 'image/*',
                 multiple: true,
               });
-              const files = Array.from(fileList ?? []);
-              const imgs = await uploadImages(files);
-              const pos = appendBlock(
-                imgs
-                  .map(({ url, alt, title }, i) => {
-                    alt = alt ?? files[i].name;
-                    return `![${alt}](${url}${title ? ` "${title}"` : ''})`;
-                  })
-                  .join('\n\n')
-              );
-              editor.setSelection(
-                pos,
-                codemirror.Pos(pos.line + imgs.length * 2 - 2)
-              );
-              editor.focus();
+
+              if (fileList?.length) {
+                await handleImageUpload(
+                  ctx,
+                  uploadImages,
+                  Array.from(fileList)
+                );
+              }
             },
           }
         : undefined,

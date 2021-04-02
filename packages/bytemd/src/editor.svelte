@@ -20,6 +20,7 @@
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
+    handleImageUpload,
   } from './editor';
   import Status from './status.svelte';
   import { icons } from './icons';
@@ -197,7 +198,7 @@
         };
         return a;
       });
-      console.log(annotations);
+      // console.log(annotations);
       return annotations;
     };
 
@@ -330,8 +331,12 @@
     });
 
     // handle image drop and paste
-    const handleImages = async (itemList: DataTransferItemList | undefined) => {
+    const handleImages = async (
+      e: Event,
+      itemList: DataTransferItemList | undefined
+    ) => {
       if (!uploadImages) return;
+
       const files = Array.from(itemList ?? [])
         .map((item) => {
           if (item.type.startsWith('image/')) {
@@ -339,24 +344,18 @@
           }
         })
         .filter((f): f is File => f != null);
-      const imgs = await uploadImages(files);
-      if (!imgs.length) return;
 
-      context.appendBlock(
-        imgs
-          .map(({ url, alt, title }, i) => {
-            alt = alt ?? files[i].name;
-            return `![${alt}](${url}${title ? ` "${title}"` : ''})`;
-          })
-          .join('\n\n')
-      );
+      if (files.length) {
+        e.preventDefault(); // important
+        await handleImageUpload(context, uploadImages, files);
+      }
     };
 
     editor.on('drop', async (_, e) => {
-      handleImages(e.dataTransfer?.items);
+      handleImages(e, e.dataTransfer?.items);
     });
     editor.on('paste', async (_, e) => {
-      handleImages(e.clipboardData?.items);
+      handleImages(e, e.clipboardData?.items);
     });
 
     // @ts-ignore
