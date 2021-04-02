@@ -306,6 +306,7 @@ importers:
       tippy.js: 6.3.1
       tsdef: 0.0.14
       unified: 9.2.1
+      unist-util-visit: 2.0.3
       vfile: 4.2.1
       word-count: 0.2.2
     specifiers:
@@ -328,6 +329,7 @@ importers:
       tippy.js: ^6.3.1
       tsdef: ^0.0.14
       unified: ^9.2.1
+      unist-util-visit: ^2.0.3
       vfile: ^4.2.1
       word-count: ^0.2.2
   packages/mp:
