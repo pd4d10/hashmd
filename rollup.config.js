@@ -57,6 +57,7 @@ const configs = packages
         }),
         json(),
         replace({
+          preventAssignment: true, // fix warning
           'process.env.NODE_ENV': JSON.stringify(
             production ? 'production' : 'development'
           ),
@@ -80,6 +81,7 @@ const configs = packages
           format: 'cjs',
           sourcemap: true,
           file: path.resolve('packages', key, pkg.main),
+          exports: 'auto', // fix warning
         },
       ],
       external: [
