@@ -267,6 +267,8 @@
       // console.log(editPs, previewPs);
     }, 1000);
     const editorScrollHandler = () => {
+      if (overridePreview) return;
+
       if (!syncEnabled) return;
 
       if (previewCalled) {
@@ -295,6 +297,8 @@
       editCalled = true;
     };
     const previewScrollHandler = () => {
+      if (overridePreview) return;
+
       // find the current block in the view
       updateBlockPositions();
       currentBlockIndex = findStartIndex(
@@ -456,7 +460,7 @@
   </div>
   <Status
     locale={mergedLocale}
-    {split}
+    showSync={!overridePreview && split}
     value={debouncedValue}
     {syncEnabled}
     on:sync={(e) => {

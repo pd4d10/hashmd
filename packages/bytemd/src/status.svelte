@@ -3,7 +3,7 @@
   import wordCount from 'word-count';
   import { createEventDispatcher } from 'svelte';
 
-  export let split: boolean;
+  export let showSync: boolean;
   export let value: string;
   export let syncEnabled: boolean;
   export let locale: BytemdLocale;
@@ -25,7 +25,7 @@
   </div>
 
   <div class="bytemd-status-right">
-    {#if split}
+    {#if showSync}
       <label>
         <input
           type="checkbox"
