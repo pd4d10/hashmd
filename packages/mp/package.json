@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/mp",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "private": true,
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
@@ -20,7 +20,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^1.9.0"
+    "bytemd": "^1.9.1"
   },
   "devDependencies": {
     "miniprogram-api-typings": "^3.3.0"

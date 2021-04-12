@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "ByteMD plugin to support math formula",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "remark-math": "^4.0.0"
   },
   "devDependencies": {
-    "bytemd": "^1.9.0"
+    "bytemd": "^1.9.1"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

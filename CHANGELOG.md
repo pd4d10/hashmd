@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/bytedance/bytemd/compare/v1.9.0...v1.9.1) (2021-04-12)
+
+
+### Bug Fixes
+
+* disable scroll sync when override preview ([574cbdf](https://github.com/bytedance/bytemd/commit/574cbdf2bb1efcde6aaddb5cd46bb164e72d383b))
+* image paste and drop ([543b87b](https://github.com/bytedance/bytemd/commit/543b87be751f20c4cc7e4e2e0ffc8061065666de)), closes [#45](https://github.com/bytedance/bytemd/issues/45)
+* message location null ([d4613bc](https://github.com/bytedance/bytemd/commit/d4613bc5bea1b304b609a462e03bb14d230b9bc9))
+* nested heading in toc ([8776ebc](https://github.com/bytedance/bytemd/commit/8776ebc26a07373dcad3eb99c84da1663bf35657)), closes [#48](https://github.com/bytedance/bytemd/issues/48)
+* ResizeObserver browser compatibility ([2eb6f0a](https://github.com/bytedance/bytemd/commit/2eb6f0a6621441f8653322b4a99a56d31a8564e1)), closes [#70](https://github.com/bytedance/bytemd/issues/70)
+* **vue:** root element ([7908c30](https://github.com/bytedance/bytemd/commit/7908c30ef1cfd68d689b227cb7376d36b1981760))
+
+
+
+
+
 # [1.9.0](https://github.com/bytedance/bytemd/compare/v1.8.0...v1.9.0) (2021-03-10)
 
 
