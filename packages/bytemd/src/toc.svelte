@@ -32,21 +32,18 @@
     currentHeadingIndex = 0;
 
     hast.children
-      .filter((v): v is Element => v.type === 'element')
+      .filter((v): v is Element => v.type === 'element' && v.tagName[0] === 'h' && !!v.children.length)
       .forEach((node, index) => {
-        for (let i = 6; i > 0; i--) {
-          if (node.tagName === 'h' + i && node.children.length) {
-            minLevel = Math.min(minLevel, i);
-            items.push({
-              level: i,
-              text: stringifyHeading(node),
-            });
+        const i = Number(node.tagName[1]);
+        minLevel = Math.min(minLevel, i);
+        items.push({
+          level: i,
+          text: stringifyHeading(node),
+        });
 
-            // console.log(currentBlockIndex, index);
-            if (currentBlockIndex >= index) {
-              currentHeadingIndex = items.length - 1;
-            }
-          }
+        // console.log(currentBlockIndex, index);
+        if (currentBlockIndex >= index) {
+          currentHeadingIndex = items.length - 1;
         }
       });
   })();
