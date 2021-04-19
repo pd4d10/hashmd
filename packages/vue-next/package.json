@@ -1,0 +1,21 @@
+{
+  "name": "@bytemd/vue-next",
+  "version": "1.9.1",
+  "description": "Make bytemd support vue3",
+  "author": "lankeo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/vue-next"
+  },
+  "dependencies": {
+    "bytemd": "^1.9.1"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.0.9"
+  }
+}
