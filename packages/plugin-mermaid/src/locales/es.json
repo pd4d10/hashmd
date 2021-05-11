@@ -3,7 +3,7 @@
     "pie": "Gráfico sectorial",
     "gantt": "Diagrama de Gantt",
     "uj": "Diagrama de trayecto de usuario",
-    "er": "Diagrama de relación entre entidades",
+    "er": "Diagrama de entidad-relación",
     "state": "Diagrama de estado",
     "class": "Diagrama de clases",
     "sequence": "Diagrama de secuencia",
