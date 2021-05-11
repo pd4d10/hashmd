@@ -1,0 +1,57 @@
+{
+    "action": {
+        "quotedText": "text citat",
+        "quote": "Cita",
+        "linkText": "text de l’enllaç",
+        "link": "Enllaç",
+        "hr": "Línia horitzontal",
+        "olItem": "element",
+        "ol": "Llista ordenada",
+        "ulItem": "element",
+        "ul": "Llista sense ordenar",
+        "codeLang": "llenguatge",
+        "codeBlock": "Bloc de codi",
+        "codeText": "codi",
+        "code": "Codi",
+        "imageTitle": "títol",
+        "imageAlt": "text alt.",
+        "image": "Imatge",
+        "italicText": "text en cursiva",
+        "italic": "Cursiva",
+        "boldText": "text en negreta",
+        "bold": "Negreta",
+        "headingText": "encapçalament",
+        "h6": "Encapçalament 6",
+        "h5": "Encapçalament 5",
+        "h4": "Encapçalament 4",
+        "h3": "Encapçalament 3",
+        "h2": "Encapçalament 2",
+        "h1": "Encapçalament 1"
+    },
+    "sidebar": {
+        "toc": "Taula de contingut",
+        "cheatsheet": "Referència ràpida del Markdown",
+        "shortcuts": "Dreceres"
+    },
+    "toolbar": {
+        "closeToc": "Tanca la taula de contingut",
+        "toc": "Taula de contingut",
+        "exitFullscreen": "Surt de la pantalla completa",
+        "fullscreen": "Pantalla completa",
+        "source": "Codi font",
+        "closeHelp": "Tanca l’ajuda",
+        "help": "Ajuda",
+        "exitPreviewOnly": "Surt de «Només previsualització»",
+        "previewOnly": "Només previsualització",
+        "exitWriteOnly": "Surt de «Només escriptura»",
+        "writeOnly": "Només escriptura",
+        "preview": "Previsualització",
+        "write": "Escriptura"
+    },
+    "status": {
+        "top": "Desplaça’t fins al capdamunt",
+        "sync": "Desplaçament síncron",
+        "lines": "Línies",
+        "words": "Mots"
+    }
+}

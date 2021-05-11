@@ -9,8 +9,10 @@
         "help": "Ayuda",
         "preview": "Previsualizar",
         "closeHelp": "Cerrar ayuda",
-        "previewOnly": "Previsualizar solo",
-        "writeOnly": "Escribir solo"
+        "previewOnly": "Solo previsualización",
+        "writeOnly": "Solo escritura",
+        "exitPreviewOnly": "Salir de Solo previsualización",
+        "exitWriteOnly": "Salir de Solo escritura"
     },
     "action": {
         "hr": "Línea horizontal",
@@ -38,7 +40,8 @@
         "ulItem": "elemento",
         "ul": "Lista con bolos",
         "codeLang": "lenguaje",
-        "imageTitle": "título"
+        "imageTitle": "título",
+        "imageAlt": "texto alt."
     },
     "sidebar": {
         "cheatsheet": "Referencia rápida de Markdown",
@@ -46,7 +49,7 @@
         "toc": "Sumario"
     },
     "status": {
-        "sync": "Desplazamiento sincrónico",
+        "sync": "Desplazamiento síncrono",
         "lines": "Renglones",
         "words": "Palabras",
         "top": "Desplazarse hasta arriba"
