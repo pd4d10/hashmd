@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/bytedance/bytemd/compare/v1.9.1...v1.9.2) (2021-05-12)
+
+
+### Bug Fixes
+
+* first render ctrl-z ([c882148](https://github.com/bytedance/bytemd/commit/c8821487eb10991117b8df9103c7be398513a78e))
+
+
+
+
+
 ## [1.9.1](https://github.com/bytedance/bytemd/compare/v1.9.0...v1.9.1) (2021-04-12)
 
 
