@@ -23,6 +23,6 @@
     "bytemd": "^1.9.1"
   },
   "devDependencies": {
-    "miniprogram-api-typings": "^3.3.0"
+    "miniprogram-api-typings": "^3.3.2"
   }
 }
