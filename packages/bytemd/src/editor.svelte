@@ -63,8 +63,8 @@
   })(split);
 
   let root: HTMLElement;
+  let editorEl: HTMLElement;
   let previewEl: HTMLElement;
-  let textarea: HTMLTextAreaElement;
   let containerWidth = Infinity; // TODO: first screen
 
   let codemirror: ReturnType<typeof factory>;
@@ -202,7 +202,9 @@
       return annotations;
     };
 
-    editor = codemirror.fromTextArea(textarea, {
+    // @ts-ignore TODO: type
+    editor = codemirror(editorEl, {
+      value,
       mode: 'yaml-frontmatter',
       lineWrapping: true,
       tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
@@ -218,7 +220,6 @@
       Tab: 'indentMore',
       'Shift-Tab': 'indentLess',
     });
-    editor.setValue(value);
     editor.on('change', (doc, change) => {
       dispatch('change', { value: editor.getValue() });
     });
@@ -420,9 +421,7 @@
     }}
   />
   <div class="bytemd-body">
-    <div class="bytemd-editor" style={styles.edit}>
-      <textarea bind:this={textarea} class="bytemd-hidden" />
-    </div>
+    <div class="bytemd-editor" style={styles.edit} bind:this={editorEl} />
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       {#if !overridePreview}
         <Viewer
