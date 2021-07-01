@@ -1,12 +1,13 @@
 <script lang="ts">
   import type { BytemdLocale } from './types';
-  import wordCount from 'word-count';
   import { createEventDispatcher } from 'svelte';
+  const wordCount = require('word-count');
 
   export let showSync: boolean;
   export let value: string;
   export let syncEnabled: boolean;
   export let locale: BytemdLocale;
+  export let islimited: boolean;
 
   const dispatch = createEventDispatcher();
 
@@ -22,6 +23,9 @@
     <span>
       {locale.status.lines}: <strong>{lines}</strong>
     </span>
+    {#if islimited}
+      <span class="danger">{locale.status.limited}</span>
+    {/if}
   </div>
 
   <div class="bytemd-status-right">

@@ -157,6 +157,10 @@ export interface EditorProps extends ViewerProps {
    * If specified, the built-in viewer would not take effect.
    */
   overridePreview?(el: HTMLElement, props: ViewerProps): void;
+  /**
+   * Maximum length (number of characters) of value
+   */
+  max?: number;
 }
 
 export interface ViewerProps {

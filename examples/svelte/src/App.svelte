@@ -24,6 +24,7 @@
   let value = '';
   let mode = 'auto';
   let localeKey = 'en';
+  let max;
 
   $: currentLocale = locales[localeKey];
 
@@ -105,10 +106,16 @@
       <label> <input type="checkbox" bind:checked={enabled[p]} />{p}</label>
     {/each}
   </div>
+  <div class="line">
+    Maximum value of characters
+    <input bind:value={max} type="number" />
+  </div>
+  
   <Editor
     {value}
     {mode}
     {plugins}
+    {max}
     placeholder={'Start writing with ByteMD'}
     locale={currentLocale.bytemd}
     {uploadImages}

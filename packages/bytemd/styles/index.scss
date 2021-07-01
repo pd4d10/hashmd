@@ -264,6 +264,9 @@ $max-width: 800px;
       float: left;
       span {
         padding-left: 16px;
+        &.danger {
+          color: #F53F3F;
+        }
       }
       strong {
         font-weight: 600;

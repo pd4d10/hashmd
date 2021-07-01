@@ -49,6 +49,7 @@
   export let locale: EditorProps['locale'];
   export let uploadImages: EditorProps['uploadImages'];
   export let overridePreview: EditorProps['overridePreview'];
+  export let max: EditorProps['max'];
 
   // do deep merge to support incomplete locales, use en as fallback
   $: mergedLocale = deepmerge(en, locale ?? {}) as BytemdLocale;
@@ -72,6 +73,7 @@
   let activeTab: false | 'write' | 'preview';
   let fullscreen = false;
   let sidebar: false | 'help' | 'toc' = false;
+  let islimited = false;
 
   $: styles = (() => {
     let edit: string;
@@ -220,7 +222,13 @@
       Tab: 'indentMore',
       'Shift-Tab': 'indentLess',
     });
-    editor.on('change', (doc, change) => {
+    editor.on('beforeChange', (_, change) => {
+      islimited = max !== undefined && value.length >= max
+      if (islimited && change.origin !== '+delete') {
+        change.cancel()
+      }
+    })
+    editor.on('change', () => {
       dispatch('change', { value: editor.getValue() });
     });
 
@@ -462,6 +470,7 @@
     showSync={!overridePreview && split}
     value={debouncedValue}
     {syncEnabled}
+    {islimited}
     on:sync={(e) => {
       syncEnabled = e.detail;
     }}
