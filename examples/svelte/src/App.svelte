@@ -24,7 +24,7 @@
   let value = '';
   let mode = 'auto';
   let localeKey = 'en';
-  let max;
+  let maxLength;
 
   $: currentLocale = locales[localeKey];
 
@@ -108,14 +108,14 @@
   </div>
   <div class="line">
     Maximum value of characters
-    <input bind:value={max} type="number" />
+    <input bind:value={maxLength} type="number" />
   </div>
   
   <Editor
     {value}
     {mode}
     {plugins}
-    {max}
+    {maxLength}
     placeholder={'Start writing with ByteMD'}
     locale={currentLocale.bytemd}
     {uploadImages}
