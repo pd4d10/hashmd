@@ -1,27 +1,27 @@
-import { Viewer } from '../..';
-import { render, act } from '@testing-library/svelte';
+import { Viewer } from '../..'
+import { render, act } from '@testing-library/svelte'
 
 function stripComment(str: string) {
-  return str.replace(/<\!--.*?-->/g, '');
+  return str.replace(/<\!--.*?-->/g, '')
 }
 
 test('value', async () => {
-  const $ = render(Viewer, { value: '# title' });
+  const $ = render(Viewer, { value: '# title' })
   expect(
     stripComment($.container.querySelector('.markdown-body')?.innerHTML)
-  ).toEqual('<h1>title</h1>');
-  $.component.$destroy();
-});
+  ).toEqual('<h1>title</h1>')
+  $.component.$destroy()
+})
 
 test('plugin', async () => {
-  const $ = render(Viewer);
-  const off = jest.fn();
-  const viewerEffect = jest.fn(() => off);
+  const $ = render(Viewer)
+  const off = jest.fn()
+  const viewerEffect = jest.fn(() => off)
 
-  $.component.$set({ plugins: [{ viewerEffect }] });
-  await act();
-  expect(viewerEffect).toBeCalled();
-  expect(viewerEffect).toBeCalledTimes(1);
+  $.component.$set({ plugins: [{ viewerEffect }] })
+  await act()
+  expect(viewerEffect).toBeCalled()
+  expect(viewerEffect).toBeCalledTimes(1)
   expect(viewerEffect).toBeCalledWith<any>(
     expect.objectContaining({
       markdownBody: $.container.querySelector('.markdown-body'),
@@ -30,10 +30,10 @@ test('plugin', async () => {
         data: {},
       }),
     })
-  );
+  )
 
-  $.component.$set({ plugins: [{ viewerEffect }] });
-  await act();
-  expect(off).toBeCalled();
-  expect(off).toBeCalledTimes(1);
-});
+  $.component.$set({ plugins: [{ viewerEffect }] })
+  await act()
+  expect(off).toBeCalled()
+  expect(off).toBeCalledTimes(1)
+})

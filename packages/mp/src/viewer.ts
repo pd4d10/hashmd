@@ -1,5 +1,5 @@
 /// <reference types="miniprogram-api-typings" />
-import { getProcessor } from 'bytemd';
+import { getProcessor } from 'bytemd'
 
 Component({
   properties: {
@@ -10,9 +10,9 @@ Component({
   },
   observers: {
     value(v) {
-      const res = getProcessor({}).processSync({ value: v });
-      console.log(res);
-      this.setData({ nodes: res as any });
+      const res = getProcessor({}).processSync({ value: v })
+      console.log(res)
+      this.setData({ nodes: res as any })
     },
   },
-});
+})

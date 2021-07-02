@@ -1,47 +1,47 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { VFile } from 'vfile';
-  import type { BytemdPlugin, ViewerProps } from './types';
-  import { tick, onDestroy, onMount, createEventDispatcher } from 'svelte';
-  import { getProcessor } from './utils';
+  import type { VFile } from 'vfile'
+  import type { BytemdPlugin, ViewerProps } from './types'
+  import { tick, onDestroy, onMount, createEventDispatcher } from 'svelte'
+  import { getProcessor } from './utils'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  export let value: ViewerProps['value'] = '';
-  export let plugins: NonNullable<ViewerProps['plugins']> = [];
-  export let sanitize: ViewerProps['sanitize'];
+  export let value: ViewerProps['value'] = ''
+  export let plugins: NonNullable<ViewerProps['plugins']> = []
+  export let sanitize: ViewerProps['sanitize']
 
-  let markdownBody: HTMLElement;
-  let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = [];
+  let markdownBody: HTMLElement
+  let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = []
 
   function on() {
     // console.log('von');
-    cbs = plugins.map((p) => p.viewerEffect?.({ markdownBody, file }));
+    cbs = plugins.map((p) => p.viewerEffect?.({ markdownBody, file }))
   }
   function off() {
     // console.log('voff');
-    cbs.forEach((cb) => cb && cb());
+    cbs.forEach((cb) => cb && cb())
   }
 
   onMount(() => {
     markdownBody.addEventListener('click', (e) => {
-      const $ = e.target as HTMLElement;
-      if ($.tagName !== 'A') return;
+      const $ = e.target as HTMLElement
+      if ($.tagName !== 'A') return
 
-      const href = $.getAttribute('href');
-      if (!href?.startsWith('#')) return;
+      const href = $.getAttribute('href')
+      if (!href?.startsWith('#')) return
 
       markdownBody
         .querySelector('#user-content-' + href.slice(1))
-        ?.scrollIntoView();
-    });
-  });
+        ?.scrollIntoView()
+    })
+  })
 
-  onDestroy(off);
+  onDestroy(off)
 
-  let file: VFile;
-  let i = 0;
+  let file: VFile
+  let i = 0
 
   $: try {
     file = getProcessor({
@@ -57,23 +57,23 @@
             p.use(() => (tree, file) => {
               tick().then(() => {
                 // console.log(tree);
-                dispatch('hast', { hast: tree, file });
-              });
+                dispatch('hast', { hast: tree, file })
+              })
             }),
         },
       ],
-    }).processSync(value);
-    i++;
+    }).processSync(value)
+    i++
 
-    off();
+    off()
     tick().then(() => {
-      on();
-    });
+      on()
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
 
-  $: html = `${file}<!--${i}-->`;
+  $: html = `${file}<!--${i}-->`
 </script>
 
 <div bind:this={markdownBody} class="markdown-body">

@@ -1,18 +1,18 @@
 <script lang="ts">
-  import type { BytemdLocale } from './types';
-  import { createEventDispatcher } from 'svelte';
-  const wordCount = require('word-count');
+  import type { BytemdLocale } from './types'
+  import { createEventDispatcher } from 'svelte'
+  const wordCount = require('word-count')
 
-  export let showSync: boolean;
-  export let value: string;
-  export let syncEnabled: boolean;
-  export let locale: BytemdLocale;
-  export let islimited: boolean;
+  export let showSync: boolean
+  export let value: string
+  export let syncEnabled: boolean
+  export let locale: BytemdLocale
+  export let islimited: boolean
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  $: words = wordCount(value);
-  $: lines = value.split('\n').length;
+  $: words = wordCount(value)
+  $: lines = value.split('\n').length
 </script>
 
 <div class="bytemd-status">

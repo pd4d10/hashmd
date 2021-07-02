@@ -1,35 +1,35 @@
 <script>
-  import { onMount } from 'svelte';
-  import { Editor } from 'bytemd';
-  import breaks from '@bytemd/plugin-breaks';
-  import footnotes from '@bytemd/plugin-footnotes';
-  import frontmatter from '@bytemd/plugin-frontmatter';
-  import gfm from '@bytemd/plugin-gfm';
-  import highlight from '@bytemd/plugin-highlight';
-  import math from '@bytemd/plugin-math';
+  import { onMount } from 'svelte'
+  import { Editor } from 'bytemd'
+  import breaks from '@bytemd/plugin-breaks'
+  import footnotes from '@bytemd/plugin-footnotes'
+  import frontmatter from '@bytemd/plugin-frontmatter'
+  import gfm from '@bytemd/plugin-gfm'
+  import highlight from '@bytemd/plugin-highlight'
+  import math from '@bytemd/plugin-math'
   // import mdx from '@bytemd/plugin-mdx';
-  import mediumZoom from '@bytemd/plugin-medium-zoom';
-  import mermaid from '@bytemd/plugin-mermaid';
-  import gemoji from '@bytemd/plugin-gemoji';
-  import locales from './locales';
+  import mediumZoom from '@bytemd/plugin-medium-zoom'
+  import mermaid from '@bytemd/plugin-mermaid'
+  import gemoji from '@bytemd/plugin-gemoji'
+  import locales from './locales'
   // import lintConsistent from 'remark-preset-lint-consistent';
 
-  import 'bytemd/dist/index.css';
-  import 'github-markdown-css';
+  import 'bytemd/dist/index.css'
+  import 'github-markdown-css'
   // import 'juejin-markdown-themes/dist/juejin.css';
-  import 'highlight.js/styles/vs.css';
-  import 'katex/dist/katex.css';
+  import 'highlight.js/styles/vs.css'
+  import 'katex/dist/katex.css'
   // import 'normalize.css';
 
-  let value = '';
-  let mode = 'auto';
-  let localeKey = 'en';
-  let maxLength;
+  let value = ''
+  let mode = 'auto'
+  let localeKey = 'en'
+  let maxLength
 
-  $: currentLocale = locales[localeKey];
+  $: currentLocale = locales[localeKey]
 
   function handleChange(e) {
-    value = e.detail.value;
+    value = e.detail.value
   }
 
   function uploadImages(files) {
@@ -38,16 +38,16 @@
         // TODO:
         return {
           url: 'https://picsum.photos/300',
-        };
+        }
       })
-    );
+    )
   }
 
   onMount(async () => {
-    const res = await fetch('/example.md');
-    const text = await res.text();
-    value = text;
-  });
+    const res = await fetch('/example.md')
+    const text = await res.text()
+    value = text
+  })
 
   let enabled = {
     breaks: false,
@@ -60,7 +60,7 @@
     // mdx: true,
     'medium-zoom': true,
     mermaid: true,
-  };
+  }
 
   $: plugins = [
     // {
@@ -83,7 +83,7 @@
     // enabled.mdx && mdx(),
     enabled['medium-zoom'] && mediumZoom(),
     enabled.mermaid && mermaid({ locale: currentLocale.plugin_mermaid }),
-  ].filter((x) => x);
+  ].filter((x) => x)
 </script>
 
 <div class="container">

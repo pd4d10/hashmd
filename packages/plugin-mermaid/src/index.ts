@@ -1,19 +1,19 @@
-import type { BytemdPlugin } from 'bytemd';
-import type { Mermaid } from 'mermaid';
-import type mermaidAPI from 'mermaid/mermaidAPI';
-import { icons } from './icons';
-import en from './locales/en.json';
+import type { BytemdPlugin } from 'bytemd'
+import type { Mermaid } from 'mermaid'
+import type mermaidAPI from 'mermaid/mermaidAPI'
+import { icons } from './icons'
+import en from './locales/en.json'
 
 export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
-  locale?: Partial<typeof en>;
+  locale?: Partial<typeof en>
 }
 
 export default function mermaid({
   locale: _locale,
   ...mermaidConfig
 }: BytemdPluginMermaidOptions = {}): BytemdPlugin {
-  const locale = { ...en, ..._locale } as typeof en;
-  let m: Mermaid;
+  const locale = { ...en, ..._locale } as typeof en
+  let m: Mermaid
 
   const actionItems = [
     {
@@ -101,47 +101,47 @@ another task      : 24d`,
 "Cats" : 85
 "Rats" : 15`,
     },
-  ];
+  ]
 
   return {
     viewerEffect({ markdownBody }) {
-      (async () => {
+      ;(async () => {
         const els = markdownBody.querySelectorAll<HTMLElement>(
           'pre>code.language-mermaid'
-        );
-        if (els.length === 0) return;
+        )
+        if (els.length === 0) return
 
         if (!m) {
-          m = await import('mermaid').then((c) => c.default);
+          m = await import('mermaid').then((c) => c.default)
           if (mermaidConfig) {
-            m.initialize(mermaidConfig);
+            m.initialize(mermaidConfig)
           }
         }
 
         els.forEach((el, i) => {
-          const pre = el.parentElement!;
-          const source = el.innerText;
+          const pre = el.parentElement!
+          const source = el.innerText
 
-          const container = document.createElement('div');
-          container.classList.add('bytemd-mermaid');
-          container.style.lineHeight = 'initial'; // reset line-height
-          pre.replaceWith(container);
+          const container = document.createElement('div')
+          container.classList.add('bytemd-mermaid')
+          container.style.lineHeight = 'initial' // reset line-height
+          pre.replaceWith(container)
 
           try {
             m.render(
               `bytemd-mermaid-${Date.now()}-${i}`,
               source,
               (svgCode) => {
-                container.innerHTML = svgCode;
+                container.innerHTML = svgCode
               },
               // @ts-ignore
               container
-            );
+            )
           } catch (err) {
             // console.error(err);
           }
-        });
-      })();
+        })
+      })()
     },
     actions: [
       {
@@ -155,12 +155,12 @@ another task      : 24d`,
             handler: {
               type: 'action',
               click({ editor, appendBlock, codemirror }) {
-                const { line } = appendBlock('```mermaid\n' + code + '\n```');
+                const { line } = appendBlock('```mermaid\n' + code + '\n```')
                 editor.setSelection(
                   codemirror.Pos(line + 1, 0),
                   codemirror.Pos(line + code.split('\n').length)
-                );
-                editor.focus();
+                )
+                editor.focus()
               },
             },
           })),
@@ -168,5 +168,5 @@ another task      : 24d`,
         },
       },
     ],
-  };
+  }
 }

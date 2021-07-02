@@ -1,5 +1,5 @@
-import type { BytemdPlugin } from 'bytemd';
-import remarkMdx from 'remark-mdx';
+import type { BytemdPlugin } from 'bytemd'
+import remarkMdx from 'remark-mdx'
 
 export interface BytemdPluginMdxOptions {}
 
@@ -9,5 +9,5 @@ export default function math({}: BytemdPluginMdxOptions = {}): BytemdPlugin {
     viewerEffect({ markdownBody }) {
       // TODO:
     },
-  };
+  }
 }
