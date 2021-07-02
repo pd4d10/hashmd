@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/bytedance/bytemd/compare/v1.10.2...v1.10.3) (2021-07-02)
+
+
+### Bug Fixes
+
+* 🎸 add maxLength in vue props ([#98](https://github.com/bytedance/bytemd/issues/98)) ([53f8d05](https://github.com/bytedance/bytemd/commit/53f8d05ac60fbbeb384e96aaf6989f80b42f9fb9))
+
+
+
+
+
 ## [1.10.2](https://github.com/bytedance/bytemd/compare/v1.10.1...v1.10.2) (2021-07-02)
 
 **Note:** Version bump only for package bytemd

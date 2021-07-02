@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/vue",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
