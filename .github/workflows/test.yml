@@ -13,4 +13,5 @@ jobs:
         with:
           version: 6.9.1
       - run: pnpm install
+      - run: npm run build
       - run: npm test
