@@ -1,6 +1,6 @@
 {
   "name": "bytemd",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "A hackable Markdown editor built with Svelte",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
