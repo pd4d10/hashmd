@@ -12,7 +12,9 @@
     "test": "BABEL_ENV=test jest",
     "test:watch": "BABEL_ENV=test npm run test -- --watch",
     "postinstall": "node -r esm scripts/postinstall.js",
-    "pub": "npm run clean && npm run build:ci && lerna publish --yes"
+    "pub": "npm run clean && npm run build:ci && lerna publish --yes",
+    "lint": "npx prettier --plugin-search-dir=. --list-different **/*.{ts,tsx,svelte}",
+    "lint:fix": "npx prettier --plugin-search-dir=. --write **/*.{ts,tsx,svelte}"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -38,6 +40,8 @@
     "mustache": "^4.2.0",
     "node-sass": "^6.0.1",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "prettier-plugin-svelte": "^2.3.1",
     "rollup": "^2.52.7",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-postcss": "3",

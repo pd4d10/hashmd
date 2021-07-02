@@ -32,7 +32,10 @@
     currentHeadingIndex = 0;
 
     hast.children
-      .filter((v): v is Element => v.type === 'element' && v.tagName[0] === 'h' && !!v.children.length)
+      .filter(
+        (v): v is Element =>
+          v.type === 'element' && v.tagName[0] === 'h' && !!v.children.length
+      )
       .forEach((node, index) => {
         const i = Number(node.tagName[1]);
         minLevel = Math.min(minLevel, i);

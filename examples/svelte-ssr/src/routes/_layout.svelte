@@ -1,11 +1,9 @@
 <script>
-
 </script>
-
-<style>
-
-</style>
 
 <main>
   <slot />
 </main>
+
+<style>
+</style>

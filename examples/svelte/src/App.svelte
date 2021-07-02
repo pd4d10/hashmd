@@ -110,7 +110,7 @@
     Maximum value of characters
     <input bind:value={maxLength} type="number" />
   </div>
-  
+
   <Editor
     {value}
     {mode}

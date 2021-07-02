@@ -228,14 +228,15 @@
         let str = change.text.join('\n');
         const to = editor.indexFromPos(change.to);
         const from = editor.indexFromPos(change.from);
-        const offset = editor.getValue().length + (str.length - (to - from)) - maxLength;
-        islimited = offset >= 0
+        const offset =
+          editor.getValue().length + (str.length - (to - from)) - maxLength;
+        islimited = offset >= 0;
         if (islimited) {
           str = str.substr(0, str.length - offset);
           change.update(change.from, change.to, str.split('\n'));
         }
       }
-    })
+    });
     editor.on('change', () => {
       dispatch('change', { value: editor.getValue() });
     });

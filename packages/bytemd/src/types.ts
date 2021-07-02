@@ -160,7 +160,7 @@ export interface EditorProps extends ViewerProps {
   /**
    * Maximum length (number of characters) of value
    */
-   maxLength?: number;
+  maxLength?: number;
 }
 
 export interface ViewerProps {
