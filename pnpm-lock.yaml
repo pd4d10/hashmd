@@ -345,7 +345,7 @@ importers:
 
   packages/mp:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       miniprogram-api-typings: ^3.3.2
     dependencies:
       bytemd: link:../bytemd
@@ -354,7 +354,7 @@ importers:
 
   packages/plugin-breaks:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       remark-breaks: ^2.0.2
     dependencies:
       remark-breaks: 2.0.2
@@ -363,7 +363,7 @@ importers:
 
   packages/plugin-footnotes:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       remark-footnotes: ^3.0.0
     dependencies:
       remark-footnotes: 3.0.0
@@ -373,7 +373,7 @@ importers:
   packages/plugin-frontmatter:
     specifiers:
       '@types/js-yaml': ^3.12.6
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       js-yaml: ^3.14.1
       remark-frontmatter: ^3.0.0
       vfile: ^4.2.1
@@ -387,7 +387,7 @@ importers:
 
   packages/plugin-gemoji:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       remark-gemoji: ^6.0.0
     dependencies:
       remark-gemoji: 6.0.0
@@ -396,7 +396,7 @@ importers:
 
   packages/plugin-gfm:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       remark-gfm: ^1.0.0
     dependencies:
       remark-gfm: 1.0.0
@@ -405,7 +405,7 @@ importers:
 
   packages/plugin-highlight:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       highlight.js: ^10.7.2
     dependencies:
       highlight.js: 10.7.2
@@ -414,7 +414,7 @@ importers:
 
   packages/plugin-highlight-ssr:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       rehype-highlight: ^4.1.0
     dependencies:
       rehype-highlight: 4.1.0
@@ -424,7 +424,7 @@ importers:
   packages/plugin-math:
     specifiers:
       '@types/katex': ^0.11.0
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       katex: ^0.12.0
       remark-math: ^4.0.0
     dependencies:
@@ -436,8 +436,8 @@ importers:
 
   packages/plugin-math-ssr:
     specifiers:
-      '@bytemd/plugin-math': ^1.9.2
-      bytemd: ^1.9.2
+      '@bytemd/plugin-math': ^1.10.2
+      bytemd: ^1.10.2
       rehype-katex: ^4.0.0
       remark-math: ^4.0.0
     dependencies:
@@ -449,7 +449,7 @@ importers:
 
   packages/plugin-mdx:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       remark-mdx: ^2.0.0-next.9
     dependencies:
       remark-mdx: 2.0.0-next.9
@@ -458,7 +458,7 @@ importers:
 
   packages/plugin-medium-zoom:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       medium-zoom: ^1.0.6
     dependencies:
       medium-zoom: 1.0.6
@@ -468,7 +468,7 @@ importers:
   packages/plugin-mermaid:
     specifiers:
       '@types/mermaid': ^8.2.5
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       mermaid: ^8.10.1
     dependencies:
       '@types/mermaid': 8.2.5
@@ -479,7 +479,7 @@ importers:
   packages/react:
     specifiers:
       '@types/react': ^17.0.5
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       react: ^17.0.2
     dependencies:
       bytemd: link:../bytemd
@@ -489,7 +489,7 @@ importers:
 
   packages/vue:
     specifiers:
-      bytemd: ^1.9.2
+      bytemd: ^1.10.2
       vue: ^2.6.12
     dependencies:
       bytemd: link:../bytemd
