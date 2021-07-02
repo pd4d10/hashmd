@@ -1,4 +1,4 @@
-name: test
+name: bundlewatch
 on:
   push:
   pull_request:
@@ -12,6 +12,6 @@ jobs:
           version: 6.9.1
       - run: pnpm install
       - run: npm run build:ci
-      - run: npm run bundlewatch
+      - run: npx bundlewatch
         env:
           BUNDLEWATCH_GITHUB_TOKEN: '${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}'
