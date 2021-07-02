@@ -56,5 +56,12 @@
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.5",
     "vue-template-compiler": "^2.6.14"
+  },
+  "bundlewatch": {
+    "files": [
+      {
+        "path": "packages/*/dist/**/*.min.js"
+      }
+    ]
   }
 }
