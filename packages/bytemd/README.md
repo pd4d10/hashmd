@@ -163,6 +163,7 @@ editor.$on('change', (e) => {
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
 | `locale` |  | i18n locale. Available locales could be found at `bytemd/lib/locales` |
 | `uploadImages` | `function` | Specify how to upload images |
+| `maxLength` | `number` | Maximum length (number of characters) of value |
 
 ## Style customization
 

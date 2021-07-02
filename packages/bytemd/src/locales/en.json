@@ -23,7 +23,8 @@
     "words": "Words",
     "lines": "Lines",
     "sync": "Scroll sync",
-    "top": "Scroll to top"
+    "top": "Scroll to top",
+    "limited": "The maximum character limit has been reached"
   },
   "action": {
     "h1": "Heading 1",

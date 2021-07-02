@@ -47,7 +47,8 @@
         "top": "回到顶部",
         "sync": "同步滚动",
         "lines": "行数",
-        "words": "字数"
+        "words": "字数",
+        "limited": "已达最大字符数限制"
     },
     "sidebar": {
         "shortcuts": "快捷键",

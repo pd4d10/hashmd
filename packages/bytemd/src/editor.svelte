@@ -49,6 +49,7 @@
   export let locale: EditorProps['locale'];
   export let uploadImages: EditorProps['uploadImages'];
   export let overridePreview: EditorProps['overridePreview'];
+  export let maxLength: EditorProps['maxLength'];
 
   // do deep merge to support incomplete locales, use en as fallback
   $: mergedLocale = deepmerge(en, locale ?? {}) as BytemdLocale;
@@ -72,6 +73,7 @@
   let activeTab: false | 'write' | 'preview';
   let fullscreen = false;
   let sidebar: false | 'help' | 'toc' = false;
+  let islimited = false;
 
   $: styles = (() => {
     let edit: string;
@@ -220,7 +222,21 @@
       Tab: 'indentMore',
       'Shift-Tab': 'indentLess',
     });
-    editor.on('change', (doc, change) => {
+
+    editor.on('beforeChange', (editor, change) => {
+      if (maxLength && change.update) {
+        let str = change.text.join('\n');
+        const to = editor.indexFromPos(change.to);
+        const from = editor.indexFromPos(change.from);
+        const offset = editor.getValue().length + (str.length - (to - from)) - maxLength;
+        islimited = offset >= 0
+        if (islimited) {
+          str = str.substr(0, str.length - offset);
+          change.update(change.from, change.to, str.split('\n'));
+        }
+      }
+    })
+    editor.on('change', () => {
       dispatch('change', { value: editor.getValue() });
     });
 
@@ -462,6 +478,7 @@
     showSync={!overridePreview && split}
     value={debouncedValue}
     {syncEnabled}
+    {islimited}
     on:sync={(e) => {
       syncEnabled = e.detail;
     }}
