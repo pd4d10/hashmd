@@ -45,7 +45,7 @@
   export let overridePreview: EditorProps['overridePreview']
   export let maxLength: EditorProps['maxLength']
 
-  const mergedLocale = { ...en, ...locale }
+  $: mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher()
 
   $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
