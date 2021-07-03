@@ -98,6 +98,8 @@
         <option value={l}>{l}</option>
       {/each}
     </select>
+    , Max length:
+    <input bind:value={maxLength} type="number" />
   </div>
   <div class="line">
     Plugins:
@@ -105,10 +107,6 @@
       {' '}
       <label> <input type="checkbox" bind:checked={enabled[p]} />{p}</label>
     {/each}
-  </div>
-  <div class="line">
-    Maximum value of characters
-    <input bind:value={maxLength} type="number" />
   </div>
 
   <Editor
