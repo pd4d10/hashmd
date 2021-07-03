@@ -4,12 +4,7 @@
   import type { Editor, KeyMap, Linter, Annotation } from 'codemirror'
   import type { Root, Element } from 'hast'
   import type { VFile } from 'vfile'
-  import type {
-    BytemdEditorContext,
-    BytemdLocale,
-    BytemdPlugin,
-    EditorProps,
-  } from './types'
+  import type { BytemdEditorContext, BytemdPlugin, EditorProps } from './types'
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
   import debounce from 'lodash.debounce'
   import throttle from 'lodash.throttle'
@@ -25,7 +20,6 @@
   import Status from './status.svelte'
   import { icons } from './icons'
   import en from './locales/en.json'
-  import deepmerge from 'deepmerge'
   import Help from './help.svelte'
   import factory from 'codemirror-ssr'
   import usePlaceholder from 'codemirror-ssr/addon/display/placeholder'
@@ -51,9 +45,7 @@
   export let overridePreview: EditorProps['overridePreview']
   export let maxLength: EditorProps['maxLength']
 
-  // do deep merge to support incomplete locales, use en as fallback
-  $: mergedLocale = deepmerge(en, locale ?? {}) as BytemdLocale
-
+  const mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher()
 
   $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)

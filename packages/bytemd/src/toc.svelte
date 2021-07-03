@@ -53,7 +53,7 @@
 </script>
 
 <div class="bytemd-toc" class:bytemd-hidden={!visible}>
-  <h2>{locale.sidebar.toc}</h2>
+  <h2>{locale.toc}</h2>
   <ul>
     {#each items as item, index}
       <li

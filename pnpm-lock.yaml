@@ -208,8 +208,8 @@ importers:
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
       bytemd: link:../../packages/bytemd
     devDependencies:
-      '@sveltejs/adapter-node': 1.0.0-next.29
-      '@sveltejs/kit': 1.0.0-next.119_rollup@2.52.7+svelte@3.38.2
+      '@sveltejs/adapter-node': 1.0.0-next.30
+      '@sveltejs/kit': 1.0.0-next.120_rollup@2.52.7+svelte@3.38.2
       sass: 1.32.12
       svelte: 3.38.2
       svelte-preprocess: 4.7.3_0f957d27398e96725816240c3a3a5bfb
@@ -307,7 +307,6 @@ importers:
       '@types/lodash.throttle': ^4.1.6
       '@types/mdast': ^3.0.3
       codemirror-ssr: ^0.0.6
-      deepmerge: ^4.2.2
       hast-util-sanitize: ^3.0.2
       lodash.debounce: ^4.0.8
       lodash.throttle: ^4.1.1
@@ -318,7 +317,6 @@ importers:
       remark-rehype: ^8.1.0
       select-files: ^1.0.1
       tippy.js: ^6.3.1
-      tsdef: ^0.0.14
       unified: ^9.2.1
       unist-util-visit: ^2.0.3
       vfile: ^4.2.1
@@ -330,7 +328,6 @@ importers:
       '@types/lodash.throttle': 4.1.6
       '@types/mdast': 3.0.3
       codemirror-ssr: 0.0.6
-      deepmerge: 4.2.2
       hast-util-sanitize: 3.0.2
       lodash.debounce: 4.0.8
       lodash.throttle: 4.1.1
@@ -341,7 +338,6 @@ importers:
       remark-rehype: 8.1.0
       select-files: 1.0.1
       tippy.js: 6.3.1
-      tsdef: 0.0.14
       unified: 9.2.1
       unist-util-visit: 2.0.3
       vfile: 4.2.1
@@ -4479,15 +4475,15 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@sveltejs/adapter-node/1.0.0-next.29:
-    resolution: {integrity: sha512-F773SXfSUGZVtwVvi495uXK71oAZlLF1ZvnLi/R2bcCoDN5y8RA7fSWfrMH78EyM9dLOB5RSdShv8PcE5tpMUg==}
+  /@sveltejs/adapter-node/1.0.0-next.30:
+    resolution: {integrity: sha512-DTvazMWs0h5zG++uaT7Yg0JkWfqU8htu3EYFsKh+oeDMviJ8SRXTXSZFtBGr2ltyPBwKUvgEoUYITOl1NHimKQ==}
     dependencies:
       esbuild: 0.12.12
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.119_rollup@2.52.7+svelte@3.38.2:
-    resolution: {integrity: sha512-Pp971N1m2yKQg01kUxwQAolhUb1y9NNPV7zfQLIHQdvlFwrNI5hvOMlGiHj26mM5AyQSU4pnH8X1YUPSqi57gw==}
+  /@sveltejs/kit/1.0.0-next.120_rollup@2.52.7+svelte@3.38.2:
+    resolution: {integrity: sha512-1sVhlF9zea9Er6abAjqRefQ1mIE9AjtYdRek3ilUTQ44FM2w/e8VgZCo5XXbnz9M564OaZnihyS9XjINlu4Chg==}
     engines: {node: ^12.20 || >=14.13}
     hasBin: true
     peerDependencies:
@@ -16652,10 +16648,6 @@ packages:
         optional: true
     dependencies:
       typescript: 4.3.5
-    dev: false
-
-  /tsdef/0.0.14:
-    resolution: {integrity: sha512-UjMD4XKRWWFlFBfwKVQmGFT5YzW/ZaF8x6KpCDf92u9wgKeha/go3FU0e5WqDjXsCOdfiavCkfwfVHNDxRDGMA==}
     dev: false
 
   /tslib/1.14.1:

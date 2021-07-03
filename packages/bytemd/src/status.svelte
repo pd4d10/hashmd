@@ -18,13 +18,13 @@
 <div class="bytemd-status">
   <div class="bytemd-status-left">
     <span>
-      {locale.status.words}: <strong>{words}</strong>
+      {locale.words}: <strong>{words}</strong>
     </span>
     <span>
-      {locale.status.lines}: <strong>{lines}</strong>
+      {locale.lines}: <strong>{lines}</strong>
     </span>
     {#if islimited}
-      <span class="danger">{locale.status.limited}</span>
+      <span class="danger">{locale.limited}</span>
     {/if}
   </div>
 
@@ -36,9 +36,9 @@
           checked={syncEnabled}
           on:change={() => dispatch('sync', !syncEnabled)}
         />
-        {locale.status.sync}
+        {locale.sync}
       </label>
     {/if}
-    <span on:click={() => dispatch('top')}>{locale.status.top}</span>
+    <span on:click={() => dispatch('top')}>{locale.top}</span>
   </div>
 </div>

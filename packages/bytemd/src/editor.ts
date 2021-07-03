@@ -151,11 +151,11 @@ export function getBuiltinActions(
       handler: {
         type: 'dropdown',
         actions: [1, 2, 3, 4, 5, 6].map((level) => ({
-          title: locale.action[`h${level}` as keyof typeof locale.action],
+          title: locale[`h${level}` as keyof BytemdLocale],
           icon: icons[`h${level}` as keyof typeof icons],
           cheatsheet:
             level <= 3
-              ? `${'#'.repeat(level)} ${locale.action.headingText}`
+              ? `${'#'.repeat(level)} ${locale.headingText}`
               : undefined,
           handler: {
             type: 'action',
@@ -172,9 +172,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.bold,
+      title: locale.bold,
       icon: icons.bold,
-      cheatsheet: `**${locale.action.boldText}**`,
+      cheatsheet: `**${locale.boldText}**`,
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('B'),
@@ -185,9 +185,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.italic,
+      title: locale.italic,
       icon: icons.italic,
-      cheatsheet: `*${locale.action.italicText}*`,
+      cheatsheet: `*${locale.italicText}*`,
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('I'),
@@ -198,9 +198,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.quote,
+      title: locale.quote,
       icon: icons.quote,
-      cheatsheet: `> ${locale.action.quotedText}`,
+      cheatsheet: `> ${locale.quotedText}`,
       handler: {
         type: 'action',
         click({ replaceLines, editor }) {
@@ -210,9 +210,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.link,
+      title: locale.link,
       icon: icons.link,
-      cheatsheet: `[${locale.action.linkText}](url)`,
+      cheatsheet: `[${locale.linkText}](url)`,
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('K'),
@@ -228,9 +228,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.image,
+      title: locale.image,
       icon: icons.image,
-      cheatsheet: `![${locale.action.imageAlt}](url "${locale.action.imageTitle}")`,
+      cheatsheet: `![${locale.imageAlt}](url "${locale.imageTitle}")`,
       handler: uploadImages
         ? {
             type: 'action',
@@ -249,9 +249,9 @@ export function getBuiltinActions(
         : undefined,
     },
     {
-      title: locale.action.code,
+      title: locale.code,
       icon: icons.code,
-      cheatsheet: '`' + locale.action.codeText + '`',
+      cheatsheet: '`' + locale.codeText + '`',
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('K', true),
@@ -262,9 +262,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.codeBlock,
+      title: locale.codeBlock,
       icon: icons.codeBlock,
-      cheatsheet: '```' + locale.action.codeLang + '↵',
+      cheatsheet: '```' + locale.codeLang + '↵',
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('C', true),
@@ -279,9 +279,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.ul,
+      title: locale.ul,
       icon: icons.ul,
-      cheatsheet: `- ${locale.action.ulItem}`,
+      cheatsheet: `- ${locale.ulItem}`,
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('U', true),
@@ -292,9 +292,9 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.ol,
+      title: locale.ol,
       icon: icons.ol,
-      cheatsheet: `1. ${locale.action.olItem}`,
+      cheatsheet: `1. ${locale.olItem}`,
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('O', true),
@@ -305,7 +305,7 @@ export function getBuiltinActions(
       },
     },
     {
-      title: locale.action.hr,
+      title: locale.hr,
       icon: icons.hr,
       cheatsheet: '---',
     },

@@ -25,7 +25,7 @@
 </script>
 
 <div class="bytemd-help" class:bytemd-hidden={!visible}>
-  <h2>{locale.sidebar.cheatsheet}</h2>
+  <h2>{locale.cheatsheet}</h2>
   <ul>
     {#each items as action}
       {#if action.cheatsheet}
@@ -39,7 +39,7 @@
       {/if}
     {/each}
   </ul>
-  <h2>{locale.sidebar.shortcuts}</h2>
+  <h2>{locale.shortcuts}</h2>
   <ul>
     {#each items as action}
       {#if action.handler && action.handler.type === 'action' && action.handler.shortcut}
