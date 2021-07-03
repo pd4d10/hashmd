@@ -66,7 +66,7 @@
     //   },
     // },
     {
-      title: tocActive ? locale.toolbar.closeToc : locale.toolbar.toc,
+      title: tocActive ? locale.closeToc : locale.toc,
       icon: icons.toc,
       handler: {
         type: 'action',
@@ -77,7 +77,7 @@
       active: tocActive,
     },
     {
-      title: helpActive ? locale.toolbar.closeHelp : locale.toolbar.help,
+      title: helpActive ? locale.closeHelp : locale.help,
       icon: icons.help,
       handler: {
         type: 'action',
@@ -88,9 +88,7 @@
       active: helpActive,
     },
     {
-      title: writeActive
-        ? locale.toolbar.exitWriteOnly
-        : locale.toolbar.writeOnly,
+      title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
       icon: icons.left,
       handler: {
         type: 'action',
@@ -102,9 +100,7 @@
       hidden: !split,
     },
     {
-      title: previewActive
-        ? locale.toolbar.exitPreviewOnly
-        : locale.toolbar.previewOnly,
+      title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
       icon: icons.right,
       handler: {
         type: 'action',
@@ -116,9 +112,7 @@
       hidden: !split,
     },
     {
-      title: fullscreen
-        ? locale.toolbar.exitFullscreen
-        : locale.toolbar.fullscreen,
+      title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
       icon: fullscreen ? icons.fullscreenOff : icons.fullscreenOn,
       handler: {
         type: 'action',
@@ -128,7 +122,7 @@
       },
     },
     {
-      title: locale.toolbar.source,
+      title: locale.source,
       icon: icons.source,
       handler: {
         type: 'action',
@@ -299,14 +293,14 @@
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab !== 'preview'}
       >
-        {locale.toolbar.write}
+        {locale.write}
       </div>
       <div
         on:click={() => dispatch('tab', 'preview')}
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab === 'preview'}
       >
-        {locale.toolbar.preview}
+        {locale.preview}
       </div>
       <!-- <div class={['bytemd-toolbar-icon', tippyClass].join(' ')}>
         {@html icons.more}
