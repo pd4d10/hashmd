@@ -19,8 +19,8 @@
     "lib"
   ],
   "dependencies": {
-    "@types/mermaid": "^8.2.5",
-    "mermaid": "^8.10.1"
+    "@types/mermaid": "^8.2.6",
+    "mermaid": "^8.11.0"
   },
   "devDependencies": {
     "bytemd": "^1.10.2"

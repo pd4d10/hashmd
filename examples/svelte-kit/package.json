@@ -9,25 +9,25 @@
   "devDependencies": {
     "@sveltejs/adapter-node": "next",
     "@sveltejs/kit": "next",
-    "sass": "^1.32.12",
-    "svelte": "^3.38.2",
+    "sass": "^1.35.1",
+    "svelte": "^3.38.3",
     "svelte-preprocess": "^4.7.3",
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4",
-    "vite": "^2.3.0"
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5",
+    "vite": "^2.4.0"
   },
   "dependencies": {
-    "@bytemd/plugin-breaks": "^1.9.1",
-    "@bytemd/plugin-footnotes": "^1.9.1",
-    "@bytemd/plugin-frontmatter": "^1.9.1",
-    "@bytemd/plugin-gemoji": "^1.9.1",
-    "@bytemd/plugin-gfm": "^1.9.1",
-    "@bytemd/plugin-highlight": "^1.9.1",
-    "@bytemd/plugin-math": "^1.9.1",
-    "@bytemd/plugin-mdx": "^1.9.1",
-    "@bytemd/plugin-medium-zoom": "^1.9.1",
-    "@bytemd/plugin-mermaid": "^1.9.1",
-    "bytemd": "^1.9.1"
+    "@bytemd/plugin-breaks": "^1.10.2",
+    "@bytemd/plugin-footnotes": "^1.10.2",
+    "@bytemd/plugin-frontmatter": "^1.10.2",
+    "@bytemd/plugin-gemoji": "^1.10.2",
+    "@bytemd/plugin-gfm": "^1.10.2",
+    "@bytemd/plugin-highlight": "^1.10.2",
+    "@bytemd/plugin-math": "^1.10.2",
+    "@bytemd/plugin-mdx": "^1.10.2",
+    "@bytemd/plugin-medium-zoom": "^1.10.2",
+    "@bytemd/plugin-mermaid": "^1.10.2",
+    "bytemd": "^1.10.2"
   },
   "type": "module",
   "engines": {
