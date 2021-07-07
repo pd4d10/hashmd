@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     handleChange(v) {
-      value = v;
+      this.value = v;
     },
   },
 };
