@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/bytedance/bytemd/compare/v1.10.3...v1.10.4) (2021-07-08)
+
+
+### Bug Fixes
+
+* reactive locale props ([d9d068c](https://github.com/bytedance/bytemd/commit/d9d068ccef8462d7efe86ece563cdbca1b5990c9))
+* refine max length prop ([657b4d3](https://github.com/bytedance/bytemd/commit/657b4d3e849d424824eae719b334fdc519853ae8))
+* use import instead of require ([#102](https://github.com/bytedance/bytemd/issues/102)) ([0e0a566](https://github.com/bytedance/bytemd/commit/0e0a5666f580e0b565051e1bb91c97e95f693ba1))
+
+
+
+
+
 ## [1.10.3](https://github.com/bytedance/bytemd/compare/v1.10.2...v1.10.3) (2021-07-02)
 
 
