@@ -60,7 +60,7 @@
   "bundlewatch": {
     "files": [
       {
-        "path": "packages/*/dist/*/index.min.js"
+        "path": "packages/*/dist/index.min.js"
       }
     ],
     "ci": {
