@@ -264,9 +264,6 @@ $max-width: 800px;
       float: left;
       span {
         padding-left: 16px;
-        &.danger {
-          color: $red-500;
-        }
       }
       strong {
         font-weight: 600;
@@ -286,6 +283,9 @@ $max-width: 800px;
         vertical-align: middle;
         margin-right: 3px; // CSS reset
       }
+    }
+    &-error {
+      color: $red-500;
     }
   }
 

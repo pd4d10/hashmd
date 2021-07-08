@@ -43,7 +43,7 @@
   export let locale: EditorProps['locale']
   export let uploadImages: EditorProps['uploadImages']
   export let overridePreview: EditorProps['overridePreview']
-  export let maxLength: EditorProps['maxLength']
+  export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
 
   $: mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher()
@@ -65,7 +65,6 @@
   let activeTab: false | 'write' | 'preview'
   let fullscreen = false
   let sidebar: false | 'help' | 'toc' = false
-  let islimited = false
 
   $: styles = (() => {
     let edit: string
@@ -215,20 +214,6 @@
       'Shift-Tab': 'indentLess',
     })
 
-    editor.on('beforeChange', (editor, change) => {
-      if (maxLength && change.update) {
-        let str = change.text.join('\n')
-        const to = editor.indexFromPos(change.to)
-        const from = editor.indexFromPos(change.from)
-        const offset =
-          editor.getValue().length + (str.length - (to - from)) - maxLength
-        islimited = offset >= 0
-        if (islimited) {
-          str = str.substr(0, str.length - offset)
-          change.update(change.from, change.to, str.split('\n'))
-        }
-      }
-    })
     editor.on('change', () => {
       dispatch('change', { value: editor.getValue() })
     })
@@ -471,7 +456,7 @@
     showSync={!overridePreview && split}
     value={debouncedValue}
     {syncEnabled}
-    {islimited}
+    islimited={value.length > maxLength}
     on:sync={(e) => {
       syncEnabled = e.detail
     }}

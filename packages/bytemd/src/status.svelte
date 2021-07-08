@@ -24,7 +24,7 @@
       {locale.lines}: <strong>{lines}</strong>
     </span>
     {#if islimited}
-      <span class="danger">{locale.limited}</span>
+      <span class="bytemd-status-error">{locale.limited}</span>
     {/if}
   </div>
 
