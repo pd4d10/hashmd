@@ -7,8 +7,8 @@ ByteMD plugin to support MDX
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import mdx from '@bytemd/plugin-mdx';
+import { Editor } from 'bytemd'
+import mdx from '@bytemd/plugin-mdx'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

@@ -35,7 +35,7 @@ There are two components: `Editor` and `Viewer`. `Editor` is the Markdown editor
 Before using the component, remember to import CSS file to make styles correct:
 
 ```js
-import 'bytemd/dist/index.min.css';
+import 'bytemd/dist/index.min.css'
 ```
 
 ### Svelte
@@ -64,27 +64,27 @@ import 'bytemd/dist/index.min.css';
 ### React
 
 ```js
-import { Editor, Viewer } from '@bytemd/react';
-import gfm from '@bytemd/plugin-gfm';
+import { Editor, Viewer } from '@bytemd/react'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('')
 
   return (
     <Editor
       value={value}
       plugins={plugins}
       onChange={(v) => {
-        setValue(v);
+        setValue(v)
       }}
     />
-  );
-};
+  )
+}
 ```
 
 ### Vue
@@ -95,38 +95,38 @@ const App = () => {
 </template>
 
 <script>
-import { Editor, Viewer } from '@bytemd/vue';
-import gfm from '@bytemd/plugin-gfm';
+import { Editor, Viewer } from '@bytemd/vue'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 export default {
   components: { Editor },
   data() {
-    return { value: '', plugins };
+    return { value: '', plugins }
   },
   methods: {
     handleChange(v) {
-      this.value = v;
+      this.value = v
     },
   },
-};
+}
 </script>
 ```
 
 ### Vanilla JS
 
 ```js
-import { Editor, Viewer } from 'bytemd';
-import gfm from '@bytemd/plugin-gfm';
+import { Editor, Viewer } from 'bytemd'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 const editor = new Editor({
   target: document.body, // DOM to render
@@ -134,11 +134,11 @@ const editor = new Editor({
     value: '',
     plugins,
   },
-});
+})
 
 editor.$on('change', (e) => {
-  editor.$set({ value: e.detail.value });
-});
+  editor.$set({ value: e.detail.value })
+})
 ```
 
 ## Options

@@ -7,8 +7,8 @@ ByteMD plugin to support math formula (SSR compatible)
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import math from '@bytemd/plugin-math-ssr';
+import { Editor } from 'bytemd'
+import math from '@bytemd/plugin-math-ssr'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

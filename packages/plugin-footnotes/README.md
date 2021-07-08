@@ -7,8 +7,8 @@ ByteMD plugin to support footnotes
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import footnotes from '@bytemd/plugin-footnotes';
+import { Editor } from 'bytemd'
+import footnotes from '@bytemd/plugin-footnotes'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

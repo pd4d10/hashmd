@@ -7,8 +7,8 @@
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import {{importedName}} from '@bytemd/plugin-{{name}}';
+import { Editor } from 'bytemd'
+import {{importedName}} from '@bytemd/plugin-{{name}}'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 {{#options}}### Options
