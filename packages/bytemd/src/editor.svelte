@@ -227,8 +227,8 @@
       if (!(body instanceof HTMLElement)) return
 
       const leftNodes = hast.children.filter(
-        (v) => v.type === 'element'
-      ) as Element[]
+        (v): v is Element => v.type === 'element'
+      )
       const rightNodes = [...body.childNodes].filter(
         (v): v is HTMLElement => v instanceof HTMLElement
       )
