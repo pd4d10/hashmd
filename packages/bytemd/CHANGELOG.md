@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.7](https://github.com/bytedance/bytemd/compare/v1.10.6...v1.10.7) (2021-07-11)
+
+
+### Bug Fixes
+
+* **toc:** calculate currentHeadingIndex with correct index ([#104](https://github.com/bytedance/bytemd/issues/104)) ([6eb4dc4](https://github.com/bytedance/bytemd/commit/6eb4dc453fbd737f130bab24f7196500a3bf173c)), closes [#103](https://github.com/bytedance/bytemd/issues/103)
+
+
+
+
+
 ## [1.10.6](https://github.com/bytedance/bytemd/compare/v1.10.5...v1.10.6) (2021-07-08)
 
 **Note:** Version bump only for package bytemd

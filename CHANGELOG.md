@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.7](https://github.com/bytedance/bytemd/compare/v1.10.6...v1.10.7) (2021-07-11)
+
+
+### Bug Fixes
+
+* commonjs bundle issue ([41ce19f](https://github.com/bytedance/bytemd/commit/41ce19f3a53b1bf574e105520475eaacf1dd1dd7)), closes [#105](https://github.com/bytedance/bytemd/issues/105)
+* **toc:** calculate currentHeadingIndex with correct index ([#104](https://github.com/bytedance/bytemd/issues/104)) ([6eb4dc4](https://github.com/bytedance/bytemd/commit/6eb4dc453fbd737f130bab24f7196500a3bf173c)), closes [#103](https://github.com/bytedance/bytemd/issues/103)
+
+
+### Reverts
+
+* Revert "chore: gen unused file to tmp folder" ([d03b024](https://github.com/bytedance/bytemd/commit/d03b0243e8a5393492e827b9b14a41a97bae65d0))
+
+
+
+
+
 ## [1.10.6](https://github.com/bytedance/bytemd/compare/v1.10.5...v1.10.6) (2021-07-08)
 
 **Note:** Version bump only for package bytemd
