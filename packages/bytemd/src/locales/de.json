@@ -1,0 +1,21 @@
+{
+    "ol": "Geordnete Liste",
+    "codeBlock": "Codeblock",
+    "codeText": "Code",
+    "code": "Code",
+    "ul": "Ungeordnete Liste",
+    "codeLang": "Sprache",
+    "limited": "Die maximale Zeichengrenze ist erreicht",
+    "lines": "Zeilen",
+    "words": "Wörter",
+    "source": "Quellcode",
+    "exitFullscreen": "Vollbildmodus beenden",
+    "fullscreen": "Vollbild",
+    "closeToc": "Inhaltsverzeichnis schließen",
+    "toc": "Inhaltsverzeichnis",
+    "closeHelp": "Hilfe schließen",
+    "help": "Hilfe",
+    "writeOnly": "Nur schreiben",
+    "preview": "Vorschau",
+    "write": "Schreiben"
+}
