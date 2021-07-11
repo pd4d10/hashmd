@@ -155,7 +155,7 @@ const configs = packages
 const styleCommon = {
   input: 'packages/bytemd/styles/index.scss',
   output: {
-    file: '/tmp/style.js', // We don't need this file
+    file: 'style.js', // We don't need this file
   },
 }
 
