@@ -1,22 +1,22 @@
 // @ts-check
-import fs from 'fs-extra';
-import path from 'path';
-import _ from 'lodash';
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import babel from '@rollup/plugin-babel';
-import vue from 'rollup-plugin-vue';
-import { terser } from 'rollup-plugin-terser';
-import postcss from 'rollup-plugin-postcss';
-import replace from '@rollup/plugin-replace';
+import fs from 'fs-extra'
+import path from 'path'
+import _ from 'lodash'
+import svelte from 'rollup-plugin-svelte'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import babel from '@rollup/plugin-babel'
+import vue from 'rollup-plugin-vue'
+import { terser } from 'rollup-plugin-terser'
+import postcss from 'rollup-plugin-postcss'
+import replace from '@rollup/plugin-replace'
 // import visualizer from 'rollup-plugin-visualizer';
 
-const production = !process.env.ROLLUP_WATCH;
-const umd = process.env.UMD;
+const production = !process.env.ROLLUP_WATCH
+const umd = process.env.UMD
 
-const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
+const packages = fs.readdirSync(path.resolve(__dirname, 'packages'))
 
 const configs = packages
   .map((key) => {
@@ -29,16 +29,16 @@ const configs = packages
         },
         plugins: [commonjs(), resolve(), json()],
         watch: { clearScreen: false },
-      };
+      }
     }
 
-    const pkg = fs.readJsonSync(`./packages/${key}/package.json`);
-    if (pkg.private) return [];
+    const pkg = fs.readJsonSync(`./packages/${key}/package.json`)
+    if (pkg.private) return []
 
-    const inputFile = path.resolve('packages', key, 'lib/index.js');
+    const inputFile = path.resolve('packages', key, 'lib/index.js')
     const umdName = key.startsWith('plugin-')
       ? _.camelCase(`bytemd-${key}`)
-      : 'bytemd';
+      : 'bytemd'
 
     /** @type {import('rollup').RollupOptions} */
     const common = {
@@ -66,7 +66,7 @@ const configs = packages
       watch: {
         clearScreen: false,
       },
-    };
+    }
 
     /** @type {import('rollup').RollupOptions} */
     const config = {
@@ -90,7 +90,7 @@ const configs = packages
         ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
       ],
-    };
+    }
 
     /** @type {import('rollup').OutputOptions} */
     const umdOutputOption = {
@@ -98,7 +98,7 @@ const configs = packages
       name: umdName,
       sourcemap: true,
       inlineDynamicImports: true,
-    };
+    }
 
     /** @type {import('rollup').RollupOptions} */
     const umdConfig = {
@@ -115,7 +115,7 @@ const configs = packages
         },
       ],
       external: Object.keys(pkg.peerDependencies || {}),
-    };
+    }
 
     /** @type {import('rollup').RollupOptions} */
     const es5Config = {
@@ -139,17 +139,17 @@ const configs = packages
           extensions: ['.js', '.mjs', '.html', '.svelte'],
         }),
       ],
-    };
+    }
 
     // return [es5Config];
 
     if (umd) {
-      return [config, umdConfig, es5Config];
+      return [config, umdConfig, es5Config]
     } else {
-      return [config];
+      return [config]
     }
   })
-  .flat();
+  .flat()
 
 /** @type {import('rollup').RollupOptions} */
 const styleCommon = {
@@ -157,7 +157,7 @@ const styleCommon = {
   output: {
     file: 'style.js', // We don't need this file
   },
-};
+}
 
 /** @type {import('rollup').RollupOptions[]} */
 const styleConfigs = [
@@ -178,6 +178,6 @@ const styleConfigs = [
       }),
     ],
   },
-];
+]
 
-export default [...styleConfigs, ...configs];
+export default [...styleConfigs, ...configs]

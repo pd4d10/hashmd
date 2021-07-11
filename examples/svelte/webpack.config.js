@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('path')
 
-const mode = process.env.NODE_ENV || 'development';
-const prod = mode === 'production';
+const mode = process.env.NODE_ENV || 'development'
+const prod = mode === 'production'
 
 module.exports = {
   mode,
@@ -49,4 +49,4 @@ module.exports = {
     ],
   },
   devtool: prod ? false : 'source-map',
-};
+}

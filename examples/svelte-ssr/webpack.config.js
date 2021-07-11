@@ -1,14 +1,14 @@
-const webpack = require('webpack');
-const path = require('path');
-const config = require('sapper/config/webpack.js');
-const pkg = require('./package.json');
+const webpack = require('webpack')
+const path = require('path')
+const config = require('sapper/config/webpack.js')
+const pkg = require('./package.json')
 
-const mode = process.env.NODE_ENV;
-const dev = mode === 'development';
+const mode = process.env.NODE_ENV
+const dev = mode === 'development'
 
-const alias = { svelte: path.resolve('../../node_modules', 'svelte') };
-const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
-const mainFields = ['svelte', 'module', 'browser', 'main'];
+const alias = { svelte: path.resolve('../../node_modules', 'svelte') }
+const extensions = ['.mjs', '.js', '.json', '.svelte', '.html']
+const mainFields = ['svelte', 'module', 'browser', 'main']
 
 module.exports = {
   client: {
@@ -100,4 +100,4 @@ module.exports = {
     output: config.serviceworker.output(),
     mode: process.env.NODE_ENV,
   },
-};
+}

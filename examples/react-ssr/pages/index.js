@@ -1,15 +1,15 @@
-import Head from 'next/head';
-import { Editor } from '@bytemd/react';
-import breaks from '@bytemd/plugin-breaks';
-import footnotes from '@bytemd/plugin-footnotes';
-import frontmatter from '@bytemd/plugin-frontmatter';
-import gfm from '@bytemd/plugin-gfm';
-import highlight from '@bytemd/plugin-highlight';
-import math from '@bytemd/plugin-math';
-import mediumZoom from '@bytemd/plugin-medium-zoom';
-import mermaid from '@bytemd/plugin-mermaid';
-import gemoji from '@bytemd/plugin-gemoji';
-import { useMemo, useState, useEffect, Fragment } from 'react';
+import Head from 'next/head'
+import { Editor } from '@bytemd/react'
+import breaks from '@bytemd/plugin-breaks'
+import footnotes from '@bytemd/plugin-footnotes'
+import frontmatter from '@bytemd/plugin-frontmatter'
+import gfm from '@bytemd/plugin-gfm'
+import highlight from '@bytemd/plugin-highlight'
+import math from '@bytemd/plugin-math'
+import mediumZoom from '@bytemd/plugin-medium-zoom'
+import mermaid from '@bytemd/plugin-mermaid'
+import gemoji from '@bytemd/plugin-gemoji'
+import { useMemo, useState, useEffect, Fragment } from 'react'
 
 const pluginNames = [
   'breaks',
@@ -21,27 +21,27 @@ const pluginNames = [
   'math',
   'medium-zoom',
   'mermaid',
-];
+]
 const pluginNamesEnable = pluginNames.reduce(
   (acc, p) => ((acc[p] = true), acc),
   {}
-);
+)
 
 export default function Home() {
-  const [value, setValue] = useState('');
-  const [enabled, setEnabled] = useState(pluginNamesEnable);
+  const [value, setValue] = useState('')
+  const [enabled, setEnabled] = useState(pluginNamesEnable)
 
   useEffect(() => {
     const init = async () => {
       const res = await fetch(
         'https://raw.githubusercontent.com/bytedance/bytemd/main/examples/svelte/public/example.md'
-      );
-      const text = await res.text();
-      setValue(text);
-    };
+      )
+      const text = await res.text()
+      setValue(text)
+    }
 
-    init();
-  }, []);
+    init()
+  }, [])
 
   const plugins = useMemo(
     () =>
@@ -58,7 +58,7 @@ export default function Home() {
         enabled.mermaid && mermaid(),
       ].filter((x) => x),
     [enabled]
-  );
+  )
 
   return (
     <div>
@@ -77,11 +77,11 @@ export default function Home() {
                 type="checkbox"
                 checked={enabled[p]}
                 onChange={(e) => {
-                  const { checked } = e.target;
+                  const { checked } = e.target
                   setEnabled((v) => ({
                     ...v,
                     [p]: checked,
-                  }));
+                  }))
                 }}
               />
               {p}
@@ -93,7 +93,7 @@ export default function Home() {
         value={value}
         plugins={plugins}
         onChange={(v) => {
-          setValue(v);
+          setValue(v)
         }}
       />
 
@@ -106,5 +106,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  );
+  )
 }
