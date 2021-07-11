@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-highlight",
-  "version": "1.10.7",
+  "version": "1.10.8",
   "description": "ByteMD plugin to highlight code blocks",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "highlight.js": "^10.7.3"
   },
   "devDependencies": {
-    "bytemd": "^1.10.7"
+    "bytemd": "^1.10.8"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"
