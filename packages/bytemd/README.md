@@ -221,6 +221,10 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
 TODO: plugin API not stable yet
 
+## Contributors
+
+[![](https://contrib.rocks/image?repo=bytedance/bytemd)](https://github.com/bytedance/bytemd/graphs/contributors)
+
 ## License
 
 MIT
