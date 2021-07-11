@@ -1,0 +1,11 @@
+{
+    "pie": "Graphique circulaire",
+    "gantt": "Diagramme de Gantt",
+    "uj": "Diagramme de parcours utilisateur",
+    "er": "Diagramme de relation entre entités",
+    "state": "Diagramme d'état",
+    "class": "Diagramme de classes",
+    "sequence": "Diagramme de séquences",
+    "flowchart": "Organigramme",
+    "mermaid": "Diagrammes Mermaid"
+}
