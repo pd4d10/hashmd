@@ -13,8 +13,8 @@
     "test:watch": "BABEL_ENV=test npm run test -- --watch",
     "postinstall": "node -r esm scripts/postinstall.js",
     "pub": "npm run clean && npm run build:ci && lerna publish --yes",
-    "lint": "npx prettier --plugin-search-dir=. --list-different **/*.{ts,tsx,js,svelte}",
-    "lint:fix": "npx prettier --plugin-search-dir=. --write **/*.{ts,tsx,js,svelte}"
+    "lint": "npx prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different **/*.{ts,tsx,js,svelte}",
+    "lint:fix": "npx prettier --plugin-search-dir=. --ignore-path=.gitignore --write **/*.{ts,tsx,js,svelte}"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
