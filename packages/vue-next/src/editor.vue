@@ -18,7 +18,7 @@ export default defineComponent({
     locale: Object,
     uploadImages: Function
   },
-  emits: ['update:value'],
+  emits: ['update:value', 'change'],
   setup(props, { emit }) {
     const editorRef: Ref<HTMLElement | null> = ref(null);
     const editorEditor: Ref<Editor | null> = ref(null);
@@ -52,6 +52,7 @@ export default defineComponent({
       });
       editor.$on('change', (e: any) => {
         emit('update:value', e.detail.value);
+        emit('change', e.detail.value);
       });
       editorEditor.value = editor;
     };
