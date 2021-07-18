@@ -29,7 +29,7 @@
     "@types/codemirror": "^0.0.108",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
-    "@types/mdast": "^3.0.3",
+    "@types/mdast": "^3.0.7",
     "codemirror-ssr": "^0.0.6",
     "hast-util-sanitize": "^3.0.2",
     "lodash.debounce": "^4.0.8",
@@ -41,7 +41,7 @@
     "remark-rehype": "^8.1.0",
     "select-files": "^1.0.1",
     "tippy.js": "^6.3.1",
-    "unified": "^9.2.1",
+    "unified": "^9.2.2",
     "unist-util-visit": "^2.0.3",
     "vfile": "^4.2.1",
     "word-count": "^0.2.2"

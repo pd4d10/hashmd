@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "@types/mermaid": "^8.2.6",
+    "@types/mermaid": "^8.2.7",
     "mermaid": "^8.11.0"
   },
   "devDependencies": {

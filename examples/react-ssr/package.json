@@ -17,11 +17,11 @@
     "@bytemd/plugin-gemoji": "latest",
     "@bytemd/plugin-gfm": "latest",
     "@bytemd/plugin-highlight": "latest",
+    "@bytemd/plugin-highlight-ssr": "latest",
     "@bytemd/plugin-math": "latest",
-    "@bytemd/plugin-mdx": "latest",
+    "@bytemd/plugin-math-ssr": "latest",
     "@bytemd/plugin-medium-zoom": "latest",
     "@bytemd/plugin-mermaid": "latest",
-    "@bytemd/react": "latest",
-    "bytemd": "latest"
+    "@bytemd/react": "latest"
   }
 }

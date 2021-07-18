@@ -9,25 +9,26 @@
   "devDependencies": {
     "@sveltejs/adapter-node": "next",
     "@sveltejs/kit": "next",
-    "sass": "^1.35.1",
+    "sass": "^1.35.2",
     "svelte": "^3.38.3",
-    "svelte-preprocess": "^4.7.3",
+    "svelte-preprocess": "^4.7.4",
     "tslib": "^2.3.0",
     "typescript": "^4.3.5",
-    "vite": "^2.4.0"
+    "vite": "^2.4.2"
   },
   "dependencies": {
-    "@bytemd/plugin-breaks": "^1.10.2",
-    "@bytemd/plugin-footnotes": "^1.10.2",
-    "@bytemd/plugin-frontmatter": "^1.10.2",
-    "@bytemd/plugin-gemoji": "^1.10.2",
-    "@bytemd/plugin-gfm": "^1.10.2",
-    "@bytemd/plugin-highlight": "^1.10.2",
-    "@bytemd/plugin-math": "^1.10.2",
-    "@bytemd/plugin-mdx": "^1.10.2",
-    "@bytemd/plugin-medium-zoom": "^1.10.2",
-    "@bytemd/plugin-mermaid": "^1.10.2",
-    "bytemd": "^1.10.2"
+    "@bytemd/plugin-breaks": "latest",
+    "@bytemd/plugin-footnotes": "latest",
+    "@bytemd/plugin-frontmatter": "latest",
+    "@bytemd/plugin-gemoji": "latest",
+    "@bytemd/plugin-gfm": "latest",
+    "@bytemd/plugin-highlight": "latest",
+    "@bytemd/plugin-highlight-ssr": "latest",
+    "@bytemd/plugin-math": "latest",
+    "@bytemd/plugin-math-ssr": "latest",
+    "@bytemd/plugin-medium-zoom": "latest",
+    "@bytemd/plugin-mermaid": "latest",
+    "bytemd": "latest"
   },
   "type": "module",
   "engines": {
