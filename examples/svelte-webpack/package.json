@@ -23,7 +23,6 @@
     "highlight.js": "^10.7.3",
     "juejin-markdown-themes": "^1.18.0",
     "katex": "^0.12.0",
-    "normalize.css": "^8.0.1",
     "remark-preset-lint-consistent": "^4.0.0",
     "style-loader": "^0.23.1",
     "svelte": "^3.38.3",

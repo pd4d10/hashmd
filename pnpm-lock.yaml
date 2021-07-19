@@ -219,59 +219,6 @@ importers:
       rollup-plugin-terser: 7.0.2_rollup@2.53.2
       svelte: 3.38.3
 
-  examples/svelte-ssr:
-    specifiers:
-      '@bytemd-examples/utils': latest
-      '@bytemd/plugin-breaks': latest
-      '@bytemd/plugin-footnotes': latest
-      '@bytemd/plugin-frontmatter': latest
-      '@bytemd/plugin-gemoji': latest
-      '@bytemd/plugin-gfm': latest
-      '@bytemd/plugin-highlight': latest
-      '@bytemd/plugin-highlight-ssr': latest
-      '@bytemd/plugin-math': latest
-      '@bytemd/plugin-math-ssr': latest
-      '@bytemd/plugin-medium-zoom': latest
-      '@bytemd/plugin-mermaid': latest
-      bytemd: latest
-      compression: ^1.7.4
-      css-loader: ^3.6.0
-      file-loader: ^6.2.0
-      npm-run-all: ^4.1.5
-      polka: next
-      sapper: ^0.27.16
-      sirv: ^0.4.6
-      style-loader: ^1.3.0
-      svelte: ^3.38.3
-      svelte-loader: ^2.13.6
-      webpack: ^4.46.0
-    dependencies:
-      compression: 1.7.4
-      polka: 1.0.0-next.15
-      sirv: 0.4.6
-    devDependencies:
-      '@bytemd-examples/utils': link:../utils
-      '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
-      '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
-      '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
-      '@bytemd/plugin-gemoji': link:../../packages/plugin-gemoji
-      '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
-      '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
-      '@bytemd/plugin-highlight-ssr': link:../../packages/plugin-highlight-ssr
-      '@bytemd/plugin-math': link:../../packages/plugin-math
-      '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
-      '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
-      '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      bytemd: link:../../packages/bytemd
-      css-loader: 3.6.0_webpack@4.46.0
-      file-loader: 6.2.0_webpack@4.46.0
-      npm-run-all: 4.1.5
-      sapper: 0.27.16_svelte@3.38.3
-      style-loader: 1.3.0_webpack@4.46.0
-      svelte: 3.38.3
-      svelte-loader: 2.13.6_svelte@3.38.3
-      webpack: 4.46.0
-
   examples/svelte-webpack:
     specifiers:
       '@bytemd-examples/utils': latest
@@ -294,7 +241,6 @@ importers:
       highlight.js: ^10.7.3
       juejin-markdown-themes: ^1.18.0
       katex: ^0.12.0
-      normalize.css: ^8.0.1
       remark-preset-lint-consistent: ^4.0.0
       style-loader: ^0.23.1
       svelte: ^3.38.3
@@ -323,7 +269,6 @@ importers:
       highlight.js: 10.7.3
       juejin-markdown-themes: 1.18.0
       katex: 0.12.0
-      normalize.css: 8.0.1
       remark-preset-lint-consistent: 4.0.0
       style-loader: 0.23.1
       svelte: 3.38.3
@@ -3158,10 +3103,6 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: false
 
-  /@polka/url/0.5.0:
-    resolution: {integrity: sha512-oZLYFEAzUKyi3SKnXvj32ZCEGH6RDnao7COuCVhDydMS9NrCSVXhM79VaKyP5+Zc33m0QXEd2DN3UkU7OsHcfw==}
-    dev: false
-
   /@polka/url/1.0.0-next.15:
     resolution: {integrity: sha512-15spi3V28QdevleWBNXE4pIls3nFZmBbUGrW9IVPwiQczuSb9n76TCB4bsk8TSel+I1OkHEdPhu5QKMfY6rQHA==}
     dev: false
@@ -4811,6 +4752,7 @@ packages:
     dependencies:
       no-case: 2.3.2
       upper-case: 1.1.3
+    dev: false
 
   /camel-case/4.1.2:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
@@ -5609,28 +5551,6 @@ packages:
       postcss-value-parser: 3.3.1
       schema-utils: 1.0.0
       webpack: 4.46.0_webpack-cli@3.3.12
-    dev: true
-
-  /css-loader/3.6.0_webpack@4.46.0:
-    resolution: {integrity: sha512-M5lSukoWi1If8dhQAUCvj4H8vUt3vOnwbQBH9DdTm/s4Ym2B/3dPMtYZeJmq7Q3S3Pa+I94DcZ7pc9bP14cWIQ==}
-    engines: {node: '>= 8.9.0'}
-    peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      camelcase: 5.3.1
-      cssesc: 3.0.0
-      icss-utils: 4.1.1
-      loader-utils: 1.4.0
-      normalize-path: 3.0.0
-      postcss: 7.0.36
-      postcss-modules-extract-imports: 2.0.0
-      postcss-modules-local-by-default: 3.0.3
-      postcss-modules-scope: 2.2.0
-      postcss-modules-values: 3.0.0
-      postcss-value-parser: 4.1.0
-      schema-utils: 2.7.1
-      semver: 6.3.0
-      webpack: 4.46.0
     dev: true
 
   /css-loader/4.3.0_webpack@4.46.0:
@@ -6968,7 +6888,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.1.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -7829,6 +7749,7 @@ packages:
       param-case: 2.1.1
       relateurl: 0.2.7
       uglify-js: 3.13.10
+    dev: false
 
   /html-tags/2.0.0:
     resolution: {integrity: sha1-ELMKOGCF9Dzt41PMj6fLDe7qZos=}
@@ -7904,11 +7825,6 @@ packages:
       setprototypeof: 1.1.1
       statuses: 1.5.0
       toidentifier: 1.0.0
-
-  /http-link-header/1.0.3:
-    resolution: {integrity: sha512-nARK1wSKoBBrtcoESlHBx36c1Ln/gnbNQi1eB6MeTUefJIT3NvUOsV15bClga0k38f0q/kN5xxrGSDS3EFnm9w==}
-    engines: {node: '>=4.0.0'}
-    dev: true
 
   /http-parser-js/0.5.3:
     resolution: {integrity: sha512-t7hjvef/5HEK7RWTdUzVUhl8zkEu+LlaE0IYzdMuvbSDipxBRpOn4Uhw8ZyECEa808iVT8XCjzo6xmYt4CiLZg==}
@@ -9589,6 +9505,7 @@ packages:
 
   /lower-case/1.1.4:
     resolution: {integrity: sha1-miyr0bno4K6ZOkv31YdcOcQujqw=}
+    dev: false
 
   /lower-case/2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -10488,6 +10405,7 @@ packages:
     resolution: {integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==}
     dependencies:
       lower-case: 1.1.4
+    dev: false
 
   /no-case/3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -10697,10 +10615,6 @@ packages:
   /normalize-url/6.1.0:
     resolution: {integrity: sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==}
     engines: {node: '>=10'}
-
-  /normalize.css/8.0.1:
-    resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
-    dev: true
 
   /npm-bundled/1.1.2:
     resolution: {integrity: sha512-x5DHup0SuyQcmL3s7Rx/YQ8sbw/Hzg0rj48eN0dV7hf5cmQq5PXIeioroH3raV1QC1yh3uTYuMThvEQF3iKgGQ==}
@@ -11206,6 +11120,7 @@ packages:
     resolution: {integrity: sha1-35T9jPZTHs915r75oIWPvHK+Ikc=}
     dependencies:
       no-case: 2.3.2
+    dev: false
 
   /param-case/3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
@@ -11445,14 +11360,6 @@ packages:
       ts-pnp: 1.2.0_typescript@4.3.5
     transitivePeerDependencies:
       - typescript
-    dev: false
-
-  /polka/1.0.0-next.15:
-    resolution: {integrity: sha512-zBCZO40+USkSj0GDHMqufthqk4TIRc9xVGd50LbMvYNEwGHK8dZczLBQtw9pPHBM+i/Xg7ed7+c+r6J68XkWLg==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@polka/url': 1.0.0-next.15
-      trouter: 3.2.0
     dev: false
 
   /portfinder/1.0.28:
@@ -11801,6 +11708,7 @@ packages:
       postcss: 7.0.36
       postcss-selector-parser: 6.0.6
       postcss-value-parser: 4.1.0
+    dev: false
 
   /postcss-modules-scope/1.1.0:
     resolution: {integrity: sha1-1upkmUx5+XtipytCb75gVqGUu5A=}
@@ -11846,6 +11754,7 @@ packages:
     dependencies:
       icss-utils: 4.1.1
       postcss: 7.0.36
+    dev: false
 
   /postcss-modules/2.0.0:
     resolution: {integrity: sha512-eqp+Bva+U2cwQO7dECJ8/V+X+uH1HduNeITB0CPPFAu6d/8LKQ32/j+p9rQ2YL1QytVcrNU0X+fBqgGmQIA1Rw==}
@@ -12791,11 +12700,6 @@ packages:
       define-properties: 1.1.3
     dev: true
 
-  /regexparam/1.3.0:
-    resolution: {integrity: sha512-6IQpFBv6e5vz1QAqI+V4k8P2e/3gRrqfCJ9FI+O1FLQTO+Uz6RXZEZOPmTJ6hlGj7gkERzY5BRCv09whKP96/g==}
-    engines: {node: '>=6'}
-    dev: false
-
   /regexpu-core/4.7.1:
     resolution: {integrity: sha512-ywH2VUraA44DZQuRKzARmw6S66mr48pQVva4LBeRhcOltJ6hExvWly5ZjFLYo67xbIxb6W1q4bAGtgfEl20zfQ==}
     engines: {node: '>=4'}
@@ -12863,6 +12767,7 @@ packages:
   /relateurl/0.2.7:
     resolution: {integrity: sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=}
     engines: {node: '>= 0.10'}
+    dev: false
 
   /remark-breaks/2.0.2:
     resolution: {integrity: sha512-LsQnPPQ7Fzp9RTjj4IwdEmjPOr9bxe9zYKWhs9ZQOg9hMg8rOfeeqQ410cvVdIK87Famqza1CKRxNkepp2EvUA==}
@@ -13373,20 +13278,6 @@ packages:
   /safer-buffer/2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sapper/0.27.16_svelte@3.38.3:
-    resolution: {integrity: sha512-q8dohkbhga6xO+0a8h84odFyoilQ0D0vJtF8NHra/DQmSeN2R2MXUfwhw3EyvLms3T1x8H3v+qw642Qf5JXA9g==}
-    hasBin: true
-    peerDependencies:
-      svelte: ^3.5.0
-    dependencies:
-      html-minifier: 4.0.0
-      http-link-header: 1.0.3
-      shimport: 1.0.1
-      sourcemap-codec: 1.4.8
-      string-hash: 1.1.3
-      svelte: 3.38.3
-    dev: true
-
   /sass-graph/2.2.5:
     resolution: {integrity: sha512-VFWDAHOe6mRuT4mZRd4eKE+d8Uedrk6Xnh7Sh9b4NGufQLQjOrvf/MQoOdx+0s92L89FeyUUNfU597j/3uNpag==}
     hasBin: true
@@ -13438,6 +13329,7 @@ packages:
       '@types/json-schema': 7.0.8
       ajv: 6.12.6
       ajv-keywords: 3.5.2_ajv@6.12.6
+    dev: false
 
   /schema-utils/3.1.0:
     resolution: {integrity: sha512-tTEaeYkyIhEZ9uWgAjDerWov3T9MgX8dhhy2r0IGeeX4W8ngtGl1++dUve/RUqzuaASSh7shwCDJjEzthxki8w==}
@@ -13625,10 +13517,6 @@ packages:
   /shell-quote/1.7.2:
     resolution: {integrity: sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==}
 
-  /shimport/1.0.1:
-    resolution: {integrity: sha512-Imf4gH+8WQmT1GvxS/x79qpmfnE6m50hyN1ucatX+7oMCgmaF8obZWCPIzSUe6+P+YmXM46lkP2pxiV2/lt9Og==}
-    dev: true
-
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -13657,14 +13545,6 @@ packages:
       semiver: 1.1.0
       sirv: 1.0.12
       tinydate: 1.3.0
-    dev: false
-
-  /sirv/0.4.6:
-    resolution: {integrity: sha512-rYpOXlNbpHiY4nVXxuDf4mXPvKz1reZGap/LkWp9TvcZ84qD/nPBjjH/6GZsgIjVMbOslnY8YYULAyP8jMn1GQ==}
-    engines: {node: '>= 6'}
-    dependencies:
-      '@polka/url': 0.5.0
-      mime: 2.5.2
     dev: false
 
   /sirv/1.0.12:
@@ -14204,17 +14084,6 @@ packages:
       schema-utils: 1.0.0
     dev: true
 
-  /style-loader/1.3.0_webpack@4.46.0:
-    resolution: {integrity: sha512-V7TCORko8rs9rIqkSrlMfkqA63DfoGBBJmK1kKGCcSi+BWb4cqz0SRsnp4l6rU5iwOEd0/2ePv68SV22VXon4Q==}
-    engines: {node: '>= 8.9.0'}
-    peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      loader-utils: 2.0.0
-      schema-utils: 2.7.1
-      webpack: 4.46.0
-    dev: true
-
   /style-resources-loader/1.4.1_webpack@4.46.0:
     resolution: {integrity: sha512-UaAoQXq20relw6B633z4QZDxDyW7gevTt1e0y3MZtzdZfnvB90UL658czAgNc609Y7Kn5ErdthK9bSVhnykBUA==}
     engines: {node: '>=8.9'}
@@ -14552,7 +14421,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
 
@@ -14776,13 +14645,6 @@ packages:
 
   /trough/1.0.5:
     resolution: {integrity: sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==}
-    dev: false
-
-  /trouter/3.2.0:
-    resolution: {integrity: sha512-rLLXbhTObLy2MBVjLC+jTnoIKw99n0GuJs9ov10J870vDw5qhTurPzsDrudNtBf5w/CZ9ctZy2p2IMmhGcel2w==}
-    engines: {node: '>=6'}
-    dependencies:
-      regexparam: 1.3.0
     dev: false
 
   /true-case-path/1.0.3:
@@ -15092,6 +14954,7 @@ packages:
 
   /upper-case/1.1.3:
     resolution: {integrity: sha1-9rRQHC7EzdJrp4vnIilh3ndiFZg=}
+    dev: false
 
   /uri-js/4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -15617,6 +15480,7 @@ packages:
       terser-webpack-plugin: 1.4.5_webpack@4.46.0
       watchpack: 1.7.5
       webpack-sources: 1.4.3
+    dev: false
 
   /webpack/4.46.0_webpack-cli@3.3.12:
     resolution: {integrity: sha512-6jJuJjg8znb/xRItk7bkT0+Q7AHCYjjFnvKIWQPkNIOyRqoCGvkOs0ipeQzrqz4l5FtN5ZI/ukEHroeX/o1/5Q==}

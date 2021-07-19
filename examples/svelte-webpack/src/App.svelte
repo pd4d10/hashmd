@@ -10,7 +10,6 @@
   import mermaid from '@bytemd/plugin-mermaid'
   import gemoji from '@bytemd/plugin-gemoji'
   import { markdownText } from '@bytemd-examples/utils'
-  // import {} from '@bytemd-examples/'
   import locales from './locales'
   // import lintConsistent from 'remark-preset-lint-consistent';
 
@@ -19,7 +18,6 @@
   // import 'juejin-markdown-themes/dist/juejin.css';
   import 'highlight.js/styles/vs.css'
   import 'katex/dist/katex.css'
-  // import 'normalize.css';
 
   let value = markdownText
   let mode = 'auto'
