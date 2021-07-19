@@ -178,6 +178,7 @@ importers:
 
   examples/svelte-kit:
     specifiers:
+      '@bytemd-examples/svelte': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -189,16 +190,15 @@ importers:
       '@bytemd/plugin-math-ssr': latest
       '@bytemd/plugin-medium-zoom': latest
       '@bytemd/plugin-mermaid': latest
-      '@sveltejs/adapter-node': next
       '@sveltejs/kit': next
       bytemd: latest
-      sass: ^1.35.2
       svelte: ^3.38.3
+      svelte-check: ^2.2.3
       svelte-preprocess: ^4.7.4
       tslib: ^2.3.0
       typescript: ^4.3.5
-      vite: ^2.4.2
-    dependencies:
+    devDependencies:
+      '@bytemd-examples/svelte': link:../svelte
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -210,16 +210,13 @@ importers:
       '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      bytemd: link:../../packages/bytemd
-    devDependencies:
-      '@sveltejs/adapter-node': 1.0.0-next.34
       '@sveltejs/kit': 1.0.0-next.131_svelte@3.38.3
-      sass: 1.35.2
+      bytemd: link:../../packages/bytemd
       svelte: 3.38.3
-      svelte-preprocess: 4.7.4_8cf9d0597cb23bb233454527bf3138bf
+      svelte-check: 2.2.3_6ccc96ef45cf08655af73d466cb745f0
+      svelte-preprocess: 4.7.4_c0faa779f35eeea6a11169ed667de805
       tslib: 2.3.0
       typescript: 4.3.5
-      vite: 2.4.2
 
   examples/svelte-rollup:
     specifiers:
@@ -3297,13 +3294,6 @@ packages:
     resolution: {integrity: sha512-iQADsW4LBMISqZ6Ci1dupJL9pprqwcVFTcOsEmQOEhW+KLCVn/Y4Jrvg2k19fIHCp+iFprriYPTdRcQR8NbUPg==}
     dependencies:
       '@sinonjs/commons': 1.8.3
-    dev: true
-
-  /@sveltejs/adapter-node/1.0.0-next.34:
-    resolution: {integrity: sha512-TCaZ1tdSD+0WwOc9729mxt+ZmQQK5WBHUqsiRk+0csAOYv0ROk3HMFQghyN8nWN2l6Zow8DA5UZoYxC94U8lpQ==}
-    dependencies:
-      esbuild: 0.12.15
-      tiny-glob: 0.2.9
     dev: true
 
   /@sveltejs/kit/1.0.0-next.131_svelte@3.38.3:
@@ -6961,7 +6951,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.1.0
-      webpack: 4.46.0_webpack-cli@3.3.12
+      webpack: 4.46.0
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -7439,10 +7429,6 @@ packages:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
 
-  /globalyzer/0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-    dev: true
-
   /globby/11.0.4:
     resolution: {integrity: sha512-9O4MVG9ioZJ08ffbcyVYyLOJLk5JQ688pJ4eMGLpdWLHq/Wr1D9BlriLQyL0E+jbkuePVZXYFj47QM/v093wHg==}
     engines: {node: '>=10'}
@@ -7463,10 +7449,6 @@ packages:
       object-assign: 4.1.1
       pify: 2.3.0
       pinkie-promise: 2.0.1
-    dev: true
-
-  /globrex/0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /globule/1.3.2:
@@ -13405,6 +13387,7 @@ packages:
     dependencies:
       chokidar: 3.5.2
     dev: true
+    optional: true
 
   /sax/1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
@@ -14328,6 +14311,35 @@ packages:
       supports-color: 7.2.0
     dev: true
 
+  /svelte-check/2.2.3_6ccc96ef45cf08655af73d466cb745f0:
+    resolution: {integrity: sha512-mqe/lgF0Ew+54YI4bPW5D26sMolh+MofQiz41U0c1GvUsP3bKsLLH0mjs4P4Xc+ajUFJtvGBo5PWaf0dd46sIQ==}
+    hasBin: true
+    peerDependencies:
+      svelte: ^3.24.0
+    dependencies:
+      chalk: 4.1.1
+      chokidar: 3.5.2
+      glob: 7.1.7
+      import-fresh: 3.3.0
+      minimist: 1.2.5
+      sade: 1.7.4
+      source-map: 0.7.3
+      svelte: 3.38.3
+      svelte-preprocess: 4.7.4_c0faa779f35eeea6a11169ed667de805
+      typescript: 4.3.5
+    transitivePeerDependencies:
+      - '@babel/core'
+      - coffeescript
+      - less
+      - node-sass
+      - postcss
+      - postcss-load-config
+      - pug
+      - sass
+      - stylus
+      - sugarss
+    dev: true
+
   /svelte-dev-helper/1.1.9:
     resolution: {integrity: sha1-fRh9tcbNu9ZNdaMvkbiZi94yc8M=}
     dev: true
@@ -14359,58 +14371,6 @@ packages:
       loader-utils: 1.4.0
       svelte: 3.38.3
       svelte-dev-helper: 1.1.9
-    dev: true
-
-  /svelte-preprocess/4.7.4_8cf9d0597cb23bb233454527bf3138bf:
-    resolution: {integrity: sha512-mDAmaltQl6e5zU2VEtoWEf7eLTfuOTGr9zt+BpA3AGHo8MIhKiNSPE9OLTCTOMgj0vj/uL9QBbaNmpG4G1CgIA==}
-    engines: {node: '>= 9.11.2'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3
-      node-sass: '*'
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.54.7
-      sugarss: ^2.0.0
-      svelte: ^3.23.0
-      typescript: ^3.9.5 || ^4.0.0
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      node-sass:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@babel/core': 7.14.6
-      '@types/pug': 2.0.5
-      '@types/sass': 1.16.1
-      detect-indent: 6.1.0
-      node-sass: 6.0.1
-      sass: 1.35.2
-      strip-indent: 3.0.0
-      svelte: 3.38.3
-      typescript: 4.3.5
     dev: true
 
   /svelte-preprocess/4.7.4_c0faa779f35eeea6a11169ed667de805:
@@ -14575,7 +14535,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.46.0_webpack-cli@3.3.12
+      webpack: 4.46.0
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
 
@@ -14686,13 +14646,6 @@ packages:
 
   /timsort/0.3.0:
     resolution: {integrity: sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=}
-
-  /tiny-glob/0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
-    dev: true
 
   /tinydate/1.3.0:
     resolution: {integrity: sha512-7cR8rLy2QhYHpsBDBVYnnWXm8uRTr38RoZakFSW7Bs7PzfMPNZthuMLkwqZv7MTu8lhQ91cOFYS5a7iFj2oR3w==}

@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "@bytemd-examples/svelte-rollup",
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",

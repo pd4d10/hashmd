@@ -1,5 +1,5 @@
 {
-  "name": "example-svelte",
+  "name": "@bytemd-examples/svelte",
   "private": true,
   "version": "0.0.1",
   "devDependencies": {
