@@ -5,5 +5,5 @@
   NPM_FLAGS="--prefix=/dev/null"
 
 [build]
-  publish = "examples/svelte/public"
-  command = "npx pnpm install && npm run build && cd examples/svelte && npm run build"
+  publish = "examples/svelte-webpack/public"
+  command = "npx pnpm install && npm run build && cd examples/svelte-webpack && npm run build"

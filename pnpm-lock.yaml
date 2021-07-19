@@ -120,69 +120,9 @@ importers:
       react: 17.0.1
       react-dom: 17.0.1_react@17.0.1
 
-  examples/svelte:
-    specifiers:
-      '@bytemd-examples/utils': latest
-      '@bytemd/plugin-breaks': latest
-      '@bytemd/plugin-footnotes': latest
-      '@bytemd/plugin-frontmatter': latest
-      '@bytemd/plugin-gemoji': latest
-      '@bytemd/plugin-gfm': latest
-      '@bytemd/plugin-highlight': latest
-      '@bytemd/plugin-highlight-ssr': latest
-      '@bytemd/plugin-math': latest
-      '@bytemd/plugin-math-ssr': latest
-      '@bytemd/plugin-medium-zoom': latest
-      '@bytemd/plugin-mermaid': latest
-      bytemd: latest
-      cross-env: ^5.2.1
-      css-loader: ^2.1.1
-      file-loader: ^6.2.0
-      github-markdown-css: ^4.0.0
-      highlight.js: ^10.7.3
-      juejin-markdown-themes: ^1.18.0
-      katex: ^0.12.0
-      normalize.css: ^8.0.1
-      remark-preset-lint-consistent: ^4.0.0
-      style-loader: ^0.23.1
-      svelte: ^3.38.3
-      svelte-loader: 2.13.6
-      webpack: ^4.46.0
-      webpack-cli: ^3.3.12
-      webpack-dev-server: ^3.11.2
-    devDependencies:
-      '@bytemd-examples/utils': link:../utils
-      '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
-      '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
-      '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
-      '@bytemd/plugin-gemoji': link:../../packages/plugin-gemoji
-      '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
-      '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
-      '@bytemd/plugin-highlight-ssr': link:../../packages/plugin-highlight-ssr
-      '@bytemd/plugin-math': link:../../packages/plugin-math
-      '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
-      '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
-      '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      bytemd: link:../../packages/bytemd
-      cross-env: 5.2.1
-      css-loader: 2.1.1_webpack@4.46.0
-      file-loader: 6.2.0_webpack@4.46.0
-      github-markdown-css: 4.0.0
-      highlight.js: 10.7.3
-      juejin-markdown-themes: 1.18.0
-      katex: 0.12.0
-      normalize.css: 8.0.1
-      remark-preset-lint-consistent: 4.0.0
-      style-loader: 0.23.1
-      svelte: 3.38.3
-      svelte-loader: 2.13.6_svelte@3.38.3
-      webpack: 4.46.0_webpack-cli@3.3.12
-      webpack-cli: 3.3.12_webpack@4.46.0
-      webpack-dev-server: 3.11.2_46edf965869dcc7c8d09e022f331d1ea
-
   examples/svelte-kit:
     specifiers:
-      '@bytemd-examples/svelte': latest
+      '@bytemd-examples/svelte-webpack': latest
       '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
@@ -203,7 +143,7 @@ importers:
       tslib: ^2.3.0
       typescript: ^4.3.5
     devDependencies:
-      '@bytemd-examples/svelte': link:../svelte
+      '@bytemd-examples/svelte-webpack': link:../svelte-webpack
       '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
@@ -329,6 +269,66 @@ importers:
       svelte: 3.38.3
       svelte-loader: 2.13.6_svelte@3.38.3
       webpack: 4.46.0
+
+  examples/svelte-webpack:
+    specifiers:
+      '@bytemd-examples/utils': latest
+      '@bytemd/plugin-breaks': latest
+      '@bytemd/plugin-footnotes': latest
+      '@bytemd/plugin-frontmatter': latest
+      '@bytemd/plugin-gemoji': latest
+      '@bytemd/plugin-gfm': latest
+      '@bytemd/plugin-highlight': latest
+      '@bytemd/plugin-highlight-ssr': latest
+      '@bytemd/plugin-math': latest
+      '@bytemd/plugin-math-ssr': latest
+      '@bytemd/plugin-medium-zoom': latest
+      '@bytemd/plugin-mermaid': latest
+      bytemd: latest
+      cross-env: ^5.2.1
+      css-loader: ^2.1.1
+      file-loader: ^6.2.0
+      github-markdown-css: ^4.0.0
+      highlight.js: ^10.7.3
+      juejin-markdown-themes: ^1.18.0
+      katex: ^0.12.0
+      normalize.css: ^8.0.1
+      remark-preset-lint-consistent: ^4.0.0
+      style-loader: ^0.23.1
+      svelte: ^3.38.3
+      svelte-loader: 2.13.6
+      webpack: ^4.46.0
+      webpack-cli: ^3.3.12
+      webpack-dev-server: ^3.11.2
+    devDependencies:
+      '@bytemd-examples/utils': link:../utils
+      '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
+      '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
+      '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
+      '@bytemd/plugin-gemoji': link:../../packages/plugin-gemoji
+      '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
+      '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
+      '@bytemd/plugin-highlight-ssr': link:../../packages/plugin-highlight-ssr
+      '@bytemd/plugin-math': link:../../packages/plugin-math
+      '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
+      '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
+      '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
+      bytemd: link:../../packages/bytemd
+      cross-env: 5.2.1
+      css-loader: 2.1.1_webpack@4.46.0
+      file-loader: 6.2.0_webpack@4.46.0
+      github-markdown-css: 4.0.0
+      highlight.js: 10.7.3
+      juejin-markdown-themes: 1.18.0
+      katex: 0.12.0
+      normalize.css: 8.0.1
+      remark-preset-lint-consistent: 4.0.0
+      style-loader: 0.23.1
+      svelte: 3.38.3
+      svelte-loader: 2.13.6_svelte@3.38.3
+      webpack: 4.46.0_webpack-cli@3.3.12
+      webpack-cli: 3.3.12_webpack@4.46.0
+      webpack-dev-server: 3.11.2_46edf965869dcc7c8d09e022f331d1ea
 
   examples/utils:
     specifiers: {}
@@ -6966,7 +6966,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.1.0
-      webpack: 4.46.0_webpack-cli@3.3.12
+      webpack: 4.46.0
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -14550,7 +14550,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.46.0_webpack-cli@3.3.12
+      webpack: 4.46.0
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
 

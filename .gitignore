@@ -9,4 +9,4 @@ coverage
 style.js
 tsconfig.json
 packages/*/LICENSE
-examples/svelte/src/locales.js
+examples/svelte-webpack/src/locales.js

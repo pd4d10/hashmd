@@ -139,7 +139,7 @@ packages.forEach((p) => {
   }
 })
 fs.writeFileSync(
-  'examples/svelte/src/locales.js',
+  'examples/svelte-webpack/src/locales.js',
   importCode +
     'export default ' +
     JSON.stringify(exportObject, null, 2).replace(/"/g, '')

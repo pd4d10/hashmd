@@ -1,5 +1,5 @@
 {
-  "name": "@bytemd-examples/svelte",
+  "name": "@bytemd-examples/svelte-webpack",
   "private": true,
   "version": "0.0.1",
   "devDependencies": {

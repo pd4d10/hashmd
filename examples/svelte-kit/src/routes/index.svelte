@@ -1,5 +1,5 @@
 <script>
-  import App from '@bytemd-examples/svelte/src/App.svelte'
+  import App from '@bytemd-examples/svelte-webpack/src/App.svelte'
 </script>
 
 <App />
