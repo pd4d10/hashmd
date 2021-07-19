@@ -3,7 +3,13 @@
 <script lang="ts">
   import type { VFile } from 'vfile'
   import type { BytemdPlugin, ViewerProps } from './types'
-  import { tick, onDestroy, onMount, createEventDispatcher } from 'svelte'
+  import {
+    tick,
+    onDestroy,
+    onMount,
+    createEventDispatcher,
+    afterUpdate,
+  } from 'svelte'
   import { getProcessor } from './utils'
 
   const dispatch = createEventDispatcher()
@@ -16,12 +22,12 @@
   let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = []
 
   function on() {
-    // console.log('von');
+    // console.log('von')
     cbs = plugins.map((p) => p.viewerEffect?.({ markdownBody, file }))
   }
   function off() {
-    // console.log('voff');
-    cbs.forEach((cb) => cb && cb())
+    // console.log('voff')
+    cbs.forEach((cb) => cb?.())
   }
 
   onMount(() => {
@@ -64,14 +70,16 @@
       ],
     }).processSync(value)
     i++
-
-    off()
-    tick().then(() => {
-      on()
-    })
   } catch (err) {
     console.error(err)
   }
+
+  afterUpdate(() => {
+    // TODO: `off` should be called before DOM update
+    // https://github.com/sveltejs/svelte/issues/6016
+    off()
+    on()
+  })
 
   $: html = `${file}<!--${i}-->`
 </script>

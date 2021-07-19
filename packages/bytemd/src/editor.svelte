@@ -125,7 +125,7 @@
     // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb())
 
-    editor.removeKeyMap(keyMap)
+    editor?.removeKeyMap(keyMap) // onDestroy runs at SSR, optional chaining here
   }
 
   let debouncedValue = value
