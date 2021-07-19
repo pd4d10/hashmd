@@ -21,7 +21,7 @@ export default function highlight({
         }
 
         els.forEach((el) => {
-          hljs.highlightBlock(el)
+          hljs.highlightElement(el)
         })
       })()
     },
