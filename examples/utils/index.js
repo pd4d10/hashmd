@@ -1,4 +1,4 @@
----
+export const markdownText = `---
 # frontmatter: https://jekyllrb.com/docs/front-matter/
 layout: post
 title: Blogging Like a Hacker
@@ -6,7 +6,7 @@ title: Blogging Like a Hacker
 
 ## Markdown Basic Syntax
 
-I just love **bold text**. Italicized text is the _cat's meow_. At the command prompt, type `nano`.
+I just love **bold text**. Italicized text is the _cat's meow_. At the command prompt, type \`nano\`.
 
 My favorite markdown editor is [ByteMD](https://github.com/bytedance/bytemd).
 
@@ -16,14 +16,14 @@ My favorite markdown editor is [ByteMD](https://github.com/bytedance/bytemd).
 
 > Dorothy followed her through many of the beautiful rooms in her castle.
 
-```js
-import { Editor, Viewer } from 'bytemd';
-import gfm from '@bytemd/plugin-gfm';
+\`\`\`js
+import { Editor, Viewer } from 'bytemd'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 const editor = new Editor({
   target: document.body, // DOM to render
@@ -31,12 +31,12 @@ const editor = new Editor({
     value: '',
     plugins,
   },
-});
+})
 
 editor.on('change', (e) => {
-  editor.$set({ value: e.detail.value });
-});
-```
+  editor.$set({ value: e.detail.value })
+})
+\`\`\`
 
 ## GFM Extended Syntax
 
@@ -62,7 +62,7 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
     Indent paragraphs to include them in the footnote.
 
-    `{ my code }`
+    \`{ my code }\`
 
     Add as many paragraphs as you like.
 
@@ -79,15 +79,16 @@ Long flags: :wales:, :scotland:, :england:.
 Inline math equation: $a+b$
 
 $$
-\displaystyle \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+\\displaystyle \\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)
 $$
 
 ## Mermaid Diagrams
 
-```mermaid
+\`\`\`mermaid
 graph TD;
   A-->B;
   A-->C;
   B-->D;
   C-->D;
-```
+\`\`\`
+`

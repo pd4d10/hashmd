@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@bytemd-examples/svelte": "latest",
+    "@bytemd-examples/utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",
     "@bytemd/plugin-frontmatter": "latest",

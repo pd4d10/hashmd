@@ -25,6 +25,7 @@ import { Editor, Viewer } from '@bytemd/vue'
 import highlight from '@bytemd/plugin-highlight'
 import math from '@bytemd/plugin-math'
 // import mermaid from '@bytemd/plugin-mermaid';
+import { markdownText } from '@bytemd-examples/utils'
 
 export default {
   components: {
@@ -33,7 +34,7 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: markdownText,
       enabled: {
         highlight: true,
         math: true,
@@ -57,13 +58,6 @@ export default {
     handlePluginChange($event, p) {
       this.enabled[p] = $event.target.checked
     },
-  },
-  async mounted() {
-    const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/main/assets/demo.md'
-    )
-    const text = await res.text()
-    this.value = text
   },
 }
 </script>

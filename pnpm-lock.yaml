@@ -86,6 +86,7 @@ importers:
 
   examples/react-ssr:
     specifiers:
+      '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -102,6 +103,7 @@ importers:
       react: 17.0.1
       react-dom: 17.0.1
     dependencies:
+      '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -120,6 +122,7 @@ importers:
 
   examples/svelte:
     specifiers:
+      '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -148,6 +151,7 @@ importers:
       webpack-cli: ^3.3.12
       webpack-dev-server: ^3.11.2
     devDependencies:
+      '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -179,6 +183,7 @@ importers:
   examples/svelte-kit:
     specifiers:
       '@bytemd-examples/svelte': latest
+      '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -199,6 +204,7 @@ importers:
       typescript: ^4.3.5
     devDependencies:
       '@bytemd-examples/svelte': link:../svelte
+      '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -220,6 +226,7 @@ importers:
 
   examples/svelte-rollup:
     specifiers:
+      '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -244,6 +251,7 @@ importers:
       sirv-cli: ^1.0.12
       svelte: ^3.38.3
     dependencies:
+      '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -271,6 +279,7 @@ importers:
 
   examples/svelte-ssr:
     specifiers:
+      '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -299,6 +308,7 @@ importers:
       polka: 1.0.0-next.15
       sirv: 0.4.6
     devDependencies:
+      '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -320,8 +330,12 @@ importers:
       svelte-loader: 2.13.6_svelte@3.38.3
       webpack: 4.46.0
 
+  examples/utils:
+    specifiers: {}
+
   examples/vue-ssr:
     specifiers:
+      '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -336,6 +350,7 @@ importers:
       '@bytemd/vue': latest
       nuxt: ^2.15.7
     dependencies:
+      '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -6951,7 +6966,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.1.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -14535,7 +14550,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.46.0
+      webpack: 4.46.0_webpack-cli@3.3.12
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
 

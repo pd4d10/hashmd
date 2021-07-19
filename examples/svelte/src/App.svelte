@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import { Editor } from 'bytemd'
   import breaks from '@bytemd/plugin-breaks'
   import footnotes from '@bytemd/plugin-footnotes'
@@ -10,6 +9,8 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom'
   import mermaid from '@bytemd/plugin-mermaid'
   import gemoji from '@bytemd/plugin-gemoji'
+  import { markdownText } from '@bytemd-examples/utils'
+  // import {} from '@bytemd-examples/'
   import locales from './locales'
   // import lintConsistent from 'remark-preset-lint-consistent';
 
@@ -20,7 +21,7 @@
   import 'katex/dist/katex.css'
   // import 'normalize.css';
 
-  let value = ''
+  let value = markdownText
   let mode = 'auto'
   let localeKey = 'en'
   let maxLength
@@ -41,12 +42,6 @@
       })
     )
   }
-
-  onMount(async () => {
-    const res = await fetch('/example.md')
-    const text = await res.text()
-    value = text
-  })
 
   let enabled = {
     breaks: false,

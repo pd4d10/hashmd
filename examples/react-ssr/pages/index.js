@@ -9,7 +9,8 @@ import math from '@bytemd/plugin-math'
 import mediumZoom from '@bytemd/plugin-medium-zoom'
 import mermaid from '@bytemd/plugin-mermaid'
 import gemoji from '@bytemd/plugin-gemoji'
-import { useMemo, useState, useEffect, Fragment } from 'react'
+import { useMemo, useState, Fragment } from 'react'
+import { markdownText } from '@bytemd-examples/utils'
 
 const pluginNames = [
   'breaks',
@@ -28,20 +29,8 @@ const pluginNamesEnable = pluginNames.reduce(
 )
 
 export default function Home() {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(markdownText)
   const [enabled, setEnabled] = useState(pluginNamesEnable)
-
-  useEffect(() => {
-    const init = async () => {
-      const res = await fetch(
-        'https://raw.githubusercontent.com/bytedance/bytemd/main/examples/svelte/public/example.md'
-      )
-      const text = await res.text()
-      setValue(text)
-    }
-
-    init()
-  }, [])
 
   const plugins = useMemo(
     () =>
