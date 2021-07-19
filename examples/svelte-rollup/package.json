@@ -19,6 +19,7 @@
     "svelte": "^3.38.3"
   },
   "dependencies": {
+    "@bytemd-examples/svelte-webpack": "latest",
     "@bytemd-examples/utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",

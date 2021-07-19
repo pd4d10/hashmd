@@ -166,6 +166,7 @@ importers:
 
   examples/svelte-rollup:
     specifiers:
+      '@bytemd-examples/svelte-webpack': latest
       '@bytemd-examples/utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
@@ -191,6 +192,7 @@ importers:
       sirv-cli: ^1.0.12
       svelte: ^3.38.3
     dependencies:
+      '@bytemd-examples/svelte-webpack': link:../svelte-webpack
       '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
