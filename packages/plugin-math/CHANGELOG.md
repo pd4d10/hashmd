@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.9](https://github.com/bytedance/bytemd/compare/v1.10.8...v1.10.9) (2021-07-22)
+
+**Note:** Version bump only for package @bytemd/plugin-math
+
+
+
+
+
 ## [1.10.8](https://github.com/bytedance/bytemd/compare/v1.10.7...v1.10.8) (2021-07-11)
 
 **Note:** Version bump only for package @bytemd/plugin-math

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.9](https://github.com/bytedance/bytemd/compare/v1.10.8...v1.10.9) (2021-07-22)
+
+
+### Bug Fixes
+
+* **frontmatter:** types error ([933da7e](https://github.com/bytedance/bytemd/commit/933da7e172186335ca3de5de600592da04aa2f80))
+
+
+
+
+
 ## [1.10.8](https://github.com/bytedance/bytemd/compare/v1.10.7...v1.10.8) (2021-07-11)
 
 **Note:** Version bump only for package @bytemd/plugin-frontmatter

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.9](https://github.com/bytedance/bytemd/compare/v1.10.8...v1.10.9) (2021-07-22)
+
+
+### Bug Fixes
+
+* svelte ssr compatible ([a3c9afb](https://github.com/bytedance/bytemd/commit/a3c9afb724413ad83d6718ec90933eb1391eba6f))
+
+
+
+
+
 ## [1.10.8](https://github.com/bytedance/bytemd/compare/v1.10.7...v1.10.8) (2021-07-11)
 
 **Note:** Version bump only for package bytemd
