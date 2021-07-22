@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/vue",
-  "version": "1.10.10",
+  "version": "1.10.11",
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^1.10.10"
+    "bytemd": "^1.10.11"
   },
   "peerDependencies": {
     "vue": "^2.0.0"
