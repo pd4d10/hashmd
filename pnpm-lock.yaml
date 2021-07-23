@@ -156,7 +156,7 @@ importers:
       '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      '@sveltejs/kit': 1.0.0-next.131_svelte@3.38.3
+      '@sveltejs/kit': 1.0.0-next.137_svelte@3.38.3
       bytemd: link:../../packages/bytemd
       svelte: 3.38.3
       svelte-check: 2.2.3_6ccc96ef45cf08655af73d466cb745f0
@@ -358,7 +358,7 @@ importers:
 
   packages/plugin-breaks:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       remark-breaks: ^2.0.2
     dependencies:
       remark-breaks: 2.0.2
@@ -367,7 +367,7 @@ importers:
 
   packages/plugin-footnotes:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       remark-footnotes: ^3.0.0
     dependencies:
       remark-footnotes: 3.0.0
@@ -377,7 +377,7 @@ importers:
   packages/plugin-frontmatter:
     specifiers:
       '@types/js-yaml': ^3.12.7
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       js-yaml: ^3.14.1
       remark-frontmatter: ^3.0.0
       vfile: ^4.2.1
@@ -391,7 +391,7 @@ importers:
 
   packages/plugin-gemoji:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       remark-gemoji: ^6.0.0
     dependencies:
       remark-gemoji: 6.0.0
@@ -400,7 +400,7 @@ importers:
 
   packages/plugin-gfm:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       remark-gfm: ^1.0.0
     dependencies:
       remark-gfm: 1.0.0
@@ -409,7 +409,7 @@ importers:
 
   packages/plugin-highlight:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       highlight.js: ^10.7.3
     dependencies:
       highlight.js: 10.7.3
@@ -418,7 +418,7 @@ importers:
 
   packages/plugin-highlight-ssr:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       rehype-highlight: ^4.1.0
     dependencies:
       rehype-highlight: 4.1.0
@@ -428,7 +428,7 @@ importers:
   packages/plugin-math:
     specifiers:
       '@types/katex': ^0.11.1
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       katex: ^0.12.0
       remark-math: ^4.0.0
     dependencies:
@@ -440,8 +440,8 @@ importers:
 
   packages/plugin-math-ssr:
     specifiers:
-      '@bytemd/plugin-math': ^1.10.8
-      bytemd: ^1.10.8
+      '@bytemd/plugin-math': ^1.10.13
+      bytemd: ^1.10.13
       rehype-katex: ^4.0.0
       remark-math: ^4.0.0
     dependencies:
@@ -453,7 +453,7 @@ importers:
 
   packages/plugin-medium-zoom:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       medium-zoom: ^1.0.6
     dependencies:
       medium-zoom: 1.0.6
@@ -463,7 +463,7 @@ importers:
   packages/plugin-mermaid:
     specifiers:
       '@types/mermaid': ^8.2.7
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       mermaid: ^8.11.0
     dependencies:
       '@types/mermaid': 8.2.7
@@ -474,7 +474,7 @@ importers:
   packages/react:
     specifiers:
       '@types/react': ^17.0.14
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       react: ^17.0.2
     dependencies:
       bytemd: link:../bytemd
@@ -484,7 +484,7 @@ importers:
 
   packages/vue:
     specifiers:
-      bytemd: ^1.10.8
+      bytemd: ^1.10.13
       vue: ^2.6.14
     dependencies:
       bytemd: link:../bytemd
@@ -3254,28 +3254,33 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.131_svelte@3.38.3:
-    resolution: {integrity: sha512-izTzzUbxTVuW+uwzCg5ltaCF4DZaD8fGI88IGb3fQ3qcmfRQi/vQUZuyfKc1CYxRDVohvaBSMQUQYie4AM6jGQ==}
+  /@sveltejs/kit/1.0.0-next.137_svelte@3.38.3:
+    resolution: {integrity: sha512-YdcwaN9zWcbz4jLZS4j9/7fNZIVO8WkXDuwGTiKARhOLIuuJAjCvSuOZ3btJdV/ySpizTWX22u632weVPLECdw==}
     engines: {node: ^12.20 || >=14.13}
     hasBin: true
     peerDependencies:
       svelte: ^3.34.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 1.0.0-next.12_svelte@3.38.3+vite@2.4.2
+      '@sveltejs/vite-plugin-svelte': 1.0.0-next.14_svelte@3.38.3+vite@2.4.3
       cheap-watch: 1.0.3
       sade: 1.7.4
       svelte: 3.38.3
-      vite: 2.4.2
+      vite: 2.4.3
     transitivePeerDependencies:
+      - diff-match-patch
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte/1.0.0-next.12_svelte@3.38.3+vite@2.4.2:
-    resolution: {integrity: sha512-cuyNkJ6leptfv+7qL/fWQ7EpGWdguosFOUI0z93oQUmFTcX7QxJ5h+QI3NQyktBzlKL/761L8BbG2hHNkVbLIQ==}
+  /@sveltejs/vite-plugin-svelte/1.0.0-next.14_svelte@3.38.3+vite@2.4.3:
+    resolution: {integrity: sha512-46IKPtoGcdo6YLyUhvsXyC1Dg3m2HlbgreZqxM/h5DzavgUa75c/WHT5cIxxLppG+gxtct7V08/WNEdpFdmM3Q==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
+      diff-match-patch: ^1.0.5
       svelte: ^3.34.0
       vite: ^2.3.7
+    peerDependenciesMeta:
+      diff-match-patch:
+        optional: true
     dependencies:
       '@rollup/pluginutils': 4.1.1
       debug: 4.3.2
@@ -3283,8 +3288,8 @@ packages:
       magic-string: 0.25.7
       require-relative: 0.8.7
       svelte: 3.38.3
-      svelte-hmr: 0.14.6_svelte@3.38.3
-      vite: 2.4.2
+      svelte-hmr: 0.14.7_svelte@3.38.3
+      vite: 2.4.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -14230,8 +14235,8 @@ packages:
     resolution: {integrity: sha1-fRh9tcbNu9ZNdaMvkbiZi94yc8M=}
     dev: true
 
-  /svelte-hmr/0.14.6_svelte@3.38.3:
-    resolution: {integrity: sha512-0oXQmRiEh3uNjyVQiGmIE7imbKO4dYc1WL6XRXTC0X9XbSacJgj9MOLguqqbZygPsNnlglhlk4eB0pCmM6nQAA==}
+  /svelte-hmr/0.14.7_svelte@3.38.3:
+    resolution: {integrity: sha512-pDrzgcWSoMaK6AJkBWkmgIsecW0GChxYZSZieIYfCP0v2oPyx2CYU/zm7TBIcjLVUPP714WxmViE9Thht4etog==}
     peerDependencies:
       svelte: '>=3.19.0'
     dependencies:
@@ -15115,8 +15120,8 @@ packages:
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
 
-  /vite/2.4.2:
-    resolution: {integrity: sha512-2MifxD2I9fjyDmmEzbULOo3kOUoqX90A58cT6mECxoVQlMYFuijZsPQBuA14mqSwvV3ydUsqnq+BRWXyO9Qa+w==}
+  /vite/2.4.3:
+    resolution: {integrity: sha512-iT6NPeiUUZ2FkzC3eazytOEMRaM4J+xgRQcNcpRcbmfYjakCFP4WKPJpeEz1U5JEKHAtwv3ZBQketQUFhFU3ng==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
