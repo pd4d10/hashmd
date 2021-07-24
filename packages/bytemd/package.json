@@ -45,6 +45,5 @@
     "unist-util-visit": "^2.0.3",
     "vfile": "^4.2.1",
     "word-count": "^0.2.2"
-  },
-  "gitHead": "1a42db1aeb2af3068eac8ec45bf7d2730b400d2f"
+  }
 }
