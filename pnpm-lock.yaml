@@ -18,7 +18,6 @@ importers:
       '@testing-library/svelte': ^3.0.3
       '@types/jest': ^26.0.24
       chokidar: ^3.5.2
-      esm: ^3.2.25
       fs-extra: ^10.0.0
       glob: ^7.1.7
       jest: ^27.0.6
@@ -58,7 +57,6 @@ importers:
       '@testing-library/svelte': 3.0.3_svelte@3.38.3
       '@types/jest': 26.0.24
       chokidar: 3.5.2
-      esm: 3.2.25
       fs-extra: 10.0.0
       glob: 7.1.7
       jest: 27.0.6
@@ -156,7 +154,7 @@ importers:
       '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      '@sveltejs/kit': 1.0.0-next.137_svelte@3.38.3
+      '@sveltejs/kit': 1.0.0-next.139_svelte@3.38.3
       bytemd: link:../../packages/bytemd
       svelte: 3.38.3
       svelte-check: 2.2.3_6ccc96ef45cf08655af73d466cb745f0
@@ -3254,8 +3252,8 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.137_svelte@3.38.3:
-    resolution: {integrity: sha512-YdcwaN9zWcbz4jLZS4j9/7fNZIVO8WkXDuwGTiKARhOLIuuJAjCvSuOZ3btJdV/ySpizTWX22u632weVPLECdw==}
+  /@sveltejs/kit/1.0.0-next.139_svelte@3.38.3:
+    resolution: {integrity: sha512-V/OG9FIuq8Fzh08x0VZx1ZX5MjCM8lD/vpk/cM/RyGJSky+KKYgch7mWSY6XP28vUsl1HUg+HMuho/rKqmwe9A==}
     engines: {node: ^12.20 || >=14.13}
     hasBin: true
     peerDependencies:
@@ -6605,11 +6603,6 @@ packages:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 4.3.0
-
-  /esm/3.2.25:
-    resolution: {integrity: sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==}
-    engines: {node: '>=6'}
-    dev: true
 
   /esprima/4.0.1:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}

@@ -3,18 +3,18 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
-    "build": "tsc --build && node -r esm scripts/process.js && rollup -c",
+    "build": "tsc --build && node scripts/process.mjs && rollup -c",
     "build:ci": "UMD=1 npm run build",
     "dev": "run-p dev:bundle dev:tsc dev:process",
     "dev:bundle": "rollup -cw",
     "dev:tsc": "tsc --build --watch",
-    "dev:process": "node -r esm scripts/process.js --watch",
+    "dev:process": "node scripts/process.mjs --watch",
     "test": "BABEL_ENV=test jest",
     "test:watch": "BABEL_ENV=test npm run test -- --watch",
-    "postinstall": "node -r esm scripts/postinstall.js",
+    "postinstall": "node scripts/postinstall.mjs",
     "pub": "npm run clean && npm run build:ci && lerna publish --yes",
-    "lint": "npx prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different **/*.{ts,tsx,js,svelte}",
-    "lint:fix": "npx prettier --plugin-search-dir=. --ignore-path=.gitignore --write **/*.{ts,tsx,js,svelte}"
+    "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different **/*.{ts,tsx,js,svelte}",
+    "lint:fix": "prettier --plugin-search-dir=. --ignore-path=.gitignore --write **/*.{ts,tsx,js,svelte}"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -31,7 +31,6 @@
     "@testing-library/svelte": "^3.0.3",
     "@types/jest": "^26.0.24",
     "chokidar": "^3.5.2",
-    "esm": "^3.2.25",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",
     "jest": "^27.0.6",

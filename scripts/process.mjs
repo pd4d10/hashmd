@@ -5,6 +5,7 @@ import glob from 'glob'
 import chokidar from 'chokidar'
 import { preprocess } from 'svelte/compiler'
 import autoprocessor from 'svelte-preprocess'
+import { rootDir } from './utils.mjs'
 
 // svelte file: compile
 // other files: copy
@@ -20,7 +21,7 @@ async function transform(file, dir = 'lib') {
       source,
       autoprocessor({
         typescript: {
-          tsconfigFile: path.resolve(__dirname, '../tsconfig-base.json'),
+          tsconfigFile: path.resolve(rootDir, 'tsconfig-base.json'),
         },
         // https://github.com/sveltejs/svelte/issues/189#issuecomment-586142198
         replace: [
@@ -61,12 +62,12 @@ function build(pattern, dir) {
 }
 
 const pattern = path.resolve(
-  __dirname,
-  `../packages/*/src/**/*.{svelte,vue,json,wxml,wxss}`
+  rootDir,
+  `packages/*/src/**/*.{svelte,vue,json,wxml,wxss}`
 )
 const mpPattern = path.resolve(
-  __dirname,
-  `../packages/mp/src/**/*.{svelte,vue,json,wxml,wxss}`
+  rootDir,
+  `packages/mp/src/**/*.{svelte,vue,json,wxml,wxss}`
 )
 
 if (process.argv.includes('--watch')) {

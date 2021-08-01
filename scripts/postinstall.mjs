@@ -1,7 +1,9 @@
+// @ts-check
 import fs from 'fs-extra'
 import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash'
+import { rootDir } from './utils.mjs'
 
 function readFileSyncSafe(p) {
   try {
@@ -11,15 +13,15 @@ function readFileSyncSafe(p) {
   }
 }
 
-const root = path.join(__dirname, '../packages')
-const packages = fs.readdirSync(root)
+const packagesDir = path.join(rootDir, 'packages')
+const packages = fs.readdirSync(packagesDir)
 const plugins = packages.filter(
   (x) => x.startsWith('plugin-') && !x.includes('-transform')
 )
 
 // tsconfig root
 fs.writeJsonSync(
-  path.resolve(__dirname, '../tsconfig.json'),
+  path.resolve(rootDir, 'tsconfig.json'),
   {
     files: [],
     references: packages.map((p) => {
@@ -44,19 +46,19 @@ packages.forEach((p) => {
     tsconfig.references = [{ path: '../bytemd' }]
   }
 
-  fs.writeJsonSync(path.join(root, p, 'tsconfig.json'), tsconfig, {
+  fs.writeJsonSync(path.join(packagesDir, p, 'tsconfig.json'), tsconfig, {
     spaces: 2,
   })
 
   // license
   fs.copyFileSync(
-    path.join(__dirname, '../LICENSE'),
-    path.join(root, p, 'LICENSE')
+    path.join(rootDir, 'LICENSE'),
+    path.join(packagesDir, p, 'LICENSE')
   )
 
   // package.json
-  const pkgPath = path.join(root, p, 'package.json')
-  const pkg = require(pkgPath)
+  const pkgPath = path.join(packagesDir, p, 'package.json')
+  const pkg = fs.readJsonSync(pkgPath)
   pkg.repository = {
     type: 'git',
     url: 'https://github.com/bytedance/bytemd.git',
@@ -75,23 +77,24 @@ packages.forEach((p) => {
 plugins.forEach((p) => {
   const name = p.split('-').slice(1).join('-')
   const result = mustache.render(
-    readFileSyncSafe(path.join(__dirname, 'plugin-template.md')),
+    readFileSyncSafe(path.join(rootDir, 'scripts/plugin-template.md')),
     {
       name,
       importedName: _.camelCase(name.replace('-ssr', '')),
-      desc: require(path.join(root, p, 'package.json')).description,
+      desc: fs.readJsonSync(path.join(packagesDir, p, 'package.json'))
+        .description,
     }
   )
-  fs.writeFileSync(path.join(root, p, 'README.md'), result)
+  fs.writeFileSync(path.join(packagesDir, p, 'README.md'), result)
 })
 
 // bytemd readme
-const readme = readFileSyncSafe(path.join(__dirname, '../README.md')).replace(
+const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
   /## Plugins\s+([\w\W])*?\s+##/,
   (match, p1, offset, string) => {
     const content = plugins
       .map((p) => {
-        const pkg = require(path.join(root, p, 'package.json'))
+        const pkg = fs.readJsonSync(path.join(packagesDir, p, 'package.json'))
         if (pkg.private) return
 
         const name = p.split('-').slice(1).join('-')
@@ -117,13 +120,13 @@ ${content}
   }
 )
 
-fs.writeFileSync(path.join(__dirname, '../README.md'), readme)
+fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
 
 // locales
 let importCode = ''
 let exportObject = {}
 packages.forEach((p) => {
-  const localeDir = path.join(root, p, 'src/locales')
+  const localeDir = path.join(packagesDir, p, 'src/locales')
   if (fs.existsSync(localeDir) && fs.lstatSync(localeDir).isDirectory()) {
     const locales = fs.readdirSync(localeDir).map((x) => x.replace('.json', ''))
     const libName = p.startsWith('plugin') ? `@bytemd/${p}` : p
