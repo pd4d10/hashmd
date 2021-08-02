@@ -133,7 +133,7 @@ importers:
       '@bytemd/plugin-math-ssr': latest
       '@bytemd/plugin-medium-zoom': latest
       '@bytemd/plugin-mermaid': latest
-      '@sveltejs/kit': next
+      '@sveltejs/kit': ^1.0.0-next.140
       bytemd: latest
       svelte: ^3.38.3
       svelte-check: ^2.2.3
@@ -154,7 +154,7 @@ importers:
       '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      '@sveltejs/kit': 1.0.0-next.139_svelte@3.38.3
+      '@sveltejs/kit': 1.0.0-next.140_svelte@3.38.3
       bytemd: link:../../packages/bytemd
       svelte: 3.38.3
       svelte-check: 2.2.3_6ccc96ef45cf08655af73d466cb745f0
@@ -3252,8 +3252,8 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.139_svelte@3.38.3:
-    resolution: {integrity: sha512-V/OG9FIuq8Fzh08x0VZx1ZX5MjCM8lD/vpk/cM/RyGJSky+KKYgch7mWSY6XP28vUsl1HUg+HMuho/rKqmwe9A==}
+  /@sveltejs/kit/1.0.0-next.140_svelte@3.38.3:
+    resolution: {integrity: sha512-mNPtwItLU61JVpYXGAuDBEUlmenMs06lv6xxvhrdIgQlVlizNEebC9E27vdzPtcktxUZJGl4u/Fw3K1CG8Lk2A==}
     engines: {node: ^12.20 || >=14.13}
     hasBin: true
     peerDependencies:
@@ -10233,7 +10233,7 @@ packages:
       run-queue: 1.0.3
 
   /mri/1.1.6:
-    resolution: {integrity: sha512-oi1b3MfbyGa7FJMP9GmLTttni5JoICpYBRlq+x5V16fZbLsnL9N3wFqqIm/nIG43FjUFkFh9Epzp/kzUGUnJxQ==}
+    resolution: {integrity: sha1-SZUuEETbIdv5D2zZK8nJp3fUFaY=}
     engines: {node: '>=4'}
 
   /ms/2.0.0:
@@ -13253,7 +13253,7 @@ packages:
       tslib: 1.14.1
 
   /sade/1.7.4:
-    resolution: {integrity: sha512-y5yauMD93rX840MwUJr7C1ysLFBgMspsdTo4UVrDg3fXDvtwOyIqykhVAAm6fk/3au77773itJStObgK+LKaiA==}
+    resolution: {integrity: sha1-6mgeDGXSSNIJXJBXjAPKC7G1RpE=}
     engines: {node: '>= 6'}
     dependencies:
       mri: 1.1.6

@@ -22,7 +22,7 @@
     "@bytemd/plugin-math-ssr": "latest",
     "@bytemd/plugin-medium-zoom": "latest",
     "@bytemd/plugin-mermaid": "latest",
-    "@sveltejs/kit": "next",
+    "@sveltejs/kit": "^1.0.0-next.140",
     "bytemd": "latest",
     "svelte": "^3.38.3",
     "svelte-check": "^2.2.3",
