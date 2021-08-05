@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { Editor, KeyMap, Linter, Annotation } from 'codemirror'
+  import type { Editor, KeyMap } from 'codemirror'
   import type { Root, Element } from 'hast'
   import type { VFile } from 'vfile'
   import type { BytemdEditorContext, BytemdPlugin, EditorProps } from './types'
@@ -29,9 +29,6 @@
   import useGfm from 'codemirror-ssr/mode/gfm/gfm'
   import useYaml from 'codemirror-ssr/mode/yaml/yaml'
   import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter'
-  import useVim from 'codemirror-ssr/keymap/vim'
-  import useEmacs from 'codemirror-ssr/keymap/emacs'
-  import useLint from 'codemirror-ssr/addon/lint/lint'
 
   export let value: EditorProps['value'] = ''
   export let plugins: NonNullable<EditorProps['plugins']> = []
@@ -166,34 +163,6 @@
     useGfm(codemirror)
     useYaml(codemirror)
     useYamlFrontmatter(codemirror)
-    useVim(codemirror)
-    useEmacs(codemirror)
-    useLint(codemirror)
-
-    // lint
-    const linter: Linter = () => {
-      if (!vfile) return []
-
-      const annotations = vfile.messages.map((m) => {
-        const a: Annotation = {
-          from: codemirror.Pos(
-            m.location.start.line - 1,
-            m.location.start.column - 1
-          ),
-          to:
-            m.location.end.line == null // TODO: why null?
-              ? codemirror.Pos(m.location.start.line - 1)
-              : codemirror.Pos(
-                  m.location.end.line - 1,
-                  m.location.end.column - 1
-                ),
-          message: m.message,
-        }
-        return a
-      })
-      // console.log(annotations);
-      return annotations
-    }
 
     // @ts-ignore TODO: type
     editor = codemirror(editorEl, {
@@ -204,7 +173,6 @@
       indentUnit: 4, // nested ordered list does not work with 2 spaces
       ...editorConfig,
       placeholder,
-      lint: linter,
     })
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
