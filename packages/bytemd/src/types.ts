@@ -161,7 +161,7 @@ export interface EditorProps extends ViewerProps {
    */
   maxLength?: number
   /**
-   * 
+   * Allow to resize split panes
    */
    allowResize?: boolean
 }
