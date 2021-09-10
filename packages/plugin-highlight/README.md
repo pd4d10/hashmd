@@ -21,6 +21,12 @@ new Editor({
 })
 ```
 
+Select the theme supported by [highlight.js](https:// highlightjs.org/static/demo/), import the css.
+
+```js
+import 'highlight.js/styles/default.css'
+```
+
 ## License
 
 MIT
