@@ -97,9 +97,10 @@ importers:
       '@bytemd/plugin-medium-zoom': latest
       '@bytemd/plugin-mermaid': latest
       '@bytemd/react': latest
+      bytemd: latest
       next: 10.0.8
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.0.2
+      react-dom: 17.0.2
     dependencies:
       '@bytemd-examples/utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
@@ -114,9 +115,10 @@ importers:
       '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
       '@bytemd/react': link:../../packages/react
-      next: 10.0.8_71f43eeea0020da4c6ff43329599af48
-      react: 17.0.1
-      react-dom: 17.0.1_react@17.0.1
+      bytemd: link:../../packages/bytemd
+      next: 10.0.8_d23913fae905660a596189f6b35fb8a9
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
 
   examples/svelte-kit:
     specifiers:
@@ -2548,7 +2550,7 @@ packages:
     resolution: {integrity: sha512-JCUGB4/SKQ4LXniv7LKGrpW+W2DGH/CLkrgXgSo/Ze+EJdMDLxC/VFhiuW+TgAaAWLE4gryoswlZBNyHtkPGQA==}
     dev: false
 
-  /@next/react-dev-overlay/10.0.8_react-dom@17.0.1+react@17.0.1:
+  /@next/react-dev-overlay/10.0.8_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-ygVsvkzYTYIuME+dUUSjCxbNjrJ+Up9Y+CrWEmSSk6HuxajUvrB9vN6RT+PeAzEOQ5er1sWxmVHVdPknQPVWyQ==}
     peerDependencies:
       react: ^16.9.0 || ^17
@@ -2561,8 +2563,8 @@ packages:
       css.escape: 1.5.1
       data-uri-to-buffer: 3.0.1
       platform: 1.3.6
-      react: 17.0.1
-      react-dom: 17.0.1_react@17.0.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
       shell-quote: 1.7.2
       source-map: 0.8.0-beta.0
       stacktrace-parser: 0.1.10
@@ -10332,7 +10334,7 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  /next/10.0.8_71f43eeea0020da4c6ff43329599af48:
+  /next/10.0.8_d23913fae905660a596189f6b35fb8a9:
     resolution: {integrity: sha512-iDY65ce4Prn/9EnQpJGFMb5QJvtGWzZPk6KQqT7vDNu4D+jkivkk9NaAs/k1hR73pXdJHmhHer1s0YxLSghAKQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -10354,7 +10356,7 @@ packages:
       '@hapi/accept': 5.0.1
       '@next/env': 10.0.8
       '@next/polyfill-module': 10.0.8
-      '@next/react-dev-overlay': 10.0.8_react-dom@17.0.1+react@17.0.1
+      '@next/react-dev-overlay': 10.0.8_react-dom@17.0.2+react@17.0.2
       '@next/react-refresh-utils': 10.0.8_react-refresh@0.8.3
       '@opentelemetry/api': 0.14.0
       ast-types: 0.13.2
@@ -10381,13 +10383,13 @@ packages:
       process: 0.11.10
       prop-types: 15.7.2
       raw-body: 2.4.1
-      react: 17.0.1
-      react-dom: 17.0.1_react@17.0.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
       react-is: 16.13.1
       react-refresh: 0.8.3
       stream-browserify: 3.0.0
-      styled-jsx: 3.3.2_react@17.0.1
-      use-subscription: 1.5.1_react@17.0.1
+      styled-jsx: 3.3.2_react@17.0.2
+      use-subscription: 1.5.1_react@17.0.2
       vm-browserify: 1.1.2
       watchpack: 2.1.1
     transitivePeerDependencies:
@@ -12481,14 +12483,14 @@ packages:
       flat: 5.0.2
     dev: false
 
-  /react-dom/17.0.1_react@17.0.1:
-    resolution: {integrity: sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==}
+  /react-dom/17.0.2_react@17.0.2:
+    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
-      react: 17.0.1
+      react: 17.0.2
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-      react: 17.0.1
+      react: 17.0.2
       scheduler: 0.20.2
     dev: false
 
@@ -12505,21 +12507,12 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react/17.0.1:
-    resolution: {integrity: sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-    dev: false
-
   /react/17.0.2:
     resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: true
 
   /read-cache/1.0.0:
     resolution: {integrity: sha1-5mTvMRYRZsl1HNvo28+GtftY93Q=}
@@ -14100,7 +14093,7 @@ packages:
       inline-style-parser: 0.1.1
     dev: false
 
-  /styled-jsx/3.3.2_react@17.0.1:
+  /styled-jsx/3.3.2_react@17.0.2:
     resolution: {integrity: sha512-daAkGd5mqhbBhLd6jYAjYBa9LpxYCzsgo/f6qzPdFxVB8yoGbhxvzQgkC0pfmCVvW3JuAEBn0UzFLBfkHVZG1g==}
     peerDependencies:
       react: 15.x.x || 16.x.x || 17.x.x
@@ -14109,7 +14102,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       convert-source-map: 1.7.0
       loader-utils: 1.2.3
-      react: 17.0.1
+      react: 17.0.2
       source-map: 0.7.3
       string-hash: 1.1.3
       stylis: 3.5.4
@@ -14993,13 +14986,13 @@ packages:
       punycode: 1.3.2
       querystring: 0.2.0
 
-  /use-subscription/1.5.1_react@17.0.1:
+  /use-subscription/1.5.1_react@17.0.2:
     resolution: {integrity: sha512-Xv2a1P/yReAjAbhylMfFplFKj9GssgTwN7RlcTxBujFQcloStWNDQdc4g4NRWH9xS4i/FDk04vQBptAXoF3VcA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0
     dependencies:
       object-assign: 4.1.1
-      react: 17.0.1
+      react: 17.0.2
     dev: false
 
   /use/3.1.1:
