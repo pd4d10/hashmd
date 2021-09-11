@@ -82,12 +82,13 @@
       preview = `width:calc(${100 * (1 - editorPaneRatio)}% - ${
         externalWidth * (1 - editorPaneRatio)
       }px)`
-      gutter =
-        editorPaneRatio === 0 || editorPaneRatio === 1
-          ? `width:${gutterWidth}px;border-left-width:0px;border-right-width:0px`
-          : `width:1px;border-left-width:${
-              gutterWidth / 2
-            }px;border-right-width:${gutterWidth / 2}px`
+      gutter = !allowResize
+        ? `width:${gutterWidth}px;border-width:0px`
+        : editorPaneRatio === 0 || editorPaneRatio === 1
+        ? `width:${gutterWidth}px;border-left-width:0px;border-right-width:0px`
+        : `width:1px;border-left-width:${
+            gutterWidth / 2
+          }px;border-right-width:${gutterWidth / 2}px`
     } else if (activeTab === 'preview') {
       edit = 'display:none'
       preview = `width:calc(100% - ${sidebarWidth}px)`
