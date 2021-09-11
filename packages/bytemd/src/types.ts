@@ -163,7 +163,7 @@ export interface EditorProps extends ViewerProps {
   /**
    * Allow to resize split panes
    */
-   allowResize?: boolean
+  allowResize?: boolean
 }
 
 export interface ViewerProps {
