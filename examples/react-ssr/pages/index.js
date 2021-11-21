@@ -10,7 +10,7 @@ import mediumZoom from '@bytemd/plugin-medium-zoom'
 import mermaid from '@bytemd/plugin-mermaid'
 import gemoji from '@bytemd/plugin-gemoji'
 import { useMemo, useState, Fragment } from 'react'
-import { markdownText } from '@bytemd-examples/utils'
+import { markdownText } from '@bytemd/example-utils'
 
 const pluginNames = [
   'breaks',

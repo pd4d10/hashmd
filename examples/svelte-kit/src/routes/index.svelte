@@ -9,7 +9,7 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom'
   import mermaid from '@bytemd/plugin-mermaid'
   import gemoji from '@bytemd/plugin-gemoji'
-  import { markdownText } from '@bytemd-examples/utils'
+  import { markdownText } from '@bytemd/example-utils'
 
   import 'bytemd/dist/index.css'
   import 'github-markdown-css'

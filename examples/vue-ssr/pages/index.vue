@@ -25,7 +25,7 @@ import { Editor, Viewer } from '@bytemd/vue'
 import highlight from '@bytemd/plugin-highlight'
 import math from '@bytemd/plugin-math'
 // import mermaid from '@bytemd/plugin-mermaid';
-import { markdownText } from '@bytemd-examples/utils'
+import { markdownText } from '@bytemd/example-utils'
 
 export default {
   components: {

@@ -1,5 +1,5 @@
 {
-  "name": "@bytemd-examples/svelte-rollup",
+  "name": "@bytemd/example-svelte-rollup",
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
@@ -19,8 +19,8 @@
     "svelte": "^3.38.3"
   },
   "dependencies": {
-    "@bytemd-examples/svelte-webpack": "latest",
-    "@bytemd-examples/utils": "latest",
+    "@bytemd/example-svelte-webpack": "latest",
+    "@bytemd/example-utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",
     "@bytemd/plugin-frontmatter": "latest",

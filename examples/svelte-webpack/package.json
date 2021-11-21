@@ -1,9 +1,9 @@
 {
-  "name": "@bytemd-examples/svelte-webpack",
+  "name": "@bytemd/example-svelte-webpack",
   "private": true,
   "version": "0.0.1",
   "devDependencies": {
-    "@bytemd-examples/utils": "latest",
+    "@bytemd/example-utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",
     "@bytemd/plugin-frontmatter": "latest",

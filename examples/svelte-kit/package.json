@@ -1,5 +1,5 @@
 {
-  "name": "with-svelte-kit",
+  "name": "@bytemd/example-svelte-kit",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
@@ -9,7 +9,7 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
-    "@bytemd-examples/utils": "latest",
+    "@bytemd/example-utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",
     "@bytemd/plugin-frontmatter": "latest",

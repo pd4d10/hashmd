@@ -86,7 +86,7 @@ importers:
 
   examples/react-ssr:
     specifiers:
-      '@bytemd-examples/utils': latest
+      '@bytemd/example-utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -103,7 +103,7 @@ importers:
       react: 17.0.1
       react-dom: 17.0.1
     dependencies:
-      '@bytemd-examples/utils': link:../utils
+      '@bytemd/example-utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -120,10 +120,59 @@ importers:
       react: 17.0.1
       react-dom: 17.0.1_react@17.0.1
 
+  examples/svelte-kit:
+    specifiers:
+      '@bytemd/example-utils': latest
+      '@bytemd/plugin-breaks': latest
+      '@bytemd/plugin-footnotes': latest
+      '@bytemd/plugin-frontmatter': latest
+      '@bytemd/plugin-gemoji': latest
+      '@bytemd/plugin-gfm': latest
+      '@bytemd/plugin-highlight': latest
+      '@bytemd/plugin-highlight-ssr': latest
+      '@bytemd/plugin-math': latest
+      '@bytemd/plugin-math-ssr': latest
+      '@bytemd/plugin-medium-zoom': latest
+      '@bytemd/plugin-mermaid': latest
+      '@sveltejs/kit': next
+      bytemd: latest
+      github-markdown-css: latest
+      highlight.js: ^10
+      katex: latest
+      svelte: ^3.44.2
+      svelte-check: ^2.2.6
+      svelte-preprocess: ^4.9.4
+      tslib: ^2.3.1
+      typescript: ^4.4.3
+    dependencies:
+      '@bytemd/example-utils': link:../utils
+      '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
+      '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
+      '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
+      '@bytemd/plugin-gemoji': link:../../packages/plugin-gemoji
+      '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
+      '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
+      '@bytemd/plugin-highlight-ssr': link:../../packages/plugin-highlight-ssr
+      '@bytemd/plugin-math': link:../../packages/plugin-math
+      '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
+      '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
+      '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
+      bytemd: link:../../packages/bytemd
+      github-markdown-css: 5.0.0
+      highlight.js: 10.7.3
+      katex: 0.15.1
+    devDependencies:
+      '@sveltejs/kit': 1.0.0-next.196_svelte@3.44.2
+      svelte: 3.44.2
+      svelte-check: 2.2.10_f72aa297d3cff83b785114223c257b91
+      svelte-preprocess: 4.9.8_58ce4a660393770233a8cd9a4caccc7a
+      tslib: 2.3.1
+      typescript: 4.5.2
+
   examples/svelte-rollup:
     specifiers:
-      '@bytemd-examples/svelte-webpack': latest
-      '@bytemd-examples/utils': latest
+      '@bytemd/example-svelte-webpack': latest
+      '@bytemd/example-utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -148,8 +197,8 @@ importers:
       sirv-cli: ^1.0.12
       svelte: ^3.38.3
     dependencies:
-      '@bytemd-examples/svelte-webpack': link:../svelte-webpack
-      '@bytemd-examples/utils': link:../utils
+      '@bytemd/example-svelte-webpack': link:../svelte-webpack
+      '@bytemd/example-utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -177,7 +226,7 @@ importers:
 
   examples/svelte-webpack:
     specifiers:
-      '@bytemd-examples/utils': latest
+      '@bytemd/example-utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -205,7 +254,7 @@ importers:
       webpack-cli: ^3.3.12
       webpack-dev-server: ^3.11.2
     devDependencies:
-      '@bytemd-examples/utils': link:../utils
+      '@bytemd/example-utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -238,7 +287,7 @@ importers:
 
   examples/vue-ssr:
     specifiers:
-      '@bytemd-examples/utils': latest
+      '@bytemd/example-utils': latest
       '@bytemd/plugin-breaks': latest
       '@bytemd/plugin-footnotes': latest
       '@bytemd/plugin-frontmatter': latest
@@ -253,7 +302,7 @@ importers:
       '@bytemd/vue': latest
       nuxt: ^2.15.7
     dependencies:
-      '@bytemd-examples/utils': link:../utils
+      '@bytemd/example-utils': link:../utils
       '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
       '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
@@ -267,55 +316,6 @@ importers:
       '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
       '@bytemd/vue': link:../../packages/vue
       nuxt: 2.15.7_typescript@4.5.2
-
-  examples/with-svelte-kit:
-    specifiers:
-      '@bytemd-examples/utils': latest
-      '@bytemd/plugin-breaks': latest
-      '@bytemd/plugin-footnotes': latest
-      '@bytemd/plugin-frontmatter': latest
-      '@bytemd/plugin-gemoji': latest
-      '@bytemd/plugin-gfm': latest
-      '@bytemd/plugin-highlight': latest
-      '@bytemd/plugin-highlight-ssr': latest
-      '@bytemd/plugin-math': latest
-      '@bytemd/plugin-math-ssr': latest
-      '@bytemd/plugin-medium-zoom': latest
-      '@bytemd/plugin-mermaid': latest
-      '@sveltejs/kit': next
-      bytemd: latest
-      github-markdown-css: latest
-      highlight.js: ^10
-      katex: latest
-      svelte: ^3.44.2
-      svelte-check: ^2.2.6
-      svelte-preprocess: ^4.9.4
-      tslib: ^2.3.1
-      typescript: ^4.4.3
-    dependencies:
-      '@bytemd-examples/utils': link:../utils
-      '@bytemd/plugin-breaks': link:../../packages/plugin-breaks
-      '@bytemd/plugin-footnotes': link:../../packages/plugin-footnotes
-      '@bytemd/plugin-frontmatter': link:../../packages/plugin-frontmatter
-      '@bytemd/plugin-gemoji': link:../../packages/plugin-gemoji
-      '@bytemd/plugin-gfm': link:../../packages/plugin-gfm
-      '@bytemd/plugin-highlight': link:../../packages/plugin-highlight
-      '@bytemd/plugin-highlight-ssr': link:../../packages/plugin-highlight-ssr
-      '@bytemd/plugin-math': link:../../packages/plugin-math
-      '@bytemd/plugin-math-ssr': link:../../packages/plugin-math-ssr
-      '@bytemd/plugin-medium-zoom': link:../../packages/plugin-medium-zoom
-      '@bytemd/plugin-mermaid': link:../../packages/plugin-mermaid
-      bytemd: link:../../packages/bytemd
-      github-markdown-css: 5.0.0
-      highlight.js: 10.7.3
-      katex: 0.15.1
-    devDependencies:
-      '@sveltejs/kit': 1.0.0-next.196_svelte@3.44.2
-      svelte: 3.44.2
-      svelte-check: 2.2.10_f72aa297d3cff83b785114223c257b91
-      svelte-preprocess: 4.9.8_58ce4a660393770233a8cd9a4caccc7a
-      tslib: 2.3.1
-      typescript: 4.5.2
 
   packages/bytemd:
     specifiers:
