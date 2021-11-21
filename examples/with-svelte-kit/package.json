@@ -1,5 +1,5 @@
 {
-  "name": "@bytemd-examples/svelte-kit",
+  "name": "with-svelte-kit",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
@@ -8,8 +8,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
-  "devDependencies": {
-    "@bytemd-examples/svelte-webpack": "latest",
+  "dependencies": {
     "@bytemd-examples/utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",
@@ -22,13 +21,18 @@
     "@bytemd/plugin-math-ssr": "latest",
     "@bytemd/plugin-medium-zoom": "latest",
     "@bytemd/plugin-mermaid": "latest",
-    "@sveltejs/kit": "^1.0.0-next.140",
     "bytemd": "latest",
-    "svelte": "^3.38.3",
-    "svelte-check": "^2.2.3",
-    "svelte-preprocess": "^4.7.4",
-    "tslib": "^2.3.0",
-    "typescript": "^4.3.5"
+    "github-markdown-css": "latest",
+    "highlight.js": "^10",
+    "katex": "latest"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "next",
+    "svelte": "^3.44.2",
+    "svelte-check": "^2.2.6",
+    "svelte-preprocess": "^4.9.4",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
   },
   "type": "module"
 }
