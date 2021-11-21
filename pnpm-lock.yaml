@@ -195,7 +195,7 @@ importers:
       rollup-plugin-svelte: ^7.1.0
       rollup-plugin-terser: ^7.0.2
       sirv-cli: ^1.0.12
-      svelte: ^3.38.3
+      svelte: ^3.44.2
     dependencies:
       '@bytemd/example-svelte-webpack': link:../svelte-webpack
       '@bytemd/example-utils': link:../utils
@@ -220,9 +220,9 @@ importers:
       rollup: 2.53.2
       rollup-plugin-livereload: 2.0.5
       rollup-plugin-postcss: 3.1.8
-      rollup-plugin-svelte: 7.1.0_rollup@2.53.2+svelte@3.38.3
+      rollup-plugin-svelte: 7.1.0_rollup@2.53.2+svelte@3.44.2
       rollup-plugin-terser: 7.0.2_rollup@2.53.2
-      svelte: 3.38.3
+      svelte: 3.44.2
 
   examples/svelte-webpack:
     specifiers:
@@ -248,7 +248,7 @@ importers:
       katex: ^0.12.0
       remark-preset-lint-consistent: ^4.0.0
       style-loader: ^0.23.1
-      svelte: ^3.38.3
+      svelte: ^3.44.2
       svelte-loader: 2.13.6
       webpack: ^4.46.0
       webpack-cli: ^3.3.12
@@ -276,8 +276,8 @@ importers:
       katex: 0.12.0
       remark-preset-lint-consistent: 4.0.0
       style-loader: 0.23.1
-      svelte: 3.38.3
-      svelte-loader: 2.13.6_svelte@3.38.3
+      svelte: 3.44.2
+      svelte-loader: 2.13.6_svelte@3.44.2
       webpack: 4.46.0_webpack-cli@3.3.12
       webpack-cli: 3.3.12_webpack@4.46.0
       webpack-dev-server: 3.11.2_46edf965869dcc7c8d09e022f331d1ea
@@ -14933,7 +14933,7 @@ packages:
       style-inject: 0.3.0
     dev: true
 
-  /rollup-plugin-svelte/7.1.0_rollup@2.53.2+svelte@3.38.3:
+  /rollup-plugin-svelte/7.1.0_rollup@2.53.2+svelte@3.44.2:
     resolution: {integrity: sha512-vopCUq3G+25sKjwF5VilIbiY6KCuMNHP1PFvx2Vr3REBNMDllKHFZN2B9jwwC+MqNc3UPKkjXnceLPEjTjXGXg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -14943,7 +14943,7 @@ packages:
       require-relative: 0.8.7
       rollup: 2.53.2
       rollup-pluginutils: 2.8.2
-      svelte: 3.38.3
+      svelte: 3.44.2
     dev: true
 
   /rollup-plugin-svelte/7.1.0_rollup@2.60.0+svelte@3.44.2:
@@ -16121,13 +16121,13 @@ packages:
       svelte: 3.44.2
     dev: true
 
-  /svelte-loader/2.13.6_svelte@3.38.3:
+  /svelte-loader/2.13.6_svelte@3.44.2:
     resolution: {integrity: sha512-7uf7ZQdPAl+lwb1ldUYJFY/raZRUCuaNx7lMJ+F16jrVwN1+c35C2pBMGIY0mCqdKm5sm45jqELJJLGM3UG9Pw==}
     peerDependencies:
       svelte: '>1.44.0'
     dependencies:
       loader-utils: 1.4.0
-      svelte: 3.38.3
+      svelte: 3.44.2
       svelte-dev-helper: 1.1.9
     dev: true
 
@@ -16182,11 +16182,6 @@ packages:
       strip-indent: 3.0.0
       svelte: 3.44.2
       typescript: 4.5.2
-    dev: true
-
-  /svelte/3.38.3:
-    resolution: {integrity: sha512-N7bBZJH0iF24wsalFZF+fVYMUOigaAUQMIcEKHO3jstK/iL8VmP9xE+P0/a76+FkNcWt+TDv2Gx1taUoUscrvw==}
-    engines: {node: '>= 8'}
     dev: true
 
   /svelte/3.44.2:
