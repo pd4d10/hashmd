@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "@types/mermaid": "^8.2.7",
-    "mermaid": "^8.11.0"
+    "mermaid": "^8.13.8"
   },
   "devDependencies": {
     "bytemd": "^1.10.13"
