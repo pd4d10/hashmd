@@ -1,17 +1,23 @@
-import type { BytemdPlugin } from 'bytemd';
-import remarkMath, { RemarkMathOptions } from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import type { BytemdPlugin } from 'bytemd'
+import type { KatexOptions } from 'katex'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import pluginMath from '@bytemd/plugin-math'
+import en from './locales/en.json'
 
-export interface MathOptions extends RemarkMathOptions {
-  katexOptions?: Omit<katex.KatexOptions, 'displayMode'>;
+export interface BytemdPluginMathSsrOptions {
+  locale?: Partial<typeof en>
+  katexOptions?: Omit<KatexOptions, 'displayMode'>
 }
 
-export default function math({
+export default function mathSsr({
+  locale: _locale,
   katexOptions,
-  ...remarkMathOptions
-}: MathOptions = {}): BytemdPlugin {
+}: BytemdPluginMathSsrOptions = {}): BytemdPlugin {
+  const locale = { ...en, ..._locale } as typeof en
   return {
-    remark: (u) => u.use(remarkMath, remarkMathOptions),
+    remark: (u) => u.use(remarkMath),
     rehype: (u) => u.use(rehypeKatex, katexOptions),
-  };
+    actions: pluginMath({ locale }).actions,
+  }
 }

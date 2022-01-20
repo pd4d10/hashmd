@@ -1,12 +1,23 @@
 {
   "name": "bytemd",
-  "version": "0.1.9",
-  "description": "Full-featured markdown editor and viewer",
+  "version": "1.10.13",
+  "description": "A hackable Markdown editor built with Svelte",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
-  "main": "dist/index.js",
+  "keywords": [
+    "markdown",
+    "editor",
+    "viewer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/bytemd"
+  },
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",
+  "jsdelivr": "dist/index.min.js",
   "types": "lib/index.d.ts",
   "svelte": "lib/index.js",
   "files": [
@@ -14,20 +25,25 @@
     "lib"
   ],
   "dependencies": {
-    "@icon-park/svg": "^1.0.11",
-    "@types/codemirror": "^0.0.97",
-    "@types/lodash.debounce": "^4.0.0",
-    "codemirror": "^5.0.0",
-    "lodash.debounce": "^4.0.0",
-    "rehype-raw": "^5.0.0",
+    "@popperjs/core": "^2.9.2",
+    "@types/codemirror": "^0.0.108",
+    "@types/lodash.debounce": "^4.0.6",
+    "@types/lodash.throttle": "^4.1.6",
+    "@types/mdast": "^3.0.7",
+    "codemirror-ssr": "^0.0.6",
+    "hast-util-sanitize": "^3.0.2",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
+    "rehype-raw": "^5.1.0",
     "rehype-sanitize": "^4.0.0",
     "rehype-stringify": "^8.0.0",
-    "remark-parse": "^8.0.0",
-    "remark-rehype": "^7.0.0",
-    "tippy.js": "^6.0.0",
-    "unified": "^9.0.0"
-  },
-  "devDependencies": {
-    "svelte": "^3.24.1"
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.1.0",
+    "select-files": "^1.0.1",
+    "tippy.js": "^6.3.1",
+    "unified": "^9.2.2",
+    "unist-util-visit": "^2.0.3",
+    "vfile": "^4.2.1",
+    "word-count": "^0.2.2"
   }
 }

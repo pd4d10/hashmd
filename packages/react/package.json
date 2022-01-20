@@ -1,28 +1,31 @@
 {
   "name": "@bytemd/react",
-  "version": "0.1.9",
+  "version": "1.10.13",
   "description": "Full-featured markdown editor and viewer",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "license": "MIT",
-  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/react"
+  },
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.min.js",
+  "jsdelivr": "dist/index.min.js",
   "types": "lib/index.d.ts",
   "files": [
     "dist",
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^0.1.9"
+    "bytemd": "^1.10.13"
   },
   "peerDependencies": {
     "react": "*"
   },
   "devDependencies": {
-    "@types/react": "^16.9.49",
-    "react": "^16.13.1"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@types/react": "^17.0.14",
+    "react": "^17.0.2"
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="padding: 10px 0;">
+    <div style="padding: 10px 0">
       Plugins:
       <label v-for="p in Object.keys(enabled)" :key="p">
         <input
@@ -21,10 +21,11 @@
 </template>
 
 <script>
-import { Editor, Viewer } from 'bytemd/vue';
-import highlight from '@bytemd/plugin-highlight';
-import math from '@bytemd/plugin-math';
+import { Editor, Viewer } from '@bytemd/vue'
+import highlight from '@bytemd/plugin-highlight'
+import math from '@bytemd/plugin-math'
 // import mermaid from '@bytemd/plugin-mermaid';
+import { markdownText } from '@bytemd/example-utils'
 
 export default {
   components: {
@@ -33,13 +34,13 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: markdownText,
       enabled: {
         highlight: true,
         math: true,
         mermaid: true,
       },
-    };
+    }
   },
   computed: {
     enabledPlugins() {
@@ -47,25 +48,18 @@ export default {
         this.enabled.highlight && highlight(),
         this.enabled.math && math(),
         // mermaid: enabled.mermaid && mermaid(),
-      ];
+      ]
     },
   },
   methods: {
     handleChange(v) {
-      this.value = v;
+      this.value = v
     },
     handlePluginChange($event, p) {
-      this.enabled[p] = $event.target.checked;
+      this.enabled[p] = $event.target.checked
     },
   },
-  async mounted() {
-    const res = await fetch(
-      'https://raw.githubusercontent.com/bytedance/bytemd/main/assets/demo.md'
-    );
-    const text = await res.text();
-    this.value = text;
-  },
-};
+}
 </script>
 
 <style>

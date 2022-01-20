@@ -4,14 +4,14 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          yarn
-          yarn build
-          yarn test
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.9.1
+      - run: pnpm install
+      - run: npm run build
+      - run: npm test

@@ -1,19 +1,87 @@
-import type { Processor } from 'unified';
-import type { Schema } from 'hast-util-sanitize';
+import type { Processor } from 'unified'
+import type { Schema } from 'hast-util-sanitize'
+import type { VFile } from 'vfile'
+import type { Editor, EditorConfiguration } from 'codemirror'
+import type CodeMirror from 'codemirror'
+import type { EditorUtils } from './editor'
+import type en from './locales/en.json'
+import type { Image } from 'mdast'
 
-export interface BytemdToolbarItem {
+export type BytemdLocale = typeof en
+
+export interface BytemdEditorContext extends EditorUtils {
+  codemirror: typeof CodeMirror
   /**
-   * Tooltip of toolbar item
+   * CodeMirror editor instance
    */
-  tooltip?: string;
+  editor: Editor
   /**
-   * Toolbar Icon (16x16), could be <img> or inline svg
+   * The root element
    */
-  iconHtml: string;
+  root: HTMLElement
+}
+
+export interface BytemdViewerContext {
   /**
-   * Toolbar icon click handler
+   * The root element of the viewer
    */
-  onClick(cm: CodeMirror.Editor): void;
+  markdownBody: HTMLElement
+  /**
+   * Virtual file format used in [unified](https://unifiedjs.com/)
+   *
+   * Get the HTML output by calling `vfile.toString()`
+   */
+  file: VFile
+}
+
+type Listener = (context: BytemdEditorContext) => void
+
+type BytemdActionHandler =
+  | {
+      type: 'action'
+      click: Listener
+      /**
+       * Keyboard shortcut
+       *
+       * If specified, this shortcut will bind to click listener
+       * and will be added to the Keyboard shortcut section
+       *
+       * https://codemirror.net/doc/manual.html#keymaps
+       */
+      shortcut?: string
+      /**
+       * mouseenter event listener, only takes effect in dropdown items
+       */
+      mouseenter?: Listener
+      /**
+       * mouseleave event listener, only takes effect in dropdown items
+       */
+      mouseleave?: Listener
+    }
+  | {
+      type: 'dropdown'
+      actions: BytemdAction[]
+    }
+
+export interface BytemdAction {
+  /**
+   * Action title
+   */
+  title?: string
+  /**
+   * Action icon (16x16), usually inline svg
+   */
+  icon?: string
+  /**
+   * Markdown syntax cheatsheet
+   *
+   * If specified, this record will be added to the Markdown cheatsheet section
+   */
+  cheatsheet?: string
+  /**
+   * Action handler
+   */
+  handler?: BytemdActionHandler
 }
 
 export interface BytemdPlugin {
@@ -22,80 +90,93 @@ export interface BytemdPlugin {
    *
    * https://github.com/remarkjs/remark/blob/main/doc/plugins.md
    */
-  remark?: (p: Processor) => Processor;
+  remark?: (p: Processor) => Processor
   /**
    * Customize HTML parse by rehype plugins:
    *
    * https://github.com/rehypejs/rehype/blob/main/doc/plugins.md
    */
-  rehype?: (p: Processor) => Processor;
+  rehype?: (p: Processor) => Processor
   /**
-   * Add toolbar items
+   * Register actions in toolbar, cheatsheet and shortcuts
    */
-  toolbar?: {
-    left?: (items: BytemdToolbarItem[]) => BytemdToolbarItem[];
-    right?: (items: BytemdToolbarItem[]) => BytemdToolbarItem[];
-  };
+  actions?: BytemdAction[]
   /**
-   * Side effect for editor, triggers when plugin list changes
+   * Side effect for the editor, triggers when plugin changes
    */
-  editorEffect?(
-    /**
-     * CodeMirror instance
-     */
-    cm: CodeMirror.Editor,
-    /**
-     * Root element, `$('.bytemd')`
-     */
-    el: HTMLElement
-  ): void | (() => void);
+  editorEffect?(ctx: BytemdEditorContext): void | (() => void)
   /**
-   * Side effect for viewer, triggers when HTML or plugin list changes
+   * Side effect for the viewer, triggers when viewer props changes
    */
-  viewerEffect?(
-    /**
-     * Root element of Viewer, `$('.markdown-body')`
-     */
-    el: HTMLElement
-  ): void | (() => void);
+  viewerEffect?(ctx: BytemdViewerContext): void | (() => void)
 }
 
 export interface EditorProps extends ViewerProps {
   /**
    * Editor display mode
    *
-   * - split: edit on the left and preview on the right
-   * - tab: click tabs to switch between edit and preview
+   * - `split`: edit on the left and preview on the right
+   * - `tab`: click tabs to switch between edit and preview
+   * - `auto`: auto determined by the width of editor container
+   *
+   * @defaultValue `auto`
    */
-  mode?: 'split' | 'tab';
+  mode?: 'split' | 'tab' | 'auto'
   /**
    * Debounce time (ms) for preview
+   *
+   * @defaultValue 300
    */
-  previewDebounce?: number;
+  previewDebounce?: number
   /**
-   * Inline style of the container, `$('.bytemd')`
+   * Editor placeholder
    */
-  containerStyle?: string;
+  placeholder?: string
+  /**
+   * CodeMirror editor config
+   *
+   * https://codemirror.net/doc/manual.html#config
+   */
+  editorConfig?: Omit<EditorConfiguration, 'value' | 'placeholder'>
+  /**
+   * i18n locale
+   *
+   * @defaultValue en
+   */
+  locale?: Partial<BytemdLocale>
+  /**
+   * Handle images upload
+   */
+  uploadImages?: (
+    files: File[]
+  ) => Promise<Pick<Image, 'url' | 'alt' | 'title'>[]>
+  /**
+   * Override the default preview area render
+   *
+   * If specified, the built-in viewer would not take effect.
+   */
+  overridePreview?(el: HTMLElement, props: ViewerProps): void
+  /**
+   * Maximum length (number of characters) of value
+   */
+  maxLength?: number
 }
 
 export interface ViewerProps {
   /**
    * Markdown text
    */
-  value: string;
+  value: string
   /**
    * ByteMD plugin list
    */
-  plugins?: BytemdPlugin[];
+  plugins?: BytemdPlugin[]
   /**
-   * Customize the default sanitize schema
-   *
-   * Defaults to GitHub style sanitation except:
-   *
-   * 1. `className` is allowed
-   * 2. `id` is kept as is without clobbering
+   * Sanitize strategy: Defaults to GitHub style sanitation with class names allowed
    *
    * https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/github.json
+   *
+   * If you want further customization, pass a function to mutate sanitize schema.
    */
-  sanitize?: (schema: Schema) => Schema;
+  sanitize?: (schema: Schema) => Schema
 }

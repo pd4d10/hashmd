@@ -2,13 +2,13 @@
 
 [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid)
 
-ByteMD plugin to support Mermaid diagram and flowchart
+ByteMD plugin to support Mermaid diagram
 
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import mermaid from '@bytemd/plugin-mermaid';
+import { Editor } from 'bytemd'
+import mermaid from '@bytemd/plugin-mermaid'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

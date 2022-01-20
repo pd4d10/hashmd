@@ -1,18 +1,22 @@
 <template>
-  <div class="markdown-body" v-html="html"></div>
+  <div class="markdown-body" v-html="file" @click="handleClick($event)"></div>
 </template>
 
 <script>
-import { processMarkdown } from 'bytemd';
+import { getProcessor } from 'bytemd';
 
 export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
-    html() {
-      return processMarkdown(this.$props);
+    file() {
+      try {
+        return getProcessor(this.$props).processSync(this.value);
+      } catch (err) {
+        console.error(err);
+      }
     },
     needUpdate() {
-      return [this.html, this.plugins, this.sanitize];
+      return [this.file, this.plugins, this.sanitize];
     },
   },
   watch: {
@@ -34,9 +38,11 @@ export default {
   },
   methods: {
     on() {
-      if (this.plugins) {
+      if (this.plugins && this.file) {
         this.cbs = this.plugins.map(
-          ({ viewerEffect }) => viewerEffect && viewerEffect(this.$el)
+          ({ viewerEffect }) =>
+            viewerEffect &&
+            viewerEffect({ markdownBody: this.$el, file: this.file })
         );
       }
     },
@@ -44,6 +50,16 @@ export default {
       if (this.cbs) {
         this.cbs.forEach((cb) => cb && cb());
       }
+    },
+    handleClick(e) {
+      const $ = e.target;
+      if ($.tagName !== 'A') return;
+
+      const href = $.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+
+      const dest = this.$el.querySelector('#user-content-' + href.slice(1));
+      if (dest) dest.scrollIntoView();
     },
   },
 };

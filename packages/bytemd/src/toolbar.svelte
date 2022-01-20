@@ -1,45 +1,324 @@
-<script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import ToolbarButton from './toolbar-button.svelte';
-  import { getItems } from './toolbar';
-  import type { EditorProps } from './types';
-
-  const dispatch = createEventDispatcher();
-
-  export let cm: CodeMirror.Editor;
-  export let mode: EditorProps['mode'];
-  export let activeTab: number;
-  export let plugins: EditorProps['plugins'];
-
-  $: items = getItems(plugins);
-</script>
-
 <svelte:options immutable={true} />
 
-<div class="bytemd-toolbar">
-  {#if mode === 'tab'}
-    <div class="bytemd-tabs">
-      <span
-        on:click={() => dispatch('tab', { value: 0 })}
-        class:active={activeTab === 0}>
-        Write
-      </span>
-      <span
-        on:click={() => dispatch('tab', { value: 1 })}
-        class:active={activeTab === 1}>
-        Preview
-      </span>
-    </div>
-  {/if}
+<script lang="ts">
+  import { createEventDispatcher, onMount } from 'svelte'
+  import type { BytemdEditorContext, BytemdAction, BytemdLocale } from './types'
+  import { icons } from './icons'
+  import type { DelegateInstance } from 'tippy.js'
+  import { delegate } from 'tippy.js'
 
-  {#if !(mode === 'tab' && activeTab === 1)}
-    {#each items.left as { tooltip, iconHtml, onClick }}
-      <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(cm)} />
+  const dispatch = createEventDispatcher()
+  let toolbar: HTMLElement
+
+  export let context: BytemdEditorContext
+  export let split: boolean
+  export let activeTab: false | 'write' | 'preview'
+  export let fullscreen: boolean
+  export let sidebar: false | 'help' | 'toc'
+  export let locale: BytemdLocale
+  export let actions: BytemdAction[]
+
+  interface RightAction extends BytemdAction {
+    active?: boolean
+    hidden?: boolean
+  }
+
+  $: tocActive = sidebar === 'toc'
+  $: helpActive = sidebar === 'help'
+  $: writeActive = activeTab === 'write'
+  $: previewActive = activeTab === 'preview'
+
+  $: rightActions = [
+    // {
+    //   title: 'Key binding',
+    //   icon: icons.keyboard,
+    //   handler: {
+    //     type: 'dropdown',
+    //     actions: [
+    //       {
+    //         title: 'Normal',
+    //         handler: {
+    //           type: 'action',
+    //           click() {
+    //             dispatch('key', 'default');
+    //           },
+    //         },
+    //       },
+    //       {
+    //         title: 'Vim',
+    //         handler: {
+    //           type: 'action',
+    //           click() {
+    //             dispatch('key', 'vim');
+    //           },
+    //         },
+    //       },
+    //       {
+    //         title: 'Emacs',
+    //         handler: {
+    //           type: 'action',
+    //           click() {
+    //             dispatch('key', 'emacs');
+    //           },
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
+    {
+      title: tocActive ? locale.closeToc : locale.toc,
+      icon: icons.toc,
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('click', 'toc')
+        },
+      },
+      active: tocActive,
+    },
+    {
+      title: helpActive ? locale.closeHelp : locale.help,
+      icon: icons.help,
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('click', 'help')
+        },
+      },
+      active: helpActive,
+    },
+    {
+      title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
+      icon: icons.left,
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('tab', 'write')
+        },
+      },
+      active: writeActive,
+      hidden: !split,
+    },
+    {
+      title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
+      icon: icons.right,
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('tab', 'preview')
+        },
+      },
+      active: previewActive,
+      hidden: !split,
+    },
+    {
+      title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
+      icon: fullscreen ? icons.fullscreenOff : icons.fullscreenOn,
+      handler: {
+        type: 'action',
+        click() {
+          dispatch('click', 'fullscreen')
+        },
+      },
+    },
+    {
+      title: locale.source,
+      icon: icons.source,
+      handler: {
+        type: 'action',
+        click() {
+          window.open('https://github.com/bytedance/bytemd')
+        },
+      },
+    },
+  ] as RightAction[]
+
+  const tippyClass = 'bytemd-tippy'
+  const tippyClassRight = 'bytemd-tippy-right'
+  const tippyPathKey = 'bytemd-tippy-path'
+
+  function getPayloadFromElement(e: Element) {
+    const paths = e
+      .getAttribute(tippyPathKey)
+      ?.split('-')
+      ?.map((x) => parseInt(x, 10))
+    if (!paths) return
+    // if (!paths) {
+    //   return {
+    //     paths: [],
+    //     item: {
+    //       title: 'test',
+    //       handler: actions,
+    //     },
+    //   };
+    // }
+
+    let item: BytemdAction = {
+      title: '',
+      handler: {
+        type: 'dropdown',
+        actions: e.classList.contains(tippyClassRight) ? rightActions : actions,
+      },
+    }
+    paths?.forEach((index) => {
+      if (item.handler?.type === 'dropdown') {
+        item = item.handler.actions[index]
+      }
+    })
+
+    return { paths, item: item }
+  }
+
+  let delegateInstance: DelegateInstance
+
+  function init() {
+    delegateInstance = delegate(toolbar, {
+      target: `.${tippyClass}`,
+      onCreate({ setProps, reference }) {
+        const payload = getPayloadFromElement(reference)
+        if (!payload) return
+        const { item, paths } = payload
+        const { handler } = item
+        if (!handler) return
+
+        if (handler.type === 'action') {
+          setProps({
+            content: item.title,
+            onHidden(ins) {
+              ins.destroy()
+            },
+          })
+        } else if (handler.type === 'dropdown') {
+          // dropdown
+          const dropdown = document.createElement('div')
+          dropdown.classList.add('bytemd-dropdown')
+
+          if (item.title) {
+            const dropdownTitle = document.createElement('div')
+            dropdownTitle.classList.add('bytemd-dropdown-title')
+            dropdownTitle.appendChild(document.createTextNode(item.title))
+            dropdown.appendChild(dropdownTitle)
+          }
+
+          handler.actions.forEach((subAction, i) => {
+            const dropdownItem = document.createElement('div')
+            dropdownItem.classList.add('bytemd-dropdown-item')
+            dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'))
+            if (subAction.handler?.type === 'dropdown') {
+              dropdownItem.classList.add(tippyClass)
+            }
+            if (reference.classList.contains(tippyClassRight)) {
+              dropdownItem.classList.add(tippyClassRight)
+            }
+            // div.setAttribute('data-tippy-placement', 'right');
+            dropdownItem.innerHTML = `${
+              subAction.icon
+                ? `<div class="bytemd-dropdown-item-icon">${subAction.icon}</div>`
+                : ''
+            }<div class="bytemd-dropdown-item-title">${subAction.title}</div>`
+            dropdown.appendChild(dropdownItem)
+          })
+
+          setProps({
+            allowHTML: true,
+            showOnCreate: true,
+            theme: 'light-border',
+            placement: 'bottom-start',
+            interactive: true,
+            interactiveDebounce: 50,
+            arrow: false,
+            offset: [0, 4],
+            content: dropdown.outerHTML,
+            onHidden(ins) {
+              ins.destroy()
+            },
+            onCreate(ins) {
+              ;[
+                ...ins.popper.querySelectorAll('.bytemd-dropdown-item'),
+              ].forEach((el, i) => {
+                const actionHandler = handler.actions[i]?.handler
+                if (actionHandler?.type === 'action') {
+                  const { mouseenter, mouseleave } = actionHandler
+                  if (mouseenter) {
+                    el.addEventListener('mouseenter', () => {
+                      mouseenter(context)
+                    })
+                  }
+                  if (mouseleave) {
+                    el.addEventListener('mouseleave', () => {
+                      mouseleave(context)
+                    })
+                  }
+                }
+              })
+            },
+          })
+        }
+      },
+    })
+  }
+
+  onMount(() => {
+    init()
+  })
+
+  function handleClick(e: MouseEvent) {
+    const target = (e.target as Element).closest(`[${tippyPathKey}]`)
+    if (!target) return
+    const handler = getPayloadFromElement(target)?.item?.handler
+    if (handler?.type === 'action') {
+      handler.click(context)
+    }
+    delegateInstance?.destroy()
+    init()
+  }
+</script>
+
+<div class="bytemd-toolbar" bind:this={toolbar} on:click={handleClick}>
+  <div class="bytemd-toolbar-left">
+    {#if split}
+      {#each actions as item, index}
+        {#if item.handler}
+          <div
+            class={['bytemd-toolbar-icon', tippyClass].join(' ')}
+            bytemd-tippy-path={index}
+          >
+            {@html item.icon}
+          </div>
+        {/if}
+      {/each}
+    {:else}
+      <div
+        on:click={() => dispatch('tab', 'write')}
+        class="bytemd-toolbar-tab"
+        class:bytemd-toolbar-tab-active={activeTab !== 'preview'}
+      >
+        {locale.write}
+      </div>
+      <div
+        on:click={() => dispatch('tab', 'preview')}
+        class="bytemd-toolbar-tab"
+        class:bytemd-toolbar-tab-active={activeTab === 'preview'}
+      >
+        {locale.preview}
+      </div>
+      <!-- <div class={['bytemd-toolbar-icon', tippyClass].join(' ')}>
+        {@html icons.more}
+      </div> -->
+    {/if}
+  </div>
+
+  <div class="bytemd-toolbar-right">
+    {#each rightActions as item, index}
+      {#if !item.hidden}
+        <div
+          class={['bytemd-toolbar-icon', tippyClass, tippyClassRight].join(' ')}
+          class:bytemd-toolbar-icon-active={item.active}
+          bytemd-tippy-path={index}
+        >
+          {@html item.icon}
+        </div>
+      {/if}
     {/each}
-  {/if}
-
-  <div style="flex-grow:1" />
-  {#each items.right as { tooltip, iconHtml, onClick }}
-    <ToolbarButton {tooltip} {iconHtml} on:click={() => onClick(cm)} />
-  {/each}
+  </div>
 </div>

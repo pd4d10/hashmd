@@ -1,0 +1,9 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration/#configuration-details
+# https://answers.netlify.com/t/using-pnpm-and-pnpm-workspaces/2759
+
+[build.environment]
+  NPM_FLAGS="--prefix=/dev/null"
+
+[build]
+  publish = "examples/svelte-webpack/public"
+  command = "npx pnpm install && npm run build && cd examples/svelte-webpack && npm run build"

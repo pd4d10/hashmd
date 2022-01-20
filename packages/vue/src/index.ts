@@ -1,4 +1,4 @@
-import Viewer from './viewer.vue';
-import Editor from './editor.vue';
+import Viewer from './viewer.vue'
+import Editor from './editor.vue'
 
-export { Editor, Viewer };
+export { Editor, Viewer }

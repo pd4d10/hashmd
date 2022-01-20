@@ -7,18 +7,18 @@ ByteMD plugin to highlight code blocks (SSR compatible)
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import highlightSsr from '@bytemd/plugin-highlight-ssr';
+import { Editor } from 'bytemd'
+import highlight from '@bytemd/plugin-highlight-ssr'
 
 new Editor({
   target: document.body,
   props: {
     plugins: [
-      highlightSsr(),
+      highlight(),
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

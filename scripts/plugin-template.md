@@ -7,18 +7,18 @@
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import {{camelName}} from '@bytemd/plugin-{{name}}';
+import { Editor } from 'bytemd'
+import {{importedName}} from '@bytemd/plugin-{{name}}'
 
 new Editor({
   target: document.body,
   props: {
     plugins: [
-      {{camelName}}(),
+      {{importedName}}(),
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 {{#options}}### Options

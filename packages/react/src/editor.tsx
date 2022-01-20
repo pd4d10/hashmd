@@ -1,41 +1,39 @@
-import React, { useEffect, useRef, HTMLAttributes } from 'react';
-import * as bytemd from 'bytemd';
+import React, { useEffect, useRef } from 'react'
+import * as bytemd from 'bytemd'
 
 export interface EditorProps extends bytemd.EditorProps {
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
-  onChange?(value: string): void;
+  onChange?(value: string): void
 }
 
 export const Editor: React.FC<EditorProps> = ({
   children,
-  wrapperProps,
   onChange,
   ...props
 }) => {
-  const ed = useRef<bytemd.Editor>();
-  const el = useRef<HTMLDivElement>(null);
+  const ed = useRef<bytemd.Editor>()
+  const el = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!el.current) return;
+    if (!el.current) return
 
     const editor = new bytemd.Editor({
       target: el.current,
       props,
-    });
+    })
     editor.$on('change', (e: CustomEvent<{ value: string }>) => {
-      if (onChange) onChange(e.detail.value);
-    });
-    ed.current = editor;
+      onChange?.(e.detail.value)
+    })
+    ed.current = editor
 
     return () => {
-      editor.$destroy();
-    };
-  }, []);
+      editor.$destroy()
+    }
+  }, [])
 
   useEffect(() => {
     // TODO: performance
-    ed.current?.$set(props);
-  }, [props]);
+    ed.current?.$set(props)
+  }, [props])
 
-  return <div {...wrapperProps} ref={el}></div>;
-};
+  return <div ref={el}></div>
+}
