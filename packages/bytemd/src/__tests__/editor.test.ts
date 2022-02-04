@@ -1,3 +1,4 @@
+import { test, expect, describe, vi } from 'vitest'
 import { Editor } from '../..'
 import { render, fireEvent, act, RenderResult } from '@testing-library/svelte'
 
@@ -21,7 +22,7 @@ const paragraphHtml = '<p>abc</p>'
 
 test('value', async () => {
   const $ = render(Editor, { value: heading })
-  const onChange = jest.fn()
+  const onChange = vi.fn()
   $.component.$on('change', onChange)
   await sleep()
   expect(getCodeMirror($).getValue()).toEqual(heading)
@@ -81,8 +82,8 @@ describe('mode', () => {
 describe('plugin', () => {
   test('editor effect', async () => {
     const $ = render(Editor, {})
-    const editorOff = jest.fn()
-    const editorEffect = jest.fn(() => editorOff)
+    const editorOff = vi.fn()
+    const editorEffect = vi.fn(() => editorOff)
 
     $.component.$set({ plugins: [{ editorEffect }] })
     await act()

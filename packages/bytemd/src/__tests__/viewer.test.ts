@@ -1,3 +1,4 @@
+import { test, expect, vi } from 'vitest'
 import { Viewer } from '../..'
 import { render, act } from '@testing-library/svelte'
 
@@ -15,8 +16,8 @@ test('value', async () => {
 
 test('plugin', async () => {
   const $ = render(Viewer)
-  const off = jest.fn()
-  const viewerEffect = jest.fn(() => off)
+  const off = vi.fn()
+  const viewerEffect = vi.fn(() => off)
 
   $.component.$set({ plugins: [{ viewerEffect }] })
   await act()
