@@ -10,7 +10,6 @@
     "dev:tsc": "tsc --build --watch",
     "dev:process": "node scripts/process.mjs --watch",
     "test": "vitest",
-    "test:watch": "BABEL_ENV=test npm run test -- --watch",
     "postinstall": "node scripts/postinstall.mjs",
     "pub": "npm run clean && npm run build:ci && lerna publish --yes",
     "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different **/*.{ts,tsx,js,svelte}",
