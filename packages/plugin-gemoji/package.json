@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "remark-gemoji": "^6.0.0"
+    "remark-gemoji": "^7.0.1"
   },
   "devDependencies": {
     "bytemd": "^1.11.0"

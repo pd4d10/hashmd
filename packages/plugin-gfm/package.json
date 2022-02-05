@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "remark-gfm": "^1.0.0"
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "bytemd": "^1.11.0"

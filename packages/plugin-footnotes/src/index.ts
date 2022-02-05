@@ -1,9 +1,7 @@
 import type { BytemdPlugin } from 'bytemd'
-import remarkFootnotes, { RemarkFootnotesOptions } from 'remark-footnotes'
+import remarkFootnotes, { Options } from 'remark-footnotes'
 
-export default function footnotes(
-  options?: RemarkFootnotesOptions
-): BytemdPlugin {
+export default function footnotes(options?: Options): BytemdPlugin {
   return {
     remark: (u) => u.use(remarkFootnotes, options),
   }

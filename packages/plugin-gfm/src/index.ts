@@ -1,9 +1,9 @@
 import type { BytemdPlugin } from 'bytemd'
 import en from './locales/en.json'
-import remarkGfm, { RemarkGfmOptions } from 'remark-gfm'
+import remarkGfm, { Options } from 'remark-gfm'
 import { icons } from './icons'
 
-export interface BytemdPluginGfmOptions extends RemarkGfmOptions {
+export interface BytemdPluginGfmOptions extends Options {
   locale?: Partial<typeof en>
 }
 

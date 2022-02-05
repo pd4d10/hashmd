@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "remark-breaks": "^2.0.2"
+    "remark-breaks": "^3.0.2"
   },
   "devDependencies": {
     "bytemd": "^1.11.0"

@@ -16,7 +16,7 @@ export default function highlight({
         if (els.length === 0) return
 
         if (!hljs) {
-          hljs = await import('highlight.js')
+          hljs = await import('highlight.js').then((m) => m.default)
           if (init) await init(hljs)
         }
 

@@ -1,14 +1,15 @@
-import unified from 'unified'
+import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
-import ghSchema from 'hast-util-sanitize/lib/github.json'
+import { defaultSchema } from 'hast-util-sanitize'
 import type { Schema } from 'hast-util-sanitize'
+import type { Processor } from 'unified'
 import type { ViewerProps } from './types'
 
-const schemaStr = JSON.stringify(ghSchema)
+const schemaStr = JSON.stringify(defaultSchema)
 
 /**
  * Get unified processor with ByteMD plugins
@@ -17,7 +18,7 @@ export function getProcessor({
   sanitize,
   plugins,
 }: Omit<ViewerProps, 'value'>) {
-  let p = unified().use(remarkParse)
+  let p: Processor = unified().use(remarkParse)
 
   plugins?.forEach(({ remark }) => {
     if (remark) p = remark(p)

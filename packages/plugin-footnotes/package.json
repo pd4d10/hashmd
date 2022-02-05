@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "remark-footnotes": "^3.0.0"
+    "remark-footnotes": "^4.0.1"
   },
   "devDependencies": {
     "bytemd": "^1.11.0"

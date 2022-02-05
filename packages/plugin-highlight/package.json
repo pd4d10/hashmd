@@ -19,7 +19,7 @@
     "lib"
   ],
   "dependencies": {
-    "highlight.js": "^10.7.3"
+    "highlight.js": "^11.4.0"
   },
   "devDependencies": {
     "bytemd": "^1.11.0"
