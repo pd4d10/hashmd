@@ -20,6 +20,10 @@ const results = Promise.all(
       ? _.camelCase(`bytemd-${key}`)
       : 'bytemd'
 
+    const deps = _.uniq(
+      Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies })
+    )
+
     /** @type {import('vite').UserConfig} */
     return build({
       root: path.resolve('./packages', key),
@@ -36,12 +40,7 @@ const results = Promise.all(
           },
         },
         rollupOptions: {
-          external: [
-            /^codemirror-ssr/,
-            'hast-util-sanitize/lib/github.json',
-            ...Object.keys(pkg.dependencies || {}),
-            ...Object.keys(pkg.peerDependencies || {}),
-          ],
+          external: [...deps, ...deps.map((dep) => new RegExp(`^${dep}\/`))],
         },
       },
       plugins: [
