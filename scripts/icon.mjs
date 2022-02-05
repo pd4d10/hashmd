@@ -6,8 +6,7 @@ import * as icons from '@icon-park/svg'
 
 const meta = {
   bytemd: {
-    heading: () =>
-      `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.9971 1V14.33" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 7.66498H12.9975" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    heading: icons.H,
     h1: icons.H1,
     h2: icons.H2,
     h3: icons.H3,
