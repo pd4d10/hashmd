@@ -13,7 +13,7 @@ export default function mediumZoom(
   return {
     viewerEffect({ markdownBody }) {
       const imgs = [...markdownBody.querySelectorAll('img')].filter((e) => {
-        return (options?.filter ? options.filter(e) : true) && !e.closest('a')
+        return (options?.filter?.(e) ?? true) && !e.closest('a')
       })
       if (imgs.length === 0) return
       ;(async () => {
