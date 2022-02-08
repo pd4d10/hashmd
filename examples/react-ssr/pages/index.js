@@ -84,7 +84,6 @@ export default function Home() {
         onChange={(v) => {
           setValue(v)
         }}
-        allowResize={true}
       />
 
       <style jsx global>{`
