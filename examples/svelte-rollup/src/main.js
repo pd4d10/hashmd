@@ -1,1 +1,1 @@
-import '@bytemd-examples/svelte-webpack/src/main'
+import '@bytemd/example-svelte-webpack'

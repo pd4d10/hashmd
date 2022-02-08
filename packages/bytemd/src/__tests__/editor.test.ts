@@ -1,5 +1,12 @@
+import { test, expect, describe, vi, beforeEach } from 'vitest'
 import { Editor } from '../..'
-import { render, fireEvent, act, RenderResult } from '@testing-library/svelte'
+import {
+  render,
+  cleanup,
+  fireEvent,
+  act,
+  RenderResult,
+} from '@testing-library/svelte'
 
 function sleep(ms: number = 0) {
   return new Promise((r) => setTimeout(r, ms))
@@ -19,16 +26,20 @@ const headingHtml = '<h1>title</h1>'
 const paragraph = 'abc'
 const paragraphHtml = '<p>abc</p>'
 
+beforeEach(() => {
+  cleanup()
+})
+
 test('value', async () => {
   const $ = render(Editor, { value: heading })
-  const onChange = jest.fn()
+  const onChange = vi.fn()
   $.component.$on('change', onChange)
-  await sleep()
+  await act()
   expect(getCodeMirror($).getValue()).toEqual(heading)
 
   // // change from UI
   // getCodeMirror($).setValue(paragraph);
-  // await sleep();
+  // await act();
   // expect(getCodeMirror($).getValue()).toEqual(paragraph);
   // expect(onChange).toBeCalled();
   // expect(onChange).toBeCalledTimes(1);
@@ -81,8 +92,8 @@ describe('mode', () => {
 describe('plugin', () => {
   test('editor effect', async () => {
     const $ = render(Editor, {})
-    const editorOff = jest.fn()
-    const editorEffect = jest.fn(() => editorOff)
+    const editorOff = vi.fn()
+    const editorEffect = vi.fn(() => editorOff)
 
     $.component.$set({ plugins: [{ editorEffect }] })
     await act()

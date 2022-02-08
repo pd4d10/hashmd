@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@bytemd-examples/utils": "latest",
+    "@bytemd/example-utils": "latest",
     "@bytemd/plugin-breaks": "latest",
     "@bytemd/plugin-footnotes": "latest",
     "@bytemd/plugin-frontmatter": "latest",
