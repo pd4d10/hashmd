@@ -18,11 +18,9 @@
     "dist",
     "lib"
   ],
-  "dependencies": {
-    "remark-breaks": "^3.0.2"
-  },
   "devDependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "^1.11.0",
+    "remark-breaks": "^3.0.2"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

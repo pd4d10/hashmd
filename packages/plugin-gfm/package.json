@@ -18,11 +18,9 @@
     "dist",
     "lib"
   ],
-  "dependencies": {
-    "remark-gfm": "^3.0.1"
-  },
   "devDependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "^1.11.0",
+    "remark-gfm": "^3.0.1"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

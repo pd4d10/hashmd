@@ -18,13 +18,11 @@
     "dist",
     "lib"
   ],
-  "dependencies": {
-    "@types/js-yaml": "^4.0.5",
-    "js-yaml": "^4.1.0",
-    "remark-frontmatter": "^4.0.1"
-  },
   "devDependencies": {
     "bytemd": "^1.11.0",
+    "@types/js-yaml": "^4.0.5",
+    "js-yaml": "^4.1.0",
+    "remark-frontmatter": "^4.0.1",
     "vfile": "^5.3.0"
   },
   "peerDependencies": {

@@ -18,11 +18,9 @@
     "dist",
     "lib"
   ],
-  "dependencies": {
-    "rehype-highlight": "^5.0.2"
-  },
   "devDependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "^1.11.0",
+    "rehype-highlight": "^5.0.2"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

@@ -4,15 +4,27 @@ import type mermaidAPI from 'mermaid/mermaidAPI'
 import { icons } from './icons'
 import en from './locales/en.json'
 
+type Locale = {
+  mermaid: string
+  flowchart: string
+  sequence: string
+  class: string
+  state: string
+  er: string
+  uj: string
+  gantt: string
+  pie: string
+}
+
 export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
-  locale?: Partial<typeof en>
+  locale?: Partial<Locale>
 }
 
 export default function mermaid({
   locale: _locale,
   ...mermaidConfig
 }: BytemdPluginMermaidOptions = {}): BytemdPlugin {
-  const locale = { ...en, ..._locale } as typeof en
+  const locale = { ...en, ..._locale } as Locale
   let m: Mermaid
 
   const actionItems = [

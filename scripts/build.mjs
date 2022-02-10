@@ -6,29 +6,31 @@ import { build } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { createVuePlugin } from 'vite-plugin-vue2'
 import sveltePreprocess from 'svelte-preprocess'
+import { Extractor, ExtractorConfig } from '@microsoft/api-extractor'
 
 const packages = fs.readdirSync('./packages')
 
-const watch = process.argv[2] === '--watch'
+;(async () => {
+  for (const key of packages) {
+    if (key === 'bytemd' || key === 'plugin-highlight-ssr') continue
 
-const results = Promise.all(
-  packages.map((key) => {
+    const rootDir = path.resolve('./packages', key)
     const pkg = fs.readJsonSync(`./packages/${key}/package.json`)
-    if (pkg.private) return []
 
+    if (pkg.private) continue
+
+    console.log('building js:', key)
     const umdName = key.startsWith('plugin-')
       ? _.camelCase(`bytemd-${key}`)
       : 'bytemd'
-
     const deps = _.uniq(
       Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies })
     )
 
     /** @type {import('vite').UserConfig} */
-    return build({
-      root: path.resolve('./packages', key),
+    await build({
+      root: rootDir,
       build: {
-        watch: watch ? {} : null,
         lib: {
           entry: 'src/index',
           name: umdName,
@@ -64,5 +66,46 @@ const results = Promise.all(
         },
       ],
     })
-  })
-)
+
+    console.log('building dts:', key)
+    /** @type {import('@microsoft/api-extractor').IConfigFile} */
+    const aeConfig = {
+      projectFolder: rootDir,
+      mainEntryPointFilePath: path.resolve(rootDir, 'lib/index.d.ts'),
+      apiReport: { enabled: false },
+      docModel: { enabled: false },
+      tsdocMetadata: { enabled: false },
+      dtsRollup: {
+        enabled: true,
+        untrimmedFilePath: path.resolve(rootDir, 'dist/index.d.ts'),
+      },
+      bundledPackages: _.without(
+        _.uniq([
+          ...Object.keys({
+            ...pkg.dependencie,
+            ...pkg.peerDependencies,
+            ...pkg.devDependencies,
+          }),
+
+          // TODO: whitelist
+          'micromark-extension-gfm',
+          'micromark-extension-gfm-strikethrough',
+          'mdast-util-gfm-table',
+          'mdast-util-gfm',
+          'markdown-table',
+          'highlight.js',
+          'katex',
+        ]),
+        ...deps
+      ), // TODO: imported from outside
+    }
+
+    const aeConfigFilePath = path.resolve(rootDir, 'api-extractor.json')
+    await fs.writeJson(aeConfigFilePath, aeConfig)
+
+    const extractorConfig = ExtractorConfig.loadFileAndPrepare(aeConfigFilePath)
+    Extractor.invoke(extractorConfig)
+
+    await fs.rm(aeConfigFilePath)
+  }
+})()

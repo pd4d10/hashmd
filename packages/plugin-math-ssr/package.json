@@ -19,12 +19,12 @@
     "lib"
   ],
   "dependencies": {
-    "@bytemd/plugin-math": "^1.11.0",
-    "rehype-katex": "^6.0.2",
-    "remark-math": "^5.1.1"
+    "@bytemd/plugin-math": "^1.11.0"
   },
   "devDependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "^1.11.0",
+    "rehype-katex": "^6.0.2",
+    "remark-math": "^5.1.1"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

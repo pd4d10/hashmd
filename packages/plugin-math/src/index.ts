@@ -4,8 +4,15 @@ import remarkMath from 'remark-math'
 import { icons } from './icons'
 import en from './locales/en.json'
 
+type Locale = {
+  inline: string
+  inlineText: string
+  block: string
+  blockText: string
+}
+
 export interface BytemdPluginMathOptions {
-  locale?: Partial<typeof en>
+  locale?: Partial<Locale>
   katexOptions?: Omit<K.KatexOptions, 'displayMode'>
 }
 
@@ -13,7 +20,7 @@ export default function math({
   locale: _locale,
   katexOptions,
 }: BytemdPluginMathOptions = {}): BytemdPlugin {
-  const locale = { ...en, ..._locale } as typeof en
+  const locale = { ...en, ..._locale } as Locale
   let katex: typeof K
 
   return {

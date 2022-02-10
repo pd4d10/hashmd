@@ -23,7 +23,7 @@
     "@bytemd/plugin-mermaid": "latest",
     "bytemd": "latest",
     "github-markdown-css": "latest",
-    "highlight.js": "^10",
+    "highlight.js": "latest",
     "katex": "latest"
   },
   "devDependencies": {
