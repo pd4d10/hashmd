@@ -1,13 +1,19 @@
 import type { BytemdPlugin } from 'bytemd'
 import type * as M from 'medium-zoom'
 
-export default function mediumZoom(options?: M.ZoomOptions): BytemdPlugin {
+export interface BytemdPluginMediumZoomOptions extends M.ZoomOptions {
+  filter?: (img: HTMLDivElement) => void
+}
+
+export default function mediumZoom(
+  options?: BytemdPluginMediumZoomOptions
+): BytemdPlugin {
   let m: typeof M
 
   return {
     viewerEffect({ markdownBody }) {
       const imgs = [...markdownBody.querySelectorAll('img')].filter((e) => {
-        return !e.closest('a')
+        return (options?.filter?.(e) ?? true) && !e.closest('a')
       })
       if (imgs.length === 0) return
       ;(async () => {
