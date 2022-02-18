@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/bytedance/bytemd/compare/v1.10.13...v1.11.0) (2022-02-18)
+
+
+### Features
+
+* add mediumZoom plugin filter option ([#145](https://github.com/bytedance/bytemd/issues/145)) ([19ee693](https://github.com/bytedance/bytemd/commit/19ee69398e8e147d8341326d853d1273284613e4))
+
+
+
+
+
 ## [1.10.13](https://github.com/bytedance/bytemd/compare/v1.10.12...v1.10.13) (2021-07-22)
 
 **Note:** Version bump only for package @bytemd/plugin-medium-zoom
