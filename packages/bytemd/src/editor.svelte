@@ -287,6 +287,10 @@
           (previewPs[startIndex + 1] - previewPs[startIndex]) +
         editPs[startIndex]
 
+      if(isNaN(leftRatio)){
+        return
+      }
+
       const info = editor.getScrollInfo()
       editor.scrollTo(0, leftRatio * (info.height - info.clientHeight))
       previewCalled = true
