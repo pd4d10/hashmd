@@ -27,7 +27,7 @@ test('plugin', async () => {
     expect.objectContaining({
       markdownBody: $.container.querySelector('.markdown-body'),
       file: expect.objectContaining({
-        contents: '',
+        value: '',
         data: {},
       }),
     })

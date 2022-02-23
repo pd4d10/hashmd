@@ -34,7 +34,7 @@
     "hast-util-sanitize": "^3.0.2",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
-    "rehype-raw": "^5.1.0",
+    "rehype-raw": "^6.1.0",
     "rehype-sanitize": "^4.0.0",
     "rehype-stringify": "^9.0.0",
     "remark-parse": "^9.0.0",
@@ -43,7 +43,7 @@
     "tippy.js": "^6.3.1",
     "unified": "^10.0.0",
     "unist-util-visit": "^2.0.3",
-    "vfile": "^4.2.1",
+    "vfile": "^5.3.0",
     "word-count": "^0.2.2"
   }
 }
