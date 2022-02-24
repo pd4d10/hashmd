@@ -2,7 +2,7 @@ import type { BytemdPlugin } from 'bytemd'
 import type * as M from 'medium-zoom'
 
 export interface BytemdPluginMediumZoomOptions extends M.ZoomOptions {
-  filter?: (img: HTMLDivElement) => void
+  filter?: (img: HTMLDivElement) => boolean
 }
 
 export default function mediumZoom(
