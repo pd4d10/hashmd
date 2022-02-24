@@ -15,40 +15,43 @@ function readFileSyncSafe(p) {
 
 const packagesDir = path.join(rootDir, 'packages')
 const packages = fs.readdirSync(packagesDir)
-const plugins = packages.filter(
-  (x) => x.startsWith('plugin-') && !x.includes('-transform')
-)
+const plugins = packages.filter((x) => x.startsWith('plugin-'))
 
-// tsconfig root
-fs.writeJsonSync(
-  path.resolve(rootDir, 'tsconfig.json'),
-  {
-    files: [],
-    references: packages.map((p) => {
-      return { path: 'packages/' + p }
-    }),
-  },
-  { spaces: 2 }
-)
+// // tsconfig root
+// fs.writeJsonSync(
+//   path.resolve(rootDir, 'tsconfig.json'),
+//   {
+//     files: [],
+//     references: packages.map((p) => {
+//       return { path: 'packages/' + p }
+//     }),
+//   },
+//   { spaces: 2 }
+// )
 
 packages.forEach((p) => {
   // tsconfig
-  let tsconfig = {
-    extends: '../../tsconfig-base.json',
-    include: ['src', 'src/**/*.json'], // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
-    compilerOptions: {
-      composite: true,
-      rootDir: 'src',
-      outDir: 'lib',
-    },
-  }
-  if (p !== 'bytemd') {
-    tsconfig.references = [{ path: '../bytemd' }]
-  }
+  // let tsconfig = {
+  //   extends: '../../tsconfig-base.json',
+  //   include: ['src', 'src/**/*.json'], // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
+  //   compilerOptions: {
+  //     composite: true,
+  //     rootDir: 'src',
+  //     outDir: 'lib',
+  //   },
+  // }
+  // if (p !== 'bytemd') {
+  //   tsconfig.references = [{ path: '../bytemd' }]
+  // }
 
-  fs.writeJsonSync(path.join(packagesDir, p, 'tsconfig.json'), tsconfig, {
-    spaces: 2,
-  })
+  fs.writeJsonSync(
+    path.join(packagesDir, p, 'tsconfig.json'),
+    {
+      extends: '../../tsconfig-base.json',
+      include: ['src', 'src/**/*.json'],
+    },
+    { spaces: 2 }
+  )
 
   // license
   fs.copyFileSync(
@@ -64,11 +67,14 @@ packages.forEach((p) => {
     url: 'https://github.com/bytedance/bytemd.git',
     directory: `packages/${p}`,
   }
-  pkg.main = 'dist/index.cjs.js'
-  pkg.module = 'dist/index.esm.js'
-  pkg.types = 'lib/index.d.ts'
-  pkg.unpkg = 'dist/index.min.js'
-  pkg.jsdelivr = 'dist/index.min.js'
+  pkg.main = 'src/index.ts'
+  // pkg.publishConfig = {
+  //   main: 'dist/index.cjs.js',
+  //   module: 'dist/index.esm.js',
+  //   unpkg: 'dist/index.min.js',
+  //   jsdelivr: 'dist/index.min.js',
+  //   types: 'dist/index.d.ts',
+  // }
   pkg.files = ['dist', 'lib']
   fs.writeJsonSync(pkgPath, pkg, { spaces: 2 })
 })

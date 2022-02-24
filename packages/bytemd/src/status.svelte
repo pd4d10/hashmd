@@ -1,7 +1,8 @@
 <script lang="ts">
-  import type { BytemdLocale } from './types'
+  import type { BytemdLocale } from './helpers'
+
   import { createEventDispatcher } from 'svelte'
-  import wordCount from 'word-count'
+  import { wordCount } from './helpers'
 
   export let showSync: boolean
   export let value: string

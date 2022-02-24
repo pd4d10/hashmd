@@ -4,10 +4,57 @@ import type { VFile } from 'vfile'
 import type { Editor, EditorConfiguration } from 'codemirror'
 import type CodeMirror from 'codemirror'
 import type { EditorUtils } from './editor'
-import type en from './locales/en.json'
 import type { Image } from 'mdast'
 
-export type BytemdLocale = typeof en
+export interface BytemdLocale {
+  write: string
+  preview: string
+  writeOnly: string
+  exitWriteOnly: string
+  previewOnly: string
+  exitPreviewOnly: string
+  help: string
+  closeHelp: string
+  toc: string
+  closeToc: string
+  fullscreen: string
+  exitFullscreen: string
+  source: string
+  cheatsheet: string
+  shortcuts: string
+  words: string
+  lines: string
+  sync: string
+  top: string
+  limited: string
+  h1: string
+  h2: string
+  h3: string
+  h4: string
+  h5: string
+  h6: string
+  headingText: string
+  bold: string
+  boldText: string
+  italic: string
+  italicText: string
+  quote: string
+  quotedText: string
+  link: string
+  linkText: string
+  image: string
+  imageAlt: string
+  imageTitle: string
+  code: string
+  codeText: string
+  codeBlock: string
+  codeLang: string
+  ul: string
+  ulItem: string
+  ol: string
+  olItem: string
+  hr: string
+}
 
 export interface BytemdEditorContext extends EditorUtils {
   codemirror: typeof CodeMirror

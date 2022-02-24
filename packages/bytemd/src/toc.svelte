@@ -1,10 +1,10 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { Root, Element } from 'hast'
-  import type { BytemdLocale } from './types'
+  import type { Root, Element, BytemdLocale } from './helpers'
+
   import { createEventDispatcher } from 'svelte'
-  import { visit } from 'unist-util-visit'
+  import { visit } from './helpers'
 
   export let hast: Root
   export let currentBlockIndex: number

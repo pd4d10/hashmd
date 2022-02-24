@@ -1,8 +1,8 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { VFile } from 'vfile'
-  import type { BytemdPlugin, ViewerProps } from './types'
+  import type { VFile, BytemdPlugin, ViewerProps } from './helpers'
+
   import {
     tick,
     onDestroy,
@@ -10,7 +10,7 @@
     createEventDispatcher,
     afterUpdate,
   } from 'svelte'
-  import { getProcessor } from './utils'
+  import { getProcessor } from './helpers'
 
   const dispatch = createEventDispatcher()
 

@@ -2,33 +2,40 @@
 
 <script lang="ts">
   import type { Editor, KeyMap } from 'codemirror'
-  import type { Root, Element } from 'hast'
-  import type { VFile } from 'vfile'
-  import type { BytemdEditorContext, BytemdPlugin, EditorProps } from './types'
+  import type {
+    BytemdEditorContext,
+    BytemdPlugin,
+    EditorProps,
+    VFile,
+    Root,
+    Element,
+  } from './helpers'
+
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
-  import debounce from 'lodash.debounce'
-  import throttle from 'lodash.throttle'
-  import Toolbar from './toolbar.svelte'
-  import Viewer from './viewer.svelte'
-  import Toc from './toc.svelte'
   import {
+    debounce,
+    throttle,
+    factory,
+    usePlaceholder,
+    useOverlay,
+    useXml,
+    useMarkdown,
+    useGfm,
+    useYaml,
+    useYamlFrontmatter,
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
     handleImageUpload,
-  } from './editor'
+    icons,
+  } from './helpers'
+
+  import Toolbar from './toolbar.svelte'
+  import Viewer from './viewer.svelte'
+  import Toc from './toc.svelte'
   import Status from './status.svelte'
-  import { icons } from './icons'
-  import en from './locales/en.json'
   import Help from './help.svelte'
-  import factory from 'codemirror-ssr'
-  import usePlaceholder from 'codemirror-ssr/addon/display/placeholder'
-  import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
-  import useXml from 'codemirror-ssr/mode/xml/xml'
-  import useMarkdown from 'codemirror-ssr/mode/markdown/markdown'
-  import useGfm from 'codemirror-ssr/mode/gfm/gfm'
-  import useYaml from 'codemirror-ssr/mode/yaml/yaml'
-  import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter'
+  import en from './locales/en.json'
 
   export let value: EditorProps['value'] = ''
   export let plugins: NonNullable<EditorProps['plugins']> = []

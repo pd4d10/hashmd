@@ -1,5 +1,5 @@
 {
-  "name": "bytemd",
+  "name": "@bytemd/monorepo",
   "private": true,
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",

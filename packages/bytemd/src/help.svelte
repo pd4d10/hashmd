@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BytemdAction, BytemdLocale } from './types'
+  import type { BytemdAction, BytemdLocale } from './helpers'
 
   export let actions: BytemdAction[]
   export let locale: BytemdLocale
