@@ -14,8 +14,10 @@ function readFileSyncSafe(p) {
 }
 
 const packagesDir = path.join(rootDir, 'packages')
-const packages = fs.readdirSync(packagesDir)
-const plugins = packages.filter((x) => x.startsWith('plugin-'))
+const libs = fs
+  .readdirSync(packagesDir)
+  .filter((x) => !x.includes('playground'))
+const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
 // // tsconfig root
 // fs.writeJsonSync(
@@ -29,7 +31,7 @@ const plugins = packages.filter((x) => x.startsWith('plugin-'))
 //   { spaces: 2 }
 // )
 
-packages.forEach((p) => {
+libs.forEach((p) => {
   // tsconfig
   // let tsconfig = {
   //   extends: '../../tsconfig-base.json',
@@ -44,14 +46,14 @@ packages.forEach((p) => {
   //   tsconfig.references = [{ path: '../bytemd' }]
   // }
 
-  fs.writeJsonSync(
-    path.join(packagesDir, p, 'tsconfig.json'),
-    {
-      extends: '../../tsconfig-base.json',
-      include: ['src', 'src/**/*.json'],
-    },
-    { spaces: 2 }
-  )
+  // fs.writeJsonSync(
+  //   path.join(packagesDir, p, 'tsconfig.json'),
+  //   {
+  //     extends: '../../tsconfig-base.json',
+  //     include: ['src', 'src/**/*.json'],
+  //   },
+  //   { spaces: 2 }
+  // )
 
   // license
   fs.copyFileSync(
@@ -131,7 +133,7 @@ fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
 // locales
 let importCode = ''
 let exportObject = {}
-packages.forEach((p) => {
+libs.forEach((p) => {
   const localeDir = path.join(packagesDir, p, 'src/locales')
   if (fs.existsSync(localeDir) && fs.lstatSync(localeDir).isDirectory()) {
     const locales = fs.readdirSync(localeDir).map((x) => x.replace('.json', ''))

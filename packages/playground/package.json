@@ -1,0 +1,21 @@
+{
+  "name": "@bytemd/playground",
+  "private": true,
+  "dependencies": {
+    "@bytemd/plugin-breaks": "latest",
+    "@bytemd/plugin-footnotes": "latest",
+    "@bytemd/plugin-frontmatter": "latest",
+    "@bytemd/plugin-gemoji": "latest",
+    "@bytemd/plugin-gfm": "latest",
+    "@bytemd/plugin-highlight": "latest",
+    "@bytemd/plugin-highlight-ssr": "latest",
+    "@bytemd/plugin-math": "latest",
+    "@bytemd/plugin-math-ssr": "latest",
+    "@bytemd/plugin-medium-zoom": "latest",
+    "@bytemd/plugin-mermaid": "latest",
+    "bytemd": "latest",
+    "github-markdown-css": "^5.1.0",
+    "highlight.js": "^11.4.0",
+    "katex": "^0.15.2"
+  }
+}
