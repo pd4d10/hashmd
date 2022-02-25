@@ -23,6 +23,7 @@
   let mode = 'auto'
   let localeKey = 'en'
   let maxLength
+  let enableResizeSplitPane = false
 
   $: currentLocale = locales[localeKey]
 
@@ -90,6 +91,8 @@
     </select>
     , Max length:
     <input bind:value={maxLength} type="number" />
+    , Resize Split Pane:
+    <input bind:checked={enableResizeSplitPane} type="checkbox" />
   </div>
   <div class="line">
     Plugins:
@@ -106,6 +109,7 @@
     {maxLength}
     placeholder={'Start writing with ByteMD'}
     locale={currentLocale.bytemd}
+    allowResize={enableResizeSplitPane}
     {uploadImages}
     on:change={handleChange}
   />

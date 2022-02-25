@@ -40,6 +40,7 @@
   export let locale: EditorProps['locale']
   export let uploadImages: EditorProps['uploadImages']
   export let overridePreview: EditorProps['overridePreview']
+  export let allowResize: EditorProps['allowResize'] = false
   export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
 
   $: mergedLocale = { ...en, ...locale }
@@ -55,6 +56,7 @@
   let root: HTMLElement
   let editorEl: HTMLElement
   let previewEl: HTMLElement
+  let gutterEl: HTMLElement
   let containerWidth = Infinity // TODO: first screen
 
   let codemirror: ReturnType<typeof factory>
@@ -62,30 +64,44 @@
   let activeTab: false | 'write' | 'preview'
   let fullscreen = false
   let sidebar: false | 'help' | 'toc' = false
+  let editorPaneRatio: number = 0.5
+  let gutterDragging: boolean = false
 
   $: styles = (() => {
+    const sidebarWidth = sidebar ? 280 : 0
     let edit: string
     let preview: string
+    let gutter: string
 
     if (split && activeTab === false) {
-      if (sidebar) {
-        edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`
-        preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`
-      } else {
-        edit = 'width:50%'
-        preview = 'width:50%'
-      }
+      const gutterWidth = allowResize ? 3 : 1
+      const externalWidth = gutterWidth + sidebarWidth
+      edit = `width:calc(${100 * editorPaneRatio}% - ${
+        externalWidth * editorPaneRatio
+      }px)`
+      preview = `width:calc(${100 * (1 - editorPaneRatio)}% - ${
+        externalWidth * (1 - editorPaneRatio)
+      }px)`
+      gutter = !allowResize
+        ? `width:${gutterWidth}px;border-width:0px`
+        : editorPaneRatio === 0 || editorPaneRatio === 1
+        ? `width:${gutterWidth}px;border-left-width:0px;border-right-width:0px`
+        : `width:1px;border-left-width:${
+            gutterWidth / 2
+          }px;border-right-width:${gutterWidth / 2}px`
     } else if (activeTab === 'preview') {
       edit = 'display:none'
-      preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`
+      preview = `width:calc(100% - ${sidebarWidth}px)`
+      gutter = 'display:none'
     } else {
-      edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`
+      edit = `width:calc(100% - ${sidebarWidth}px)`
       preview = 'display:none'
+      gutter = 'display:none'
       // TODO: use width:0 to make scroll sync work until
       // the position calculation improved (causes white screen after switching to editor only)
     }
 
-    return { edit, preview }
+    return { edit, preview, gutter }
   })()
 
   $: context = (() => {
@@ -123,6 +139,39 @@
     cbs.forEach((cb) => cb && cb())
 
     editor?.removeKeyMap(keyMap) // onDestroy runs at SSR, optional chaining here
+  }
+
+  const gutterStartDragging = (e: MouseEvent | TouchEvent) => {
+    if (allowResize && split) {
+      e.preventDefault()
+      gutterDragging = true
+      const editorWidth = editorEl.offsetWidth
+      const previewWidth = previewEl.offsetWidth
+      const startClientX =
+        e instanceof MouseEvent ? e.clientX : e.touches[0].clientX
+      const dragging = (e: MouseEvent | TouchEvent) => {
+        const clientX =
+          e instanceof MouseEvent ? e.clientX : e.touches[0].clientX
+
+        const dragDelta = clientX - startClientX
+        const delta = Math.min(Math.max(dragDelta, -editorWidth), previewWidth)
+        editorPaneRatio = (editorWidth + delta) / (previewWidth + editorWidth)
+      }
+      const stopDragging = (e: MouseEvent | TouchEvent) => {
+        gutterDragging = false
+        document?.removeEventListener('mousemove', dragging)
+        document?.removeEventListener('mouseup', stopDragging)
+        document?.removeEventListener('touchmove', dragging)
+        document?.removeEventListener('touchcancel', stopDragging)
+        document?.removeEventListener('touchend', stopDragging)
+      }
+
+      document?.addEventListener('mousemove', dragging)
+      document?.addEventListener('mouseup', stopDragging)
+      document?.addEventListener('touchmove', dragging)
+      document?.addEventListener('touchcancel', stopDragging)
+      document?.addEventListener('touchend', stopDragging)
+    }
   }
 
   let debouncedValue = value
@@ -386,8 +435,16 @@
       }
     }}
   />
-  <div class="bytemd-body">
+  <div class="bytemd-body" class:resizing={gutterDragging}>
     <div class="bytemd-editor" style={styles.edit} bind:this={editorEl} />
+    <div
+      class="gutter"
+      class:resizer={allowResize}
+      style={styles.gutter}
+      bind:this={gutterEl}
+      on:mousedown={gutterStartDragging}
+      on:touchstart={gutterStartDragging}
+    />
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       {#if !overridePreview}
         <Viewer

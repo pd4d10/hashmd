@@ -164,6 +164,7 @@ editor.$on('change', (e) => {
 | `locale` |  | i18n locale. Available locales could be found at `bytemd/lib/locales` |
 | `uploadImages` | `function` | Specify how to upload images |
 | `maxLength` | `number` | Maximum length (number of characters) of value |
+| `allowResize` | `boolean` | Allow to resize split panes |
 
 ## Style customization
 

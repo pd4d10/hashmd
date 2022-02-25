@@ -302,8 +302,24 @@ $max-width: 800px;
   }
 
   &-split {
-    .bytemd-preview {
-      border-left: 1px solid $border-color;
+    .gutter {
+      background-color: $border-color;
+      display: inline-block;
+      height: 100%;
+      border-color: transparent;
+      border-style: solid;
+      border-top-width: 0;
+      border-bottom-width: 0;
+      background-clip: content-box;
+      &.resizer:hover {
+        cursor: col-resize;
+      }
+    }
+    .resizing {
+      cursor: col-resize;
+      .CodeMirror-lines {
+        cursor: col-resize;
+      }
     }
   }
 }
