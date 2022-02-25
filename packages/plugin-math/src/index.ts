@@ -31,7 +31,7 @@ export default function math({
         if (els.length === 0) return
 
         if (!katex) {
-          katex = await import('katex')
+          katex = await import('katex').then((m) => m.default)
         }
 
         els.forEach((el) => {
