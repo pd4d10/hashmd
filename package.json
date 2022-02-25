@@ -3,15 +3,11 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
-    "build": "tsc --build && node scripts/process.mjs && node scripts/build.mjs",
-    "build:ci": "UMD=1 npm run build",
-    "dev": "run-p dev:bundle dev:tsc dev:process",
-    "dev:bundle": "node scripts/build.mjs --watch",
-    "dev:tsc": "tsc --build --watch",
-    "dev:process": "node scripts/process.mjs --watch",
+    "dev": "norm",
+    "build": "npm run clean && node scripts/process.mjs && norm build",
     "test": "vitest",
     "postinstall": "node scripts/postinstall.mjs",
-    "pub": "npm run clean && npm run build:ci && lerna publish --yes",
+    "pub": "npm run build && lerna publish --yes",
     "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different **/*.{ts,tsx,js,svelte}",
     "lint:fix": "prettier --plugin-search-dir=. --ignore-path=.gitignore --write **/*.{ts,tsx,js,svelte}",
     "docs:dev": "vitepress dev docs",
@@ -42,15 +38,12 @@
     "svelte-preprocess": "^4.10.2",
     "svgo": "^2.8.0",
     "typescript": "^4.5.5",
-    "vite-plugin-vue2": "^1.9.3",
-    "vitest": "^0.2.7",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "vitest": "^0.2.7"
   },
   "bundlewatch": {
     "files": [
       {
-        "path": "packages/*/dist/index.min.js"
+        "path": "packages/*/dist/index.js"
       }
     ],
     "ci": {

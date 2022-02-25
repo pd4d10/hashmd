@@ -1,10 +1,8 @@
-/// <reference types="svelte" />
-import '@bytemd/helpers/src/index.scss'
+import './index.scss'
 
 import Editor from './editor.svelte'
 import Viewer from './viewer.svelte'
 
-export { Editor, Viewer }
 export type {
   BytemdLocale,
   BytemdEditorContext,
@@ -14,4 +12,6 @@ export type {
   EditorProps,
   ViewerProps,
 } from './helpers'
+
+export { Editor, Viewer }
 export { getProcessor } from './helpers'

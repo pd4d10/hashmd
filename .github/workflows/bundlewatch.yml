@@ -13,7 +13,7 @@ jobs:
         with:
           version: 6.9.1
       - run: pnpm install
-      - run: npm run build:ci
+      - run: npm run build
       - run: npx bundlewatch
         env:
           BUNDLEWATCH_GITHUB_TOKEN: '${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}'

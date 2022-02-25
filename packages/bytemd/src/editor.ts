@@ -8,45 +8,8 @@ import type {
   BytemdEditorContext,
 } from './types'
 
-import type { Root, Element } from 'hast'
 import selectFiles from 'select-files'
-import debounce from 'lodash.debounce'
-import throttle from 'lodash.throttle'
-// @ts-ignore
-import wordCount from 'word-count'
-import { visit } from 'unist-util-visit'
-import { delegate, DelegateInstance } from 'tippy.js'
-
-import factory from 'codemirror-ssr'
-import usePlaceholder from 'codemirror-ssr/addon/display/placeholder'
-import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
-import useXml from 'codemirror-ssr/mode/xml/xml'
-import useMarkdown from 'codemirror-ssr/mode/markdown/markdown'
-import useGfm from 'codemirror-ssr/mode/gfm/gfm'
-import useYaml from 'codemirror-ssr/mode/yaml/yaml'
-import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter'
 import { icons } from './icons'
-
-export type { DelegateInstance, Root, Element }
-
-export {
-  debounce,
-  throttle,
-  wordCount,
-  visit,
-  delegate,
-  //
-  factory,
-  usePlaceholder,
-  useOverlay,
-  useXml,
-  useMarkdown,
-  useGfm,
-  useYaml,
-  useYamlFrontmatter,
-  //
-  icons,
-}
 
 export type EditorUtils = ReturnType<typeof createEditorUtils>
 

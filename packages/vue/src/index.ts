@@ -1,4 +1,2 @@
-import Viewer from './viewer.vue'
-import Editor from './editor.vue'
-
-export { Editor, Viewer }
+export { default as Editor } from './editor.vue'
+export { default as Viewer } from './viewer.vue'

@@ -7,10 +7,7 @@ import rehypeStringify from 'rehype-stringify'
 import { defaultSchema } from 'hast-util-sanitize'
 import type { Schema } from 'hast-util-sanitize'
 import type { Processor } from 'unified'
-import type { VFile } from 'vfile'
 import type { ViewerProps } from './types'
-
-export { VFile }
 
 const schemaStr = JSON.stringify(defaultSchema)
 

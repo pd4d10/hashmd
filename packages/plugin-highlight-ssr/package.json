@@ -14,6 +14,9 @@
     "dist",
     "lib"
   ],
+  "dependencies": {
+    "highlight.js": "^11.4.0"
+  },
   "devDependencies": {
     "bytemd": "^1.11.0",
     "rehype-highlight": "^5.0.2"
