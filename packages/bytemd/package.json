@@ -15,7 +15,6 @@
     "directory": "packages/bytemd"
   },
   "main": "src/index.ts",
-  "svelte": "lib/index.js",
   "files": [
     "dist",
     "lib"
