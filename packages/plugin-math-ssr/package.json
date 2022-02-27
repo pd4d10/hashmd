@@ -10,18 +10,17 @@
   "license": "MIT",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "exports": {
+    ".": "./src/index.ts",
     "./locales/*": "./locales/*",
     "./lib/locales/*": "./locales/*"
   },
-  "main": "src/index.ts",
+  "main": "./src/index.ts",
   "files": [
     "dist",
     "lib"
   ],
-  "dependencies": {
-    "@bytemd/plugin-math": "^1.11.0"
-  },
   "devDependencies": {
+    "@bytemd/plugin-math-common": "^1.11.0",
     "bytemd": "^1.11.0",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1"

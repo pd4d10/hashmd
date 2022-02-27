@@ -39,7 +39,7 @@ const meta = {
     task: icons.CheckCorrect,
     table: icons.InsertTable,
   },
-  'plugin-math': {
+  'plugin-math-common': {
     math: icons.Formula,
     inline: icons.Inline,
     block: icons.Block,

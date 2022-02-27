@@ -205,6 +205,7 @@ importers:
 
   packages/plugin-math:
     specifiers:
+      '@bytemd/plugin-math-common': ^1.11.0
       '@types/katex': ^0.11.1
       bytemd: ^1.11.0
       katex: ^0.15.2
@@ -213,18 +214,24 @@ importers:
       '@types/katex': 0.11.1
       katex: 0.15.2
     devDependencies:
+      '@bytemd/plugin-math-common': link:../plugin-math-common
       bytemd: link:../bytemd
       remark-math: 5.1.1
 
+  packages/plugin-math-common:
+    specifiers:
+      bytemd: ^1.11.0
+    devDependencies:
+      bytemd: link:../bytemd
+
   packages/plugin-math-ssr:
     specifiers:
-      '@bytemd/plugin-math': ^1.11.0
+      '@bytemd/plugin-math-common': ^1.11.0
       bytemd: ^1.11.0
       rehype-katex: ^6.0.2
       remark-math: ^5.1.1
-    dependencies:
-      '@bytemd/plugin-math': link:../plugin-math
     devDependencies:
+      '@bytemd/plugin-math-common': link:../plugin-math-common
       bytemd: link:../bytemd
       rehype-katex: 6.0.2
       remark-math: 5.1.1

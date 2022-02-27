@@ -17,7 +17,7 @@ function readFileSyncSafe(p) {
 const packagesDir = path.join(rootDir, 'packages')
 const libs = fs
   .readdirSync(packagesDir)
-  .filter((x) => !x.includes('playground'))
+  .filter((x) => !x.includes('playground') && !x.includes('common'))
 const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
 libs.forEach((p) => {
@@ -44,8 +44,9 @@ libs.forEach((p) => {
     url: 'https://github.com/bytedance/bytemd.git',
     directory: `packages/${p}`,
   }
-  pkg.main = 'src/index.ts'
+  pkg.main = './src/index.ts'
   pkg.exports = {
+    '.': './src/index.ts',
     './locales/*': './locales/*',
     './lib/locales/*': './locales/*', // for compatible with old version
   }
@@ -111,3 +112,4 @@ fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
 
 // format
 execSync('npm run lint:fix', { stdio: 'inherit' })
+execSync('npx sort-package-json packages/*/package.json', { stdio: 'inherit' })
