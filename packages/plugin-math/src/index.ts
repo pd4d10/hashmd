@@ -2,7 +2,7 @@ import type { BytemdPlugin } from 'bytemd'
 import type * as K from 'katex'
 import remarkMath from 'remark-math'
 import { icons } from './icons'
-import en from './locales/en.json'
+import en from '../locales/en.json'
 
 type Locale = {
   inline: string

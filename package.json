@@ -34,6 +34,7 @@
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.6.0",
     "sass": "^1.49.0",
+    "sort-package-json": "^1.54.0",
     "svelte": "^3.46.3",
     "svelte-preprocess": "^4.10.2",
     "svgo": "^2.8.0",

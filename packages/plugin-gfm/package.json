@@ -2,12 +2,16 @@
   "name": "@bytemd/plugin-gfm",
   "version": "1.11.0",
   "description": "ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/plugin-gfm"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
   },
   "main": "src/index.ts",
   "files": [

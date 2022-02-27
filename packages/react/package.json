@@ -2,12 +2,16 @@
   "name": "@bytemd/react",
   "version": "1.11.0",
   "description": "Full-featured markdown editor and viewer",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/react"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
   },
   "main": "src/index.ts",
   "files": [
@@ -17,11 +21,11 @@
   "dependencies": {
     "bytemd": "^1.11.0"
   },
-  "peerDependencies": {
-    "react": "*"
-  },
   "devDependencies": {
     "@types/react": "^17.0.38",
     "react": "^17.0.2"
+  },
+  "peerDependencies": {
+    "react": "*"
   }
 }

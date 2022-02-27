@@ -35,7 +35,7 @@
   import Toc from './toc.svelte'
   import Status from './status.svelte'
   import Help from './help.svelte'
-  import en from './locales/en.json'
+  import en from '../locales/en.json'
 
   export let value: EditorProps['value'] = ''
   export let plugins: NonNullable<EditorProps['plugins']> = []
@@ -294,7 +294,7 @@
           (previewPs[startIndex + 1] - previewPs[startIndex]) +
         editPs[startIndex]
 
-      if(isNaN(leftRatio)){
+      if (isNaN(leftRatio)) {
         return
       }
 

@@ -19,41 +19,19 @@ const libs = fs
   .filter((x) => !x.includes('playground'))
 const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
-// // tsconfig root
-// fs.writeJsonSync(
-//   path.resolve(rootDir, 'tsconfig.json'),
-//   {
-//     files: [],
-//     references: packages.map((p) => {
-//       return { path: 'packages/' + p }
-//     }),
-//   },
-//   { spaces: 2 }
-// )
-
 libs.forEach((p) => {
   // tsconfig
-  // let tsconfig = {
-  //   extends: '../../tsconfig-base.json',
-  //   include: ['src', 'src/**/*.json'], // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
-  //   compilerOptions: {
-  //     composite: true,
-  //     rootDir: 'src',
-  //     outDir: 'lib',
-  //   },
-  // }
-  // if (p !== 'bytemd') {
-  //   tsconfig.references = [{ path: '../bytemd' }]
-  // }
-
-  // fs.writeJsonSync(
-  //   path.join(packagesDir, p, 'tsconfig.json'),
-  //   {
-  //     extends: '../../tsconfig-base.json',
-  //     include: ['src', 'src/**/*.json'],
-  //   },
-  //   { spaces: 2 }
-  // )
+  fs.writeJsonSync(
+    path.join(packagesDir, p, 'tsconfig.json'),
+    {
+      extends: '../../tsconfig-base.json',
+      include: [
+        'src',
+        'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
+      ],
+    },
+    { spaces: 2 }
+  )
 
   // license
   fs.copyFileSync(
@@ -70,6 +48,10 @@ libs.forEach((p) => {
     directory: `packages/${p}`,
   }
   pkg.main = 'src/index.ts'
+  pkg.exports = {
+    './locales/*': './locales/*',
+    './lib/locales/*': './locales/*', // for compatible with old version
+  }
   // pkg.publishConfig = {
   //   main: 'dist/index.cjs.js',
   //   module: 'dist/index.esm.js',

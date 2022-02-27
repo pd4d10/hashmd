@@ -2,8 +2,6 @@
   "name": "bytemd",
   "version": "1.11.0",
   "description": "A hackable Markdown editor built with Svelte",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "markdown",
     "editor",
@@ -13,6 +11,12 @@
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/bytemd"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
   },
   "main": "src/index.ts",
   "files": [

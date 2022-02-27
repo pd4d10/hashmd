@@ -161,7 +161,7 @@ editor.$on('change', (e) => {
 | `previewDebounce` | `number` | Debounce time (ms) for preview, default: `300` |
 | `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
-| `locale` |  | i18n locale. Available locales could be found at `bytemd/lib/locales` |
+| `locale` |  | i18n locale. Available locales could be found at `bytemd/locales` |
 | `uploadImages` | `function` | Specify how to upload images |
 | `maxLength` | `number` | Maximum length (number of characters) of value |
 

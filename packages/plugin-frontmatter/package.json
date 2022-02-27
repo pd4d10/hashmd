@@ -2,12 +2,16 @@
   "name": "@bytemd/plugin-frontmatter",
   "version": "1.11.0",
   "description": "ByteMD plugin to parse frontmatter",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/plugin-frontmatter"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
   },
   "main": "src/index.ts",
   "files": [
@@ -15,8 +19,8 @@
     "lib"
   ],
   "devDependencies": {
-    "bytemd": "^1.11.0",
     "@types/js-yaml": "^4.0.5",
+    "bytemd": "^1.11.0",
     "js-yaml": "^4.1.0",
     "remark-frontmatter": "^4.0.1",
     "vfile": "^5.3.0"

@@ -2,12 +2,16 @@
   "name": "@bytemd/vue",
   "version": "1.11.0",
   "description": "Full-featured markdown editor and viewer",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/vue"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
   },
   "main": "src/index.ts",
   "files": [
@@ -17,12 +21,12 @@
   "dependencies": {
     "bytemd": "^1.11.0"
   },
-  "peerDependencies": {
-    "vue": "^2.0.0"
-  },
   "devDependencies": {
     "vite-plugin-vue2": "^1.9.3",
     "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.14"
+  },
+  "peerDependencies": {
+    "vue": "^2.0.0"
   }
 }

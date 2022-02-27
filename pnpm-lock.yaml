@@ -23,6 +23,7 @@ importers:
       prettier: ^2.5.1
       prettier-plugin-svelte: ^2.6.0
       sass: ^1.49.0
+      sort-package-json: ^1.54.0
       svelte: ^3.46.3
       svelte-preprocess: ^4.10.2
       svgo: ^2.8.0
@@ -48,6 +49,7 @@ importers:
       prettier: 2.5.1
       prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.46.3
       sass: 1.49.0
+      sort-package-json: 1.54.0
       svelte: 3.46.3
       svelte-preprocess: 4.10.2_1057a91ea61fd3328ec18c1f78aee537
       svgo: 2.8.0
@@ -137,7 +139,7 @@ importers:
 
   packages/plugin-breaks:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       remark-breaks: ^3.0.2
     devDependencies:
       bytemd: link:../bytemd
@@ -145,7 +147,7 @@ importers:
 
   packages/plugin-footnotes:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       remark-footnotes: ^4.0.1
     devDependencies:
       bytemd: link:../bytemd
@@ -154,7 +156,7 @@ importers:
   packages/plugin-frontmatter:
     specifiers:
       '@types/js-yaml': ^4.0.5
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       js-yaml: ^4.1.0
       remark-frontmatter: ^4.0.1
       vfile: ^5.3.0
@@ -167,7 +169,7 @@ importers:
 
   packages/plugin-gemoji:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       remark-gemoji: ^7.0.1
     devDependencies:
       bytemd: link:../bytemd
@@ -175,7 +177,7 @@ importers:
 
   packages/plugin-gfm:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       remark-gfm: ^3.0.1
     devDependencies:
       bytemd: link:../bytemd
@@ -183,7 +185,7 @@ importers:
 
   packages/plugin-highlight:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       highlight.js: ^11.4.0
     dependencies:
       highlight.js: 11.4.0
@@ -192,7 +194,7 @@ importers:
 
   packages/plugin-highlight-ssr:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       highlight.js: ^11.4.0
       rehype-highlight: ^5.0.2
     dependencies:
@@ -204,7 +206,7 @@ importers:
   packages/plugin-math:
     specifiers:
       '@types/katex': ^0.11.1
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       katex: ^0.15.2
       remark-math: ^5.1.1
     dependencies:
@@ -216,8 +218,8 @@ importers:
 
   packages/plugin-math-ssr:
     specifiers:
-      '@bytemd/plugin-math': ^1.10.13
-      bytemd: ^1.10.13
+      '@bytemd/plugin-math': ^1.11.0
+      bytemd: ^1.11.0
       rehype-katex: ^6.0.2
       remark-math: ^5.1.1
     dependencies:
@@ -229,7 +231,7 @@ importers:
 
   packages/plugin-medium-zoom:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       medium-zoom: ^1.0.6
     dependencies:
       medium-zoom: 1.0.6
@@ -239,7 +241,7 @@ importers:
   packages/plugin-mermaid:
     specifiers:
       '@types/mermaid': ^8.2.7
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       mermaid: ^8.13.10
     dependencies:
       '@types/mermaid': 8.2.7
@@ -250,7 +252,7 @@ importers:
   packages/react:
     specifiers:
       '@types/react': ^17.0.38
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       react: ^17.0.2
     dependencies:
       bytemd: link:../bytemd
@@ -260,7 +262,7 @@ importers:
 
   packages/vue:
     specifiers:
-      bytemd: ^1.10.13
+      bytemd: ^1.11.0
       vite-plugin-vue2: ^1.9.3
       vue: ^2.6.14
       vue-template-compiler: ^2.6.14
@@ -2640,6 +2642,13 @@ packages:
   /@types/estree/0.0.50:
     resolution: {integrity: sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==}
 
+  /@types/glob/7.2.0:
+    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+    dependencies:
+      '@types/minimatch': 3.0.5
+      '@types/node': 17.0.14
+    dev: true
+
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
@@ -4395,6 +4404,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /detect-newline/3.1.0:
+    resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
+    engines: {node: '>=8'}
+    dev: true
+
   /dezalgo/1.0.3:
     resolution: {integrity: sha1-f3Qt4Gb8dIvI24IFad3c5Jvw1FY=}
     dependencies:
@@ -5076,6 +5090,10 @@ packages:
       assert-plus: 1.0.0
     dev: true
 
+  /git-hooks-list/1.0.3:
+    resolution: {integrity: sha512-Y7wLWcrLUXwk2noSka166byGCvhMtDRpgHdzCno1UQv/n/Hegp++a2xBWJL1lJarnKD3SWaljD+0z1ztqxuKyQ==}
+    dev: true
+
   /git-raw-commits/2.0.11:
     resolution: {integrity: sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==}
     engines: {node: '>=10'}
@@ -5149,6 +5167,20 @@ packages:
   /globals/11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /globby/10.0.0:
+    resolution: {integrity: sha512-3LifW9M4joGZasyYPz2A1U74zbC/45fvpXUvO/9KbSa+VV0aGZarWkfdgKyR9sExNP0t0x0ss/UMJpNpcaTspw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@types/glob': 7.2.0
+      array-union: 2.1.0
+      dir-glob: 3.0.1
+      fast-glob: 3.2.11
+      glob: 7.2.0
+      ignore: 5.2.0
+      merge2: 1.4.1
+      slash: 3.0.0
     dev: true
 
   /globby/11.1.0:
@@ -8290,6 +8322,22 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       is-plain-obj: 2.1.0
+    dev: true
+
+  /sort-object-keys/1.1.3:
+    resolution: {integrity: sha1-v/gz/oXKsUezR0LkWGNFPB4ZC0U=}
+    dev: true
+
+  /sort-package-json/1.54.0:
+    resolution: {integrity: sha512-MA0nRiSfZ4/CNM/9rz70Hwq4PpvtBc3v532tzQSmoaLSdeBB3cCd488xmNruLL0fb/ZdbKlcaDDudwnrObbjBw==}
+    hasBin: true
+    dependencies:
+      detect-indent: 6.1.0
+      detect-newline: 3.1.0
+      git-hooks-list: 1.0.3
+      globby: 10.0.0
+      is-plain-obj: 2.1.0
+      sort-object-keys: 1.1.3
     dev: true
 
   /source-map-js/1.0.2:

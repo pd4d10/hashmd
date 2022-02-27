@@ -2,7 +2,7 @@ import type { BytemdPlugin } from 'bytemd'
 import type { Mermaid } from 'mermaid'
 import type mermaidAPI from 'mermaid/mermaidAPI'
 import { icons } from './icons'
-import en from './locales/en.json'
+import en from '../locales/en.json'
 
 type Locale = {
   mermaid: string

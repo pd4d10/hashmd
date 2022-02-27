@@ -2,7 +2,7 @@ import type { BytemdPlugin } from 'bytemd'
 import remarkMath from 'remark-math'
 import rehypeKatex, { Options } from 'rehype-katex'
 import pluginMath from '@bytemd/plugin-math'
-import en from './locales/en.json'
+import en from '../locales/en.json'
 
 type Locale = {
   inline: string
