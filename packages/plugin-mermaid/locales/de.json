@@ -1,11 +1,11 @@
 {
-    "pie": "Kreisdiagramm",
-    "gantt": "Gantt-Diagramm",
-    "uj": "User Journey-Diagramm",
-    "er": "Entity-Relationship-Diagramm",
-    "state": "Zustandsdiagramm",
-    "class": "Klassendiagramm",
-    "sequence": "Sequenzdiagramm",
-    "flowchart": "Flussdiagramm",
-    "mermaid": "Mermaid-Diagramme"
+  "pie": "Kreisdiagramm",
+  "gantt": "Gantt-Diagramm",
+  "uj": "User Journey-Diagramm",
+  "er": "Entity-Relationship-Diagramm",
+  "state": "Zustandsdiagramm",
+  "class": "Klassendiagramm",
+  "sequence": "Sequenzdiagramm",
+  "flowchart": "Flussdiagramm",
+  "mermaid": "Mermaid-Diagramme"
 }

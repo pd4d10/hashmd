@@ -4,6 +4,7 @@ import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash'
 import { rootDir } from './utils.mjs'
+import { execSync } from 'child_process'
 
 function readFileSyncSafe(p) {
   try {
@@ -21,17 +22,13 @@ const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
 libs.forEach((p) => {
   // tsconfig
-  fs.writeJsonSync(
-    path.join(packagesDir, p, 'tsconfig.json'),
-    {
-      extends: '../../tsconfig-base.json',
-      include: [
-        'src',
-        'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
-      ],
-    },
-    { spaces: 2 }
-  )
+  fs.writeJsonSync(path.join(packagesDir, p, 'tsconfig.json'), {
+    extends: '../../tsconfig-base.json',
+    include: [
+      'src',
+      'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
+    ],
+  })
 
   // license
   fs.copyFileSync(
@@ -60,7 +57,7 @@ libs.forEach((p) => {
   //   types: 'dist/index.d.ts',
   // }
   pkg.files = ['dist', 'lib']
-  fs.writeJsonSync(pkgPath, pkg, { spaces: 2 })
+  fs.writeJsonSync(pkgPath, pkg)
 })
 
 // plugins readme
@@ -112,28 +109,5 @@ ${content}
 
 fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
 
-// locales
-let importCode = ''
-let exportObject = {}
-libs.forEach((p) => {
-  const localeDir = path.join(packagesDir, p, 'src/locales')
-  if (fs.existsSync(localeDir) && fs.lstatSync(localeDir).isDirectory()) {
-    const locales = fs.readdirSync(localeDir).map((x) => x.replace('.json', ''))
-    const libName = p.startsWith('plugin') ? `@bytemd/${p}` : p
-
-    locales.forEach((l) => {
-      if (!exportObject[l]) exportObject[l] = {}
-
-      const varName = _.snakeCase(l + '-' + p)
-
-      importCode += `import ${varName} from '${libName}/lib/locales/${l}';\n`
-      exportObject[l][_.snakeCase(p)] = varName
-    })
-  }
-})
-fs.writeFileSync(
-  'examples/svelte-webpack/src/locales.js',
-  importCode +
-    'export default ' +
-    JSON.stringify(exportObject, null, 2).replace(/"/g, '')
-)
+// format
+execSync('npm run lint:fix', { stdio: 'inherit' })

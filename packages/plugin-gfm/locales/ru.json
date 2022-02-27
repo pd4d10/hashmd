@@ -1,8 +1,8 @@
 {
-    "tableHeading": "Заголовок",
-    "table": "Таблица",
-    "task": "Список задач",
-    "strikeText": "текст",
-    "strike": "Зачеркнутый",
-    "taskText": "задача"
+  "tableHeading": "Заголовок",
+  "table": "Таблица",
+  "task": "Список задач",
+  "strikeText": "текст",
+  "strike": "Зачеркнутый",
+  "taskText": "задача"
 }

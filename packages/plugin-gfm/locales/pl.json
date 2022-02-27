@@ -1,8 +1,8 @@
 {
-    "task": "lista zadań",
-    "taskText": "zadanie",
-    "tableHeading": "nagłówek",
-    "table": "tabela",
-    "strike": "przekreślenie",
-    "strikeText": "tekst"
+  "task": "lista zadań",
+  "taskText": "zadanie",
+  "tableHeading": "nagłówek",
+  "table": "tabela",
+  "strike": "przekreślenie",
+  "strikeText": "tekst"
 }
