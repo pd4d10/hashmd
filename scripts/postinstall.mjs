@@ -48,7 +48,16 @@ libs.forEach((p) => {
   pkg.exports = {
     '.': './src/index.ts',
     './locales/*': './locales/*',
-    './lib/locales/*': './locales/*', // for compatible with old version
+
+    // for compatible with old version
+    './lib/locales/*': './locales/*',
+    './dist/index.js': './dist/index.js',
+    './dist/index.min.js': './dist/index.js',
+  }
+  if (pkg.name === 'bytemd') {
+    pkg.exports['./dist/style.css'] = './dist/style.css'
+    pkg.exports['./dist/index.css'] = './dist/style.css'
+    pkg.exports['./dist/index.min.css'] = './dist/style.css'
   }
   // pkg.publishConfig = {
   //   main: 'dist/index.cjs.js',
