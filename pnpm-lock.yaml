@@ -27,7 +27,7 @@ importers:
       svelte-preprocess: ^4.10.2
       svgo: ^2.8.0
       typescript: ^4.5.5
-      vitest: ^0.5.5
+      vitest: ^0.5.7
     devDependencies:
       '@babel/core': 7.17.0
       '@babel/plugin-transform-runtime': 7.16.10_@babel+core@7.17.0
@@ -52,7 +52,7 @@ importers:
       svelte-preprocess: 4.10.2_1057a91ea61fd3328ec18c1f78aee537
       svgo: 2.8.0
       typescript: 4.5.5
-      vitest: 0.5.5_jsdom@19.0.0+sass@1.49.0
+      vitest: 0.5.7_jsdom@19.0.0+sass@1.49.0
 
   packages/bytemd:
     specifiers:
@@ -9145,8 +9145,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.5.5_jsdom@19.0.0+sass@1.49.0:
-    resolution: {integrity: sha512-oBKIXpFOGN7jDdK0MO4uWcB+UOPRyEJveB8XDx74XsFNbjGF7vHmHqwAomNE8MGtDW8hBKvSSbr58hibFiQc5Q==}
+  /vitest/0.5.7_jsdom@19.0.0+sass@1.49.0:
+    resolution: {integrity: sha512-keLLxLGi+dkXFUuKxCXnBw5MkSZ03cynlG6+LVLaKoyUuW8Xu6NzX1oC6dVNm6Ig7mw6gX9OHV+Lpmcc3tu/mQ==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:

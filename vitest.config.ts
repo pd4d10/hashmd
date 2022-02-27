@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     svelte({
       preprocess: [sveltePreprocess({ typescript: true })],
+      hot: false,
     }),
   ],
   test: {
