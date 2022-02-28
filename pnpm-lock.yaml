@@ -61,13 +61,11 @@ importers:
       '@popperjs/core': ^2.11.2
       '@primer/css': ^15.2.0
       '@types/codemirror': ^5.60.5
-      '@types/lodash.debounce': ^4.0.6
-      '@types/lodash.throttle': ^4.1.6
+      '@types/lodash-es': ^4.17.6
       '@types/mdast': ^3.0.10
       codemirror-ssr: ^0.0.6
       hast-util-sanitize: ^4.0.0
-      lodash.debounce: ^4.0.8
-      lodash.throttle: ^4.1.1
+      lodash-es: ^4.17.21
       rehype-raw: ^6.1.1
       rehype-sanitize: ^5.0.1
       rehype-stringify: ^9.0.3
@@ -84,13 +82,11 @@ importers:
     devDependencies:
       '@popperjs/core': 2.11.2
       '@primer/css': 15.2.0
-      '@types/lodash.debounce': 4.0.6
-      '@types/lodash.throttle': 4.1.6
+      '@types/lodash-es': 4.17.6
       '@types/mdast': 3.0.10
       codemirror-ssr: 0.0.6
       hast-util-sanitize: 4.0.0
-      lodash.debounce: 4.0.8
-      lodash.throttle: 4.1.1
+      lodash-es: 4.17.21
       rehype-raw: 6.1.1
       rehype-sanitize: 5.0.1
       rehype-stringify: 9.0.3
@@ -2692,14 +2688,8 @@ packages:
   /@types/katex/0.11.1:
     resolution: {integrity: sha512-DUlIj2nk0YnJdlWgsFuVKcX27MLW0KbKmGVoUHmFr+74FYYNUDAaj9ZqTADvsbE8rfxuVmSFc7KczYn5Y09ozg==}
 
-  /@types/lodash.debounce/4.0.6:
-    resolution: {integrity: sha512-4WTmnnhCfDvvuLMaF3KV4Qfki93KebocUF45msxhYyjMttZDQYzHkO639ohhk8+oco2cluAFL3t5+Jn4mleylQ==}
-    dependencies:
-      '@types/lodash': 4.14.178
-    dev: true
-
-  /@types/lodash.throttle/4.1.6:
-    resolution: {integrity: sha512-/UIH96i/sIRYGC60NoY72jGkCJtFN5KVPhEMMMTjol65effe1gPn0tycJqV5tlSwMTzX8FqzB5yAj0rfGHTPNg==}
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
     dependencies:
       '@types/lodash': 4.14.178
     dev: true
@@ -6104,6 +6094,10 @@ packages:
       p-locate: 4.1.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: true
+
   /lodash._reinterpolate/3.0.0:
     resolution: {integrity: sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=}
     dev: true
@@ -6139,10 +6133,6 @@ packages:
     resolution: {integrity: sha1-5IExDwSdPPbUfpEq0JMTsVTw+zM=}
     dependencies:
       lodash._reinterpolate: 3.0.0
-    dev: true
-
-  /lodash.throttle/4.1.1:
-    resolution: {integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=}
     dev: true
 
   /lodash/4.17.21:

@@ -1,8 +1,7 @@
 import type { Root, Element } from 'hast'
 import type { VFile } from 'vfile'
 
-import debounce from 'lodash.debounce'
-import throttle from 'lodash.throttle'
+import { throttle, debounce } from 'lodash-es'
 // @ts-ignore
 import wordCount from 'word-count'
 import { visit } from 'unist-util-visit'
