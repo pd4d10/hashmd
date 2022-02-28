@@ -3,38 +3,38 @@
 </template>
 
 <script>
-import { getProcessor } from 'bytemd';
+import { getProcessor } from 'bytemd'
 
 export default {
   props: ['value', 'plugins', 'sanitize'],
   computed: {
     file() {
       try {
-        return getProcessor(this.$props).processSync(this.value);
+        return getProcessor(this.$props).processSync(this.value)
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
     },
     needUpdate() {
-      return [this.file, this.plugins, this.sanitize];
+      return [this.file, this.plugins, this.sanitize]
     },
   },
   watch: {
     needUpdate: {
       handler(val) {
-        this.off();
+        this.off()
         this.$nextTick(() => {
-          this.on();
-        });
+          this.on()
+        })
       },
       deep: true,
     },
   },
   mounted() {
-    this.on();
+    this.on()
   },
   beforeDestroy() {
-    this.off();
+    this.off()
   },
   methods: {
     on() {
@@ -43,24 +43,24 @@ export default {
           ({ viewerEffect }) =>
             viewerEffect &&
             viewerEffect({ markdownBody: this.$el, file: this.file })
-        );
+        )
       }
     },
     off() {
       if (this.cbs) {
-        this.cbs.forEach((cb) => cb && cb());
+        this.cbs.forEach((cb) => cb && cb())
       }
     },
     handleClick(e) {
-      const $ = e.target;
-      if ($.tagName !== 'A') return;
+      const $ = e.target
+      if ($.tagName !== 'A') return
 
-      const href = $.getAttribute('href');
-      if (!href || !href.startsWith('#')) return;
+      const href = $.getAttribute('href')
+      if (!href || !href.startsWith('#')) return
 
-      const dest = this.$el.querySelector('#user-content-' + href.slice(1));
-      if (dest) dest.scrollIntoView();
+      const dest = this.$el.querySelector('#user-content-' + href.slice(1))
+      if (dest) dest.scrollIntoView()
     },
   },
-};
+}
 </script>

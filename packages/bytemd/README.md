@@ -42,17 +42,17 @@ import 'bytemd/dist/index.min.css'
 
 ```svelte
 <script>
-  import { Editor, Viewer } from 'bytemd';
-  import gfm from '@bytemd/plugin-gfm';
+  import { Editor, Viewer } from 'bytemd'
+  import gfm from '@bytemd/plugin-gfm'
 
-  let value;
+  let value
   const plugins = [
     gfm(),
     // Add more plugins here
-  ];
+  ]
 
   function handleChange(e) {
-    value = e.detail.value;
+    value = e.detail.value
   }
 </script>
 
