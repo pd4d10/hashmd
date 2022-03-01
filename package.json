@@ -53,5 +53,6 @@
         "main"
       ]
     }
-  }
+  },
+  "packageManager": "pnpm@6.32.2"
 }
