@@ -11,8 +11,8 @@
   import gemoji from '@bytemd/plugin-gemoji'
   import markdownText from './text.md?raw'
 
-  import 'github-markdown-css'
   import 'highlight.js/styles/vs.css'
+  import 'github-markdown-css' // placed after highlight styles to override `code` padding
   import 'katex/dist/katex.css'
 
   function stripPrefixes(obj: Record<string, any>) {
