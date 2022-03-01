@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
     "dev": "norm",
-    "build": "npm run clean && node scripts/process.mjs && norm build",
+    "build": "npm run clean && norm build",
     "test": "vitest",
     "postinstall": "node scripts/postinstall.mjs",
     "pub": "npm run build && lerna publish --yes",
@@ -24,8 +24,8 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/svelte": "^3.0.3",
     "chokidar": "^3.5.3",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.0",
-    "glob": "^7.2.0",
     "jsdom": "^19.0.0",
     "lerna": "^4.0.0",
     "lodash": "^4.17.21",
