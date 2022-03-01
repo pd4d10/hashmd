@@ -1,11 +1,11 @@
 {
-  "uj": "旅程图",
-  "pie": "饼状图",
-  "gantt": "甘特图",
-  "er": "关系图",
-  "state": "状态图",
   "class": "类图",
-  "sequence": "时序图",
+  "er": "关系图",
   "flowchart": "流程图",
-  "mermaid": "Mermaid图表"
+  "gantt": "甘特图",
+  "mermaid": "Mermaid图表",
+  "pie": "饼状图",
+  "sequence": "时序图",
+  "state": "状态图",
+  "uj": "旅程图"
 }

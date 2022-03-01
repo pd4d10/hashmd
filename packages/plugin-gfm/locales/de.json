@@ -1,8 +1,8 @@
 {
-  "tableHeading": "Überschrift",
-  "table": "Tabelle",
-  "taskText": "Noch zu tun",
-  "task": "Aufgabenliste",
+  "strike": "Durchstreichen",
   "strikeText": "Text",
-  "strike": "Durchstreichen"
+  "table": "Tabelle",
+  "tableHeading": "Überschrift",
+  "task": "Aufgabenliste",
+  "taskText": "Noch zu tun"
 }

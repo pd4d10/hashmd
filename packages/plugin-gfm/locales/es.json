@@ -1,8 +1,8 @@
 {
-  "tableHeading": "Título",
-  "table": "Tabla",
-  "taskText": "pendientes",
-  "task": "Lista de tareas",
+  "strike": "Tachado",
   "strikeText": "texto",
-  "strike": "Tachado"
+  "table": "Tabla",
+  "tableHeading": "Título",
+  "task": "Lista de tareas",
+  "taskText": "pendientes"
 }

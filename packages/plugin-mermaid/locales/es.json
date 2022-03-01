@@ -1,11 +1,11 @@
 {
+  "class": "Diagrama de clases",
+  "er": "Diagrama de entidad-relación",
+  "flowchart": "Diagrama de flujo",
+  "gantt": "Diagrama de Gantt",
   "mermaid": "Diagramas de Mermaid",
   "pie": "Gráfico sectorial",
-  "gantt": "Diagrama de Gantt",
-  "uj": "Diagrama de trayecto de usuario",
-  "er": "Diagrama de entidad-relación",
-  "state": "Diagrama de estado",
-  "class": "Diagrama de clases",
   "sequence": "Diagrama de secuencia",
-  "flowchart": "Diagrama de flujo"
+  "state": "Diagrama de estado",
+  "uj": "Diagrama de trayecto de usuario"
 }

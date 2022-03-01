@@ -23,6 +23,7 @@ importers:
       prettier: ^2.5.1
       prettier-plugin-svelte: ^2.6.0
       sass: ^1.49.0
+      sort-json: ^2.0.1
       sort-package-json: ^1.54.0
       svelte: ^3.46.3
       svelte-preprocess: ^4.10.2
@@ -49,6 +50,7 @@ importers:
       prettier: 2.5.1
       prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.46.3
       sass: 1.49.0
+      sort-json: 2.0.1
       sort-package-json: 1.54.0
       svelte: 3.46.3
       svelte-preprocess: 4.10.2_1057a91ea61fd3328ec18c1f78aee537
@@ -4401,6 +4403,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /detect-newline/2.1.0:
+    resolution: {integrity: sha1-9B8cEL5LAOh7XxPaaAdZ8sW/0+I=}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /detect-newline/3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
@@ -6791,7 +6798,7 @@ packages:
     dev: true
 
   /minimist/1.2.5:
-    resolution: {integrity: sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI=}
+    resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
 
   /minipass-collect/1.0.2:
@@ -8305,6 +8312,15 @@ packages:
       minimist: 1.2.5
       sander: 0.5.1
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /sort-json/2.0.1:
+    resolution: {integrity: sha512-s8cs2bcsQCzo/P2T/uoU6Js4dS/jnX8+4xunziNoq9qmSpZNCrRIAIvp4avsz0ST18HycV4z/7myJ7jsHWB2XQ==}
+    hasBin: true
+    dependencies:
+      detect-indent: 5.0.0
+      detect-newline: 2.1.0
+      minimist: 1.2.5
     dev: true
 
   /sort-keys/2.0.0:

@@ -1,11 +1,11 @@
 {
-  "pie": "Diagrama sectorial",
-  "gantt": "Diagrama de Gantt",
-  "uj": "Diagrama de recorregut d’usuari",
-  "er": "Diagrama entitat-relació",
-  "state": "Diagrama d’estats",
   "class": "Diagrama de classes",
-  "sequence": "Diagrama de seqüències",
+  "er": "Diagrama entitat-relació",
   "flowchart": "Diagrama de flux",
-  "mermaid": "Diagrames del Mermaid"
+  "gantt": "Diagrama de Gantt",
+  "mermaid": "Diagrames del Mermaid",
+  "pie": "Diagrama sectorial",
+  "sequence": "Diagrama de seqüències",
+  "state": "Diagrama d’estats",
+  "uj": "Diagrama de recorregut d’usuari"
 }

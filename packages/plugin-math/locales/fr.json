@@ -1,6 +1,6 @@
 {
-  "blockText": "formule",
   "block": "Formule en bloc",
-  "inlineText": "formule",
-  "inline": "Formule en ligne"
+  "blockText": "formule",
+  "inline": "Formule en ligne",
+  "inlineText": "formule"
 }
