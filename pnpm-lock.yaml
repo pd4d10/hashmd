@@ -13,8 +13,8 @@ importers:
       '@testing-library/jest-dom': ^5.16.1
       '@testing-library/svelte': ^3.0.3
       chokidar: ^3.5.3
+      fast-glob: ^3.2.11
       fs-extra: ^10.0.0
-      glob: ^7.2.0
       jsdom: ^19.0.0
       lerna: ^4.0.0
       lodash: ^4.17.21
@@ -23,6 +23,7 @@ importers:
       prettier: ^2.5.1
       prettier-plugin-svelte: ^2.6.0
       sass: ^1.49.0
+      sort-json: ^2.0.1
       sort-package-json: ^1.54.0
       svelte: ^3.46.3
       svelte-preprocess: ^4.10.2
@@ -39,8 +40,8 @@ importers:
       '@testing-library/jest-dom': 5.16.1
       '@testing-library/svelte': 3.0.3_svelte@3.46.3
       chokidar: 3.5.3
+      fast-glob: 3.2.11
       fs-extra: 10.0.0
-      glob: 7.2.0
       jsdom: 19.0.0
       lerna: 4.0.0
       lodash: 4.17.21
@@ -49,6 +50,7 @@ importers:
       prettier: 2.5.1
       prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.46.3
       sass: 1.49.0
+      sort-json: 2.0.1
       sort-package-json: 1.54.0
       svelte: 3.46.3
       svelte-preprocess: 4.10.2_1057a91ea61fd3328ec18c1f78aee537
@@ -61,13 +63,11 @@ importers:
       '@popperjs/core': ^2.11.2
       '@primer/css': ^15.2.0
       '@types/codemirror': ^5.60.5
-      '@types/lodash.debounce': ^4.0.6
-      '@types/lodash.throttle': ^4.1.6
+      '@types/lodash-es': ^4.17.6
       '@types/mdast': ^3.0.10
       codemirror-ssr: ^0.0.6
       hast-util-sanitize: ^4.0.0
-      lodash.debounce: ^4.0.8
-      lodash.throttle: ^4.1.1
+      lodash-es: ^4.17.21
       rehype-raw: ^6.1.1
       rehype-sanitize: ^5.0.1
       rehype-stringify: ^9.0.3
@@ -84,13 +84,11 @@ importers:
     devDependencies:
       '@popperjs/core': 2.11.2
       '@primer/css': 15.2.0
-      '@types/lodash.debounce': 4.0.6
-      '@types/lodash.throttle': 4.1.6
+      '@types/lodash-es': 4.17.6
       '@types/mdast': 3.0.10
       codemirror-ssr: 0.0.6
       hast-util-sanitize: 4.0.0
-      lodash.debounce: 4.0.8
-      lodash.throttle: 4.1.1
+      lodash-es: 4.17.21
       rehype-raw: 6.1.1
       rehype-sanitize: 5.0.1
       rehype-stringify: 9.0.3
@@ -2692,14 +2690,8 @@ packages:
   /@types/katex/0.11.1:
     resolution: {integrity: sha512-DUlIj2nk0YnJdlWgsFuVKcX27MLW0KbKmGVoUHmFr+74FYYNUDAaj9ZqTADvsbE8rfxuVmSFc7KczYn5Y09ozg==}
 
-  /@types/lodash.debounce/4.0.6:
-    resolution: {integrity: sha512-4WTmnnhCfDvvuLMaF3KV4Qfki93KebocUF45msxhYyjMttZDQYzHkO639ohhk8+oco2cluAFL3t5+Jn4mleylQ==}
-    dependencies:
-      '@types/lodash': 4.14.178
-    dev: true
-
-  /@types/lodash.throttle/4.1.6:
-    resolution: {integrity: sha512-/UIH96i/sIRYGC60NoY72jGkCJtFN5KVPhEMMMTjol65effe1gPn0tycJqV5tlSwMTzX8FqzB5yAj0rfGHTPNg==}
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
     dependencies:
       '@types/lodash': 4.14.178
     dev: true
@@ -4411,6 +4403,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /detect-newline/2.1.0:
+    resolution: {integrity: sha1-9B8cEL5LAOh7XxPaaAdZ8sW/0+I=}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /detect-newline/3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
@@ -6104,6 +6101,10 @@ packages:
       p-locate: 4.1.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: true
+
   /lodash._reinterpolate/3.0.0:
     resolution: {integrity: sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=}
     dev: true
@@ -6139,10 +6140,6 @@ packages:
     resolution: {integrity: sha1-5IExDwSdPPbUfpEq0JMTsVTw+zM=}
     dependencies:
       lodash._reinterpolate: 3.0.0
-    dev: true
-
-  /lodash.throttle/4.1.1:
-    resolution: {integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=}
     dev: true
 
   /lodash/4.17.21:
@@ -6801,7 +6798,7 @@ packages:
     dev: true
 
   /minimist/1.2.5:
-    resolution: {integrity: sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI=}
+    resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
 
   /minipass-collect/1.0.2:
@@ -8315,6 +8312,15 @@ packages:
       minimist: 1.2.5
       sander: 0.5.1
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /sort-json/2.0.1:
+    resolution: {integrity: sha512-s8cs2bcsQCzo/P2T/uoU6Js4dS/jnX8+4xunziNoq9qmSpZNCrRIAIvp4avsz0ST18HycV4z/7myJ7jsHWB2XQ==}
+    hasBin: true
+    dependencies:
+      detect-indent: 5.0.0
+      detect-newline: 2.1.0
+      minimist: 1.2.5
     dev: true
 
   /sort-keys/2.0.0:

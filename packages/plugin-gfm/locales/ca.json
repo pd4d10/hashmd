@@ -1,8 +1,8 @@
 {
-  "tableHeading": "Encapçalament",
-  "table": "Taula",
-  "taskText": "pendents",
-  "task": "Llista de tasques",
+  "strike": "Ratllat",
   "strikeText": "text",
-  "strike": "Ratllat"
+  "table": "Taula",
+  "tableHeading": "Encapçalament",
+  "task": "Llista de tasques",
+  "taskText": "pendents"
 }

@@ -1,8 +1,8 @@
 {
+  "strike": "Gjennomstrek",
+  "strikeText": "tekst",
   "table": "Tabell",
   "tableHeading": "Overskrift",
-  "taskText": "gjøremål",
   "task": "Gjøremålsliste",
-  "strikeText": "tekst",
-  "strike": "Gjennomstrek"
+  "taskText": "gjøremål"
 }

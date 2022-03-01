@@ -4,12 +4,12 @@
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
     "dev": "norm",
-    "build": "npm run clean && node scripts/process.mjs && norm build",
+    "build": "npm run clean && norm build",
     "test": "vitest",
     "postinstall": "node scripts/postinstall.mjs",
     "pub": "npm run build && lerna publish --yes",
-    "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different packages/**/*.{ts,tsx,js,svelte,json}",
-    "lint:fix": "prettier --plugin-search-dir=. --ignore-path=.gitignore --write packages/**/*.{ts,tsx,js,svelte,json}",
+    "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different packages/**/*.{ts,tsx,svelte,vue,json}",
+    "lint:fix": "prettier --plugin-search-dir=. --ignore-path=.gitignore --write packages/**/*.{ts,tsx,svelte,vue,json}",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
@@ -24,8 +24,8 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/svelte": "^3.0.3",
     "chokidar": "^3.5.3",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.0",
-    "glob": "^7.2.0",
     "jsdom": "^19.0.0",
     "lerna": "^4.0.0",
     "lodash": "^4.17.21",
@@ -34,6 +34,7 @@
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.6.0",
     "sass": "^1.49.0",
+    "sort-json": "^2.0.1",
     "sort-package-json": "^1.54.0",
     "svelte": "^3.46.3",
     "svelte-preprocess": "^4.10.2",
@@ -53,5 +54,6 @@
         "main"
       ]
     }
-  }
+  },
+  "packageManager": "pnpm@6.32.2"
 }
