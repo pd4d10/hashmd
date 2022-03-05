@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "workspace:*"
   },
   "devDependencies": {
     "vite-plugin-vue2": "^1.9.3",

@@ -23,7 +23,7 @@
   ],
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
-    "bytemd": "^1.11.0",
+    "bytemd": "workspace:*",
     "js-yaml": "^4.1.0",
     "remark-frontmatter": "^4.0.1",
     "vfile": "^5.3.0"

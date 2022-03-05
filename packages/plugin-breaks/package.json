@@ -22,7 +22,7 @@
     "lib"
   ],
   "devDependencies": {
-    "bytemd": "^1.11.0",
+    "bytemd": "workspace:*",
     "remark-breaks": "^3.0.2"
   },
   "peerDependencies": {

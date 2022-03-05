@@ -103,18 +103,18 @@ importers:
 
   packages/playground:
     specifiers:
-      '@bytemd/plugin-breaks': latest
-      '@bytemd/plugin-footnotes': latest
-      '@bytemd/plugin-frontmatter': latest
-      '@bytemd/plugin-gemoji': latest
-      '@bytemd/plugin-gfm': latest
-      '@bytemd/plugin-highlight': latest
-      '@bytemd/plugin-highlight-ssr': latest
-      '@bytemd/plugin-math': latest
-      '@bytemd/plugin-math-ssr': latest
-      '@bytemd/plugin-medium-zoom': latest
-      '@bytemd/plugin-mermaid': latest
-      bytemd: latest
+      '@bytemd/plugin-breaks': workspace:*
+      '@bytemd/plugin-footnotes': workspace:*
+      '@bytemd/plugin-frontmatter': workspace:*
+      '@bytemd/plugin-gemoji': workspace:*
+      '@bytemd/plugin-gfm': workspace:*
+      '@bytemd/plugin-highlight': workspace:*
+      '@bytemd/plugin-highlight-ssr': workspace:*
+      '@bytemd/plugin-math': workspace:*
+      '@bytemd/plugin-math-ssr': workspace:*
+      '@bytemd/plugin-medium-zoom': workspace:*
+      '@bytemd/plugin-mermaid': workspace:*
+      bytemd: workspace:*
       github-markdown-css: ^5.1.0
       highlight.js: ^11.4.0
       katex: ^0.15.2
@@ -137,7 +137,7 @@ importers:
 
   packages/plugin-breaks:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       remark-breaks: ^3.0.2
     devDependencies:
       bytemd: link:../bytemd
@@ -145,7 +145,7 @@ importers:
 
   packages/plugin-footnotes:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       remark-footnotes: ^4.0.1
     devDependencies:
       bytemd: link:../bytemd
@@ -154,7 +154,7 @@ importers:
   packages/plugin-frontmatter:
     specifiers:
       '@types/js-yaml': ^4.0.5
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       js-yaml: ^4.1.0
       remark-frontmatter: ^4.0.1
       vfile: ^5.3.0
@@ -167,7 +167,7 @@ importers:
 
   packages/plugin-gemoji:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       remark-gemoji: ^7.0.1
     devDependencies:
       bytemd: link:../bytemd
@@ -175,7 +175,7 @@ importers:
 
   packages/plugin-gfm:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       remark-gfm: ^3.0.1
     devDependencies:
       bytemd: link:../bytemd
@@ -183,7 +183,7 @@ importers:
 
   packages/plugin-highlight:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       highlight.js: ^11.4.0
     dependencies:
       highlight.js: 11.4.0
@@ -192,7 +192,7 @@ importers:
 
   packages/plugin-highlight-ssr:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       highlight.js: ^11.4.0
       rehype-highlight: ^5.0.2
     dependencies:
@@ -205,7 +205,7 @@ importers:
     specifiers:
       '@bytemd/plugin-math-common': ^1.11.0
       '@types/katex': ^0.11.1
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       katex: ^0.15.2
       remark-math: ^5.1.1
     dependencies:
@@ -218,14 +218,14 @@ importers:
 
   packages/plugin-math-common:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
     devDependencies:
       bytemd: link:../bytemd
 
   packages/plugin-math-ssr:
     specifiers:
       '@bytemd/plugin-math-common': ^1.11.0
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       rehype-katex: ^6.0.2
       remark-math: ^5.1.1
     devDependencies:
@@ -236,7 +236,7 @@ importers:
 
   packages/plugin-medium-zoom:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       medium-zoom: ^1.0.6
     dependencies:
       medium-zoom: 1.0.6
@@ -246,7 +246,7 @@ importers:
   packages/plugin-mermaid:
     specifiers:
       '@types/mermaid': ^8.2.7
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       mermaid: ^8.13.10
     dependencies:
       '@types/mermaid': 8.2.7
@@ -257,7 +257,7 @@ importers:
   packages/react:
     specifiers:
       '@types/react': ^17.0.38
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       react: ^17.0.2
     dependencies:
       bytemd: link:../bytemd
@@ -267,7 +267,7 @@ importers:
 
   packages/vue:
     specifiers:
-      bytemd: ^1.11.0
+      bytemd: workspace:*
       vite-plugin-vue2: ^1.9.3
       vue: ^2.6.14
       vue-template-compiler: ^2.6.14

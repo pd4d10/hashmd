@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@bytemd/plugin-math-common": "^1.11.0",
-    "bytemd": "^1.11.0",
+    "bytemd": "workspace:*",
     "remark-math": "^5.1.1"
   },
   "peerDependencies": {

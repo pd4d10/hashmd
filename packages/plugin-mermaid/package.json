@@ -26,7 +26,7 @@
     "mermaid": "^8.13.10"
   },
   "devDependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "workspace:*"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

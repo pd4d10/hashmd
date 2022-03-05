@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^17.0.38",
