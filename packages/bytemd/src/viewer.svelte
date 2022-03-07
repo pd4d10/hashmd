@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { VFile, BytemdPlugin, ViewerProps } from './helpers'
+  import type { VFile, BytemdPlugin, ViewerProps, Plugin } from './helpers'
 
   import {
     tick,
@@ -49,6 +49,13 @@
   let file: VFile
   let i = 0
 
+  const dispatchPlugin: Plugin = () => (tree, file) => {
+    tick().then(() => {
+      // console.log(tree);
+      dispatch('hast', { hast: tree, file })
+    })
+  }
+
   $: try {
     file = getProcessor({
       sanitize,
@@ -59,13 +66,7 @@
           //   p.use(() => (tree) => {
           //     console.log(tree)
           //   }),
-          rehype: (p) =>
-            p.use(() => (tree, file) => {
-              tick().then(() => {
-                // console.log(tree);
-                dispatch('hast', { hast: tree, file })
-              })
-            }),
+          rehype: (p) => p.use(dispatchPlugin),
         },
       ],
     }).processSync(value)

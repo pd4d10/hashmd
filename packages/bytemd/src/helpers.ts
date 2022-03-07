@@ -1,5 +1,6 @@
 import type { Root, Element } from 'hast'
 import type { VFile } from 'vfile'
+import type { Plugin } from 'unified'
 
 import { throttle, debounce } from 'lodash-es'
 // @ts-ignore
@@ -17,7 +18,7 @@ import useYaml from 'codemirror-ssr/mode/yaml/yaml'
 import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter'
 import { icons } from './icons'
 
-export type { DelegateInstance, Root, Element, VFile }
+export type { DelegateInstance, Root, Element, VFile, Plugin }
 
 export {
   debounce,
