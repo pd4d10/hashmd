@@ -51,5 +51,8 @@
     "unist-util-visit": "^4.1.0",
     "vfile": "^5.3.0",
     "word-count": "^0.2.2"
+  },
+  "publishConfig": {
+    "svelte": "./dist/svelte"
   }
 }

@@ -1,8 +1,5 @@
 import './index.scss'
 
-import Editor from './editor.svelte'
-import Viewer from './viewer.svelte'
-
 export type {
   BytemdLocale,
   BytemdEditorContext,
@@ -13,5 +10,6 @@ export type {
   ViewerProps,
 } from './helpers'
 
-export { Editor, Viewer }
+export { default as Editor } from './editor.svelte'
+export { default as Viewer } from './viewer.svelte'
 export { getProcessor } from './helpers'
