@@ -177,7 +177,7 @@ The default height of ByteMD Editor is `300px`. It could be overridden by CSS:
 }
 ```
 
-The other styles could also be overridden, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/styles/index.scss).
+The other styles could also be overridden, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/src/index.scss).
 
 ### Viewer
 
