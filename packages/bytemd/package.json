@@ -14,20 +14,11 @@
   },
   "license": "MIT",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "exports": {
-    ".": "./src/index.ts",
-    "./locales/*": "./locales/*",
-    "./lib/locales/*": "./locales/*",
-    "./dist/index.js": "./dist/index.js",
-    "./dist/index.min.js": "./dist/index.js",
-    "./dist/style.css": "./dist/style.css",
-    "./dist/index.css": "./dist/style.css",
-    "./dist/index.min.css": "./dist/style.css"
-  },
   "main": "./src/index.ts",
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "locales"
   ],
   "dependencies": {
     "@types/codemirror": "^5.60.5"

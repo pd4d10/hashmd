@@ -45,28 +45,22 @@ libs.forEach((p) => {
     directory: `packages/${p}`,
   }
   pkg.main = './src/index.ts'
-  pkg.exports = {
-    '.': './src/index.ts',
-    './locales/*': './locales/*',
 
-    // for compatible with old version
-    './lib/locales/*': './locales/*',
-    './dist/index.js': './dist/index.js',
-    './dist/index.min.js': './dist/index.js',
-  }
-  if (pkg.name === 'bytemd') {
-    pkg.exports['./dist/style.css'] = './dist/style.css'
-    pkg.exports['./dist/index.css'] = './dist/style.css'
-    pkg.exports['./dist/index.min.css'] = './dist/style.css'
-  }
-  // pkg.publishConfig = {
-  //   main: 'dist/index.cjs.js',
-  //   module: 'dist/index.esm.js',
-  //   unpkg: 'dist/index.min.js',
-  //   jsdelivr: 'dist/index.min.js',
-  //   types: 'dist/index.d.ts',
+  // pkg.exports = {
+  //   '.': './src/index.ts',
+  //   './locales/*': './locales/*',
+
+  //   // for compatible with old version
+  //   './lib/locales/*': './locales/*',
+  //   './dist/index.js': './dist/index.js',
+  //   './dist/index.min.js': './dist/index.js',
   // }
-  pkg.files = ['dist', 'lib']
+  // if (pkg.name === 'bytemd') {
+  //   pkg.exports['./dist/style.css'] = './dist/style.css'
+  //   pkg.exports['./dist/index.css'] = './dist/style.css'
+  //   pkg.exports['./dist/index.min.css'] = './dist/style.css'
+  // }
+  pkg.files = ['dist', 'lib', 'locales']
   fs.writeJsonSync(pkgPath, pkg)
 })
 

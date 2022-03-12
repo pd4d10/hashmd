@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
     "dev": "norm",
-    "build": "npm run clean && norm build",
+    "build": "npm run clean && norm build && node scripts/legacy.mjs",
     "test": "vitest",
     "postinstall": "node scripts/postinstall.mjs",
     "pub": "npm run build && norm publish --yes",

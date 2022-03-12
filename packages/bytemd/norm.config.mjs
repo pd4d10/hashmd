@@ -46,7 +46,9 @@ export default defineConfig({
         })
 
         const files = await glob('packages/bytemd/src/*.svelte')
-        console.log('processing svelte files...', files)
+        console.log(
+          'processing svelte files...' //files
+        )
 
         for (let file of files) {
           const dest = file.replace('/src/', '/dist/svelte/')
