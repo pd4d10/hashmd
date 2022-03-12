@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "ByteMD plugin to support math formula",
   "repository": {
     "type": "git",
@@ -20,11 +20,11 @@
     "katex": "^0.15.2"
   },
   "devDependencies": {
-    "@bytemd/plugin-math-common": "^1.11.0",
+    "@bytemd/plugin-math-common": "1.11.0",
     "bytemd": "workspace:*",
     "remark-math": "^5.1.1"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "bytemd": "1.11.1"
   }
 }

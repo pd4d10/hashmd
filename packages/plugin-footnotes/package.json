@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-footnotes",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "ByteMD plugin to support footnotes",
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
     "remark-footnotes": "^4.0.1"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "bytemd": "1.11.1"
   }
 }

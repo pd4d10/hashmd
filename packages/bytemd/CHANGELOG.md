@@ -1,7 +1,49 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.11.1](https://github.com/bytedance/bytemd/compare/v1.11.0...v1.11.1) (2022-03-12)
+
+
+### Bug Fixes
+
+* scroll sync left ratio NaN ([#151](https://github.com/bytedance/bytemd/issues/151)) ([64db90d](https://github.com/bytedance/bytemd/commit/64db90d1b5ea87554058d0e2362cbc8a446911f5))
+* strip spaces between svelte tags ([1f220b9](https://github.com/bytedance/bytemd/commit/1f220b9febf3b0343632ae0e719b88ec3bcf06b8))
+* unified plugin types ([d334601](https://github.com/bytedance/bytemd/commit/d334601b4c8975424c8cf8e485bdf5be0b14eb7f))
+
+
+### QA Test
+
+* fix tests ([a5994e3](https://github.com/bytedance/bytemd/commit/a5994e3f9efe03a9651a56071b75da85d2661f96))
+
+
+### Chore
+
+* add missing locale ([507567b](https://github.com/bytedance/bytemd/commit/507567b03670509430006cb1ba02aa411f881b2e))
+* update icons ([f2c949e](https://github.com/bytedance/bytemd/commit/f2c949e5273a6188e0c2301af1fa2bbeaa5dc5fe))
+* update vitest config ([4726909](https://github.com/bytedance/bytemd/commit/47269099342dce496cbd336014d10de2236b954a))
+* use exports for backward compatibility ([e2fbd06](https://github.com/bytedance/bytemd/commit/e2fbd0689303b2baa5917a4b1c3bd87ae1108168))
+
+
+### Style
+
+* json indent ([1981d8a](https://github.com/bytedance/bytemd/commit/1981d8ab1a4979e9ac43440a5029e7b63191ded6))
+* sort locales json ([3a827e0](https://github.com/bytedance/bytemd/commit/3a827e0a3646c20cc96b4da49bfd99f193d409f3))
+* vue format ([2936079](https://github.com/bytedance/bytemd/commit/2936079790fbfaec7940ea6a6959cddfb6c1de47))
+
+
+### Refactor
+
+* add math common ([c14a002](https://github.com/bytedance/bytemd/commit/c14a0028a99974ef518efe55966f2b7e7d31d18a))
+* import icons ([267c85d](https://github.com/bytedance/bytemd/commit/267c85db264cf62e8c2cc5e87467d1ef252576d5))
+* lodash -> lodash-es ([f1fc608](https://github.com/bytedance/bytemd/commit/f1fc6088d3cbdf6a0a37c7157f0e37c2a6e15bd5))
+* move locales to root ([6b5ffb8](https://github.com/bytedance/bytemd/commit/6b5ffb8860a9e9627feb3f4acebe027bbf6320db))
+
+
+### Docs
+
+* fix incorrect link in readme ([#155](https://github.com/bytedance/bytemd/issues/155)) ([f55e58d](https://github.com/bytedance/bytemd/commit/f55e58d1ade05d6d145aa7e12f1edc8bc76be35d))
+* legacy browsers usage ([cb1e49d](https://github.com/bytedance/bytemd/commit/cb1e49dd277cffb4e74c7a4564f7391b177defef))
 
 # [1.11.0](https://github.com/bytedance/bytemd/compare/v1.10.13...v1.11.0) (2022-02-18)
 
