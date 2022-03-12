@@ -1,27 +1,7 @@
-# Changelog
+# Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-### [1.11.1](https://github.com/bytedance/bytemd/compare/v1.11.0...v1.11.1) (2022-03-12)
-
-
-### Chore
-
-* add missing locale ([507567b](https://github.com/bytedance/bytemd/commit/507567b03670509430006cb1ba02aa411f881b2e))
-* use exports for backward compatibility ([e2fbd06](https://github.com/bytedance/bytemd/commit/e2fbd0689303b2baa5917a4b1c3bd87ae1108168))
-
-
-### Style
-
-* json indent ([1981d8a](https://github.com/bytedance/bytemd/commit/1981d8ab1a4979e9ac43440a5029e7b63191ded6))
-* sort locales json ([3a827e0](https://github.com/bytedance/bytemd/commit/3a827e0a3646c20cc96b4da49bfd99f193d409f3))
-
-
-### Refactor
-
-* add math common ([c14a002](https://github.com/bytedance/bytemd/commit/c14a0028a99974ef518efe55966f2b7e7d31d18a))
-* import icons ([267c85d](https://github.com/bytedance/bytemd/commit/267c85db264cf62e8c2cc5e87467d1ef252576d5))
-* move locales to root ([6b5ffb8](https://github.com/bytedance/bytemd/commit/6b5ffb8860a9e9627feb3f4acebe027bbf6320db))
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [1.11.0](https://github.com/bytedance/bytemd/compare/v1.10.13...v1.11.0) (2022-02-18)
 

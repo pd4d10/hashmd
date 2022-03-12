@@ -17,6 +17,5 @@
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.4.0",
     "katex": "^0.15.2"
-  },
-  "version": "1.11.1"
+  }
 }
