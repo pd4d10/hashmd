@@ -21,10 +21,9 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 
 ### Legacy browsers support
 
-The default entry of NPM package only supports modern browsers. There are two ways to make legacy browsers (**IE9+**) work:
+The default entry of NPM package only supports modern browsers. To make legacy browsers (**IE9+**) work, You can compile it with ESNext -> ES5 transpilers, such as [Babel](https://babeljs.io/) or [SWC](https://swc.rs/).
 
-1. Compile it with ESNext -> ES5 transpilers, such as [Babel](./babel.config.js)
-2. Use the ES5 bundle(`dist/index.es5.js`)
+> The ES5 bundle will no longer be available after version 1.11.0. If you need it, you can use [version 1.11.0](https://unpkg.com/bytemd@1.11.0/dist/index.es5.min.js) or earlier versions
 
 Notice that polyfills are not included, and should be imported manually, see the [legacy browser example](https://github.com/bytedance/bytemd/blob/main/examples/legacy-browser/index.html).
 
