@@ -20,7 +20,7 @@
     "katex": "^0.15.2"
   },
   "devDependencies": {
-    "@bytemd/plugin-math-common": "^1.11.0",
+    "@bytemd/plugin-math-common": "workspace:*",
     "bytemd": "workspace:*",
     "remark-math": "^5.1.1"
   },
