@@ -156,12 +156,12 @@ editor.$on('change', (e) => {
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `mode` | `split`, `tab`, `auto` | Editor display mode |
+| `mode` | `split`, `tab`, `auto` | Editor display mode, default: `auto` |
 | `previewDebounce` | `number` | Debounce time (ms) for preview, default: `300` |
 | `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
-| `locale` |  | i18n locale. Available locales could be found at `bytemd/locales` |
-| `uploadImages` | `function` | Specify how to upload images |
+| `locale` |  | i18n locale. Available locales could be found at `bytemd/locales`, default: use `en.json` |
+| `uploadImages` | `function` | Specify how to upload images. If set, the image icon will appear on the toolbar |
 | `maxLength` | `number` | Maximum length (number of characters) of value |
 
 ## Style customization
