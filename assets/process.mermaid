@@ -1,9 +1,0 @@
-graph LR
-A(Markdown)--parse-->B(Markdown AST)
-B--remark plugins-->C(Markdown AST)
-C--transform-->D(HTML AST)
-D--sanitize-->E(HTML AST)
-E--rehype plugins-->F(HTML AST)
-F--stringify-->G(HTML)
-G--editor effect-->H(DOM manipulation)
-G--viewer effect-->I(DOM manipulation)
