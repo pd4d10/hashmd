@@ -16,8 +16,8 @@
     "locales"
   ],
   "dependencies": {
-    "@types/mermaid": "^8.2.7",
-    "mermaid": "^8.13.10"
+    "@types/mermaid": "^8.2.8",
+    "mermaid": "^8.14.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*"

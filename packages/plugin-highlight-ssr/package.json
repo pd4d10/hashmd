@@ -16,7 +16,7 @@
     "locales"
   ],
   "dependencies": {
-    "highlight.js": "^11.4.0"
+    "highlight.js": "^11.5.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*",
