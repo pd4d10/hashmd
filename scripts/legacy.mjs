@@ -14,7 +14,6 @@ const libs = fs
 libs.forEach((p) => {
   Object.entries({
     'dist/style.css': ['dist/index.css', 'dist/index.min.css'],
-    'dist/index.umd.js': ['dist/index.js', 'dist/index.min.js'],
     locales: ['lib/locales'],
   }).forEach(([src, dests]) => {
     dests.forEach((dest) => {

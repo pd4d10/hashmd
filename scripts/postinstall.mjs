@@ -22,13 +22,17 @@ const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
 libs.forEach((p) => {
   // tsconfig
-  fs.writeJsonSync(path.join(packagesDir, p, 'tsconfig.json'), {
-    extends: '../../tsconfig-base.json',
-    include: [
-      'src',
-      'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
-    ],
-  })
+  fs.writeJsonSync(
+    path.join(packagesDir, p, 'tsconfig.json'),
+    {
+      extends: '../../tsconfig-base.json',
+      include: [
+        'src',
+        'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
+      ],
+    },
+    { spaces: 2 }
+  )
 
   // license
   fs.copyFileSync(
@@ -92,7 +96,7 @@ const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
         const badge =
           `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg)](https://npm.im/@bytemd/plugin-${name})` +
           ' ' +
-          `[![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-${name}/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-${name})`
+          `[![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-${name}?compression=gzip)](https://unpkg.com/@bytemd/plugin-${name})`
         const desc = _.upperFirst(
           pkg.description.replace('ByteMD plugin to ', '')
         )

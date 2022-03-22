@@ -19,9 +19,7 @@
     "bytemd": "workspace:*"
   },
   "devDependencies": {
-    "vite-plugin-vue2": "^1.9.3",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "vue": "^2.6.14"
   },
   "peerDependencies": {
     "vue": "^2.0.0"
