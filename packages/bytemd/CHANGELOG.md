@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/bytedance/bytemd/compare/v1.12.0...v1.12.1) (2022-03-25)
+
+
+### Bug Fixes
+
+* **bytemd:** svelte entry ([a0c8a31](https://github.com/bytedance/bytemd/commit/a0c8a316fec50d72d42a161bb298d93047bceccf))
+
+
+
+
+
 # [1.12.0](https://github.com/bytedance/bytemd/compare/v1.11.1...v1.12.0) (2022-03-25)
 
 

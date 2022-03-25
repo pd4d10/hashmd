@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/react",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "Full-featured markdown editor and viewer",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "locales"
   ],
   "dependencies": {
-    "bytemd": "^1.12.0"
+    "bytemd": "^1.12.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.40",

@@ -1,6 +1,6 @@
 {
   "name": "bytemd",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "A hackable Markdown editor built with Svelte",
   "keywords": [
     "markdown",
