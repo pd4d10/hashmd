@@ -8,3 +8,4 @@ tsconfig.tsbuildinfo
 coverage
 packages/*/LICENSE
 examples/svelte-webpack/src/locales.js
+norm-env.d.ts

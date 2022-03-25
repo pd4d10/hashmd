@@ -27,7 +27,7 @@ libs.forEach((p) => {
     {
       extends: '../../tsconfig-base.json',
       include: [
-        'src',
+        '.',
         'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
       ],
     },
@@ -48,23 +48,27 @@ libs.forEach((p) => {
     url: 'https://github.com/bytedance/bytemd.git',
     directory: `packages/${p}`,
   }
-  pkg.main = './src/index.ts'
 
-  // pkg.exports = {
-  //   '.': './src/index.ts',
-  //   './locales/*': './locales/*',
+  pkg.types = './dist/index.d.ts'
+  pkg.module = './dist/index.esm.js'
+  pkg.main = './dist/index.js'
 
-  //   // for compatible with old version
-  //   './lib/locales/*': './locales/*',
-  //   './dist/index.js': './dist/index.js',
-  //   './dist/index.min.js': './dist/index.js',
-  // }
-  // if (pkg.name === 'bytemd') {
-  //   pkg.exports['./dist/style.css'] = './dist/style.css'
-  //   pkg.exports['./dist/index.css'] = './dist/style.css'
-  //   pkg.exports['./dist/index.min.css'] = './dist/style.css'
-  // }
-  pkg.files = ['dist', 'lib', 'locales']
+  pkg.exports = {
+    '.': {
+      types: './dist/index.d.ts',
+      import: './dist/index.esm.js',
+      require: './dist/index.js',
+    },
+    './locales/*': './locales/*',
+
+    // for compatible with old version
+    './lib/locales/*': './locales/*',
+  }
+  if (pkg.name === 'bytemd') {
+    pkg.exports['./dist/index.css'] = './dist/style.css'
+    pkg.exports['./dist/index.min.css'] = './dist/style.css'
+  }
+  pkg.files = ['dist', 'locales']
   fs.writeJsonSync(pkgPath, pkg)
 })
 

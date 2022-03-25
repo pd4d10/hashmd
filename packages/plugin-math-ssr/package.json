@@ -9,15 +9,25 @@
   },
   "license": "MIT",
   "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "lib",
     "locales"
   ],
   "devDependencies": {
-    "@bytemd/plugin-math-common": "workspace:*",
-    "bytemd": "workspace:*",
+    "@bytemd/plugin-math-common": "^1.11.0",
+    "bytemd": "^1.11.0",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1"
   },

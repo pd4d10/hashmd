@@ -3,8 +3,7 @@
   "version": "1.11.0",
   "private": true,
   "scripts": {
-    "build": "npm run clean && norm build && node scripts/legacy.mjs",
-    "clean": "rm -rf packages/*/{lib,dist,tsconfig.tsbuildinfo}",
+    "build": "norm build",
     "dev": "norm",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
@@ -12,7 +11,7 @@
     "postinstall": "node scripts/postinstall.mjs",
     "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different packages/**/*.{ts,tsx,svelte,vue,json}",
     "lint:fix": "prettier --plugin-search-dir=. --ignore-path=.gitignore --write packages/**/*.{ts,tsx,svelte,vue,json}",
-    "pub": "npm run build && norm publish --yes",
+    "pub": "npm run build && lerna publish --yes",
     "test": "vitest"
   },
   "devDependencies": {
@@ -24,6 +23,7 @@
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
     "jsdom": "^19.0.0",
+    "lerna": "^4.0.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
     "prettier": "^2.5.1",

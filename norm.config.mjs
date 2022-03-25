@@ -1,7 +1,7 @@
 // @ts-check
 import fs from 'fs-extra'
 import path from 'path'
-import { defineConfig, vite } from '@norm/cli'
+import { defineConfig, defineProjectConfig, vite } from '@norm/cli'
 import { preprocess } from 'svelte/compiler'
 import glob from 'fast-glob'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
@@ -19,10 +19,17 @@ const sveltePreprocessor = sveltePreprocess({
   ],
 })
 
+const libraryConfig = defineProjectConfig({
+  type: 'library',
+  exports: {
+    '.': './src/index.ts',
+  },
+})
+
 export default defineConfig({
   projects: {
     'packages/bytemd': {
-      type: 'library',
+      ...libraryConfig,
       overrides: {
         plugins: [
           svelte({
@@ -92,13 +99,13 @@ export default defineConfig({
         ],
       },
     },
-    'packages/plugin-breaks': { type: 'library' },
-    'packages/plugin-footnotes': { type: 'library' },
-    'packages/plugin-frontmatter': { type: 'library' },
-    'packages/plugin-gemoji': { type: 'library' },
-    'packages/plugin-gfm': { type: 'library' },
+    'packages/plugin-breaks': libraryConfig,
+    'packages/plugin-footnotes': libraryConfig,
+    'packages/plugin-frontmatter': libraryConfig,
+    'packages/plugin-gemoji': libraryConfig,
+    'packages/plugin-gfm': libraryConfig,
     'packages/plugin-highlight': {
-      type: 'library',
+      ...libraryConfig,
       overrides: {
         build: {
           rollupOptions: {
@@ -112,7 +119,7 @@ export default defineConfig({
       },
     },
     'packages/plugin-highlight-ssr': {
-      type: 'library',
+      ...libraryConfig,
       overrides: {
         build: {
           rollupOptions: {
@@ -125,13 +132,13 @@ export default defineConfig({
         },
       },
     },
-    'packages/plugin-math': { type: 'library' },
-    'packages/plugin-math-ssr': { type: 'library' },
-    'packages/plugin-medium-zoom': { type: 'library' },
-    'packages/plugin-mermaid': { type: 'library' },
-    'packages/react': { type: 'library' },
+    'packages/plugin-math': libraryConfig,
+    'packages/plugin-math-ssr': libraryConfig,
+    'packages/plugin-medium-zoom': libraryConfig,
+    'packages/plugin-mermaid': libraryConfig,
+    'packages/react': libraryConfig,
     'packages/vue': {
-      type: 'library',
+      ...libraryConfig,
       overrides: {
         plugins: [createVuePlugin()],
       },
