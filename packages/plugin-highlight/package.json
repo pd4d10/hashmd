@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-highlight",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "ByteMD plugin to highlight code blocks",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "highlight.js": "^11.5.0"
   },
   "devDependencies": {
-    "bytemd": "^1.11.0"
+    "bytemd": "^1.12.0"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

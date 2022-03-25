@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-gemoji",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "ByteMD plugin to support Gemoji shortcodes",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "locales"
   ],
   "devDependencies": {
-    "bytemd": "^1.11.0",
+    "bytemd": "^1.12.0",
     "remark-gemoji": "^7.0.1"
   },
   "peerDependencies": {

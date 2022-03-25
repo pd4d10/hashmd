@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/bytedance/bytemd/compare/v1.11.1...v1.12.0) (2022-03-25)
+
+
+### Bug Fixes
+
+* type gen ([b431918](https://github.com/bytedance/bytemd/commit/b431918ce7c4287cf18f9c7c9e8774080929537c))
+
+
+### Features
+
+* upgrade norm ([1918b68](https://github.com/bytedance/bytemd/commit/1918b68d32e0e2500a723a0b072dd80433ae8fad))
+
+
+### Reverts
+
+* Revert "build: upgrade to v1.11.1" ([82bc61e](https://github.com/bytedance/bytemd/commit/82bc61e1d9cabd20afbada50a607fbd5ae99a88a))
+
+
+
+
+
 # [1.11.0](https://github.com/bytedance/bytemd/compare/v1.10.13...v1.11.0) (2022-02-18)
 
 
