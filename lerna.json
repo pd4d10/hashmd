@@ -1,5 +1,4 @@
 {
-  "npmClient": "pnpm",
   "packages": [
     "packages/bytemd",
     "packages/plugin-*",

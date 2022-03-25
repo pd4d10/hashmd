@@ -92,6 +92,19 @@ export default defineConfig({
                   )
                 }
               }
+
+              console.log('copy files for backward compatibility...')
+              Object.entries({
+                'dist/style.css': ['dist/index.css', 'dist/index.min.css'],
+              }).forEach(([src, dests]) => {
+                dests.forEach((dest) => {
+                  fs.copySync(
+                    path.join('packages/bytemd/', src),
+                    path.join('packages/bytemd/', dest)
+                  )
+                })
+                fs.removeSync(path.join('packages/bytemd/', src))
+              })
             },
           },
         ],

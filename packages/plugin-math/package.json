@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@types/katex": "^0.11.1",
-    "katex": "^0.15.2"
+    "katex": "^0.15.3"
   },
   "devDependencies": {
     "@bytemd/plugin-math-common": "^1.12.2",

@@ -3,7 +3,8 @@
   "version": "1.11.0",
   "private": true,
   "scripts": {
-    "build": "norm build && node scripts/legacy.mjs",
+    "build": "npm run clean && norm build",
+    "clean": "rm -rf packages/*/{dist,svelte}",
     "dev": "echo 'export * from \"../src/index\"' > packages/bytemd/svelte/index.js && norm",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
@@ -16,28 +17,29 @@
   },
   "devDependencies": {
     "@icon-park/svg": "^1.3.5",
-    "@microsoft/api-extractor": "^7.19.4",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.39",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/svelte": "^3.0.3",
+    "@rushstack/node-core-library": "^3.45.1",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.40",
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/svelte": "^3.1.0",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
     "jsdom": "^19.0.0",
     "lerna": "^4.0.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.1",
     "prettier-plugin-svelte": "^2.6.0",
     "sass": "^1.49.9",
     "sort-json": "^2.0.1",
-    "sort-package-json": "^1.54.0",
+    "sort-package-json": "^1.55.0",
     "svelte": "^3.46.4",
     "svelte-preprocess": "^4.10.4",
-    "typescript": "^4.6.2",
+    "typescript": "^4.6.3",
     "vite-plugin-vue2": "^1.9.3",
-    "vitest": "^0.6.0",
+    "vitest": "^0.7.11",
     "vue-template-compiler": "^2.6.14"
   },
+  "packageManager": "pnpm@6.32.2",
   "bundlewatch": {
     "files": [
       {
@@ -50,6 +52,5 @@
         "main"
       ]
     }
-  },
-  "packageManager": "pnpm@6.32.2"
+  }
 }

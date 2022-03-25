@@ -22,8 +22,8 @@
     },
     "./locales/*": "./locales/*",
     "./lib/locales/*": "./locales/*",
-    "./dist/index.css": "./dist/style.css",
-    "./dist/index.min.css": "./dist/style.css"
+    "./dist/index.css": "./dist/index.css",
+    "./dist/index.min.css": "./dist/index.css"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -37,7 +37,7 @@
     "@types/codemirror": "^5.60.5"
   },
   "devDependencies": {
-    "@popperjs/core": "^2.11.3",
+    "@popperjs/core": "^2.11.4",
     "@primer/css": "^15.2.0",
     "@types/lodash-es": "^4.17.6",
     "@types/mdast": "^3.0.10",

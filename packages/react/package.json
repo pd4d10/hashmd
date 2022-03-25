@@ -29,7 +29,7 @@
     "bytemd": "^1.12.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.40",
+    "@types/react": "^17.0.43",
     "react": "^17.0.2"
   },
   "peerDependencies": {

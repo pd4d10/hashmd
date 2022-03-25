@@ -67,8 +67,8 @@ libs.forEach((p) => {
   pkg.files = ['dist', 'locales']
 
   if (pkg.name === 'bytemd') {
-    pkg.exports['./dist/index.css'] = './dist/style.css'
-    pkg.exports['./dist/index.min.css'] = './dist/style.css'
+    pkg.exports['./dist/index.css'] = './dist/index.css'
+    pkg.exports['./dist/index.min.css'] = './dist/index.css'
     pkg.files = ['dist', 'locales', 'svelte']
   }
   fs.writeJsonSync(pkgPath, pkg)

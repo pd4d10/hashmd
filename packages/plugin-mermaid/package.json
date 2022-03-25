@@ -26,7 +26,7 @@
     "locales"
   ],
   "dependencies": {
-    "@types/mermaid": "^8.2.8",
+    "@types/mermaid": "^8.2.9",
     "mermaid": "^8.14.0"
   },
   "devDependencies": {
