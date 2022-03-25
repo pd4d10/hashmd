@@ -1,8 +1,8 @@
 *.log
 .DS_Store
 node_modules
-dist
-lib
+dist/
+svelte/
 package-lock.json
 tsconfig.tsbuildinfo
 coverage

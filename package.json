@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "norm build",
-    "dev": "norm",
+    "dev": "echo 'export * from \"../src/index\"' > packages/bytemd/svelte/index.js && norm",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",

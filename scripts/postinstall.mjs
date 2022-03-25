@@ -64,11 +64,13 @@ libs.forEach((p) => {
     // for compatible with old version
     './lib/locales/*': './locales/*',
   }
+  pkg.files = ['dist', 'locales']
+
   if (pkg.name === 'bytemd') {
     pkg.exports['./dist/index.css'] = './dist/style.css'
     pkg.exports['./dist/index.min.css'] = './dist/style.css'
+    pkg.files = ['dist', 'locales', 'svelte']
   }
-  pkg.files = ['dist', 'locales']
   fs.writeJsonSync(pkgPath, pkg)
 })
 

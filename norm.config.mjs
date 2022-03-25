@@ -41,7 +41,7 @@ export default defineConfig({
               console.log('building helpers.js...')
               await vite.build({
                 build: {
-                  outDir: 'packages/bytemd/dist/svelte',
+                  outDir: 'packages/bytemd/svelte',
                   lib: {
                     entry: 'packages/bytemd/src/helpers.ts',
                     formats: ['es'],
@@ -57,7 +57,7 @@ export default defineConfig({
               await vite.build({
                 build: {
                   emptyOutDir: false,
-                  outDir: 'packages/bytemd/dist/svelte',
+                  outDir: 'packages/bytemd/svelte',
                   lib: {
                     entry: 'packages/bytemd/src/index.ts',
                     formats: ['es'],
@@ -73,12 +73,10 @@ export default defineConfig({
               })
 
               const files = await glob('packages/bytemd/src/*.svelte')
-              console.log(
-                'processing svelte files...' //files
-              )
+              console.log('processing svelte files...')
 
               for (let file of files) {
-                const dest = file.replace('/src/', '/dist/svelte/')
+                const dest = file.replace('/src/', '/svelte/')
                 await fs.ensureDir(path.dirname(dest))
 
                 if (fs.statSync(file).isDirectory()) return
