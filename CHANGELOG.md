@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/bytedance/bytemd/compare/v1.12.1...v1.12.2) (2022-03-25)
+
+
+### Bug Fixes
+
+* **bytemd:** legacy css entries ([38cd3c5](https://github.com/bytedance/bytemd/commit/38cd3c507466a6fc7e1f7ca49ea5a84c0905e07a))
+
+
+
+
+
 ## [1.12.1](https://github.com/bytedance/bytemd/compare/v1.12.0...v1.12.1) (2022-03-25)
 
 

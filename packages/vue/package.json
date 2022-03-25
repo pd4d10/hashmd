@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/vue",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "description": "Full-featured markdown editor and viewer",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "locales"
   ],
   "dependencies": {
-    "bytemd": "^1.12.1"
+    "bytemd": "^1.12.2"
   },
   "devDependencies": {
     "vue": "^2.6.14"
