@@ -1,10 +1,10 @@
 {
   "name": "@bytemd/plugin-math-common",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "private": true,
   "main": "src/index.ts",
   "devDependencies": {
-    "bytemd": "^1.12.2"
+    "bytemd": "^1.12.3"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

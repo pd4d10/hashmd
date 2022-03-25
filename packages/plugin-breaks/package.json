@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-breaks",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "ByteMD plugin to support breaks",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "locales"
   ],
   "devDependencies": {
-    "bytemd": "^1.12.2",
+    "bytemd": "^1.12.3",
     "remark-breaks": "^3.0.2"
   },
   "peerDependencies": {

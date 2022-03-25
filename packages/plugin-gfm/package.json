@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-gfm",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "locales"
   ],
   "devDependencies": {
-    "bytemd": "^1.12.2",
+    "bytemd": "^1.12.3",
     "remark-gfm": "^3.0.1"
   },
   "peerDependencies": {
