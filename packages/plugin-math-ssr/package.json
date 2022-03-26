@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "@bytemd/plugin-math-common": "^1.12.3",
-    "bytemd": "^1.12.3",
+    "bytemd": "workspace:*",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1"
   },

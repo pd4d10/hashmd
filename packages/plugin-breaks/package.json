@@ -26,7 +26,7 @@
     "locales"
   ],
   "devDependencies": {
-    "bytemd": "^1.12.3",
+    "bytemd": "workspace:*",
     "remark-breaks": "^3.0.2"
   },
   "peerDependencies": {

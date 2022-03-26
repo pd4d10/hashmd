@@ -29,7 +29,7 @@
     "highlight.js": "^11.5.0"
   },
   "devDependencies": {
-    "bytemd": "^1.12.3",
+    "bytemd": "workspace:*",
     "rehype-highlight": "^5.0.2"
   },
   "peerDependencies": {

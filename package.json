@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/monorepo",
-  "version": "1.11.0",
+  "version": "1.12.3",
   "private": true,
   "scripts": {
     "build": "npm run clean && norm build",
@@ -12,19 +12,18 @@
     "postinstall": "node scripts/postinstall.mjs",
     "lint": "prettier --plugin-search-dir=. --ignore-path=.gitignore --list-different packages/**/*.{ts,tsx,svelte,vue,json}",
     "lint:fix": "prettier --plugin-search-dir=. --ignore-path=.gitignore --write packages/**/*.{ts,tsx,svelte,vue,json}",
-    "pub": "npm run build && lerna publish --yes",
+    "pub": "npm run build && norm version && pnpm publish -r",
     "test": "vitest"
   },
   "devDependencies": {
     "@icon-park/svg": "^1.3.5",
-    "@rushstack/node-core-library": "^3.45.1",
+    "@norm/cli": "^0.4.26",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.40",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/svelte": "^3.1.0",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
     "jsdom": "^19.0.0",
-    "lerna": "^4.0.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
     "prettier": "^2.6.1",

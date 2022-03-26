@@ -15,12 +15,13 @@ function readFileSyncSafe(p) {
 }
 
 const packagesDir = path.join(rootDir, 'packages')
-const libs = fs
-  .readdirSync(packagesDir)
-  .filter((x) => !x.includes('playground') && !x.includes('common'))
+const packages = fs.readdirSync(packagesDir)
+const libs = packages.filter(
+  (x) => !x.includes('playground') && !x.includes('common')
+)
 const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
-libs.forEach((p) => {
+packages.forEach((p) => {
   // tsconfig
   fs.writeJsonSync(
     path.join(packagesDir, p, 'tsconfig.json'),
@@ -33,7 +34,9 @@ libs.forEach((p) => {
     },
     { spaces: 2 }
   )
+})
 
+libs.forEach((p) => {
   // license
   fs.copyFileSync(
     path.join(rootDir, 'LICENSE'),

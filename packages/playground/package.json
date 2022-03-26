@@ -1,5 +1,6 @@
 {
   "name": "@bytemd/playground",
+  "version": "1.12.3",
   "private": true,
   "dependencies": {
     "@bytemd/plugin-breaks": "workspace:*",
