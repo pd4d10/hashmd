@@ -34,7 +34,7 @@ There are two components: `Editor` and `Viewer`. `Editor` is the Markdown editor
 Before using the component, remember to import CSS file to make styles correct:
 
 ```js
-import 'bytemd/dist/index.min.css'
+import 'bytemd/dist/index.css'
 ```
 
 ### Svelte
@@ -218,7 +218,7 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
 ## Write a plugin
 
-TODO: plugin API not stable yet
+To be added
 
 ## Contributors
 
