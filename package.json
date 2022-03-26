@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run clean && norm build",
     "clean": "rm -rf packages/*/{dist,svelte}",
-    "dev": "echo 'export * from \"../src/index\"' > packages/bytemd/svelte/index.js && norm",
+    "dev": "norm",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
