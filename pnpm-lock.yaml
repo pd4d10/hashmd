@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@icon-park/svg': ^1.3.5
-      '@norm/cli': ^0.4.26
+      '@norm/cli': ^0.4.27
       '@sveltejs/vite-plugin-svelte': ^1.0.0-next.40
       '@testing-library/jest-dom': ^5.16.3
       '@testing-library/svelte': ^3.1.0
@@ -27,7 +27,7 @@ importers:
       vue-template-compiler: ^2.6.14
     devDependencies:
       '@icon-park/svg': 1.3.5
-      '@norm/cli': 0.4.26_sass@1.49.9
+      '@norm/cli': 0.4.27_sass@1.49.9
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.40_svelte@3.46.4
       '@testing-library/jest-dom': 5.16.3
       '@testing-library/svelte': 3.1.0_svelte@3.46.4
@@ -723,8 +723,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@norm/cli/0.4.26_sass@1.49.9:
-    resolution: {integrity: sha512-dpoR+XSrXz/7afdnECmB0QWfsQqk0RDJalW+0jp+0MAmXGB/Ti1zWszrN6zJh1ayGg7bYz7znEUo9GDKGECt8w==}
+  /@norm/cli/0.4.27_sass@1.49.9:
+    resolution: {integrity: sha512-y+IhQbS8It5ivEWrKcENPYIROX9k5uT1tgHMe82Rg2T0JlXmv/naXzgD3den+sfjljGOcADAeSkxo4etM+CipA==}
     hasBin: true
     dependencies:
       '@microsoft/api-extractor': 7.19.5
