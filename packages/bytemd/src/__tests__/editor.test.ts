@@ -1,5 +1,5 @@
 import { test, expect, describe, vi, beforeEach } from 'vitest'
-import { Editor } from '../..'
+import { Editor } from '../../src'
 import {
   render,
   cleanup,

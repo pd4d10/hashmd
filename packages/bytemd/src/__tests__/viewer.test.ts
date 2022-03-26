@@ -1,5 +1,5 @@
 import { test, expect, vi } from 'vitest'
-import { Viewer } from '../..'
+import { Viewer } from '../../src'
 import { render, act } from '@testing-library/svelte'
 
 function stripComment(str: string) {
