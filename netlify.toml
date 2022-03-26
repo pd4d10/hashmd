@@ -5,4 +5,4 @@
 
 [build]
   publish = "packages/playground/dist"
-  command = "npm install -g pnpm && pnpm install && pnpm build --filter playground"
+  command = "npm install -g pnpm && pnpm install && npx norm build --filter playground"
