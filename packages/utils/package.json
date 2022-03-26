@@ -1,14 +1,12 @@
 {
-  "name": "@bytemd/plugin-math-ssr",
+  "name": "@bytemd/utils",
   "version": "1.12.3",
-  "description": "ByteMD plugin to support math formula (SSR compatible)",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
-    "directory": "packages/plugin-math-ssr"
+    "directory": "packages/utils"
   },
-  "license": "MIT",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -26,12 +24,6 @@
     "locales"
   ],
   "devDependencies": {
-    "@bytemd/utils": "workspace:*",
-    "bytemd": "workspace:*",
-    "rehype-katex": "^6.0.2",
-    "remark-math": "^5.1.1"
-  },
-  "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "bytemd": "workspace:*"
   }
 }

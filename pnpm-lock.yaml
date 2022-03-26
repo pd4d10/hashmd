@@ -193,7 +193,7 @@ importers:
 
   packages/plugin-math:
     specifiers:
-      '@bytemd/plugin-math-common': ^1.12.3
+      '@bytemd/utils': workspace:*
       '@types/katex': ^0.11.1
       bytemd: workspace:*
       katex: ^0.15.3
@@ -202,24 +202,18 @@ importers:
       '@types/katex': 0.11.1
       katex: 0.15.3
     devDependencies:
-      '@bytemd/plugin-math-common': link:../plugin-math-common
+      '@bytemd/utils': link:../utils
       bytemd: link:../bytemd
       remark-math: 5.1.1
 
-  packages/plugin-math-common:
-    specifiers:
-      bytemd: workspace:*
-    devDependencies:
-      bytemd: link:../bytemd
-
   packages/plugin-math-ssr:
     specifiers:
-      '@bytemd/plugin-math-common': ^1.12.3
+      '@bytemd/utils': workspace:*
       bytemd: workspace:*
       rehype-katex: ^6.0.2
       remark-math: ^5.1.1
     devDependencies:
-      '@bytemd/plugin-math-common': link:../plugin-math-common
+      '@bytemd/utils': link:../utils
       bytemd: link:../bytemd
       rehype-katex: 6.0.2
       remark-math: 5.1.1
@@ -254,6 +248,12 @@ importers:
     devDependencies:
       '@types/react': 17.0.43
       react: 17.0.2
+
+  packages/utils:
+    specifiers:
+      bytemd: workspace:*
+    devDependencies:
+      bytemd: link:../bytemd
 
   packages/vue:
     specifiers:
