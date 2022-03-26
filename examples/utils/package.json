@@ -1,7 +1,0 @@
-{
-  "name": "@bytemd/example-utils",
-  "private": true,
-  "type": "module",
-  "main": "index.js",
-  "types": "index.d.ts"
-}
