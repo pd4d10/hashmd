@@ -28,6 +28,9 @@ const libraryConfig = defineProjectConfig({
     '.': './src/index.ts',
   },
   overrides: {
+    build: {
+      target: 'es2019', // nullish coalescing in es2020
+    },
     resolve: {
       alias: {
         // do not resolve `browser` field to make it work at SSR
