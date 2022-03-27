@@ -7,6 +7,7 @@ import glob from 'fast-glob'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
 import { createVuePlugin } from 'vite-plugin-vue2'
+import { resolveModule } from 'local-pkg'
 
 const sveltePreprocessor = sveltePreprocess({
   typescript: true,
@@ -19,10 +20,21 @@ const sveltePreprocessor = sveltePreprocess({
   ],
 })
 
+const pkgName = 'decode-named-character-reference'
+
 const libraryConfig = defineProjectConfig({
   type: 'library',
   exports: {
     '.': './src/index.ts',
+  },
+  overrides: {
+    resolve: {
+      alias: {
+        // do not resolve `browser` field to make it work at SSR
+        // https://github.com/vitejs/vite/issues/4405
+        [pkgName]: resolveModule(pkgName),
+      },
+    },
   },
 })
 
@@ -31,6 +43,7 @@ export default defineConfig({
     'packages/bytemd': {
       ...libraryConfig,
       overrides: {
+        ...libraryConfig.overrides,
         plugins: [
           svelte({
             preprocess: [sveltePreprocessor],
@@ -152,6 +165,7 @@ export default defineConfig({
     'packages/vue': {
       ...libraryConfig,
       overrides: {
+        ...libraryConfig.overrides,
         plugins: [createVuePlugin()],
       },
     },
