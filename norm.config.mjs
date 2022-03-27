@@ -21,6 +21,13 @@ const sveltePreprocessor = sveltePreprocess({
 })
 
 const pkgName = 'decode-named-character-reference'
+const resolveOptions = {
+  alias: {
+    // do not resolve `browser` field to make it work at SSR
+    // https://github.com/vitejs/vite/issues/4405
+    [pkgName]: resolveModule(pkgName),
+  },
+}
 
 const libraryConfig = defineProjectConfig({
   type: 'library',
@@ -31,13 +38,7 @@ const libraryConfig = defineProjectConfig({
     build: {
       target: 'es2019', // nullish coalescing in es2020
     },
-    resolve: {
-      alias: {
-        // do not resolve `browser` field to make it work at SSR
-        // https://github.com/vitejs/vite/issues/4405
-        [pkgName]: resolveModule(pkgName),
-      },
-    },
+    resolve: resolveOptions,
   },
 })
 
@@ -67,6 +68,7 @@ export default defineConfig({
                     },
                   },
                 },
+                resolve: resolveOptions,
               })
 
               console.log('building index.js...')
@@ -86,6 +88,7 @@ export default defineConfig({
                     external: ['./helpers', /\.svelte$/],
                   },
                 },
+                resolve: resolveOptions,
               })
 
               const files = await glob('packages/bytemd/src/*.svelte')
