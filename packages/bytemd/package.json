@@ -23,15 +23,14 @@
     "./locales/*": "./locales/*",
     "./lib/locales/*": "./locales/*",
     "./dist/index.css": "./dist/index.css",
-    "./dist/index.min.css": "./dist/index.css"
+    "./dist/index.min.css": "./dist/index.min.css"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "locales",
-    "svelte"
+    "locales"
   ],
   "dependencies": {
     "@types/codemirror": "^5.60.5"
@@ -56,5 +55,5 @@
     "vfile": "^5.3.2",
     "word-count": "^0.2.2"
   },
-  "svelte": "./svelte/index.js"
+  "svelte": "./dist/svelte-entry.js"
 }

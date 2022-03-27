@@ -55,47 +55,35 @@ export default defineConfig({
           {
             name: 'process-svelte-files',
             async closeBundle() {
-              console.log('building helpers.js...')
-              await vite.build({
-                build: {
-                  outDir: 'packages/bytemd/svelte',
-                  lib: {
-                    entry: 'packages/bytemd/src/helpers.ts',
-                    formats: ['es'],
-                    fileName(format) {
-                      if (format === 'es') return 'helpers.js'
-                      throw new Error('should not be here')
+              console.log('building svelte entry and helpers...')
+              for (const [src, dest] of Object.entries({
+                'src/helpers.ts': 'helpers.js',
+                'src/index.ts': 'svelte-entry.js',
+              })) {
+                await vite.build({
+                  root: 'packages/bytemd',
+                  build: {
+                    emptyOutDir: false,
+                    lib: {
+                      entry: src,
+                      formats: ['es'],
+                      fileName(format) {
+                        if (format === 'es') return dest
+                        throw new Error('should not be here')
+                      },
+                    },
+                    rollupOptions: {
+                      external: ['./helpers', /\.svelte$/],
                     },
                   },
-                },
-                resolve: resolveOptions,
-              })
+                  resolve: resolveOptions,
+                })
+              }
 
-              console.log('building index.js...')
-              await vite.build({
-                build: {
-                  emptyOutDir: false,
-                  outDir: 'packages/bytemd/svelte',
-                  lib: {
-                    entry: 'packages/bytemd/src/index.ts',
-                    formats: ['es'],
-                    fileName(format) {
-                      if (format === 'es') return 'index.js'
-                      throw new Error('should not be here')
-                    },
-                  },
-                  rollupOptions: {
-                    external: ['./helpers', /\.svelte$/],
-                  },
-                },
-                resolve: resolveOptions,
-              })
-
-              const files = await glob('packages/bytemd/src/*.svelte')
               console.log('processing svelte files...')
-
+              const files = await glob('packages/bytemd/src/*.svelte')
               for (let file of files) {
-                const dest = file.replace('/src/', '/svelte/')
+                const dest = file.replace('/src/', '/dist/')
                 await fs.ensureDir(path.dirname(dest))
 
                 if (fs.statSync(file).isDirectory()) return
@@ -112,18 +100,15 @@ export default defineConfig({
                 }
               }
 
-              console.log('copy files for backward compatibility...')
-              Object.entries({
-                'dist/style.css': ['dist/index.css', 'dist/index.min.css'],
-              }).forEach(([src, dests]) => {
-                dests.forEach((dest) => {
-                  fs.copySync(
-                    path.join('packages/bytemd/', src),
-                    path.join('packages/bytemd/', dest)
-                  )
-                })
-                fs.removeSync(path.join('packages/bytemd/', src))
-              })
+              console.log('processing style files (backward compatibility)...')
+              await fs.move(
+                'packages/bytemd/dist/style.css',
+                'packages/bytemd/dist/index.css'
+              )
+              await fs.copy(
+                'packages/bytemd/dist/index.css',
+                'packages/bytemd/dist/index.min.css'
+              )
             },
           },
         ],
