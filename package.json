@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npm run clean && norm build",
-    "clean": "rm -rf packages/*/{dist,svelte}",
+    "clean": "rm -rf packages/*/dist",
     "dev": "norm",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",

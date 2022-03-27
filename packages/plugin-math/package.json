@@ -30,7 +30,6 @@
     "katex": "^0.15.3"
   },
   "devDependencies": {
-    "@bytemd/utils": "workspace:*",
     "bytemd": "workspace:*",
     "remark-math": "^5.1.1"
   },

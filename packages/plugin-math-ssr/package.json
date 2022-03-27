@@ -26,7 +26,6 @@
     "locales"
   ],
   "devDependencies": {
-    "@bytemd/utils": "workspace:*",
     "bytemd": "workspace:*",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1"

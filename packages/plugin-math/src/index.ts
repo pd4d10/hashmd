@@ -1,7 +1,7 @@
 import type { BytemdPlugin } from 'bytemd'
 import type * as K from 'katex'
 import remarkMath from 'remark-math'
-import { MathLocale, getMathActions } from '@bytemd/utils'
+import { MathLocale, getMathActions } from '../utils'
 import en from '../locales/en.json'
 
 export interface BytemdPluginMathOptions {

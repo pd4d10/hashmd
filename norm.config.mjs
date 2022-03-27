@@ -114,7 +114,6 @@ export default defineConfig({
         ],
       },
     },
-    'packages/utils': libraryConfig,
     'packages/plugin-breaks': libraryConfig,
     'packages/plugin-footnotes': libraryConfig,
     'packages/plugin-frontmatter': libraryConfig,
