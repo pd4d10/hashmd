@@ -2,7 +2,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import mustache from 'mustache'
-import _ from 'lodash'
+import _ from 'lodash-es'
 import { rootDir } from './utils.mjs'
 import { execSync } from 'child_process'
 

@@ -9,11 +9,12 @@ importers:
       '@sveltejs/vite-plugin-svelte': ^1.0.0-next.40
       '@testing-library/jest-dom': ^5.16.3
       '@testing-library/svelte': ^3.1.0
+      '@types/lodash-es': ^4.17.6
       fast-glob: ^3.2.11
       fs-extra: ^10.0.1
       jsdom: ^19.0.0
       local-pkg: ^0.4.1
-      lodash: ^4.17.21
+      lodash-es: ^4.17.21
       mustache: ^4.2.0
       prettier: ^2.6.1
       prettier-plugin-svelte: ^2.6.0
@@ -32,11 +33,12 @@ importers:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.40_svelte@3.46.4
       '@testing-library/jest-dom': 5.16.3
       '@testing-library/svelte': 3.1.0_svelte@3.46.4
+      '@types/lodash-es': 4.17.6
       fast-glob: 3.2.11
       fs-extra: 10.0.1
       jsdom: 19.0.0
       local-pkg: 0.4.1
-      lodash: 4.17.21
+      lodash-es: 4.17.21
       mustache: 4.2.0
       prettier: 2.6.1
       prettier-plugin-svelte: 2.6.0_prettier@2.6.1+svelte@3.46.4
@@ -55,11 +57,9 @@ importers:
       '@popperjs/core': ^2.11.4
       '@primer/css': ^15.2.0
       '@types/codemirror': ^5.60.5
-      '@types/lodash-es': ^4.17.6
       '@types/mdast': ^3.0.10
       codemirror-ssr: ^0.0.6
       hast-util-sanitize: ^4.0.0
-      lodash-es: ^4.17.21
       rehype-raw: ^6.1.1
       rehype-sanitize: ^5.0.1
       rehype-stringify: ^9.0.3
@@ -76,11 +76,9 @@ importers:
     devDependencies:
       '@popperjs/core': 2.11.4
       '@primer/css': 15.2.0
-      '@types/lodash-es': 4.17.6
       '@types/mdast': 3.0.10
       codemirror-ssr: 0.0.6
       hast-util-sanitize: 4.0.0
-      lodash-es: 4.17.21
       rehype-raw: 6.1.1
       rehype-sanitize: 5.0.1
       rehype-stringify: 9.0.3

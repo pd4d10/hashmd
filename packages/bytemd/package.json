@@ -38,11 +38,9 @@
   "devDependencies": {
     "@popperjs/core": "^2.11.4",
     "@primer/css": "^15.2.0",
-    "@types/lodash-es": "^4.17.6",
     "@types/mdast": "^3.0.10",
     "codemirror-ssr": "^0.0.6",
     "hast-util-sanitize": "^4.0.0",
-    "lodash-es": "^4.17.21",
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
