@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-mermaid",
-  "version": "1.12.3",
+  "version": "1.12.4",
   "description": "ByteMD plugin to support Mermaid diagram",
   "repository": {
     "type": "git",

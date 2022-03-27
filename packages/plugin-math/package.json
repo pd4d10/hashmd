@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math",
-  "version": "1.12.3",
+  "version": "1.12.4",
   "description": "ByteMD plugin to support math formula",
   "repository": {
     "type": "git",
