@@ -1,4 +1,4 @@
-name: lint
+name: code style
 on:
   push:
     branches:
@@ -11,4 +11,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: pnpm/action-setup@v2.2.1
       - run: pnpm install
-      - run: pnpm lint
+      - run: npx norm format --check

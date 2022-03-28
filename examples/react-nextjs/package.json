@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "latest",
+    "@bytemd/react": "latest",
+    "bytemd": "latest",
     "next": "12.1.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "bytemd": "latest",
-    "@bytemd/react": "latest",
-    "@bytemd/plugin-gfm": "latest"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/node": "17.0.23",

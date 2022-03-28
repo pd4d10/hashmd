@@ -1,11 +1,7 @@
 *.log
 .DS_Store
 node_modules
-dist/
-packages/bytemd/svelte/
-package-lock.json
+dist
 tsconfig.tsbuildinfo
 coverage
 packages/*/LICENSE
-examples/svelte-webpack/src/locales.js
-norm-env.d.ts
