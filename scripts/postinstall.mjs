@@ -124,10 +124,3 @@ ${content}
 )
 
 fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
-
-// format
-execSync('npm run lint:fix', { stdio: 'inherit' })
-execSync('npx sort-package-json package.json packages/*/package.json', {
-  stdio: 'inherit',
-})
-execSync('npx sort-json packages/*/locales/*.json', { stdio: 'inherit' })
