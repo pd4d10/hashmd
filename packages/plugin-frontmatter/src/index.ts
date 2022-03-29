@@ -17,7 +17,8 @@ export default function frontmatter({
 }: BytemdPluginFrontmatterOptions = {}): BytemdPlugin {
   return {
     remark: (p) =>
-      p.use(remarkFrontmatter).use(() => (tree: any, file: any) => {
+      // @ts-ignore
+      p.use(remarkFrontmatter).use(() => (tree, file) => {
         // TODO: arg types
         // console.log(tree);
         const fisrtNode = tree.children[0]
