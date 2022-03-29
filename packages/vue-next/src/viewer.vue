@@ -1,7 +1,7 @@
 <template>
   <div
     v-html="file"
-    class="markdown-body"
+    className="markdown-body"
     @click="handleClick"
     ref="markdownBody"
   ></div>
@@ -17,53 +17,53 @@ import {
   ref,
   Ref,
   nextTick,
-} from 'vue';
-import { getProcessor } from 'bytemd';
+} from 'vue'
+import { getProcessor } from 'bytemd'
 
 export default defineComponent({
   props: ['value', 'plugins', 'sanitize'],
   setup(props, ctx) {
-    const markdownBody: Ref<HTMLElement | null> = ref(null);
-    const cbs = ref([]);
+    const markdownBody: Ref<HTMLElement | null> = ref(null)
+    const cbs = ref([])
     const file = computed(() => {
-      return getProcessor(props).processSync(props.value);
-    });
+      return getProcessor(props).processSync(props.value)
+    })
 
     const needUpdate = computed(() => {
-      return [file, props.plugins, props.sanitize];
-    });
+      return [file, props.plugins, props.sanitize]
+    })
 
     watch(
       needUpdate,
       () => {
-        off();
+        off()
         nextTick(() => {
-          on();
-        });
+          on()
+        })
       },
       { deep: true }
-    );
+    )
 
     onMounted(() => {
-      on();
-    });
+      on()
+    })
 
     onUnmounted(() => {
-      off();
-    });
+      off()
+    })
 
     const handleClick = (e: MouseEvent) => {
-      const $ = e.target as HTMLElement;
-      if ($.tagName !== 'A') return;
+      const $ = e.target as HTMLElement
+      if ($.tagName !== 'A') return
 
-      const href = $.getAttribute('href');
-      if (!href || !href.startsWith('#')) return;
+      const href = $.getAttribute('href')
+      if (!href || !href.startsWith('#')) return
 
       const dest = (markdownBody.value as HTMLElement).querySelector(
         '#user-content-' + href.slice(1)
-      );
-      if (dest) dest.scrollIntoView();
-    };
+      )
+      if (dest) dest.scrollIntoView()
+    }
 
     const off = () => {
       if (props.plugins && file) {
@@ -71,17 +71,17 @@ export default defineComponent({
           ({ viewerEffect }: any) =>
             viewerEffect &&
             viewerEffect({ markdownBody: markdownBody.value, file })
-        );
+        )
       }
-    };
+    }
 
     const on = () => {
       if (cbs.value.length) {
-        cbs.value.forEach((cb: any) => cb && cb());
+        cbs.value.forEach((cb: any) => cb && cb())
       }
-    };
+    }
 
-    return { markdownBody, file, handleClick };
+    return { markdownBody, file, handleClick }
   },
-});
+})
 </script>

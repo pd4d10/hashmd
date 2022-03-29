@@ -26,6 +26,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/svelte": "^3.1.0",
     "@types/lodash-es": "^4.17.6",
+    "@vitejs/plugin-vue": "^2.2.4",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
     "jsdom": "^19.0.0",

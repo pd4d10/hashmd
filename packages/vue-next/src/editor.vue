@@ -1,14 +1,12 @@
 <template>
-  <div ref="editorContainer"></div>
+  <div ref="el"></div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch, Ref } from 'vue';
-import { Editor } from 'bytemd';
+import { defineComponent, onMounted, Ref, ref, watch } from 'vue'
+import { Editor } from 'bytemd'
 
 export default defineComponent({
-  name: 'Editor',
-  emits: ['change'],
   props: {
     value: String,
     plugins: Array,
@@ -20,37 +18,37 @@ export default defineComponent({
     locale: Object,
     uploadImages: Function,
   },
-  setup(props, ctx) {
-    const editorContainer = ref(null);
-    const editor: Ref<any> = ref(null);
-    onMounted(() => {
-      const editorInstance = new Editor({
-        target: editorContainer.value,
-        props,
-      });
-      editorInstance.$on('change', (e: CustomEvent<{ value: string }>) => {
-        ctx.emit('change', e.detail.value);
-      });
-      editor.value = editorInstance;
-    });
+  emits: ['change'],
+  setup(props, { emit }) {
+    const el: Ref<HTMLElement | null> = ref(null)
+    const editorRef: Ref<Editor | null> = ref(null)
+
     watch(
-      props,
+      () => props,
       (newValue) => {
-        const copy: any = { ...newValue };
+        const copy = { ...newValue }
         for (let k in copy) {
           if (copy[k] === undefined) {
-            delete copy[k];
+            delete copy[k]
           }
         }
-        editor.value.$set(copy);
+        editorRef.value?.$set(copy)
       },
-      {
-        deep: true,
-      }
-    );
-    return {
-      editorContainer,
-    };
+      { deep: true }
+    )
+
+    onMounted(() => {
+      const editor = new Editor({
+        target: el.value!,
+        props,
+      })
+      editor.$on('change', (e) => {
+        emit('change', e.detail.value)
+      })
+      editorRef.value = editor
+    })
+
+    return { el }
   },
-});
+})
 </script>
