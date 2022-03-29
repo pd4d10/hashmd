@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Editor } from 'bytemd'
   import breaks from '@bytemd/plugin-breaks'
-  import footnotes from '@bytemd/plugin-footnotes'
   import frontmatter from '@bytemd/plugin-frontmatter'
   import gfm from '@bytemd/plugin-gfm'
   import highlight from '@bytemd/plugin-highlight'
@@ -43,7 +42,6 @@
 
   let enabled = {
     breaks: false,
-    footnotes: true,
     frontmatter: true,
     gemoji: true,
     gfm: true,
@@ -55,7 +53,6 @@
 
   $: plugins = [
     enabled.breaks && breaks(),
-    enabled.footnotes && footnotes(),
     enabled.frontmatter && frontmatter(),
     enabled.gemoji && gemoji(),
     enabled.gfm &&

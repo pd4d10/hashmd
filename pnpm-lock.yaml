@@ -94,7 +94,6 @@ importers:
   packages/playground:
     specifiers:
       '@bytemd/plugin-breaks': workspace:*
-      '@bytemd/plugin-footnotes': workspace:*
       '@bytemd/plugin-frontmatter': workspace:*
       '@bytemd/plugin-gemoji': workspace:*
       '@bytemd/plugin-gfm': workspace:*
@@ -110,7 +109,6 @@ importers:
       katex: ^0.15.3
     dependencies:
       '@bytemd/plugin-breaks': link:../plugin-breaks
-      '@bytemd/plugin-footnotes': link:../plugin-footnotes
       '@bytemd/plugin-frontmatter': link:../plugin-frontmatter
       '@bytemd/plugin-gemoji': link:../plugin-gemoji
       '@bytemd/plugin-gfm': link:../plugin-gfm
@@ -132,14 +130,6 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
       remark-breaks: 3.0.2
-
-  packages/plugin-footnotes:
-    specifiers:
-      bytemd: workspace:*
-      remark-footnotes: ^4.0.1
-    devDependencies:
-      bytemd: link:../bytemd
-      remark-footnotes: 4.0.1
 
   packages/plugin-frontmatter:
     specifiers:
@@ -4688,14 +4678,6 @@ packages:
       unist-util-visit-parents: 4.1.1
     dev: true
 
-  /mdast-util-footnote/1.0.0:
-    resolution: {integrity: sha512-DBQervPt/8PZOebnKZu2dXsLXgKHfCirW5BIR824z4tGujWQ4gMMASPEEKqgCpoeDO0WS691Eqbv/HKGvw6Vmw==}
-    dependencies:
-      '@types/mdast': 3.0.10
-      mdast-util-to-markdown: 1.3.0
-      micromark-util-normalize-identifier: 1.0.0
-    dev: true
-
   /mdast-util-from-markdown/1.2.0:
     resolution: {integrity: sha512-iZJyyvKD1+K7QX1b5jXdE7Sc5dtoTry1vzV28UZZe8Z1xVnB/czKntJ7ZAkG0tANqRnBF6p3p7GpU1y19DTf2Q==}
     dependencies:
@@ -4895,19 +4877,6 @@ packages:
       micromark-util-subtokenize: 1.0.2
       micromark-util-symbol: 1.0.1
       micromark-util-types: 1.0.2
-      uvu: 0.5.3
-    dev: true
-
-  /micromark-extension-footnote/1.0.2:
-    resolution: {integrity: sha512-sD7t/hooONLnbPYgcQpBcTjh7mPEcD2R/jRS5DLYDNm0XbngbaJZ01F1aI3v6VXVMdAu3XtFKUecNRlXbgGk/Q==}
-    dependencies:
-      micromark-core-commonmark: 1.0.6
-      micromark-factory-space: 1.0.0
-      micromark-util-character: 1.1.0
-      micromark-util-chunked: 1.0.0
-      micromark-util-normalize-identifier: 1.0.0
-      micromark-util-resolve-all: 1.0.0
-      micromark-util-symbol: 1.0.1
       uvu: 0.5.3
     dev: true
 
@@ -5757,7 +5726,7 @@ packages:
     dev: true
 
   /path-name/1.0.0:
-    resolution: {integrity: sha1-jKBjpj3nmC36lXYO2v/RAhRJTyQ=}
+    resolution: {integrity: sha512-/dcAb5vMXH0f51yvMuSUqFpxUcA8JelbRmE5mW/p4CUJxrNgK24IkstnV7ENtg2IDGBOu6izKTG6eilbnbNKWQ==}
     dev: true
 
   /path-parse/1.0.7:
@@ -6156,15 +6125,6 @@ packages:
       '@types/mdast': 3.0.10
       unified: 10.1.2
       unist-util-visit: 4.1.0
-    dev: true
-
-  /remark-footnotes/4.0.1:
-    resolution: {integrity: sha512-He6YzQFk/Wu2KgfjI80EyPXjt/G+WFaYfUH+xapqPQBdm3aTdEyzosXXv9a2FbTxGqgOfJ4q/TCB46v+wofRpQ==}
-    dependencies:
-      '@types/mdast': 3.0.10
-      mdast-util-footnote: 1.0.0
-      micromark-extension-footnote: 1.0.2
-      unified: 10.1.2
     dev: true
 
   /remark-frontmatter/4.0.1:
