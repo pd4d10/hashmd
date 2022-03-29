@@ -15,16 +15,15 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 
 | Package | Status | Description |
 | --- | --- | --- |
-| [bytemd](./packages/bytemd) | [![npm](https://img.shields.io/npm/v/bytemd)](https://npm.im/bytemd) [![gzip size](https://img.badgesize.io/https://unpkg.com/bytemd/dist/index.min.js?compression=gzip)](https://unpkg.com/bytemd) | Svelte/Vanilla JS component |
-| [@bytemd/react](./packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg)](https://npm.im/@bytemd/react) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/react/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/react) | React component |
-| [@bytemd/vue](./packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg)](https://npm.im/@bytemd/vue) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/vue/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/vue) | Vue component |
+| [bytemd](./packages/bytemd) | [![npm](https://img.shields.io/npm/v/bytemd)](https://npm.im/bytemd) [![gzip size](https://img.badgesize.io/https://unpkg.com/bytemd?compression=gzip)](https://unpkg.com/bytemd) | Svelte/Vanilla JS component |
+| [@bytemd/react](./packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg)](https://npm.im/@bytemd/react) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/react?compression=gzip)](https://unpkg.com/@bytemd/react) | React component |
+| [@bytemd/vue](./packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg)](https://npm.im/@bytemd/vue) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/vue?compression=gzip)](https://unpkg.com/@bytemd/vue) | Vue component |
 
 ### Legacy browsers support
 
-The default entry of NPM package only supports modern browsers. There are two ways to make legacy browsers (**IE9+**) work:
+The default entry of NPM package only supports modern browsers. To make legacy browsers (**IE9+**) work, You can compile it with ESNext -> ES5 transpilers, such as [Babel](https://babeljs.io/) or [SWC](https://swc.rs/).
 
-1. Compile it with ESNext -> ES5 transpilers, such as [Babel](./babel.config.js)
-2. Use the ES5 bundle(`dist/index.es5.js`)
+> The ES5 bundle will no longer be available after version 1.11.0. If you need it, you can use [version 1.11.0](https://unpkg.com/bytemd@1.11.0/dist/index.es5.min.js) or earlier versions
 
 Notice that polyfills are not included, and should be imported manually, see the [legacy browser example](https://github.com/bytedance/bytemd/blob/main/examples/legacy-browser/index.html).
 
@@ -35,24 +34,24 @@ There are two components: `Editor` and `Viewer`. `Editor` is the Markdown editor
 Before using the component, remember to import CSS file to make styles correct:
 
 ```js
-import 'bytemd/dist/index.min.css';
+import 'bytemd/dist/index.css'
 ```
 
 ### Svelte
 
 ```svelte
 <script>
-  import { Editor, Viewer } from 'bytemd';
-  import gfm from '@bytemd/plugin-gfm';
+  import { Editor, Viewer } from 'bytemd'
+  import gfm from '@bytemd/plugin-gfm'
 
-  let value;
+  let value
   const plugins = [
     gfm(),
     // Add more plugins here
-  ];
+  ]
 
   function handleChange(e) {
-    value = e.detail.value;
+    value = e.detail.value
   }
 </script>
 
@@ -64,27 +63,27 @@ import 'bytemd/dist/index.min.css';
 ### React
 
 ```js
-import { Editor, Viewer } from '@bytemd/react';
-import gfm from '@bytemd/plugin-gfm';
+import { Editor, Viewer } from '@bytemd/react'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 const App = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('')
 
   return (
     <Editor
       value={value}
       plugins={plugins}
       onChange={(v) => {
-        setValue(v);
+        setValue(v)
       }}
     />
-  );
-};
+  )
+}
 ```
 
 ### Vue
@@ -95,38 +94,38 @@ const App = () => {
 </template>
 
 <script>
-import { Editor, Viewer } from '@bytemd/vue';
-import gfm from '@bytemd/plugin-gfm';
+import { Editor, Viewer } from '@bytemd/vue'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 export default {
   components: { Editor },
   data() {
-    return { value: '', plugins };
+    return { value: '', plugins }
   },
   methods: {
     handleChange(v) {
-      value = v;
+      this.value = v
     },
   },
-};
+}
 </script>
 ```
 
 ### Vanilla JS
 
 ```js
-import { Editor, Viewer } from 'bytemd';
-import gfm from '@bytemd/plugin-gfm';
+import { Editor, Viewer } from 'bytemd'
+import gfm from '@bytemd/plugin-gfm'
 
 const plugins = [
   gfm(),
   // Add more plugins here
-];
+]
 
 const editor = new Editor({
   target: document.body, // DOM to render
@@ -134,11 +133,11 @@ const editor = new Editor({
     value: '',
     plugins,
   },
-});
+})
 
 editor.$on('change', (e) => {
-  editor.$set({ value: e.detail.value });
-});
+  editor.$set({ value: e.detail.value })
+})
 ```
 
 ## Options
@@ -157,12 +156,13 @@ editor.$on('change', (e) => {
 
 | Key | Type | Description |
 | --- | --- | --- |
-| `mode` | `split`, `tab`, `auto` | Editor display mode |
+| `mode` | `split`, `tab`, `auto` | Editor display mode, default: `auto` |
 | `previewDebounce` | `number` | Debounce time (ms) for preview, default: `300` |
 | `placeholder` | `string` | Editor placeholder |
 | `editorConfig` | [documentation](https://codemirror.net/doc/manual.html#config) | CodeMirror editor config |
-| `locale` |  | i18n locale. Available locales could be found at `bytemd/lib/locales` |
-| `uploadImages` | `function` | Specify how to upload images |
+| `locale` |  | i18n locale. Available locales could be found at `bytemd/locales`, default: use `en.json` |
+| `uploadImages` | `function` | Specify how to upload images. If set, the image icon will appear on the toolbar |
+| `maxLength` | `number` | Maximum length (number of characters) of value |
 
 ## Style customization
 
@@ -176,7 +176,7 @@ The default height of ByteMD Editor is `300px`. It could be overridden by CSS:
 }
 ```
 
-The other styles could also be overridden, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/styles/index.scss).
+The other styles could also be overridden, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/src/index.scss).
 
 ### Viewer
 
@@ -196,7 +196,7 @@ ByteMD uses [remark](https://github.com/remarkjs/remark) and [rehype](https://gi
 
 It could also be described as a flowchart:
 
-![process](https://raw.githubusercontent.com/bytedance/bytemd/main/assets/process.svg)
+![plugin system](https://raw.githubusercontent.com/bytedance/bytemd/main/assets/plugin.svg)
 
 The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
@@ -204,21 +204,24 @@ The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
 | Package | Status | Description |
 | --- | --- | --- |
-| [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-breaks/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-breaks) | Support breaks |
-| [@bytemd/plugin-footnotes](./packages/plugin-footnotes) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-footnotes.svg)](https://npm.im/@bytemd/plugin-footnotes) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-footnotes/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-footnotes) | Support footnotes |
-| [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-frontmatter/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-frontmatter) | Parse frontmatter |
-| [@bytemd/plugin-gemoji](./packages/plugin-gemoji) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gemoji.svg)](https://npm.im/@bytemd/plugin-gemoji) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-gemoji/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-gemoji) | Support Gemoji shortcodes |
-| [@bytemd/plugin-gfm](./packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-gfm/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-gfm) | Support GFM (autolink literals, strikethrough, tables, tasklists) |
-| [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-highlight/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-highlight) | Highlight code blocks |
-| [@bytemd/plugin-highlight-ssr](./packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-highlight-ssr/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-highlight-ssr) | Highlight code blocks (SSR compatible) |
-| [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-math) | Support math formula |
-| [@bytemd/plugin-math-ssr](./packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math-ssr/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
-| [@bytemd/plugin-medium-zoom](./packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-medium-zoom/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
-| [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-mermaid/dist/index.min.js?compression=gzip)](https://unpkg.com/@bytemd/plugin-mermaid) | Support Mermaid diagram |
+| [@bytemd/plugin-breaks](./packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-breaks?compression=gzip)](https://unpkg.com/@bytemd/plugin-breaks) | Support breaks |
+| [@bytemd/plugin-frontmatter](./packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-frontmatter?compression=gzip)](https://unpkg.com/@bytemd/plugin-frontmatter) | Parse frontmatter |
+| [@bytemd/plugin-gemoji](./packages/plugin-gemoji) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gemoji.svg)](https://npm.im/@bytemd/plugin-gemoji) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-gemoji?compression=gzip)](https://unpkg.com/@bytemd/plugin-gemoji) | Support Gemoji shortcodes |
+| [@bytemd/plugin-gfm](./packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-gfm?compression=gzip)](https://unpkg.com/@bytemd/plugin-gfm) | Support GFM (autolink literals, strikethrough, tables, tasklists) |
+| [@bytemd/plugin-highlight](./packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-highlight?compression=gzip)](https://unpkg.com/@bytemd/plugin-highlight) | Highlight code blocks |
+| [@bytemd/plugin-highlight-ssr](./packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-highlight-ssr?compression=gzip)](https://unpkg.com/@bytemd/plugin-highlight-ssr) | Highlight code blocks (SSR compatible) |
+| [@bytemd/plugin-math](./packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math?compression=gzip)](https://unpkg.com/@bytemd/plugin-math) | Support math formula |
+| [@bytemd/plugin-math-ssr](./packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-math-ssr?compression=gzip)](https://unpkg.com/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
+| [@bytemd/plugin-medium-zoom](./packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-medium-zoom?compression=gzip)](https://unpkg.com/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
+| [@bytemd/plugin-mermaid](./packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/plugin-mermaid?compression=gzip)](https://unpkg.com/@bytemd/plugin-mermaid) | Support Mermaid diagram |
 
 ## Write a plugin
 
-TODO: plugin API not stable yet
+To be added
+
+## Contributors
+
+[![](https://contrib.rocks/image?repo=bytedance/bytemd)](https://github.com/bytedance/bytemd/graphs/contributors)
 
 ## License
 

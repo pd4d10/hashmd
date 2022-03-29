@@ -1,30 +1,37 @@
 {
   "name": "@bytemd/plugin-math",
-  "version": "1.9.1",
+  "version": "1.12.4",
   "description": "ByteMD plugin to support math formula",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/plugin-math"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "unpkg": "dist/index.min.js",
-  "jsdelivr": "dist/index.min.js",
-  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "lib"
+    "locales"
   ],
   "dependencies": {
-    "@types/katex": "^0.11.0",
-    "katex": "^0.12.0",
-    "remark-math": "^4.0.0"
+    "@types/katex": "^0.11.1",
+    "katex": "^0.15.3"
   },
   "devDependencies": {
-    "bytemd": "^1.9.1"
+    "bytemd": "workspace:*",
+    "remark-math": "^5.1.1"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

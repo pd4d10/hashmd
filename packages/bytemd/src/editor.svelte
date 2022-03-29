@@ -1,102 +1,99 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { Editor, KeyMap, Linter, Annotation } from 'codemirror';
-  import type { Root, Element } from 'hast';
-  import type { VFile } from 'vfile';
+  import type { Editor, KeyMap } from 'codemirror'
   import type {
     BytemdEditorContext,
-    BytemdLocale,
     BytemdPlugin,
     EditorProps,
-  } from './types';
-  import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte';
-  import debounce from 'lodash.debounce';
-  import throttle from 'lodash.throttle';
-  import Toolbar from './toolbar.svelte';
-  import Viewer from './viewer.svelte';
-  import Toc from './toc.svelte';
+    VFile,
+    Root,
+    Element,
+  } from './helpers'
+
+  import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
   import {
+    debounce,
+    throttle,
+    factory,
+    usePlaceholder,
+    useOverlay,
+    useXml,
+    useMarkdown,
+    useGfm,
+    useYaml,
+    useYamlFrontmatter,
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
     handleImageUpload,
-  } from './editor';
-  import Status from './status.svelte';
-  import { icons } from './icons';
-  import en from './locales/en.json';
-  import deepmerge from 'deepmerge';
-  import Help from './help.svelte';
-  import factory from 'codemirror-ssr';
-  import usePlaceholder from 'codemirror-ssr/addon/display/placeholder';
-  import useOverlay from 'codemirror-ssr/addon/mode/overlay.js';
-  import useXml from 'codemirror-ssr/mode/xml/xml';
-  import useMarkdown from 'codemirror-ssr/mode/markdown/markdown';
-  import useGfm from 'codemirror-ssr/mode/gfm/gfm';
-  import useYaml from 'codemirror-ssr/mode/yaml/yaml';
-  import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter';
-  import useVim from 'codemirror-ssr/keymap/vim';
-  import useEmacs from 'codemirror-ssr/keymap/emacs';
-  import useLint from 'codemirror-ssr/addon/lint/lint';
+    icons,
+  } from './helpers'
 
-  export let value: EditorProps['value'] = '';
-  export let plugins: NonNullable<EditorProps['plugins']> = [];
-  export let sanitize: EditorProps['sanitize'];
-  export let mode: NonNullable<EditorProps['mode']> = 'auto';
-  export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300;
-  export let placeholder: EditorProps['placeholder'];
-  export let editorConfig: EditorProps['editorConfig'];
-  export let locale: EditorProps['locale'];
-  export let uploadImages: EditorProps['uploadImages'];
-  export let overridePreview: EditorProps['overridePreview'];
+  import Toolbar from './toolbar.svelte'
+  import Viewer from './viewer.svelte'
+  import Toc from './toc.svelte'
+  import Status from './status.svelte'
+  import Help from './help.svelte'
+  import en from '../locales/en.json'
 
-  // do deep merge to support incomplete locales, use en as fallback
-  $: mergedLocale = deepmerge(en, locale ?? {}) as BytemdLocale;
+  export let value: EditorProps['value'] = ''
+  export let plugins: NonNullable<EditorProps['plugins']> = []
+  export let sanitize: EditorProps['sanitize']
+  export let mode: NonNullable<EditorProps['mode']> = 'auto'
+  export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300
+  export let placeholder: EditorProps['placeholder']
+  export let editorConfig: EditorProps['editorConfig']
+  export let locale: EditorProps['locale']
+  export let uploadImages: EditorProps['uploadImages']
+  export let overridePreview: EditorProps['overridePreview']
+  export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
 
-  const dispatch = createEventDispatcher();
+  $: mergedLocale = { ...en, ...locale }
+  const dispatch = createEventDispatcher()
 
-  $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages);
-  $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800);
+  $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
+  $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800)
   $: ((_) => {
     // reset active tab
-    if (split) activeTab = false;
-  })(split);
+    if (split) activeTab = false
+  })(split)
 
-  let root: HTMLElement;
-  let previewEl: HTMLElement;
-  let textarea: HTMLTextAreaElement;
-  let containerWidth = Infinity; // TODO: first screen
+  let root: HTMLElement
+  let editorEl: HTMLElement
+  let previewEl: HTMLElement
+  let containerWidth = Infinity // TODO: first screen
 
-  let codemirror: ReturnType<typeof factory>;
-  let editor: Editor;
-  let activeTab: false | 'write' | 'preview';
-  let fullscreen = false;
-  let sidebar: false | 'help' | 'toc' = false;
+  let codemirror: ReturnType<typeof factory>
+  let editor: Editor
+  let activeTab: false | 'write' | 'preview'
+  let fullscreen = false
+  let sidebar: false | 'help' | 'toc' = false
 
   $: styles = (() => {
-    let edit: string;
-    let preview: string;
+    let edit: string
+    let preview: string
 
     if (split && activeTab === false) {
       if (sidebar) {
-        edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
-        preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`;
+        edit = `width:calc(50% - ${sidebar ? 140 : 0}px)`
+        preview = `width:calc(50% - ${sidebar ? 140 : 0}px)`
       } else {
-        edit = 'width:50%';
-        preview = 'width:50%';
+        edit = 'width:50%'
+        preview = 'width:50%'
       }
     } else if (activeTab === 'preview') {
-      edit = 'display:none';
-      preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
+      edit = 'display:none'
+      preview = `width:calc(100% - ${sidebar ? 280 : 0}px)`
     } else {
-      edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`;
-      preview = 'display:none';
+      edit = `width:calc(100% - ${sidebar ? 280 : 0}px)`
+      preview = 'display:none'
       // TODO: use width:0 to make scroll sync work until
       // the position calculation improved (causes white screen after switching to editor only)
     }
 
-    return { edit, preview };
-  })();
+    return { edit, preview }
+  })()
 
   $: context = (() => {
     const context: BytemdEditorContext = {
@@ -106,271 +103,248 @@
       root,
       // @ts-ignore
       ...createEditorUtils(codemirror, editor),
-    };
-    return context;
-  })();
+    }
+    return context
+  })()
 
-  let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = [];
-  let keyMap: KeyMap = {};
+  let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = []
+  let keyMap: KeyMap = {}
 
   function on() {
     // console.log('on', plugins);
-    cbs = plugins.map((p) => p.editorEffect?.(context));
+    cbs = plugins.map((p) => p.editorEffect?.(context))
 
-    keyMap = {};
+    keyMap = {}
     // TODO: nested shortcuts
     actions.forEach(({ handler }) => {
       if (handler?.type === 'action' && handler.shortcut) {
         keyMap[handler.shortcut] = () => {
-          handler.click(context);
-        };
+          handler.click(context)
+        }
       }
-    });
-    editor.addKeyMap(keyMap);
+    })
+    editor.addKeyMap(keyMap)
   }
   function off() {
     // console.log('off', plugins);
-    cbs.forEach((cb) => cb && cb());
+    cbs.forEach((cb) => cb && cb())
 
-    editor.removeKeyMap(keyMap);
+    editor?.removeKeyMap(keyMap) // onDestroy runs at SSR, optional chaining here
   }
 
-  let debouncedValue = value;
+  let debouncedValue = value
   const setDebouncedValue = debounce((value: string) => {
-    debouncedValue = value;
+    debouncedValue = value
 
-    overridePreview?.(previewEl, { value: debouncedValue, plugins, sanitize });
-  }, previewDebounce);
-  $: setDebouncedValue(value);
+    overridePreview?.(previewEl, { value: debouncedValue, plugins, sanitize })
+  }, previewDebounce)
+  $: setDebouncedValue(value)
 
   $: if (editor && value !== editor.getValue()) {
-    editor.setValue(value);
+    editor.setValue(value)
   }
 
   $: if (editor && plugins) {
-    off();
+    off()
     tick().then(() => {
-      on();
-    });
+      on()
+    })
   }
 
   // Scroll sync vars
-  let syncEnabled = true;
-  let editCalled = false;
-  let previewCalled = false;
-  let editPs: number[];
-  let previewPs: number[];
-  let hast: Root = { type: 'root', children: [] };
-  let vfile: VFile;
-  let currentBlockIndex = 0;
+  let syncEnabled = true
+  let editCalled = false
+  let previewCalled = false
+  let editPs: number[]
+  let previewPs: number[]
+  let hast: Root = { type: 'root', children: [] }
+  let vfile: VFile
+  let currentBlockIndex = 0
 
   onMount(async () => {
-    codemirror = factory();
-    usePlaceholder(codemirror);
-    useOverlay(codemirror);
-    useXml(codemirror); // inline html highlight
-    useMarkdown(codemirror);
-    useGfm(codemirror);
-    useYaml(codemirror);
-    useYamlFrontmatter(codemirror);
-    useVim(codemirror);
-    useEmacs(codemirror);
-    useLint(codemirror);
+    codemirror = factory()
+    usePlaceholder(codemirror)
+    useOverlay(codemirror)
+    useXml(codemirror) // inline html highlight
+    useMarkdown(codemirror)
+    useGfm(codemirror)
+    useYaml(codemirror)
+    useYamlFrontmatter(codemirror)
 
-    // lint
-    const linter: Linter = () => {
-      if (!vfile) return [];
-
-      const annotations = vfile.messages.map((m) => {
-        const a: Annotation = {
-          from: codemirror.Pos(
-            m.location.start.line - 1,
-            m.location.start.column - 1
-          ),
-          to:
-            m.location.end.line == null // TODO: why null?
-              ? codemirror.Pos(m.location.start.line - 1)
-              : codemirror.Pos(
-                  m.location.end.line - 1,
-                  m.location.end.column - 1
-                ),
-          message: m.message,
-        };
-        return a;
-      });
-      // console.log(annotations);
-      return annotations;
-    };
-
-    editor = codemirror.fromTextArea(textarea, {
+    // @ts-ignore TODO: type
+    editor = codemirror(editorEl, {
+      value,
       mode: 'yaml-frontmatter',
       lineWrapping: true,
       tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
       indentUnit: 4, // nested ordered list does not work with 2 spaces
       ...editorConfig,
       placeholder,
-      lint: linter,
-    });
+    })
 
     // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
     // https://github.com/codemirror/CodeMirror/issues/988#issuecomment-392232020
     editor.addKeyMap({
       Tab: 'indentMore',
       'Shift-Tab': 'indentLess',
-    });
-    editor.setValue(value);
-    editor.on('change', (doc, change) => {
-      dispatch('change', { value: editor.getValue() });
-    });
+    })
+
+    editor.on('change', () => {
+      dispatch('change', { value: editor.getValue() })
+    })
 
     const updateBlockPositions = throttle(() => {
-      editPs = [];
-      previewPs = [];
+      editPs = []
+      previewPs = []
 
-      const scrollInfo = editor.getScrollInfo();
-      const body = previewEl.childNodes[0];
-      if (!(body instanceof HTMLElement)) return;
+      const scrollInfo = editor.getScrollInfo()
+      const body = previewEl.childNodes[0]
+      if (!(body instanceof HTMLElement)) return
 
       const leftNodes = hast.children.filter(
-        (v) => v.type === 'element'
-      ) as Element[];
+        (v): v is Element => v.type === 'element'
+      )
       const rightNodes = [...body.childNodes].filter(
         (v): v is HTMLElement => v instanceof HTMLElement
-      );
+      )
 
       for (let i = 0; i < leftNodes.length; i++) {
-        const leftNode = leftNodes[i];
-        const rightNode = rightNodes[i];
+        const leftNode = leftNodes[i]
+        const rightNode = rightNodes[i]
 
         // if there is no position info, move to the next node
         if (!leftNode.position) {
-          continue;
+          continue
         }
 
         const left =
           editor.heightAtLine(leftNode.position.start.line - 1, 'local') /
-          (scrollInfo.height - scrollInfo.clientHeight);
+          (scrollInfo.height - scrollInfo.clientHeight)
         const right =
           (rightNode.offsetTop - body.offsetTop) /
-          (previewEl.scrollHeight - previewEl.clientHeight);
+          (previewEl.scrollHeight - previewEl.clientHeight)
 
         if (left >= 1 || right >= 1) {
-          break;
+          break
         }
 
-        editPs.push(left);
-        previewPs.push(right);
+        editPs.push(left)
+        previewPs.push(right)
       }
 
-      editPs.push(1);
-      previewPs.push(1);
+      editPs.push(1)
+      previewPs.push(1)
       // console.log(editPs, previewPs);
-    }, 1000);
+    }, 1000)
     const editorScrollHandler = () => {
-      if (overridePreview) return;
+      if (overridePreview) return
 
-      if (!syncEnabled) return;
+      if (!syncEnabled) return
 
       if (previewCalled) {
-        previewCalled = false;
-        return;
+        previewCalled = false
+        return
       }
 
-      updateBlockPositions();
+      updateBlockPositions()
 
-      const info = editor.getScrollInfo();
-      const leftRatio = info.top / (info.height - info.clientHeight);
+      const info = editor.getScrollInfo()
+      const leftRatio = info.top / (info.height - info.clientHeight)
 
-      const startIndex = findStartIndex(leftRatio, editPs);
+      const startIndex = findStartIndex(leftRatio, editPs)
 
       const rightRatio =
         ((leftRatio - editPs[startIndex]) *
           (previewPs[startIndex + 1] - previewPs[startIndex])) /
           (editPs[startIndex + 1] - editPs[startIndex]) +
-        previewPs[startIndex];
+        previewPs[startIndex]
       // const rightRatio = rightPs[startIndex]; // for testing
 
       previewEl.scrollTo(
         0,
         rightRatio * (previewEl.scrollHeight - previewEl.clientHeight)
-      );
-      editCalled = true;
-    };
+      )
+      editCalled = true
+    }
     const previewScrollHandler = () => {
-      if (overridePreview) return;
+      if (overridePreview) return
 
       // find the current block in the view
-      updateBlockPositions();
+      updateBlockPositions()
       currentBlockIndex = findStartIndex(
         previewEl.scrollTop / (previewEl.scrollHeight - previewEl.offsetHeight),
         previewPs
-      );
+      )
 
-      if (!syncEnabled) return;
+      if (!syncEnabled) return
 
       if (editCalled) {
-        editCalled = false;
-        return;
+        editCalled = false
+        return
       }
 
       const rightRatio =
-        previewEl.scrollTop / (previewEl.scrollHeight - previewEl.clientHeight);
+        previewEl.scrollTop / (previewEl.scrollHeight - previewEl.clientHeight)
 
-      const startIndex = findStartIndex(rightRatio, previewPs);
+      const startIndex = findStartIndex(rightRatio, previewPs)
 
       const leftRatio =
         ((rightRatio - previewPs[startIndex]) *
           (editPs[startIndex + 1] - editPs[startIndex])) /
           (previewPs[startIndex + 1] - previewPs[startIndex]) +
-        editPs[startIndex];
+        editPs[startIndex]
 
-      const info = editor.getScrollInfo();
-      editor.scrollTo(0, leftRatio * (info.height - info.clientHeight));
-      previewCalled = true;
-    };
+      if (isNaN(leftRatio)) {
+        return
+      }
 
-    editor.on('scroll', editorScrollHandler);
+      const info = editor.getScrollInfo()
+      editor.scrollTo(0, leftRatio * (info.height - info.clientHeight))
+      previewCalled = true
+    }
+
+    editor.on('scroll', editorScrollHandler)
     previewEl.addEventListener('scroll', previewScrollHandler, {
       passive: true,
-    });
+    })
 
     // handle image drop and paste
     const handleImages = async (
       e: Event,
       itemList: DataTransferItemList | undefined
     ) => {
-      if (!uploadImages) return;
+      if (!uploadImages) return
 
       const files = Array.from(itemList ?? [])
         .map((item) => {
           if (item.type.startsWith('image/')) {
-            return item.getAsFile();
+            return item.getAsFile()
           }
         })
-        .filter((f): f is File => f != null);
+        .filter((f): f is File => f != null)
 
       if (files.length) {
-        e.preventDefault(); // important
-        await handleImageUpload(context, uploadImages, files);
+        e.preventDefault() // important
+        await handleImageUpload(context, uploadImages, files)
       }
-    };
+    }
 
     editor.on('drop', async (_, e) => {
-      handleImages(e, e.dataTransfer?.items);
-    });
+      handleImages(e, e.dataTransfer?.items)
+    })
     editor.on('paste', async (_, e) => {
-      handleImages(e, e.clipboardData?.items);
-    });
+      handleImages(e, e.clipboardData?.items)
+    })
 
     // @ts-ignore
     new ResizeObserver((entries) => {
-      containerWidth = entries[0].contentRect.width;
+      containerWidth = entries[0].contentRect.width
       // console.log(containerWidth);
-    }).observe(root, { box: 'border-box' });
+    }).observe(root, { box: 'border-box' })
 
     // No need to call `on` because cm instance would change once after init
-  });
-  onDestroy(off);
+  })
+  onDestroy(off)
 </script>
 
 <div
@@ -388,41 +362,39 @@
     locale={mergedLocale}
     {actions}
     on:key={(e) => {
-      editor.setOption('keyMap', e.detail);
-      editor.focus();
+      editor.setOption('keyMap', e.detail)
+      editor.focus()
     }}
     on:tab={(e) => {
-      const v = e.detail;
+      const v = e.detail
       if (split) {
-        activeTab = activeTab === v ? false : v;
+        activeTab = activeTab === v ? false : v
       } else {
-        activeTab = v;
+        activeTab = v
       }
 
       if (activeTab === 'write') {
         tick().then(() => {
-          editor && editor.focus();
-        });
+          editor && editor.focus()
+        })
       }
     }}
     on:click={(e) => {
       switch (e.detail) {
         case 'fullscreen':
-          fullscreen = !fullscreen;
-          break;
+          fullscreen = !fullscreen
+          break
         case 'help':
-          sidebar = sidebar === 'help' ? false : 'help';
-          break;
+          sidebar = sidebar === 'help' ? false : 'help'
+          break
         case 'toc':
-          sidebar = sidebar === 'toc' ? false : 'toc';
-          break;
+          sidebar = sidebar === 'toc' ? false : 'toc'
+          break
       }
     }}
   />
   <div class="bytemd-body">
-    <div class="bytemd-editor" style={styles.edit}>
-      <textarea bind:this={textarea} class="bytemd-hidden" />
-    </div>
+    <div class="bytemd-editor" style={styles.edit} bind:this={editorEl} />
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
       {#if !overridePreview}
         <Viewer
@@ -430,8 +402,8 @@
           {plugins}
           {sanitize}
           on:hast={(e) => {
-            hast = e.detail.hast;
-            vfile = e.detail.file;
+            hast = e.detail.hast
+            vfile = e.detail.file
           }}
         />
       {/if}
@@ -440,7 +412,7 @@
       <div
         class="bytemd-sidebar-close"
         on:click={() => {
-          sidebar = false;
+          sidebar = false
         }}
       >
         {@html icons.close}
@@ -451,8 +423,8 @@
         locale={mergedLocale}
         {currentBlockIndex}
         on:click={(e) => {
-          const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
-          headings[e.detail].scrollIntoView();
+          const headings = previewEl.querySelectorAll('h1,h2,h3,h4,h5,h6')
+          headings[e.detail].scrollIntoView()
         }}
         visible={sidebar === 'toc'}
       />
@@ -463,12 +435,13 @@
     showSync={!overridePreview && split}
     value={debouncedValue}
     {syncEnabled}
+    islimited={value.length > maxLength}
     on:sync={(e) => {
-      syncEnabled = e.detail;
+      syncEnabled = e.detail
     }}
     on:top={() => {
-      editor.scrollTo(null, 0);
-      previewEl.scrollTo({ top: 0 });
+      editor.scrollTo(null, 0)
+      previewEl.scrollTo({ top: 0 })
     }}
   />
 </div>

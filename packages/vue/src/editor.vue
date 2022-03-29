@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as bytemd from 'bytemd';
+import * as bytemd from 'bytemd'
 
 export default {
   props: {
@@ -16,31 +16,32 @@ export default {
     editorConfig: Object,
     locale: Object,
     uploadImages: Function,
+    maxLength: Number,
   },
   mounted() {
     const editor = new bytemd.Editor({
       target: this.$el,
       props: this.$props,
-    });
+    })
     editor.$on('change', (e) => {
-      this.$emit('change', e.detail.value);
-    });
-    this.editor = editor;
+      this.$emit('change', e.detail.value)
+    })
+    this.editor = editor
   },
   watch: {
     $props: {
       handler(newValue, oldValue) {
         // TODO:
-        const copy = { ...newValue };
+        const copy = { ...newValue }
         for (let k in copy) {
           if (copy[k] === undefined) {
-            delete copy[k];
+            delete copy[k]
           }
         }
-        this.editor.$set(copy);
+        this.editor.$set(copy)
       },
       deep: true,
     },
   },
-};
+}
 </script>

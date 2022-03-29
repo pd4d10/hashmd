@@ -1,0 +1,19 @@
+{
+  "closeHelp": "도움말 닫기",
+  "closeToc": "목차 닫기",
+  "exitFullscreen": "꽉 찬 화면 종료",
+  "exitPreviewOnly": "미리보기 전용 종료",
+  "exitWriteOnly": "쓰기 전용 종료",
+  "fullscreen": "꽉 찬 화면",
+  "help": "도움말",
+  "image": "이미지",
+  "link": "링크",
+  "preview": "미리보기",
+  "previewOnly": "미리보기 전용",
+  "source": "소스 코드",
+  "sync": "스크롤 동기화",
+  "toc": "목차",
+  "top": "맨 위로 스크롤",
+  "write": "작성",
+  "writeOnly": "쓰기 전용"
+}

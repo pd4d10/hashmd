@@ -7,8 +7,8 @@ ByteMD plugin to zoom images like Medium
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import mediumZoom from '@bytemd/plugin-medium-zoom';
+import { Editor } from 'bytemd'
+import mediumZoom from '@bytemd/plugin-medium-zoom'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

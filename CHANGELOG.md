@@ -3,6 +3,224 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/bytedance/bytemd/compare/v1.12.2...v1.12.3) (2022-03-25)
+
+
+### Bug Fixes
+
+* update deps and scripts ([ec1fab5](https://github.com/bytedance/bytemd/commit/ec1fab5c8d14132c735257f7cbc6a36e724c80c0))
+
+
+
+
+
+## [1.12.2](https://github.com/bytedance/bytemd/compare/v1.12.1...v1.12.2) (2022-03-25)
+
+
+### Bug Fixes
+
+* **bytemd:** legacy css entries ([38cd3c5](https://github.com/bytedance/bytemd/commit/38cd3c507466a6fc7e1f7ca49ea5a84c0905e07a))
+
+
+
+
+
+## [1.12.1](https://github.com/bytedance/bytemd/compare/v1.12.0...v1.12.1) (2022-03-25)
+
+
+### Bug Fixes
+
+* **bytemd:** svelte entry ([a0c8a31](https://github.com/bytedance/bytemd/commit/a0c8a316fec50d72d42a161bb298d93047bceccf))
+
+
+
+
+
+# [1.12.0](https://github.com/bytedance/bytemd/compare/v1.11.1...v1.12.0) (2022-03-25)
+
+
+### Bug Fixes
+
+* type gen ([b431918](https://github.com/bytedance/bytemd/commit/b431918ce7c4287cf18f9c7c9e8774080929537c))
+
+
+### Features
+
+* upgrade norm ([1918b68](https://github.com/bytedance/bytemd/commit/1918b68d32e0e2500a723a0b072dd80433ae8fad))
+
+
+### Reverts
+
+* Revert "build: upgrade to v1.11.1" ([82bc61e](https://github.com/bytedance/bytemd/commit/82bc61e1d9cabd20afbada50a607fbd5ae99a88a))
+
+
+
+
+
+# [1.11.0](https://github.com/bytedance/bytemd/compare/v1.10.13...v1.11.0) (2022-02-18)
+
+
+### Bug Fixes
+
+* update mermaid to avoid xss ([89c8a4c](https://github.com/bytedance/bytemd/commit/89c8a4c8b4701f338f48240477228a124272bf59))
+
+
+### Features
+
+* add mediumZoom plugin filter option ([#145](https://github.com/bytedance/bytemd/issues/145)) ([19ee693](https://github.com/bytedance/bytemd/commit/19ee69398e8e147d8341326d853d1273284613e4))
+
+
+
+
+
+## [1.10.13](https://github.com/bytedance/bytemd/compare/v1.10.12...v1.10.13) (2021-07-22)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.12](https://github.com/bytedance/bytemd/compare/v1.10.11...v1.10.12) (2021-07-22)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.11](https://github.com/bytedance/bytemd/compare/v1.10.10...v1.10.11) (2021-07-22)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.10](https://github.com/bytedance/bytemd/compare/v1.10.9...v1.10.10) (2021-07-22)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.9](https://github.com/bytedance/bytemd/compare/v1.10.8...v1.10.9) (2021-07-22)
+
+
+### Bug Fixes
+
+* **frontmatter:** types error ([933da7e](https://github.com/bytedance/bytemd/commit/933da7e172186335ca3de5de600592da04aa2f80))
+* **highlight:** replace deprecated API ([f28be5f](https://github.com/bytedance/bytemd/commit/f28be5f65d3112f6846a79d0c692e39ad0a29e75))
+* svelte ssr compatible ([a3c9afb](https://github.com/bytedance/bytemd/commit/a3c9afb724413ad83d6718ec90933eb1391eba6f))
+
+
+
+
+
+## [1.10.8](https://github.com/bytedance/bytemd/compare/v1.10.7...v1.10.8) (2021-07-11)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.7](https://github.com/bytedance/bytemd/compare/v1.10.6...v1.10.7) (2021-07-11)
+
+
+### Bug Fixes
+
+* commonjs bundle issue ([41ce19f](https://github.com/bytedance/bytemd/commit/41ce19f3a53b1bf574e105520475eaacf1dd1dd7)), closes [#105](https://github.com/bytedance/bytemd/issues/105)
+* **toc:** calculate currentHeadingIndex with correct index ([#104](https://github.com/bytedance/bytemd/issues/104)) ([6eb4dc4](https://github.com/bytedance/bytemd/commit/6eb4dc453fbd737f130bab24f7196500a3bf173c)), closes [#103](https://github.com/bytedance/bytemd/issues/103)
+
+
+### Reverts
+
+* Revert "chore: gen unused file to tmp folder" ([d03b024](https://github.com/bytedance/bytemd/commit/d03b0243e8a5393492e827b9b14a41a97bae65d0))
+
+
+
+
+
+## [1.10.6](https://github.com/bytedance/bytemd/compare/v1.10.5...v1.10.6) (2021-07-08)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.5](https://github.com/bytedance/bytemd/compare/v1.10.4...v1.10.5) (2021-07-08)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.4](https://github.com/bytedance/bytemd/compare/v1.10.3...v1.10.4) (2021-07-08)
+
+
+### Bug Fixes
+
+* reactive locale props ([d9d068c](https://github.com/bytedance/bytemd/commit/d9d068ccef8462d7efe86ece563cdbca1b5990c9))
+* refine max length prop ([657b4d3](https://github.com/bytedance/bytemd/commit/657b4d3e849d424824eae719b334fdc519853ae8))
+* use import instead of require ([#102](https://github.com/bytedance/bytemd/issues/102)) ([0e0a566](https://github.com/bytedance/bytemd/commit/0e0a5666f580e0b565051e1bb91c97e95f693ba1))
+
+
+
+
+
+## [1.10.3](https://github.com/bytedance/bytemd/compare/v1.10.2...v1.10.3) (2021-07-02)
+
+
+### Bug Fixes
+
+* 🎸 add maxLength in vue props ([#98](https://github.com/bytedance/bytemd/issues/98)) ([53f8d05](https://github.com/bytedance/bytemd/commit/53f8d05ac60fbbeb384e96aaf6989f80b42f9fb9))
+
+
+
+
+
+## [1.10.2](https://github.com/bytedance/bytemd/compare/v1.10.1...v1.10.2) (2021-07-02)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+## [1.10.1](https://github.com/bytedance/bytemd/compare/v1.10.0...v1.10.1) (2021-07-02)
+
+**Note:** Version bump only for package bytemd
+
+
+
+
+
+# [1.10.0](https://github.com/bytedance/bytemd/compare/v1.9.2...v1.10.0) (2021-07-02)
+
+
+### Features
+
+* 🎸 add parameter max length ([#97](https://github.com/bytedance/bytemd/issues/97)) ([3d10e70](https://github.com/bytedance/bytemd/commit/3d10e708c2ffade0da4515840f68d40ee25edffa))
+
+
+
+
+
+## [1.9.2](https://github.com/bytedance/bytemd/compare/v1.9.1...v1.9.2) (2021-05-12)
+
+
+### Bug Fixes
+
+* first render ctrl-z ([c882148](https://github.com/bytedance/bytemd/commit/c8821487eb10991117b8df9103c7be398513a78e))
+
+
+
+
+
 ## [1.9.1](https://github.com/bytedance/bytemd/compare/v1.9.0...v1.9.1) (2021-04-12)
 
 

@@ -7,8 +7,8 @@ ByteMD plugin to support Mermaid diagram
 ## Usage
 
 ```js
-import { Editor } from 'bytemd';
-import mermaid from '@bytemd/plugin-mermaid';
+import { Editor } from 'bytemd'
+import mermaid from '@bytemd/plugin-mermaid'
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-});
+})
 ```
 
 ## License

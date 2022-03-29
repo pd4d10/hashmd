@@ -1,0 +1,21 @@
+{
+  "name": "@bytemd/example-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve"
+  },
+  "dependencies": {
+    "@bytemd/plugin-gfm": "latest",
+    "@bytemd/vue": "latest",
+    "bytemd": "latest",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "typescript": "~4.5.5",
+    "vue-template-compiler": "^2.6.14"
+  }
+}

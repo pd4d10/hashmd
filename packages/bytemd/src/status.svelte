@@ -1,27 +1,32 @@
 <script lang="ts">
-  import type { BytemdLocale } from './types';
-  import wordCount from 'word-count';
-  import { createEventDispatcher } from 'svelte';
+  import type { BytemdLocale } from './helpers'
 
-  export let showSync: boolean;
-  export let value: string;
-  export let syncEnabled: boolean;
-  export let locale: BytemdLocale;
+  import { createEventDispatcher } from 'svelte'
+  import { wordCount } from './helpers'
 
-  const dispatch = createEventDispatcher();
+  export let showSync: boolean
+  export let value: string
+  export let syncEnabled: boolean
+  export let locale: BytemdLocale
+  export let islimited: boolean
 
-  $: words = wordCount(value);
-  $: lines = value.split('\n').length;
+  const dispatch = createEventDispatcher()
+
+  $: words = wordCount(value)
+  $: lines = value.split('\n').length
 </script>
 
 <div class="bytemd-status">
   <div class="bytemd-status-left">
     <span>
-      {locale.status.words}: <strong>{words}</strong>
+      {locale.words}: <strong>{words}</strong>
     </span>
     <span>
-      {locale.status.lines}: <strong>{lines}</strong>
+      {locale.lines}: <strong>{lines}</strong>
     </span>
+    {#if islimited}
+      <span class="bytemd-status-error">{locale.limited}</span>
+    {/if}
   </div>
 
   <div class="bytemd-status-right">
@@ -32,9 +37,9 @@
           checked={syncEnabled}
           on:change={() => dispatch('sync', !syncEnabled)}
         />
-        {locale.status.sync}
+        {locale.sync}
       </label>
     {/if}
-    <span on:click={() => dispatch('top')}>{locale.status.top}</span>
+    <span on:click={() => dispatch('top')}>{locale.top}</span>
   </div>
 </div>

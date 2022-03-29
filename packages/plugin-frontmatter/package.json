@@ -1,31 +1,36 @@
 {
   "name": "@bytemd/plugin-frontmatter",
-  "version": "1.9.1",
+  "version": "1.12.4",
   "description": "ByteMD plugin to parse frontmatter",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/plugin-frontmatter"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "unpkg": "dist/index.min.js",
-  "jsdelivr": "dist/index.min.js",
-  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "lib"
+    "locales"
   ],
-  "dependencies": {
-    "@types/js-yaml": "^3.12.6",
-    "js-yaml": "^3.14.1",
-    "remark-frontmatter": "^3.0.0"
-  },
   "devDependencies": {
-    "bytemd": "^1.9.1",
-    "vfile": "^4.2.1"
+    "@types/js-yaml": "^4.0.5",
+    "bytemd": "workspace:*",
+    "js-yaml": "^4.1.0",
+    "remark-frontmatter": "^4.0.1",
+    "vfile": "^5.3.2"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

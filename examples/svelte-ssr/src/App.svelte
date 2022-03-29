@@ -1,1 +1,0 @@
-../../svelte/src/App.svelte

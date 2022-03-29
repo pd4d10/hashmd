@@ -1,0 +1,14 @@
+name: code style
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.2.1
+      - run: pnpm install
+      - run: npx norm format --check

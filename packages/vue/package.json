@@ -1,30 +1,37 @@
 {
   "name": "@bytemd/vue",
-  "version": "1.9.1",
+  "version": "1.12.4",
   "description": "Full-featured markdown editor and viewer",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/vue"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "unpkg": "dist/index.min.js",
-  "jsdelivr": "dist/index.min.js",
-  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "lib"
+    "locales"
   ],
   "dependencies": {
-    "bytemd": "^1.9.1"
+    "bytemd": "workspace:*"
+  },
+  "devDependencies": {
+    "vue": "^2.6.14"
   },
   "peerDependencies": {
     "vue": "^2.0.0"
-  },
-  "devDependencies": {
-    "vue": "^2.6.12"
   }
 }

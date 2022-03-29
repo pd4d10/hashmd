@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
-    "incremental": true,
-    "target": "ES2019",
+    "target": "ESNext",
     "module": "ESNext",
     "jsx": "react",
-    "declaration": true,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "composite": true,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
   "exclude": ["**/__tests__"]

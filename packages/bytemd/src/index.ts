@@ -1,7 +1,15 @@
-/// <reference types="svelte" />
-import Editor from './editor.svelte';
-import Viewer from './viewer.svelte';
+import './index.scss'
 
-export { Editor, Viewer };
-export * from './utils';
-export * from './types';
+export type {
+  BytemdLocale,
+  BytemdEditorContext,
+  BytemdViewerContext,
+  BytemdAction,
+  BytemdPlugin,
+  EditorProps,
+  ViewerProps,
+} from './helpers'
+
+export { default as Editor } from './editor.svelte'
+export { default as Viewer } from './viewer.svelte'
+export { getProcessor } from './helpers'

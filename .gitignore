@@ -2,11 +2,8 @@
 .DS_Store
 node_modules
 dist
-lib
-package-lock.json
 tsconfig.tsbuildinfo
 coverage
-style.js
-tsconfig.json
 packages/*/LICENSE
-examples/svelte/src/locales.js
+
+.norm

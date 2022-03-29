@@ -1,31 +1,31 @@
 <script lang="ts">
-  import type { BytemdAction, BytemdLocale } from './types';
+  import type { BytemdAction, BytemdLocale } from './helpers'
 
-  export let actions: BytemdAction[];
-  export let locale: BytemdLocale;
-  export let visible: boolean;
+  export let actions: BytemdAction[]
+  export let locale: BytemdLocale
+  export let visible: boolean
 
   function flatItems(actions: BytemdAction[]) {
-    let items: BytemdAction[] = [];
+    let items: BytemdAction[] = []
 
     actions.forEach((action) => {
-      const { handler, cheatsheet } = action;
+      const { handler, cheatsheet } = action
       if (handler?.type === 'dropdown') {
-        items.push(...flatItems(handler.actions));
+        items.push(...flatItems(handler.actions))
       }
       if (cheatsheet) {
-        items.push(action);
+        items.push(action)
       }
-    });
+    })
 
-    return items;
+    return items
   }
 
-  $: items = flatItems(actions);
+  $: items = flatItems(actions)
 </script>
 
 <div class="bytemd-help" class:bytemd-hidden={!visible}>
-  <h2>{locale.sidebar.cheatsheet}</h2>
+  <h2>{locale.cheatsheet}</h2>
   <ul>
     {#each items as action}
       {#if action.cheatsheet}
@@ -39,7 +39,7 @@
       {/if}
     {/each}
   </ul>
-  <h2>{locale.sidebar.shortcuts}</h2>
+  <h2>{locale.shortcuts}</h2>
   <ul>
     {#each items as action}
       {#if action.handler && action.handler.type === 'action' && action.handler.shortcut}

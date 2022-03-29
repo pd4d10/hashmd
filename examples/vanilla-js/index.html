@@ -3,27 +3,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ByteMD example</title>
-    <link rel="stylesheet" href="https://unpkg.com/bytemd/dist/index.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bytemd/dist/index.css" />
     <link rel="stylesheet" href="https://unpkg.com/github-markdown-css" />
     <script src="https://unpkg.com/bytemd"></script>
     <script src="https://unpkg.com/@bytemd/plugin-gfm"></script>
-    <script src="https://unpkg.com/@bytemd/plugin-highlight"></script>
+    <style>
+      #root {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    </style>
   </head>
   <body>
+    <div id="root"></div>
     <script>
-      const plugins = [bytemdPluginGfm(), bytemdPluginHighlight()];
+      const plugins = [bytemdPluginGfm()]
 
       const editor = new bytemd.Editor({
-        target: document.body,
+        target: document.getElementById('root'),
         props: {
           value: '# heading\n\nparagraph\n\n> blockquote',
           plugins,
         },
-      });
+      })
 
       editor.$on('change', (e) => {
-        editor.$set({ value: e.detail.value });
-      });
+        editor.$set({ value: e.detail.value })
+      })
     </script>
   </body>
 </html>

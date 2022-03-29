@@ -1,9 +1,7 @@
 {
   "name": "bytemd",
-  "version": "1.9.1",
+  "version": "1.12.4",
   "description": "A hackable Markdown editor built with Svelte",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "markdown",
     "editor",
@@ -14,38 +12,46 @@
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/bytemd"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "unpkg": "dist/index.min.js",
-  "jsdelivr": "dist/index.min.js",
-  "types": "lib/index.d.ts",
-  "svelte": "lib/index.js",
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*",
+    "./dist/index.css": "./dist/index.css",
+    "./dist/index.min.css": "./dist/index.min.css"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "lib"
+    "locales"
   ],
   "dependencies": {
-    "@popperjs/core": "^2.9.2",
-    "@types/codemirror": "^0.0.108",
-    "@types/lodash.debounce": "^4.0.6",
-    "@types/lodash.throttle": "^4.1.6",
-    "@types/mdast": "^3.0.3",
+    "@types/codemirror": "^5.60.5"
+  },
+  "devDependencies": {
+    "@popperjs/core": "^2.11.4",
+    "@primer/css": "^15.2.0",
+    "@types/mdast": "^3.0.10",
     "codemirror-ssr": "^0.0.6",
-    "deepmerge": "^4.2.2",
-    "hast-util-sanitize": "^3.0.2",
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1",
-    "rehype-raw": "^5.1.0",
-    "rehype-sanitize": "^4.0.0",
-    "rehype-stringify": "^8.0.0",
-    "remark-parse": "^9.0.0",
-    "remark-rehype": "^8.0.0",
+    "hast-util-sanitize": "^4.0.0",
+    "rehype-raw": "^6.1.1",
+    "rehype-sanitize": "^5.0.1",
+    "rehype-stringify": "^9.0.3",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
     "select-files": "^1.0.1",
-    "tippy.js": "^6.3.1",
-    "tsdef": "^0.0.14",
-    "unified": "^9.2.1",
-    "unist-util-visit": "^2.0.3",
-    "vfile": "^4.2.1",
+    "tippy.js": "^6.3.7",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.0",
+    "vfile": "^5.3.2",
     "word-count": "^0.2.2"
-  }
+  },
+  "svelte": "./dist/svelte-entry.js"
 }
