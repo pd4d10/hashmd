@@ -5,7 +5,7 @@ export default function highlightSsr({
   subset = false,
   ignoreMissing = true,
   ...rest
-}: Options): BytemdPlugin {
+}: Options = {}): BytemdPlugin {
   return {
     rehype: (u) => u.use(rehypeHighlight, { subset, ignoreMissing, ...rest }),
   }
