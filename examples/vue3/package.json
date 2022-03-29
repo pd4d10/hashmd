@@ -1,0 +1,24 @@
+{
+  "name": "@bytemd/example-vue3",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build",
+    "dev": "vite",
+    "preview": "vite preview --port 5050",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@bytemd/plugin-gfm": "latest",
+    "@bytemd/vue-next": "latest",
+    "bytemd": "latest",
+    "vue": "^3.2.31"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.25",
+    "@vitejs/plugin-vue": "^2.2.2",
+    "@vue/tsconfig": "^0.1.3",
+    "typescript": "~4.5.5",
+    "vite": "^2.8.4",
+    "vue-tsc": "^0.31.4"
+  }
+}
