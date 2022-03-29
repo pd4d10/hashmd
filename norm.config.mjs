@@ -7,6 +7,7 @@ import glob from 'fast-glob'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
 import { createVuePlugin } from 'vite-plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 import { resolveModule } from 'local-pkg'
 
 const sveltePreprocessor = sveltePreprocess({
@@ -156,6 +157,13 @@ export default defineConfig({
       overrides: {
         ...libraryConfig.overrides,
         plugins: [createVuePlugin()],
+      },
+    },
+    'packages/vue-next': {
+      ...libraryConfig,
+      overrides: {
+        ...libraryConfig.overrides,
+        plugins: [vue()],
       },
     },
     'packages/playground': {

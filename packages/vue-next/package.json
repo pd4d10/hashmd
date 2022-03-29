@@ -1,0 +1,37 @@
+{
+  "name": "@bytemd/vue-next",
+  "version": "1.12.4",
+  "description": "Full-featured markdown editor and viewer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/vue-next"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./lib/locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "locales"
+  ],
+  "dependencies": {
+    "bytemd": "workspace:*"
+  },
+  "devDependencies": {
+    "vue": "^3.2.31"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  }
+}
