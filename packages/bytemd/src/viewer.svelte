@@ -66,7 +66,7 @@
           //   p.use(() => (tree) => {
           //     console.log(tree)
           //   }),
-          rehype: (p) => p.use(dispatchPlugin),
+          rehype: (processor) => processor.use(dispatchPlugin),
         },
       ],
     }).processSync(value)

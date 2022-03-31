@@ -18,13 +18,15 @@ export function getProcessor({
   sanitize,
   plugins,
 }: Omit<ViewerProps, 'value'>) {
-  let p: Processor = unified().use(remarkParse)
+  let processor: Processor = unified().use(remarkParse)
 
   plugins?.forEach(({ remark }) => {
-    if (remark) p = remark(p)
+    if (remark) processor = remark(processor)
   })
 
-  p = p.use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw)
+  processor = processor
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
 
   let schema = JSON.parse(schemaStr) as Schema
   schema.attributes!['*'].push('className') // Allow class names by default
@@ -33,11 +35,11 @@ export function getProcessor({
     schema = sanitize(schema)
   }
 
-  p = p.use(rehypeSanitize, schema)
+  processor = processor.use(rehypeSanitize, schema)
 
   plugins?.forEach(({ rehype }) => {
-    if (rehype) p = rehype(p)
+    if (rehype) processor = rehype(processor)
   })
 
-  return p.use(rehypeStringify)
+  return processor.use(rehypeStringify)
 }

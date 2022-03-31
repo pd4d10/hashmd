@@ -17,7 +17,7 @@ export default function math({
   let katex: typeof K
 
   return {
-    remark: (p) => p.use(remarkMath),
+    remark: (processor) => processor.use(remarkMath),
     viewerEffect({ markdownBody }) {
       const renderMath = async (selector: string, displayMode: boolean) => {
         const els = markdownBody.querySelectorAll<HTMLElement>(selector)

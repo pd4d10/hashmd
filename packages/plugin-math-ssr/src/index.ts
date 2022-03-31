@@ -15,8 +15,8 @@ export default function mathSsr({
 }: BytemdPluginMathSsrOptions = {}): BytemdPlugin {
   const locale = { ...en, ..._locale }
   return {
-    remark: (u) => u.use(remarkMath),
-    rehype: (u) => u.use(rehypeKatex, katexOptions),
+    remark: (processor) => processor.use(remarkMath),
+    rehype: (processor) => processor.use(rehypeKatex, katexOptions),
     actions: getMathActions(locale),
   }
 }

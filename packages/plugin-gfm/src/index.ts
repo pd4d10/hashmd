@@ -23,7 +23,7 @@ export default function gfm({
   const locale = { ...en, ..._locale } as Locale
 
   return {
-    remark: (p) => p.use(remarkGfm, remarkGfmOptions),
+    remark: (processor) => processor.use(remarkGfm, remarkGfmOptions),
     actions: [
       {
         title: locale.strike,
