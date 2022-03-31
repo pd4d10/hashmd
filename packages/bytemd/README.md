@@ -18,6 +18,7 @@ ByteMD is a Markdown editor component built with Svelte. It could also be used i
 | [bytemd](./packages/bytemd) | [![npm](https://img.shields.io/npm/v/bytemd)](https://npm.im/bytemd) [![gzip size](https://img.badgesize.io/https://unpkg.com/bytemd?compression=gzip)](https://unpkg.com/bytemd) | Svelte/Vanilla JS component |
 | [@bytemd/react](./packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg)](https://npm.im/@bytemd/react) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/react?compression=gzip)](https://unpkg.com/@bytemd/react) | React component |
 | [@bytemd/vue](./packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg)](https://npm.im/@bytemd/vue) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/vue?compression=gzip)](https://unpkg.com/@bytemd/vue) | Vue component |
+| [@bytemd/vue](./packages/vue-next) | [![npm](https://img.shields.io/npm/v/@bytemd/vue-next.svg)](https://npm.im/@bytemd/vue-next) [![gzip size](https://img.badgesize.io/https://unpkg.com/@bytemd/vue-next?compression=gzip)](https://unpkg.com/@bytemd/vue-next) | Vue component |
 
 ### Legacy browsers support
 
