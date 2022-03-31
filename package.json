@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/monorepo",
-  "version": "1.12.4",
+  "version": "1.13.0",
   "private": true,
   "scripts": {
     "build": "npm run clean && norm build",

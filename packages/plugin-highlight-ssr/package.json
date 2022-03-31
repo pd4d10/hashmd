@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-highlight-ssr",
-  "version": "1.12.4",
+  "version": "1.13.0",
   "description": "ByteMD plugin to highlight code blocks (SSR compatible)",
   "repository": {
     "type": "git",
