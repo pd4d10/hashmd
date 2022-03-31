@@ -11,7 +11,7 @@
     "docs:serve": "vitepress serve docs",
     "format": "norm format",
     "postinstall": "node scripts/postinstall.mjs && npm run format && sort-json packages/*/locales/*.json",
-    "pub": "npm run build && norm version && pnpm --recursive --registry https://registry.npmjs.org/ publish",
+    "pub": "npm run build && norm version && pnpm --recursive --registry https://registry.npmjs.org/ publish --access public",
     "test": "vitest"
   },
   "prettier": {
