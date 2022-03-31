@@ -4,7 +4,6 @@ import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash-es'
 import { rootDir } from './utils.mjs'
-import { execSync } from 'child_process'
 
 function readFileSyncSafe(p) {
   try {
@@ -27,10 +26,7 @@ packages.forEach((p) => {
     path.join(packagesDir, p, 'tsconfig.json'),
     {
       extends: '../../tsconfig-base.json',
-      include: [
-        '.',
-        'locales/*.json', // https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
-      ],
+      include: ['src', '.norm/**/*'],
     },
     { spaces: 2 }
   )
