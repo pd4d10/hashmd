@@ -169,6 +169,7 @@ export default defineConfig({
     'packages/playground': {
       type: 'web-app',
       overrides: {
+        base: '/playground/',
         plugins: [
           svelte({
             preprocess: [sveltePreprocessor],
