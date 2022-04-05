@@ -101,7 +101,7 @@ const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
         const desc = _.upperFirst(
           pkg.description.replace('ByteMD plugin to ', '')
         )
-        return `| [@bytemd/plugin-${name}](./packages/plugin-${name}) | ${badge} | ${desc} |`
+        return `| [@bytemd/plugin-${name}](https://github.com/bytedance/bytemd/tree/main/packages/plugin-${name}) | ${badge} | ${desc} |`
       })
       .filter((x) => x)
       .join('\n')
