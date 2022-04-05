@@ -4,5 +4,5 @@
   NPM_FLAGS="--prefix=/dev/null"
 
 [build]
-  publish = "packages/playground/dist"
-  command = "npm install -g pnpm && pnpm install && npx norm build --filter playground"
+  publish = "docs/.vitepress/dist"
+  command = "npx pnpm install && npm run docs:build && npx norm build --filter playground && mv packages/playground/dist docs/.vitepress/dist/playground"
