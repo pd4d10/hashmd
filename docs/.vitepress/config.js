@@ -6,5 +6,11 @@ export default defineConfig({
   description: 'A hackable Markdown editor component',
   themeConfig: {
     repo: 'bytedance/bytemd',
+    nav: [
+      {
+        text: 'Playground',
+        link: 'https://bytemd.js.org/playground/',
+      },
+    ],
   },
 })
