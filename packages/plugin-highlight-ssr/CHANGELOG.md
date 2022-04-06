@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/bytedance/bytemd/compare/v1.13.0...v1.13.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* side effects bug of build system ([6e69667](https://github.com/bytedance/bytemd/commit/6e69667fbfc420e79d18ce87599bc494f3b3613e)), closes [#160](https://github.com/bytedance/bytemd/issues/160) [#167](https://github.com/bytedance/bytemd/issues/167)
+
 ## [1.13.0](https://github.com/bytedance/bytemd/compare/v1.12.4...v1.13.0) (2022-03-31)
 
 

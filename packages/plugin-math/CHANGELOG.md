@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/bytedance/bytemd/compare/v1.13.0...v1.13.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **math:** katex types ([fdd1580](https://github.com/bytedance/bytemd/commit/fdd1580ca6eaf3d2c1bad5ece572d409f773fd53))
+
 ## [1.13.0](https://github.com/bytedance/bytemd/compare/v1.12.4...v1.13.0) (2022-03-31)
 
 ### [1.12.4](https://github.com/bytedance/bytemd/compare/v1.12.3...v1.12.4) (2022-03-27)
