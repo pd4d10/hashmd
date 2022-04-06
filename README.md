@@ -167,9 +167,9 @@ editor.$on('change', (e) => {
 | `uploadImages` | `function` | Specify how to upload images. If set, the image icon will appear on the toolbar |
 | `maxLength` | `number` | Maximum length (number of characters) of value |
 
-## Style customization
+### Style customization
 
-### Editor
+#### Editor
 
 The default height of ByteMD Editor is `300px`. It could be overridden by CSS:
 
@@ -181,11 +181,32 @@ The default height of ByteMD Editor is `300px`. It could be overridden by CSS:
 
 The other styles could also be overridden, see [the default style](https://github.com/bytedance/bytemd/blob/main/packages/bytemd/src/index.scss).
 
-### Viewer
+#### Viewer
 
 There is no built-in styles for the Viewer. You could use third-party markdown themes, for example [juejin-markdown-themes](https://github.com/xitu/juejin-markdown-themes) and [github-markdown-css](https://github.com/sindresorhus/github-markdown-css).
 
-## Technical details
+## Plugin System
+
+ByteMD provides a powerful plugin system for customization. There are several official plugins to support features such as code syntax highlight, math equation and Mermaid flowcharts.
+
+If you have more customized needs, you could also write your own plugin to support them.
+
+### Official Plugins
+
+| Package | Status | Description |
+| --- | --- | --- |
+| [@bytemd/plugin-breaks](https://github.com/bytedance/bytemd/tree/main/packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | Support breaks |
+| [@bytemd/plugin-frontmatter](https://github.com/bytedance/bytemd/tree/main/packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) | Parse frontmatter |
+| [@bytemd/plugin-gemoji](https://github.com/bytedance/bytemd/tree/main/packages/plugin-gemoji) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gemoji.svg)](https://npm.im/@bytemd/plugin-gemoji) | Support Gemoji shortcodes |
+| [@bytemd/plugin-gfm](https://github.com/bytedance/bytemd/tree/main/packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) | Support GFM (autolink literals, strikethrough, tables, tasklists) |
+| [@bytemd/plugin-highlight](https://github.com/bytedance/bytemd/tree/main/packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | Highlight code blocks |
+| [@bytemd/plugin-highlight-ssr](https://github.com/bytedance/bytemd/tree/main/packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) | Highlight code blocks (SSR compatible) |
+| [@bytemd/plugin-math](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | Support math formula |
+| [@bytemd/plugin-math-ssr](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
+| [@bytemd/plugin-medium-zoom](https://github.com/bytedance/bytemd/tree/main/packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
+| [@bytemd/plugin-mermaid](https://github.com/bytedance/bytemd/tree/main/packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | Support Mermaid diagram |
+
+### Technical Overview
 
 ByteMD uses [remark](https://github.com/remarkjs/remark) and [rehype](https://github.com/rehypejs/rehype) ecosystem to process Markdown. The complete process is as follows:
 
@@ -203,24 +224,109 @@ It could also be described as a flowchart:
 
 The 2,5,7 steps are designed for user customization via ByteMD plugin API.
 
-## Plugins
+### Authoring a Plugin
 
-| Package | Status | Description |
-| --- | --- | --- |
-| [@bytemd/plugin-breaks](https://github.com/bytedance/bytemd/tree/main/packages/plugin-breaks) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks) | Support breaks |
-| [@bytemd/plugin-frontmatter](https://github.com/bytedance/bytemd/tree/main/packages/plugin-frontmatter) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter) | Parse frontmatter |
-| [@bytemd/plugin-gemoji](https://github.com/bytedance/bytemd/tree/main/packages/plugin-gemoji) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gemoji.svg)](https://npm.im/@bytemd/plugin-gemoji) | Support Gemoji shortcodes |
-| [@bytemd/plugin-gfm](https://github.com/bytedance/bytemd/tree/main/packages/plugin-gfm) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm) | Support GFM (autolink literals, strikethrough, tables, tasklists) |
-| [@bytemd/plugin-highlight](https://github.com/bytedance/bytemd/tree/main/packages/plugin-highlight) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight.svg)](https://npm.im/@bytemd/plugin-highlight) | Highlight code blocks |
-| [@bytemd/plugin-highlight-ssr](https://github.com/bytedance/bytemd/tree/main/packages/plugin-highlight-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr) | Highlight code blocks (SSR compatible) |
-| [@bytemd/plugin-math](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math) | Support math formula |
-| [@bytemd/plugin-math-ssr](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg)](https://npm.im/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
-| [@bytemd/plugin-medium-zoom](https://github.com/bytedance/bytemd/tree/main/packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
-| [@bytemd/plugin-mermaid](https://github.com/bytedance/bytemd/tree/main/packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid) | Support Mermaid diagram |
+We'll take Math formula plugin as an example to walk you through the process.
 
-## Write a plugin
+First of all, scaffold the project according to the `BytemdPlugin` type signature:
 
-To be added
+```ts
+import type { BytemdPlugin } from 'bytemd'
+
+export default function mathPlugin(): BytemdPlugin {
+  return {
+    // to be implement
+  }
+}
+```
+
+Then we look into the requirement more closely: If we want to render syntax like `$a+b$` to Math formula, there are several things we need to do:
+
+- Support `$a+b$` syntax as a Math formula in Markdown (step 2)
+- Render these nodes correctly in HTML (step 5 or 7)
+- Additionally, an extra icon in the toolbar would be great for user convenience
+
+For the first thing, luckily, we don't need to implement it with our own because [remark-math](https://github.com/remarkjs/remark-math) already did it. The only thing we need to do is to import and use it:
+
+```diff
+import type { BytemdPlugin } from 'bytemd'
++import remarkMath from 'remark-math'
+
+export default function mathPlugin(): BytemdPlugin {
+  return {
+-    // to be implement
++    remark: (processor) => processor.use(remarkMath),
+  }
+}
+```
+
+Then consider the second thing, it would be a little complicated because we have two choices, do it in step 5 or 7. The difference is that step 5 is more friendly with SSR, while step 7 hand over the rendering to the client-side. This is why we have two plugin: [@bytemd/plugin-math](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math) and [@bytemd/plugin-math-ssr](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math-ssr).
+
+```diff
+// if we choose step 5:
+import type { BytemdPlugin } from 'bytemd'
+import remarkMath from 'remark-math'
++import rehypeKatex from 'rehype-katex'
+
+export default function mathPlugin(): BytemdPlugin {
+  return {
+    remark: (processor) => processor.use(remarkMath),
++   rehype: (processor) => processor.use(rehypeKatex),
+  }
+}
+
+// if we choose step 7:
+import type { BytemdPlugin } from 'bytemd'
+import remarkMath from 'remark-math'
++import rehypeKatex from 'rehype-katex'
+
+export default function mathPlugin(): BytemdPlugin {
+  return {
+    remark: (processor) => processor.use(remarkMath),
++   viewerEffect({ markdownBody }) {
++     const renderMath = async (selector: string, displayMode: boolean) => {
++       const katex = await import('katex').then((m) => m.default)
++
++       const els = markdownBody.querySelectorAll<HTMLElement>(selector)
++       els.forEach((el) => {
++         katex.render(el.innerText, el, { displayMode })
++       })
++     }
++
++     renderMath('.math.math-inline', false)
++     renderMath('.math.math-display', true)
++   },
+  }
+}
+```
+
+The last thing is to add an icon to the toolbar. we use the `actions` prop to implement it:
+
+```ts
+export default function mathPlugin(): BytemdPlugin {
+  return {
+    actions: [
+      {
+        title: 'Insert an math formula',
+        icon: '', // 16x16 SVG icon
+        handler: {
+          type: 'action',
+          click(ctx) {
+            // to be implement:
+            // the `ctx` is an instance of `BytemdEditorContext`, which has
+            // several utility methods to help operate the CodeMirror editor state.
+
+            // remember to call `focus` to avoid lost of focus
+            editor.focus()
+          },
+        },
+      },
+    ],
+  }
+}
+```
+
+Now we have completed a minimalist version of the plugin! For more details and references please check out the source code.
 
 ## Contributors
 

@@ -89,7 +89,7 @@ plugins.forEach((p) => {
 
 // bytemd readme
 const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
-  /## Plugins\s+([\w\W])*?\s+##/,
+  /### Official Plugins\s+([\w\W])*?\s+##/,
   (match, p1, offset, string) => {
     const content = plugins
       .map((p) => {
@@ -106,7 +106,7 @@ const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
       .filter((x) => x)
       .join('\n')
 
-    return `## Plugins
+    return `### Official Plugins
 
 | Package | Status | Description |
 | --- | --- | --- |
