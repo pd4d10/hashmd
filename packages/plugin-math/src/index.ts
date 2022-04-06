@@ -1,12 +1,12 @@
 import type { BytemdPlugin } from 'bytemd'
-import type * as K from 'katex'
+import type { default as K, KatexOptions } from 'katex'
 import remarkMath from 'remark-math'
 import { MathLocale, getMathActions } from '../utils'
 import en from '../locales/en.json'
 
 export interface BytemdPluginMathOptions {
   locale?: Partial<MathLocale>
-  katexOptions?: Omit<K.KatexOptions, 'displayMode'>
+  katexOptions?: Omit<KatexOptions, 'displayMode'>
 }
 
 export default function math({
