@@ -145,6 +145,11 @@ export default defineConfig({
             },
           },
         },
+        resolve: {
+          alias: {
+            lowlight: 'lowlight/lib/common', // FIXME: tree-shaking
+          },
+        },
       },
     },
     'packages/plugin-math': libraryConfig,
