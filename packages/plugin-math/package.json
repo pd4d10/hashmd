@@ -26,7 +26,7 @@
     "locales"
   ],
   "dependencies": {
-    "@types/katex": "^0.11.1",
+    "@types/katex": "^0.14.0",
     "katex": "^0.15.3"
   },
   "devDependencies": {

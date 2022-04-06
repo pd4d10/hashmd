@@ -36,7 +36,7 @@
     "@types/codemirror": "^5.60.5"
   },
   "devDependencies": {
-    "@popperjs/core": "^2.11.4",
+    "@popperjs/core": "^2.11.5",
     "@primer/css": "^15.2.0",
     "@types/mdast": "^3.0.10",
     "codemirror-ssr": "^0.0.6",
