@@ -26,11 +26,10 @@
     "locales"
   ],
   "dependencies": {
-    "highlight.js": "^11.5.0"
+    "rehype-highlight": "^5.0.2"
   },
   "devDependencies": {
-    "bytemd": "workspace:*",
-    "rehype-highlight": "^5.0.2"
+    "bytemd": "workspace:*"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"
