@@ -15,20 +15,22 @@ export const Editor: React.FC<EditorProps> = ({
 
   useEffect(() => {
     if (!el.current) return
-
     const editor = new bytemd.Editor({
       target: el.current,
       props,
     })
-    editor.$on('change', (e: CustomEvent<{ value: string }>) => {
-      onChange?.(e.detail.value)
-    })
     ed.current = editor
 
     return () => {
-      editor.$destroy()
+      editor?.$destroy()
     }
   }, [])
+
+  useEffect(() => {
+    ed.current.$on('change', (e) => {
+      onChange == null ? void 0 : onChange(e.detail.value)
+    })
+  }, [onChange])
 
   useEffect(() => {
     // TODO: performance
