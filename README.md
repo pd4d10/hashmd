@@ -19,8 +19,8 @@ Playground here: https://bytemd.js.org/playground/
 | --- | --- | --- |
 | [bytemd](https://github.com/bytedance/bytemd/tree/main/packages/bytemd) | [![npm](https://img.shields.io/npm/v/bytemd?label=)](https://npm.im/bytemd) | Svelte/Vanilla JS component |
 | [@bytemd/react](https://github.com/bytedance/bytemd/tree/main/packages/react) | [![npm](https://img.shields.io/npm/v/@bytemd/react.svg?label=)](https://npm.im/@bytemd/react) | React component |
-| [@bytemd/vue](https://github.com/bytedance/bytemd/tree/main/packages/packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg?label=)](https://npm.im/@bytemd/vue) | Vue component |
-| [@bytemd/vue-next](https://github.com/bytedance/bytemd/tree/main/packages/vue-next) | [![npm](https://img.shields.io/npm/v/@bytemd/vue-next.svg?label=)](https://npm.im/@bytemd/vue-next) | Vue component |
+| [@bytemd/vue](https://github.com/bytedance/bytemd/tree/main/packages/packages/vue) | [![npm](https://img.shields.io/npm/v/@bytemd/vue.svg?label=)](https://npm.im/@bytemd/vue) | Vue 2 component |
+| [@bytemd/vue-next](https://github.com/bytedance/bytemd/tree/main/packages/vue-next) | [![npm](https://img.shields.io/npm/v/@bytemd/vue-next.svg?label=)](https://npm.im/@bytemd/vue-next) | Vue 3 component |
 
 ### Legacy browsers support
 
