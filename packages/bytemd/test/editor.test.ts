@@ -1,5 +1,6 @@
-import { test, expect, describe, vi, beforeEach } from 'vitest'
-import { Editor } from '../../src'
+/// <reference types="@norm/cli/test" />
+import '@testing-library/jest-dom'
+import { Editor } from '../src'
 import {
   render,
   cleanup,

@@ -7,7 +7,9 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "composite": true,
+    "emitDeclarationOnly": true
   },
   "exclude": ["**/__tests__"]
 }

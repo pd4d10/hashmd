@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash-es'
-import { rootDir } from './utils.mjs'
+import { rootDir } from '../norm.config.mjs'
 
 function readFileSyncSafe(p) {
   try {
@@ -21,15 +21,16 @@ const libs = packages.filter(
 const plugins = libs.filter((x) => x.startsWith('plugin-'))
 
 packages.forEach((p) => {
+  const tsconfig = path.join(packagesDir, p, 'tsconfig.json')
+  const c = fs.readJsonSync(tsconfig)
+  c.include = ['src', 'src/locales/*.json'] //  https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
+  c.compilerOptions = {
+    rootDir: 'src',
+    outDir: 'dist',
+  }
+
   // tsconfig
-  fs.writeJsonSync(
-    path.join(packagesDir, p, 'tsconfig.json'),
-    {
-      extends: '../../tsconfig-base.json',
-      include: ['src', '.norm/**/*'],
-    },
-    { spaces: 2 }
-  )
+  fs.writeJsonSync(tsconfig, c)
 })
 
 libs.forEach((p) => {

@@ -1,5 +1,5 @@
 {
-  "name": "@bytemd/playground",
+  "name": "playground",
   "version": "1.13.1",
   "private": true,
   "dependencies": {

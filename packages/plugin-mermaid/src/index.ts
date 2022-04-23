@@ -2,7 +2,7 @@ import type { BytemdPlugin } from 'bytemd'
 import type { Mermaid } from 'mermaid'
 import type mermaidAPI from 'mermaid/mermaidAPI'
 import * as iconPark from '@icon-park/svg'
-import en from '../locales/en.json'
+import en from './locales/en.json'
 
 type Locale = {
   mermaid: string

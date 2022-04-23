@@ -1,5 +1,5 @@
 import type { BytemdPlugin } from 'bytemd'
-import en from '../locales/en.json'
+import en from './locales/en.json'
 import remarkGfm, { Options } from 'remark-gfm'
 import * as iconPark from '@icon-park/svg'
 

@@ -1,6 +1,4 @@
-import { expect, vi } from 'vitest'
-import matchers from '@testing-library/jest-dom/matchers'
-expect.extend(matchers)
+/// <reference types="@norm/cli/test" />
 
 // https://github.com/jsdom/jsdom/issues/3002#issuecomment-655752934
 document.createRange = () => {

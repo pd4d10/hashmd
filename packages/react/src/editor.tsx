@@ -12,6 +12,7 @@ export const Editor: React.FC<EditorProps> = ({
 }) => {
   const ed = useRef<bytemd.Editor>()
   const el = useRef<HTMLDivElement>(null)
+  const onChangeRef = useRef<EditorProps['onChange']>()
 
   useEffect(() => {
     if (!el.current) return
@@ -21,7 +22,7 @@ export const Editor: React.FC<EditorProps> = ({
       props,
     })
     editor.$on('change', (e: CustomEvent<{ value: string }>) => {
-      onChange?.(e.detail.value)
+      onChangeRef.current?.(e.detail.value)
     })
     ed.current = editor
 
@@ -29,6 +30,10 @@ export const Editor: React.FC<EditorProps> = ({
       editor.$destroy()
     }
   }, [])
+
+  useEffect(() => {
+    onChangeRef.current = onChange
+  }, [onChange])
 
   useEffect(() => {
     // TODO: performance

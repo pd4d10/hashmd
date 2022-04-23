@@ -1,5 +1,6 @@
-import { test, expect, vi } from 'vitest'
-import { Viewer } from '../../src'
+/// <reference types="@norm/cli/test" />
+import '@testing-library/jest-dom'
+import { Viewer } from '../src'
 import { render, act } from '@testing-library/svelte'
 
 function stripComment(str: string) {

@@ -5,4 +5,4 @@
 
 [build]
   publish = "docs/.vitepress/dist"
-  command = "npx pnpm install && npm run docs:build && npx norm build --filter playground && mv packages/playground/dist docs/.vitepress/dist/playground"
+  command = "npx pnpm install && npm run docs:build && npx norm build playground && mv packages/playground/dist docs/.vitepress/dist/playground"
