@@ -29,7 +29,7 @@
     "bytemd": "workspace:*"
   },
   "devDependencies": {
-    "vue": "^3.2.31"
+    "vue": "^3.2.33"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@types/mermaid": "^8.2.9",
-    "mermaid": "^8.14.0"
+    "mermaid": "^9.0.1"
   },
   "devDependencies": {
     "bytemd": "workspace:*"
