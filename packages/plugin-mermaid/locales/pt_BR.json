@@ -1,0 +1,11 @@
+{
+    "class": "Diagrama de classes",
+    "er": "Entidade Relacionada",
+    "flowchart": "Fluxograma",
+    "gantt": "Gráfico Gantt",
+    "mermaid": "Diagrama Mermaid",
+    "pie": "Gráfico de Pizza",
+    "sequence": "Diagrama de sequência",
+    "state": "Gráfico de fluxo de estado",
+    "uj": "Diagrama de casos de uso"
+}
