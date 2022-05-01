@@ -5,11 +5,7 @@ export interface EditorProps extends bytemd.EditorProps {
   onChange?(value: string): void
 }
 
-export const Editor: React.FC<EditorProps> = ({
-  children,
-  onChange,
-  ...props
-}) => {
+export const Editor: React.FC<EditorProps> = ({ onChange, ...props }) => {
   const ed = useRef<bytemd.Editor>()
   const el = useRef<HTMLDivElement>(null)
   const onChangeRef = useRef<EditorProps['onChange']>()
