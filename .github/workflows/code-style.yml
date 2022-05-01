@@ -11,4 +11,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: pnpm/action-setup@v2.2.1
       - run: pnpm install
-      - run: npx norm format --check
+      - run: npx norm format
