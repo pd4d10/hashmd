@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 importers:
 
@@ -20,9 +20,9 @@ importers:
       prettier-plugin-svelte: ^2.7.0
       sass: ^1.51.0
       sort-json: ^2.0.1
-      svelte: ^3.47.0
+      svelte: ^3.48.0
       svelte-preprocess: ^4.10.6
-      typescript: ^4.6.3
+      typescript: ^4.6.4
       vite: ^2.9.6
       vite-plugin-vue2: ^2.0.0
       vitepress: ^0.22.3
@@ -30,9 +30,9 @@ importers:
     devDependencies:
       '@icon-park/svg': 1.3.5
       '@norm/cli': 0.4.43_jsdom@19.0.0+sass@1.51.0
-      '@sveltejs/vite-plugin-svelte': 1.0.0-next.42_svelte@3.47.0+vite@2.9.6
+      '@sveltejs/vite-plugin-svelte': 1.0.0-next.42_svelte@3.48.0+vite@2.9.6
       '@testing-library/jest-dom': 5.16.4
-      '@testing-library/svelte': 3.1.1_svelte@3.47.0
+      '@testing-library/svelte': 3.1.1_svelte@3.48.0
       '@types/lodash-es': 4.17.6
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.6
       fast-glob: 3.2.11
@@ -41,14 +41,14 @@ importers:
       local-pkg: 0.4.1
       lodash-es: 4.17.21
       mustache: 4.2.0
-      prettier-plugin-svelte: 2.7.0_svelte@3.47.0
+      prettier-plugin-svelte: 2.7.0_svelte@3.48.0
       sass: 1.51.0
       sort-json: 2.0.1
-      svelte: 3.47.0
-      svelte-preprocess: 4.10.6_4d9381695a7edfbb1fb6bc002cd71e0a
-      typescript: 4.6.3
+      svelte: 3.48.0
+      svelte-preprocess: 4.10.6_24ezlekk4ocevlsjgs2qnqmjum
+      typescript: 4.6.4
       vite: 2.9.6_sass@1.51.0
-      vite-plugin-vue2: 2.0.0_165aafa833f4b3ffc38894e27e52a497
+      vite-plugin-vue2: 2.0.0_cznk7kbt6sz77q4istrh4uves4
       vitepress: 0.22.3_sass@1.51.0
       vue-template-compiler: 2.6.14
 
@@ -931,7 +931,7 @@ packages:
       resolve: 1.17.0
       semver: 7.3.7
       source-map: 0.6.1
-      typescript: 4.6.3
+      typescript: 4.6.4
     dev: true
 
   /@microsoft/tsdoc-config/0.16.1:
@@ -1093,7 +1093,7 @@ packages:
       string-argv: 0.3.1
     dev: true
 
-  /@sveltejs/vite-plugin-svelte/1.0.0-next.42_svelte@3.47.0+vite@2.9.6:
+  /@sveltejs/vite-plugin-svelte/1.0.0-next.42_svelte@3.48.0+vite@2.9.6:
     resolution: {integrity: sha512-I8ILzfjVQuOkl6eDHif6/QJhOEBnsA40u6/0RDWK0mujwOr+MfWCWEZEnrTKqa6YIVMO+uktfoknu61chbAIeg==}
     engines: {node: ^14.13.1 || >= 16}
     peerDependencies:
@@ -1108,8 +1108,8 @@ packages:
       debug: 4.3.4
       kleur: 4.1.4
       magic-string: 0.26.1
-      svelte: 3.47.0
-      svelte-hmr: 0.14.11_svelte@3.47.0
+      svelte: 3.48.0
+      svelte-hmr: 0.14.11_svelte@3.48.0
       vite: 2.9.6_sass@1.51.0
     transitivePeerDependencies:
       - supports-color
@@ -1144,14 +1144,14 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/svelte/3.1.1_svelte@3.47.0:
+  /@testing-library/svelte/3.1.1_svelte@3.48.0:
     resolution: {integrity: sha512-JM0MwtUCbL13CkdosivF5So5s7Y1cGTrrIGTNUOy4vq+quCvHTiFkHLRsUuOyFhGG3fXT6lhCzX30ichG+AlHA==}
     engines: {node: '>= 8'}
     peerDependencies:
       svelte: 3.x
     dependencies:
       '@testing-library/dom': 8.13.0
-      svelte: 3.47.0
+      svelte: 3.48.0
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -5394,13 +5394,13 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-svelte/2.7.0_svelte@3.47.0:
+  /prettier-plugin-svelte/2.7.0_svelte@3.48.0:
     resolution: {integrity: sha512-fQhhZICprZot2IqEyoiUYLTRdumULGRvw0o4dzl5jt0jfzVWdGqeYW27QTWAeXhoupEZJULmNoH3ueJwUWFLIA==}
     peerDependencies:
       prettier: ^1.16.4 || ^2.0.0
       svelte: ^3.2.0
     dependencies:
-      svelte: 3.47.0
+      svelte: 3.48.0
     dev: true
 
   /prettier/2.6.2:
@@ -6147,16 +6147,16 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-hmr/0.14.11_svelte@3.47.0:
+  /svelte-hmr/0.14.11_svelte@3.48.0:
     resolution: {integrity: sha512-R9CVfX6DXxW1Kn45Jtmx+yUe+sPhrbYSUp7TkzbW0jI5fVPn6lsNG9NEs5dFg5qRhFNAoVdRw5qQDLALNKhwbQ==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
       svelte: '>=3.19.0'
     dependencies:
-      svelte: 3.47.0
+      svelte: 3.48.0
     dev: true
 
-  /svelte-preprocess/4.10.6_4d9381695a7edfbb1fb6bc002cd71e0a:
+  /svelte-preprocess/4.10.6_24ezlekk4ocevlsjgs2qnqmjum:
     resolution: {integrity: sha512-I2SV1w/AveMvgIQlUF/ZOO3PYVnhxfcpNyGt8pxpUVhPfyfL/CZBkkw/KPfuFix5FJ9TnnNYMhACK3DtSaYVVQ==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -6204,12 +6204,12 @@ packages:
       sass: 1.51.0
       sorcery: 0.10.0
       strip-indent: 3.0.0
-      svelte: 3.47.0
-      typescript: 4.6.3
+      svelte: 3.48.0
+      typescript: 4.6.4
     dev: true
 
-  /svelte/3.47.0:
-    resolution: {integrity: sha512-4JaJp3HEoTCGARRWZQIZDUanhYv0iyoHikklVHVLH9xFE9db22g4TDv7CPeNA8HD1JgjXI1vlhR1JZvvhaTu2Q==}
+  /svelte/3.48.0:
+    resolution: {integrity: sha512-fN2YRm/bGumvjUpu6yI3BpvZnpIm9I6A7HR4oUNYd7ggYyIwSA/BX7DJ+UXXffLp6XNcUijyLvttbPVCYa/3xQ==}
     engines: {node: '>= 8'}
     dev: true
 
@@ -6373,8 +6373,8 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typescript/4.6.3:
-    resolution: {integrity: sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==}
+  /typescript/4.6.4:
+    resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -6540,7 +6540,7 @@ packages:
       vfile-message: 3.1.2
     dev: true
 
-  /vite-plugin-vue2/2.0.0_165aafa833f4b3ffc38894e27e52a497:
+  /vite-plugin-vue2/2.0.0_cznk7kbt6sz77q4istrh4uves4:
     resolution: {integrity: sha512-6+CfhsPgQoZnkBbMMb/pxX3gYLD3k10QljjVlUa2lL8160UmVotLuEaN+U2eSyCEnn+uBj7YMSmBPWXqqTEpsw==}
     peerDependencies:
       vite: ^2.0.0
@@ -6575,7 +6575,7 @@ packages:
       slash: 3.0.0
       source-map: 0.7.3
       vite: 2.9.6_sass@1.51.0
-      vue-template-babel-compiler: 1.2.0_vue-template-compiler@2.6.14
+      vue-template-babel-compiler: 1.2.0_ev5jzj74xu2fombjvobqpq452a
       vue-template-compiler: 2.6.14
     transitivePeerDependencies:
       - supports-color
@@ -6674,7 +6674,7 @@ packages:
       - stylus
     dev: true
 
-  /vue-template-babel-compiler/1.2.0_vue-template-compiler@2.6.14:
+  /vue-template-babel-compiler/1.2.0_ev5jzj74xu2fombjvobqpq452a:
     resolution: {integrity: sha512-CScBSX1/wCdmmZ/Lvj/63p2CCVTS0FMj0F69VRBo73CuJrjvPAPGmeNJ7D/cwt/VS2PduowRWbO8N4Zh4Z3b0g==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
