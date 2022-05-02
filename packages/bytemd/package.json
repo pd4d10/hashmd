@@ -38,6 +38,7 @@
   "devDependencies": {
     "@popperjs/core": "^2.11.5",
     "@primer/css": "^15.2.0",
+    "@types/hast": "^2.3.4",
     "@types/mdast": "^3.0.10",
     "codemirror-ssr": "^0.0.6",
     "hast-util-sanitize": "^4.0.0",
