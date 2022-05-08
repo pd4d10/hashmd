@@ -32,5 +32,6 @@
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"
-  }
+  },
+  "type": "module"
 }
