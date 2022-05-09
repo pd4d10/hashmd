@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-math-ssr",
-  "version": "1.13.1",
+  "version": "1.14.0",
   "description": "ByteMD plugin to support math formula (SSR compatible)",
   "repository": {
     "type": "git",

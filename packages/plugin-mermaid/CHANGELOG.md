@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/bytedance/bytemd/compare/v1.13.1...v1.14.0) (2022-05-09)
+
+
+### Features
+
+* add pt_BR locale ([#178](https://github.com/bytedance/bytemd/issues/178)) ([2d0f5b9](https://github.com/bytedance/bytemd/commit/2d0f5b90ede2cff0dd1c565502605be4d0918002))
+* use mjs to support svelte kit ([#181](https://github.com/bytedance/bytemd/issues/181)) ([422d78a](https://github.com/bytedance/bytemd/commit/422d78ac1e4c8f0a5bc392ad4b18ff927ba41d6a)), closes [#180](https://github.com/bytedance/bytemd/issues/180)
+
 ### [1.13.1](https://github.com/bytedance/bytemd/compare/v1.13.0...v1.13.1) (2022-04-06)
 
 ## [1.13.0](https://github.com/bytedance/bytemd/compare/v1.12.4...v1.13.0) (2022-03-31)
