@@ -50,13 +50,13 @@ libs.forEach((p) => {
   }
 
   pkg.types = './dist/index.d.ts'
-  pkg.module = './dist/index.esm.js'
+  pkg.module = './dist/index.mjs'
   pkg.main = './dist/index.js'
 
   pkg.exports = {
     '.': {
       types: './dist/index.d.ts',
-      import: './dist/index.esm.js',
+      import: './dist/index.mjs',
       require: './dist/index.js',
     },
     './locales/*': './locales/*',
