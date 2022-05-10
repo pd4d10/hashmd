@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Editor } from 'bytemd'
   import breaks from '@bytemd/plugin-breaks'
+  import emojiMart from '@bytemd/plugin-emoji-mart'
   import frontmatter from '@bytemd/plugin-frontmatter'
   import gfm from '@bytemd/plugin-gfm'
   import highlight from '@bytemd/plugin-highlight'
@@ -42,6 +43,7 @@
 
   let enabled = {
     breaks: false,
+    emojiMart: true,
     frontmatter: true,
     gemoji: true,
     gfm: true,
@@ -53,6 +55,7 @@
 
   $: plugins = [
     enabled.breaks && breaks(),
+    enabled.emojiMart && emojiMart(),
     enabled.frontmatter && frontmatter(),
     enabled.gemoji && gemoji(),
     enabled.gfm &&

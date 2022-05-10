@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@bytemd/plugin-breaks": "workspace:*",
+    "@bytemd/plugin-emoji-mart": "workspace:*",
     "@bytemd/plugin-frontmatter": "workspace:*",
     "@bytemd/plugin-gemoji": "workspace:*",
     "@bytemd/plugin-gfm": "workspace:*",

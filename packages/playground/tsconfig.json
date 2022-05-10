@@ -5,6 +5,7 @@
   "references": [
     { "path": "../bytemd" },
     { "path": "../plugin-breaks" },
+    { "path": "../plugin-emoji-mart" },
     { "path": "../plugin-frontmatter" },
     { "path": "../plugin-gemoji" },
     { "path": "../plugin-gfm" },

@@ -125,6 +125,7 @@ export default defineConfig({
       ],
     }),
     'packages/plugin-breaks': libraryConfig,
+    'packages/plugin-emoji-mart': libraryConfig,
     'packages/plugin-frontmatter': libraryConfig,
     'packages/plugin-gemoji': libraryConfig,
     'packages/plugin-gfm': libraryConfig,
