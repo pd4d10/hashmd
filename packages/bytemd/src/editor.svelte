@@ -23,6 +23,7 @@
     useGfm,
     useYaml,
     useYamlFrontmatter,
+    useContinuelist,
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
@@ -170,6 +171,7 @@
     useGfm(codemirror)
     useYaml(codemirror)
     useYamlFrontmatter(codemirror)
+    useContinuelist(codemirror)
 
     // @ts-ignore TODO: type
     editor = codemirror(editorEl, {
@@ -178,6 +180,9 @@
       lineWrapping: true,
       tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
       indentUnit: 4, // nested ordered list does not work with 2 spaces
+      extraKeys: {
+        Enter: 'newlineAndIndentContinueMarkdownList',
+      }, // https://github.com/codemirror/CodeMirror/blob/c955a0fb02d9a09cf98b775cb94589e4980303c1/mode/markdown/index.html#L359
       ...editorConfig,
       placeholder,
     })

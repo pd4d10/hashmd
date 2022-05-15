@@ -16,6 +16,7 @@ import useMarkdown from 'codemirror-ssr/mode/markdown/markdown'
 import useGfm from 'codemirror-ssr/mode/gfm/gfm'
 import useYaml from 'codemirror-ssr/mode/yaml/yaml'
 import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter'
+import useContinuelist from 'codemirror-ssr/addon/edit/continuelist'
 import { icons } from './icons'
 
 export type { DelegateInstance, Root, Element, VFile, Plugin }
@@ -35,6 +36,7 @@ export {
   useGfm,
   useYaml,
   useYamlFrontmatter,
+  useContinuelist,
   //
   icons,
 }
