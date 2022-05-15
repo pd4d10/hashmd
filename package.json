@@ -43,7 +43,7 @@
     "vitepress": "^0.22.3",
     "vue-template-compiler": "^2.6.14"
   },
-  "packageManager": "pnpm@7.0.0",
+  "packageManager": "pnpm@7.1.0",
   "bundlewatch": {
     "files": [
       {
