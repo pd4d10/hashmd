@@ -173,7 +173,6 @@
     useYamlFrontmatter(codemirror)
     useContinuelist(codemirror)
 
-    // @ts-ignore TODO: type
     editor = codemirror(editorEl, {
       value,
       mode: 'yaml-frontmatter',

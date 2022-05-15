@@ -59,7 +59,7 @@ importers:
       '@types/codemirror': ^5.60.5
       '@types/hast': ^2.3.4
       '@types/mdast': ^3.0.10
-      codemirror-ssr: ^0.0.6
+      codemirror-ssr: ^0.65.0
       hast-util-sanitize: ^4.0.0
       rehype-raw: ^6.1.1
       rehype-sanitize: ^5.0.1
@@ -79,7 +79,7 @@ importers:
       '@primer/css': 15.2.0
       '@types/hast': 2.3.4
       '@types/mdast': 3.0.10
-      codemirror-ssr: 0.0.6
+      codemirror-ssr: 0.65.0_@types+codemirror@5.60.5
       hast-util-sanitize: 4.0.0
       rehype-raw: 6.1.1
       rehype-sanitize: 5.0.1
@@ -1198,12 +1198,6 @@ packages:
       '@types/har-format': 1.2.8
     dev: true
 
-  /@types/codemirror/0.0.108:
-    resolution: {integrity: sha512-3FGFcus0P7C2UOGCNUVENqObEb4SFk+S8Dnxq7K6aIsLVs/vDtlangl3PEO0ykaKXyK56swVF6Nho7VsA44uhw==}
-    dependencies:
-      '@types/tern': 0.23.4
-    dev: true
-
   /@types/codemirror/5.60.5:
     resolution: {integrity: sha512-TiECZmm8St5YxjFUp64LK0c8WU5bxMDt9YaAek1UqUb9swrSCoJhh92fWu1p3mTEqlHjhB5sY7OFBhWroJXZVg==}
     dependencies:
@@ -1224,6 +1218,7 @@ packages:
 
   /@types/estree/0.0.51:
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
+    dev: false
 
   /@types/filesystem/0.0.32:
     resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
@@ -1391,6 +1386,7 @@ packages:
     resolution: {integrity: sha512-JAUw1iXGO1qaWwEOzxTKJZ/5JxVeON9kvGZ/osgZaJImBnyjyn0cjovPsf6FNLmyGY8Vw9DoXZCMlfMkMwHRWg==}
     dependencies:
       '@types/estree': 0.0.51
+    dev: false
 
   /@types/testing-library__jest-dom/5.14.3:
     resolution: {integrity: sha512-oKZe+Mf4ioWlMuzVBaXQ9WDnEm1+umLx0InILg+yvZVBBDmzV5KfZyLrCvadtWcx8+916jLmHafcmqqffl+iIw==}
@@ -2114,10 +2110,12 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-  /codemirror-ssr/0.0.6:
-    resolution: {integrity: sha512-aJxhCdfzQAEkbte7ZP5iexcrxsIA8s6QUiXkol9rcUE3Gx/ikGZ3uQjjeLn6rp7gSgF9dbBjHjnTfWVRjG57yA==}
+  /codemirror-ssr/0.65.0_@types+codemirror@5.60.5:
+    resolution: {integrity: sha512-ofTAfPkQV56SYFfymNMYJ1ELo3+Jnkw3mOLgnIiQjhonwNmNzX1OFvnihAnYRXL0PWl2kT7s0gKrLc2ExshK4g==}
+    peerDependencies:
+      '@types/codemirror': ^5.0.0
     dependencies:
-      '@types/codemirror': 0.0.108
+      '@types/codemirror': 5.60.5
     dev: true
 
   /color-convert/1.9.3:
