@@ -66,18 +66,18 @@ export default defineComponent({
     }
 
     const off = () => {
+      if (cbs.value.length) {
+        cbs.value.forEach((cb: any) => cb && cb())
+      }
+    }
+
+    const on = () => {
       if (props.plugins && file) {
         cbs.value = props.plugins.map(
           ({ viewerEffect }: any) =>
             viewerEffect &&
             viewerEffect({ markdownBody: markdownBody.value, file })
         )
-      }
-    }
-
-    const on = () => {
-      if (cbs.value.length) {
-        cbs.value.forEach((cb: any) => cb && cb())
       }
     }
 
