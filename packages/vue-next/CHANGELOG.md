@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
+
+
+### Bug Fixes
+
+* **vue-next:** exchange on and off of viewer.vue ([#186](https://github.com/bytedance/bytemd/issues/186)) ([efcb96c](https://github.com/bytedance/bytemd/commit/efcb96c36b115defa99850ffa7d1aa61158a8702))
+
 ## [1.14.0](https://github.com/bytedance/bytemd/compare/v1.13.1...v1.14.0) (2022-05-09)
 
 

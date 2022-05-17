@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
+
+
+### Features
+
+* update codemirror-ssr ([ccf3c6f](https://github.com/bytedance/bytemd/commit/ccf3c6f5cf61453ce975d9d7dd1d1c8221366a31))
+* use continue list addon ([c25bf95](https://github.com/bytedance/bytemd/commit/c25bf957767984f1d1d19cd55eb13d8f47e1f1c7)), closes [#183](https://github.com/bytedance/bytemd/issues/183)
+
 ## [1.14.0](https://github.com/bytedance/bytemd/compare/v1.13.1...v1.14.0) (2022-05-09)
 
 
