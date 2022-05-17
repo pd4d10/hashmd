@@ -15,15 +15,7 @@
   import {
     debounce,
     throttle,
-    factory,
-    usePlaceholder,
-    useOverlay,
-    useXml,
-    useMarkdown,
-    useGfm,
-    useYaml,
-    useYamlFrontmatter,
-    useContinuelist,
+    createCodeMirror,
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
@@ -65,7 +57,7 @@
   let previewEl: HTMLElement
   let containerWidth = Infinity // TODO: first screen
 
-  let codemirror: ReturnType<typeof factory>
+  let codemirror: ReturnType<typeof createCodeMirror>
   let editor: Editor
   let activeTab: false | 'write' | 'preview'
   let fullscreen = false
@@ -163,15 +155,7 @@
   let currentBlockIndex = 0
 
   onMount(async () => {
-    codemirror = factory()
-    usePlaceholder(codemirror)
-    useOverlay(codemirror)
-    useXml(codemirror) // inline html highlight
-    useMarkdown(codemirror)
-    useGfm(codemirror)
-    useYaml(codemirror)
-    useYamlFrontmatter(codemirror)
-    useContinuelist(codemirror)
+    codemirror = createCodeMirror()
 
     editor = codemirror(editorEl, {
       value,

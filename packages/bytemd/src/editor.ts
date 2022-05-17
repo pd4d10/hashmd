@@ -8,8 +8,30 @@ import type {
   BytemdEditorContext,
 } from './types'
 
+import factory from 'codemirror-ssr'
+import usePlaceholder from 'codemirror-ssr/addon/display/placeholder'
+import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
+import useXml from 'codemirror-ssr/mode/xml/xml'
+import useMarkdown from 'codemirror-ssr/mode/markdown/markdown'
+import useGfm from 'codemirror-ssr/mode/gfm/gfm'
+import useYaml from 'codemirror-ssr/mode/yaml/yaml'
+import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter'
+import useContinuelist from 'codemirror-ssr/addon/edit/continuelist'
 import selectFiles from 'select-files'
 import { icons } from './icons'
+
+export function createCodeMirror() {
+  const codemirror = factory()
+  usePlaceholder(codemirror)
+  useOverlay(codemirror)
+  useXml(codemirror) // inline html highlight
+  useMarkdown(codemirror)
+  useGfm(codemirror)
+  useYaml(codemirror)
+  useYamlFrontmatter(codemirror)
+  useContinuelist(codemirror)
+  return codemirror
+}
 
 export type EditorUtils = ReturnType<typeof createEditorUtils>
 
