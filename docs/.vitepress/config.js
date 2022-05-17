@@ -1,7 +1,7 @@
 // @ts-check
-import { defineConfig } from 'vitepress'
+// import { defineConfig } from 'vitepress' // TODO: vue version conflict
 
-export default defineConfig({
+export default {
   title: 'ByteMD',
   description: 'A hackable Markdown editor component',
   themeConfig: {
@@ -13,4 +13,4 @@ export default defineConfig({
       },
     ],
   },
-})
+}
