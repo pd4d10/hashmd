@@ -43,7 +43,7 @@
   export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
 
   $: mergedLocale = { ...en, ...locale }
-  const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
   $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800)
