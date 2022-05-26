@@ -1,21 +1,38 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import * as bytemd from 'bytemd'
 
-export interface EditorProps extends bytemd.EditorProps {
+export interface EditorProps extends Omit<bytemd.EditorProps, 'editorLoaded'> {
   onChange?(value: string): void
 }
 
-export const Editor: React.FC<EditorProps> = ({ onChange, ...props }) => {
+export interface EditorRef {
+  codeMirror?: bytemd.CodeMirrorEditor
+  container?: HTMLDivElement | null
+}
+
+const InternalEditor: React.ForwardRefRenderFunction<EditorRef, EditorProps> = (
+  { onChange, ...props },
+  ref
+) => {
   const ed = useRef<bytemd.Editor>()
   const el = useRef<HTMLDivElement>(null)
   const onChangeRef = useRef<EditorProps['onChange']>()
+
+  const [codeMirror, setCodeMirror] = useState<bytemd.CodeMirrorEditor>()
+  useImperativeHandle(ref, () => ({ codeMirror, container: el.current }), [
+    codeMirror,
+    el.current,
+  ])
 
   useEffect(() => {
     if (!el.current) return
 
     const editor = new bytemd.Editor({
       target: el.current,
-      props,
+      props: {
+        ...props,
+        editorLoaded: setCodeMirror,
+      },
     })
     editor.$on('change', (e: CustomEvent<{ value: string }>) => {
       onChangeRef.current?.(e.detail.value)
@@ -38,3 +55,5 @@ export const Editor: React.FC<EditorProps> = ({ onChange, ...props }) => {
 
   return <div ref={el}></div>
 }
+
+export const Editor = React.forwardRef(InternalEditor)
