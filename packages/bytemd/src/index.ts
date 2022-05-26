@@ -8,6 +8,7 @@ export type {
   BytemdPlugin,
   EditorProps,
   ViewerProps,
+  CodeMirrorEditor,
 } from './helpers'
 
 export { default as Editor } from './editor.svelte'

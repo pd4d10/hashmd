@@ -41,6 +41,7 @@
   export let uploadImages: EditorProps['uploadImages']
   export let overridePreview: EditorProps['overridePreview']
   export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
+  export let editorLoaded: EditorProps["editorLoaded"]
 
   $: mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher()
@@ -331,6 +332,9 @@
     }).observe(root, { box: 'border-box' })
 
     // No need to call `on` because cm instance would change once after init
+
+    // Expose CodeMirror instance
+    editorLoaded?.(editor)
   })
   onDestroy(off)
 </script>

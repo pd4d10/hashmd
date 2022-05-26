@@ -2,6 +2,7 @@ export type { Root, Element } from 'hast'
 export type { VFile } from 'vfile'
 export type { Plugin } from 'unified'
 export type { DelegateInstance } from 'tippy.js'
+export type { Editor as CodeMirrorEditor } from 'codemirror'
 
 export { throttle, debounce } from 'lodash-es'
 // @ts-ignore

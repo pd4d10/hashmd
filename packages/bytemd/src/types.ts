@@ -207,6 +207,10 @@ export interface EditorProps extends ViewerProps {
    * Maximum length (number of characters) of value
    */
   maxLength?: number
+  /**
+   * Callback function for when the codemirror editor is loaded 
+   */
+  editorLoaded?(editor: Editor): void
 }
 
 export interface ViewerProps {
