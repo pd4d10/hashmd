@@ -1,9 +1,14 @@
 // @ts-check
+// @ts-ignore
 import fs from 'fs-extra'
+// @ts-ignore
 import path from 'path'
+// @ts-ignore
 import mustache from 'mustache'
+// @ts-ignore
 import _ from 'lodash-es'
 import { rootDir } from '../norm.config.mjs'
+import { createRequire } from 'module'
 
 function readFileSyncSafe(p) {
   try {
@@ -118,3 +123,83 @@ ${content}
 )
 
 fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
+
+await (async () => {
+  // create .svelte.ts files
+
+  const bytemd_path = path.join(rootDir, 'packages/bytemd')
+  const bytemd_src_path = path.join(bytemd_path, 'src')
+
+  {
+    // some parts are from here https://github.com/sveltejs/kit/blob/master/packages/kit/src/packaging/typescript.js
+    // @ts-ignore
+    const require = createRequire(import.meta.url)
+
+    const emitDts = (await import('svelte2tsx')).emitDts
+
+    await emitDts({
+      libRoot: bytemd_src_path,
+      svelteShimsPath: require.resolve('svelte2tsx/svelte-shims.d.ts'),
+      declarationDir: './tmp',
+    })
+
+    const tmp_path = path.join(bytemd_path, './tmp')
+    const files = fs.readdirSync(tmp_path)
+    const file_end = '.svelte.d.ts'
+
+    //copy svelte.d.ts to src, and change ending to svelte.ts
+    files
+      .filter((name) => name.endsWith(file_end))
+      .map((name) => {
+        fs.copyFileSync(
+          path.join(tmp_path, name),
+          path.join(
+            bytemd_src_path,
+            `${name.slice(0, name.length - file_end.length)}.svelte.ts`
+          )
+        )
+      })
+
+    fs.removeSync(tmp_path)
+  }
+
+  {
+    //fix import conflict ViewerProps and EditorProps
+
+    const fixes = {
+      'viewer.svelte.ts': 'ViewerProps',
+      'editor.svelte.ts': 'EditorProps',
+    }
+
+    Object.entries(fixes).map(([file_name, conflict]) => {
+      const file_path = path.join(bytemd_src_path, file_name)
+      const file = fs.readFileSync(file_path)
+      const lines = file.toString().split('\n')
+      const import_line = lines.findIndex(
+        (line) =>
+          line.startsWith('import type') && line.includes(` ${conflict} `)
+      )
+      const conflict_declaration_line = lines.findIndex((line) =>
+        line.startsWith(`export declare type ${conflict} `)
+      )
+
+      if (import_line === -1 || conflict_declaration_line === -1) {
+        throw new Error(
+          `Could not find ${conflict} import or declaration, Is this Fix still needed?`
+        )
+      }
+
+      const new_lines = lines.map((line, index) => {
+        if (index === import_line) {
+          return line.replace(` ${conflict} `, ` ${conflict} as ${conflict}2 `)
+        }
+        if (index <= import_line || index >= conflict_declaration_line) {
+          return line
+        }
+        return line.replaceAll(conflict, `${conflict}2`)
+      })
+
+      fs.writeFileSync(file_path, new_lines.join('\n'))
+    })
+  }
+})()
