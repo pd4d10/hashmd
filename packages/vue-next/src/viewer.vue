@@ -1,6 +1,6 @@
 <template>
   <div
-    v-html="file"
+    v-html="file.toString()"
     className="markdown-body"
     @click="handleClick"
     ref="markdownBody"
