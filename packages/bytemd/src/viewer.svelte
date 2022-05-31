@@ -24,7 +24,7 @@
 
   export let value: ViewerProps['value'] = ''
   export let plugins: NonNullable<ViewerProps['plugins']> = []
-  export let sanitize: ViewerProps['sanitize']
+  export let sanitize: ViewerProps['sanitize'] = undefined
 
   let markdownBody: HTMLElement
   let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = []

@@ -9,7 +9,7 @@ declare const __propDef: {
   props: {
     value?: string | undefined
     plugins?: BytemdPlugin[] | undefined
-    sanitize: ViewerProps2['sanitize']
+    sanitize?: ViewerProps2['sanitize']
   }
   events: {
     hast: CustomEvent<{
