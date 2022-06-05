@@ -35,6 +35,7 @@
     "sort-json": "^2.0.1",
     "svelte": "^3.48.0",
     "svelte-preprocess": "^4.10.6",
+    "svelte2tsx": "^0.5.10",
     "typescript": "^4.6.4",
     "vite": "^2.9.9"
   },

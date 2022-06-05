@@ -32,18 +32,18 @@
 
   export let value: EditorProps['value'] = ''
   export let plugins: NonNullable<EditorProps['plugins']> = []
-  export let sanitize: EditorProps['sanitize']
+  export let sanitize: EditorProps['sanitize'] = undefined
   export let mode: NonNullable<EditorProps['mode']> = 'auto'
   export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300
-  export let placeholder: EditorProps['placeholder']
-  export let editorConfig: EditorProps['editorConfig']
-  export let locale: EditorProps['locale']
-  export let uploadImages: EditorProps['uploadImages']
-  export let overridePreview: EditorProps['overridePreview']
+  export let placeholder: EditorProps['placeholder'] = undefined
+  export let editorConfig: EditorProps['editorConfig'] = undefined
+  export let locale: EditorProps['locale'] = undefined
+  export let uploadImages: EditorProps['uploadImages'] = undefined
+  export let overridePreview: EditorProps['overridePreview'] = undefined
   export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
 
   $: mergedLocale = { ...en, ...locale }
-  const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
   $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800)

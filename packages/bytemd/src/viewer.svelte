@@ -1,7 +1,13 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { VFile, BytemdPlugin, ViewerProps, Plugin } from './helpers'
+  import type {
+    VFile,
+    Root,
+    BytemdPlugin,
+    ViewerProps,
+    Plugin,
+  } from './helpers'
 
   import {
     tick,
@@ -12,11 +18,13 @@
   } from 'svelte'
   import { getProcessor } from './helpers'
 
-  const dispatch = createEventDispatcher()
+  const dispatch = createEventDispatcher<{
+    hast: { hast: Root; file: VFile }
+  }>()
 
   export let value: ViewerProps['value'] = ''
   export let plugins: NonNullable<ViewerProps['plugins']> = []
-  export let sanitize: ViewerProps['sanitize']
+  export let sanitize: ViewerProps['sanitize'] = undefined
 
   let markdownBody: HTMLElement
   let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = []
@@ -49,7 +57,7 @@
   let file: VFile
   let i = 0
 
-  const dispatchPlugin: Plugin = () => (tree, file) => {
+  const dispatchPlugin: Plugin<any[], Root> = () => (tree, file) => {
     tick().then(() => {
       // console.log(tree);
       dispatch('hast', { hast: tree, file })
