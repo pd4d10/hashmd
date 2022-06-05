@@ -1,6 +1,5 @@
 {
   "name": "playground",
-  "version": "1.15.0",
   "private": true,
   "dependencies": {
     "@bytemd/plugin-breaks": "workspace:*",
@@ -17,5 +16,9 @@
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.5.1",
     "katex": "^0.15.6"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
   }
 }

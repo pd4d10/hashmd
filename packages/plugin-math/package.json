@@ -25,6 +25,10 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "tsdv build",
+    "dev": "tsdv watch"
+  },
   "dependencies": {
     "@types/katex": "^0.14.0",
     "katex": "^0.15.6"

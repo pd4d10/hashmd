@@ -25,6 +25,10 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "tsdv build",
+    "dev": "tsdv watch"
+  },
   "dependencies": {
     "@types/mermaid": "^8.2.9",
     "mermaid": "^9.1.1"

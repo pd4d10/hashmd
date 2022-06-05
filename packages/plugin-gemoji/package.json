@@ -25,6 +25,10 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "tsdv build",
+    "dev": "tsdv watch"
+  },
   "devDependencies": {
     "bytemd": "workspace:*",
     "remark-gemoji": "^7.0.1"

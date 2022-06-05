@@ -25,6 +25,10 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "tsdv build",
+    "dev": "tsdv watch"
+  },
   "devDependencies": {
     "@icon-park/svg": "^1.4.0",
     "bytemd": "workspace:*",

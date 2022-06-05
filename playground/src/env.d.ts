@@ -1,1 +1,1 @@
-/// <reference types="@norm/cli/env" />
+/// <reference types="vite/client" />

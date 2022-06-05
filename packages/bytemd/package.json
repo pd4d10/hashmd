@@ -26,12 +26,17 @@
     "./dist/index.min.css": "./dist/index.min.css"
   },
   "main": "./dist/index.js",
+  "svelte": "./dist/svelte-entry.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "tsdv build",
+    "dev": "tsdv watch"
+  },
   "dependencies": {
     "@types/codemirror": "^5.60.5"
   },
@@ -56,6 +61,5 @@
     "unist-util-visit": "^4.1.0",
     "vfile": "^5.3.2",
     "word-count": "^0.2.2"
-  },
-  "svelte": "./dist/svelte-entry.js"
+  }
 }

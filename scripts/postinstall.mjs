@@ -3,8 +3,8 @@ import fs from 'fs-extra'
 import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash-es'
-import { rootDir } from '../norm.config.mjs'
 import { createRequire } from 'module'
+import { fileURLToPath } from 'url'
 
 function readFileSyncSafe(p) {
   try {
@@ -13,6 +13,9 @@ function readFileSyncSafe(p) {
     return ''
   }
 }
+
+// https://stackoverflow.com/a/50052194
+const rootDir = path.resolve(fileURLToPath(import.meta.url), '../..')
 
 const packagesDir = path.join(rootDir, 'packages')
 const packages = fs.readdirSync(packagesDir)
@@ -29,6 +32,11 @@ packages.forEach((p) => {
 
   // tsconfig
   fs.writeJsonSync(tsconfig, c)
+})
+
+fs.writeJsonSync('tsconfig.json', {
+  files: [],
+  references: packages.map((p) => ({ path: path.join('packages', p) })),
 })
 
 packages.forEach((p) => {
@@ -63,6 +71,10 @@ packages.forEach((p) => {
     './lib/locales/*': './locales/*',
   }
   pkg.files = ['dist', 'locales']
+  pkg.scripts = {
+    dev: 'tsdv watch',
+    build: 'tsdv build',
+  }
 
   if (pkg.name === 'bytemd') {
     pkg.exports['./dist/index.css'] = './dist/index.css'
