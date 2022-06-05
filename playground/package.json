@@ -16,6 +16,6 @@
     "bytemd": "workspace:*",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.5.1",
-    "katex": "^0.15.3"
+    "katex": "^0.15.6"
   }
 }
