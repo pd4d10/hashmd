@@ -1,11 +1,7 @@
 // @ts-check
-// @ts-ignore
 import fs from 'fs-extra'
-// @ts-ignore
 import path from 'path'
-// @ts-ignore
 import mustache from 'mustache'
-// @ts-ignore
 import _ from 'lodash-es'
 import { rootDir } from '../norm.config.mjs'
 import { createRequire } from 'module'
@@ -20,10 +16,7 @@ function readFileSyncSafe(p) {
 
 const packagesDir = path.join(rootDir, 'packages')
 const packages = fs.readdirSync(packagesDir)
-const libs = packages.filter(
-  (x) => !x.includes('playground') && !x.includes('common')
-)
-const plugins = libs.filter((x) => x.startsWith('plugin-'))
+const plugins = packages.filter((x) => x.startsWith('plugin-'))
 
 packages.forEach((p) => {
   const tsconfig = path.join(packagesDir, p, 'tsconfig.json')
@@ -38,7 +31,7 @@ packages.forEach((p) => {
   fs.writeJsonSync(tsconfig, c)
 })
 
-libs.forEach((p) => {
+packages.forEach((p) => {
   // license
   fs.copyFileSync(
     path.join(rootDir, 'LICENSE'),

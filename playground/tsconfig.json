@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig-base.json",
+  "include": ["src", "src/locales/*.json"],
+  "compilerOptions": { "rootDir": "src", "outDir": "dist" },
+  "references": [
+    { "path": "../packages/bytemd" },
+    { "path": "../packages/plugin-breaks" },
+    { "path": "../packages/plugin-frontmatter" },
+    { "path": "../packages/plugin-gemoji" },
+    { "path": "../packages/plugin-gfm" },
+    { "path": "../packages/plugin-highlight" },
+    { "path": "../packages/plugin-highlight-ssr" },
+    { "path": "../packages/plugin-math" },
+    { "path": "../packages/plugin-math-ssr" },
+    { "path": "../packages/plugin-medium-zoom" },
+    { "path": "../packages/plugin-mermaid" }
+  ]
+}

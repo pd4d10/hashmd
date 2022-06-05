@@ -168,7 +168,7 @@ export default defineConfig({
       ...libraryConfig,
       plugins: [vue()],
     }),
-    'packages/playground': {
+    playground: {
       preset: {
         type: 'web-app',
       },
