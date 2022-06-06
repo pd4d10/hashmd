@@ -5,18 +5,7 @@ import { preprocess } from 'svelte/compiler'
 import glob from 'fast-glob'
 import { build } from 'vite'
 import { resolveModule } from 'local-pkg'
-import sveltePreprocess from 'svelte-preprocess'
-
-export const sveltePreprocessor = sveltePreprocess({
-  typescript: true,
-  // https://github.com/sveltejs/svelte/issues/189#issuecomment-586142198
-  replace: [
-    [/(>)[\s]*([<{])/g, '$1$2'],
-    [/({[/:][a-z]+})[\s]*([<{])/g, '$1$2'],
-    [/({[#:][a-z]+ .+?})[\s]*([<{])/g, '$1$2'],
-    [/([>}])[\s]+(<|{[/#:][a-z][^}]*})/g, '$1$2'],
-  ],
-})
+import { sveltePreprocessor } from './utils.mjs'
 
 const pkgName = 'decode-named-character-reference'
 const resolveOptions = {

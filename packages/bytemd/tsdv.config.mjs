@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'tsdv'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import { sveltePreprocessor } from './build.mjs'
+import { sveltePreprocessor } from './scripts/utils.mjs'
 
 // nullish coalescing in es2020
 // TODO: 'decode-named-character-reference'
