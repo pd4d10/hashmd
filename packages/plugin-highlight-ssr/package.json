@@ -27,7 +27,8 @@
   ],
   "scripts": {
     "build": "tsdv build",
-    "dev": "tsdv watch"
+    "dev": "tsdv watch",
+    "test": "tsdv test"
   },
   "dependencies": {
     "highlight.js": "^11.5.1"

@@ -35,7 +35,8 @@
   ],
   "scripts": {
     "build": "tsdv build",
-    "dev": "tsdv watch"
+    "dev": "tsdv watch",
+    "test": "tsdv test"
   },
   "dependencies": {
     "@types/codemirror": "^5.60.5"

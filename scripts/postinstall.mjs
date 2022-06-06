@@ -74,6 +74,7 @@ packages.forEach((p) => {
   pkg.scripts = {
     dev: 'tsdv watch',
     build: 'tsdv build',
+    test: 'tsdv test',
   }
 
   if (pkg.name === 'bytemd') {

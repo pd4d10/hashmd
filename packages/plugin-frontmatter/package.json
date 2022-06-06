@@ -27,7 +27,8 @@
   ],
   "scripts": {
     "build": "tsdv build",
-    "dev": "tsdv watch"
+    "dev": "tsdv watch",
+    "test": "tsdv test"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",

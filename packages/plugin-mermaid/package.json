@@ -27,7 +27,8 @@
   ],
   "scripts": {
     "build": "tsdv build",
-    "dev": "tsdv watch"
+    "dev": "tsdv watch",
+    "test": "tsdv test"
   },
   "dependencies": {
     "@types/mermaid": "^8.2.9",

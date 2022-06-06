@@ -11,7 +11,7 @@
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
     "postinstall": "node scripts/postinstall.mjs && npm run format && sort-json packages/*/locales/*.json",
     "pub": "npm run build && norm version && pnpm --recursive --registry https://registry.npmjs.org/ publish --access public",
-    "test": "norm test bytemd"
+    "test": "pnpm --filter bytemd test"
   },
   "prettier": {
     "pluginSearchDirs": [
@@ -41,6 +41,7 @@
     "svelte": "^3.48.0",
     "svelte-preprocess": "^4.10.6",
     "svelte2tsx": "^0.5.10",
+    "tsdv": "^0.3.0",
     "typescript": "^4.7.3",
     "vite": "3.0.0-alpha.9"
   },

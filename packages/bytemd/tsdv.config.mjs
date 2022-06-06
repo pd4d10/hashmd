@@ -13,4 +13,9 @@ export default defineConfig({
       preprocess: [sveltePreprocessor],
     }),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: 'test/setup.ts',
+  },
 })
