@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc --build && pnpm --filter './packages/**' build",
+    "build:playground": "pnpm build && pnpm --filter playground build",
     "dev": "pnpm --filter playground dev",
     "docs:build": "npx vitepress build docs",
     "docs:dev": "npx vitepress dev docs",
