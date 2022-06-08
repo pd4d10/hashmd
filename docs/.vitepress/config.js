@@ -1,16 +1,19 @@
 // @ts-check
-// import { defineConfig } from 'vitepress' // TODO: vue version conflict
+import { defineConfig } from 'vitepress' // TODO: vue version conflict
 
-export default {
+export default defineConfig({
   title: 'ByteMD',
-  description: 'A hackable Markdown editor component',
+  description: 'Hackable Markdown Editor and Viewer',
   themeConfig: {
-    repo: 'bytedance/bytemd',
     nav: [
       {
         text: 'Playground',
         link: 'https://bytemd.js.org/playground/',
       },
+      {
+        text: 'Source Code',
+        link: 'https://github.com/bytedance/bytemd',
+      },
     ],
   },
-}
+})
