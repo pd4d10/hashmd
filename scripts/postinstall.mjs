@@ -4,7 +4,7 @@ import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash-es'
 import { createRequire } from 'module'
-import { fileURLToPath } from 'url'
+import { packages, packagesDir, rootDir } from './utils.mjs'
 
 function readFileSyncSafe(p) {
   try {
@@ -14,11 +14,6 @@ function readFileSyncSafe(p) {
   }
 }
 
-// https://stackoverflow.com/a/50052194
-const rootDir = path.resolve(fileURLToPath(import.meta.url), '../..')
-
-const packagesDir = path.join(rootDir, 'packages')
-const packages = fs.readdirSync(packagesDir)
 const plugins = packages.filter((x) => x.startsWith('plugin-'))
 
 packages.forEach((p) => {
