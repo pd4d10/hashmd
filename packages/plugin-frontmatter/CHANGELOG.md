@@ -1,43 +1,37 @@
-# Changelog
+# [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
 
-## [1.14.0](https://github.com/bytedance/bytemd/compare/v1.13.1...v1.14.0) (2022-05-09)
+# [1.14.0](https://github.com/bytedance/bytemd/compare/v1.13.1...v1.14.0) (2022-05-09)
 
 
 ### Features
 
 * use mjs to support svelte kit ([#181](https://github.com/bytedance/bytemd/issues/181)) ([422d78a](https://github.com/bytedance/bytemd/commit/422d78ac1e4c8f0a5bc392ad4b18ff927ba41d6a)), closes [#180](https://github.com/bytedance/bytemd/issues/180)
 
-### [1.13.1](https://github.com/bytedance/bytemd/compare/v1.13.0...v1.13.1) (2022-04-06)
 
-## [1.13.0](https://github.com/bytedance/bytemd/compare/v1.12.4...v1.13.0) (2022-03-31)
 
-### [1.12.4](https://github.com/bytedance/bytemd/compare/v1.12.3...v1.12.4) (2022-03-27)
+## [1.13.1](https://github.com/bytedance/bytemd/compare/v1.13.0...v1.13.1) (2022-04-06)
+
+
+
+# [1.13.0](https://github.com/bytedance/bytemd/compare/v1.12.4...v1.13.0) (2022-03-31)
+
+
+
+## [1.12.4](https://github.com/bytedance/bytemd/compare/v1.12.3...v1.12.4) (2022-03-27)
+
+
 
 ## [1.12.3](https://github.com/bytedance/bytemd/compare/v1.12.2...v1.12.3) (2022-03-25)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.12.2](https://github.com/bytedance/bytemd/compare/v1.12.1...v1.12.2) (2022-03-25)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.12.1](https://github.com/bytedance/bytemd/compare/v1.12.0...v1.12.1) (2022-03-25)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
@@ -55,45 +49,27 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
+## [1.11.1](https://github.com/bytedance/bytemd/compare/v1.11.0...v1.11.1) (2022-03-12)
+
 
 
 # [1.11.0](https://github.com/bytedance/bytemd/compare/v1.10.13...v1.11.0) (2022-02-18)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.10.13](https://github.com/bytedance/bytemd/compare/v1.10.12...v1.10.13) (2021-07-22)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.10.12](https://github.com/bytedance/bytemd/compare/v1.10.11...v1.10.12) (2021-07-22)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.10.11](https://github.com/bytedance/bytemd/compare/v1.10.10...v1.10.11) (2021-07-22)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.10.10](https://github.com/bytedance/bytemd/compare/v1.10.9...v1.10.10) (2021-07-22)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
@@ -106,120 +82,119 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 
-
-
 ## [1.10.8](https://github.com/bytedance/bytemd/compare/v1.10.7...v1.10.8) (2021-07-11)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.10.7](https://github.com/bytedance/bytemd/compare/v1.10.6...v1.10.7) (2021-07-11)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.10.6](https://github.com/bytedance/bytemd/compare/v1.10.5...v1.10.6) (2021-07-08)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.10.5](https://github.com/bytedance/bytemd/compare/v1.10.4...v1.10.5) (2021-07-08)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.10.4](https://github.com/bytedance/bytemd/compare/v1.10.3...v1.10.4) (2021-07-08)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.10.2](https://github.com/bytedance/bytemd/compare/v1.10.1...v1.10.2) (2021-07-02)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.10.1](https://github.com/bytedance/bytemd/compare/v1.10.0...v1.10.1) (2021-07-02)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 # [1.10.0](https://github.com/bytedance/bytemd/compare/v1.9.2...v1.10.0) (2021-07-02)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 ## [1.9.2](https://github.com/bytedance/bytemd/compare/v1.9.1...v1.9.2) (2021-05-12)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 ## [1.9.1](https://github.com/bytedance/bytemd/compare/v1.9.0...v1.9.1) (2021-04-12)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 # [1.9.0](https://github.com/bytedance/bytemd/compare/v1.8.0...v1.9.0) (2021-03-10)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 # [1.8.0](https://github.com/bytedance/bytemd/compare/v1.7.1...v1.8.0) (2021-03-10)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 # [1.7.0](https://github.com/bytedance/bytemd/compare/v1.6.0...v1.7.0) (2021-03-05)
-
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
 
 
 
 # [1.6.0](https://github.com/bytedance/bytemd/compare/v1.5.0...v1.6.0) (2021-03-04)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
-
-
-
 
 
 # [1.5.0](https://github.com/bytedance/bytemd/compare/v1.4.0...v1.5.0) (2021-02-28)
 
-**Note:** Version bump only for package @bytemd/plugin-frontmatter
+
+
+# [1.4.0](https://github.com/bytedance/bytemd/compare/v1.3.4...v1.4.0) (2021-02-19)
+
+
+### Features
+
+* add dropdown ([9132b16](https://github.com/bytedance/bytemd/commit/9132b1601b02325c48e8b49084296b3f937280c5))
+
+
+
+# [1.3.0](https://github.com/bytedance/bytemd/compare/v1.2.0...v1.3.0) (2020-12-14)
+
+
+
+# [1.1.0](https://github.com/bytedance/bytemd/compare/v1.0.3...v1.1.0) (2020-10-31)
+
+
+
+# [1.0.0](https://github.com/bytedance/bytemd/compare/v0.2.1...v1.0.0) (2020-10-19)
+
+
+
+# [0.2.0](https://github.com/bytedance/bytemd/compare/v0.1.10...v0.2.0) (2020-10-16)
+
+
+
+## [0.1.10](https://github.com/bytedance/bytemd/compare/v0.1.9...v0.1.10) (2020-10-12)
+
+
+### Features
+
+* **frontmatter:** add error handler ([83b8104](https://github.com/bytedance/bytemd/commit/83b81044630fc72db806cf9dea654bda19f635ff))
+
+
+
+## [0.1.9](https://github.com/bytedance/bytemd/compare/v0.1.8...v0.1.9) (2020-10-09)
+
+
+
+## [0.1.8](https://github.com/bytedance/bytemd/compare/v0.1.7...v0.1.8) (2020-10-09)
+
+
+### Features
+
+* add external links plugin ([a15af7a](https://github.com/bytedance/bytemd/commit/a15af7a86fec74f80da66411aa04ebca7bbbe09c))
+
+
+
+## [0.1.7](https://github.com/bytedance/bytemd/compare/v0.1.6...v0.1.7) (2020-10-02)
+
+
+### Features
+
+* add frontmatter plugin ([4e25fba](https://github.com/bytedance/bytemd/commit/4e25fba3a5ccdebe4479e435f67c7e65d77a2041))
+
+
+
