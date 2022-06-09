@@ -4,7 +4,6 @@ import path from 'path'
 import { preprocess } from 'svelte/compiler'
 import glob from 'fast-glob'
 import { build } from 'vite'
-import { resolveModule } from 'local-pkg'
 import { defineConfig } from 'tsdv'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
@@ -45,14 +44,14 @@ export default defineConfig({
   },
 })
 
-const pkgName = 'decode-named-character-reference'
-const resolveOptions = {
-  alias: {
-    // do not resolve `browser` field to make it work at SSR
-    // https://github.com/vitejs/vite/issues/4405
-    [pkgName]: resolveModule(pkgName),
-  },
-}
+// const pkgName = 'decode-named-character-reference'
+// const resolveOptions = {
+//   alias: {
+//     // do not resolve `browser` field to make it work at SSR
+//     // https://github.com/vitejs/vite/issues/4405
+//     [pkgName]: resolve(pkgName),
+//   },
+// }
 
 async function buildFilesForSvelte() {
   console.log('building svelte entry and helpers...')
@@ -75,7 +74,7 @@ async function buildFilesForSvelte() {
           external: ['./helpers', /\.svelte$/],
         },
       },
-      resolve: resolveOptions,
+      // resolve: resolveOptions,
     })
   }
 

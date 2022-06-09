@@ -3,12 +3,8 @@
   "version": "1.15.0",
   "private": true,
   "scripts": {
-    "build": "tsc --build && pnpm --filter './packages/**' build",
-    "build:playground": "pnpm build && pnpm --filter playground build",
+    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && pnpm --filter './packages/**' build",
     "dev": "pnpm --filter playground dev",
-    "docs:build": "vitepress build docs",
-    "docs:dev": "vitepress dev docs",
-    "docs:serve": "vitepress serve docs",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
     "postinstall": "node scripts/postinstall.mjs && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && pnpm --recursive --registry https://registry.npmjs.org/ publish --access public",
@@ -34,7 +30,6 @@
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0",
     "jsdom": "^19.0.0",
-    "local-pkg": "^0.4.1",
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
     "prettier": "^2.6.2",
@@ -47,9 +42,7 @@
     "svelte2tsx": "^0.5.10",
     "tsdv": "^0.3.0",
     "typescript": "^4.7.3",
-    "vite": "3.0.0-alpha.9",
-    "vitepress": "1.0.0-alpha.1",
-    "vue": "^3.2.37"
+    "vite": "3.0.0-alpha.9"
   },
   "packageManager": "pnpm@7.1.9",
   "bundlewatch": {

@@ -5,4 +5,4 @@
 
 [build]
   publish = "docs/.vitepress/dist"
-  command = "npm i -g pnpm && pnpm docs:build && pnpm build:playground && mv playground/dist docs/.vitepress/dist/playground"
+  command = "npm i -g pnpm && pnpm build && pnpm -F docs build && pnpm -F playground build && mv playground/dist docs/.vitepress/dist/playground"
