@@ -1,15 +1,10 @@
 import { SvelteComponentTyped } from 'svelte'
-import type {
-  VFile,
-  Root,
-  BytemdPlugin,
-  ViewerProps as ViewerProps2,
-} from './helpers'
+import type { VFile, Root, BytemdPlugin, ViewerProps as Props } from './helpers'
 declare const __propDef: {
   props: {
     value?: string | undefined
     plugins?: BytemdPlugin[] | undefined
-    sanitize?: ViewerProps2['sanitize']
+    sanitize?: Props['sanitize']
   }
   events: {
     hast: CustomEvent<{

@@ -5,7 +5,7 @@
   import type {
     BytemdEditorContext,
     BytemdPlugin,
-    EditorProps,
+    EditorProps as Props,
     VFile,
     Root,
     Element,
@@ -30,17 +30,17 @@
   import Help from './help.svelte'
   import en from '../locales/en.json'
 
-  export let value: EditorProps['value'] = ''
-  export let plugins: NonNullable<EditorProps['plugins']> = []
-  export let sanitize: EditorProps['sanitize'] = undefined
-  export let mode: NonNullable<EditorProps['mode']> = 'auto'
-  export let previewDebounce: NonNullable<EditorProps['previewDebounce']> = 300
-  export let placeholder: EditorProps['placeholder'] = undefined
-  export let editorConfig: EditorProps['editorConfig'] = undefined
-  export let locale: EditorProps['locale'] = undefined
-  export let uploadImages: EditorProps['uploadImages'] = undefined
-  export let overridePreview: EditorProps['overridePreview'] = undefined
-  export let maxLength: NonNullable<EditorProps['maxLength']> = Infinity
+  export let value: Props['value'] = ''
+  export let plugins: NonNullable<Props['plugins']> = []
+  export let sanitize: Props['sanitize'] = undefined
+  export let mode: NonNullable<Props['mode']> = 'auto'
+  export let previewDebounce: NonNullable<Props['previewDebounce']> = 300
+  export let placeholder: Props['placeholder'] = undefined
+  export let editorConfig: Props['editorConfig'] = undefined
+  export let locale: Props['locale'] = undefined
+  export let uploadImages: Props['uploadImages'] = undefined
+  export let overridePreview: Props['overridePreview'] = undefined
+  export let maxLength: NonNullable<Props['maxLength']> = Infinity
 
   $: mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher<{ change: { value: string } }>()

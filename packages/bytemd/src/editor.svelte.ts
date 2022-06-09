@@ -1,17 +1,17 @@
 import { SvelteComponentTyped } from 'svelte'
-import type { BytemdPlugin, EditorProps as EditorProps2 } from './helpers'
+import type { BytemdPlugin, EditorProps as Props } from './helpers'
 declare const __propDef: {
   props: {
     value?: string | undefined
     plugins?: BytemdPlugin[] | undefined
-    sanitize?: EditorProps2['sanitize']
+    sanitize?: Props['sanitize']
     mode?: 'split' | 'tab' | 'auto' | undefined
     previewDebounce?: number | undefined
-    placeholder?: EditorProps2['placeholder']
-    editorConfig?: EditorProps2['editorConfig']
-    locale?: EditorProps2['locale']
-    uploadImages?: EditorProps2['uploadImages']
-    overridePreview?: EditorProps2['overridePreview']
+    placeholder?: Props['placeholder']
+    editorConfig?: Props['editorConfig']
+    locale?: Props['locale']
+    uploadImages?: Props['uploadImages']
+    overridePreview?: Props['overridePreview']
     maxLength?: number | undefined
   }
   events: {

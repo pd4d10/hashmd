@@ -5,7 +5,7 @@
     VFile,
     Root,
     BytemdPlugin,
-    ViewerProps,
+    ViewerProps as Props,
     Plugin,
   } from './helpers'
 
@@ -22,9 +22,9 @@
     hast: { hast: Root; file: VFile }
   }>()
 
-  export let value: ViewerProps['value'] = ''
-  export let plugins: NonNullable<ViewerProps['plugins']> = []
-  export let sanitize: ViewerProps['sanitize'] = undefined
+  export let value: Props['value'] = ''
+  export let plugins: NonNullable<Props['plugins']> = []
+  export let sanitize: Props['sanitize'] = undefined
 
   let markdownBody: HTMLElement
   let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = []

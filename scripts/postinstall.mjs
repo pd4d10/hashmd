@@ -158,44 +158,4 @@ await (async () => {
 
     fs.removeSync(tmp_path)
   }
-
-  {
-    //fix import conflict ViewerProps and EditorProps
-
-    const fixes = {
-      'viewer.svelte.ts': 'ViewerProps',
-      'editor.svelte.ts': 'EditorProps',
-    }
-
-    Object.entries(fixes).map(([file_name, conflict]) => {
-      const file_path = path.join(bytemd_src_path, file_name)
-      const file = fs.readFileSync(file_path)
-      const lines = file.toString().split('\n')
-      const import_line = lines.findIndex(
-        (line) =>
-          line.startsWith('import type') && line.includes(` ${conflict} `)
-      )
-      const conflict_declaration_line = lines.findIndex((line) =>
-        line.startsWith(`export declare type ${conflict} `)
-      )
-
-      if (import_line === -1 || conflict_declaration_line === -1) {
-        throw new Error(
-          `Could not find ${conflict} import or declaration, Is this Fix still needed?`
-        )
-      }
-
-      const new_lines = lines.map((line, index) => {
-        if (index === import_line) {
-          return line.replace(` ${conflict} `, ` ${conflict} as ${conflict}2 `)
-        }
-        if (index <= import_line || index >= conflict_declaration_line) {
-          return line
-        }
-        return line.replaceAll(conflict, `${conflict}2`)
-      })
-
-      fs.writeFileSync(file_path, new_lines.join('\n'))
-    })
-  }
 })()
