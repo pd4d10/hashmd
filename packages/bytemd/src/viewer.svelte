@@ -25,6 +25,7 @@
   export let value: Props['value'] = ''
   export let plugins: NonNullable<Props['plugins']> = []
   export let sanitize: Props['sanitize'] = undefined
+  export let remarkRehype: Props['remarkRehype'] = undefined
 
   let markdownBody: HTMLElement
   let cbs: ReturnType<NonNullable<BytemdPlugin['viewerEffect']>>[] = []
@@ -77,6 +78,7 @@
           rehype: (processor) => processor.use(dispatchPlugin),
         },
       ],
+      remarkRehype,
     }).processSync(value)
     i++
   } catch (err) {

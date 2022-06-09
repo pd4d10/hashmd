@@ -5,6 +5,7 @@ declare const __propDef: {
     value?: string | undefined
     plugins?: BytemdPlugin[] | undefined
     sanitize?: Props['sanitize']
+    remarkRehype?: Props['remarkRehype']
   }
   events: {
     hast: CustomEvent<{

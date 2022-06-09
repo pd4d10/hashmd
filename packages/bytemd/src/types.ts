@@ -5,7 +5,7 @@ import type { Editor, EditorConfiguration } from 'codemirror'
 import type CodeMirror from 'codemirror'
 import type { EditorUtils } from './editor'
 import type { Image } from 'mdast'
-
+import type { Options } from 'remark-rehype'
 export interface BytemdLocale {
   write: string
   preview: string
@@ -226,4 +226,12 @@ export interface ViewerProps {
    * If you want further customization, pass a function to mutate sanitize schema.
    */
   sanitize?: (schema: Schema) => Schema
+  /**
+   * custom remark-rehype options: Defaults value { allowDangerousHtml: true }
+   *
+   * https://github.com/remarkjs/remark-rehype
+   *
+   * If you want to further customization (usually used with extensions that extend the markdown syntax), pass custom options, it will expands the default value.
+   */
+  remarkRehype?: Options
 }

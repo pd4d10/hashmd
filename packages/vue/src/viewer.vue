@@ -6,7 +6,7 @@
 import { getProcessor } from 'bytemd'
 
 export default {
-  props: ['value', 'plugins', 'sanitize'],
+  props: ['value', 'plugins', 'sanitize', 'remarkRehype'],
   computed: {
     file() {
       try {
@@ -16,7 +16,7 @@ export default {
       }
     },
     needUpdate() {
-      return [this.file, this.plugins, this.sanitize]
+      return [this.file, this.plugins, this.sanitize, this.remarkRehype]
     },
   },
   watch: {

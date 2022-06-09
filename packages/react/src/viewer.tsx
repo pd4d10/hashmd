@@ -3,15 +3,22 @@ import * as bytemd from 'bytemd'
 
 export interface ViewerProps extends bytemd.ViewerProps {}
 
-export const Viewer: FC<ViewerProps> = ({ value, sanitize, plugins }) => {
+export const Viewer: FC<ViewerProps> = ({
+  value,
+  sanitize,
+  plugins,
+  remarkRehype,
+}) => {
   const elRef = useRef<HTMLDivElement>(null)
   const file = useMemo(() => {
     try {
-      return bytemd.getProcessor({ sanitize, plugins }).processSync(value)
+      return bytemd
+        .getProcessor({ sanitize, plugins, remarkRehype })
+        .processSync(value)
     } catch (err) {
       console.error(err)
     }
-  }, [value, sanitize, plugins])
+  }, [value, sanitize, plugins, remarkRehype])
 
   useEffect(() => {
     const markdownBody = elRef.current

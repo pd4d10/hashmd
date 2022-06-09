@@ -33,6 +33,7 @@
   export let value: Props['value'] = ''
   export let plugins: NonNullable<Props['plugins']> = []
   export let sanitize: Props['sanitize'] = undefined
+  export let remarkRehype: Props['remarkRehype'] = undefined
   export let mode: NonNullable<Props['mode']> = 'auto'
   export let previewDebounce: NonNullable<Props['previewDebounce']> = 300
   export let placeholder: Props['placeholder'] = undefined
@@ -129,7 +130,12 @@
   const setDebouncedValue = debounce((value: string) => {
     debouncedValue = value
 
-    overridePreview?.(previewEl, { value: debouncedValue, plugins, sanitize })
+    overridePreview?.(previewEl, {
+      value: debouncedValue,
+      plugins,
+      sanitize,
+      remarkRehype,
+    })
   }, previewDebounce)
   $: setDebouncedValue(value)
 
@@ -389,6 +395,7 @@
           value={debouncedValue}
           {plugins}
           {sanitize}
+          {remarkRehype}
           on:hast={(e) => {
             hast = e.detail.hast
             vfile = e.detail.file
