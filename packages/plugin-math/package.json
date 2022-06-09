@@ -27,7 +27,6 @@
   ],
   "scripts": {
     "build": "tsdv build",
-    "dev": "tsdv watch",
     "test": "tsdv test"
   },
   "dependencies": {

@@ -66,11 +66,6 @@ packages.forEach((p) => {
     './lib/locales/*': './locales/*',
   }
   pkg.files = ['dist', 'locales']
-  pkg.scripts = {
-    dev: 'tsdv watch',
-    build: 'tsdv build',
-    test: 'tsdv test',
-  }
 
   if (pkg.name === 'bytemd') {
     pkg.exports['./dist/index.css'] = './dist/index.css'
