@@ -25,7 +25,7 @@
     "./dist/index.css": "./dist/index.css",
     "./dist/index.min.css": "./dist/index.min.css"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.umd.js",
   "svelte": "./dist/svelte-entry.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

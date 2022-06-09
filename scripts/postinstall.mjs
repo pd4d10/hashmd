@@ -52,7 +52,7 @@ packages.forEach((p) => {
 
   pkg.types = './dist/index.d.ts'
   pkg.module = './dist/index.mjs'
-  pkg.main = './dist/index.js'
+  pkg.main = './dist/index.umd.js'
 
   pkg.exports = {
     '.': {
