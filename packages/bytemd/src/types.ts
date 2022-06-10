@@ -230,7 +230,6 @@ export interface ViewerProps {
    * custom remark-rehype options: Defaults value { allowDangerousHtml: true }
    *
    * https://github.com/remarkjs/remark-rehype
-   *
    * If you want to further customization (usually used with extensions that extend the markdown syntax), pass custom options, it will expands the default value.
    */
   remarkRehype?: Options
