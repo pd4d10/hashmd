@@ -17,15 +17,15 @@ const schemaStr = JSON.stringify(defaultSchema)
 export function getProcessor({
   sanitize,
   plugins,
+  remarkRehype: remarkRehypeOptions = {},
 }: Omit<ViewerProps, 'value'>) {
   let processor: Processor = unified().use(remarkParse)
 
   plugins?.forEach(({ remark }) => {
     if (remark) processor = remark(processor)
   })
-
   processor = processor
-    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(remarkRehype, { allowDangerousHtml: true, ...remarkRehypeOptions })
     .use(rehypeRaw)
 
   let schema = JSON.parse(schemaStr) as Schema

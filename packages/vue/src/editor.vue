@@ -10,6 +10,7 @@ export default {
     value: String,
     plugins: Array,
     sanitize: Object,
+    remarkRehype: Object,
     mode: String,
     previewDebounce: Number,
     placeholder: String,

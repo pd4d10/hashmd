@@ -21,7 +21,7 @@ import {
 import { getProcessor } from 'bytemd'
 
 export default defineComponent({
-  props: ['value', 'plugins', 'sanitize'],
+  props: ['value', 'plugins', 'sanitize', 'remarkRehype'],
   setup(props, ctx) {
     const markdownBody: Ref<HTMLElement | null> = ref(null)
     const cbs = ref([])
@@ -30,7 +30,7 @@ export default defineComponent({
     })
 
     const needUpdate = computed(() => {
-      return [file, props.plugins, props.sanitize]
+      return [file, props.plugins, props.sanitize, props.remarkRehype]
     })
 
     watch(

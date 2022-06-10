@@ -5,6 +5,7 @@ declare const __propDef: {
     value?: string | undefined
     plugins?: BytemdPlugin[] | undefined
     sanitize?: Props['sanitize']
+    remarkRehype?: Props['remarkRehype']
     mode?: 'split' | 'tab' | 'auto' | undefined
     previewDebounce?: number | undefined
     placeholder?: Props['placeholder']

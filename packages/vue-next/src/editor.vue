@@ -11,6 +11,7 @@ export default defineComponent({
     value: String,
     plugins: Array,
     sanitize: Object,
+    remarkRehype: Object,
     mode: String,
     previewDebounce: Number,
     placeholder: String,

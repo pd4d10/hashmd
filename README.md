@@ -147,11 +147,12 @@ editor.$on('change', (e) => {
 
 ### Viewer
 
-| Key        | Type                         | Description        |
-| ---------- | ---------------------------- | ------------------ |
-| `value`    | `string` (required)          | Markdown text      |
-| `plugins`  | `BytemdPlugin[]`             | ByteMD plugin list |
-| `sanitize` | `(schema: Schema) => Schema` | Sanitize strategy  |
+| Key | Type | Description |
+| --- | --- | --- |
+| `value` | `string` (required) | Markdown text |
+| `plugins` | `BytemdPlugin[]` | ByteMD plugin list |
+| `sanitize` | `(schema: Schema) => Schema` | Sanitize strategy |
+| `remarkRehype` | [documentation](https://github.com/remarkjs/remark-rehype#options) | remark-rehype config options |
 
 ### Editor
 
