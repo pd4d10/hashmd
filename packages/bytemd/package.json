@@ -26,15 +26,16 @@
     "./dist/index.min.css": "./dist/index.min.css"
   },
   "main": "./dist/index.umd.js",
-  "svelte": "./dist/svelte-entry.js",
+  "svelte": "./svelte/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "locales"
+    "locales",
+    "svelte"
   ],
   "scripts": {
-    "build": "tsdv build",
+    "build": "tsdv build && node build.mjs",
     "test": "tsdv test"
   },
   "dependencies": {

@@ -1,0 +1,11 @@
+// for svelte entry
+{
+  "extends": "../../tsconfig-base.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "svelte",
+    "composite": false,
+    "emitDeclarationOnly": false
+  }
+}
