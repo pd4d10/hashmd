@@ -29,9 +29,11 @@
     "build": "tsdv build",
     "test": "tsdv test"
   },
-  "devDependencies": {
-    "bytemd": "workspace:*",
+  "dependencies": {
     "remark-breaks": "^3.0.2"
+  },
+  "devDependencies": {
+    "bytemd": "workspace:*"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"

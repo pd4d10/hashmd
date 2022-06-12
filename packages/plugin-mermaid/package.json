@@ -30,11 +30,11 @@
     "test": "tsdv test"
   },
   "dependencies": {
+    "@icon-park/svg": "^1.4.0",
     "@types/mermaid": "^8.2.9",
     "mermaid": "^9.1.1"
   },
   "devDependencies": {
-    "@icon-park/svg": "^1.4.0",
     "bytemd": "workspace:*"
   },
   "peerDependencies": {

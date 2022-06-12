@@ -29,10 +29,12 @@
     "build": "tsdv build",
     "test": "tsdv test"
   },
-  "devDependencies": {
+  "dependencies": {
     "@icon-park/svg": "^1.4.0",
-    "bytemd": "workspace:*",
     "remark-gfm": "^3.0.1"
+  },
+  "devDependencies": {
+    "bytemd": "workspace:*"
   },
   "peerDependencies": {
     "bytemd": "^1.5.0"
