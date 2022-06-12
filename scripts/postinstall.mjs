@@ -3,7 +3,6 @@ import fs from 'fs-extra'
 import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash-es'
-import { createRequire } from 'module'
 import { packages, packagesDir, rootDir } from './utils.mjs'
 
 function readFileSyncSafe(p) {
@@ -119,43 +118,3 @@ ${content}
 )
 
 fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
-
-await (async () => {
-  // create .svelte.ts files
-
-  const bytemd_path = path.join(rootDir, 'packages/bytemd')
-  const bytemd_src_path = path.join(bytemd_path, 'src')
-
-  {
-    // some parts are from here https://github.com/sveltejs/kit/blob/master/packages/kit/src/packaging/typescript.js
-    // @ts-ignore
-    const require = createRequire(import.meta.url)
-
-    const emitDts = (await import('svelte2tsx')).emitDts
-
-    await emitDts({
-      libRoot: bytemd_src_path,
-      svelteShimsPath: require.resolve('svelte2tsx/svelte-shims.d.ts'),
-      declarationDir: './tmp',
-    })
-
-    const tmp_path = path.join(bytemd_path, './tmp')
-    const files = fs.readdirSync(tmp_path)
-    const file_end = '.svelte.d.ts'
-
-    //copy svelte.d.ts to src, and change ending to svelte.ts
-    files
-      .filter((name) => name.endsWith(file_end))
-      .map((name) => {
-        fs.copyFileSync(
-          path.join(tmp_path, name),
-          path.join(
-            bytemd_src_path,
-            `${name.slice(0, name.length - file_end.length)}.svelte.ts`
-          )
-        )
-      })
-
-    fs.removeSync(tmp_path)
-  }
-})()

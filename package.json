@@ -3,7 +3,7 @@
   "version": "1.15.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && pnpm --filter './packages/**' build",
+    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && node scripts/svelte-dts.mjs && pnpm --filter './packages/**' build",
     "dev": "pnpm --filter playground dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
     "postinstall": "node scripts/postinstall.mjs && pnpm format && sort-json packages/*/locales/*.json",
