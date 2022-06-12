@@ -25,14 +25,14 @@
     "bytemd": "workspace:*",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.5.1",
-    "katex": "^0.15.6"
+    "katex": "^0.16.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "svelte": "^3.44.0",
     "svelte-check": "^2.7.1",
-    "svelte-preprocess": "^4.10.6",
+    "svelte-preprocess": "^4.10.7",
     "tslib": "^2.3.1",
     "typescript": "^4.7.2"
   },

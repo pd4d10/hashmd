@@ -32,7 +32,7 @@
   "dependencies": {
     "@icon-park/svg": "^1.4.0",
     "@types/katex": "^0.14.0",
-    "katex": "^0.15.6",
+    "katex": "^0.16.0",
     "remark-math": "^5.1.1"
   },
   "devDependencies": {
