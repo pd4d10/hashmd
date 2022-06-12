@@ -1,13 +1,10 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type {
-    VFile,
-    Root,
-    BytemdPlugin,
-    ViewerProps as Props,
-    Plugin,
-  } from './helpers'
+  import type { Root } from 'hast'
+  import type { VFile } from 'vfile'
+  import type { Plugin } from 'unified'
+  import type { BytemdPlugin, ViewerProps as Props } from './types'
 
   import {
     tick,
@@ -16,7 +13,7 @@
     createEventDispatcher,
     afterUpdate,
   } from 'svelte'
-  import { getProcessor } from './helpers'
+  import { getProcessor } from './viewer'
 
   const dispatch = createEventDispatcher<{
     hast: { hast: Root; file: VFile }

@@ -8,8 +8,8 @@ export type {
   BytemdPlugin,
   EditorProps,
   ViewerProps,
-} from './helpers'
+} from './types'
 
 export { default as Editor } from './editor.svelte'
 export { default as Viewer } from './viewer.svelte'
-export { getProcessor } from './helpers'
+export { getProcessor } from './viewer'

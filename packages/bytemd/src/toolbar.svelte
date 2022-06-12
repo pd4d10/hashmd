@@ -1,15 +1,12 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type {
-    DelegateInstance,
-    BytemdEditorContext,
-    BytemdAction,
-    BytemdLocale,
-  } from './helpers'
+  import type { DelegateInstance } from 'tippy.js'
+  import type { BytemdEditorContext, BytemdAction, BytemdLocale } from './types'
 
   import { createEventDispatcher, onMount } from 'svelte'
-  import { icons, delegate } from './helpers'
+  import { delegate } from 'tippy.js'
+  import { icons } from './icons'
 
   const dispatch = createEventDispatcher()
   let toolbar: HTMLElement

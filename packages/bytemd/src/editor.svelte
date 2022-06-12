@@ -1,27 +1,25 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
+  import type { Root, Element } from 'hast'
+  import type { VFile } from 'vfile'
   import type { Editor, KeyMap } from 'codemirror'
   import type {
     BytemdEditorContext,
     BytemdPlugin,
     EditorProps as Props,
-    VFile,
-    Root,
-    Element,
-  } from './helpers'
+  } from './types'
 
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
+  import { debounce, throttle } from 'lodash-es'
   import {
-    debounce,
-    throttle,
     createCodeMirror,
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
     handleImageUpload,
-    icons,
-  } from './helpers'
+  } from './editor'
+  import { icons } from './icons'
 
   import Toolbar from './toolbar.svelte'
   import Viewer from './viewer.svelte'
