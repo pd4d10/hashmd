@@ -1,14 +1,14 @@
 {
   "name": "@bytemd/vue",
   "version": "1.15.0",
-  "description": "Full-featured markdown editor and viewer",
+  "description": "Hackable Markdown Editor and Viewer",
   "repository": {
     "type": "git",
     "url": "https://github.com/bytedance/bytemd.git",
     "directory": "packages/vue"
   },
   "license": "MIT",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "author": "Rongjian Zhang",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

@@ -13,7 +13,7 @@
     "directory": "packages/bytemd"
   },
   "license": "MIT",
-  "author": "Rongjian Zhang <pd4d10@gmail.com>",
+  "author": "Rongjian Zhang",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
