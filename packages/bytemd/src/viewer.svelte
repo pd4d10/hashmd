@@ -13,7 +13,7 @@
     createEventDispatcher,
     afterUpdate,
   } from 'svelte'
-  import { getProcessor } from './viewer'
+  import { getProcessor } from './utils'
 
   const dispatch = createEventDispatcher<{
     hast: { hast: Root; file: VFile }
