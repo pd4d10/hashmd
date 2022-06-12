@@ -33,6 +33,14 @@ import { execaCommand } from 'execa'
   console.log('build js files...')
   await execaCommand('tsc --project tsconfig.svelte.json')
 
+  console.log('patch index js...')
+  let js = await fs.readFile('svelte/index.js', 'utf8')
+  js = js
+    .split('\n')
+    .filter((line) => line.includes('index.scss'))
+    .join('\n')
+  await fs.writeFile('svelte/index.js', js)
+
   console.log('processing style files (backward compatibility)...')
   await fs.move('dist/style.css', 'dist/index.css')
   await fs.copy('dist/index.css', 'dist/index.min.css')
