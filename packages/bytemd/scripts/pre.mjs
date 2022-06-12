@@ -1,6 +1,4 @@
 // @ts-check
-import path from 'path'
-import { packagesDir } from './utils.mjs'
 import { emitDts } from 'svelte2tsx'
 import { createRequire } from 'module'
 
@@ -9,7 +7,6 @@ import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 
 await emitDts({
-  libRoot: path.join(packagesDir, 'bytemd/src'),
   svelteShimsPath: require.resolve('svelte2tsx/svelte-shims.d.ts'),
   declarationDir: './dist',
 })

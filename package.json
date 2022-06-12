@@ -3,7 +3,7 @@
   "version": "1.15.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && node scripts/svelte-dts.mjs && pnpm --filter './packages/**' build",
+    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && pnpm --filter './packages/**' build",
     "dev": "pnpm --filter playground dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
     "postinstall": "node scripts/postinstall.mjs && pnpm format && sort-json packages/*/locales/*.json",
@@ -20,9 +20,6 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.47",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/svelte": "^3.1.2",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash-es": "^4.17.6",
     "conventional-changelog-cli": "^2.2.2",
@@ -37,9 +34,6 @@
     "sass": "^1.52.2",
     "sort-json": "^2.0.1",
     "sort-package-json": "^1.57.0",
-    "svelte": "^3.48.0",
-    "svelte-preprocess": "^4.10.6",
-    "svelte2tsx": "^0.5.10",
     "tsdv": "^0.3.0",
     "typescript": "^4.7.3"
   },

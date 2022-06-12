@@ -35,7 +35,7 @@
     "svelte"
   ],
   "scripts": {
-    "build": "tsdv build && node build.mjs",
+    "build": "node scripts/pre.mjs && tsdv build && node scripts/post.mjs",
     "test": "tsdv test"
   },
   "dependencies": {
@@ -61,6 +61,12 @@
     "word-count": "^0.2.2"
   },
   "devDependencies": {
-    "@primer/css": "^15.2.0"
+    "@primer/css": "^15.2.0",
+    "@sveltejs/vite-plugin-svelte": "1.0.0-next.47",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/svelte": "^3.1.2",
+    "svelte": "^3.48.0",
+    "svelte-preprocess": "^4.10.6",
+    "svelte2tsx": "^0.5.10"
   }
 }

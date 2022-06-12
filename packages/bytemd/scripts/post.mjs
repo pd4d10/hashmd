@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import { preprocess } from 'svelte/compiler'
 import glob from 'fast-glob'
-import { sveltePreprocessor } from './tsdv.config.mjs'
+import { sveltePreprocessor } from '../tsdv.config.mjs'
 import { execaCommand } from 'execa'
 
 //
@@ -37,7 +37,7 @@ import { execaCommand } from 'execa'
   let js = await fs.readFile('svelte/index.js', 'utf8')
   js = js
     .split('\n')
-    .filter((line) => line.includes('index.scss'))
+    .filter((line) => !line.includes('index.scss'))
     .join('\n')
   await fs.writeFile('svelte/index.js', js)
 
