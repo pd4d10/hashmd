@@ -1,6 +1,9 @@
 #!/bin/bash
 
 npm i -g pnpm
+pnpm install
+
+# packages
 pnpm build
 
 # docs
@@ -11,4 +14,6 @@ pnpm build
 # playground
 cd ..
 pnpm --filter playground build
+
+# move assets
 mv playground/dist docs/.vitepress/dist/playground
