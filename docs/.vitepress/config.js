@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'vitepress' // TODO: vue version conflict
+import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: 'ByteMD',
