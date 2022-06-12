@@ -19,7 +19,7 @@
     getBuiltinActions,
     handleImageUpload,
   } from './editor'
-  import { icons } from './icons'
+  import * as icons from '@icon-park/svg'
 
   import Toolbar from './toolbar.svelte'
   import Viewer from './viewer.svelte'
@@ -408,7 +408,7 @@
           sidebar = false
         }}
       >
-        {@html icons.close}
+        {@html icons.Close({})}
       </div>
       <Help locale={mergedLocale} {actions} visible={sidebar === 'help'} />
       <Toc

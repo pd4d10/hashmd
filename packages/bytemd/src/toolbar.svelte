@@ -6,7 +6,7 @@
 
   import { createEventDispatcher, onMount } from 'svelte'
   import { delegate } from 'tippy.js'
-  import { icons } from './icons'
+  import * as icons from '@icon-park/svg'
 
   const dispatch = createEventDispatcher()
   let toolbar: HTMLElement
@@ -32,7 +32,7 @@
   $: rightActions = [
     // {
     //   title: 'Key binding',
-    //   icon: icons.keyboard,
+    //   icon: icons.EnterTheKeyboard({}),
     //   handler: {
     //     type: 'dropdown',
     //     actions: [
@@ -68,7 +68,7 @@
     // },
     {
       title: tocActive ? locale.closeToc : locale.toc,
-      icon: icons.toc,
+      icon: icons.AlignTextLeftOne({}),
       handler: {
         type: 'action',
         click() {
@@ -79,7 +79,7 @@
     },
     {
       title: helpActive ? locale.closeHelp : locale.help,
-      icon: icons.help,
+      icon: icons.Helpcenter({}),
       handler: {
         type: 'action',
         click() {
@@ -90,7 +90,7 @@
     },
     {
       title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
-      icon: icons.left,
+      icon: icons.LeftExpand({}),
       handler: {
         type: 'action',
         click() {
@@ -102,7 +102,7 @@
     },
     {
       title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
-      icon: icons.right,
+      icon: icons.RightExpand({}),
       handler: {
         type: 'action',
         click() {
@@ -114,7 +114,7 @@
     },
     {
       title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-      icon: fullscreen ? icons.fullscreenOff : icons.fullscreenOn,
+      icon: fullscreen ? icons.OffScreen({}) : icons.FullScreen({}),
       handler: {
         type: 'action',
         click() {
@@ -124,7 +124,7 @@
     },
     {
       title: locale.source,
-      icon: icons.source,
+      icon: icons.GithubOne({}),
       handler: {
         type: 'action',
         click() {

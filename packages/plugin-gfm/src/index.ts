@@ -1,7 +1,7 @@
 import type { BytemdPlugin } from 'bytemd'
 import en from './locales/en.json'
 import remarkGfm, { Options } from 'remark-gfm'
-import * as iconPark from '@icon-park/svg'
+import * as icons from '@icon-park/svg'
 
 type Locale = {
   strike: string
@@ -27,7 +27,7 @@ export default function gfm({
     actions: [
       {
         title: locale.strike,
-        icon: iconPark.Strikethrough({}),
+        icon: icons.Strikethrough({}),
         cheatsheet: `~~${locale.strikeText}~~`,
         handler: {
           type: 'action',
@@ -39,7 +39,7 @@ export default function gfm({
       },
       {
         title: locale.task,
-        icon: iconPark.CheckCorrect({}),
+        icon: icons.CheckCorrect({}),
         cheatsheet: `- [ ] ${locale.taskText}`,
         handler: {
           type: 'action',
@@ -51,7 +51,7 @@ export default function gfm({
       },
       {
         title: locale.table,
-        icon: iconPark.InsertTable({}),
+        icon: icons.InsertTable({}),
         handler: {
           type: 'action',
           click({ editor, appendBlock, codemirror }) {
