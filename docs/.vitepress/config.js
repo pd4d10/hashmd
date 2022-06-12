@@ -11,7 +11,7 @@ export default defineConfig({
         link: 'https://bytemd.js.org/playground/',
       },
       {
-        text: 'Source Code',
+        text: 'GitHub',
         link: 'https://github.com/bytedance/bytemd',
       },
     ],
