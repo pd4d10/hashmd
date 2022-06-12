@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         value={value}
         plugins={plugins}
         uploadImages={async (files) => {
-          // TODO: upload images here
+          // upload images here
           return [
             {
               url: 'https://picsum.photos/200/300',
