@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'tsdv'
 
 export default defineConfig({

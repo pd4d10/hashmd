@@ -19,11 +19,13 @@ export const sveltePreprocessor = sveltePreprocess({
 export default defineConfig({
   target: 'es2019',
   tsc: false,
-  plugins: [
-    svelte({
-      preprocess: [sveltePreprocessor],
-    }),
-  ],
+  vite: {
+    plugins: [
+      svelte({
+        preprocess: [sveltePreprocessor],
+      }),
+    ],
+  },
   test: {
     globals: true,
     environment: 'jsdom',
