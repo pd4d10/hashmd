@@ -2,5 +2,5 @@ import { defineNuxtConfig } from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  css: ['bytemd/dist/index.css']
+  css: ['bytemd/dist/index.css'],
 })
