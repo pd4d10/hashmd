@@ -34,7 +34,7 @@
     "sass": "^1.52.3",
     "sort-json": "^2.0.1",
     "sort-package-json": "^1.57.0",
-    "tsdv": "^0.3.0",
+    "tsdv": "^0.4.0",
     "typescript": "^4.7.3"
   },
   "packageManager": "pnpm@7.1.9",
