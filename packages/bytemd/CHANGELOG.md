@@ -1,3 +1,20 @@
+# [1.16.0](https://github.com/bytedance/bytemd/compare/v1.15.0...v1.16.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **bytemd:** esm in node.js ([0431476](https://github.com/bytedance/bytemd/commit/04314761dd9cafbb659bef7738a2ba9ada9cb4fc))
+* cjs build ([8e5af29](https://github.com/bytedance/bytemd/commit/8e5af29bf575c2cdfdf94c2d36f55e15aa0b611e))
+* duplicated builds ([c019fd4](https://github.com/bytedance/bytemd/commit/c019fd4da264cc05193786dc7d8a265ce5848363))
+
+
+### Features
+
+* improve types for Svelte Components ([#190](https://github.com/bytedance/bytemd/issues/190)) ([e727353](https://github.com/bytedance/bytemd/commit/e72735383f789a439484a944b10cb457c4260760))
+* support custom remark-rehype options ([#199](https://github.com/bytedance/bytemd/issues/199)) ([6011c75](https://github.com/bytedance/bytemd/commit/6011c75db091fcaafefaf2a45c78d94db5152357))
+
+
+
 # [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
 
 

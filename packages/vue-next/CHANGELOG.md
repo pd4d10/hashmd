@@ -1,3 +1,17 @@
+# [1.16.0](https://github.com/bytedance/bytemd/compare/v1.15.0...v1.16.0) (2022-06-29)
+
+
+### Bug Fixes
+
+* **vue-next:** manual toString for file ([#193](https://github.com/bytedance/bytemd/issues/193)) ([da4c1be](https://github.com/bytedance/bytemd/commit/da4c1bed3a91f61212e38cc51fab6ecbba7c3c13))
+
+
+### Features
+
+* support custom remark-rehype options ([#199](https://github.com/bytedance/bytemd/issues/199)) ([6011c75](https://github.com/bytedance/bytemd/commit/6011c75db091fcaafefaf2a45c78d94db5152357))
+
+
+
 # [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
 
 

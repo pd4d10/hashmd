@@ -1,3 +1,7 @@
+# [1.16.0](https://github.com/bytedance/bytemd/compare/v1.15.0...v1.16.0) (2022-06-29)
+
+
+
 # [1.15.0](https://github.com/bytedance/bytemd/compare/v1.14.0...v1.15.0) (2022-05-17)
 
 
