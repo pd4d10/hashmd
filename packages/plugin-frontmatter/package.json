@@ -18,7 +18,9 @@
     "./locales/*": "./locales/*",
     "./lib/locales/*": "./locales/*"
   },
-  "main": "./dist/index.umd.js",
+  "main": "./dist/index.js",
+  "jsdelivr": "./dist/index.umd.js",
+  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [

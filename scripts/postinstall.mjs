@@ -51,7 +51,9 @@ packages.forEach((p) => {
 
   pkg.types = './dist/index.d.ts'
   pkg.module = './dist/index.mjs'
-  pkg.main = './dist/index.umd.js'
+  pkg.main = './dist/index.js'
+  pkg.unpkg = './dist/index.umd.js'
+  pkg.jsdelivr = './dist/index.umd.js'
 
   pkg.exports = {
     '.': {

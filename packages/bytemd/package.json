@@ -25,8 +25,10 @@
     "./dist/index.css": "./dist/index.css",
     "./dist/index.min.css": "./dist/index.min.css"
   },
-  "main": "./dist/index.umd.js",
+  "main": "./dist/index.js",
   "svelte": "./svelte/index.js",
+  "jsdelivr": "./dist/index.umd.js",
+  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
