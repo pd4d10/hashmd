@@ -50,6 +50,7 @@ importers:
       '@types/hast': ^2.3.4
       '@types/lodash-es': ^4.17.6
       '@types/mdast': ^3.0.10
+      '@types/resolve': ^1.20.2
       codemirror-ssr: ^0.65.0
       decode-named-character-reference: ^1.0.2
       hast-util-sanitize: ^4.0.0
@@ -95,6 +96,7 @@ importers:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.49_svelte@3.48.0
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/svelte': 3.1.3_svelte@3.48.0
+      '@types/resolve': 1.20.2
       decode-named-character-reference: 1.0.2
       resolve: 1.22.1
       svelte: 3.48.0
@@ -1156,6 +1158,10 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
+    dev: true
+
+  /@types/resolve/1.20.2:
+    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
     dev: true
 
   /@types/sass/1.43.1:
