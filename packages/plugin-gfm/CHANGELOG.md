@@ -1,3 +1,12 @@
+## [1.17.1](https://github.com/bytedance/bytemd/compare/v1.17.0...v1.17.1) (2022-07-08)
+
+
+### Bug Fixes
+
+* plugin gfm build ([4dc088b](https://github.com/bytedance/bytemd/commit/4dc088b80904d618c9a8cd22b327b87484ebfcd1)), closes [#206](https://github.com/bytedance/bytemd/issues/206)
+
+
+
 # [1.17.0](https://github.com/bytedance/bytemd/compare/v1.16.0...v1.17.0) (2022-07-06)
 
 
