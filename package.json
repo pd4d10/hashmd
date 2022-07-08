@@ -20,9 +20,14 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "1.0.0-next.49",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/svelte": "^3.1.3",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash-es": "^4.17.6",
+    "@types/resolve": "^1.20.2",
     "conventional-changelog-cli": "^2.2.2",
+    "decode-named-character-reference": "^1.0.2",
     "execa": "^6.1.0",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0",
@@ -31,11 +36,16 @@
     "mustache": "^4.2.0",
     "prettier": "^2.6.2",
     "prettier-plugin-svelte": "^2.7.0",
+    "resolve": "^1.22.1",
     "sass": "^1.52.3",
     "sort-json": "^2.0.1",
     "sort-package-json": "^1.57.0",
+    "svelte": "^3.48.0",
+    "svelte-preprocess": "^4.10.7",
+    "svelte2tsx": "^0.5.10",
     "tsdv": "^0.4.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "vite": "^2.9.12"
   },
   "packageManager": "pnpm@7.1.9",
   "bundlewatch": {

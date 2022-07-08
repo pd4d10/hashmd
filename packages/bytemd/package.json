@@ -63,15 +63,6 @@
     "word-count": "^0.2.2"
   },
   "devDependencies": {
-    "@primer/css": "^15.2.0",
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.49",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/svelte": "^3.1.3",
-    "@types/resolve": "^1.20.2",
-    "decode-named-character-reference": "^1.0.2",
-    "resolve": "^1.22.1",
-    "svelte": "^3.48.0",
-    "svelte-preprocess": "^4.10.7",
-    "svelte2tsx": "^0.5.10"
+    "@primer/css": "^15.2.0"
   }
 }

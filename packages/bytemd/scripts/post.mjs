@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import { preprocess } from 'svelte/compiler'
 import glob from 'fast-glob'
-import { sveltePreprocessor } from '../tsdv.config.mjs'
+import { sveltePreprocessor } from '../../../scripts/build.mjs'
 import { execaCommand } from 'execa'
 
 //

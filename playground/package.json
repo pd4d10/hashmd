@@ -21,11 +21,5 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.49",
-    "svelte": "^3.48.0",
-    "svelte-preprocess": "^4.10.7",
-    "vite": "^2.9.12"
   }
 }
