@@ -32,7 +32,7 @@
     "test": "tsdv test"
   },
   "dependencies": {
-    "@icon-park/svg": "^1.4.0",
+    "@icon-park/svg": "^1.4.2",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1"
   },

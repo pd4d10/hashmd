@@ -41,7 +41,7 @@
     "test": "tsdv test"
   },
   "dependencies": {
-    "@icon-park/svg": "^1.4.0",
+    "@icon-park/svg": "^1.4.2",
     "@popperjs/core": "^2.11.5",
     "@types/codemirror": "^5.60.5",
     "@types/hast": "^2.3.4",
@@ -59,7 +59,7 @@
     "tippy.js": "^6.3.7",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.0",
-    "vfile": "^5.3.3",
+    "vfile": "^5.3.4",
     "word-count": "^0.2.2"
   },
   "devDependencies": {

@@ -32,9 +32,9 @@
     "test": "tsdv test"
   },
   "dependencies": {
-    "@icon-park/svg": "^1.4.0",
+    "@icon-park/svg": "^1.4.2",
     "@types/mermaid": "^8.2.9",
-    "mermaid": "^9.1.1"
+    "mermaid": "^9.1.3"
   },
   "devDependencies": {
     "bytemd": "workspace:*"
