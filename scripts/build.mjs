@@ -13,10 +13,13 @@ export const sveltePreprocessor = sveltePreprocess({
   ],
 })
 
-const pkgName = 'decode-named-character-reference'
+// do not resolve `browser` field to make CJS bundle work at SSR
+// https://github.com/vitejs/vite/issues/4405
+export function getAlias(format) {
+  const pkgName = 'decode-named-character-reference'
 
-export const alias = {
-  // do not resolve `browser` field to make it work at SSR
-  // https://github.com/vitejs/vite/issues/4405
-  [pkgName]: resolve.sync(pkgName),
+  if (format === 'cjs')
+    return {
+      [pkgName]: resolve.sync(pkgName),
+    }
 }
