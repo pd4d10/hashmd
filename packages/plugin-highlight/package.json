@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-highlight",
-  "version": "1.17.1",
+  "version": "1.17.2",
   "description": "ByteMD plugin to highlight code blocks",
   "repository": {
     "type": "git",

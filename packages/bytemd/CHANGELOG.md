@@ -1,3 +1,12 @@
+## [1.17.2](https://github.com/bytedance/bytemd/compare/v1.17.1...v1.17.2) (2022-07-21)
+
+
+### Bug Fixes
+
+* optimize umd bundle size ([88ee554](https://github.com/bytedance/bytemd/commit/88ee5548d07a1985c4d297a057183e7f4b85202e))
+
+
+
 ## [1.17.1](https://github.com/bytedance/bytemd/compare/v1.17.0...v1.17.1) (2022-07-08)
 
 

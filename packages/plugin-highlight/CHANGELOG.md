@@ -1,3 +1,12 @@
+## [1.17.2](https://github.com/bytedance/bytemd/compare/v1.17.1...v1.17.2) (2022-07-21)
+
+
+### Bug Fixes
+
+* **highlight:** supports graphql ([fd01b02](https://github.com/bytedance/bytemd/commit/fd01b0239cd6e86cc7ebefca1bf4703a5570b003)), closes [#209](https://github.com/bytedance/bytemd/issues/209)
+
+
+
 ## [1.17.1](https://github.com/bytedance/bytemd/compare/v1.17.0...v1.17.1) (2022-07-08)
 
 
