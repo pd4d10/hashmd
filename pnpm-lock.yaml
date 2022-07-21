@@ -152,9 +152,9 @@ importers:
   packages/plugin-highlight:
     specifiers:
       bytemd: workspace:*
-      highlight.js: ^11.5.1
+      highlight.js: ^11.6.0
     dependencies:
-      highlight.js: 11.5.1
+      highlight.js: 11.6.0
     devDependencies:
       bytemd: link:../bytemd
 
@@ -266,7 +266,7 @@ importers:
       '@bytemd/plugin-mermaid': workspace:*
       bytemd: workspace:*
       github-markdown-css: ^5.1.0
-      highlight.js: ^11.5.1
+      highlight.js: ^11.6.0
       katex: ^0.16.0
     dependencies:
       '@bytemd/plugin-breaks': link:../packages/plugin-breaks
@@ -281,7 +281,7 @@ importers:
       '@bytemd/plugin-mermaid': link:../packages/plugin-mermaid
       bytemd: link:../packages/bytemd
       github-markdown-css: 5.1.0
-      highlight.js: 11.5.1
+      highlight.js: 11.6.0
       katex: 0.16.0
 
 packages:
@@ -3725,6 +3725,11 @@ packages:
 
   /highlight.js/11.5.1:
     resolution: {integrity: sha512-LKzHqnxr4CrD2YsNoIf/o5nJ09j4yi/GcH5BnYz9UnVpZdS4ucMgvP61TDty5xJcFGRjnH4DpujkS9bHT3hq0Q==}
+    engines: {node: '>=12.0.0'}
+    dev: false
+
+  /highlight.js/11.6.0:
+    resolution: {integrity: sha512-ig1eqDzJaB0pqEvlPVIpSSyMaO92bH1N2rJpLMN/nX396wTpDA4Eq0uK+7I/2XG17pFaaKE0kjV/XPeGt7Evjw==}
     engines: {node: '>=12.0.0'}
     dev: false
 

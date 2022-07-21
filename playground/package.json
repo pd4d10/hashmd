@@ -14,7 +14,7 @@
     "@bytemd/plugin-mermaid": "workspace:*",
     "bytemd": "workspace:*",
     "github-markdown-css": "^5.1.0",
-    "highlight.js": "^11.5.1",
+    "highlight.js": "^11.6.0",
     "katex": "^0.16.0"
   },
   "scripts": {

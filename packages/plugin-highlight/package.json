@@ -32,7 +32,7 @@
     "test": "tsdv test"
   },
   "dependencies": {
-    "highlight.js": "^11.5.1"
+    "highlight.js": "^11.6.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*"
