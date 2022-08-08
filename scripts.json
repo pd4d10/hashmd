@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/iamyoki/better-scripts/main/lib/schema.json",
+  "build": {
+    "alias": "📦 Build",
+    "desc": "Build all packages",
+    "command": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && pnpm --filter './packages/**' build"
+  },
+  "dev": {
+    "alias": "🌟 Dev",
+    "desc": "Start a playground development server",
+    "command": "pnpm --filter playground dev"
+  },
+  "format": {
+    "alias": "🔎 Format",
+    "desc": "Format and fix source code",
+    "command": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'"
+  },
+  "pub": {
+    "alias": "🚀 Publish",
+    "desc": "Publish to npm",
+    "command": "pnpm build && pnpm --recursive --registry https://registry.npmjs.org/ publish --access public"
+  },
+  "release": {
+    "alias": "🔥 Release",
+    "desc": "Create a release",
+    "command": "node scripts/release.mjs"
+  },
+  "test": {
+    "alias": "🧪 Test Bytemd",
+    "desc": "Run bytemd testes",
+    "command": "pnpm --filter bytemd test"
+  }
+}
