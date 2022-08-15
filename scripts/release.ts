@@ -1,7 +1,6 @@
-// @ts-check
 import fs from 'fs-extra'
 import { execaCommandSync, execaSync } from 'execa'
-import { packages, packagesDir } from './utils.mjs'
+import { packages, packagesDir } from './utils'
 import path from 'path'
 
 const version = process.argv[2]

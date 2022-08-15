@@ -1,9 +1,8 @@
-// @ts-check
 import fs from 'fs-extra'
 import path from 'path'
 import mustache from 'mustache'
 import _ from 'lodash-es'
-import { packages, packagesDir, rootDir } from './utils.mjs'
+import { packages, packagesDir, rootDir } from './utils'
 
 function readFileSyncSafe(p) {
   try {

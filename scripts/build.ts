@@ -1,4 +1,3 @@
-// @ts-check
 import sveltePreprocess from 'svelte-preprocess'
 import resolve from 'resolve'
 

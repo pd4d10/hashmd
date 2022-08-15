@@ -5,9 +5,9 @@
     "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && pnpm --filter './packages/**' build",
     "dev": "pnpm --filter playground dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
-    "postinstall": "node scripts/postinstall.mjs && pnpm format && sort-json packages/*/locales/*.json",
+    "postinstall": "tsx scripts/postinstall.ts && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && pnpm --recursive --registry https://registry.npmjs.org/ publish --access public",
-    "release": "node scripts/release.mjs",
+    "release": "tsx scripts/release.ts",
     "test": "pnpm --filter bytemd test"
   },
   "prettier": {
@@ -43,6 +43,7 @@
     "svelte-preprocess": "^4.10.7",
     "svelte2tsx": "^0.5.12",
     "tsdv": "^0.6.1",
+    "tsx": "^3.8.2",
     "typescript": "^4.7.4",
     "vite": "^3.0.3"
   },
