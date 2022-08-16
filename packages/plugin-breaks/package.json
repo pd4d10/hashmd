@@ -27,10 +27,6 @@
     "dist",
     "locales"
   ],
-  "scripts": {
-    "build": "tsdv build",
-    "test": "tsdv test"
-  },
   "dependencies": {
     "remark-breaks": "^3.0.2"
   },

@@ -27,10 +27,6 @@
     "dist",
     "locales"
   ],
-  "scripts": {
-    "build": "tsdv build",
-    "test": "tsdv test"
-  },
   "dependencies": {
     "remark-gemoji": "^7.0.1"
   },

@@ -27,10 +27,6 @@
     "dist",
     "locales"
   ],
-  "scripts": {
-    "build": "tsdv build",
-    "test": "tsdv test"
-  },
   "dependencies": {
     "medium-zoom": "^1.0.6"
   },

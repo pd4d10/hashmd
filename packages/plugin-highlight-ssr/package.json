@@ -27,10 +27,6 @@
     "dist",
     "locales"
   ],
-  "scripts": {
-    "build": "tsdv build",
-    "test": "tsdv test"
-  },
   "dependencies": {
     "rehype-highlight": "^5.0.2"
   },

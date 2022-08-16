@@ -36,13 +36,9 @@
     "locales",
     "svelte"
   ],
-  "scripts": {
-    "build": "node scripts/pre.mjs && tsdv build && node scripts/post.mjs",
-    "test": "tsdv test"
-  },
   "dependencies": {
     "@icon-park/svg": "^1.4.2",
-    "@popperjs/core": "^2.11.5",
+    "@popperjs/core": "^2.11.6",
     "@types/codemirror": "^5.60.5",
     "@types/hast": "^2.3.4",
     "@types/lodash-es": "^4.17.6",

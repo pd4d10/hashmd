@@ -27,10 +27,6 @@
     "dist",
     "locales"
   ],
-  "scripts": {
-    "build": "tsdv build",
-    "test": "tsdv test"
-  },
   "dependencies": {
     "@icon-park/svg": "^1.4.2",
     "rehype-katex": "^6.0.2",
