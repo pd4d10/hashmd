@@ -17,6 +17,7 @@
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
+    getBuiltinRightActions,
     handleImageUpload,
   } from './editor'
   import * as icons from '@icon-park/svg'
@@ -45,6 +46,7 @@
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
   $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
+  $: rightAfferentActions = getBuiltinRightActions(plugins)
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800)
   $: ((_) => {
     // reset active tab
@@ -351,6 +353,7 @@
     {activeTab}
     {sidebar}
     {fullscreen}
+    {rightAfferentActions}
     locale={mergedLocale}
     {actions}
     on:key={(e) => {

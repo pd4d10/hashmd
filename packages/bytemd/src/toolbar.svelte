@@ -18,6 +18,7 @@
   export let sidebar: false | 'help' | 'toc'
   export let locale: BytemdLocale
   export let actions: BytemdAction[]
+  export let rightAfferentActions: BytemdAction[]
 
   interface RightAction extends BytemdAction {
     active?: boolean
@@ -132,6 +133,7 @@
         },
       },
     },
+    ...rightAfferentActions
   ] as RightAction[]
 
   const tippyClass = 'bytemd-tippy'

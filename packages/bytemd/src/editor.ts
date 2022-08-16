@@ -342,7 +342,26 @@ export function getBuiltinActions(
   ]
 
   plugins.forEach(({ actions }) => {
-    if (actions) items.push(...actions)
+    if (actions) {
+      actions.forEach(action=>{
+        if(!action.position || action.position !== 'right') items.push(action)
+      })
+    }
+  })
+  return items
+}
+
+export function getBuiltinRightActions(
+  plugins: BytemdPlugin[],
+): BytemdAction[] {
+  const items: BytemdAction[]=[]
+
+  plugins.forEach(({ actions }) => {
+    if (actions) {
+      actions.forEach(action=>{
+        if(action.position && action.position === 'right') items.push(action)
+      })
+    }
   })
   return items
 }

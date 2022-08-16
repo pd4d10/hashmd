@@ -116,6 +116,12 @@ export interface BytemdAction {
    */
   title?: string
   /**
+   * Action icon position
+   *
+   * Specifies that the action icon is in the toolbar position, which defaults to the left
+   */
+  position?: 'left' | 'right'
+  /**
    * Action icon (16x16), usually inline svg
    */
   icon?: string
