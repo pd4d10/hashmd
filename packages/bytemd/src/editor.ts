@@ -167,8 +167,8 @@ export function getBuiltinActions(
   locale: BytemdLocale,
   plugins: BytemdPlugin[],
   uploadImages: EditorProps['uploadImages']
-): BytemdAction[] {
-  const items: BytemdAction[] = [
+): { leftActions: BytemdAction[]; rightActions: BytemdAction[] } {
+  const leftActions: BytemdAction[] = [
     {
       icon: icons.H({}),
       handler: {
@@ -340,28 +340,18 @@ export function getBuiltinActions(
       cheatsheet: '---',
     },
   ]
-
+  const rightActions: BytemdAction[] = []
   plugins.forEach(({ actions }) => {
     if (actions) {
-      actions.forEach(action=>{
-        if(!action.position || action.position !== 'right') items.push(action)
+      actions.forEach((action) => {
+        if (!action.position || action.position !== 'right')
+          leftActions.push(action)
+        else rightActions.push(action)
       })
     }
   })
-  return items
-}
-
-export function getBuiltinRightActions(
-  plugins: BytemdPlugin[],
-): BytemdAction[] {
-  const items: BytemdAction[]=[]
-
-  plugins.forEach(({ actions }) => {
-    if (actions) {
-      actions.forEach(action=>{
-        if(action.position && action.position === 'right') items.push(action)
-      })
-    }
-  })
-  return items
+  return {
+    leftActions,
+    rightActions,
+  }
 }
