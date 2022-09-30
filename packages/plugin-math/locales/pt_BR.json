@@ -1,6 +1,6 @@
 {
-  "block": "Fórmula de bloco",
-  "blockText": "Texto do bloco",
+  "block": "Bloco de Fórmula",
+  "blockText": "fórmula",
   "inline": "Fórmula em linha",
-  "inlineText": "Texto em linha"
+  "inlineText": "fórmula"
 }
