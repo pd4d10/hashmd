@@ -54,8 +54,8 @@
     "select-files": "^1.0.1",
     "tippy.js": "^6.3.7",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.0",
-    "vfile": "^5.3.4",
+    "unist-util-visit": "^4.1.1",
+    "vfile": "^5.3.5",
     "word-count": "^0.2.2"
   },
   "devDependencies": {

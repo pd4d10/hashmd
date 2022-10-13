@@ -1,7 +1,6 @@
-import type { BytemdPlugin } from 'bytemd'
-import type { Mermaid } from 'mermaid'
-import type mermaidAPI from 'mermaid/mermaidAPI'
 import * as icons from '@icon-park/svg'
+import type { BytemdPlugin } from 'bytemd'
+import type { Config, Mermaid } from 'mermaid'
 import en from './locales/en.json'
 
 type Locale = {
@@ -16,7 +15,7 @@ type Locale = {
   pie: string
 }
 
-export interface BytemdPluginMermaidOptions extends mermaidAPI.Config {
+export interface BytemdPluginMermaidOptions extends Config {
   locale?: Partial<Locale>
 }
 

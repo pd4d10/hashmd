@@ -13,9 +13,12 @@
     "@bytemd/plugin-medium-zoom": "workspace:*",
     "@bytemd/plugin-mermaid": "workspace:*",
     "bytemd": "workspace:*",
+    "svelte-preprocess": "^4.10.7",
     "github-markdown-css": "^5.1.0",
+    "@sveltejs/vite-plugin-svelte": "1.0.9",
     "highlight.js": "^11.6.0",
-    "katex": "^0.16.0"
+    "katex": "^0.16.2",
+    "vite": "^3.1.7"
   },
   "scripts": {
     "dev": "vite",
