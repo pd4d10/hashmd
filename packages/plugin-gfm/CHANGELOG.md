@@ -1,3 +1,12 @@
+## [1.17.3](https://github.com/bytedance/bytemd/compare/v1.17.2...v1.17.3) (2022-10-13)
+
+
+### Bug Fixes
+
+* make lodash and icons inline ([0e28d33](https://github.com/bytedance/bytemd/commit/0e28d3364a2d3bdb0895099648ebc34391baddcd)), closes [#218](https://github.com/bytedance/bytemd/issues/218)
+
+
+
 ## [1.17.2](https://github.com/bytedance/bytemd/compare/v1.17.1...v1.17.2) (2022-07-21)
 
 
