@@ -7,8 +7,8 @@ ByteMD plugin to highlight code blocks
 ## Usage
 
 ```js
-import { Editor } from 'bytemd'
 import highlight from '@bytemd/plugin-highlight'
+import { Editor } from 'bytemd'
 
 new Editor({
   target: document.body,

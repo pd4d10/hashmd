@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react'
-import { Editor } from '@bytemd/react'
-import pluginGfm from '@bytemd/plugin-gfm'
-import 'bytemd/dist/index.css'
 import './App.css'
+import pluginGfm from '@bytemd/plugin-gfm'
+import { Editor } from '@bytemd/react'
+import 'bytemd/dist/index.css'
+import React, { useMemo, useState } from 'react'
 
 function App() {
   const [value, setValue] = useState('')

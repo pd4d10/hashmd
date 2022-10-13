@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { BytemdLocale } from './types'
-
   import { createEventDispatcher } from 'svelte'
   // @ts-ignore
   import wordCount from 'word-count'

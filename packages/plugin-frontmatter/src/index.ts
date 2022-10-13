@@ -1,6 +1,6 @@
 import type { BytemdPlugin } from 'bytemd'
-import remarkFrontmatter from 'remark-frontmatter'
 import { load } from 'js-yaml'
+import remarkFrontmatter from 'remark-frontmatter'
 
 export interface BytemdPluginFrontmatterOptions {
   onError?(err: any): void

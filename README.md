@@ -66,8 +66,8 @@ import 'bytemd/dist/index.css'
 ### React
 
 ```js
-import { Editor, Viewer } from '@bytemd/react'
 import gfm from '@bytemd/plugin-gfm'
+import { Editor, Viewer } from '@bytemd/react'
 
 const plugins = [
   gfm(),
@@ -97,8 +97,8 @@ const App = () => {
 </template>
 
 <script>
-import { Editor, Viewer } from '@bytemd/vue'
 import gfm from '@bytemd/plugin-gfm'
+import { Editor, Viewer } from '@bytemd/vue'
 
 const plugins = [
   gfm(),
@@ -122,8 +122,8 @@ export default {
 ### Vanilla JS
 
 ```js
-import { Editor, Viewer } from 'bytemd'
 import gfm from '@bytemd/plugin-gfm'
+import { Editor, Viewer } from 'bytemd'
 
 const plugins = [
   gfm(),

@@ -1,8 +1,8 @@
-import fs from 'fs-extra'
-import path from 'path'
-import mustache from 'mustache'
-import _ from 'lodash-es'
 import { packages, packagesDir, rootDir } from './utils'
+import fs from 'fs-extra'
+import _ from 'lodash-es'
+import mustache from 'mustache'
+import path from 'path'
 
 function readFileSyncSafe(p) {
   try {

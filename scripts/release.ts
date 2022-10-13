@@ -1,6 +1,6 @@
-import fs from 'fs-extra'
-import { execaCommandSync, execaSync } from 'execa'
 import { packages, packagesDir } from './utils'
+import { execaCommandSync, execaSync } from 'execa'
+import fs from 'fs-extra'
 import path from 'path'
 
 const version = process.argv[2]

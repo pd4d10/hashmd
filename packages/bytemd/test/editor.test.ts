@@ -1,7 +1,6 @@
 /// <reference types="tsdv/vitest/globals" />
-
-import '@testing-library/jest-dom'
 import { Editor } from '../src'
+import '@testing-library/jest-dom'
 import {
   render,
   cleanup,

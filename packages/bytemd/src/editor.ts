@@ -1,5 +1,3 @@
-import type { Editor, Position } from 'codemirror'
-import type CodeMirror from 'codemirror'
 import type {
   BytemdPlugin,
   BytemdAction,
@@ -7,18 +5,19 @@ import type {
   BytemdLocale,
   BytemdEditorContext,
 } from './types'
-
+import * as icons from '@icon-park/svg'
+import type { Editor, Position } from 'codemirror'
+import type CodeMirror from 'codemirror'
 import factory from 'codemirror-ssr'
 import usePlaceholder from 'codemirror-ssr/addon/display/placeholder.js'
-import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
-import useXml from 'codemirror-ssr/mode/xml/xml.js'
-import useMarkdown from 'codemirror-ssr/mode/markdown/markdown.js'
-import useGfm from 'codemirror-ssr/mode/gfm/gfm.js'
-import useYaml from 'codemirror-ssr/mode/yaml/yaml.js'
-import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter.js'
 import useContinuelist from 'codemirror-ssr/addon/edit/continuelist.js'
+import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
+import useGfm from 'codemirror-ssr/mode/gfm/gfm.js'
+import useMarkdown from 'codemirror-ssr/mode/markdown/markdown.js'
+import useXml from 'codemirror-ssr/mode/xml/xml.js'
+import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter.js'
+import useYaml from 'codemirror-ssr/mode/yaml/yaml.js'
 import selectFiles from 'select-files'
-import * as icons from '@icon-park/svg'
 
 export function createCodeMirror() {
   const codemirror = factory()

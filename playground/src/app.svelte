@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { Editor } from 'bytemd'
+  import markdownText from './text.md?raw'
   import breaks from '@bytemd/plugin-breaks'
   import frontmatter from '@bytemd/plugin-frontmatter'
+  import gemoji from '@bytemd/plugin-gemoji'
   import gfm from '@bytemd/plugin-gfm'
   import highlight from '@bytemd/plugin-highlight'
   import math from '@bytemd/plugin-math'
   import mediumZoom from '@bytemd/plugin-medium-zoom'
   import mermaid from '@bytemd/plugin-mermaid'
-  import gemoji from '@bytemd/plugin-gemoji'
-  import markdownText from './text.md?raw'
-
+  import { Editor } from 'bytemd'
   import 'bytemd/dist/index.css'
+  import 'github-markdown-css'
   import 'highlight.js/styles/vs.css'
-  import 'github-markdown-css' // placed after highlight styles to override `code` padding
+  // placed after highlight styles to override `code` padding
   import 'katex/dist/katex.css'
 
   function stripPrefixes(obj: Record<string, any>) {

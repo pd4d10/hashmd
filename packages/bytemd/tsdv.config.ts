@@ -1,6 +1,6 @@
-import { defineConfig } from 'tsdv'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { getAlias, sveltePreprocessor } from '../../scripts/build.mjs'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { defineConfig } from 'tsdv'
 
 // nullish coalescing in es2020
 export default defineConfig({

@@ -1,11 +1,12 @@
-import type { Processor } from 'unified'
-import type { Schema } from 'hast-util-sanitize'
-import type { VFile } from 'vfile'
+import type { EditorUtils } from './editor'
 import type { Editor, EditorConfiguration } from 'codemirror'
 import type CodeMirror from 'codemirror'
-import type { EditorUtils } from './editor'
+import type { Schema } from 'hast-util-sanitize'
 import type { Image } from 'mdast'
 import type { Options } from 'remark-rehype'
+import type { Processor } from 'unified'
+import type { VFile } from 'vfile'
+
 export interface BytemdLocale {
   write: string
   preview: string

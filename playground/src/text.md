@@ -17,8 +17,8 @@ My favorite markdown editor is [ByteMD](https://github.com/bytedance/bytemd).
 > Dorothy followed her through many of the beautiful rooms in her castle.
 
 ```js
-import { Editor, Viewer } from 'bytemd'
 import gfm from '@bytemd/plugin-gfm'
+import { Editor, Viewer } from 'bytemd'
 
 const plugins = [
   gfm(),

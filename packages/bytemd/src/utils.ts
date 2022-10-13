@@ -1,13 +1,13 @@
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
+import type { ViewerProps } from './types'
+import { defaultSchema } from 'hast-util-sanitize'
+import type { Schema } from 'hast-util-sanitize'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
-import { defaultSchema } from 'hast-util-sanitize'
-import type { Schema } from 'hast-util-sanitize'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import { unified } from 'unified'
 import type { Processor } from 'unified'
-import type { ViewerProps } from './types'
 
 const schemaStr = JSON.stringify(defaultSchema)
 

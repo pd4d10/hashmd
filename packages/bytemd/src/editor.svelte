@@ -1,17 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import type { Root, Element } from 'hast'
-  import type { VFile } from 'vfile'
-  import type { Editor, KeyMap } from 'codemirror'
-  import type {
-    BytemdEditorContext,
-    BytemdPlugin,
-    EditorProps as Props,
-  } from './types'
-
-  import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
-  import { debounce, throttle } from 'lodash-es'
+  import en from '../locales/en.json'
   import {
     createCodeMirror,
     createEditorUtils,
@@ -19,14 +9,22 @@
     getBuiltinActions,
     handleImageUpload,
   } from './editor'
-  import * as icons from '@icon-park/svg'
-
-  import Toolbar from './toolbar.svelte'
-  import Viewer from './viewer.svelte'
-  import Toc from './toc.svelte'
-  import Status from './status.svelte'
   import Help from './help.svelte'
-  import en from '../locales/en.json'
+  import Status from './status.svelte'
+  import Toc from './toc.svelte'
+  import Toolbar from './toolbar.svelte'
+  import type {
+    BytemdEditorContext,
+    BytemdPlugin,
+    EditorProps as Props,
+  } from './types'
+  import Viewer from './viewer.svelte'
+  import * as icons from '@icon-park/svg'
+  import type { Editor, KeyMap } from 'codemirror'
+  import type { Root, Element } from 'hast'
+  import { debounce, throttle } from 'lodash-es'
+  import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
+  import type { VFile } from 'vfile'
 
   export let value: Props['value'] = ''
   export let plugins: NonNullable<Props['plugins']> = []

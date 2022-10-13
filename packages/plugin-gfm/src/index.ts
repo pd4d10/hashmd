@@ -1,7 +1,7 @@
-import type { BytemdPlugin } from 'bytemd'
 import en from './locales/en.json'
-import remarkGfm, { Options } from 'remark-gfm'
 import * as icons from '@icon-park/svg'
+import type { BytemdPlugin } from 'bytemd'
+import remarkGfm, { Options } from 'remark-gfm'
 
 type Locale = {
   strike: string

@@ -7,8 +7,8 @@ ByteMD plugin to support Gemoji shortcodes
 ## Usage
 
 ```js
-import { Editor } from 'bytemd'
 import gemoji from '@bytemd/plugin-gemoji'
+import { Editor } from 'bytemd'
 
 new Editor({
   target: document.body,

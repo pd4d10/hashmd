@@ -7,8 +7,8 @@ ByteMD plugin to support math formula
 ## Usage
 
 ```js
-import { Editor } from 'bytemd'
 import math from '@bytemd/plugin-math'
+import { Editor } from 'bytemd'
 
 new Editor({
   target: document.body,

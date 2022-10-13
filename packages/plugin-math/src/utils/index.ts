@@ -1,5 +1,5 @@
-import type { BytemdAction } from 'bytemd'
 import * as icons from '@icon-park/svg'
+import type { BytemdAction } from 'bytemd'
 
 export type MathLocale = {
   inline: string

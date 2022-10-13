@@ -7,8 +7,8 @@ ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklist
 ## Usage
 
 ```js
-import { Editor } from 'bytemd'
 import gfm from '@bytemd/plugin-gfm'
+import { Editor } from 'bytemd'
 
 new Editor({
   target: document.body,

@@ -1,7 +1,6 @@
 /// <reference types="tsdv/vitest/globals" />
-
-import '@testing-library/jest-dom'
 import { Viewer } from '../src'
+import '@testing-library/jest-dom'
 import { render, act } from '@testing-library/svelte'
 
 function stripComment(str: string) {

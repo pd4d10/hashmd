@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
 import * as bytemd from 'bytemd'
+import React, { useEffect, useRef } from 'react'
 
 export interface EditorProps extends bytemd.EditorProps {
   onChange?(value: string): void
