@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-breaks",
-  "version": "1.17.3",
+  "version": "1.17.4",
   "description": "ByteMD plugin to support breaks",
   "repository": {
     "type": "git",

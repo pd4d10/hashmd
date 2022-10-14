@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-medium-zoom",
-  "version": "1.17.3",
+  "version": "1.17.4",
   "description": "ByteMD plugin to zoom images like Medium",
   "repository": {
     "type": "git",

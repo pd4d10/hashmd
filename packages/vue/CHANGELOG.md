@@ -1,3 +1,7 @@
+## [1.17.4](https://github.com/bytedance/bytemd/compare/v1.17.3...v1.17.4) (2022-10-14)
+
+
+
 ## [1.17.3](https://github.com/bytedance/bytemd/compare/v1.17.2...v1.17.3) (2022-10-13)
 
 

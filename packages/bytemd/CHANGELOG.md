@@ -1,3 +1,12 @@
+## [1.17.4](https://github.com/bytedance/bytemd/compare/v1.17.3...v1.17.4) (2022-10-14)
+
+
+### Reverts
+
+* Revert "fix: make lodash and icons inline" ([69930bb](https://github.com/bytedance/bytemd/commit/69930bbc838136a538b1ebeea80f561e7139931f))
+
+
+
 ## [1.17.3](https://github.com/bytedance/bytemd/compare/v1.17.2...v1.17.3) (2022-10-13)
 
 
