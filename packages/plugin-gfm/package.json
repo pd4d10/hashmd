@@ -28,6 +28,7 @@
     "locales"
   ],
   "dependencies": {
+    "@icon-park/svg": "^1.4.2",
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {

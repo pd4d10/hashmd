@@ -19,7 +19,6 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@icon-park/svg": "^1.4.2",
     "@sveltejs/vite-plugin-svelte": "1.0.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/svelte": "^3.2.2",
