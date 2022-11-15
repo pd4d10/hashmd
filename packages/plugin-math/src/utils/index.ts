@@ -1,4 +1,4 @@
-import * as icons from '@icon-park/svg'
+import { Formula, Block, Inline } from '@icon-park/svg'
 import type { BytemdAction } from 'bytemd'
 
 export type MathLocale = {
@@ -11,13 +11,13 @@ export type MathLocale = {
 export function getMathActions(locale: MathLocale): BytemdAction[] {
   return [
     {
-      icon: icons.Formula({}),
+      icon: Formula({}),
       handler: {
         type: 'dropdown',
         actions: [
           {
             title: locale.inline,
-            icon: icons.Inline({}),
+            icon: Inline({}),
             cheatsheet: `$${locale.inlineText}$`,
             handler: {
               type: 'action',
@@ -29,7 +29,7 @@ export function getMathActions(locale: MathLocale): BytemdAction[] {
           },
           {
             title: locale.block,
-            icon: icons.Block({}),
+            icon: Block({}),
             cheatsheet: `$$↵${locale.blockText}↵$$`,
             handler: {
               type: 'action',

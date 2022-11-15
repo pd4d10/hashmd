@@ -2,7 +2,7 @@
 
 <script lang="ts">
   import type { BytemdEditorContext, BytemdAction, BytemdLocale } from './types'
-  import * as icons from '@icon-park/svg'
+  import { AlignTextLeftOne, Helpcenter, LeftExpand, RightExpand, OffScreen, FullScreen, GithubOne } from '@icon-park/svg'
   import { createEventDispatcher, onMount } from 'svelte'
   import type { DelegateInstance } from 'tippy.js'
   import { delegate } from 'tippy.js'
@@ -31,7 +31,7 @@
   $: rightActions = [
     // {
     //   title: 'Key binding',
-    //   icon: icons.EnterTheKeyboard({}),
+    //   icon: EnterTheKeyboard({}),
     //   handler: {
     //     type: 'dropdown',
     //     actions: [
@@ -67,7 +67,7 @@
     // },
     {
       title: tocActive ? locale.closeToc : locale.toc,
-      icon: icons.AlignTextLeftOne({}),
+      icon: AlignTextLeftOne({}),
       handler: {
         type: 'action',
         click() {
@@ -78,7 +78,7 @@
     },
     {
       title: helpActive ? locale.closeHelp : locale.help,
-      icon: icons.Helpcenter({}),
+      icon: Helpcenter({}),
       handler: {
         type: 'action',
         click() {
@@ -89,7 +89,7 @@
     },
     {
       title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
-      icon: icons.LeftExpand({}),
+      icon: LeftExpand({}),
       handler: {
         type: 'action',
         click() {
@@ -101,7 +101,7 @@
     },
     {
       title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
-      icon: icons.RightExpand({}),
+      icon: RightExpand({}),
       handler: {
         type: 'action',
         click() {
@@ -113,7 +113,7 @@
     },
     {
       title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-      icon: fullscreen ? icons.OffScreen({}) : icons.FullScreen({}),
+      icon: fullscreen ? OffScreen({}) : FullScreen({}),
       handler: {
         type: 'action',
         click() {
@@ -123,7 +123,7 @@
     },
     {
       title: locale.source,
-      icon: icons.GithubOne({}),
+      icon: GithubOne({}),
       handler: {
         type: 'action',
         click() {
@@ -303,7 +303,7 @@
         {locale.preview}
       </div>
       <!-- <div class={['bytemd-toolbar-icon', tippyClass].join(' ')}>
-        {@html icons.more}
+        {@html more}
       </div> -->
     {/if}
   </div>

@@ -1,5 +1,5 @@
 import en from './locales/en.json'
-import * as icons from '@icon-park/svg'
+import { Strikethrough, CheckCorrect, InsertTable } from '@icon-park/svg'
 import type { BytemdPlugin } from 'bytemd'
 import remarkGfm, { Options } from 'remark-gfm'
 
@@ -27,7 +27,7 @@ export default function gfm({
     actions: [
       {
         title: locale.strike,
-        icon: icons.Strikethrough({}),
+        icon: Strikethrough({}),
         cheatsheet: `~~${locale.strikeText}~~`,
         handler: {
           type: 'action',
@@ -39,7 +39,7 @@ export default function gfm({
       },
       {
         title: locale.task,
-        icon: icons.CheckCorrect({}),
+        icon: CheckCorrect({}),
         cheatsheet: `- [ ] ${locale.taskText}`,
         handler: {
           type: 'action',
@@ -51,7 +51,7 @@ export default function gfm({
       },
       {
         title: locale.table,
-        icon: icons.InsertTable({}),
+        icon: InsertTable({}),
         handler: {
           type: 'action',
           click({ editor, appendBlock, codemirror }) {
