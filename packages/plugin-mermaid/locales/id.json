@@ -1,0 +1,11 @@
+{
+  "class": "Diagram kelas",
+  "er": "Diagram hubungan entitas",
+  "flowchart": "Bagan alur",
+  "gantt": "Bagan Gantt",
+  "mermaid": "Diagram Mermaid",
+  "pie": "Bagan pai",
+  "sequence": "Diagram urutan",
+  "state": "Diagram kondisi",
+  "uj": "Diagram penjelajahan pengguna"
+}
