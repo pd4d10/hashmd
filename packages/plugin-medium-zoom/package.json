@@ -28,7 +28,7 @@
     "locales"
   ],
   "dependencies": {
-    "medium-zoom": "^1.0.6"
+    "medium-zoom": "^1.0.8"
   },
   "devDependencies": {
     "bytemd": "workspace:*"

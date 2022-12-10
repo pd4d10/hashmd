@@ -29,8 +29,8 @@
   ],
   "dependencies": {
     "@icon-park/svg": "^1.4.2",
-    "@types/mermaid": "^9.1.0",
-    "mermaid": "^9.1.7"
+    "@types/mermaid": "^9.2.0",
+    "mermaid": "^9.2.2"
   },
   "devDependencies": {
     "bytemd": "workspace:*"
