@@ -7,7 +7,6 @@
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
-    getBuiltinRightActions,
     handleImageUpload,
   } from './editor'
   import Help from './help.svelte'
