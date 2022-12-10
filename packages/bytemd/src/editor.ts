@@ -345,7 +345,7 @@ export function getBuiltinActions(
       actions.forEach((action) => {
         if (!action.position || action.position !== 'right')
           leftActions.push(action)
-        else rightActions.push(action)
+        else rightActions.unshift(action)
       })
     }
   })
