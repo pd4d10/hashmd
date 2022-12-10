@@ -1,6 +1,11 @@
-# ByteMD
+<div align="center">
+    <img alt="Logo bytemd" src="https://user-images.githubusercontent.com/53228013/177036257-2aa73258-b0ab-45a9-adb8-fe9e557805a6.png" width="1000"/>
+</div>
+<br>
+<div align="center">
 
-![test](https://github.com/bytedance/bytemd/workflows/test/badge.svg)
+  ![test](https://github.com/bytedance/bytemd/workflows/test/badge.svg)
+</div>
 
 ByteMD is a Markdown editor component built with Svelte. It could also be used in other libraries/frameworks such as React, Vue and Angular.
 
