@@ -132,7 +132,7 @@
         },
       },
     },
-    ...rightAfferentActions
+    ...rightAfferentActions,
   ] as RightAction[]
 
   const tippyClass = 'bytemd-tippy'
