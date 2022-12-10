@@ -7,6 +7,7 @@
     createEditorUtils,
     findStartIndex,
     getBuiltinActions,
+    getBuiltinRightActions,
     handleImageUpload,
   } from './editor'
   import Help from './help.svelte'
@@ -106,7 +107,7 @@
 
     keyMap = {}
     // TODO: nested shortcuts
-    actions.forEach(({ handler }) => {
+    actions.leftActions.forEach(({ handler }) => {
       if (handler?.type === 'action' && handler.shortcut) {
         keyMap[handler.shortcut] = () => {
           handler.click(context)
@@ -349,8 +350,9 @@
     {activeTab}
     {sidebar}
     {fullscreen}
+    rightAfferentActions={actions.rightActions}
     locale={mergedLocale}
-    {actions}
+    actions={actions.leftActions}
     on:key={(e) => {
       editor.setOption('keyMap', e.detail)
       editor.focus()
@@ -408,7 +410,11 @@
       >
         {@html icons.Close({})}
       </div>
-      <Help locale={mergedLocale} {actions} visible={sidebar === 'help'} />
+      <Help
+        locale={mergedLocale}
+        actions={actions.leftActions}
+        visible={sidebar === 'help'}
+      />
       <Toc
         {hast}
         locale={mergedLocale}
