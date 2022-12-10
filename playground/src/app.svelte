@@ -24,16 +24,22 @@
   }
 
   const locales = stripPrefixes(
-    import.meta.globEager('/node_modules/bytemd/locales/*.json')
+    import.meta.glob('/node_modules/bytemd/locales/*.json', { eager: true })
   )
   const gfmLocales = stripPrefixes(
-    import.meta.globEager('/node_modules/@bytemd/plugin-gfm/locales/*.json')
+    import.meta.glob('/node_modules/@bytemd/plugin-gfm/locales/*.json', {
+      eager: true,
+    })
   )
   const mathLocales = stripPrefixes(
-    import.meta.globEager('/node_modules/@bytemd/plugin-math/locales/*.json')
+    import.meta.glob('/node_modules/@bytemd/plugin-math/locales/*.json', {
+      eager: true,
+    })
   )
   const mermaidLocales = stripPrefixes(
-    import.meta.globEager('/node_modules/@bytemd/plugin-mermaid/locales/*.json')
+    import.meta.glob('/node_modules/@bytemd/plugin-mermaid/locales/*.json', {
+      eager: true,
+    })
   )
 
   let value = markdownText
