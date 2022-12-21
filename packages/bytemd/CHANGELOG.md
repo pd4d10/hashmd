@@ -1,3 +1,18 @@
+# [1.18.0](https://github.com/bytedance/bytemd/compare/v1.17.4...v1.18.0) (2022-12-21)
+
+
+### Bug Fixes
+
+* right actions added from left ([0467acd](https://github.com/bytedance/bytemd/commit/0467acd67e2092ad950ade404009cf90e9fe72df))
+* type errors ([2bb91f2](https://github.com/bytedance/bytemd/commit/2bb91f250e285d67156bef39cb6b650f66021b8b))
+
+
+### Features
+
+* supports actions position ([#219](https://github.com/bytedance/bytemd/issues/219)) ([6955a44](https://github.com/bytedance/bytemd/commit/6955a4464124cf49294665f4aadd69baecabf543))
+
+
+
 ## [1.17.4](https://github.com/bytedance/bytemd/compare/v1.17.3...v1.17.4) (2022-10-14)
 
 

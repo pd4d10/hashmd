@@ -1,3 +1,12 @@
+# [1.18.0](https://github.com/bytedance/bytemd/compare/v1.17.4...v1.18.0) (2022-12-21)
+
+
+### Bug Fixes
+
+* type errors ([2bb91f2](https://github.com/bytedance/bytemd/commit/2bb91f250e285d67156bef39cb6b650f66021b8b))
+
+
+
 ## [1.17.4](https://github.com/bytedance/bytemd/compare/v1.17.3...v1.17.4) (2022-10-14)
 
 

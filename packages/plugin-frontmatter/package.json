@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-frontmatter",
-  "version": "1.17.4",
+  "version": "1.18.0",
   "description": "ByteMD plugin to parse frontmatter",
   "repository": {
     "type": "git",
