@@ -14,9 +14,9 @@ export interface BytemdPluginZipOptions {
 }
 
 export default function zipUpload({
-  locale: _locale,
+  locale: _locale = {},
   uploadZip
-}: BytemdPluginZipOptions): BytemdPlugin {
+}: BytemdPluginZipOptions = {}): BytemdPlugin {
   const locale = { ...en, ..._locale } as Locale
 
   return {
