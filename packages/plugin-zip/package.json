@@ -1,5 +1,5 @@
 {
-  "name": "bytemd-plugin-zip",
+  "name": "@bytemd/plugin-zip",
   "version": "1.0.1",
   "description": "ByteMD plugin to support Zip upload",
   "repository": {
