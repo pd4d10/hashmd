@@ -206,6 +206,7 @@ If you have more customized needs, you could also write your own plugin to suppo
 | [@bytemd/plugin-math-ssr](https://github.com/bytedance/bytemd/tree/main/packages/plugin-math-ssr) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-math-ssr.svg?label=)](https://npm.im/@bytemd/plugin-math-ssr) | Support math formula (SSR compatible) |
 | [@bytemd/plugin-medium-zoom](https://github.com/bytedance/bytemd/tree/main/packages/plugin-medium-zoom) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg?label=)](https://npm.im/@bytemd/plugin-medium-zoom) | Zoom images like Medium |
 | [@bytemd/plugin-mermaid](https://github.com/bytedance/bytemd/tree/main/packages/plugin-mermaid) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg?label=)](https://npm.im/@bytemd/plugin-mermaid) | Support Mermaid diagram |
+| [@bytemd/plugin-zip](https://github.com/bytedance/bytemd/tree/main/packages/plugin-zip) | [![npm](https://img.shields.io/npm/v/@bytemd/plugin-zip.svg?label=)](https://npm.im/@bytemd/plugin-zip) | Support Zip upload |
 
 ### Technical Overview
 

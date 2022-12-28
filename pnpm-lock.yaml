@@ -219,6 +219,17 @@ importers:
     devDependencies:
       bytemd: link:../bytemd
 
+  packages/plugin-zip:
+    specifiers:
+      '@icon-park/svg': ^1.4.2
+      bytemd: workspace:*
+      select-files: ^1.0.1
+    dependencies:
+      '@icon-park/svg': 1.4.2
+      select-files: 1.0.1
+    devDependencies:
+      bytemd: link:../bytemd
+
   packages/react:
     specifiers:
       '@types/react': ^18.0.26
@@ -1706,7 +1717,7 @@ packages:
       source-map: 0.6.1
       vue-template-es2015-compiler: 1.9.1
     optionalDependencies:
-      prettier: 2.7.1
+      prettier: 2.8.1
     transitivePeerDependencies:
       - arc-templates
       - atpl
