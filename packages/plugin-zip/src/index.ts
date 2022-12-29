@@ -23,14 +23,14 @@ export default function zipUpload({
     actions: [
       {
         title: locale.zip,
-        icon: icons.Zip({}),
+        icon: icons.FileZip({}),
         cheatsheet: `![${locale.zip}](${locale.zipTitle})`,
         handler: uploadZip
           ? {
               type: 'action',
               async click(ctx: BytemdEditorContext) {
                 const files = await selectFiles({
-                  accept: 'aplication/zip',
+                  accept: 'application/zip',
                   multiple: false,
                 })
                 if (files?.length) {

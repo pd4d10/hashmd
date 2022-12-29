@@ -1,6 +1,6 @@
 {
   "name": "@bytemd/plugin-zip",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "ByteMD plugin to support Zip upload",
   "repository": {
     "type": "git",
