@@ -40,6 +40,6 @@
         {locale.sync}
       </label>
     {/if}
-    <span on:click={() => dispatch('top')}>{locale.top}</span>
+    <span on:click={() => dispatch('top')} on:keydown|self={e => ['Enter', 'Space'].includes(e.code) && dispatch('top')}>{locale.top}</span>
   </div>
 </div>

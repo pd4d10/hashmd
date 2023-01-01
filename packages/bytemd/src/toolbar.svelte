@@ -264,7 +264,7 @@
     init()
   })
 
-  function handleClick(e: MouseEvent) {
+  function handleClick(e: MouseEvent | KeyboardEvent) {
     const target = (e.target as Element).closest(`[${tippyPathKey}]`)
     if (!target) return
     const handler = getPayloadFromElement(target)?.item?.handler
@@ -276,7 +276,7 @@
   }
 </script>
 
-<div class="bytemd-toolbar" bind:this={toolbar} on:click={handleClick}>
+<div class="bytemd-toolbar" bind:this={toolbar} on:click={handleClick} on:keydown|self={e => ['Enter', 'Space'].includes(e.code) && handleClick(e)}>
   <div class="bytemd-toolbar-left">
     {#if split}
       {#each actions as item, index}
@@ -292,6 +292,7 @@
     {:else}
       <div
         on:click={() => dispatch('tab', 'write')}
+        on:keydown|self={e => ['Enter', 'Space'].includes(e.code) && dispatch('tab', 'write')}
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab !== 'preview'}
       >
@@ -299,6 +300,7 @@
       </div>
       <div
         on:click={() => dispatch('tab', 'preview')}
+        on:keydown|self={e => ['Enter', 'Space'].includes(e.code) && dispatch('tab', 'preview')}
         class="bytemd-toolbar-tab"
         class:bytemd-toolbar-tab-active={activeTab === 'preview'}
       >
