@@ -9,7 +9,7 @@ export default {
   props: {
     value: String,
     plugins: Array,
-    sanitize: Object,
+    sanitize: Function,
     remarkRehype: Object,
     mode: String,
     previewDebounce: Number,
