@@ -28,6 +28,7 @@
     "locales"
   ],
   "dependencies": {
+    "highlight.js": "^11.7.0",
     "rehype-highlight": "^5.0.2"
   },
   "devDependencies": {
