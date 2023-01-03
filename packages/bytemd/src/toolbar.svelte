@@ -1,8 +1,8 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
+  import { icons } from './icons'
   import type { BytemdEditorContext, BytemdAction, BytemdLocale } from './types'
-  import * as icons from '@icon-park/svg'
   import { createEventDispatcher, onMount } from 'svelte'
   import type { DelegateInstance } from 'tippy.js'
   import { delegate } from 'tippy.js'
@@ -32,7 +32,7 @@
   $: rightActions = [
     {
       title: tocActive ? locale.closeToc : locale.toc,
-      icon: icons.AlignTextLeftOne({}),
+      icon: icons.AlignTextLeftOne,
       handler: {
         type: 'action',
         click() {
@@ -43,7 +43,7 @@
     },
     {
       title: helpActive ? locale.closeHelp : locale.help,
-      icon: icons.Helpcenter({}),
+      icon: icons.Helpcenter,
       handler: {
         type: 'action',
         click() {
@@ -54,7 +54,7 @@
     },
     {
       title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
-      icon: icons.LeftExpand({}),
+      icon: icons.LeftExpand,
       handler: {
         type: 'action',
         click() {
@@ -66,7 +66,7 @@
     },
     {
       title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
-      icon: icons.RightExpand({}),
+      icon: icons.RightExpand,
       handler: {
         type: 'action',
         click() {
@@ -78,7 +78,7 @@
     },
     {
       title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-      icon: fullscreen ? icons.OffScreen({}) : icons.FullScreen({}),
+      icon: fullscreen ? icons.OffScreen : icons.FullScreen,
       handler: {
         type: 'action',
         click() {
@@ -88,7 +88,7 @@
     },
     {
       title: locale.source,
-      icon: icons.GithubOne({}),
+      icon: icons.GithubOne,
       handler: {
         type: 'action',
         click() {

@@ -10,6 +10,7 @@
     handleImageUpload,
   } from './editor'
   import Help from './help.svelte'
+  import * as icons from './icons'
   import Status from './status.svelte'
   import Toc from './toc.svelte'
   import Toolbar from './toolbar.svelte'
@@ -19,7 +20,6 @@
     EditorProps as Props,
   } from './types'
   import Viewer from './viewer.svelte'
-  import * as icons from '@icon-park/svg'
   import type { Editor, KeyMap } from 'codemirror'
   import type { Root, Element } from 'hast'
   import { debounce, throttle } from 'lodash-es'

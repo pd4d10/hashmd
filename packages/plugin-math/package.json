@@ -28,7 +28,6 @@
     "locales"
   ],
   "dependencies": {
-    "@icon-park/svg": "^1.4.2",
     "@types/katex": "^0.14.0",
     "katex": "^0.16.4",
     "remark-math": "^5.1.1"

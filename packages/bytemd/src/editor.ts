@@ -1,3 +1,4 @@
+import { icons } from './icons'
 import type {
   BytemdPlugin,
   BytemdAction,
@@ -5,7 +6,6 @@ import type {
   BytemdLocale,
   BytemdEditorContext,
 } from './types'
-import * as icons from '@icon-park/svg'
 import type { Editor, Position } from 'codemirror'
 import type CodeMirror from 'codemirror'
 import factory from 'codemirror-ssr'
@@ -169,18 +169,18 @@ export function getBuiltinActions(
 ): { leftActions: BytemdAction[]; rightActions: BytemdAction[] } {
   const leftActions: BytemdAction[] = [
     {
-      icon: icons.H({}),
+      icon: icons.H,
       handler: {
         type: 'dropdown',
         actions: [1, 2, 3, 4, 5, 6].map((level) => ({
           title: locale[`h${level}` as keyof BytemdLocale],
           icon: [
-            icons.H1({}),
-            icons.H2({}),
-            icons.H3({}),
-            icons.LevelFourTitle({}),
-            icons.LevelFiveTitle({}),
-            icons.LevelSixTitle({}),
+            icons.H1,
+            icons.H2,
+            icons.H3,
+            icons.LevelFourTitle,
+            icons.LevelFiveTitle,
+            icons.LevelSixTitle,
           ][level - 1],
           cheatsheet:
             level <= 3
@@ -202,7 +202,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.bold,
-      icon: icons.TextBold({}),
+      icon: icons.TextBold,
       cheatsheet: `**${locale.boldText}**`,
       handler: {
         type: 'action',
@@ -215,7 +215,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.italic,
-      icon: icons.TextItalic({}),
+      icon: icons.TextItalic,
       cheatsheet: `*${locale.italicText}*`,
       handler: {
         type: 'action',
@@ -228,7 +228,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.quote,
-      icon: icons.Quote({}),
+      icon: icons.Quote,
       cheatsheet: `> ${locale.quotedText}`,
       handler: {
         type: 'action',
@@ -240,7 +240,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.link,
-      icon: icons.LinkOne({}),
+      icon: icons.LinkOne,
       cheatsheet: `[${locale.linkText}](url)`,
       handler: {
         type: 'action',
@@ -258,7 +258,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.image,
-      icon: icons.Pic({}),
+      icon: icons.Pic,
       cheatsheet: `![${locale.imageAlt}](url "${locale.imageTitle}")`,
       handler: uploadImages
         ? {
@@ -279,7 +279,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.code,
-      icon: icons.Code({}),
+      icon: icons.Code,
       cheatsheet: '`' + locale.codeText + '`',
       handler: {
         type: 'action',
@@ -292,7 +292,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.codeBlock,
-      icon: icons.CodeBrackets({}),
+      icon: icons.CodeBrackets,
       cheatsheet: '```' + locale.codeLang + '↵',
       handler: {
         type: 'action',
@@ -309,7 +309,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.ul,
-      icon: icons.ListTwo({}),
+      icon: icons.ListTwo,
       cheatsheet: `- ${locale.ulItem}`,
       handler: {
         type: 'action',
@@ -322,7 +322,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.ol,
-      icon: icons.OrderedList({}),
+      icon: icons.OrderedList,
       cheatsheet: `1. ${locale.olItem}`,
       handler: {
         type: 'action',
@@ -335,7 +335,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.hr,
-      icon: icons.DividingLine({}),
+      icon: icons.DividingLine,
       cheatsheet: '---',
     },
   ]

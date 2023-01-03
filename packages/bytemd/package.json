@@ -37,7 +37,6 @@
     "svelte"
   ],
   "dependencies": {
-    "@icon-park/svg": "^1.4.2",
     "@popperjs/core": "^2.11.6",
     "@types/codemirror": "^5.60.5",
     "@types/hast": "^2.3.4",

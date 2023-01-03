@@ -1,5 +1,5 @@
+import { icons } from './icons'
 import en from './locales/en.json'
-import * as icons from '@icon-park/svg'
 import type { BytemdPlugin } from 'bytemd'
 import type { default as Mermaid, MermaidConfig } from 'mermaid'
 
@@ -157,7 +157,7 @@ another task      : 24d`,
     actions: [
       {
         title: locale.mermaid,
-        icon: icons.ChartGraph({}),
+        icon: icons.ChartGraph,
         cheatsheet: '```mermaid',
         handler: {
           type: 'dropdown',
