@@ -30,42 +30,6 @@
   $: previewActive = activeTab === 'preview'
 
   $: rightActions = [
-    // {
-    //   title: 'Key binding',
-    //   icon: icons.EnterTheKeyboard({}),
-    //   handler: {
-    //     type: 'dropdown',
-    //     actions: [
-    //       {
-    //         title: 'Normal',
-    //         handler: {
-    //           type: 'action',
-    //           click() {
-    //             dispatch('key', 'default');
-    //           },
-    //         },
-    //       },
-    //       {
-    //         title: 'Vim',
-    //         handler: {
-    //           type: 'action',
-    //           click() {
-    //             dispatch('key', 'vim');
-    //           },
-    //         },
-    //       },
-    //       {
-    //         title: 'Emacs',
-    //         handler: {
-    //           type: 'action',
-    //           click() {
-    //             dispatch('key', 'emacs');
-    //           },
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
     {
       title: tocActive ? locale.closeToc : locale.toc,
       icon: icons.AlignTextLeftOne({}),
@@ -304,9 +268,6 @@
       >
         {locale.preview}
       </div>
-      <!-- <div class={['bytemd-toolbar-icon', tippyClass].join(' ')}>
-        {@html icons.more}
-      </div> -->
     {/if}
   </div>
 
