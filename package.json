@@ -1,13 +1,15 @@
 {
   "name": "@bytemd/monorepo",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && tsx scripts/build.ts",
     "dev": "pnpm --filter playground dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
     "postinstall": "tsx scripts/postinstall.ts && pnpm format && sort-json packages/*/locales/*.json",
-    "pub": "pnpm build && pnpm --recursive --registry https://registry.npmjs.org/ publish --access public",
-    "release": "tsx scripts/release.ts",
+    "pub": "pnpm build && lerna publish",
     "test": "pnpm --filter bytemd test"
   },
   "prettier": {
@@ -33,6 +35,7 @@
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.0",
     "jsdom": "^20.0.3",
+    "lerna": "^6.3.0",
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
     "prettier": "^2.8.1",
