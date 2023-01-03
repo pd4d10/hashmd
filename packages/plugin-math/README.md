@@ -6,11 +6,10 @@ ByteMD plugin to support math formula
 
 ## Usage
 
-Import [katex](https://katex.org/) stylesheet: `katex/dist/katex.css`
-
 ```js
 import math from '@bytemd/plugin-math'
 import { Editor } from 'bytemd'
+import 'katex/dist/katex.css'
 
 new Editor({
   target: document.body,

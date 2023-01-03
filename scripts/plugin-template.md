@@ -7,6 +7,7 @@
 ## Usage
 
 ```js
+{{{header}}}
 import { Editor } from 'bytemd'
 import {{importedName}} from '@bytemd/plugin-{{name}}'
 

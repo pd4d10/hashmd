@@ -6,11 +6,10 @@ ByteMD plugin to highlight code blocks (SSR compatible)
 
 ## Usage
 
-Import [highlight.js](https://highlightjs.org/) stylesheet: `highlight.js/styles/default.css`
-
 ```js
 import highlight from '@bytemd/plugin-highlight-ssr'
 import { Editor } from 'bytemd'
+import 'highlight.js/styles/default.css'
 
 new Editor({
   target: document.body,

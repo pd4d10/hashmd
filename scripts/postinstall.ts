@@ -83,6 +83,11 @@ plugins.forEach((p) => {
     {
       name,
       importedName: _.camelCase(name.replace('-ssr', '')),
+      header: p.startsWith('plugin-math')
+        ? 'import "katex/dist/katex.css"'
+        : p.startsWith('plugin-highlight')
+        ? 'import "highlight.js/styles/default.css"'
+        : '',
       desc: fs.readJsonSync(path.join(packagesDir, p, 'package.json'))
         .description,
     }
