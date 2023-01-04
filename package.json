@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@icon-park/svg": "^1.4.2",
-    "@sveltejs/vite-plugin-svelte": "1.0.9",
+    "@sveltejs/vite-plugin-svelte": "2.0.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/svelte": "^3.2.2",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
@@ -42,18 +42,18 @@
     "prettier": "^2.8.1",
     "prettier-plugin-svelte": "^2.9.0",
     "resolve": "^1.22.1",
-    "sass": "^1.56.2",
+    "sass": "^1.57.1",
     "sort-json": "^2.0.1",
     "sort-package-json": "^2.1.0",
-    "svelte": "^3.54.0",
-    "svelte-preprocess": "^4.10.7",
-    "svelte2tsx": "^0.5.22",
+    "svelte": "^3.55.0",
+    "svelte-preprocess": "^5.0.0",
+    "svelte2tsx": "^0.6.0",
     "svgo": "^3.0.2",
-    "tsdv": "^0.7.0",
+    "tsdv": "^0.8.0",
     "tsx": "^3.12.1",
     "typescript": "^4.9.4"
   },
-  "packageManager": "pnpm@7.13.4",
+  "packageManager": "pnpm@7.21.0",
   "bundlewatch": {
     "files": [
       {

@@ -28,7 +28,7 @@
     "locales"
   ],
   "dependencies": {
-    "rehype-highlight": "^5.0.2"
+    "rehype-highlight": "^6.0.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*"
