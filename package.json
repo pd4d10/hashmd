@@ -7,10 +7,10 @@
   "scripts": {
     "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && tsx scripts/build.ts",
     "dev": "pnpm --filter playground dev",
-    "style": "prettier --check '**/*.{ts,tsx,json,md,svelte}'",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
     "postinstall": "tsx scripts/postinstall.ts && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
+    "style": "prettier --check '**/*.{ts,tsx,json,md,svelte}'",
     "test": "pnpm --filter bytemd test"
   },
   "prettier": {

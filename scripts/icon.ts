@@ -5,6 +5,8 @@ import svgo from 'svgo'
 
 const meta: Record<string, (keyof typeof icons)[]> = {
   'bytemd/src': [
+    'Close',
+
     'H',
     'H1',
     'H2',
