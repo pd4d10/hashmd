@@ -1,9 +1,11 @@
-import * as icons from '@icon-park/svg/es/map'
+// @ts-check
+import * as icons from '@icon-park/svg'
 import { execSync } from 'child_process'
 import fs from 'fs-extra'
 import svgo from 'svgo'
 
-const meta: Record<string, (keyof typeof icons)[]> = {
+/** @type {Record<string, (keyof typeof import('@icon-park/svg/es/map'))[]>} */
+const meta = {
   'bytemd/src': [
     'Close',
 

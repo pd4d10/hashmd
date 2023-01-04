@@ -5,10 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && tsx scripts/build.ts",
+    "build": "rm -rf packages/*/tsconfig.tsbuildinfo && tsc --build && node scripts/build.mjs",
     "dev": "pnpm --filter playground dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
-    "postinstall": "tsx scripts/postinstall.ts && pnpm format && sort-json packages/*/locales/*.json",
+    "postinstall": "node scripts/postinstall.mjs && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
     "style": "prettier --check '**/*.{ts,tsx,json,md,svelte}'",
     "test": "pnpm --filter bytemd test"
@@ -50,7 +50,6 @@
     "svelte2tsx": "^0.6.0",
     "svgo": "^3.0.2",
     "tsdv": "^0.8.0",
-    "tsx": "^3.12.1",
     "typescript": "^4.9.4"
   },
   "packageManager": "pnpm@7.21.0",

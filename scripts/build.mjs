@@ -1,6 +1,7 @@
-import { createVue3Plugin } from '../packages/vue-next/plugin'
-import { createVuePlugin } from '../packages/vue/plugin'
-import { packages, packagesDir } from './utils'
+// @ts-check
+import { createVue3Plugin } from '../packages/vue-next/plugin.mjs'
+import { createVuePlugin } from '../packages/vue/plugin.mjs'
+import { packages, packagesDir } from './utils.mjs'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { execaCommand } from 'execa'
 import glob from 'fast-glob'
@@ -33,7 +34,7 @@ const sveltePreprocessor = sveltePreprocess({
     if (name === 'bytemd') {
       // some parts are from here https://github.com/sveltejs/kit/blob/master/packages/kit/src/packaging/typescript.js
       await emitDts({
-        svelteShimsPath: require.resolve('svelte2tsx/svelte-shims.d.ts'),
+        svelteShimsPath: 'node_modules/svelte2tsx/svelte-shims.d.ts',
         declarationDir: './dist',
       })
     }

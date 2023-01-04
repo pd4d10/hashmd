@@ -1,1 +1,1 @@
-export { default } from '@vitejs/plugin-vue'
+export { default as createVue3Plugin } from '@vitejs/plugin-vue'
