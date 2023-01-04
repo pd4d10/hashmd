@@ -1,7 +1,7 @@
 // @ts-check
 import { createVue3Plugin } from '../packages/vue-next/plugin.mjs'
 import { createVuePlugin } from '../packages/vue/plugin.mjs'
-import { packages, packagesDir } from './utils.mjs'
+import { packages, packagesDir, sveltePreprocessor } from './utils.mjs'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { execaCommand } from 'execa'
 import glob from 'fast-glob'
@@ -9,20 +9,8 @@ import fs from 'fs-extra'
 import path from 'path'
 import resolve from 'resolve'
 import { emitDts } from 'svelte2tsx'
-import sveltePreprocess from 'svelte-preprocess'
 import { preprocess } from 'svelte/compiler'
 import { build } from 'tsdv'
-
-const sveltePreprocessor = sveltePreprocess({
-  typescript: true,
-  // https://github.com/sveltejs/svelte/issues/189#issuecomment-586142198
-  replace: [
-    [/(>)[\s]*([<{])/g, '$1$2'],
-    [/({[/:][a-z]+})[\s]*([<{])/g, '$1$2'],
-    [/({[#:][a-z]+ .+?})[\s]*([<{])/g, '$1$2'],
-    [/([>}])[\s]+(<|{[/#:][a-z][^}]*})/g, '$1$2'],
-  ],
-})
 
 ;(async () => {
   for (let name of packages) {
@@ -70,11 +58,6 @@ const sveltePreprocessor = sveltePreprocess({
             name === 'vue-next' && createVue3Plugin(),
           ],
         }
-      },
-      test: {
-        globals: true,
-        environment: 'jsdom',
-        setupFiles: 'test/setup.ts',
       },
     })
 

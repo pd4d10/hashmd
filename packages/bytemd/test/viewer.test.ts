@@ -1,4 +1,4 @@
-/// <reference types="tsdv/vitest/globals" />
+/// <reference types="vitest/globals" />
 import { Viewer } from '../src'
 import '@testing-library/jest-dom'
 import { render, act } from '@testing-library/svelte'

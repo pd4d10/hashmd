@@ -1,4 +1,4 @@
-/// <reference types="tsdv/vitest/globals" />
+/// <reference types="vitest/globals" />
 import { Editor } from '../src'
 import '@testing-library/jest-dom'
 import {
