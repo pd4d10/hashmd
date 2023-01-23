@@ -1,1 +1,11 @@
-{}
+{
+  "class": "Diagram klas",
+  "er": "Diagram relacji encji",
+  "flowchart": "Schemat blokowy",
+  "gantt": "Wykres Gantta",
+  "mermaid": "Diagramy syren",
+  "pie": "Wykres kołowy",
+  "sequence": "Diagram interakcji",
+  "state": "Diagram stanu",
+  "uj": "Diagram podróży użytkownika"
+}
