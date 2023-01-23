@@ -1,1 +1,11 @@
-{}
+{
+  "class": "Klassediagram",
+  "er": "Enhetsrelaskonsdiagram",
+  "flowchart": "Flytskjema",
+  "gantt": "Gantt-skjema",
+  "mermaid": "Mermaid-diagrammer",
+  "pie": "Kakediagram",
+  "sequence": "Sekvensdiagram",
+  "state": "Tilstandsdiagram",
+  "uj": "Brukerreisediagram"
+}
