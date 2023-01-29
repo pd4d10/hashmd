@@ -38,7 +38,7 @@
   ],
   "dependencies": {
     "@popperjs/core": "^2.11.6",
-    "@types/codemirror": "^5.60.6",
+    "@types/codemirror": "^5.60.7",
     "@types/hast": "^2.3.4",
     "@types/lodash-es": "^4.17.6",
     "@types/mdast": "^3.0.10",
@@ -53,7 +53,7 @@
     "select-files": "^1.0.1",
     "tippy.js": "^6.3.7",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.1",
+    "unist-util-visit": "^4.1.2",
     "vfile": "^5.3.6",
     "word-count": "^0.2.2"
   },
