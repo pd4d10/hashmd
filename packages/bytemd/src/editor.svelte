@@ -395,7 +395,7 @@
   <div class="bytemd-body">
     <div class="bytemd-editor" style={styles.edit} bind:this={editorEl} />
     <div bind:this={previewEl} class="bytemd-preview" style={styles.preview}>
-      {#if !overridePreview}
+      {#if !overridePreview && (split || activeTab === 'preview')}
         <Viewer
           value={debouncedValue}
           {plugins}
