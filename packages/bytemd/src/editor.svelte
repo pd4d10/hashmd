@@ -414,7 +414,7 @@
         on:click={() => {
           sidebar = false
         }}
-        on:keydown|self={e => {
+        on:keydown|self={(e) => {
           if (['Enter', 'Space'].includes(e.code)) {
             sidebar = false
           }

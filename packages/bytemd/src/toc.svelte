@@ -63,7 +63,7 @@
         on:click={() => {
           dispatch('click', index)
         }}
-        on:keydown|self={e => {
+        on:keydown|self={(e) => {
           if (['Enter', 'Space'].includes(e.code)) {
             dispatch('click', index)
           }
