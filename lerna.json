@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "useWorkspaces": true,
-  "version": "1.20.0",
+  "version": "1.20.1",
   "registry": "https://registry.npmjs.org"
 }
