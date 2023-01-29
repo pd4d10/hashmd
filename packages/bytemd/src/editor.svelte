@@ -369,6 +369,14 @@
           editor && editor.focus()
         })
       }
+
+      if (v === 'write') {
+        tick().then(() => {
+          // https://github.com/bytedance/bytemd/issues/232
+          // https://github.com/codemirror/codemirror5/issues/3270
+          editor && editor.setSize(null, null)
+        })
+      }
     }}
     on:click={(e) => {
       switch (e.detail) {
