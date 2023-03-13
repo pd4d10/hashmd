@@ -1,0 +1,11 @@
+{
+  "class": "Sınıf diyagramı",
+  "er": "Varlık ilişki diyagramı",
+  "flowchart": "Akış diyagramı",
+  "gantt": "Gantt şeması",
+  "mermaid": "Mermaid diyagramları",
+  "pie": "Pasta grafiği",
+  "sequence": "Sıra diyagramı",
+  "state": "Durum diyagramı",
+  "uj": "Kullanıcı yolculuk diyagramı"
+}
