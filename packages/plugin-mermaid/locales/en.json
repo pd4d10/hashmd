@@ -4,10 +4,10 @@
   "flowchart": "Flow chart",
   "gantt": "Gantt chart",
   "mermaid": "Mermaid diagrams",
+  "mindmap": "Mindmaps",
   "pie": "Pie chart",
   "sequence": "Sequence diagram",
   "state": "State diagram",
-  "uj": "User journey diagram",
-  "mindmap": "Mindmaps",
-  "timeline": "Timeline"
+  "timeline": "Timeline",
+  "uj": "User journey diagram"
 }
