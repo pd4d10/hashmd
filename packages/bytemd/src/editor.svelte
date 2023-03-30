@@ -101,7 +101,6 @@
   let keyMap: KeyMap = {}
 
   function on() {
-    // console.log('on', plugins);
     cbs = plugins.map((p) => p.editorEffect?.(context))
 
     keyMap = {}
@@ -116,7 +115,6 @@
     editor.addKeyMap(keyMap)
   }
   function off() {
-    // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb())
 
     editor?.removeKeyMap(keyMap) // onDestroy runs at SSR, optional chaining here
@@ -179,6 +177,18 @@
       'Shift-Tab': 'indentLess',
     })
 
+    editor.on('beforeChange', (_, change) => {
+      if (!maxLength || change.origin === '+delete') {
+        return
+      }
+
+      const currentLength = editor.getValue().length
+
+      if (maxLength <= currentLength) {
+        change.cancel()
+      }
+    })
+
     editor.on('change', () => {
       dispatch('change', { value: editor.getValue() })
     })
@@ -224,7 +234,6 @@
 
       editPs.push(1)
       previewPs.push(1)
-      // console.log(editPs, previewPs);
     }, 1000)
     const editorScrollHandler = () => {
       if (overridePreview) return
@@ -329,7 +338,6 @@
     // @ts-ignore
     new ResizeObserver((entries) => {
       containerWidth = entries[0].contentRect.width
-      // console.log(containerWidth);
     }).observe(root, { box: 'border-box' })
 
     // No need to call `on` because cm instance would change once after init
