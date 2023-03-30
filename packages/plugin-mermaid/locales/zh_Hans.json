@@ -7,5 +7,7 @@
   "pie": "饼状图",
   "sequence": "时序图",
   "state": "状态图",
-  "uj": "旅程图"
+  "uj": "旅程图",
+  "mindmap": "思维导图",
+  "timeline": "时间轴"
 }
