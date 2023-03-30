@@ -13,6 +13,8 @@ type Locale = {
   uj: string
   gantt: string
   pie: string
+  mindmap: string
+  timeline: string
 }
 
 export interface BytemdPluginMermaidOptions extends MermaidConfig {
@@ -112,6 +114,26 @@ another task      : 24d`,
 "Cats" : 85
 "Rats" : 15`,
     },
+    {
+      title: locale.mindmap,
+      code: `mindmap
+      Root
+          A
+            B
+            C
+    `,
+    },
+    {
+      title: locale.timeline,
+      code: `timeline
+      title History of Social Media Platform
+      2002 : LinkedIn
+      2004 : Facebook
+           : Google
+      2005 : Youtube
+      2006 : Twitter
+      `,
+    },
   ]
 
   return {
@@ -138,19 +160,19 @@ another task      : 24d`,
           container.style.lineHeight = 'initial' // reset line-height
           pre.replaceWith(container)
 
-          try {
-            m.render(
-              `bytemd-mermaid-${Date.now()}-${i}`,
-              source,
-              (svgCode) => {
-                container.innerHTML = svgCode
-              },
+          m.render(
+            `bytemd-mermaid-${Date.now()}-${i}`,
+            source,
+            // @ts-ignore
+            container
+          )
+            .then((svgCode) => {
               // @ts-ignore
-              container
-            )
-          } catch (err) {
-            // console.error(err);
-          }
+              container.innerHTML = svgCode.svg
+            })
+            .catch((err) => {
+              // console.error(err);
+            })
         })
       })()
     },

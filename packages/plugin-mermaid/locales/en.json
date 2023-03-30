@@ -7,5 +7,7 @@
   "pie": "Pie chart",
   "sequence": "Sequence diagram",
   "state": "State diagram",
-  "uj": "User journey diagram"
+  "uj": "User journey diagram",
+  "mindmap": "Mindmaps",
+  "timeline": "Timeline"
 }
