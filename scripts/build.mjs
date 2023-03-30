@@ -26,6 +26,11 @@ import { build } from 'vite'
         svelteShimsPath: 'node_modules/svelte2tsx/svelte-shims.d.ts',
         declarationDir: './dist',
       })
+      glob.sync('./dist/src/*.svelte.d.ts').forEach((file) => {
+        // console.log(file)
+        fs.moveSync(file, file.replace('/src', ''))
+      })
+      fs.removeSync('./dist/src')
     }
 
     // build js
