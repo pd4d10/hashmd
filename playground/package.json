@@ -12,13 +12,13 @@
     "@bytemd/plugin-math-ssr": "workspace:*",
     "@bytemd/plugin-medium-zoom": "workspace:*",
     "@bytemd/plugin-mermaid": "workspace:*",
-    "@sveltejs/vite-plugin-svelte": "2.0.2",
+    "@sveltejs/vite-plugin-svelte": "2.0.4",
     "bytemd": "workspace:*",
-    "github-markdown-css": "^5.1.0",
+    "github-markdown-css": "^5.2.0",
     "highlight.js": "^11.7.0",
     "katex": "^0.16.4",
-    "svelte-preprocess": "^5.0.1",
-    "vite": "^4.0.4"
+    "svelte-preprocess": "^5.0.3",
+    "vite": "^4.2.1"
   },
   "scripts": {
     "dev": "vite",
