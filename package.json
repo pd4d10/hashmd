@@ -54,7 +54,7 @@
     "vite": "^4.0.4",
     "vitest": "^0.28.3"
   },
-  "packageManager": "pnpm@7.21.0",
+  "packageManager": "pnpm@8.1.0",
   "bundlewatch": {
     "files": [
       {
