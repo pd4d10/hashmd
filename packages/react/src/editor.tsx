@@ -2,6 +2,7 @@ import * as bytemd from 'bytemd'
 import React, { useEffect, useRef } from 'react'
 
 export interface EditorProps extends bytemd.EditorProps {
+  className?: string | undefined
   onChange?(value: string): void
 }
 
@@ -36,5 +37,5 @@ export const Editor: React.FC<EditorProps> = ({ onChange, ...props }) => {
     ed.current?.$set(props)
   }, [props])
 
-  return <div ref={el}></div>
+  return <div className={props.className} ref={el}></div>
 }
