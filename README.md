@@ -44,11 +44,27 @@ import 'bytemd/dist/index.css'
 
 ```svelte
 <script>
-  import { Editor, Viewer } from 'bytemd'
+  import { Editor, Viewer, builtInPlugins } from 'bytemd'
   import gfm from '@bytemd/plugin-gfm'
 
   let value
   const plugins = [
+    builtInPlugins.head(),
+    builtInPlugins.bold(),
+    builtInPlugins.italic(),
+    builtInPlugins.quote(),
+    builtInPlugins.link(),
+    builtInPlugins.code(),
+    builtInPlugins.codeBlock(),
+    builtInPlugins.ul(),
+    builtInPlugins.ol(),
+    builtInPlugins.hr(),
+    builtInPlugins.source(),
+    builtInPlugins.fullscreen(),
+    builtInPlugins.preview(),
+    builtInPlugins.write(),
+    builtInPlugins.help(),
+    builtInPlugins.toc(),
     gfm(),
     // Add more plugins here
   ]
@@ -67,9 +83,25 @@ import 'bytemd/dist/index.css'
 
 ```js
 import gfm from '@bytemd/plugin-gfm'
-import { Editor, Viewer } from '@bytemd/react'
+import { Editor, Viewer, builtInPlugins } from '@bytemd/react'
 
 const plugins = [
+  builtInPlugins.head(),
+  builtInPlugins.bold(),
+  builtInPlugins.italic(),
+  builtInPlugins.quote(),
+  builtInPlugins.link(),
+  builtInPlugins.code(),
+  builtInPlugins.codeBlock(),
+  builtInPlugins.ul(),
+  builtInPlugins.ol(),
+  builtInPlugins.hr(),
+  builtInPlugins.source(),
+  builtInPlugins.fullscreen(),
+  builtInPlugins.preview(),
+  builtInPlugins.write(),
+  builtInPlugins.help(),
+  builtInPlugins.toc(),
   gfm(),
   // Add more plugins here
 ]
@@ -98,9 +130,25 @@ const App = () => {
 
 <script>
 import gfm from '@bytemd/plugin-gfm'
-import { Editor, Viewer } from '@bytemd/vue'
+import { Editor, Viewer, builtInPlugins } from '@bytemd/vue'
 
 const plugins = [
+  builtInPlugins.head(),
+  builtInPlugins.bold(),
+  builtInPlugins.italic(),
+  builtInPlugins.quote(),
+  builtInPlugins.link(),
+  builtInPlugins.code(),
+  builtInPlugins.codeBlock(),
+  builtInPlugins.ul(),
+  builtInPlugins.ol(),
+  builtInPlugins.hr(),
+  builtInPlugins.source(),
+  builtInPlugins.fullscreen(),
+  builtInPlugins.preview(),
+  builtInPlugins.write(),
+  builtInPlugins.help(),
+  builtInPlugins.toc(),
   gfm(),
   // Add more plugins here
 ]
@@ -123,9 +171,25 @@ export default {
 
 ```js
 import gfm from '@bytemd/plugin-gfm'
-import { Editor, Viewer } from 'bytemd'
+import { Editor, Viewer, builtInPlugins } from 'bytemd'
 
 const plugins = [
+  builtInPlugins.head(),
+  builtInPlugins.bold(),
+  builtInPlugins.italic(),
+  builtInPlugins.quote(),
+  builtInPlugins.link(),
+  builtInPlugins.code(),
+  builtInPlugins.codeBlock(),
+  builtInPlugins.ul(),
+  builtInPlugins.ol(),
+  builtInPlugins.hr(),
+  builtInPlugins.source(),
+  builtInPlugins.fullscreen(),
+  builtInPlugins.preview(),
+  builtInPlugins.write(),
+  builtInPlugins.help(),
+  builtInPlugins.toc(),
   gfm(),
   // Add more plugins here
 ]

@@ -6,9 +6,9 @@
     createCodeMirror,
     createEditorUtils,
     findStartIndex,
-    getBuiltinActions,
-    handleImageUpload,
+    getActions,
   } from './editor'
+  import { handleImageUpload } from './builtin-plugins'
   import Help from './help.svelte'
   import { icons } from './icons'
   import Status from './status.svelte'
@@ -20,7 +20,7 @@
     EditorProps as Props,
   } from './types'
   import Viewer from './viewer.svelte'
-  import type { Editor, KeyMap } from 'codemirror'
+  import type { Editor } from 'codemirror'
   import type { Root, Element } from 'hast'
   import { debounce, throttle } from 'lodash-es'
   import { onMount, createEventDispatcher, onDestroy, tick } from 'svelte'
@@ -42,7 +42,7 @@
   $: mergedLocale = { ...en, ...locale }
   const dispatch = createEventDispatcher<{ change: { value: string } }>()
 
-  $: actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
+  $: actions = getActions(plugins)
   $: split = mode === 'split' || (mode === 'auto' && containerWidth >= 800)
   $: ((_) => {
     // reset active tab
@@ -98,28 +98,14 @@
   })()
 
   let cbs: ReturnType<NonNullable<BytemdPlugin['editorEffect']>>[] = []
-  let keyMap: KeyMap = {}
 
   function on() {
     // console.log('on', plugins);
     cbs = plugins.map((p) => p.editorEffect?.(context))
-
-    keyMap = {}
-    // TODO: nested shortcuts
-    actions.leftActions.forEach(({ handler }) => {
-      if (handler?.type === 'action' && handler.shortcut) {
-        keyMap[handler.shortcut] = () => {
-          handler.click(context)
-        }
-      }
-    })
-    editor.addKeyMap(keyMap)
   }
   function off() {
     // console.log('off', plugins);
     cbs.forEach((cb) => cb && cb())
-
-    editor?.removeKeyMap(keyMap) // onDestroy runs at SSR, optional chaining here
   }
 
   let debouncedValue = value
@@ -349,9 +335,9 @@
     {activeTab}
     {sidebar}
     {fullscreen}
-    rightAfferentActions={actions.rightActions}
+    {editor}
+    {plugins}
     locale={mergedLocale}
-    actions={actions.leftActions}
     on:key={(e) => {
       editor.setOption('keyMap', e.detail)
       editor.focus()

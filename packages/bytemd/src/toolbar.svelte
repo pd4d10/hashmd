@@ -1,9 +1,16 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-  import { icons } from './icons'
-  import type { BytemdEditorContext, BytemdAction, BytemdLocale } from './types'
-  import { createEventDispatcher, onMount } from 'svelte'
+  import { getActions } from './editor'
+  import type {
+    BytemdEditorContext,
+    BytemdAction,
+    BytemdLocale,
+    BytemdActionFactory,
+    EditorProps,
+  } from './types'
+  import type { Editor, KeyMap } from 'codemirror'
+  import { createEventDispatcher, onMount, tick } from 'svelte'
   import type { DelegateInstance } from 'tippy.js'
   import { delegate } from 'tippy.js'
 
@@ -16,88 +23,67 @@
   export let fullscreen: boolean
   export let sidebar: false | 'help' | 'toc'
   export let locale: BytemdLocale
-  export let actions: BytemdAction[]
-  export let rightAfferentActions: BytemdAction[]
+  export let editor: Editor
+  export let plugins: NonNullable<EditorProps['plugins']> = []
+  let keyMap: KeyMap = {}
 
-  interface RightAction extends BytemdAction {
-    active?: boolean
-    hidden?: boolean
+  function isActionFactory(
+    action: BytemdAction | BytemdActionFactory
+  ): action is BytemdActionFactory {
+    return typeof (action as BytemdActionFactory).create === 'function'
   }
 
-  $: tocActive = sidebar === 'toc'
-  $: helpActive = sidebar === 'help'
-  $: writeActive = activeTab === 'write'
-  $: previewActive = activeTab === 'preview'
+  $: actions = getActions(plugins)
+  $: leftActions = [
+    ...actions.leftActions.reduce<BytemdAction[]>((actions, action) => {
+      if (!isActionFactory(action)) {
+        actions.push(action)
+      } else {
+        actions.push({
+          ...action.create({ dispatch, sidebar, split, activeTab, fullscreen }),
+          position: action.position,
+        })
+      }
+      return actions
+    }, []),
+  ]
 
   $: rightActions = [
-    {
-      title: tocActive ? locale.closeToc : locale.toc,
-      icon: icons.AlignTextLeftOne,
-      handler: {
-        type: 'action',
-        click() {
-          dispatch('click', 'toc')
-        },
-      },
-      active: tocActive,
-    },
-    {
-      title: helpActive ? locale.closeHelp : locale.help,
-      icon: icons.Helpcenter,
-      handler: {
-        type: 'action',
-        click() {
-          dispatch('click', 'help')
-        },
-      },
-      active: helpActive,
-    },
-    {
-      title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
-      icon: icons.LeftExpand,
-      handler: {
-        type: 'action',
-        click() {
-          dispatch('tab', 'write')
-        },
-      },
-      active: writeActive,
-      hidden: !split,
-    },
-    {
-      title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
-      icon: icons.RightExpand,
-      handler: {
-        type: 'action',
-        click() {
-          dispatch('tab', 'preview')
-        },
-      },
-      active: previewActive,
-      hidden: !split,
-    },
-    {
-      title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-      icon: fullscreen ? icons.OffScreen : icons.FullScreen,
-      handler: {
-        type: 'action',
-        click() {
-          dispatch('click', 'fullscreen')
-        },
-      },
-    },
-    {
-      title: locale.source,
-      icon: icons.GithubOne,
-      handler: {
-        type: 'action',
-        click() {
-          window.open('https://github.com/bytedance/bytemd')
-        },
-      },
-    },
-    ...rightAfferentActions,
-  ] as RightAction[]
+    ...actions.rightActions.reduce<BytemdAction[]>((actions, action) => {
+      if (!isActionFactory(action)) {
+        actions.push(action)
+      } else {
+        actions.push({
+          ...action.create({ dispatch, sidebar, split, activeTab, fullscreen }),
+          position: action.position,
+        })
+      }
+      return actions
+    }, []),
+  ]
+
+  function on() {
+    keyMap = {}
+    // TODO: nested shortcuts
+    ;[...leftActions, ...rightActions].forEach(({ handler }) => {
+      if (handler?.type === 'action' && handler.shortcut) {
+        keyMap[handler.shortcut] = () => {
+          handler.click(context)
+        }
+      }
+    })
+    editor.addKeyMap(keyMap)
+  }
+  function off() {
+    editor?.removeKeyMap(keyMap) // onDestroy runs at SSR, optional chaining here
+  }
+
+  $: if (editor && plugins) {
+    off()
+    tick().then(() => {
+      on()
+    })
+  }
 
   const tippyClass = 'bytemd-tippy'
   const tippyClassRight = 'bytemd-tippy-right'
@@ -123,7 +109,9 @@
       title: '',
       handler: {
         type: 'dropdown',
-        actions: e.classList.contains(tippyClassRight) ? rightActions : actions,
+        actions: e.classList.contains(tippyClassRight)
+          ? rightActions
+          : leftActions,
       },
     }
     paths?.forEach((index) => {
@@ -248,10 +236,11 @@
 >
   <div class="bytemd-toolbar-left">
     {#if split}
-      {#each actions as item, index}
-        {#if item.handler}
+      {#each leftActions as item, index}
+        {#if item.handler && !item.hidden}
           <div
             class={['bytemd-toolbar-icon', tippyClass].join(' ')}
+            class:bytemd-toolbar-icon-active={item.active}
             bytemd-tippy-path={index}
           >
             {@html item.icon}
@@ -282,7 +271,7 @@
 
   <div class="bytemd-toolbar-right">
     {#each rightActions as item, index}
-      {#if !item.hidden}
+      {#if item.handler && !item.hidden}
         <div
           class={['bytemd-toolbar-icon', tippyClass, tippyClassRight].join(' ')}
           class:bytemd-toolbar-icon-active={item.active}

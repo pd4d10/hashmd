@@ -9,6 +9,9 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: 'packages/bytemd/test/setup.ts',
+    alias: [
+      { find: /^svelte$/, replacement: "svelte/internal" } // FIXME: https://github.com/vitest-dev/vitest/issues/2834
+    ]
   },
   plugins: [
     svelte({

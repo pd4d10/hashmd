@@ -4,6 +4,7 @@ import type CodeMirror from 'codemirror'
 import type { Schema } from 'hast-util-sanitize'
 import type { Image } from 'mdast'
 import type { Options } from 'remark-rehype'
+import type { createEventDispatcher } from 'svelte'
 import type { Processor } from 'unified'
 import type { VFile } from 'vfile'
 
@@ -111,6 +112,11 @@ type BytemdActionHandler =
       actions: BytemdAction[]
     }
 
+export enum ActionPosition {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
 export interface BytemdAction {
   /**
    * Action title
@@ -121,7 +127,7 @@ export interface BytemdAction {
    *
    * Specifies that the action icon is in the toolbar position, which defaults to the left
    */
-  position?: 'left' | 'right'
+  position?: ActionPosition
   /**
    * Action icon (16x16), usually inline svg
    */
@@ -136,6 +142,23 @@ export interface BytemdAction {
    * Action handler
    */
   handler?: BytemdActionHandler
+  active?: boolean
+  hidden?: boolean
+}
+
+type Dispatch = ReturnType<typeof createEventDispatcher<Record<string, any>>>
+
+export interface ToolbarContext {
+  split: boolean
+  sidebar: string | boolean
+  activeTab: string | boolean
+  fullscreen: boolean
+  dispatch: Dispatch
+}
+
+export interface BytemdActionFactory {
+  position?: ActionPosition
+  create: (ctx: ToolbarContext) => BytemdAction
 }
 
 export interface BytemdPlugin {
@@ -154,7 +177,7 @@ export interface BytemdPlugin {
   /**
    * Register actions in toolbar, cheatsheet and shortcuts
    */
-  actions?: BytemdAction[]
+  actions?: Array<BytemdAction | BytemdActionFactory>
   /**
    * Side effect for the editor, triggers when plugin changes
    */
