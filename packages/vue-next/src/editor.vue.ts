@@ -1,1 +1,1 @@
-export { DefineComponent as default } from 'vue'
+export { defineComponent as default } from 'vue'
