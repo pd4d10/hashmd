@@ -330,6 +330,9 @@
     new ResizeObserver((entries) => {
       containerWidth = entries[0].contentRect.width
       // console.log(containerWidth);
+      tick().then(() => {
+        editor.refresh();
+      })
     }).observe(root, { box: 'border-box' })
 
     // No need to call `on` because cm instance would change once after init
