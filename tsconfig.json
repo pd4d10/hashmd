@@ -1,7 +1,6 @@
 {
   "files": [],
   "references": [
-    { "path": "playground" },
     { "path": "packages/vue-next" },
     { "path": "packages/vue" },
     { "path": "packages/react" },
