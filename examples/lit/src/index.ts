@@ -54,7 +54,7 @@ export class MyElement extends LitElement {
   mode = 'auto'
 
   @property()
-  localeKey = 'en'
+  locale = 'en'
 
   @property()
   enabled = {
@@ -68,26 +68,40 @@ export class MyElement extends LitElement {
     mermaid: true,
   }
 
+  onModeChange(e: Event) {
+    this.mode = (e.target as HTMLInputElement).value
+  }
+
+  onLocaleChange(e: Event) {
+    this.locale = (e.target as HTMLInputElement).value
+  }
+
+  onPluginChange(e: Event) {
+    const current = (e.target as HTMLInputElement)
+      .value as keyof typeof this.enabled
+    this.enabled[current] = !this.enabled[current]
+  }
+
   render() {
-    const { value, mode, enabled, localeKey } = this
+    const { value, mode, enabled, locale } = this
     const plugins = [
       enabled.breaks && breaks(),
       enabled.frontmatter && frontmatter(),
       enabled.gemoji && gemoji(),
       enabled.gfm &&
         gfm({
-          locale: gfmLocales[localeKey],
+          locale: gfmLocales[locale],
         }),
       enabled.highlight && highlight(),
       enabled.math &&
         math({
-          locale: mathLocales[localeKey],
+          locale: mathLocales[locale],
           katexOptions: { output: 'html' }, // https://github.com/KaTeX/KaTeX/issues/2796
         }),
       enabled['medium-zoom'] && mediumZoom(),
       enabled.mermaid &&
         mermaid({
-          locale: mermaidLocales[localeKey],
+          locale: mermaidLocales[locale],
         }),
     ].filter((x) => x)
 
@@ -96,22 +110,35 @@ export class MyElement extends LitElement {
         <div class="line">
           Mode:
           ${['auto', 'split', 'tab'].map(
-            (mode) =>
-              html`<label> <input type="radio" value=${mode} />${mode}</label>`,
+            (m) =>
+              html`<label>
+                <input
+                  type="radio"
+                  name="mode"
+                  value=${m}
+                  ?checked=${m === mode}
+                  @change=${this.onModeChange}
+                />${m}</label
+              >`,
           )}
           , Locale:
-          <select value=${localeKey}>
+          <select value=${locale} @change=${this.onLocaleChange}>
             ${Object.keys(locales).map(
-              (locale) => html`<option value=${locale}>${locale}</option>`,
+              (l) => html`<option value=${locale}>${l}</option>`,
             )}
           </select>
         </div>
         <div class="line">
           Plugins:
-          ${Object.keys(enabled).map(
-            (p) =>
+          ${Object.entries(enabled).map(
+            ([p, v]) =>
               html`<label
-                ><input type="checkbox" checked=${enabled[p]} />${p}</label
+                ><input
+                  type="checkbox"
+                  ?checked=${v}
+                  name=${p}
+                  @change=${this.onPluginChange}
+                />${p}</label
               >`,
           )}
         </div>
