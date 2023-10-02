@@ -32,7 +32,7 @@ packages.forEach((p) => {
   // license
   fs.copyFileSync(
     path.join(rootDir, 'LICENSE'),
-    path.join(packagesDir, p, 'LICENSE')
+    path.join(packagesDir, p, 'LICENSE'),
   )
 
   // package.json
@@ -49,6 +49,7 @@ packages.forEach((p) => {
   pkg.main = './dist/index.js'
   pkg.unpkg = './dist/index.umd.js'
   pkg.jsdelivr = './dist/index.umd.js'
+  pkg.type = 'module'
 
   pkg.exports = {
     '.': {
@@ -86,7 +87,7 @@ plugins.forEach((p) => {
         : '',
       desc: fs.readJsonSync(path.join(packagesDir, p, 'package.json'))
         .description,
-    }
+    },
   )
   fs.writeFileSync(path.join(packagesDir, p, 'README.md'), result)
 })
@@ -103,7 +104,7 @@ const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
         const name = p.split('-').slice(1).join('-')
         const badge = `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg?label=)](https://npm.im/@bytemd/plugin-${name})`
         const desc = _.upperFirst(
-          pkg.description.replace('ByteMD plugin to ', '')
+          pkg.description.replace('ByteMD plugin to ', ''),
         )
         return `| [@bytemd/plugin-${name}](https://github.com/bytedance/bytemd/tree/main/packages/plugin-${name}) | ${badge} | ${desc} |`
       })
@@ -117,7 +118,7 @@ const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
 ${content}
 
 ##`
-  }
+  },
 )
 
 fs.writeFileSync(path.join(rootDir, 'README.md'), readme)
