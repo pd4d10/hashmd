@@ -2,6 +2,7 @@ import { ViewerProps } from './types'
 import { getProcessor } from './utils'
 import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
 @customElement('bytemd-viewer')
 export class Viewer extends LitElement {
@@ -31,10 +32,12 @@ export class Viewer extends LitElement {
 
   render() {
     const { value, plugins, sanitize, remarkRehype, _onClick } = this
-    const v = getProcessor({ plugins, sanitize, remarkRehype })
+    const rawHtml = getProcessor({ plugins, sanitize, remarkRehype })
       .processSync(value)
       .toString()
 
-    return html`<div class="markdown-body" @click=${_onClick}>${v}</div>`
+    return html`<div class="markdown-body" @click=${_onClick}>
+      ${unsafeHTML(rawHtml)}
+    </div>`
   }
 }
