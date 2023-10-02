@@ -36,7 +36,7 @@ export type EditorUtils = ReturnType<typeof createEditorUtils>
 
 export function createEditorUtils(
   codemirror: typeof CodeMirror,
-  editor: Editor
+  editor: Editor,
 ) {
   return {
     /**
@@ -62,7 +62,7 @@ export function createEditorUtils(
         editor.replaceRange(text, fromBefore, toAfter)
         editor.setSelection(
           fromBefore,
-          codemirror.Pos(fromBefore.line, fromBefore.ch + text.length)
+          codemirror.Pos(fromBefore.line, fromBefore.ch + text.length),
         )
       } else {
         editor.replaceRange(before + text + after, from, to)
@@ -71,7 +71,7 @@ export function createEditorUtils(
         const cursor = editor.getCursor()
         editor.setSelection(
           codemirror.Pos(cursor.line, cursor.ch - after.length - text.length),
-          codemirror.Pos(cursor.line, cursor.ch - after.length)
+          codemirror.Pos(cursor.line, cursor.ch - after.length),
         )
       }
     },
@@ -147,7 +147,7 @@ const getShortcutWithPrefix = (key: string, shift = false) => {
 export async function handleImageUpload(
   { editor, appendBlock, codemirror }: BytemdEditorContext,
   uploadImages: NonNullable<EditorProps['uploadImages']>,
-  files: File[]
+  files: File[],
 ) {
   const imgs = await uploadImages(files)
   const pos = appendBlock(
@@ -156,7 +156,7 @@ export async function handleImageUpload(
         alt = alt ?? files[i].name
         return `![${alt}](${url}${title ? ` "${title}"` : ''})`
       })
-      .join('\n\n')
+      .join('\n\n'),
   )
   editor.setSelection(pos, codemirror.Pos(pos.line + imgs.length * 2 - 2))
   editor.focus()
@@ -165,7 +165,7 @@ export async function handleImageUpload(
 export function getBuiltinActions(
   locale: BytemdLocale,
   plugins: BytemdPlugin[],
-  uploadImages: EditorProps['uploadImages']
+  uploadImages: EditorProps['uploadImages'],
 ): { leftActions: BytemdAction[]; rightActions: BytemdAction[] } {
   const leftActions: BytemdAction[] = [
     {
@@ -250,7 +250,7 @@ export function getBuiltinActions(
           const cursor = editor.getCursor()
           editor.setSelection(
             codemirror.Pos(cursor.line, cursor.ch + 2),
-            codemirror.Pos(cursor.line, cursor.ch + 5)
+            codemirror.Pos(cursor.line, cursor.ch + 5),
           )
           editor.focus()
         },
@@ -301,7 +301,7 @@ export function getBuiltinActions(
           const pos = appendBlock('```js\n```')
           editor.setSelection(
             codemirror.Pos(pos.line, 3),
-            codemirror.Pos(pos.line, 5)
+            codemirror.Pos(pos.line, 5),
           )
           editor.focus()
         },

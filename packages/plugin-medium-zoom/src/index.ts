@@ -6,7 +6,7 @@ export interface BytemdPluginMediumZoomOptions extends M.ZoomOptions {
 }
 
 export default function mediumZoom(
-  options?: BytemdPluginMediumZoomOptions
+  options?: BytemdPluginMediumZoomOptions,
 ): BytemdPlugin {
   let m: typeof M
 

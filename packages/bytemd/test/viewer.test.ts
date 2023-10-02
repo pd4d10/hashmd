@@ -10,7 +10,7 @@ function stripComment(str: string) {
 test('value', async () => {
   const $ = render(Viewer, { value: '# title' })
   expect(
-    stripComment($.container.querySelector('.markdown-body')?.innerHTML)
+    stripComment($.container.querySelector('.markdown-body')?.innerHTML),
   ).toEqual('<h1>title</h1>')
   $.component.$destroy()
 })

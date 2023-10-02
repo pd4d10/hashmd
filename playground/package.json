@@ -1,6 +1,11 @@
 {
   "name": "playground",
   "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@bytemd/plugin-breaks": "workspace:*",
     "@bytemd/plugin-frontmatter": "workspace:*",
@@ -19,10 +24,5 @@
     "katex": "^0.16.4",
     "svelte-preprocess": "^5.0.3",
     "vite": "^4.2.1"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
   }
 }

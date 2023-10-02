@@ -56,11 +56,11 @@ export default function gfm({
           type: 'action',
           click({ editor, appendBlock, codemirror }) {
             const { line } = appendBlock(
-              `| ${locale.tableHeading} |  |\n| --- | --- |\n|  |  |\n`
+              `| ${locale.tableHeading} |  |\n| --- | --- |\n|  |  |\n`,
             )
             editor.setSelection(
               codemirror.Pos(line, 2),
-              codemirror.Pos(line, 2 + locale.tableHeading.length)
+              codemirror.Pos(line, 2 + locale.tableHeading.length),
             )
             editor.focus()
           },

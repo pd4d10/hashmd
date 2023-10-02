@@ -140,7 +140,7 @@ another task      : 24d`,
     viewerEffect({ markdownBody }) {
       ;(async () => {
         const els = markdownBody.querySelectorAll<HTMLElement>(
-          'pre>code.language-mermaid'
+          'pre>code.language-mermaid',
         )
         if (els.length === 0) return
 
@@ -164,7 +164,7 @@ another task      : 24d`,
             `bytemd-mermaid-${Date.now()}-${i}`,
             source,
             // @ts-ignore
-            container
+            container,
           )
             .then((svgCode) => {
               // @ts-ignore
@@ -191,7 +191,7 @@ another task      : 24d`,
                 const { line } = appendBlock('```mermaid\n' + code + '\n```')
                 editor.setSelection(
                   codemirror.Pos(line + 1, 0),
-                  codemirror.Pos(line + code.split('\n').length)
+                  codemirror.Pos(line + code.split('\n').length),
                 )
                 editor.focus()
               },

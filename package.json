@@ -8,15 +8,16 @@
     "build": "pnpm clean && node scripts/build.mjs && tsc --build",
     "clean": "rm -rf packages/*/tsconfig.tsbuildinfo && rm -rf packages/*/dist",
     "dev": "pnpm --filter playground dev",
-    "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
+    "format": "prettier --write '**/*.{ts,tsx,json,md}'",
     "postinstall": "node scripts/postinstall.mjs && tsconfig-gen && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
-    "style": "prettier --check '**/*.{ts,tsx,json,md,svelte}'",
+    "style": "prettier --check '**/*.{ts,tsx,json,md}'",
     "test": "vitest"
   },
   "prettier": {
-    "pluginSearchDirs": [
-      "."
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports",
+      "prettier-plugin-packagejson"
     ],
     "proseWrap": "never",
     "semi": false,
@@ -27,7 +28,7 @@
     "@sveltejs/vite-plugin-svelte": "2.0.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/svelte": "^3.2.2",
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash-es": "^4.17.7",
     "@types/resolve": "^1.20.2",
@@ -40,8 +41,8 @@
     "lerna": "^6.6.1",
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
-    "prettier": "^2.8.7",
-    "prettier-plugin-svelte": "^2.10.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-packagejson": "^2.4.6",
     "resolve": "^1.22.1",
     "sass": "^1.60.0",
     "sort-json": "^2.0.1",

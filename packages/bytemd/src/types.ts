@@ -202,7 +202,7 @@ export interface EditorProps extends ViewerProps {
    * Handle images upload
    */
   uploadImages?: (
-    files: File[]
+    files: File[],
   ) => Promise<Pick<Image, 'url' | 'alt' | 'title'>[]>
   /**
    * Override the default preview area render

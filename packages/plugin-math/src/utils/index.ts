@@ -37,7 +37,7 @@ export function getMathActions(locale: MathLocale): BytemdAction[] {
                 const { line } = appendBlock('$$\n\\TeX\n$$')
                 editor.setSelection(
                   codemirror.Pos(line + 1, 0),
-                  codemirror.Pos(line + 1, 4)
+                  codemirror.Pos(line + 1, 4),
                 )
                 editor.focus()
               },

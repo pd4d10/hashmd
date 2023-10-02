@@ -56,11 +56,11 @@ test('preview debounce', async () => {
   const $ = render(Editor, {})
   $.component.$set({ value: paragraph })
   expect(
-    stripComment($.container.querySelector('.markdown-body').innerHTML)
+    stripComment($.container.querySelector('.markdown-body').innerHTML),
   ).toEqual('')
   await sleep(400)
   expect(
-    stripComment($.container.querySelector('.markdown-body').innerHTML)
+    stripComment($.container.querySelector('.markdown-body').innerHTML),
   ).toEqual(paragraphHtml)
 })
 
@@ -104,7 +104,7 @@ describe('plugin', () => {
       expect.objectContaining({
         // $el: $.container.querySelector('.bytemd'),
         editor: getCodeMirror($),
-      })
+      }),
     )
 
     $.component.$set({ plugins: [{ editorEffect }] })
