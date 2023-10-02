@@ -45,6 +45,7 @@
     "@types/mdast": "^3.0.11",
     "codemirror-ssr": "^0.65.0",
     "hast-util-sanitize": "^4.1.0",
+    "lit": "^2.8.0",
     "lodash-es": "^4.17.21",
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
