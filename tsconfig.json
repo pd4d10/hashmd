@@ -1,19 +1,20 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/bytemd" },
-    { "path": "packages/plugin-breaks" },
-    { "path": "packages/plugin-frontmatter" },
-    { "path": "packages/plugin-gemoji" },
-    { "path": "packages/plugin-gfm" },
-    { "path": "packages/plugin-highlight" },
-    { "path": "packages/plugin-highlight-ssr" },
-    { "path": "packages/plugin-math" },
-    { "path": "packages/plugin-math-ssr" },
-    { "path": "packages/plugin-medium-zoom" },
-    { "path": "packages/plugin-mermaid" },
-    { "path": "packages/react" },
+    { "path": "playground" },
+    { "path": "packages/vue-next" },
     { "path": "packages/vue" },
-    { "path": "packages/vue-next" }
+    { "path": "packages/react" },
+    { "path": "packages/plugin-mermaid" },
+    { "path": "packages/plugin-medium-zoom" },
+    { "path": "packages/plugin-math-ssr" },
+    { "path": "packages/plugin-math" },
+    { "path": "packages/plugin-highlight-ssr" },
+    { "path": "packages/plugin-highlight" },
+    { "path": "packages/plugin-gfm" },
+    { "path": "packages/plugin-gemoji" },
+    { "path": "packages/plugin-frontmatter" },
+    { "path": "packages/plugin-breaks" },
+    { "path": "packages/bytemd" }
   ]
 }

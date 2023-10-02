@@ -28,11 +28,6 @@ packages.forEach((p) => {
   fs.writeJsonSync(tsconfig, c)
 })
 
-fs.writeJsonSync('tsconfig.json', {
-  files: [],
-  references: packages.map((p) => ({ path: path.join('packages', p) })),
-})
-
 packages.forEach((p) => {
   // license
   fs.copyFileSync(
