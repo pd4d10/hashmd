@@ -15,6 +15,7 @@
     { "path": "packages/plugin-gemoji" },
     { "path": "packages/plugin-frontmatter" },
     { "path": "packages/plugin-breaks" },
-    { "path": "packages/bytemd" }
+    { "path": "packages/bytemd" },
+    { "path": "examples/lit" }
   ]
 }

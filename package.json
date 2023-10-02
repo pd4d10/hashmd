@@ -15,6 +15,11 @@
     "test": "vitest"
   },
   "prettier": {
+    "importOrderParserPlugins": [
+      "typescript",
+      "jsx",
+      "decorators-legacy"
+    ],
     "plugins": [
       "@trivago/prettier-plugin-sort-imports",
       "prettier-plugin-packagejson"
@@ -53,7 +58,8 @@
     "svgo": "^3.0.2",
     "tsconfig-gen": "^0.2.1",
     "typescript": "^5.0.2",
-    "vite": "^4.2.1",
+    "vite": "^4.4.9",
+    "vite-plugin-workspace": "^0.1.0",
     "vitest": "^0.29.8"
   },
   "packageManager": "pnpm@8.8.0",
