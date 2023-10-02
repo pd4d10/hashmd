@@ -120,8 +120,7 @@ export class Toolbar extends LitElement {
       ...rightAfferentActions,
     ]
 
-    return html`<div class="toolbar" @click=${() => {}} @keydown=${() => {}}>
-      ${split
+    return html`${split
         ? actions.map(
             (item, index) =>
               item.handler &&
@@ -177,8 +176,7 @@ export class Toolbar extends LitElement {
                 ${unsafeHTML(item.icon)}
               </div>
             `,
-      )}
-    </div>`
+      )}`
   }
 
   static styles = css`
@@ -186,7 +184,7 @@ export class Toolbar extends LitElement {
       box-sizing: border-box;
     }
 
-    .toolbar {
+    :host {
       padding: 4px 12px;
       border-bottom: 1px solid var(--border-color);
       background-color: var(--gray-000);
