@@ -38,12 +38,12 @@
     "svelte"
   ],
   "dependencies": {
+    "@codemirror/lang-markdown": "^6.2.1",
     "@popperjs/core": "^2.11.7",
-    "@types/codemirror": "^5.60.7",
     "@types/hast": "^2.3.4",
     "@types/lodash-es": "^4.17.7",
     "@types/mdast": "^3.0.11",
-    "codemirror-ssr": "^0.65.0",
+    "codemirror": "^6.0.1",
     "hast-util-sanitize": "^4.1.0",
     "lit": "^2.8.0",
     "lodash-es": "^4.17.21",

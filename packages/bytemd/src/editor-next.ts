@@ -1,4 +1,5 @@
 import en from '../locales/en.json'
+import './codemirror'
 import { getBuiltinActions } from './editor'
 import './toolbar.js'
 import { EditorProps } from './types'
@@ -46,8 +47,13 @@ export class Editor extends LitElement {
         .locale=${mergedLocale}
       ></bytemd-toolbar>
       <div class="body">
-        <textarea .value=${value}></textarea
-        ><bytemd-viewer .value=${value}></bytemd-viewer>
+        <bytemd-codemirror
+          .value=${value}
+          @change=${(e: CustomEvent) => {
+            this.value = e.detail
+          }}
+        ></bytemd-codemirror>
+        <bytemd-viewer .value=${value}></bytemd-viewer>
       </div>
     `
   }
@@ -91,9 +97,10 @@ export class Editor extends LitElement {
       overflow: auto;
     }
 
-    textarea,
+    bytemd-codemirror,
     bytemd-viewer {
       flex: 1;
+      min-width: 0; // https://stackoverflow.com/a/66689926
     }
 
     .fullscreen {
