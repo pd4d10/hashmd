@@ -29,7 +29,7 @@
     "locales"
   ],
   "dependencies": {
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*"

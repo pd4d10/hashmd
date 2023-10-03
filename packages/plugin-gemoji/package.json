@@ -29,7 +29,7 @@
     "locales"
   ],
   "dependencies": {
-    "remark-gemoji": "^7.0.1"
+    "remark-gemoji": "^8.0.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*"

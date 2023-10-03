@@ -29,8 +29,8 @@
     "locales"
   ],
   "dependencies": {
-    "rehype-katex": "^6.0.2",
-    "remark-math": "^5.1.1"
+    "rehype-katex": "^7.0.0",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "bytemd": "workspace:*"

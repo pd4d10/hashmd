@@ -22,7 +22,7 @@
     "bytemd": "workspace:*",
     "github-markdown-css": "^5.2.0",
     "highlight.js": "^11.7.0",
-    "katex": "^0.16.4",
+    "katex": "^0.16.9",
     "lit": "^2.8.0"
   }
 }
