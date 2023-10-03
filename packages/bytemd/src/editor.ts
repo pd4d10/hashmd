@@ -59,6 +59,12 @@ export function replaceLines(
   editor.dispatch({
     changes: { from, to, insert: lines.map(replace).join('\n') },
   })
+  editor.dispatch({
+    selection: {
+      anchor: from,
+      head: editor.state.doc.lineAt(selection.to).to, // recalculate here for updated position
+    },
+  })
 }
 
 /**
@@ -340,7 +346,7 @@ if (import.meta.vitest) {
 
   describe('wrap text', () => {
     test('basic', () => {
-      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
+      cm.dispatch({ changes: { from: 0, insert: 'text' } })
 
       wrapText(cm, '[', '](url)')
       expect(cm.state).matchSnapshot()
@@ -349,7 +355,7 @@ if (import.meta.vitest) {
     })
 
     test('with selection', () => {
-      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
+      cm.dispatch({ changes: { from: 0, insert: 'text' } })
       cm.dispatch({ selection: { anchor: 1, head: 3 } })
 
       wrapText(cm, '[', '](url)')
@@ -359,11 +365,28 @@ if (import.meta.vitest) {
     })
 
     test('with same prefix and suffix', () => {
-      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
+      cm.dispatch({ changes: { from: 0, insert: 'text' } })
 
       wrapText(cm, '*')
       expect(cm.state).matchSnapshot()
       wrapText(cm, '*')
+      expect(cm.state).matchSnapshot()
+    })
+  })
+
+  describe('replace lines', () => {
+    test('basic', () => {
+      cm.dispatch({ changes: { from: 0, insert: 'line1\nline2' } })
+
+      replaceLines(cm, (line) => '> ' + line)
+      expect(cm.state).matchSnapshot()
+    })
+
+    test('with selection', () => {
+      cm.dispatch({ changes: { from: 0, insert: 'line1\nline2' } })
+      cm.dispatch({ selection: { anchor: 2, head: 8 } })
+
+      replaceLines(cm, (line) => '> ' + line)
       expect(cm.state).matchSnapshot()
     })
   })

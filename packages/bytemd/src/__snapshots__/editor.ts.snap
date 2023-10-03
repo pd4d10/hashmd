@@ -1,5 +1,37 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`replace lines > basic 1`] = `
+{
+  "doc": "> line1
+line2",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 7,
+      },
+    ],
+  },
+}
+`;
+
+exports[`replace lines > with selection 1`] = `
+{
+  "doc": "> line1
+> line2",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 15,
+      },
+    ],
+  },
+}
+`;
+
 exports[`wrap text > basic 1`] = `
 {
   "doc": "[text](url)",
