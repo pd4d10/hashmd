@@ -36,12 +36,16 @@
     "locales"
   ],
   "dependencies": {
+    "@codemirror/autocomplete": "^6.9.1",
+    "@codemirror/commands": "^6.3.0",
     "@codemirror/lang-markdown": "^6.2.1",
+    "@codemirror/language": "^6.9.1",
+    "@codemirror/search": "^6.5.4",
+    "@codemirror/view": "^6.21.2",
     "@popperjs/core": "^2.11.7",
     "@types/hast": "^3.0.1",
     "@types/lodash-es": "^4.17.9",
     "@types/mdast": "^4.0.1",
-    "codemirror": "^6.0.1",
     "hast-util-sanitize": "^5.0.0",
     "lit": "^2.8.0",
     "lodash-es": "^4.17.21",

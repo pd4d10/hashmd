@@ -128,9 +128,24 @@ importers:
 
   packages/bytemd:
     dependencies:
+      '@codemirror/autocomplete':
+        specifier: ^6.9.1
+        version: 6.9.1(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.21.2)(@lezer/common@1.1.0)
+      '@codemirror/commands':
+        specifier: ^6.3.0
+        version: 6.3.0
       '@codemirror/lang-markdown':
         specifier: ^6.2.1
         version: 6.2.1
+      '@codemirror/language':
+        specifier: ^6.9.1
+        version: 6.9.1
+      '@codemirror/search':
+        specifier: ^6.5.4
+        version: 6.5.4
+      '@codemirror/view':
+        specifier: ^6.21.2
+        version: 6.21.2
       '@popperjs/core':
         specifier: ^2.11.7
         version: 2.11.8
@@ -143,9 +158,6 @@ importers:
       '@types/mdast':
         specifier: ^4.0.1
         version: 4.0.1
-      codemirror:
-        specifier: ^6.0.1
-        version: 6.0.1(@lezer/common@1.1.0)
       hast-util-sanitize:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2080,20 +2092,6 @@ packages:
     resolution: {integrity: sha512-S9iI9y0nKR4hwEQsVWpyxld/6kRfGepGfzff83FcaiEBpmvlbA2nnGe7Cylgrx2f/p1P5S5wpRm9oL8z1PbS3Q==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
-
-  /codemirror@6.0.1(@lezer/common@1.1.0):
-    resolution: {integrity: sha512-J8j+nZ+CdWmIeFIGXEFbFPtpiYacFMDR8GlHK3IyHQJMCaVRfGx9NT+Hxivv1ckLWPvNdZqndbr/7lVhrf/Svg==}
-    dependencies:
-      '@codemirror/autocomplete': 6.9.1(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.21.2)(@lezer/common@1.1.0)
-      '@codemirror/commands': 6.3.0
-      '@codemirror/language': 6.9.1
-      '@codemirror/lint': 6.4.2
-      '@codemirror/search': 6.5.4
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.21.2
-    transitivePeerDependencies:
-      - '@lezer/common'
-    dev: false
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
