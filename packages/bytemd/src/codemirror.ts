@@ -1,6 +1,6 @@
 import { markdown } from '@codemirror/lang-markdown'
 import { EditorView, minimalSetup, basicSetup } from 'codemirror'
-import { LitElement } from 'lit'
+import { LitElement, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 
 @customElement('bytemd-codemirror')
@@ -21,6 +21,7 @@ export class Codemirror extends LitElement {
     this.editor = new EditorView({
       doc: this.value,
       extensions: [
+        EditorView.lineWrapping,
         basicSetup,
         markdown({
           extensions: [],
@@ -30,4 +31,10 @@ export class Codemirror extends LitElement {
       parent: this.renderRoot,
     })
   }
+
+  static styles = css`
+    .cm-editor {
+      height: 100%;
+    }
+  `
 }

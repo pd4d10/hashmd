@@ -22,8 +22,7 @@ interface RightAction extends BytemdAction {
 
 @customElement('bytemd-toolbar')
 export class Toolbar extends LitElement {
-  @property() split = true
-  @property() activeTab: false | 'write' | 'preview' = false
+  @property() activeTab: 'icon' | 'write' | 'preview' = 'icon'
   @property() fullscreen = false
   @property() sidebar: false | 'help' | 'toc' = false
   @property() locale: Partial<BytemdLocale> = {}
@@ -36,7 +35,6 @@ export class Toolbar extends LitElement {
 
   render() {
     const {
-      split,
       activeTab,
       fullscreen,
       sidebar,
@@ -46,6 +44,7 @@ export class Toolbar extends LitElement {
       dispatch,
     } = this
 
+    const split = activeTab === 'icon'
     const tocActive = sidebar === 'toc'
     const helpActive = sidebar === 'help'
     const writeActive = activeTab === 'write'

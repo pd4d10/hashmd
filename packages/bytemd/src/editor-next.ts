@@ -3,17 +3,17 @@ import './codemirror'
 import { getBuiltinActions } from './editor'
 import './toolbar.js'
 import { EditorProps } from './types'
-import { LitElement, css, html } from 'lit'
+import { LitElement, css, html, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 
 @customElement('bytemd-editor')
 export class Editor extends LitElement {
   @property({ attribute: true }) value: EditorProps['value'] = ''
+  @property({ attribute: true }) mode: EditorProps['mode']
   @property() plugins: NonNullable<EditorProps['plugins']> = []
-  @property() sanitize: EditorProps['sanitize'] = undefined
-  @property() remarkRehype: EditorProps['remarkRehype'] = undefined
-  @property() mode: NonNullable<EditorProps['mode']> = 'auto'
+  @property() sanitize: EditorProps['sanitize']
+  @property() remarkRehype: EditorProps['remarkRehype']
   @property() locale: EditorProps['locale']
   @property() uploadImages: EditorProps['uploadImages']
 
@@ -26,7 +26,7 @@ export class Editor extends LitElement {
       value,
       plugins,
       sanitize,
-      mode,
+      mode = 'auto',
       locale,
       uploadImages,
 
@@ -47,12 +47,16 @@ export class Editor extends LitElement {
         .locale=${mergedLocale}
       ></bytemd-toolbar>
       <div class="body">
-        <bytemd-codemirror
-          .value=${value}
-          @change=${(e: CustomEvent) => {
-            this.value = e.detail
-          }}
-        ></bytemd-codemirror>
+        ${split
+          ? html`
+              <bytemd-codemirror
+                .value=${value}
+                @change=${(e: CustomEvent) => {
+                  this.value = e.detail
+                }}
+              ></bytemd-codemirror>
+            `
+          : nothing}
         <bytemd-viewer .value=${value}></bytemd-viewer>
       </div>
     `
@@ -97,10 +101,16 @@ export class Editor extends LitElement {
       overflow: auto;
     }
 
+    bytemd-codemirror {
+      border-right: 1px solid var(--border-color);
+    }
+
     bytemd-codemirror,
     bytemd-viewer {
       flex: 1;
       min-width: 0; // https://stackoverflow.com/a/66689926
+      height: 100%;
+      overflow: auto;
     }
 
     .fullscreen {

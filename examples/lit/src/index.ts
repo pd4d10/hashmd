@@ -47,17 +47,10 @@ const mermaidLocales = stripPrefixes(
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @property()
-  value = markdownText
-
-  @property()
-  mode = 'auto'
-
-  @property()
-  locale = 'en'
-
-  @property()
-  enabled = {
+  @property() value = markdownText
+  @property() mode = 'auto'
+  @property() locale = 'en'
+  @property() enabled = {
     breaks: false,
     frontmatter: true,
     gemoji: true,
@@ -66,20 +59,6 @@ export class MyElement extends LitElement {
     math: true,
     'medium-zoom': true,
     mermaid: true,
-  }
-
-  onModeChange(e: Event) {
-    this.mode = (e.target as HTMLInputElement).value
-  }
-
-  onLocaleChange(e: Event) {
-    this.locale = (e.target as HTMLInputElement).value
-  }
-
-  onPluginChange(e: Event) {
-    const current = (e.target as HTMLInputElement)
-      .value as keyof typeof this.enabled
-    this.enabled[current] = !this.enabled[current]
   }
 
   render() {
@@ -117,12 +96,19 @@ export class MyElement extends LitElement {
                   name="mode"
                   value=${m}
                   ?checked=${m === mode}
-                  @change=${this.onModeChange}
+                  @change=${(e: Event) => {
+                    this.mode = (e.target as HTMLInputElement).value
+                  }}
                 />${m}</label
               >`,
           )}
           , Locale:
-          <select value=${locale} @change=${this.onLocaleChange}>
+          <select
+            value=${locale}
+            @change=${(e: Event) => {
+              this.locale = (e.target as HTMLInputElement).value
+            }}
+          >
             ${Object.keys(locales).map(
               (l) => html`<option value=${locale}>${l}</option>`,
             )}
@@ -137,12 +123,20 @@ export class MyElement extends LitElement {
                   type="checkbox"
                   ?checked=${v}
                   name=${p}
-                  @change=${this.onPluginChange}
+                  @change=${(e: Event) => {
+                    const current = (e.target as HTMLInputElement)
+                      .value as keyof typeof this.enabled
+                    this.enabled[current] = !this.enabled[current]
+                  }}
                 />${p}</label
               >`,
           )}
         </div>
-        <bytemd-editor value=${value}></bytemd-editor>
+        <bytemd-editor
+          .value=${value}
+          .plugins=${plugins}
+          .mode=${mode}
+        ></bytemd-editor>
       </div>
     `
   }
