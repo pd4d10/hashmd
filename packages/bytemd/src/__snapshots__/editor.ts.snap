@@ -2,13 +2,13 @@
 
 exports[`wrap text > basic 1`] = `
 {
-  "doc": "[text]",
+  "doc": "[text](url)",
   "selection": {
     "main": 0,
     "ranges": [
       {
         "anchor": 0,
-        "head": 0,
+        "head": 11,
       },
     ],
   },
@@ -17,13 +17,13 @@ exports[`wrap text > basic 1`] = `
 
 exports[`wrap text > basic 2`] = `
 {
-  "doc": "[text]",
+  "doc": "text",
   "selection": {
     "main": 0,
     "ranges": [
       {
         "anchor": 0,
-        "head": 0,
+        "head": 4,
       },
     ],
   },
@@ -38,7 +38,7 @@ exports[`wrap text > with same prefix and suffix 1`] = `
     "ranges": [
       {
         "anchor": 0,
-        "head": 0,
+        "head": 6,
       },
     ],
   },
@@ -47,13 +47,13 @@ exports[`wrap text > with same prefix and suffix 1`] = `
 
 exports[`wrap text > with same prefix and suffix 2`] = `
 {
-  "doc": "*text*",
+  "doc": "text",
   "selection": {
     "main": 0,
     "ranges": [
       {
         "anchor": 0,
-        "head": 0,
+        "head": 4,
       },
     ],
   },
@@ -62,13 +62,13 @@ exports[`wrap text > with same prefix and suffix 2`] = `
 
 exports[`wrap text > with selection 1`] = `
 {
-  "doc": "t*ex*t",
+  "doc": "t[ex](url)t",
   "selection": {
     "main": 0,
     "ranges": [
       {
         "anchor": 1,
-        "head": 5,
+        "head": 10,
       },
     ],
   },
@@ -77,13 +77,13 @@ exports[`wrap text > with selection 1`] = `
 
 exports[`wrap text > with selection 2`] = `
 {
-  "doc": "t**ex**t",
+  "doc": "text",
   "selection": {
     "main": 0,
     "ranges": [
       {
         "anchor": 1,
-        "head": 7,
+        "head": 3,
       },
     ],
   },

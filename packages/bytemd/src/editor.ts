@@ -23,29 +23,22 @@ export function wrapText(editor: EditorView, before: string, after = before) {
     const { from, to } = range
     const text = editor.state.sliceDoc(from, to) // use from/to instead of anchor/head for reverse select
 
-    if (
-      editor.state.sliceDoc(from - before.length, from) === before &&
-      editor.state.sliceDoc(to, to + after.length) === after
-    ) {
-      editor.dispatch({
-        changes: {
-          from,
-          to,
-          insert: text.slice(before.length, -after.length),
-        },
-      })
-    } else {
-      editor.dispatch({
-        changes: { from, to, insert: before + text + after },
-      })
-
-      // // select the original text
-      // const cursor = view.getCursor()
-      // view.setSelection(
-      //   codemirror.Pos(cursor.line, cursor.ch - after.length - text.length),
-      //   codemirror.Pos(cursor.line, cursor.ch - after.length),
-      // )
-    }
+    const shouldUnwrap = text.startsWith(before) && text.endsWith(after)
+    editor.dispatch({
+      changes: {
+        from,
+        to,
+        insert: shouldUnwrap
+          ? text.slice(before.length, -after.length)
+          : before + text + after,
+      },
+      selection: {
+        anchor: from,
+        head: shouldUnwrap
+          ? to - before.length - after.length
+          : to + before.length + after.length,
+      },
+    })
   }
 }
 
@@ -348,24 +341,25 @@ if (import.meta.vitest) {
   describe('wrap text', () => {
     test('basic', () => {
       cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
-      wrapText(cm, '[', ']')
-      expect(cm.state).matchSnapshot()
 
-      wrapText(cm, '[', ']')
+      wrapText(cm, '[', '](url)')
       expect(cm.state).matchSnapshot()
-    })
-
-    test('with same prefix and suffix', () => {
-      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
-      wrapText(cm, '*')
-      expect(cm.state).matchSnapshot()
-      wrapText(cm, '*')
+      wrapText(cm, '[', '](url)')
       expect(cm.state).matchSnapshot()
     })
 
     test('with selection', () => {
       cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
       cm.dispatch({ selection: { anchor: 1, head: 3 } })
+
+      wrapText(cm, '[', '](url)')
+      expect(cm.state).matchSnapshot()
+      wrapText(cm, '[', '](url)')
+      expect(cm.state).matchSnapshot()
+    })
+
+    test('with same prefix and suffix', () => {
+      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
 
       wrapText(cm, '*')
       expect(cm.state).matchSnapshot()
