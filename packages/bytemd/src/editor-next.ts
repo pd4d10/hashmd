@@ -3,7 +3,7 @@ import './codemirror'
 import { getBuiltinActions } from './editor'
 import './status.js'
 import './toolbar.js'
-import { EditorProps } from './types'
+import { BytemdEditorContext, EditorProps } from './types'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 
@@ -21,6 +21,7 @@ export class Editor extends LitElement {
   @property({ state: true }) _activeTab: false | 'write' | 'preview' = false
   @property({ state: true }) _fullscreen = false
   @property({ state: true }) _sync = false
+  @property({ state: true }) _context: BytemdEditorContext | undefined
 
   render() {
     const {
@@ -46,6 +47,7 @@ export class Editor extends LitElement {
         .actions=${actions.leftActions}
         .rightAfferentActions=${actions.rightActions}
         .locale=${mergedLocale}
+        .context=${this._context}
       ></bytemd-toolbar>
       <div class="body">
         ${split
@@ -54,6 +56,9 @@ export class Editor extends LitElement {
                 .value=${value}
                 @change=${(e: CustomEvent) => {
                   this.value = e.detail
+                }}
+                @context=${(e: CustomEvent) => {
+                  this._context = { editor: e.detail }
                 }}
               ></bytemd-codemirror>
             `

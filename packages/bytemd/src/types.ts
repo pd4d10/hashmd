@@ -1,6 +1,4 @@
-import type { EditorUtils } from './editor'
-import type { Editor, EditorConfiguration } from 'codemirror'
-import type CodeMirror from 'codemirror'
+import type { EditorView } from 'codemirror'
 import type { Schema } from 'hast-util-sanitize'
 import type { Image } from 'mdast'
 import type { Options } from 'remark-rehype'
@@ -57,16 +55,11 @@ export interface BytemdLocale {
   hr: string
 }
 
-export interface BytemdEditorContext extends EditorUtils {
-  codemirror: typeof CodeMirror
+export interface BytemdEditorContext {
   /**
    * CodeMirror editor instance
    */
-  editor: Editor
-  /**
-   * The root element
-   */
-  root: HTMLElement
+  editor: EditorView
 }
 
 export interface BytemdViewerContext {
@@ -186,12 +179,6 @@ export interface EditorProps extends ViewerProps {
    * Editor placeholder
    */
   placeholder?: string
-  /**
-   * CodeMirror editor config
-   *
-   * https://codemirror.net/doc/manual.html#config
-   */
-  editorConfig?: Omit<EditorConfiguration, 'value' | 'placeholder'>
   /**
    * i18n locale
    *

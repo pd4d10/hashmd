@@ -6,121 +6,99 @@ import type {
   BytemdLocale,
   BytemdEditorContext,
 } from './types'
-import type { Editor, Position } from 'codemirror'
-import type CodeMirror from 'codemirror'
-import factory from 'codemirror-ssr'
-import usePlaceholder from 'codemirror-ssr/addon/display/placeholder.js'
-import useContinuelist from 'codemirror-ssr/addon/edit/continuelist.js'
-import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
-import useGfm from 'codemirror-ssr/mode/gfm/gfm.js'
-import useMarkdown from 'codemirror-ssr/mode/markdown/markdown.js'
-import useXml from 'codemirror-ssr/mode/xml/xml.js'
-import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter.js'
-import useYaml from 'codemirror-ssr/mode/yaml/yaml.js'
+import { EditorView } from 'codemirror'
 import selectFiles from 'select-files'
 
-export function createCodeMirror() {
-  const codemirror = factory()
-  usePlaceholder(codemirror)
-  useOverlay(codemirror)
-  useXml(codemirror) // inline html highlight
-  useMarkdown(codemirror)
-  useGfm(codemirror)
-  useYaml(codemirror)
-  useYamlFrontmatter(codemirror)
-  useContinuelist(codemirror)
-  return codemirror
+/**
+ * Wrap text with decorators, for example:
+ *
+ * `text -> *text*`
+ */
+export function wrapText(editor: EditorView, before: string, after = before) {
+  const range =
+    editor.state.selection.ranges.find((r) => !r.empty) ?? // only handle the first selection
+    editor.state.wordAt(editor.state.selection.main.head)
+
+  if (range) {
+    const { from, to } = range
+    const text = editor.state.sliceDoc(from, to) // use from/to instead of anchor/head for reverse select
+
+    if (
+      editor.state.sliceDoc(from - before.length, from) === before &&
+      editor.state.sliceDoc(to, to + after.length) === after
+    ) {
+      editor.dispatch({
+        changes: {
+          from,
+          to,
+          insert: text.slice(before.length, -after.length),
+        },
+      })
+    } else {
+      editor.dispatch({
+        changes: { from, to, insert: before + text + after },
+      })
+
+      // // select the original text
+      // const cursor = view.getCursor()
+      // view.setSelection(
+      //   codemirror.Pos(cursor.line, cursor.ch - after.length - text.length),
+      //   codemirror.Pos(cursor.line, cursor.ch - after.length),
+      // )
+    }
+  }
 }
 
-export type EditorUtils = ReturnType<typeof createEditorUtils>
-
-export function createEditorUtils(
-  codemirror: typeof CodeMirror,
-  editor: Editor,
+/**
+ * replace multiple lines
+ *
+ * `line -> # line`
+ */
+export function replaceLines(
+  editor: EditorView,
+  replace: Parameters<Array<string>['map']>[0],
 ) {
-  return {
-    /**
-     * Wrap text with decorators, for example:
-     *
-     * `text -> *text*`
-     */
-    wrapText(before: string, after = before) {
-      const range = editor.somethingSelected()
-        ? editor.listSelections()[0] // only handle the first selection
-        : editor.findWordAt(editor.getCursor())
+  const [selection] = editor.state.selection.ranges
+  const { from } = editor.state.doc.lineAt(selection.from)
+  const { to } = editor.state.doc.lineAt(selection.to)
+  const lines = editor.state.sliceDoc(from, to).split('\n')
 
-      const from = range.from() // use from/to instead of anchor/head for reverse select
-      const to = range.to()
-      const text = editor.getRange(from, to)
-      const fromBefore = codemirror.Pos(from.line, from.ch - before.length)
-      const toAfter = codemirror.Pos(to.line, to.ch + after.length)
+  editor.dispatch({
+    changes: { from, to, insert: lines.map(replace).join('\n') },
+  })
+}
 
-      if (
-        editor.getRange(fromBefore, from) === before &&
-        editor.getRange(to, toAfter) === after
-      ) {
-        editor.replaceRange(text, fromBefore, toAfter)
-        editor.setSelection(
-          fromBefore,
-          codemirror.Pos(fromBefore.line, fromBefore.ch + text.length),
-        )
-      } else {
-        editor.replaceRange(before + text + after, from, to)
+/**
+ * Append a block based on the cursor position
+ */
+export function appendBlock(editor: EditorView, content: string) {
+  const cursor = editor.state.selection.main.head
+  // find the first blank line
 
-        // select the original text
-        const cursor = editor.getCursor()
-        editor.setSelection(
-          codemirror.Pos(cursor.line, cursor.ch - after.length - text.length),
-          codemirror.Pos(cursor.line, cursor.ch - after.length),
-        )
-      }
-    },
-    /**
-     * replace multiple lines
-     *
-     * `line -> # line`
-     */
-    replaceLines(replace: Parameters<Array<string>['map']>[0]) {
-      const [selection] = editor.listSelections()
-
-      const range = [
-        codemirror.Pos(selection.from().line, 0),
-        codemirror.Pos(selection.to().line),
-      ] as const
-      const lines = editor.getRange(...range).split('\n')
-      editor.replaceRange(lines.map(replace).join('\n'), ...range)
-      editor.setSelection(...range)
-    },
-    /**
-     * Append a block based on the cursor position
-     */
-    appendBlock(content: string): Position {
-      const cursor = editor.getCursor()
-      // find the first blank line
-
-      let emptyLine = -1
-      for (let i = cursor.line; i < editor.lineCount(); i++) {
-        if (!editor.getLine(i).trim()) {
-          emptyLine = i
-          break
-        }
-      }
-      if (emptyLine === -1) {
-        // insert a new line to the bottom
-        editor.replaceRange('\n', codemirror.Pos(editor.lineCount()))
-        emptyLine = editor.lineCount()
-      }
-
-      editor.replaceRange('\n' + content, codemirror.Pos(emptyLine))
-      return codemirror.Pos(emptyLine + 1, 0)
-    },
-    /**
-     * Triggers a virtual file input and let user select files
-     *
-     * https://www.npmjs.com/package/select-files
-     */
-    selectFiles,
+  let emptyLine = -1
+  for (
+    let i = editor.state.doc.lineAt(cursor).number;
+    i < editor.state.doc.lines;
+    i++
+  ) {
+    if (!editor.state.doc.line(i).text.trim()) {
+      emptyLine = i
+      break
+    }
   }
+
+  let nextLine = editor.state.doc.lineAt(cursor).number + 1
+  if (emptyLine === -1) {
+    // insert a new line to the bottom
+    editor.dispatch({
+      changes: { from: nextLine, to: nextLine, insert: '\n' },
+    })
+    nextLine += 1
+  }
+
+  editor.dispatch({
+    changes: { from: nextLine, to: nextLine, insert: content },
+  })
 }
 
 export function findStartIndex(num: number, nums: number[]) {
@@ -145,12 +123,13 @@ const getShortcutWithPrefix = (key: string, shift = false) => {
 }
 
 export async function handleImageUpload(
-  { editor, appendBlock, codemirror }: BytemdEditorContext,
+  { editor }: BytemdEditorContext,
   uploadImages: NonNullable<EditorProps['uploadImages']>,
   files: File[],
 ) {
   const imgs = await uploadImages(files)
   const pos = appendBlock(
+    editor,
     imgs
       .map(({ url, alt, title }, i) => {
         alt = alt ?? files[i].name
@@ -158,7 +137,7 @@ export async function handleImageUpload(
       })
       .join('\n\n'),
   )
-  editor.setSelection(pos, codemirror.Pos(pos.line + imgs.length * 2 - 2))
+  // editor.setSelection(pos, codemirror.Pos(pos.line + imgs.length * 2 - 2))
   editor.focus()
 }
 
@@ -188,8 +167,8 @@ export function getBuiltinActions(
               : undefined,
           handler: {
             type: 'action',
-            click({ replaceLines, editor }) {
-              replaceLines((line) => {
+            click({ editor }) {
+              replaceLines(editor, (line) => {
                 line = line.trim().replace(/^#*/, '').trim()
                 line = '#'.repeat(level) + ' ' + line
                 return line
@@ -207,8 +186,8 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('B'),
-        click({ wrapText, editor }) {
-          wrapText('**')
+        click({ editor }) {
+          wrapText(editor, '**')
           editor.focus()
         },
       },
@@ -220,8 +199,8 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('I'),
-        click({ wrapText, editor }) {
-          wrapText('*')
+        click({ editor }) {
+          wrapText(editor, '*')
           editor.focus()
         },
       },
@@ -232,8 +211,8 @@ export function getBuiltinActions(
       cheatsheet: `> ${locale.quotedText}`,
       handler: {
         type: 'action',
-        click({ replaceLines, editor }) {
-          replaceLines((line) => '> ' + line)
+        click({ editor }) {
+          replaceLines(editor, (line) => '> ' + line)
           editor.focus()
         },
       },
@@ -245,13 +224,13 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('K'),
-        click({ editor, wrapText, codemirror }) {
-          wrapText('[', '](url)')
-          const cursor = editor.getCursor()
-          editor.setSelection(
-            codemirror.Pos(cursor.line, cursor.ch + 2),
-            codemirror.Pos(cursor.line, cursor.ch + 5),
-          )
+        click({ editor }) {
+          wrapText(editor, '[', '](url)')
+          // const cursor = editor.getCursor()
+          // editor.setSelection(
+          //   codemirror.Pos(cursor.line, cursor.ch + 2),
+          //   codemirror.Pos(cursor.line, cursor.ch + 5),
+          // )
           editor.focus()
         },
       },
@@ -284,8 +263,8 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('K', true),
-        click({ wrapText, editor }) {
-          wrapText('`')
+        click({ editor }) {
+          wrapText(editor, '`')
           editor.focus()
         },
       },
@@ -297,12 +276,12 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('C', true),
-        click({ editor, appendBlock, codemirror }) {
-          const pos = appendBlock('```js\n```')
-          editor.setSelection(
-            codemirror.Pos(pos.line, 3),
-            codemirror.Pos(pos.line, 5),
-          )
+        click({ editor }) {
+          const pos = appendBlock(editor, '```js\n```')
+          // editor.setSelection(
+          //   codemirror.Pos(pos.line, 3),
+          //   codemirror.Pos(pos.line, 5),
+          // )
           editor.focus()
         },
       },
@@ -314,8 +293,8 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('U', true),
-        click({ replaceLines, editor }) {
-          replaceLines((line) => '- ' + line)
+        click({ editor }) {
+          replaceLines(editor, (line) => '- ' + line)
           editor.focus()
         },
       },
@@ -327,8 +306,8 @@ export function getBuiltinActions(
       handler: {
         type: 'action',
         shortcut: getShortcutWithPrefix('O', true),
-        click({ replaceLines, editor }) {
-          replaceLines((line, i) => `${i + 1}. ${line}`)
+        click({ editor }) {
+          replaceLines(editor, (line, i) => `${i + 1}. ${line}`)
           editor.focus()
         },
       },

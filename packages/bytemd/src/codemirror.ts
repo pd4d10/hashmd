@@ -30,6 +30,8 @@ export class Codemirror extends LitElement {
       ],
       parent: this.renderRoot,
     })
+
+    this.dispatchEvent(new CustomEvent('context', { detail: this.editor }))
   }
 
   static styles = css`
