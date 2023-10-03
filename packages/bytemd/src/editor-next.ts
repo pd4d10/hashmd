@@ -1,11 +1,11 @@
 import en from '../locales/en.json'
 import './codemirror'
 import { getBuiltinActions } from './editor'
+import './status.js'
 import './toolbar.js'
 import { EditorProps } from './types'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { classMap } from 'lit/directives/class-map.js'
 
 @customElement('bytemd-editor')
 export class Editor extends LitElement {
@@ -20,6 +20,7 @@ export class Editor extends LitElement {
   @property({ state: true }) _containerWidth = Infinity
   @property({ state: true }) _activeTab: false | 'write' | 'preview' = false
   @property({ state: true }) _fullscreen = false
+  @property({ state: true }) _sync = false
 
   render() {
     const {
@@ -59,6 +60,16 @@ export class Editor extends LitElement {
           : nothing}
         <bytemd-viewer .value=${value}></bytemd-viewer>
       </div>
+      <bytemd-status
+        .value=${value}
+        .locale=${mergedLocale}
+        @toggle-sync=${() => {
+          this._sync = !this._sync
+        }}
+        @scroll-top=${() => {
+          this.querySelector('bytemd-viewer')?.scrollTo({ top: 0 })
+        }}
+      ></bytemd-status>
     `
   }
 
@@ -111,6 +122,10 @@ export class Editor extends LitElement {
       min-width: 0; // https://stackoverflow.com/a/66689926
       height: 100%;
       overflow: auto;
+    }
+
+    bytemd-status {
+      border-top: 1px solid var(--border-color);
     }
 
     .fullscreen {

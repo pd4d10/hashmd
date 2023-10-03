@@ -22,7 +22,7 @@ export class Codemirror extends LitElement {
       doc: this.value,
       extensions: [
         EditorView.lineWrapping,
-        basicSetup,
+        minimalSetup,
         markdown({
           extensions: [],
         }),
