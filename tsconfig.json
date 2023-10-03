@@ -1,8 +1,6 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/vue-next" },
-    { "path": "packages/vue" },
     { "path": "packages/react" },
     { "path": "packages/plugin-mermaid" },
     { "path": "packages/plugin-medium-zoom" },
