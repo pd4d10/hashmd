@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`wrap text > basic 1`] = `
+{
+  "doc": "[text]",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > basic 2`] = `
+{
+  "doc": "[text]",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with same prefix and suffix 1`] = `
+{
+  "doc": "*text*",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with same prefix and suffix 2`] = `
+{
+  "doc": "*text*",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with selection 1`] = `
+{
+  "doc": "t*ex*t",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 1,
+        "head": 5,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with selection 2`] = `
+{
+  "doc": "t**ex**t",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 1,
+        "head": 7,
+      },
+    ],
+  },
+}
+`;

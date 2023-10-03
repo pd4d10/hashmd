@@ -333,3 +333,44 @@ export function getBuiltinActions(
     rightActions,
   }
 }
+
+if (import.meta.vitest) {
+  const { test, expect, beforeEach, describe } = import.meta.vitest
+  let cm: EditorView
+
+  beforeEach(async () => {
+    cm = new EditorView()
+    return async () => {
+      cm.destroy()
+    }
+  })
+
+  describe('wrap text', () => {
+    test('basic', () => {
+      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
+      wrapText(cm, '[', ']')
+      expect(cm.state).matchSnapshot()
+
+      wrapText(cm, '[', ']')
+      expect(cm.state).matchSnapshot()
+    })
+
+    test('with same prefix and suffix', () => {
+      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
+      wrapText(cm, '*')
+      expect(cm.state).matchSnapshot()
+      wrapText(cm, '*')
+      expect(cm.state).matchSnapshot()
+    })
+
+    test('with selection', () => {
+      cm.dispatch({ changes: { from: 0, to: 0, insert: 'text' } })
+      cm.dispatch({ selection: { anchor: 1, head: 3 } })
+
+      wrapText(cm, '*')
+      expect(cm.state).matchSnapshot()
+      wrapText(cm, '*')
+      expect(cm.state).matchSnapshot()
+    })
+  })
+}

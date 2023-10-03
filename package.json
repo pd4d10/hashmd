@@ -37,7 +37,7 @@
     "@types/resolve": "^1.20.3",
     "decode-named-character-reference": "^1.0.2",
     "fs-extra": "^11.1.1",
-    "jsdom": "^22.1.0",
+    "happy-dom": "^12.7.0",
     "lerna": "^7.3.0",
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
