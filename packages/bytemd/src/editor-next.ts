@@ -58,7 +58,9 @@ export class Editor extends LitElement {
               ></bytemd-codemirror>
             `
           : nothing}
-        <bytemd-viewer .value=${value}></bytemd-viewer>
+        <div class="preview">
+          <bytemd-viewer .value=${value}></bytemd-viewer>
+        </div>
       </div>
       <bytemd-status
         .value=${value}
@@ -67,7 +69,11 @@ export class Editor extends LitElement {
           this._sync = !this._sync
         }}
         @scroll-top=${() => {
-          this.querySelector('bytemd-viewer')?.scrollTo({ top: 0 })
+          this.shadowRoot
+            ?.querySelector('bytemd-codemirror')
+            ?.shadowRoot?.querySelector('.cm-content')
+            ?.scrollIntoView()
+          this.shadowRoot?.querySelector('bytemd-viewer')?.scrollIntoView()
         }}
       ></bytemd-status>
     `
@@ -117,7 +123,7 @@ export class Editor extends LitElement {
     }
 
     bytemd-codemirror,
-    bytemd-viewer {
+    .preview {
       flex: 1;
       min-width: 0; // https://stackoverflow.com/a/66689926
       height: 100%;
