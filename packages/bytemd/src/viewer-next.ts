@@ -6,38 +6,29 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
 @customElement('bytemd-viewer')
 export class Viewer extends LitElement {
-  @property({ attribute: true })
-  value: ViewerProps['value'] = ''
+  @property({ attribute: true }) value: ViewerProps['value'] = ''
+  @property() plugins: ViewerProps['plugins']
+  @property() sanitize: ViewerProps['sanitize']
+  @property() remarkRehype: ViewerProps['remarkRehype']
 
-  @property()
-  plugins: NonNullable<ViewerProps['plugins']> = []
-
-  @property()
-  sanitize: ViewerProps['sanitize'] = undefined
-
-  @property()
-  remarkRehype: ViewerProps['remarkRehype'] = undefined
-
-  _onClick(e: MouseEvent) {
-    const $ = e.target as HTMLElement
-    if ($.tagName !== 'A') return
-
-    const href = $.getAttribute('href')
-    if (!href?.startsWith('#')) return
-
-    this.shadowRoot
-      ?.querySelector('#user-content-' + href.slice(1))
-      ?.scrollIntoView()
+  protected firstUpdated() {
+    this.renderRoot.addEventListener('click', (e) => {
+      const $ = e.target as HTMLElement
+      if ($.tagName === 'A') {
+        const href = $.getAttribute('href')
+        if (href?.startsWith('#')) {
+          this.querySelector('#user-content-' + href.slice(1))?.scrollIntoView()
+        }
+      }
+    })
   }
 
   render() {
-    const { value, plugins, sanitize, remarkRehype, _onClick } = this
+    const { value, plugins, sanitize, remarkRehype } = this
     const rawHtml = getProcessor({ plugins, sanitize, remarkRehype })
       .processSync(value)
       .toString()
 
-    return html`<div class="markdown-body" @click=${_onClick}>
-      ${unsafeHTML(rawHtml)}
-    </div>`
+    return html`${unsafeHTML(rawHtml)}`
   }
 }
