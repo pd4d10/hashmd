@@ -18,11 +18,19 @@ export class Codemirror extends LitElement {
       }
     })
 
+    const theme = EditorView.theme({
+      '& .cm-scroller': {
+        fontFamily: 'SF Mono, Consolas, Liberation Mono, Menlo, monospace',
+        fontSize: '14px',
+      },
+    })
+
     this.editor = new EditorView({
       doc: this.value,
       extensions: [
         EditorView.lineWrapping,
-        minimalSetup,
+        basicSetup,
+        theme,
         markdown({
           extensions: [],
         }),

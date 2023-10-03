@@ -135,6 +135,10 @@ export class Editor extends LitElement {
       overflow: auto;
     }
 
+    .preview {
+      padding: 16px;
+    }
+
     bytemd-status {
       border-top: 1px solid var(--border-color);
     }
