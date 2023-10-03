@@ -1,16 +1,11 @@
 // @ts-check
 import { createVue3Plugin } from '../packages/vue-next/plugin.mjs'
 import { createVuePlugin } from '../packages/vue/plugin.mjs'
-import { packages, packagesDir, sveltePreprocessor } from './utils.mjs'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import { execaCommand } from 'execa'
-import glob from 'fast-glob'
+import { packages, packagesDir } from './utils.mjs'
 import fs from 'fs-extra'
 import { camelCase } from 'lodash-es'
 import path from 'path'
 import resolve from 'resolve'
-import { emitDts } from 'svelte2tsx'
-import { preprocess } from 'svelte/compiler'
 import { build } from 'vite'
 
 ;(async () => {
@@ -19,19 +14,6 @@ import { build } from 'vite'
 
     const root = path.resolve(packagesDir, name)
     process.chdir(root)
-
-    if (name === 'bytemd') {
-      // some parts are from here https://github.com/sveltejs/kit/blob/master/packages/kit/src/packaging/typescript.js
-      await emitDts({
-        svelteShimsPath: 'node_modules/svelte2tsx/svelte-shims.d.ts',
-        declarationDir: './dist',
-      })
-      glob.sync('./dist/src/*.svelte.d.ts').forEach((file) => {
-        // console.log(file)
-        fs.moveSync(file, file.replace('/src', ''))
-      })
-      fs.removeSync('./dist/src')
-    }
 
     // build js
     const pkg = await fs.readJson(path.resolve(root, 'package.json'))
@@ -47,7 +29,7 @@ import { build } from 'vite'
           ...Object.keys({
             ...pkg.peerDependencies,
             ...pkg.dependencies,
-          })
+          }),
         )
       } else if (format === 'cjs') {
         const deps = Object.keys({ ...pkg.dependencies })
@@ -57,7 +39,7 @@ import { build } from 'vite'
               root,
               'node_modules',
               dep,
-              'package.json'
+              'package.json',
             )
 
             if (!fs.existsSync(pkgPath)) {
@@ -107,53 +89,10 @@ import { build } from 'vite'
         },
         resolve: { alias },
         plugins: [
-          name === 'bytemd' &&
-            svelte({
-              preprocess: [sveltePreprocessor],
-            }),
           name === 'vue' && createVuePlugin(),
           name === 'vue-next' && createVue3Plugin(),
         ],
       })
-    }
-
-    if (name === 'bytemd') {
-      await fs.emptyDir('svelte')
-
-      console.log('build svelte files...')
-      const files = await glob('src/*.svelte')
-      for (let file of files) {
-        const dest = file.replace('src/', 'svelte/')
-        await fs.ensureDir(path.dirname(dest))
-
-        if (fs.statSync(file).isDirectory()) return
-
-        if (file.endsWith('.svelte')) {
-          const source = await fs.readFile(file, 'utf8')
-          const item = await preprocess(source, sveltePreprocessor, {
-            filename: file,
-          })
-          await fs.writeFile(
-            dest,
-            item.code.replace('<script lang="ts">', '<script>')
-          )
-        }
-      }
-
-      console.log('build js files...')
-      await execaCommand('tsc --project tsconfig.svelte.json')
-
-      console.log('patch index js...')
-      let js = await fs.readFile('svelte/index.js', 'utf8')
-      js = js
-        .split('\n')
-        .filter((line) => !line.includes('index.scss'))
-        .join('\n')
-      await fs.writeFile('svelte/index.js', js)
-
-      console.log('processing style files (backward compatibility)...')
-      await fs.move('dist/style.css', 'dist/index.css')
-      await fs.copy('dist/index.css', 'dist/index.min.css')
     }
   }
 })()

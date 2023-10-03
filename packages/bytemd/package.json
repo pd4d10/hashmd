@@ -27,15 +27,13 @@
     "./dist/index.min.css": "./dist/index.min.css"
   },
   "main": "./dist/index.js",
-  "svelte": "./svelte/index.js",
   "jsdelivr": "./dist/index.umd.js",
   "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "locales",
-    "svelte"
+    "locales"
   ],
   "dependencies": {
     "@codemirror/lang-markdown": "^6.2.1",
@@ -58,8 +56,5 @@
     "unist-util-visit": "^4.1.2",
     "vfile": "^5.3.7",
     "word-count": "^0.2.2"
-  },
-  "devDependencies": {
-    "@primer/css": "^15.2.0"
   }
 }

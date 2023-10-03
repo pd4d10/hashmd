@@ -27,8 +27,15 @@ $max-width: 800px;
     box-sizing: content-box;
   }
 
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Helvetica,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji;
   color: $gray-900;
   border: 1px solid $border-color;
   background-color: $white;
@@ -37,7 +44,12 @@ $max-width: 800px;
   .CodeMirror,
   code,
   kbd {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-family:
+      SFMono-Regular,
+      Consolas,
+      Liberation Mono,
+      Menlo,
+      monospace;
   }
 
   &-toolbar {
