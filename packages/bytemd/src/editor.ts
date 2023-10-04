@@ -39,6 +39,7 @@ export function wrapText(editor: EditorView, before: string, after = before) {
           : to + before.length + after.length,
       },
     })
+    editor.focus()
   }
 }
 
@@ -65,6 +66,7 @@ export function replaceLines(
       head: editor.state.doc.lineAt(selection.to).to, // recalculate here for updated position
     },
   })
+  editor.focus()
 }
 
 /**
@@ -86,6 +88,7 @@ export function appendBlock(
       head: end + prefix.length + content.length,
     },
   })
+  editor.focus()
 }
 
 export function findStartIndex(num: number, nums: number[]) {
@@ -115,7 +118,7 @@ export async function handleImageUpload(
   files: File[],
 ) {
   const imgs = await uploadImages(files)
-  const pos = appendBlock(
+  appendBlock(
     editor,
     imgs
       .map(({ url, alt, title }, i) => {
@@ -265,12 +268,7 @@ export function getBuiltinActions(
         type: 'action',
         shortcut: getShortcutWithPrefix('C', true),
         click({ editor }) {
-          const pos = appendBlock(editor, '```js\n```')
-          // editor.setSelection(
-          //   codemirror.Pos(pos.line, 3),
-          //   codemirror.Pos(pos.line, 5),
-          // )
-          editor.focus()
+          appendBlock(editor, 'lang', { prefix: '```', suffix: '\n```\n' })
         },
       },
     },

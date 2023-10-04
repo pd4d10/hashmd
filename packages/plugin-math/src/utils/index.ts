@@ -1,5 +1,5 @@
 import { icons } from './icons'
-import type { BytemdAction } from 'bytemd'
+import { wrapText, type BytemdAction, appendBlock } from 'bytemd'
 
 export type MathLocale = {
   inline: string
@@ -12,6 +12,7 @@ export function getMathActions(locale: MathLocale): BytemdAction[] {
   return [
     {
       icon: icons.Formula,
+      title: 'Math',
       handler: {
         type: 'dropdown',
         actions: [
@@ -21,9 +22,8 @@ export function getMathActions(locale: MathLocale): BytemdAction[] {
             cheatsheet: `$${locale.inlineText}$`,
             handler: {
               type: 'action',
-              click({ wrapText, editor }) {
-                wrapText('$')
-                editor.focus()
+              click({ editor }) {
+                wrapText(editor, '$')
               },
             },
           },
@@ -33,13 +33,8 @@ export function getMathActions(locale: MathLocale): BytemdAction[] {
             cheatsheet: `$$↵${locale.blockText}↵$$`,
             handler: {
               type: 'action',
-              click({ appendBlock, editor, codemirror }) {
-                const { line } = appendBlock('$$\n\\TeX\n$$')
-                editor.setSelection(
-                  codemirror.Pos(line + 1, 0),
-                  codemirror.Pos(line + 1, 4),
-                )
-                editor.focus()
+              click({ editor }) {
+                appendBlock(editor, '\\TeX', { prefix: '$$\n', suffix: '\n$$' })
               },
             },
           },

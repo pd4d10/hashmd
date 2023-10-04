@@ -1,6 +1,6 @@
 import { icons } from './icons'
 import en from './locales/en.json'
-import type { BytemdPlugin } from 'bytemd'
+import { appendBlock, type BytemdPlugin } from 'bytemd'
 import type { default as Mermaid, MermaidConfig } from 'mermaid'
 
 type Locale = {
@@ -187,13 +187,11 @@ another task      : 24d`,
             title,
             handler: {
               type: 'action',
-              click({ editor, appendBlock, codemirror }) {
-                const { line } = appendBlock('```mermaid\n' + code + '\n```')
-                editor.setSelection(
-                  codemirror.Pos(line + 1, 0),
-                  codemirror.Pos(line + code.split('\n').length),
-                )
-                editor.focus()
+              click({ editor }) {
+                appendBlock(editor, code, {
+                  prefix: '```mermaid\n',
+                  suffix: '\n```',
+                })
               },
             },
           })),

@@ -1,6 +1,6 @@
 import { icons } from './icons'
 import en from './locales/en.json'
-import type { BytemdPlugin } from 'bytemd'
+import { appendBlock, replaceLines, type BytemdPlugin, wrapText } from 'bytemd'
 import remarkGfm, { Options } from 'remark-gfm'
 
 type Locale = {
@@ -31,8 +31,8 @@ export default function gfm({
         cheatsheet: `~~${locale.strikeText}~~`,
         handler: {
           type: 'action',
-          click({ wrapText, editor }) {
-            wrapText('~~')
+          click({ editor }) {
+            wrapText(editor, '~~')
             editor.focus()
           },
         },
@@ -43,9 +43,8 @@ export default function gfm({
         cheatsheet: `- [ ] ${locale.taskText}`,
         handler: {
           type: 'action',
-          click({ replaceLines, editor }) {
-            replaceLines((line) => '- [ ] ' + line)
-            editor.focus()
+          click({ editor }) {
+            replaceLines(editor, (line) => '- [ ] ' + line)
           },
         },
       },
@@ -54,15 +53,13 @@ export default function gfm({
         icon: icons.InsertTable,
         handler: {
           type: 'action',
-          click({ editor, appendBlock, codemirror }) {
-            const { line } = appendBlock(
-              `| ${locale.tableHeading} |  |\n| --- | --- |\n|  |  |\n`,
-            )
-            editor.setSelection(
-              codemirror.Pos(line, 2),
-              codemirror.Pos(line, 2 + locale.tableHeading.length),
-            )
-            editor.focus()
+          click({ editor }) {
+            appendBlock(editor, locale.tableHeading, {
+              prefix: '| ',
+              suffix: ` |  |
+| --- | --- |
+|  |  |`,
+            })
           },
         },
       },
