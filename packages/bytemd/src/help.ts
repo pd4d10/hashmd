@@ -28,14 +28,14 @@ export class Help extends LitElement {
     const { actions, locale } = this
     const items = flatItems(actions)
 
-    return html`<div class="help"></div>
-      <h2>${locale.cheatsheet}</h2>
+    return html`<h2>${locale.cheatsheet}</h2>
       <ul>
         ${items.map((action) =>
           action.cheatsheet
             ? html`<li>
                 <div class="icon">${unsafeHTML(action.icon)}</div>
                 <div class="title">${action.title}</div>
+                <div class="gap"></div>
                 <div class="content">
                   <code>${action.cheatsheet}</code>
                 </div>
@@ -50,6 +50,7 @@ export class Help extends LitElement {
           ? html`<li>
               <div class="icon">${unsafeHTML(action.icon)}</div>
               <div class="title">${action.title}</div>
+              <div class="gap"></div>
               <div class="content">
                 <code>${action.handler.shortcut}</code>
               </div>
@@ -59,15 +60,30 @@ export class Help extends LitElement {
       </ul>
     </div>`
   }
+
+  // TODO: reuse for help and toc
   static styles = css`
-    .help {
+    :host {
       font-size: 13px;
     }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      /* margin: 32px 0 16px; */
+    }
+
+    ul {
+      padding-left: 0;
+      color: var(--gray-400);
+    }
+
     ul {
       line-height: 20px;
     }
     li {
       list-style: none;
+      display: flex;
       margin-bottom: 12px;
     }
     svg {
@@ -80,6 +96,9 @@ export class Help extends LitElement {
     }
     .title {
       padding-left: 8px;
+    }
+    .gap {
+      flex-grow: 1;
     }
     .content {
       float: right;

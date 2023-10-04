@@ -2,11 +2,13 @@ import en from '../locales/en.json'
 import './codemirror'
 import { getBuiltinActions } from './editor'
 import './help.js'
+import './sidebar.js'
 import './status.js'
 import './toolbar.js'
 import { BytemdEditorContext, EditorProps } from './types'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
 @customElement('bytemd-editor')
 export class Editor extends LitElement {
@@ -23,6 +25,7 @@ export class Editor extends LitElement {
   @property({ state: true }) _fullscreen = false
   @property({ state: true }) _sync = false
   @property({ state: true }) _context: BytemdEditorContext | undefined
+  @property({ state: true }) _sidebar: 'help' | 'toc' | false = 'help'
 
   render() {
     const {
@@ -36,6 +39,7 @@ export class Editor extends LitElement {
       _containerWidth,
       _activeTab,
       _fullscreen,
+      _sidebar,
     } = this
     const mergedLocale = { ...en, ...locale }
     const actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
@@ -43,34 +47,46 @@ export class Editor extends LitElement {
     const split =
       mode === 'split' || (mode === 'auto' && _containerWidth >= 800)
 
-    return html`
-      <bytemd-toolbar
+    return html`<bytemd-toolbar
         .actions=${actions.leftActions}
         .rightAfferentActions=${actions.rightActions}
         .locale=${mergedLocale}
         .context=${this._context}
+        .sidebar=${_sidebar}
+        @toggle-sidebar=${(e: CustomEvent) => {
+          this._sidebar = this._sidebar === e.detail ? false : e.detail
+        }}
+        @toggle-fullscreen=${(e: CustomEvent) => {
+          this._fullscreen = !this._fullscreen
+        }}
       ></bytemd-toolbar>
       <div class="body">
         ${split
-          ? html`
-              <bytemd-codemirror
-                .value=${value}
-                @change=${(e: CustomEvent) => {
-                  this.value = e.detail
-                }}
-                @context=${(e: CustomEvent) => {
-                  this._context = { editor: e.detail }
-                }}
-              ></bytemd-codemirror>
-            `
+          ? html`<bytemd-codemirror
+              .value=${value}
+              @change=${(e: CustomEvent) => {
+                this.value = e.detail
+              }}
+              @context=${(e: CustomEvent) => {
+                this._context = { editor: e.detail }
+              }}
+            ></bytemd-codemirror> `
           : nothing}
         <div class="preview">
           <bytemd-viewer .value=${value}></bytemd-viewer>
         </div>
-        <bytemd-help
-          .locale=${mergedLocale}
-          .actions=${actions.leftActions}
-        ></bytemd-help>
+        ${_sidebar
+          ? html`<bytemd-sidebar>
+              ${_sidebar === 'help'
+                ? html`<bytemd-help
+                    .locale=${mergedLocale}
+                    .actions=${actions.leftActions}
+                  ></bytemd-help>`
+                : _sidebar === 'toc'
+                ? nothing
+                : nothing}
+            </bytemd-sidebar>`
+          : nothing}
       </div>
       <bytemd-status
         .value=${value}
@@ -85,8 +101,7 @@ export class Editor extends LitElement {
             ?.scrollIntoView()
           this.shadowRoot?.querySelector('bytemd-viewer')?.scrollIntoView()
         }}
-      ></bytemd-status>
-    `
+      ></bytemd-status>`
   }
 
   static styles = css`
@@ -98,6 +113,7 @@ export class Editor extends LitElement {
       --primary: #0366d6;
       --gray-000: #fafbfc;
       --gray-100: #f6f8fa;
+      --gray-400: #959da5;
       --gray-700: #444d56;
       --gray-900: #24292e;
       --border-color: #e1e4e8;
@@ -144,6 +160,11 @@ export class Editor extends LitElement {
 
     .preview {
       padding: 16px;
+    }
+
+    bytemd-sidebar {
+      flex-shrink: 0;
+      flex-basis: 280px;
     }
 
     bytemd-status {

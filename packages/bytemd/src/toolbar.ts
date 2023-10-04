@@ -35,7 +35,6 @@ export class Toolbar extends LitElement {
       locale,
       actions,
       rightAfferentActions,
-      dispatch,
     } = this
 
     const split = activeTab === 'icon'
@@ -49,8 +48,10 @@ export class Toolbar extends LitElement {
         icon: icons.AlignTextLeftOne,
         handler: {
           type: 'action',
-          click() {
-            dispatch('click', 'toc')
+          click: () => {
+            this.dispatchEvent(
+              new CustomEvent('toggle-sidebar', { detail: 'toc' }),
+            )
           },
         },
         active: tocActive,
@@ -60,8 +61,10 @@ export class Toolbar extends LitElement {
         icon: icons.Helpcenter,
         handler: {
           type: 'action',
-          click() {
-            dispatch('click', 'help')
+          click: () => {
+            this.dispatchEvent(
+              new CustomEvent('toggle-sidebar', { detail: 'help' }),
+            )
           },
         },
         active: helpActive,
@@ -71,8 +74,8 @@ export class Toolbar extends LitElement {
         icon: icons.LeftExpand,
         handler: {
           type: 'action',
-          click() {
-            dispatch('tab', 'write')
+          click: () => {
+            this.dispatchEvent(new CustomEvent('tab', { detail: 'write' }))
           },
         },
         active: writeActive,
@@ -83,8 +86,8 @@ export class Toolbar extends LitElement {
         icon: icons.RightExpand,
         handler: {
           type: 'action',
-          click() {
-            dispatch('tab', 'preview')
+          click: () => {
+            this.dispatchEvent(new CustomEvent('tab', { detail: 'preview' }))
           },
         },
         active: previewActive,
@@ -95,8 +98,8 @@ export class Toolbar extends LitElement {
         icon: fullscreen ? icons.OffScreen : icons.FullScreen,
         handler: {
           type: 'action',
-          click() {
-            dispatch('click', 'fullscreen')
+          click: () => {
+            this.dispatchEvent(new CustomEvent('toggle-fullscreen'))
           },
         },
       },
@@ -105,7 +108,7 @@ export class Toolbar extends LitElement {
         icon: icons.GithubOne,
         handler: {
           type: 'action',
-          click() {
+          click: () => {
             window.open('https://github.com/bytedance/bytemd')
           },
         },
@@ -116,10 +119,6 @@ export class Toolbar extends LitElement {
     return rightActions
   }
 
-  dispatch(key: string, detail: string) {
-    this.dispatchEvent(new CustomEvent(key, { detail }))
-  }
-
   render() {
     const {
       activeTab,
@@ -128,7 +127,6 @@ export class Toolbar extends LitElement {
       locale,
       actions,
       rightAfferentActions,
-      dispatch,
 
       rightActions,
     } = this
@@ -221,7 +219,7 @@ export class Toolbar extends LitElement {
           )
         : html`<div
               @click=${() => {
-                dispatch('tab', 'write')
+                this.dispatchEvent(new CustomEvent('tab', { detail: 'write' }))
               }}
               @keydown=${() => {
                 //
@@ -235,7 +233,9 @@ export class Toolbar extends LitElement {
             </div>
             <div
               @click=${() => {
-                dispatch('tab', 'preview')
+                this.dispatchEvent(
+                  new CustomEvent('tab', { detail: 'preview' }),
+                )
               }}
               @keydown=${() => {
                 //
@@ -258,6 +258,11 @@ export class Toolbar extends LitElement {
                   active: item.active ?? false,
                 })}
                 key=${index}
+                @click=${() => {
+                  if (item.handler?.type === 'action') {
+                    item.handler.click(this.context!)
+                  }
+                }}
               >
                 ${unsafeHTML(item.icon)}
               </div>
