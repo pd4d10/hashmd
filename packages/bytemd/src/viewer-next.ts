@@ -1,8 +1,11 @@
-import { ViewerProps } from './types'
+import { BytemdPlugin, ViewerProps } from './types'
 import { getProcessor } from './utils'
+import type { Root } from 'hast'
 import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
+import type { Plugin } from 'unified'
+import type { VFile } from 'vfile'
 
 @customElement('bytemd-viewer')
 export class Viewer extends LitElement {
@@ -24,8 +27,22 @@ export class Viewer extends LitElement {
   }
 
   render() {
-    const { value, plugins, sanitize, remarkRehype } = this
-    const rawHtml = getProcessor({ plugins, sanitize, remarkRehype })
+    const dispatchPlugin: BytemdPlugin = {
+      rehype: (processor) =>
+        processor.use<any>(() => (tree, file) => {
+          // console.log(tree, file)
+          this.dispatchEvent(
+            new CustomEvent('info', { detail: { hast: tree, file } }),
+          )
+        }),
+    }
+
+    const { value, plugins = [], sanitize, remarkRehype } = this
+    const rawHtml = getProcessor({
+      plugins: [...plugins, dispatchPlugin],
+      sanitize,
+      remarkRehype,
+    })
       .processSync(value)
       .toString()
 

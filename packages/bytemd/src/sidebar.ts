@@ -5,13 +5,11 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
 @customElement('bytemd-sidebar')
 export class Sidebar extends LitElement {
-  @property() visible = false
-
   protected render(): unknown {
     return html`<div
         class="close"
         @click=${() => {
-          this.visible = false
+          this.dispatchEvent(new CustomEvent('close'))
         }}
       >
         ${unsafeHTML(icons.Close)}

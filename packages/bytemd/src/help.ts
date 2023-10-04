@@ -70,7 +70,7 @@ export class Help extends LitElement {
     h2 {
       font-size: 16px;
       font-weight: 600;
-      /* margin: 32px 0 16px; */
+      margin: 32px 0 16px;
     }
 
     ul {

@@ -1,13 +1,15 @@
 import en from '../locales/en.json'
 import './codemirror'
-import { getBuiltinActions } from './editor'
+import { findStartIndex, getBuiltinActions } from './editor'
 import './help.js'
 import './sidebar.js'
 import './status.js'
+import './toc.js'
 import './toolbar.js'
 import { BytemdEditorContext, EditorProps } from './types'
+import { Root } from 'hast'
 import { LitElement, css, html, nothing } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, eventOptions, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
 @customElement('bytemd-editor')
@@ -25,7 +27,91 @@ export class Editor extends LitElement {
   @property({ state: true }) _fullscreen = false
   @property({ state: true }) _sync = false
   @property({ state: true }) _context: BytemdEditorContext | undefined
-  @property({ state: true }) _sidebar: 'help' | 'toc' | false = 'help'
+  @property({ state: true }) _sidebar: 'help' | 'toc' | false = 'toc'
+  @property({ state: true }) _hast?: Root
+
+  @property({ state: true }) editCalled = false
+  @property({ state: true }) previewCalled = false
+  @property({ state: true }) editPs: number[] = []
+  @property({ state: true }) previewPs: number[] = []
+  @property({ state: true }) currentBlockIndex = 0
+
+  private updateBlockPositions() {
+    // TODO:
+  }
+
+  private editorScrollHandler() {
+    const { _sync, previewCalled, editPs, previewPs } = this
+    const { editor } = this._context!
+    const previewEl = this.renderRoot.querySelector('bytemd-viewer')!
+
+    if (!_sync) return
+
+    if (previewCalled) {
+      this.previewCalled = false
+      return
+    }
+
+    this.updateBlockPositions()
+
+    const info = editor.getScrollInfo()
+    const leftRatio = info.top / (info.height - info.clientHeight)
+
+    const startIndex = findStartIndex(leftRatio, editPs)
+
+    const rightRatio =
+      ((leftRatio - editPs[startIndex]) *
+        (previewPs[startIndex + 1] - previewPs[startIndex])) /
+        (editPs[startIndex + 1] - editPs[startIndex]) +
+      previewPs[startIndex]
+    // const rightRatio = rightPs[startIndex]; // for testing
+
+    previewEl.scrollTo(
+      0,
+      rightRatio * (previewEl.scrollHeight - previewEl.clientHeight),
+    )
+    this.editCalled = true
+  }
+
+  @eventOptions({ passive: true })
+  private _previewScroll(e: Event) {
+    const previewEl = e.target as HTMLElement
+    const { _sync: syncEnabled, editCalled, previewPs, editPs } = this
+    const { editor } = this._context!
+
+    // find the current block in the view
+    this.updateBlockPositions()
+    this.currentBlockIndex = findStartIndex(
+      previewEl.scrollTop / (previewEl.scrollHeight - previewEl.offsetHeight),
+      previewPs,
+    )
+
+    if (!syncEnabled) return
+
+    if (editCalled) {
+      this.editCalled = false
+      return
+    }
+
+    const rightRatio =
+      previewEl.scrollTop / (previewEl.scrollHeight - previewEl.clientHeight)
+
+    const startIndex = findStartIndex(rightRatio, previewPs)
+
+    const leftRatio =
+      ((rightRatio - previewPs[startIndex]) *
+        (editPs[startIndex + 1] - editPs[startIndex])) /
+        (previewPs[startIndex + 1] - previewPs[startIndex]) +
+      editPs[startIndex]
+
+    if (isNaN(leftRatio)) {
+      return
+    }
+
+    const info = editor.getScrollInfo()
+    editor.scrollTo(0, leftRatio * (info.height - info.clientHeight))
+    this.previewCalled = true
+  }
 
   render() {
     const {
@@ -40,6 +126,7 @@ export class Editor extends LitElement {
       _activeTab,
       _fullscreen,
       _sidebar,
+      _hast,
     } = this
     const mergedLocale = { ...en, ...locale }
     const actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
@@ -73,17 +160,30 @@ export class Editor extends LitElement {
             ></bytemd-codemirror> `
           : nothing}
         <div class="preview">
-          <bytemd-viewer .value=${value}></bytemd-viewer>
+          <bytemd-viewer
+            .value=${value}
+            @info=${(e: CustomEvent) => {
+              this._hast = e.detail.hast
+            }}
+            @scroll=${this._previewScroll}
+          ></bytemd-viewer>
         </div>
         ${_sidebar
-          ? html`<bytemd-sidebar>
+          ? html`<bytemd-sidebar
+              @close=${() => {
+                this._sidebar = false
+              }}
+            >
               ${_sidebar === 'help'
                 ? html`<bytemd-help
                     .locale=${mergedLocale}
                     .actions=${actions.leftActions}
                   ></bytemd-help>`
                 : _sidebar === 'toc'
-                ? nothing
+                ? html`<bytemd-toc
+                    .locale=${mergedLocale}
+                    .hast=${_hast}
+                  ></bytemd-toc>`
                 : nothing}
             </bytemd-sidebar>`
           : nothing}
@@ -151,20 +251,24 @@ export class Editor extends LitElement {
     }
 
     bytemd-codemirror,
-    .preview {
-      flex: 1;
-      min-width: 0; // https://stackoverflow.com/a/66689926
+    .preview,
+    bytemd-sidebar {
       height: 100%;
       overflow: auto;
     }
 
+    bytemd-codemirror,
     .preview {
-      padding: 16px;
+      flex: 1;
+      min-width: 0; // https://stackoverflow.com/a/66689926
     }
 
     bytemd-sidebar {
-      flex-shrink: 0;
-      flex-basis: 280px;
+      flex: 0 0 280px;
+    }
+
+    .preview {
+      padding: 16px;
     }
 
     bytemd-status {

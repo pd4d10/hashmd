@@ -19,7 +19,7 @@ export function getProcessor({
   plugins,
   remarkRehype: remarkRehypeOptions = {},
 }: Omit<ViewerProps, 'value'>) {
-  let processor: Processor = unified().use(remarkParse)
+  let processor: Processor<any, any, any> = unified().use(remarkParse)
 
   plugins?.forEach(({ remark }) => {
     if (remark) processor = remark(processor)
