@@ -19,13 +19,14 @@ interface RightAction extends BytemdAction {
 
 @customElement('bytemd-toolbar')
 export class Toolbar extends LitElement {
-  @property() activeTab: 'icon' | 'write' | 'preview' = 'icon'
-  @property() fullscreen = false
-  @property() sidebar: false | 'help' | 'toc' = false
-  @property() locale: Partial<BytemdLocale> = {}
-  @property() actions: BytemdAction[] = []
-  @property() rightAfferentActions: BytemdAction[] = []
-  @property() context: BytemdEditorContext | undefined
+  @property() actions!: BytemdAction[]
+  @property() rightAfferentActions!: BytemdAction[]
+  @property() sidebar!: false | 'help' | 'toc'
+  @property() locale!: BytemdLocale
+  @property() context!: BytemdEditorContext
+  @property() fullscreen!: boolean
+
+  @property() activeTab: 'icon' | 'write' | 'preview' = 'icon' // TODO:
 
   get rightActions() {
     const {
@@ -143,7 +144,7 @@ export class Toolbar extends LitElement {
                     key="icon-${index}"
                     @click=${() => {
                       if (item.handler?.type === 'action') {
-                        item.handler.click(this.context!)
+                        item.handler.click(this.context)
                       }
                     }}
                     @mouseenter=${() => {
@@ -188,20 +189,20 @@ export class Toolbar extends LitElement {
                                   key=${[index, i].join('-')}
                                   @click=${() => {
                                     if (subAction.handler?.type === 'action') {
-                                      subAction.handler?.click?.(this.context!)
+                                      subAction.handler?.click?.(this.context)
                                     }
                                   }}
                                   @mouseenter=${() => {
                                     if (subAction.handler?.type === 'action') {
                                       subAction.handler?.mouseenter?.(
-                                        this.context!,
+                                        this.context,
                                       )
                                     }
                                   }}
                                   @mouseleave=${() => {
                                     if (subAction.handler?.type === 'action') {
                                       subAction.handler.mouseleave?.(
-                                        this.context!,
+                                        this.context,
                                       )
                                     }
                                   }}
@@ -260,7 +261,7 @@ export class Toolbar extends LitElement {
                 key=${index}
                 @click=${() => {
                   if (item.handler?.type === 'action') {
-                    item.handler.click(this.context!)
+                    item.handler.click(this.context)
                   }
                 }}
               >

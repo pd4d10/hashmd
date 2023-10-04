@@ -1,4 +1,4 @@
-import type { EditorView } from 'codemirror'
+import type { EditorView } from '@codemirror/view'
 import type { Schema } from 'hast-util-sanitize'
 import type { Image } from 'mdast'
 import type { Options } from 'remark-rehype'

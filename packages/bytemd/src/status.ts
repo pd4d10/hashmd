@@ -1,4 +1,4 @@
-import { EditorProps } from './types'
+import { BytemdLocale, EditorProps } from './types'
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 // @ts-ignore
@@ -6,9 +6,9 @@ import wordCount from 'word-count'
 
 @customElement('bytemd-status')
 export class Status extends LitElement {
-  @property() value: EditorProps['value'] = ''
-  @property() locale: EditorProps['locale']
-  @property() sync: boolean | undefined
+  @property() value!: string
+  @property() locale!: BytemdLocale
+  @property() sync!: boolean
 
   protected render(): unknown {
     const { value, locale, sync } = this
@@ -17,8 +17,8 @@ export class Status extends LitElement {
     const lines = value.split('\n').length
 
     return html`
-      <div>${locale?.words}: <strong>${words}</strong></div>
-      <div>${locale?.lines}: <strong>${lines}</strong></div>
+      <div>${locale.words}: <strong>${words}</strong></div>
+      <div>${locale.lines}: <strong>${lines}</strong></div>
       <div class="gap"></div>
       <label>
         <input
@@ -27,7 +27,7 @@ export class Status extends LitElement {
           @change=${() => {
             this.dispatchEvent(new CustomEvent('toggle-sync'))
           }}
-        />${locale?.sync}
+        />${locale.sync}
       </label>
       <div
         class="top"
@@ -35,7 +35,7 @@ export class Status extends LitElement {
           this.dispatchEvent(new CustomEvent('scroll-top'))
         }}
       >
-        ${locale?.top}
+        ${locale.top}
       </div>
     `
   }

@@ -8,8 +8,8 @@ import { styleMap } from 'lit/directives/style-map.js'
 @customElement('bytemd-toc')
 export class Toc extends LitElement {
   @property() meta?: Meta
-  @property() currentBlockIndex = 0
-  @property() locale: Partial<BytemdLocale> = {}
+  @property() currentBlockIndex!: number
+  @property() locale!: BytemdLocale
 
   protected render(): unknown {
     const { meta } = this

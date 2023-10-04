@@ -21,8 +21,8 @@ function flatItems(actions: BytemdAction[]) {
 
 @customElement('bytemd-help')
 export class Help extends LitElement {
-  @property() locale: Partial<BytemdLocale> = {}
-  @property() actions: BytemdAction[] = []
+  @property() locale!: BytemdLocale
+  @property() actions!: BytemdAction[]
 
   protected render(): unknown {
     const { actions, locale } = this

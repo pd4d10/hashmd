@@ -1,8 +1,8 @@
-import en from '../locales/en.json'
 import './codemirror'
 import { createEditorView } from './codemirror'
 import { findStartIndex, getBuiltinActions } from './editor'
 import './help.js'
+import en from './locales/en.json'
 import './sidebar.js'
 import './status.js'
 import './toc.js'
@@ -201,12 +201,13 @@ export class Editor extends LitElement {
         .actions=${actions.leftActions}
         .rightAfferentActions=${actions.rightActions}
         .locale=${mergedLocale}
-        .context=${{ editor: this._editor }}
         .sidebar=${_sidebar}
+        .context=${{ editor: this._editor! }}
+        .fullscreen=${_fullscreen}
         @toggle-sidebar=${(e: CustomEvent) => {
           this._sidebar = this._sidebar === e.detail ? false : e.detail
         }}
-        @toggle-fullscreen=${(e: CustomEvent) => {
+        @toggle-fullscreen=${() => {
           this._fullscreen = !this._fullscreen
         }}
       ></bytemd-toolbar>
@@ -244,6 +245,7 @@ export class Editor extends LitElement {
       <bytemd-status
         .value=${value}
         .locale=${mergedLocale}
+        .sync=${this._sync}
         @toggle-sync=${() => {
           this._sync = !this._sync
         }}
