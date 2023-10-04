@@ -29,6 +29,7 @@
     "locales"
   ],
   "dependencies": {
+    "@lit-labs/react": "^2.1.0",
     "bytemd": "workspace:*"
   },
   "devDependencies": {

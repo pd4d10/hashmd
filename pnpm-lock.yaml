@@ -321,6 +321,9 @@ importers:
 
   packages/react:
     dependencies:
+      '@lit-labs/react':
+        specifier: ^2.1.0
+        version: 2.1.0(@types/react@18.2.24)
       bytemd:
         specifier: workspace:*
         version: link:../bytemd
@@ -957,6 +960,14 @@ packages:
       '@lezer/highlight': 1.1.6
     dev: false
 
+  /@lit-labs/react@2.1.0(@types/react@18.2.24):
+    resolution: {integrity: sha512-8z8I0sWWWqyFiRxnCdxotT5z5XQAOI6opD/i3trxcfW5NG/tQeflNWV+leg+SWRVaO3GpYspoCgYGxkqDwE++A==}
+    peerDependencies:
+      '@types/react': 17 || 18
+    dependencies:
+      '@types/react': 18.2.24
+    dev: false
+
   /@lit-labs/ssr-dom-shim@1.1.1:
     resolution: {integrity: sha512-kXOeFbfCm4fFf2A3WwVEeQj55tMZa8c8/f9AKHMobQMkzNUfUj+antR3fRPaZJawsa1aZiP/Da3ndpZrwEe4rQ==}
     dev: false
@@ -1542,7 +1553,6 @@ packages:
 
   /@types/prop-types@15.7.8:
     resolution: {integrity: sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==}
-    dev: true
 
   /@types/react@18.2.24:
     resolution: {integrity: sha512-Ee0Jt4sbJxMu1iDcetZEIKQr99J1Zfb6D4F3qfUWoR1JpInkY1Wdg4WwCyBjL257D0+jGqSl1twBjV8iCaC0Aw==}
@@ -1550,7 +1560,6 @@ packages:
       '@types/prop-types': 15.7.8
       '@types/scheduler': 0.16.4
       csstype: 3.1.2
-    dev: true
 
   /@types/resolve@1.20.3:
     resolution: {integrity: sha512-NH5oErHOtHZYcjCtg69t26aXEk4BN2zLWqf7wnDZ+dpe0iR7Rds1SPGEItl3fca21oOe0n3OCnZ4W7jBxu7FOw==}
@@ -1558,7 +1567,6 @@ packages:
 
   /@types/scheduler@0.16.4:
     resolution: {integrity: sha512-2L9ifAGl7wmXwP4v3pN4p2FLhD0O1qsJpvKmNin5VA8+UvNVb447UDaAEV6UdrkA+m/Xs58U1RFps44x6TFsVQ==}
-    dev: true
 
   /@types/trusted-types@2.0.4:
     resolution: {integrity: sha512-IDaobHimLQhjwsQ/NMwRVfa/yL7L/wriQPMhw1ZJall0KX6E1oxk29XMDeilW5qTIg5aoiqf5Udy8U/51aNoQQ==}
@@ -2354,7 +2362,6 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
-    dev: true
 
   /cytoscape-cose-bilkent@4.1.0(cytoscape@3.26.0):
     resolution: {integrity: sha512-wgQlVIUJF13Quxiv5e1gstZ08rnZj2XaLHGoFMYXz7SkNfCDOOteKBE6SYRfA9WxxI/iBc3ajfDoc6hb/MRAHQ==}
