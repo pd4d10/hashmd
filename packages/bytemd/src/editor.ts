@@ -6,7 +6,7 @@ import type {
   BytemdLocale,
   BytemdEditorContext,
 } from './types'
-import { EditorView } from 'codemirror'
+import { EditorView } from '@codemirror/view'
 import selectFiles from 'select-files'
 
 /**
@@ -70,33 +70,21 @@ export function replaceLines(
 /**
  * Append a block based on the cursor position
  */
-export function appendBlock(editor: EditorView, content: string) {
-  const cursor = editor.state.selection.main.head
-  // find the first blank line
+export function appendBlock(
+  editor: EditorView,
+  content: string,
+  { prefix = '', suffix = '' }: { prefix?: string; suffix?: string } = {},
+) {
+  prefix = '\n\n' + prefix
+  suffix = suffix + '\n'
 
-  let emptyLine = -1
-  for (
-    let i = editor.state.doc.lineAt(cursor).number;
-    i < editor.state.doc.lines;
-    i++
-  ) {
-    if (!editor.state.doc.line(i).text.trim()) {
-      emptyLine = i
-      break
-    }
-  }
-
-  let nextLine = editor.state.doc.lineAt(cursor).number + 1
-  if (emptyLine === -1) {
-    // insert a new line to the bottom
-    editor.dispatch({
-      changes: { from: nextLine, to: nextLine, insert: '\n' },
-    })
-    nextLine += 1
-  }
-
+  const end = editor.state.doc.lineAt(editor.state.selection.main.head).to
   editor.dispatch({
-    changes: { from: nextLine, to: nextLine, insert: content },
+    changes: { from: end, insert: prefix + content + suffix },
+    selection: {
+      anchor: end + prefix.length,
+      head: end + prefix.length + content.length,
+    },
   })
 }
 
@@ -388,6 +376,22 @@ if (import.meta.vitest) {
       cm.dispatch({ selection: { anchor: 2, head: 8 } })
 
       replaceLines(cm, (line) => '> ' + line)
+      expect(cm.state).matchSnapshot()
+    })
+  })
+
+  describe('append block', () => {
+    test('basic', () => {
+      cm.dispatch({ changes: { from: 0, insert: 'text' } })
+
+      appendBlock(cm, 'block')
+      expect(cm.state).matchSnapshot()
+    })
+
+    test('with prefix and suffix', () => {
+      cm.dispatch({ changes: { from: 0, insert: 'text' } })
+
+      appendBlock(cm, 'let x = 1', { prefix: '```js\n', suffix: '\n```' })
       expect(cm.state).matchSnapshot()
     })
   })
