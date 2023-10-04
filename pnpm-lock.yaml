@@ -149,9 +149,6 @@ importers:
       '@floating-ui/dom':
         specifier: ^1.5.3
         version: 1.5.3
-      '@popperjs/core':
-        specifier: ^2.11.7
-        version: 2.11.8
       '@types/hast':
         specifier: ^3.0.1
         version: 3.0.1
@@ -1340,10 +1337,6 @@ packages:
       picocolors: 1.0.0
       tslib: 2.6.2
     dev: true
-
-  /@popperjs/core@2.11.8:
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
-    dev: false
 
   /@sigstore/bundle@1.1.0:
     resolution: {integrity: sha512-PFutXEy0SmQxYI4texPw3dd2KewuNqv7OuK1ZFtY2fM754yhvG2KdgwIhRnoEE2uHdtdGNQ8s0lb94dW9sELog==}

@@ -38,7 +38,6 @@
     "@codemirror/search": "^6.5.4",
     "@codemirror/view": "^6.21.2",
     "@floating-ui/dom": "^1.5.3",
-    "@popperjs/core": "^2.11.7",
     "@types/hast": "^3.0.1",
     "@types/lodash-es": "^4.17.9",
     "@types/mdast": "^4.0.1",
