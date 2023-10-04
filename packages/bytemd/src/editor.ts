@@ -14,31 +14,39 @@ import selectFiles from 'select-files'
  *
  * `text -> *text*`
  */
-export function wrapText(editor: EditorView, before: string, after = before) {
-  const range =
+export function wrapText(editor: EditorView, prefix: string, suffix = prefix) {
+  const selection =
     editor.state.selection.ranges.find((r) => !r.empty) ?? // find the first selection
     editor.state.wordAt(editor.state.selection.main.head) ?? // if not, try to find the word
     editor.state.selection.main
 
-  const { from, to } = range
+  const { from, to } = selection
   const text = editor.state.sliceDoc(from, to) // use from/to instead of anchor/head for reverse select
 
-  const shouldUnwrap = text.startsWith(before) && text.endsWith(after)
-  editor.dispatch({
-    changes: {
-      from,
-      to,
-      insert: shouldUnwrap
-        ? text.slice(before.length, -after.length)
-        : before + text + after,
-    },
-    selection: {
-      anchor: from,
-      head: shouldUnwrap
-        ? to - before.length - after.length
-        : to + before.length + after.length,
-    },
-  })
+  const shouldUnwrap =
+    editor.state.sliceDoc(from - prefix.length, from) === prefix &&
+    editor.state.sliceDoc(to, to + suffix.length) === suffix
+  if (shouldUnwrap) {
+    editor.dispatch({
+      changes: {
+        from: from - prefix.length,
+        to: to + suffix.length,
+        insert: text,
+      },
+      selection: {
+        anchor: from - prefix.length,
+        head: to - prefix.length,
+      },
+    })
+  } else {
+    editor.dispatch({
+      changes: { from, to, insert: prefix + text + suffix },
+      selection: {
+        anchor: from + prefix.length,
+        head: to + prefix.length,
+      },
+    })
+  }
   editor.focus()
 }
 
