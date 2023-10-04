@@ -16,7 +16,7 @@ export default function mathSsr({
   const locale = { ...en, ..._locale }
   return {
     remark: (processor) => processor.use(remarkMath),
-    rehype: (processor) => processor.use(rehypeKatex, katexOptions),
+    rehype: (processor) => processor.use<any, any>(rehypeKatex, katexOptions),
     actions: getMathActions(locale),
   }
 }

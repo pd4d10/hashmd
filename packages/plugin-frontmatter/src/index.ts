@@ -18,7 +18,7 @@ export default function frontmatter({
   return {
     remark: (processor) =>
       // @ts-ignore
-      processor.use(remarkFrontmatter).use(() => (tree, file) => {
+      processor.use(remarkFrontmatter).use<any, any>(() => (tree, file) => {
         // TODO: arg types
         // console.log(tree);
         const fisrtNode = tree.children[0]

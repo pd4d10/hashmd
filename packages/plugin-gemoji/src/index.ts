@@ -3,6 +3,6 @@ import remarkGemoji from 'remark-gemoji'
 
 export default function gemoji(): HashmdPlugin {
   return {
-    remark: (processor) => processor.use(remarkGemoji),
+    remark: (processor) => processor.use<any, any>(remarkGemoji),
   }
 }
