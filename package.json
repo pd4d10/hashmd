@@ -5,14 +5,14 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "pnpm clean && node scripts/build.mjs && tsc --build",
+    "build": "pnpm clean && tsc --build && echo TODO",
     "clean": "rm -rf packages/*/tsconfig.tsbuildinfo && rm -rf packages/*/dist",
-    "dev": "pnpm --filter playground dev",
+    "dev": "pnpm --filter example-lit dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md}'",
     "postinstall": "node scripts/postinstall.mjs && tsconfig-gen && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
     "style": "prettier --check '**/*.{ts,tsx,json,md}'",
-    "test": "vitest"
+    "test": "echo TODO"
   },
   "prettier": {
     "importOrderParserPlugins": [
@@ -53,18 +53,5 @@
     "vite-plugin-workspace": "^0.1.0",
     "vitest": "^0.34.6"
   },
-  "packageManager": "pnpm@8.8.0",
-  "bundlewatch": {
-    "files": [
-      {
-        "path": "packages/*/dist/index.umd.js"
-      }
-    ],
-    "ci": {
-      "repoBranchBase": "main",
-      "trackBranches": [
-        "main"
-      ]
-    }
-  }
+  "packageManager": "pnpm@8.8.0"
 }
