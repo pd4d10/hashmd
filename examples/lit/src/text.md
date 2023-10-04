@@ -8,7 +8,7 @@ title: Blogging Like a Hacker
 
 I just love **bold text**. Italicized text is the _cat's meow_. At the command prompt, type `nano`.
 
-My favorite markdown editor is [ByteMD](https://github.com/bytedance/bytemd).
+My favorite markdown editor is [HashMD](https://github.com/pd4d10/hashmd).
 
 1. First item
 2. Second item
@@ -17,8 +17,8 @@ My favorite markdown editor is [ByteMD](https://github.com/bytedance/bytemd).
 > Dorothy followed her through many of the beautiful rooms in her castle.
 
 ```js
-import gfm from '@bytemd/plugin-gfm'
-import { Editor, Viewer } from 'bytemd'
+import gfm from '@hashmd/plugin-gfm'
+import { Editor, Viewer } from 'hashmd'
 
 const plugins = [
   gfm(),
@@ -40,7 +40,7 @@ editor.on('change', (e) => {
 
 ## GFM Extended Syntax
 
-Automatic URL Linking: https://github.com/bytedance/bytemd
+Automatic URL Linking: https://github.com/pd4d10/hashmd
 
 ~~The world is flat.~~ We now know that the world is round.
 

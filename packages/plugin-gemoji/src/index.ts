@@ -1,7 +1,7 @@
-import type { BytemdPlugin } from 'bytemd'
+import type { HashmdPlugin } from 'hashmd'
 import remarkGemoji from 'remark-gemoji'
 
-export default function gemoji(): BytemdPlugin {
+export default function gemoji(): HashmdPlugin {
   return {
     remark: (processor) => processor.use(remarkGemoji),
   }

@@ -12,7 +12,7 @@ import type { Processor } from 'unified'
 const schemaStr = JSON.stringify(defaultSchema)
 
 /**
- * Get unified processor with ByteMD plugins
+ * Get unified processor with HashMD plugins
  */
 export function getProcessor({
   sanitize,

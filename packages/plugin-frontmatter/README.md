@@ -1,14 +1,14 @@
-# @bytemd/plugin-frontmatter
+# @hashmd/plugin-frontmatter
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-frontmatter.svg)](https://npm.im/@bytemd/plugin-frontmatter)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-frontmatter.svg)](https://npm.im/@hashmd/plugin-frontmatter)
 
-ByteMD plugin to parse frontmatter
+HashMD plugin to parse frontmatter
 
 ## Usage
 
 ```js
-import frontmatter from '@bytemd/plugin-frontmatter'
-import { Editor } from 'bytemd'
+import frontmatter from '@hashmd/plugin-frontmatter'
+import { Editor } from 'hashmd'
 
 new Editor({
   target: document.body,

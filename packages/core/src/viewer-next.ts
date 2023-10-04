@@ -1,4 +1,4 @@
-import { BytemdPlugin, ViewerProps } from './types'
+import { HashmdPlugin, ViewerProps } from './types'
 import { getProcessor } from './utils'
 import type { Root, Element } from 'hast'
 import { LitElement, html } from 'lit'
@@ -23,7 +23,7 @@ function stringifyHeading(e: Element) {
   return result
 }
 
-@customElement('bytemd-viewer')
+@customElement('hashmd-viewer')
 export class Viewer extends LitElement {
   @property({ attribute: true }) value: ViewerProps['value'] = ''
   @property() plugins: ViewerProps['plugins']
@@ -45,7 +45,7 @@ export class Viewer extends LitElement {
   }
 
   render() {
-    const dispatchPlugin: BytemdPlugin = {
+    const dispatchPlugin: HashmdPlugin = {
       // @ts-ignore
       rehype: (processor) =>
         processor.use<any, Root>(() => (hast, file) => {

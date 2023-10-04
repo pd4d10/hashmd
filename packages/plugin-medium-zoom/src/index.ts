@@ -1,13 +1,13 @@
-import type { BytemdPlugin } from 'bytemd'
+import type { HashmdPlugin } from 'hashmd'
 import type * as M from 'medium-zoom'
 
-export interface BytemdPluginMediumZoomOptions extends M.ZoomOptions {
+export interface HashmdPluginMediumZoomOptions extends M.ZoomOptions {
   filter?: (img: HTMLDivElement) => boolean
 }
 
 export default function mediumZoom(
-  options?: BytemdPluginMediumZoomOptions,
-): BytemdPlugin {
+  options?: HashmdPluginMediumZoomOptions,
+): HashmdPlugin {
   let m: typeof M
 
   return {

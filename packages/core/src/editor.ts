@@ -1,10 +1,10 @@
 import { icons } from './icons'
 import type {
-  BytemdPlugin,
-  BytemdAction,
+  HashmdPlugin,
+  HashmdAction,
   EditorProps,
-  BytemdLocale,
-  BytemdEditorContext,
+  HashmdLocale,
+  HashmdEditorContext,
 } from './types'
 import { EditorView } from '@codemirror/view'
 import selectFiles from 'select-files'
@@ -120,7 +120,7 @@ const getShortcutWithPrefix = (key: string, shift = false) => {
 }
 
 export async function handleImageUpload(
-  { editor }: BytemdEditorContext,
+  { editor }: HashmdEditorContext,
   uploadImages: NonNullable<EditorProps['uploadImages']>,
   files: File[],
 ) {
@@ -137,18 +137,18 @@ export async function handleImageUpload(
 }
 
 export function getBuiltinActions(
-  locale: BytemdLocale,
-  plugins: BytemdPlugin[],
+  locale: HashmdLocale,
+  plugins: HashmdPlugin[],
   uploadImages: EditorProps['uploadImages'],
-): { leftActions: BytemdAction[]; rightActions: BytemdAction[] } {
-  const leftActions: BytemdAction[] = [
+): { leftActions: HashmdAction[]; rightActions: HashmdAction[] } {
+  const leftActions: HashmdAction[] = [
     {
       title: 'Headings',
       icon: icons.H,
       handler: {
         type: 'dropdown',
         actions: [1, 2, 3, 4, 5, 6].map((level) => ({
-          title: locale[`h${level}` as keyof BytemdLocale],
+          title: locale[`h${level}` as keyof HashmdLocale],
           cheatsheet:
             level <= 3
               ? `${'#'.repeat(level)} ${locale.headingText}`
@@ -288,7 +288,7 @@ export function getBuiltinActions(
       cheatsheet: '---',
     },
   ]
-  const rightActions: BytemdAction[] = []
+  const rightActions: HashmdAction[] = []
   plugins.forEach(({ actions }) => {
     if (actions) {
       actions.forEach((action) => {

@@ -1,6 +1,6 @@
 import { icons } from './icons'
 import en from './locales/en.json'
-import { appendBlock, replaceLines, type BytemdPlugin, wrapText } from 'bytemd'
+import { appendBlock, replaceLines, type HashmdPlugin, wrapText } from 'hashmd'
 import remarkGfm, { Options } from 'remark-gfm'
 
 type Locale = {
@@ -12,14 +12,14 @@ type Locale = {
   tableHeading: string
 }
 
-export interface BytemdPluginGfmOptions extends Options {
+export interface HashmdPluginGfmOptions extends Options {
   locale?: Partial<Locale>
 }
 
 export default function gfm({
   locale: _locale,
   ...remarkGfmOptions
-}: BytemdPluginGfmOptions = {}): BytemdPlugin {
+}: HashmdPluginGfmOptions = {}): HashmdPlugin {
   const locale = { ...en, ..._locale } as Locale
 
   return {

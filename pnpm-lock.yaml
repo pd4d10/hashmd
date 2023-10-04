@@ -80,42 +80,42 @@ importers:
 
   examples/lit:
     dependencies:
-      '@bytemd/plugin-breaks':
+      '@hashmd/plugin-breaks':
         specifier: workspace:*
         version: link:../../packages/plugin-breaks
-      '@bytemd/plugin-frontmatter':
+      '@hashmd/plugin-frontmatter':
         specifier: workspace:*
         version: link:../../packages/plugin-frontmatter
-      '@bytemd/plugin-gemoji':
+      '@hashmd/plugin-gemoji':
         specifier: workspace:*
         version: link:../../packages/plugin-gemoji
-      '@bytemd/plugin-gfm':
+      '@hashmd/plugin-gfm':
         specifier: workspace:*
         version: link:../../packages/plugin-gfm
-      '@bytemd/plugin-highlight':
+      '@hashmd/plugin-highlight':
         specifier: workspace:*
         version: link:../../packages/plugin-highlight
-      '@bytemd/plugin-highlight-ssr':
+      '@hashmd/plugin-highlight-ssr':
         specifier: workspace:*
         version: link:../../packages/plugin-highlight-ssr
-      '@bytemd/plugin-math':
+      '@hashmd/plugin-math':
         specifier: workspace:*
         version: link:../../packages/plugin-math
-      '@bytemd/plugin-math-ssr':
+      '@hashmd/plugin-math-ssr':
         specifier: workspace:*
         version: link:../../packages/plugin-math-ssr
-      '@bytemd/plugin-medium-zoom':
+      '@hashmd/plugin-medium-zoom':
         specifier: workspace:*
         version: link:../../packages/plugin-medium-zoom
-      '@bytemd/plugin-mermaid':
+      '@hashmd/plugin-mermaid':
         specifier: workspace:*
         version: link:../../packages/plugin-mermaid
-      bytemd:
-        specifier: workspace:*
-        version: link:../../packages/bytemd
       github-markdown-css:
         specifier: ^5.2.0
         version: 5.2.0
+      hashmd:
+        specifier: workspace:*
+        version: link:../../packages/core
       highlight.js:
         specifier: ^11.7.0
         version: 11.8.0
@@ -126,7 +126,7 @@ importers:
         specifier: ^2.8.0
         version: 2.8.0
 
-  packages/bytemd:
+  packages/core:
     dependencies:
       '@codemirror/autocomplete':
         specifier: ^6.9.1
@@ -207,9 +207,9 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-frontmatter:
     dependencies:
@@ -226,9 +226,9 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-gemoji:
     dependencies:
@@ -236,9 +236,9 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-gfm:
     dependencies:
@@ -246,9 +246,9 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-highlight:
     dependencies:
@@ -256,9 +256,9 @@ importers:
         specifier: ^11.7.0
         version: 11.8.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-highlight-ssr:
     dependencies:
@@ -266,9 +266,9 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-math:
     dependencies:
@@ -282,9 +282,9 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-math-ssr:
     dependencies:
@@ -295,9 +295,9 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-medium-zoom:
     dependencies:
@@ -305,9 +305,9 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/plugin-mermaid:
     dependencies:
@@ -315,18 +315,18 @@ importers:
         specifier: ^10.0.2
         version: 10.5.0
     devDependencies:
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
 
   packages/react:
     dependencies:
       '@lit-labs/react':
         specifier: ^2.1.0
         version: 2.1.0(@types/react@18.2.24)
-      bytemd:
+      hashmd:
         specifier: workspace:*
-        version: link:../bytemd
+        version: link:../core
     devDependencies:
       '@types/react':
         specifier: ^18.0.31

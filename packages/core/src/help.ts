@@ -1,10 +1,10 @@
-import { BytemdAction, BytemdLocale } from './types'
+import { HashmdAction, HashmdLocale } from './types'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
-function flatItems(actions: BytemdAction[]) {
-  let items: BytemdAction[] = []
+function flatItems(actions: HashmdAction[]) {
+  let items: HashmdAction[] = []
 
   actions.forEach((action) => {
     const { handler, cheatsheet } = action
@@ -19,10 +19,10 @@ function flatItems(actions: BytemdAction[]) {
   return items
 }
 
-@customElement('bytemd-help')
+@customElement('hashmd-help')
 export class Help extends LitElement {
-  @property() locale!: BytemdLocale
-  @property() actions!: BytemdAction[]
+  @property() locale!: HashmdLocale
+  @property() actions!: HashmdAction[]
 
   protected render(): unknown {
     const { actions, locale } = this

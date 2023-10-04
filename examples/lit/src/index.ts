@@ -1,14 +1,14 @@
 import markdownText from './text.md?raw'
-import breaks from '@bytemd/plugin-breaks'
-import frontmatter from '@bytemd/plugin-frontmatter'
-import gemoji from '@bytemd/plugin-gemoji'
-import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
-import math from '@bytemd/plugin-math'
-import mediumZoom from '@bytemd/plugin-medium-zoom'
-import mermaid from '@bytemd/plugin-mermaid'
-import 'bytemd'
+import breaks from '@hashmd/plugin-breaks'
+import frontmatter from '@hashmd/plugin-frontmatter'
+import gemoji from '@hashmd/plugin-gemoji'
+import gfm from '@hashmd/plugin-gfm'
+import highlight from '@hashmd/plugin-highlight'
+import math from '@hashmd/plugin-math'
+import mediumZoom from '@hashmd/plugin-medium-zoom'
+import mermaid from '@hashmd/plugin-mermaid'
 import 'github-markdown-css'
+import 'hashmd'
 import 'highlight.js/styles/vs.css'
 // placed after highlight styles to override `code` padding
 import 'katex/dist/katex.css'
@@ -27,20 +27,20 @@ function stripPrefixes(obj: Record<string, any>) {
 }
 
 const locales = stripPrefixes(
-  import.meta.glob('/node_modules/bytemd/locales/*.json', { eager: true }),
+  import.meta.glob('/node_modules/hashmd/locales/*.json', { eager: true }),
 )
 const gfmLocales = stripPrefixes(
-  import.meta.glob('/node_modules/@bytemd/plugin-gfm/locales/*.json', {
+  import.meta.glob('/node_modules/@hashmd/plugin-gfm/locales/*.json', {
     eager: true,
   }),
 )
 const mathLocales = stripPrefixes(
-  import.meta.glob('/node_modules/@bytemd/plugin-math/locales/*.json', {
+  import.meta.glob('/node_modules/@hashmd/plugin-math/locales/*.json', {
     eager: true,
   }),
 )
 const mermaidLocales = stripPrefixes(
-  import.meta.glob('/node_modules/@bytemd/plugin-mermaid/locales/*.json', {
+  import.meta.glob('/node_modules/@hashmd/plugin-mermaid/locales/*.json', {
     eager: true,
   }),
 )
@@ -132,11 +132,11 @@ export class MyElement extends LitElement {
               >`,
           )}
         </div>
-        <bytemd-editor
+        <hashmd-editor
           .value=${value}
           .plugins=${plugins}
           .mode=${mode}
-        ></bytemd-editor>
+        ></hashmd-editor>
       </div>
     `
   }
@@ -156,7 +156,7 @@ export class MyElement extends LitElement {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
         Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     }
-    :global(.bytemd) {
+    :global(hashmd-editor) {
       height: calc(100vh - 100px);
     }
     :global(.medium-zoom-overlay) {

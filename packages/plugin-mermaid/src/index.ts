@@ -1,6 +1,6 @@
 import { icons } from './icons'
 import en from './locales/en.json'
-import { appendBlock, type BytemdPlugin } from 'bytemd'
+import { appendBlock, type HashmdPlugin } from 'hashmd'
 import type { default as Mermaid, MermaidConfig } from 'mermaid'
 
 type Locale = {
@@ -17,14 +17,14 @@ type Locale = {
   timeline: string
 }
 
-export interface BytemdPluginMermaidOptions extends MermaidConfig {
+export interface HashmdPluginMermaidOptions extends MermaidConfig {
   locale?: Partial<Locale>
 }
 
 export default function mermaid({
   locale: _locale,
   ...mermaidConfig
-}: BytemdPluginMermaidOptions = {}): BytemdPlugin {
+}: HashmdPluginMermaidOptions = {}): HashmdPlugin {
   const locale = { ...en, ..._locale } as Locale
   let m: typeof Mermaid
 
@@ -156,12 +156,12 @@ another task      : 24d`,
           const source = el.innerText
 
           const container = document.createElement('div')
-          container.classList.add('bytemd-mermaid')
+          container.classList.add('hashmd-mermaid')
           container.style.lineHeight = 'initial' // reset line-height
           pre.replaceWith(container)
 
           m.render(
-            `bytemd-mermaid-${Date.now()}-${i}`,
+            `hashmd-mermaid-${Date.now()}-${i}`,
             source,
             // @ts-ignore
             container,

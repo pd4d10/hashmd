@@ -1,13 +1,13 @@
-import type { BytemdPlugin } from 'bytemd'
+import type { HashmdPlugin } from 'hashmd'
 import type H from 'highlight.js'
 
-export interface BytemdPluginHighlightOptions {
+export interface HashmdPluginHighlightOptions {
   init?(hljs: typeof H): void | Promise<void>
 }
 
 export default function highlight({
   init,
-}: BytemdPluginHighlightOptions = {}): BytemdPlugin {
+}: HashmdPluginHighlightOptions = {}): HashmdPlugin {
   let hljs: typeof H
   return {
     viewerEffect({ markdownBody }) {

@@ -1,7 +1,7 @@
-import * as bytemd from 'bytemd'
+import * as hashmd from 'hashmd'
 import React, { useMemo, useEffect, useRef, FC } from 'react'
 
-export interface ViewerProps extends bytemd.ViewerProps {}
+export interface ViewerProps extends hashmd.ViewerProps {}
 
 export const Viewer: FC<ViewerProps> = ({
   value,
@@ -12,7 +12,7 @@ export const Viewer: FC<ViewerProps> = ({
   const elRef = useRef<HTMLDivElement>(null)
   const file = useMemo(() => {
     try {
-      return bytemd
+      return hashmd
         .getProcessor({ sanitize, plugins, remarkRehype })
         .processSync(value)
     } catch (err) {

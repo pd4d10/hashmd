@@ -1,5 +1,5 @@
 import { icons } from './icons'
-import { wrapText, type BytemdAction, appendBlock } from 'bytemd'
+import { wrapText, type HashmdAction, appendBlock } from 'hashmd'
 
 export type MathLocale = {
   inline: string
@@ -8,7 +8,7 @@ export type MathLocale = {
   blockText: string
 }
 
-export function getMathActions(locale: MathLocale): BytemdAction[] {
+export function getMathActions(locale: MathLocale): HashmdAction[] {
   return [
     {
       icon: icons.Formula,

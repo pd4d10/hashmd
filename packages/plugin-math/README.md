@@ -1,14 +1,14 @@
-# @bytemd/plugin-math
+# @hashmd/plugin-math
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-math.svg)](https://npm.im/@bytemd/plugin-math)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-math.svg)](https://npm.im/@hashmd/plugin-math)
 
-ByteMD plugin to support math formula
+HashMD plugin to support math formula
 
 ## Usage
 
 ```js
-import math from '@bytemd/plugin-math'
-import { Editor } from 'bytemd'
+import math from '@hashmd/plugin-math'
+import { Editor } from 'hashmd'
 import 'katex/dist/katex.css'
 
 new Editor({

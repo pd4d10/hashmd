@@ -1,10 +1,10 @@
 {
-  "name": "@bytemd/plugin-gfm",
+  "name": "@hashmd/plugin-gfm",
   "version": "1.21.0",
-  "description": "ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)",
+  "description": "HashMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-gfm"
   },
   "license": "MIT",
@@ -32,9 +32,9 @@
     "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

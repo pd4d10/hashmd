@@ -15,7 +15,7 @@ import { LitElement, PropertyValueMap, css, html, nothing } from 'lit'
 import { customElement, eventOptions, property } from 'lit/decorators.js'
 import { throttle } from 'lodash-es'
 
-@customElement('bytemd-editor')
+@customElement('hashmd-editor')
 export class Editor extends LitElement {
   @property({ attribute: true }) value: EditorProps['value'] = ''
   @property({ attribute: true }) mode: EditorProps['mode']
@@ -62,7 +62,7 @@ export class Editor extends LitElement {
 
     const editEl = this._editor!.scrollDOM
     const previewEl = this.renderRoot.querySelector('.preview')!
-    const body = this.renderRoot.querySelector<HTMLElement>('bytemd-viewer')!
+    const body = this.renderRoot.querySelector<HTMLElement>('hashmd-viewer')!
 
     this.editPs = []
     this.previewPs = []
@@ -197,7 +197,7 @@ export class Editor extends LitElement {
     const split =
       mode === 'split' || (mode === 'auto' && _containerWidth >= 800)
 
-    return html`<bytemd-toolbar
+    return html`<hashmd-toolbar
         .actions=${actions.leftActions}
         .rightAfferentActions=${actions.rightActions}
         .locale=${mergedLocale}
@@ -210,39 +210,39 @@ export class Editor extends LitElement {
         @toggle-fullscreen=${() => {
           this._fullscreen = !this._fullscreen
         }}
-      ></bytemd-toolbar>
+      ></hashmd-toolbar>
       <div class="body">
         ${split ? html`<div class="edit"></div>` : nothing}
         <div class="preview" @scroll=${this.previewScroll}>
-          <bytemd-viewer
+          <hashmd-viewer
             .value=${value}
             @meta=${(e: CustomEvent) => {
               this.meta = e.detail
             }}
-          ></bytemd-viewer>
+          ></hashmd-viewer>
         </div>
         ${_sidebar
-          ? html`<bytemd-sidebar
+          ? html`<hashmd-sidebar
               @close=${() => {
                 this._sidebar = false
               }}
             >
               ${_sidebar === 'help'
-                ? html`<bytemd-help
+                ? html`<hashmd-help
                     .locale=${mergedLocale}
                     .actions=${actions.leftActions}
-                  ></bytemd-help>`
+                  ></hashmd-help>`
                 : _sidebar === 'toc'
-                ? html`<bytemd-toc
+                ? html`<hashmd-toc
                     .locale=${mergedLocale}
                     .currentBlockIndex=${this.currentBlockIndex}
                     .meta=${this.meta}
-                  ></bytemd-toc>`
+                  ></hashmd-toc>`
                 : nothing}
-            </bytemd-sidebar>`
+            </hashmd-sidebar>`
           : nothing}
       </div>
-      <bytemd-status
+      <hashmd-status
         .value=${value}
         .locale=${mergedLocale}
         .sync=${this._sync}
@@ -251,9 +251,9 @@ export class Editor extends LitElement {
         }}
         @scroll-top=${() => {
           this._editor?.scrollDOM?.scrollIntoView()
-          this.shadowRoot?.querySelector('bytemd-viewer')?.scrollIntoView()
+          this.shadowRoot?.querySelector('hashmd-viewer')?.scrollIntoView()
         }}
-      ></bytemd-status>`
+      ></hashmd-status>`
   }
 
   static styles = css`
@@ -287,7 +287,7 @@ export class Editor extends LitElement {
       flex-direction: column;
     }
 
-    bytemd-toolbar {
+    hashmd-toolbar {
       flex-shrink: 0;
     }
 
@@ -308,7 +308,7 @@ export class Editor extends LitElement {
 
     .edit,
     .preview,
-    bytemd-sidebar {
+    hashmd-sidebar {
       height: 100%;
       overflow: auto;
     }
@@ -319,7 +319,7 @@ export class Editor extends LitElement {
       min-width: 0; // https://stackoverflow.com/a/66689926
     }
 
-    bytemd-sidebar {
+    hashmd-sidebar {
       flex: 0 0 280px;
     }
 
@@ -327,7 +327,7 @@ export class Editor extends LitElement {
       padding: 16px;
     }
 
-    bytemd-status {
+    hashmd-status {
       border-top: 1px solid var(--border-color);
     }
 

@@ -1,14 +1,14 @@
-# @bytemd/plugin-gemoji
+# @hashmd/plugin-gemoji
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-gemoji.svg)](https://npm.im/@bytemd/plugin-gemoji)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-gemoji.svg)](https://npm.im/@hashmd/plugin-gemoji)
 
-ByteMD plugin to support Gemoji shortcodes
+HashMD plugin to support Gemoji shortcodes
 
 ## Usage
 
 ```js
-import gemoji from '@bytemd/plugin-gemoji'
-import { Editor } from 'bytemd'
+import gemoji from '@hashmd/plugin-gemoji'
+import { Editor } from 'hashmd'
 
 new Editor({
   target: document.body,

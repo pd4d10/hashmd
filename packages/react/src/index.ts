@@ -1,10 +1,10 @@
 import { createComponent } from '@lit-labs/react'
-import * as bytemd from 'bytemd'
+import * as hashmd from 'hashmd'
 import React from 'react'
 
 export const Editor = createComponent({
-  tagName: 'bytemd-editor',
-  elementClass: bytemd.Editor,
+  tagName: 'hashmd-editor',
+  elementClass: hashmd.Editor,
   react: React,
   events: {
     onChange: 'change',
@@ -12,8 +12,8 @@ export const Editor = createComponent({
 })
 
 export const Viewer = createComponent({
-  tagName: 'bytemd-viewer',
-  elementClass: bytemd.Viewer,
+  tagName: 'hashmd-viewer',
+  elementClass: hashmd.Viewer,
   react: React,
   events: {
     onMeta: 'meta',

@@ -1,10 +1,10 @@
 {
-  "name": "@bytemd/plugin-highlight",
+  "name": "@hashmd/plugin-highlight",
   "version": "1.21.0",
-  "description": "ByteMD plugin to highlight code blocks",
+  "description": "HashMD plugin to highlight code blocks",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-highlight"
   },
   "license": "MIT",
@@ -32,9 +32,9 @@
     "highlight.js": "^11.7.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

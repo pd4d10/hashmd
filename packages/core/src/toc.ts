@@ -1,15 +1,15 @@
-import type { BytemdLocale } from './types'
+import type { HashmdLocale } from './types'
 import { Meta } from './viewer-next'
 import { LitElement, css, html, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import { styleMap } from 'lit/directives/style-map.js'
 
-@customElement('bytemd-toc')
+@customElement('hashmd-toc')
 export class Toc extends LitElement {
   @property() meta?: Meta
   @property() currentBlockIndex!: number
-  @property() locale!: BytemdLocale
+  @property() locale!: HashmdLocale
 
   protected render(): unknown {
     const { meta } = this

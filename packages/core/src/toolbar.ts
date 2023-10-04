@@ -1,8 +1,8 @@
 import { icons } from './icons'
 import {
-  BytemdAction,
-  BytemdEditorContext,
-  BytemdLocale,
+  HashmdAction,
+  HashmdEditorContext,
+  HashmdLocale,
   ViewerProps,
 } from './types'
 import { getProcessor } from './utils'
@@ -12,18 +12,18 @@ import { customElement, property } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
-interface RightAction extends BytemdAction {
+interface RightAction extends HashmdAction {
   active?: boolean
   hidden?: boolean
 }
 
-@customElement('bytemd-toolbar')
+@customElement('hashmd-toolbar')
 export class Toolbar extends LitElement {
-  @property() actions!: BytemdAction[]
-  @property() rightAfferentActions!: BytemdAction[]
+  @property() actions!: HashmdAction[]
+  @property() rightAfferentActions!: HashmdAction[]
   @property() sidebar!: false | 'help' | 'toc'
-  @property() locale!: BytemdLocale
-  @property() context!: BytemdEditorContext
+  @property() locale!: HashmdLocale
+  @property() context!: HashmdEditorContext
   @property() fullscreen!: boolean
 
   @property() activeTab: 'icon' | 'write' | 'preview' = 'icon' // TODO:
@@ -110,7 +110,7 @@ export class Toolbar extends LitElement {
         handler: {
           type: 'action',
           click: () => {
-            window.open('https://github.com/bytedance/bytemd')
+            window.open('https://github.com/pd4d10/hashmd')
           },
         },
       },

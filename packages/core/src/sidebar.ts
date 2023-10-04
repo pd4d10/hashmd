@@ -3,7 +3,7 @@ import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
-@customElement('bytemd-sidebar')
+@customElement('hashmd-sidebar')
 export class Sidebar extends LitElement {
   protected render(): unknown {
     return html`<div

@@ -1,10 +1,10 @@
 {
-  "name": "@bytemd/plugin-math",
+  "name": "@hashmd/plugin-math",
   "version": "1.21.0",
-  "description": "ByteMD plugin to support math formula",
+  "description": "HashMD plugin to support math formula",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-math"
   },
   "license": "MIT",
@@ -34,9 +34,9 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

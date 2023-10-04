@@ -1,10 +1,10 @@
 {
-  "name": "@bytemd/plugin-frontmatter",
+  "name": "@hashmd/plugin-frontmatter",
   "version": "1.21.0",
-  "description": "ByteMD plugin to parse frontmatter",
+  "description": "HashMD plugin to parse frontmatter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-frontmatter"
   },
   "license": "MIT",
@@ -35,9 +35,9 @@
     "vfile": "^6.0.1"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

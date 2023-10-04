@@ -40,7 +40,7 @@ packages.forEach((p) => {
   const pkg = fs.readJsonSync(pkgPath)
   pkg.repository = {
     type: 'git',
-    url: 'https://github.com/bytedance/bytemd.git',
+    url: 'https://github.com/pd4d10/hashmd.git',
     directory: `packages/${p}`,
   }
 
@@ -63,11 +63,6 @@ packages.forEach((p) => {
     './lib/locales/*': './locales/*',
   }
   pkg.files = ['dist', 'locales']
-
-  if (pkg.name === 'bytemd') {
-    pkg.exports['./dist/index.css'] = './dist/index.css'
-    pkg.exports['./dist/index.min.css'] = './dist/index.min.css'
-  }
   fs.writeJsonSync(pkgPath, pkg)
 })
 
@@ -91,7 +86,7 @@ plugins.forEach((p) => {
   fs.writeFileSync(path.join(packagesDir, p, 'README.md'), result)
 })
 
-// bytemd readme
+// readme
 const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
   /### Official Plugins\s+([\w\W])*?\s+##/,
   (match, p1, offset, string) => {
@@ -101,11 +96,11 @@ const readme = readFileSyncSafe(path.join(rootDir, 'README.md')).replace(
         if (pkg.private) return
 
         const name = p.split('-').slice(1).join('-')
-        const badge = `[![npm](https://img.shields.io/npm/v/@bytemd/plugin-${name}.svg?label=)](https://npm.im/@bytemd/plugin-${name})`
+        const badge = `[![npm](https://img.shields.io/npm/v/@hashmd/plugin-${name}.svg?label=)](https://npm.im/@hashmd/plugin-${name})`
         const desc = _.upperFirst(
-          pkg.description.replace('ByteMD plugin to ', ''),
+          pkg.description.replace('HashMD plugin to ', ''),
         )
-        return `| [@bytemd/plugin-${name}](https://github.com/bytedance/bytemd/tree/main/packages/plugin-${name}) | ${badge} | ${desc} |`
+        return `| [@hashmd/plugin-${name}](https://github.com/pd4d10/hashmd/tree/main/packages/plugin-${name}) | ${badge} | ${desc} |`
       })
       .filter((x) => x)
       .join('\n')

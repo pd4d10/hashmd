@@ -1,13 +1,13 @@
-import { BytemdLocale, EditorProps } from './types'
+import { HashmdLocale, EditorProps } from './types'
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 // @ts-ignore
 import wordCount from 'word-count'
 
-@customElement('bytemd-status')
+@customElement('hashmd-status')
 export class Status extends LitElement {
   @property() value!: string
-  @property() locale!: BytemdLocale
+  @property() locale!: HashmdLocale
   @property() sync!: boolean
 
   protected render(): unknown {

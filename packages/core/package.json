@@ -1,5 +1,5 @@
 {
-  "name": "bytemd",
+  "name": "hashmd",
   "version": "1.21.0",
   "description": "Hackable Markdown Editor and Viewer",
   "keywords": [
@@ -9,8 +9,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
-    "directory": "packages/bytemd"
+    "url": "https://github.com/pd4d10/hashmd.git",
+    "directory": "packages/core"
   },
   "license": "MIT",
   "author": "Rongjian Zhang",
@@ -22,9 +22,7 @@
       "require": "./dist/index.js"
     },
     "./locales/*": "./locales/*",
-    "./lib/locales/*": "./locales/*",
-    "./dist/index.css": "./dist/index.css",
-    "./dist/index.min.css": "./dist/index.min.css"
+    "./lib/locales/*": "./locales/*"
   },
   "main": "./dist/index.js",
   "jsdelivr": "./dist/index.umd.js",

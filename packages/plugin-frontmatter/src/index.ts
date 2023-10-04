@@ -1,8 +1,8 @@
-import type { BytemdPlugin } from 'bytemd'
+import type { HashmdPlugin } from 'hashmd'
 import { load } from 'js-yaml'
 import remarkFrontmatter from 'remark-frontmatter'
 
-export interface BytemdPluginFrontmatterOptions {
+export interface HashmdPluginFrontmatterOptions {
   onError?(err: any): void
 }
 
@@ -14,7 +14,7 @@ declare module 'vfile' {
 
 export default function frontmatter({
   onError,
-}: BytemdPluginFrontmatterOptions = {}): BytemdPlugin {
+}: HashmdPluginFrontmatterOptions = {}): HashmdPlugin {
   return {
     remark: (processor) =>
       // @ts-ignore

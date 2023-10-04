@@ -1,10 +1,10 @@
 import en from './locales/en.json'
 import { MathLocale, getMathActions } from './utils'
-import type { BytemdPlugin } from 'bytemd'
+import type { HashmdPlugin } from 'hashmd'
 import rehypeKatex, { Options } from 'rehype-katex'
 import remarkMath from 'remark-math'
 
-export interface BytemdPluginMathSsrOptions {
+export interface HashmdPluginMathSsrOptions {
   locale?: Partial<MathLocale>
   katexOptions?: Omit<Options, 'displayMode'>
 }
@@ -12,7 +12,7 @@ export interface BytemdPluginMathSsrOptions {
 export default function mathSsr({
   locale: _locale,
   katexOptions,
-}: BytemdPluginMathSsrOptions = {}): BytemdPlugin {
+}: HashmdPluginMathSsrOptions = {}): HashmdPlugin {
   const locale = { ...en, ..._locale }
   return {
     remark: (processor) => processor.use(remarkMath),

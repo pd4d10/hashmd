@@ -29,6 +29,6 @@
     { "path": "../../packages/plugin-math-ssr" },
     { "path": "../../packages/plugin-medium-zoom" },
     { "path": "../../packages/plugin-mermaid" },
-    { "path": "../../packages/bytemd" }
+    { "path": "../../packages/core" }
   ]
 }

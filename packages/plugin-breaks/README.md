@@ -1,14 +1,14 @@
-# @bytemd/plugin-breaks
+# @hashmd/plugin-breaks
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-breaks.svg)](https://npm.im/@bytemd/plugin-breaks)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-breaks.svg)](https://npm.im/@hashmd/plugin-breaks)
 
-ByteMD plugin to support breaks
+HashMD plugin to support breaks
 
 ## Usage
 
 ```js
-import breaks from '@bytemd/plugin-breaks'
-import { Editor } from 'bytemd'
+import breaks from '@hashmd/plugin-breaks'
+import { Editor } from 'hashmd'
 
 new Editor({
   target: document.body,

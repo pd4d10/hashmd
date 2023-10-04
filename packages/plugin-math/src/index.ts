@@ -1,10 +1,10 @@
 import en from './locales/en.json'
 import { MathLocale, getMathActions } from './utils'
-import type { BytemdPlugin } from 'bytemd'
+import type { HashmdPlugin } from 'hashmd'
 import type { default as K, KatexOptions } from 'katex'
 import remarkMath from 'remark-math'
 
-export interface BytemdPluginMathOptions {
+export interface HashmdPluginMathOptions {
   locale?: Partial<MathLocale>
   katexOptions?: Omit<KatexOptions, 'displayMode'>
 }
@@ -12,7 +12,7 @@ export interface BytemdPluginMathOptions {
 export default function math({
   locale: _locale,
   katexOptions,
-}: BytemdPluginMathOptions = {}): BytemdPlugin {
+}: HashmdPluginMathOptions = {}): HashmdPlugin {
   const locale = { ...en, ..._locale }
   let katex: typeof K
 

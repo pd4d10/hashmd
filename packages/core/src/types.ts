@@ -5,7 +5,7 @@ import type { Options } from 'remark-rehype'
 import type { Processor } from 'unified'
 import type { VFile } from 'vfile'
 
-export interface BytemdLocale {
+export interface HashmdLocale {
   write: string
   preview: string
   writeOnly: string
@@ -55,14 +55,14 @@ export interface BytemdLocale {
   hr: string
 }
 
-export interface BytemdEditorContext {
+export interface HashmdEditorContext {
   /**
    * CodeMirror editor instance
    */
   editor: EditorView
 }
 
-export interface BytemdViewerContext {
+export interface HashmdViewerContext {
   /**
    * The root element of the viewer
    */
@@ -75,9 +75,9 @@ export interface BytemdViewerContext {
   file: VFile
 }
 
-type Listener = (context: BytemdEditorContext) => void
+type Listener = (context: HashmdEditorContext) => void
 
-type BytemdActionHandler =
+type HashmdActionHandler =
   | {
       type: 'action'
       click: Listener
@@ -101,10 +101,10 @@ type BytemdActionHandler =
     }
   | {
       type: 'dropdown'
-      actions: BytemdAction[]
+      actions: HashmdAction[]
     }
 
-export interface BytemdAction {
+export interface HashmdAction {
   /**
    * Action title
    */
@@ -128,10 +128,10 @@ export interface BytemdAction {
   /**
    * Action handler
    */
-  handler?: BytemdActionHandler
+  handler?: HashmdActionHandler
 }
 
-export interface BytemdPlugin {
+export interface HashmdPlugin {
   /**
    * Customize Markdown parse by remark plugins:
    *
@@ -147,15 +147,15 @@ export interface BytemdPlugin {
   /**
    * Register actions in toolbar, cheatsheet and shortcuts
    */
-  actions?: BytemdAction[]
+  actions?: HashmdAction[]
   /**
    * Side effect for the editor, triggers when plugin changes
    */
-  editorEffect?(ctx: BytemdEditorContext): void | (() => void)
+  editorEffect?(ctx: HashmdEditorContext): void | (() => void)
   /**
    * Side effect for the viewer, triggers when viewer props changes
    */
-  viewerEffect?(ctx: BytemdViewerContext): void | (() => void)
+  viewerEffect?(ctx: HashmdViewerContext): void | (() => void)
 }
 
 export interface EditorProps extends ViewerProps {
@@ -184,7 +184,7 @@ export interface EditorProps extends ViewerProps {
    *
    * @defaultValue en
    */
-  locale?: Partial<BytemdLocale>
+  locale?: Partial<HashmdLocale>
   /**
    * Handle images upload
    */
@@ -209,9 +209,9 @@ export interface ViewerProps {
    */
   value: string
   /**
-   * ByteMD plugin list
+   * HashMD plugin list
    */
-  plugins?: BytemdPlugin[]
+  plugins?: HashmdPlugin[]
   /**
    * Sanitize strategy: Defaults to GitHub style sanitation with class names allowed
    *

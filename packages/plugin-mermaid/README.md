@@ -1,14 +1,14 @@
-# @bytemd/plugin-mermaid
+# @hashmd/plugin-mermaid
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-mermaid.svg)](https://npm.im/@bytemd/plugin-mermaid)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-mermaid.svg)](https://npm.im/@hashmd/plugin-mermaid)
 
-ByteMD plugin to support Mermaid diagram
+HashMD plugin to support Mermaid diagram
 
 ## Usage
 
 ```js
-import mermaid from '@bytemd/plugin-mermaid'
-import { Editor } from 'bytemd'
+import mermaid from '@hashmd/plugin-mermaid'
+import { Editor } from 'hashmd'
 
 new Editor({
   target: document.body,
