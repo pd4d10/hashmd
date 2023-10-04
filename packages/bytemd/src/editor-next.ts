@@ -1,6 +1,7 @@
 import en from '../locales/en.json'
 import './codemirror'
 import { getBuiltinActions } from './editor'
+import './help.js'
 import './status.js'
 import './toolbar.js'
 import { BytemdEditorContext, EditorProps } from './types'
@@ -66,6 +67,10 @@ export class Editor extends LitElement {
         <div class="preview">
           <bytemd-viewer .value=${value}></bytemd-viewer>
         </div>
+        <bytemd-help
+          .locale=${mergedLocale}
+          .actions=${actions.leftActions}
+        ></bytemd-help>
       </div>
       <bytemd-status
         .value=${value}
