@@ -151,14 +151,6 @@ export function getBuiltinActions(
         type: 'dropdown',
         actions: [1, 2, 3, 4, 5, 6].map((level) => ({
           title: locale[`h${level}` as keyof BytemdLocale],
-          icon: [
-            icons.H1,
-            icons.H2,
-            icons.H3,
-            icons.LevelFourTitle,
-            icons.LevelFiveTitle,
-            icons.LevelSixTitle,
-          ][level - 1],
           cheatsheet:
             level <= 3
               ? `${'#'.repeat(level)} ${locale.headingText}`
