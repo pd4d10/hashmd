@@ -1,11 +1,27 @@
 import { BytemdPlugin, ViewerProps } from './types'
 import { getProcessor } from './utils'
-import type { Root } from 'hast'
+import type { Root, Element } from 'hast'
 import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import type { Plugin } from 'unified'
+import { visit } from 'unist-util-visit'
 import type { VFile } from 'vfile'
+
+export interface Meta {
+  hast: Root
+  file: VFile
+  toc: { level: number; text: string }[]
+}
+
+function stringifyHeading(e: Element) {
+  let result = ''
+  visit(e, (node) => {
+    if (node.type === 'text') {
+      result += node.value
+    }
+  })
+  return result
+}
 
 @customElement('bytemd-viewer')
 export class Viewer extends LitElement {
@@ -13,6 +29,8 @@ export class Viewer extends LitElement {
   @property() plugins: ViewerProps['plugins']
   @property() sanitize: ViewerProps['sanitize']
   @property() remarkRehype: ViewerProps['remarkRehype']
+
+  @property({ state: true }) meta?: Meta
 
   protected firstUpdated() {
     this.renderRoot.addEventListener('click', (e) => {
@@ -28,12 +46,26 @@ export class Viewer extends LitElement {
 
   render() {
     const dispatchPlugin: BytemdPlugin = {
+      // @ts-ignore
       rehype: (processor) =>
-        processor.use<any>(() => (tree, file) => {
-          // console.log(tree, file)
-          this.dispatchEvent(
-            new CustomEvent('info', { detail: { hast: tree, file } }),
-          )
+        processor.use<any, Root>(() => (hast, file) => {
+          // console.log(hast, file)
+
+          let toc: Meta['toc'] = []
+          hast.children
+            .filter((v): v is Element => v.type === 'element')
+            .forEach((node) => {
+              if (node.tagName[0] === 'h' && !!node.children.length) {
+                const i = Number(node.tagName[1])
+                toc.push({
+                  level: i,
+                  text: stringifyHeading(node),
+                })
+              }
+            })
+
+          this.meta = { hast, file, toc }
+          this.dispatchEvent(new CustomEvent('meta', { detail: this.meta }))
         }),
     }
 

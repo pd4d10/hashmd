@@ -7,7 +7,8 @@ import './sidebar.js'
 import './status.js'
 import './toc.js'
 import './toolbar.js'
-import { BytemdEditorContext, EditorProps } from './types'
+import { EditorProps } from './types'
+import { Meta } from './viewer-next'
 import { EditorView } from '@codemirror/view'
 import { Element, Root } from 'hast'
 import { LitElement, PropertyValueMap, css, html, nothing } from 'lit'
@@ -28,9 +29,8 @@ export class Editor extends LitElement {
   @property({ state: true }) _activeTab: false | 'write' | 'preview' = false
   @property({ state: true }) _fullscreen = false
   @property({ state: true }) _sync = true
-  @property({ state: true }) _context: BytemdEditorContext | undefined
   @property({ state: true }) _sidebar: 'help' | 'toc' | false = 'toc'
-  @property({ state: true }) _hast?: Root
+  @property({ state: true }) meta?: Meta
 
   @property({ state: true }) editCalled = false
   @property({ state: true }) previewCalled = false
@@ -58,6 +58,8 @@ export class Editor extends LitElement {
   }
 
   updateBlockPositions = throttle(() => {
+    if (!this.meta) return
+
     const editEl = this._editor!.scrollDOM
     const previewEl = this.renderRoot.querySelector('.preview')!
     const body = this.renderRoot.querySelector<HTMLElement>('bytemd-viewer')!
@@ -65,7 +67,7 @@ export class Editor extends LitElement {
     this.editPs = []
     this.previewPs = []
 
-    const leftNodes = this._hast!.children.filter(
+    const leftNodes = this.meta.hast.children.filter(
       (v): v is Element => v.type === 'element',
     )
     const rightNodes = [...body.shadowRoot!.children].filter(
@@ -188,7 +190,6 @@ export class Editor extends LitElement {
       _activeTab,
       _fullscreen,
       _sidebar,
-      _hast,
     } = this
     const mergedLocale = { ...en, ...locale }
     const actions = getBuiltinActions(mergedLocale, plugins, uploadImages)
@@ -214,8 +215,8 @@ export class Editor extends LitElement {
         <div class="preview" @scroll=${this.previewScroll}>
           <bytemd-viewer
             .value=${value}
-            @info=${(e: CustomEvent) => {
-              this._hast = e.detail.hast
+            @meta=${(e: CustomEvent) => {
+              this.meta = e.detail
             }}
           ></bytemd-viewer>
         </div>
@@ -233,7 +234,8 @@ export class Editor extends LitElement {
                 : _sidebar === 'toc'
                 ? html`<bytemd-toc
                     .locale=${mergedLocale}
-                    .hast=${_hast}
+                    .currentBlockIndex=${this.currentBlockIndex}
+                    .meta=${this.meta}
                   ></bytemd-toc>`
                 : nothing}
             </bytemd-sidebar>`
