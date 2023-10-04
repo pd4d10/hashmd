@@ -1,6 +1,8 @@
 # ByteMD
 
-![test](https://github.com/bytedance/bytemd/workflows/test/badge.svg) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbytedance%2Fbytemd.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbytedance%2Fbytemd?ref=badge_shield)
+> This is ByteMD v1 repository.
+>
+> v2 is under development actively, see [HashMD](https://github.com/pd4d10/hashmd).
 
 ByteMD is a Markdown editor component built with Svelte. It could also be used in other libraries/frameworks such as React, Vue and Angular.
 
