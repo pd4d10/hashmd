@@ -16,31 +16,30 @@ import selectFiles from 'select-files'
  */
 export function wrapText(editor: EditorView, before: string, after = before) {
   const range =
-    editor.state.selection.ranges.find((r) => !r.empty) ?? // only handle the first selection
-    editor.state.wordAt(editor.state.selection.main.head)
+    editor.state.selection.ranges.find((r) => !r.empty) ?? // find the first selection
+    editor.state.wordAt(editor.state.selection.main.head) ?? // if not, try to find the word
+    editor.state.selection.main
 
-  if (range) {
-    const { from, to } = range
-    const text = editor.state.sliceDoc(from, to) // use from/to instead of anchor/head for reverse select
+  const { from, to } = range
+  const text = editor.state.sliceDoc(from, to) // use from/to instead of anchor/head for reverse select
 
-    const shouldUnwrap = text.startsWith(before) && text.endsWith(after)
-    editor.dispatch({
-      changes: {
-        from,
-        to,
-        insert: shouldUnwrap
-          ? text.slice(before.length, -after.length)
-          : before + text + after,
-      },
-      selection: {
-        anchor: from,
-        head: shouldUnwrap
-          ? to - before.length - after.length
-          : to + before.length + after.length,
-      },
-    })
-    editor.focus()
-  }
+  const shouldUnwrap = text.startsWith(before) && text.endsWith(after)
+  editor.dispatch({
+    changes: {
+      from,
+      to,
+      insert: shouldUnwrap
+        ? text.slice(before.length, -after.length)
+        : before + text + after,
+    },
+    selection: {
+      anchor: from,
+      head: shouldUnwrap
+        ? to - before.length - after.length
+        : to + before.length + after.length,
+    },
+  })
+  editor.focus()
 }
 
 /**
@@ -332,7 +331,17 @@ if (import.meta.vitest) {
   })
 
   describe('wrap text', () => {
-    test('basic', () => {
+    test('with selection', () => {
+      cm.dispatch({ changes: { from: 0, insert: 'text' } })
+      cm.dispatch({ selection: { anchor: 1, head: 3 } })
+
+      wrapText(cm, '[', '](url)')
+      expect(cm.state).matchSnapshot()
+      wrapText(cm, '[', '](url)')
+      expect(cm.state).matchSnapshot()
+    })
+
+    test('find word', () => {
       cm.dispatch({ changes: { from: 0, insert: 'text' } })
 
       wrapText(cm, '[', '](url)')
@@ -341,10 +350,7 @@ if (import.meta.vitest) {
       expect(cm.state).matchSnapshot()
     })
 
-    test('with selection', () => {
-      cm.dispatch({ changes: { from: 0, insert: 'text' } })
-      cm.dispatch({ selection: { anchor: 1, head: 3 } })
-
+    test('no word', () => {
       wrapText(cm, '[', '](url)')
       expect(cm.state).matchSnapshot()
       wrapText(cm, '[', '](url)')

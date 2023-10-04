@@ -70,7 +70,7 @@ exports[`replace lines > with selection 1`] = `
 }
 `;
 
-exports[`wrap text > basic 1`] = `
+exports[`wrap text > find word 1`] = `
 {
   "doc": "[text](url)",
   "selection": {
@@ -85,7 +85,7 @@ exports[`wrap text > basic 1`] = `
 }
 `;
 
-exports[`wrap text > basic 2`] = `
+exports[`wrap text > find word 2`] = `
 {
   "doc": "text",
   "selection": {
@@ -94,6 +94,36 @@ exports[`wrap text > basic 2`] = `
       {
         "anchor": 0,
         "head": 4,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > no word 1`] = `
+{
+  "doc": "[](url)",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 7,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > no word 2`] = `
+{
+  "doc": "",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 0,
       },
     ],
   },
