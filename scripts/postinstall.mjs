@@ -47,8 +47,6 @@ packages.forEach((p) => {
   pkg.types = './dist/index.d.ts'
   pkg.module = './dist/index.mjs'
   pkg.main = './dist/index.js'
-  pkg.unpkg = './dist/index.umd.js'
-  pkg.jsdelivr = './dist/index.umd.js'
   pkg.type = 'module'
 
   pkg.exports = {
@@ -58,9 +56,6 @@ packages.forEach((p) => {
       require: './dist/index.js',
     },
     './locales/*': './locales/*',
-
-    // for compatible with old version
-    './lib/locales/*': './locales/*',
   }
   pkg.files = ['dist', 'locales']
   fs.writeJsonSync(pkgPath, pkg)
