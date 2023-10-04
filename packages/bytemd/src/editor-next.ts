@@ -9,9 +9,10 @@ import './toc.js'
 import './toolbar.js'
 import { BytemdEditorContext, EditorProps } from './types'
 import { EditorView } from '@codemirror/view'
-import { Root } from 'hast'
+import { Element, Root } from 'hast'
 import { LitElement, PropertyValueMap, css, html, nothing } from 'lit'
 import { customElement, eventOptions, property } from 'lit/decorators.js'
+import { throttle } from 'lodash-es'
 
 @customElement('bytemd-editor')
 export class Editor extends LitElement {
@@ -26,7 +27,7 @@ export class Editor extends LitElement {
   @property({ state: true }) _containerWidth = Infinity
   @property({ state: true }) _activeTab: false | 'write' | 'preview' = false
   @property({ state: true }) _fullscreen = false
-  @property({ state: true }) _sync = false
+  @property({ state: true }) _sync = true
   @property({ state: true }) _context: BytemdEditorContext | undefined
   @property({ state: true }) _sidebar: 'help' | 'toc' | false = 'toc'
   @property({ state: true }) _hast?: Root
@@ -50,17 +51,64 @@ export class Editor extends LitElement {
       },
       this.renderRoot.querySelector('.edit')!,
     )
+    // console.log(this._editor)
+    this._editor.scrollDOM.addEventListener('scroll', this.editScroll, {
+      passive: true,
+    })
   }
 
-  private updateBlockPositions() {
-    // TODO:
-  }
+  updateBlockPositions = throttle(() => {
+    const editEl = this._editor!.scrollDOM
+    const previewEl = this.renderRoot.querySelector('.preview')!
+    const body = this.renderRoot.querySelector<HTMLElement>('bytemd-viewer')!
 
-  private editorScrollHandler() {
+    this.editPs = []
+    this.previewPs = []
+
+    const leftNodes = this._hast!.children.filter(
+      (v): v is Element => v.type === 'element',
+    )
+    const rightNodes = [...body.shadowRoot!.children].filter(
+      (v): v is HTMLElement => v instanceof HTMLElement,
+    )
+
+    for (let i = 0; i < leftNodes.length; i++) {
+      const leftNode = leftNodes[i]
+      const rightNode = rightNodes[i]
+
+      // if there is no position info, move to the next node
+      if (!leftNode.position) {
+        continue
+      }
+
+      const lineHeight =
+        this._editor!.contentHeight / this._editor!.state.doc.lines // TODO: this may not accurate
+      const left =
+        (lineHeight * (leftNode.position.start.line - 1)) /
+        (editEl.scrollHeight - editEl.clientHeight)
+      const right =
+        (rightNode.offsetTop - body.offsetTop) /
+        (previewEl.scrollHeight - previewEl.clientHeight)
+
+      if (left >= 1 || right >= 1) {
+        break
+      }
+
+      this.editPs.push(left)
+      this.previewPs.push(right)
+    }
+
+    this.editPs.push(1)
+    this.previewPs.push(1)
+    // console.log(this.editPs, this.previewPs)
+  }, 1000)
+
+  private editScroll = () => {
     const { _sync, previewCalled, editPs, previewPs, _editor } = this
-    const previewEl = this.renderRoot.querySelector('bytemd-viewer')!
-
     if (!_sync) return
+
+    const editEl = _editor!.scrollDOM
+    const previewEl = this.renderRoot.querySelector('.preview')!
 
     if (previewCalled) {
       this.previewCalled = false
@@ -69,9 +117,8 @@ export class Editor extends LitElement {
 
     this.updateBlockPositions()
 
-    const editEl = _editor!.scrollDOM
     const leftRatio =
-      editEl.offsetTop / (editEl.offsetHeight - editEl.clientHeight)
+      editEl.scrollTop / (editEl.scrollHeight - editEl.clientHeight)
 
     const startIndex = findStartIndex(leftRatio, editPs)
 
@@ -80,7 +127,7 @@ export class Editor extends LitElement {
         (previewPs[startIndex + 1] - previewPs[startIndex])) /
         (editPs[startIndex + 1] - editPs[startIndex]) +
       previewPs[startIndex]
-    // const rightRatio = rightPs[startIndex]; // for testing
+    // const rightRatio = previewPs[startIndex] // for testing
 
     previewEl.scrollTo(
       0,
@@ -90,9 +137,12 @@ export class Editor extends LitElement {
   }
 
   @eventOptions({ passive: true })
-  private _previewScroll(e: Event) {
-    const previewEl = e.target as HTMLElement
-    const { _sync: syncEnabled, editCalled, previewPs, editPs, _editor } = this
+  private previewScroll() {
+    const { _sync, editCalled, previewPs, editPs, _editor } = this
+    if (!_sync) return
+
+    const editEl = _editor!.scrollDOM
+    const previewEl = this.renderRoot.querySelector<HTMLElement>('.preview')!
 
     // find the current block in the view
     this.updateBlockPositions()
@@ -100,8 +150,6 @@ export class Editor extends LitElement {
       previewEl.scrollTop / (previewEl.scrollHeight - previewEl.offsetHeight),
       previewPs,
     )
-
-    if (!syncEnabled) return
 
     if (editCalled) {
       this.editCalled = false
@@ -123,8 +171,7 @@ export class Editor extends LitElement {
       return
     }
 
-    const editEl = _editor!.scrollDOM
-    editEl.scrollTo(0, leftRatio * (editEl.offsetHeight - editEl.clientHeight))
+    editEl.scrollTo(0, leftRatio * (editEl.scrollHeight - editEl.clientHeight))
     this.previewCalled = true
   }
 
@@ -164,13 +211,12 @@ export class Editor extends LitElement {
       ></bytemd-toolbar>
       <div class="body">
         ${split ? html`<div class="edit"></div>` : nothing}
-        <div class="preview">
+        <div class="preview" @scroll=${this.previewScroll}>
           <bytemd-viewer
             .value=${value}
             @info=${(e: CustomEvent) => {
               this._hast = e.detail.hast
             }}
-            @scroll=${this._previewScroll}
           ></bytemd-viewer>
         </div>
         ${_sidebar
@@ -200,7 +246,6 @@ export class Editor extends LitElement {
           this._sync = !this._sync
         }}
         @scroll-top=${() => {
-          console.log(this._editor?.scrollDOM)
           this._editor?.scrollDOM?.scrollIntoView()
           this.shadowRoot?.querySelector('bytemd-viewer')?.scrollIntoView()
         }}
