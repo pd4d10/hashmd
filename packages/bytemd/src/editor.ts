@@ -147,6 +147,7 @@ export function getBuiltinActions(
 ): { leftActions: BytemdAction[]; rightActions: BytemdAction[] } {
   const leftActions: BytemdAction[] = [
     {
+      title: 'Headings',
       icon: icons.H,
       handler: {
         type: 'dropdown',

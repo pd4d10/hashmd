@@ -108,7 +108,7 @@ export interface BytemdAction {
   /**
    * Action title
    */
-  title?: string
+  title: string
   /**
    * Action icon position
    *

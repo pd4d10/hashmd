@@ -92,6 +92,8 @@ export class Editor extends LitElement {
     :host {
       --primary: #0366d6;
       --gray-000: #fafbfc;
+      --gray-100: #f6f8fa;
+      --gray-700: #444d56;
       --gray-900: #24292e;
       --border-color: #e1e4e8;
 

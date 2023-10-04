@@ -6,15 +6,11 @@ import {
   ViewerProps,
 } from './types'
 import { getProcessor } from './utils'
+import { computePosition, flip, shift } from '@floating-ui/dom'
 import { LitElement, html, css, nothing, PropertyValueMap } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { classMap } from 'lit/directives/class-map.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { DelegateInstance, delegate } from 'tippy.js'
-
-const tippyClass = 'tippy'
-const tippyClassRight = 'tippy-right'
-const tippyPathKey = 'tippy-path'
 
 interface RightAction extends BytemdAction {
   active?: boolean
@@ -30,8 +26,6 @@ export class Toolbar extends LitElement {
   @property() actions: BytemdAction[] = []
   @property() rightAfferentActions: BytemdAction[] = []
   @property() context: BytemdEditorContext | undefined
-
-  private delegateInstance: DelegateInstance | null = null
 
   get rightActions() {
     const {
@@ -122,133 +116,8 @@ export class Toolbar extends LitElement {
     return rightActions
   }
 
-  protected firstUpdated(): void {
-    this.init()
-  }
-
-  init() {
-    this.delegateInstance = delegate(this, {
-      target: `.${tippyClass}`,
-      onCreate: ({ setProps, reference }) => {
-        const payload = this.getPayloadFromElement(reference)
-        if (!payload) return
-        const { item, paths } = payload
-        const { handler } = item
-        if (!handler) return
-
-        if (handler.type === 'action') {
-          setProps({
-            content: item.title,
-            onHidden(ins) {
-              ins.destroy()
-            },
-          })
-        } else if (handler.type === 'dropdown') {
-          // dropdown
-          const dropdown = document.createElement('div')
-          dropdown.classList.add('bytemd-dropdown')
-
-          if (item.title) {
-            const dropdownTitle = document.createElement('div')
-            dropdownTitle.classList.add('bytemd-dropdown-title')
-            dropdownTitle.appendChild(document.createTextNode(item.title))
-            dropdown.appendChild(dropdownTitle)
-          }
-
-          handler.actions.forEach((subAction, i) => {
-            const dropdownItem = document.createElement('div')
-            dropdownItem.classList.add('bytemd-dropdown-item')
-            dropdownItem.setAttribute(tippyPathKey, [...paths, i].join('-'))
-            if (subAction.handler?.type === 'dropdown') {
-              dropdownItem.classList.add(tippyClass)
-            }
-            if (reference.classList.contains(tippyClassRight)) {
-              dropdownItem.classList.add(tippyClassRight)
-            }
-            // div.setAttribute('data-tippy-placement', 'right');
-            dropdownItem.innerHTML = `${
-              subAction.icon
-                ? `<div class="bytemd-dropdown-item-icon">${subAction.icon}</div>`
-                : ''
-            }<div class="bytemd-dropdown-item-title">${subAction.title}</div>`
-            dropdown.appendChild(dropdownItem)
-          })
-
-          setProps({
-            allowHTML: true,
-            showOnCreate: true,
-            theme: 'light-border',
-            placement: 'bottom-start',
-            interactive: true,
-            interactiveDebounce: 50,
-            arrow: false,
-            offset: [0, 4],
-            content: dropdown.outerHTML,
-            onHidden: (ins) => {
-              ins.destroy()
-            },
-            onCreate: (ins) => {
-              ;[
-                ...ins.popper.querySelectorAll('.bytemd-dropdown-item'),
-              ].forEach((el, i) => {
-                const actionHandler = handler.actions[i]?.handler
-                if (actionHandler?.type === 'action') {
-                  const { mouseenter, mouseleave } = actionHandler
-                  if (mouseenter) {
-                    el.addEventListener('mouseenter', () => {
-                      mouseenter(this.context!)
-                    })
-                  }
-                  if (mouseleave) {
-                    el.addEventListener('mouseleave', () => {
-                      mouseleave(this.context!)
-                    })
-                  }
-                }
-              })
-            },
-          })
-        }
-      },
-    })
-  }
-
   dispatch(key: string, detail: string) {
     this.dispatchEvent(new CustomEvent(key, { detail }))
-  }
-
-  getPayloadFromElement(e: Element) {
-    const paths = e
-      .getAttribute(tippyPathKey)
-      ?.split('-')
-      ?.map((x) => parseInt(x, 10))
-    if (!paths) return
-    // if (!paths) {
-    //   return {
-    //     paths: [],
-    //     item: {
-    //       title: 'test',
-    //       handler: actions,
-    //     },
-    //   };
-    // }
-
-    let item: BytemdAction = {
-      title: '',
-      handler: {
-        type: 'dropdown',
-        actions: e.classList.contains(tippyClassRight)
-          ? this.rightActions
-          : this.actions,
-      },
-    }
-    paths?.forEach((index) => {
-      if (item.handler?.type === 'dropdown') {
-        item = item.handler.actions[index]
-      }
-    })
-
-    return { paths, item }
   }
 
   render() {
@@ -262,36 +131,93 @@ export class Toolbar extends LitElement {
       dispatch,
 
       rightActions,
-
-      delegateInstance,
-      init,
     } = this
 
     const split = activeTab === 'icon'
 
-    return html`${split
-        ? actions.map(
-            (item, index) =>
-              item.handler &&
-              html`<div
-                class=${classMap({ icon: true, [tippyClass]: true })}
-                tippy-path=${index}
-                @click=${(e: MouseEvent | KeyboardEvent) => {
-                  const target = (e.target as Element).closest(
-                    `[${tippyPathKey}]`,
-                  )
-                  if (!target) return
-                  const handler =
-                    this.getPayloadFromElement(target)?.item?.handler
-                  if (handler?.type === 'action') {
-                    handler.click(this.context!)
-                  }
-                  delegateInstance?.destroy()
-                  init()
-                }}
-              >
-                ${unsafeHTML(item.icon)}
-              </div>`,
+    return html`<div class="toolbar">
+      ${split
+        ? actions.map((item, index) =>
+            item.handler
+              ? html`
+                  <div
+                    class="icon"
+                    key="icon-${index}"
+                    @click=${() => {
+                      if (item.handler?.type === 'action') {
+                        item.handler.click(this.context!)
+                      }
+                    }}
+                    @mouseenter=${() => {
+                      if (item.handler?.type === 'dropdown') {
+                        const button = this.renderRoot.querySelector(
+                          `[key=icon-${index}]`,
+                        )!
+                        const dropdown =
+                          this.renderRoot.querySelector<HTMLElement>(
+                            `[key=dropdown-${index}]`,
+                          )!
+
+                        computePosition(button, dropdown, {
+                          placement: 'bottom-start',
+                          middleware: [flip(), shift()],
+                        }).then(({ x, y }) => {
+                          dropdown.style.left = `${x}px`
+                          dropdown.style.top = `${y}px`
+                        })
+                      }
+                    }}
+                    @mouseleave=${() => {
+                      if (item.handler?.type === 'dropdown') {
+                        const dropdown =
+                          this.renderRoot.querySelector<HTMLElement>(
+                            `[key=dropdown-${index}]`,
+                          )!
+                        dropdown.style.left = ''
+                        dropdown.style.top = ''
+                      }
+                    }}
+                  >
+                    ${unsafeHTML(item.icon)}
+                    ${item.handler.type === 'dropdown'
+                      ? html`
+                          <div class="dropdown" key="dropdown-${index}">
+                            <div class="dropdown-title">${item.title}</div>
+                            ${item.handler.actions.map(
+                              (subAction, i) => html`
+                                <div
+                                  class="dropdown-item"
+                                  key=${[index, i].join('-')}
+                                  @click=${() => {
+                                    if (subAction.handler?.type === 'action') {
+                                      subAction.handler?.click?.(this.context!)
+                                    }
+                                  }}
+                                  @mouseenter=${() => {
+                                    if (subAction.handler?.type === 'action') {
+                                      subAction.handler?.mouseenter?.(
+                                        this.context!,
+                                      )
+                                    }
+                                  }}
+                                  @mouseleave=${() => {
+                                    if (subAction.handler?.type === 'action') {
+                                      subAction.handler.mouseleave?.(
+                                        this.context!,
+                                      )
+                                    }
+                                  }}
+                                >
+                                  ${subAction.title}
+                                </div>
+                              `,
+                            )}
+                          </div>
+                        `
+                      : nothing}
+                  </div>
+                `
+              : nothing,
           )
         : html`<div
               @click=${() => {
@@ -329,16 +255,15 @@ export class Toolbar extends LitElement {
               <div
                 class=${classMap({
                   icon: true,
-                  [tippyClass]: true,
-                  [tippyClassRight]: true,
                   active: item.active ?? false,
                 })}
-                tippy-path=${index}
+                key=${index}
               >
                 ${unsafeHTML(item.icon)}
               </div>
             `,
-      )}`
+      )}
+    </div> `
   }
 
   static styles = css`
@@ -346,7 +271,7 @@ export class Toolbar extends LitElement {
       box-sizing: border-box;
     }
 
-    :host {
+    .toolbar {
       padding: 4px 12px;
       border-bottom: 1px solid var(--border-color);
       background-color: var(--gray-000);
@@ -368,7 +293,6 @@ export class Toolbar extends LitElement {
     }
 
     .icon {
-      cursor: pointer;
       border-radius: 4px;
       margin-left: 6px;
       margin-right: 6px;
@@ -379,6 +303,10 @@ export class Toolbar extends LitElement {
       justify-content: center;
     }
 
+    .icon svg {
+      cursor: pointer;
+    }
+
     .icon:hover {
       background-color: var(--border-color);
     }
@@ -387,9 +315,32 @@ export class Toolbar extends LitElement {
       flex-grow: 1;
     }
 
-    .tippy-content {
-      padding-left: 0;
-      padding-right: 0;
+    .dropdown {
+      max-height: 300px;
+      overflow: auto;
+      font-size: 14px;
+      background-color: #fff;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      position: absolute;
+      top: -99999px;
+      left: -99999px;
+      z-index: 99999;
+    }
+    .dropdown-title {
+      margin: 0 12px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border-color);
+      line-height: 32px;
+      color: var(--gray-700);
+    }
+    .dropdown-item {
+      padding: 0 12px;
+      line-height: 32px;
+      cursor: pointer;
+    }
+    .dropdown-item:hover {
+      background-color: var(--gray-100);
     }
   `
 }
