@@ -1,5 +1,6 @@
 import en from '../locales/en.json'
 import './codemirror'
+import { createEditorView } from './codemirror'
 import { findStartIndex, getBuiltinActions } from './editor'
 import './help.js'
 import './sidebar.js'
@@ -7,10 +8,10 @@ import './status.js'
 import './toc.js'
 import './toolbar.js'
 import { BytemdEditorContext, EditorProps } from './types'
+import { EditorView } from '@codemirror/view'
 import { Root } from 'hast'
-import { LitElement, css, html, nothing } from 'lit'
+import { LitElement, PropertyValueMap, css, html, nothing } from 'lit'
 import { customElement, eventOptions, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 
 @customElement('bytemd-editor')
 export class Editor extends LitElement {
@@ -36,13 +37,27 @@ export class Editor extends LitElement {
   @property({ state: true }) previewPs: number[] = []
   @property({ state: true }) currentBlockIndex = 0
 
+  private _editor?: EditorView
+
+  protected firstUpdated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>,
+  ): void {
+    this._editor = createEditorView(
+      this.value,
+      (v) => {
+        this.value = v
+        this.dispatchEvent(new CustomEvent('change', { detail: v }))
+      },
+      this.renderRoot.querySelector('.edit')!,
+    )
+  }
+
   private updateBlockPositions() {
     // TODO:
   }
 
   private editorScrollHandler() {
-    const { _sync, previewCalled, editPs, previewPs } = this
-    const { editor } = this._context!
+    const { _sync, previewCalled, editPs, previewPs, _editor } = this
     const previewEl = this.renderRoot.querySelector('bytemd-viewer')!
 
     if (!_sync) return
@@ -54,8 +69,9 @@ export class Editor extends LitElement {
 
     this.updateBlockPositions()
 
-    const info = editor.getScrollInfo()
-    const leftRatio = info.top / (info.height - info.clientHeight)
+    const editEl = _editor!.scrollDOM
+    const leftRatio =
+      editEl.offsetTop / (editEl.offsetHeight - editEl.clientHeight)
 
     const startIndex = findStartIndex(leftRatio, editPs)
 
@@ -76,8 +92,7 @@ export class Editor extends LitElement {
   @eventOptions({ passive: true })
   private _previewScroll(e: Event) {
     const previewEl = e.target as HTMLElement
-    const { _sync: syncEnabled, editCalled, previewPs, editPs } = this
-    const { editor } = this._context!
+    const { _sync: syncEnabled, editCalled, previewPs, editPs, _editor } = this
 
     // find the current block in the view
     this.updateBlockPositions()
@@ -108,8 +123,8 @@ export class Editor extends LitElement {
       return
     }
 
-    const info = editor.getScrollInfo()
-    editor.scrollTo(0, leftRatio * (info.height - info.clientHeight))
+    const editEl = _editor!.scrollDOM
+    editEl.scrollTo(0, leftRatio * (editEl.offsetHeight - editEl.clientHeight))
     this.previewCalled = true
   }
 
@@ -138,7 +153,7 @@ export class Editor extends LitElement {
         .actions=${actions.leftActions}
         .rightAfferentActions=${actions.rightActions}
         .locale=${mergedLocale}
-        .context=${this._context}
+        .context=${{ editor: this._editor }}
         .sidebar=${_sidebar}
         @toggle-sidebar=${(e: CustomEvent) => {
           this._sidebar = this._sidebar === e.detail ? false : e.detail
@@ -148,17 +163,7 @@ export class Editor extends LitElement {
         }}
       ></bytemd-toolbar>
       <div class="body">
-        ${split
-          ? html`<bytemd-codemirror
-              .value=${value}
-              @change=${(e: CustomEvent) => {
-                this.value = e.detail
-              }}
-              @context=${(e: CustomEvent) => {
-                this._context = { editor: e.detail }
-              }}
-            ></bytemd-codemirror> `
-          : nothing}
+        ${split ? html`<div class="edit"></div>` : nothing}
         <div class="preview">
           <bytemd-viewer
             .value=${value}
@@ -195,10 +200,8 @@ export class Editor extends LitElement {
           this._sync = !this._sync
         }}
         @scroll-top=${() => {
-          this.shadowRoot
-            ?.querySelector('bytemd-codemirror')
-            ?.shadowRoot?.querySelector('.cm-content')
-            ?.scrollIntoView()
+          console.log(this._editor?.scrollDOM)
+          this._editor?.scrollDOM?.scrollIntoView()
           this.shadowRoot?.querySelector('bytemd-viewer')?.scrollIntoView()
         }}
       ></bytemd-status>`
@@ -246,18 +249,22 @@ export class Editor extends LitElement {
       overflow: auto;
     }
 
-    bytemd-codemirror {
+    .edit {
       border-right: 1px solid var(--border-color);
     }
 
-    bytemd-codemirror,
+    .cm-editor {
+      height: 100%;
+    }
+
+    .edit,
     .preview,
     bytemd-sidebar {
       height: 100%;
       overflow: auto;
     }
 
-    bytemd-codemirror,
+    .edit,
     .preview {
       flex: 1;
       min-width: 0; // https://stackoverflow.com/a/66689926
