@@ -33,7 +33,6 @@ export default function gfm({
           type: 'action',
           click({ editor }) {
             wrapText(editor, '~~')
-            editor.focus()
           },
         },
       },

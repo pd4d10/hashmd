@@ -134,8 +134,6 @@ export async function handleImageUpload(
       })
       .join('\n\n'),
   )
-  // editor.setSelection(pos, codemirror.Pos(pos.line + imgs.length * 2 - 2))
-  editor.focus()
 }
 
 export function getBuiltinActions(
@@ -163,7 +161,6 @@ export function getBuiltinActions(
                 line = '#'.repeat(level) + ' ' + line
                 return line
               })
-              editor.focus()
             },
           },
         })),
@@ -178,7 +175,6 @@ export function getBuiltinActions(
         shortcut: getShortcutWithPrefix('B'),
         click({ editor }) {
           wrapText(editor, '**')
-          editor.focus()
         },
       },
     },
@@ -191,7 +187,6 @@ export function getBuiltinActions(
         shortcut: getShortcutWithPrefix('I'),
         click({ editor }) {
           wrapText(editor, '*')
-          editor.focus()
         },
       },
     },
@@ -203,7 +198,6 @@ export function getBuiltinActions(
         type: 'action',
         click({ editor }) {
           replaceLines(editor, (line) => '> ' + line)
-          editor.focus()
         },
       },
     },
@@ -216,12 +210,6 @@ export function getBuiltinActions(
         shortcut: getShortcutWithPrefix('K'),
         click({ editor }) {
           wrapText(editor, '[', '](url)')
-          // const cursor = editor.getCursor()
-          // editor.setSelection(
-          //   codemirror.Pos(cursor.line, cursor.ch + 2),
-          //   codemirror.Pos(cursor.line, cursor.ch + 5),
-          // )
-          editor.focus()
         },
       },
     },
@@ -255,7 +243,6 @@ export function getBuiltinActions(
         shortcut: getShortcutWithPrefix('K', true),
         click({ editor }) {
           wrapText(editor, '`')
-          editor.focus()
         },
       },
     },
@@ -280,7 +267,6 @@ export function getBuiltinActions(
         shortcut: getShortcutWithPrefix('U', true),
         click({ editor }) {
           replaceLines(editor, (line) => '- ' + line)
-          editor.focus()
         },
       },
     },
@@ -293,7 +279,6 @@ export function getBuiltinActions(
         shortcut: getShortcutWithPrefix('O', true),
         click({ editor }) {
           replaceLines(editor, (line, i) => `${i + 1}. ${line}`)
-          editor.focus()
         },
       },
     },
