@@ -10,7 +10,7 @@ import "./toolbar.js";
 import { EditorProps } from "./types";
 import { Meta } from "./viewer-next";
 import { EditorView } from "@codemirror/view";
-import { Element, Root } from "hast";
+import { Element } from "hast";
 import { LitElement, PropertyValueMap, css, html, nothing } from "lit";
 import { customElement, eventOptions, property } from "lit/decorators.js";
 import { throttle } from "lodash-es";
@@ -27,16 +27,36 @@ export class Editor extends LitElement {
 
   @property({ state: true }) _containerWidth = Infinity;
   @property({ state: true }) _activeTab: false | "write" | "preview" = false;
+
   @property({ state: true }) _fullscreen = false;
   @property({ state: true }) _sync = true;
   @property({ state: true }) _sidebar: "help" | "toc" | false = "toc";
   @property({ state: true }) meta?: Meta;
-
   @property({ state: true }) editCalled = false;
   @property({ state: true }) previewCalled = false;
   @property({ state: true }) editPs: number[] = [];
   @property({ state: true }) previewPs: number[] = [];
   @property({ state: true }) currentBlockIndex = 0;
+
+  private toggleFullscreen() {
+    this._fullscreen = !this._fullscreen;
+
+    if (this._fullscreen) {
+      Object.assign(this.style, {
+        position: "fixed",
+        inset: "0",
+        border: "none",
+        height: "100vh", // override user set height
+      });
+    } else {
+      Object.assign(this.style, {
+        position: "",
+        inset: "",
+        border: "",
+        height: "",
+      });
+    }
+  }
 
   private _editor?: EditorView;
 
@@ -207,9 +227,7 @@ export class Editor extends LitElement {
         @toggle-sidebar=${(e: CustomEvent) => {
           this._sidebar = this._sidebar === e.detail ? false : e.detail;
         }}
-        @toggle-fullscreen=${() => {
-          this._fullscreen = !this._fullscreen;
-        }}
+        @toggle-fullscreen=${this.toggleFullscreen}
       ></hashmd-toolbar>
       <div class="body">
         ${split ? html`<div class="edit"></div>` : nothing}
@@ -331,7 +349,7 @@ export class Editor extends LitElement {
       border-top: 1px solid var(--border-color);
     }
 
-    .fullscreen {
+    :host.fullscreen {
       position: fixed;
       left: 0;
       right: 0;
