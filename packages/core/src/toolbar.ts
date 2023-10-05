@@ -141,21 +141,16 @@ export class Toolbar extends LitElement {
               ? html`
                   <div
                     class="icon"
-                    key="icon-${index}"
                     @click=${() => {
                       if (item.handler?.type === "action") {
                         item.handler.click(this.context);
                       }
                     }}
-                    @mouseenter=${() => {
+                    @mouseenter=${(e: MouseEvent) => {
                       if (item.handler?.type === "dropdown") {
-                        const button = this.renderRoot.querySelector(
-                          `[key=icon-${index}]`,
-                        )!;
+                        const button = e.target as HTMLElement;
                         const dropdown =
-                          this.renderRoot.querySelector<HTMLElement>(
-                            `[key=dropdown-${index}]`,
-                          )!;
+                          button.querySelector<HTMLElement>(".dropdown")!;
 
                         computePosition(button, dropdown, {
                           placement: "bottom-start",
@@ -166,12 +161,12 @@ export class Toolbar extends LitElement {
                         });
                       }
                     }}
-                    @mouseleave=${() => {
+                    @mouseleave=${(e: MouseEvent) => {
                       if (item.handler?.type === "dropdown") {
+                        const button = e.target as HTMLElement;
                         const dropdown =
-                          this.renderRoot.querySelector<HTMLElement>(
-                            `[key=dropdown-${index}]`,
-                          )!;
+                          button.querySelector<HTMLElement>(".dropdown")!;
+
                         dropdown.style.left = "";
                         dropdown.style.top = "";
                       }
@@ -180,13 +175,12 @@ export class Toolbar extends LitElement {
                     ${unsafeHTML(item.icon)}
                     ${item.handler.type === "dropdown"
                       ? html`
-                          <div class="dropdown" key="dropdown-${index}">
+                          <div class="dropdown">
                             <div class="dropdown-title">${item.title}</div>
                             ${item.handler.actions.map(
                               (subAction, i) => html`
                                 <div
                                   class="dropdown-item"
-                                  key=${[index, i].join("-")}
                                   @click=${() => {
                                     if (subAction.handler?.type === "action") {
                                       subAction.handler?.click?.(this.context);
@@ -258,7 +252,6 @@ export class Toolbar extends LitElement {
                   icon: true,
                   active: item.active ?? false,
                 })}
-                key=${index}
                 @click=${() => {
                   if (item.handler?.type === "action") {
                     item.handler.click(this.context);
