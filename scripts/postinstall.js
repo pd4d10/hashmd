@@ -1,5 +1,5 @@
 // @ts-check
-import { packages, packagesDir, rootDir } from './utils.mjs'
+import { packages, packagesDir, rootDir } from './utils.js'
 import fs from 'fs-extra'
 import _ from 'lodash-es'
 import mustache from 'mustache'

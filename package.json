@@ -1,15 +1,13 @@
 {
   "name": "@hashmd/monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "type": "module",
   "scripts": {
     "build": "pnpm clean && tsc --build && echo TODO",
     "clean": "rm -rf packages/*/tsconfig.tsbuildinfo && rm -rf packages/*/dist",
     "dev": "pnpm --filter example-lit dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md}'",
-    "postinstall": "node scripts/postinstall.mjs && tsconfig-gen && pnpm format && sort-json packages/*/locales/*.json",
+    "postinstall": "node scripts/postinstall.js && tsconfig-gen && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
     "style": "prettier --check '**/*.{ts,tsx,json,md}'",
     "test": "echo TODO"
