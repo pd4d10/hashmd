@@ -1,20 +1,20 @@
-import { HashmdLocale, EditorProps } from './types'
-import { LitElement, css, html } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { HashmdLocale, EditorProps } from "./types";
+import { LitElement, css, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
-import wordCount from 'word-count'
+import wordCount from "word-count";
 
-@customElement('hashmd-status')
+@customElement("hashmd-status")
 export class Status extends LitElement {
-  @property() value!: string
-  @property() locale!: HashmdLocale
-  @property() sync!: boolean
+  @property() value!: string;
+  @property() locale!: HashmdLocale;
+  @property() sync!: boolean;
 
   protected render(): unknown {
-    const { value, locale, sync } = this
+    const { value, locale, sync } = this;
 
-    const words = wordCount(value)
-    const lines = value.split('\n').length
+    const words = wordCount(value);
+    const lines = value.split("\n").length;
 
     return html`
       <div>${locale.words}: <strong>${words}</strong></div>
@@ -25,19 +25,19 @@ export class Status extends LitElement {
           type="checkbox"
           ?checked=${sync}
           @change=${() => {
-            this.dispatchEvent(new CustomEvent('toggle-sync'))
+            this.dispatchEvent(new CustomEvent("toggle-sync"));
           }}
         />${locale.sync}
       </label>
       <div
         class="top"
         @click=${() => {
-          this.dispatchEvent(new CustomEvent('scroll-top'))
+          this.dispatchEvent(new CustomEvent("scroll-top"));
         }}
       >
         ${locale.top}
       </div>
-    `
+    `;
   }
 
   static styles = css`
@@ -73,5 +73,5 @@ export class Status extends LitElement {
       vertical-align: middle;
       margin-right: 3px; // CSS reset
     }
-  `
+  `;
 }

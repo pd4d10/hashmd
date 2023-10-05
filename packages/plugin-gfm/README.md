@@ -7,8 +7,8 @@ HashMD plugin to support GFM (autolink literals, strikethrough, tables, tasklist
 ## Usage
 
 ```js
-import gfm from '@hashmd/plugin-gfm'
-import { Editor } from 'hashmd'
+import gfm from "@hashmd/plugin-gfm";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

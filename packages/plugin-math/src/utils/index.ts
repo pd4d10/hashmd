@@ -1,29 +1,29 @@
-import { icons } from './icons'
-import { wrapText, type HashmdAction, appendBlock } from 'hashmd'
+import { icons } from "./icons";
+import { wrapText, type HashmdAction, appendBlock } from "hashmd";
 
 export type MathLocale = {
-  inline: string
-  inlineText: string
-  block: string
-  blockText: string
-}
+  inline: string;
+  inlineText: string;
+  block: string;
+  blockText: string;
+};
 
 export function getMathActions(locale: MathLocale): HashmdAction[] {
   return [
     {
       icon: icons.Formula,
-      title: 'Math',
+      title: "Math",
       handler: {
-        type: 'dropdown',
+        type: "dropdown",
         actions: [
           {
             title: locale.inline,
             icon: icons.Inline,
             cheatsheet: `$${locale.inlineText}$`,
             handler: {
-              type: 'action',
+              type: "action",
               click({ editor }) {
-                wrapText(editor, '$')
+                wrapText(editor, "$");
               },
             },
           },
@@ -32,14 +32,17 @@ export function getMathActions(locale: MathLocale): HashmdAction[] {
             icon: icons.Block,
             cheatsheet: `$$↵${locale.blockText}↵$$`,
             handler: {
-              type: 'action',
+              type: "action",
               click({ editor }) {
-                appendBlock(editor, '\\TeX', { prefix: '$$\n', suffix: '\n$$' })
+                appendBlock(editor, "\\TeX", {
+                  prefix: "$$\n",
+                  suffix: "\n$$",
+                });
               },
             },
           },
         ],
       },
     },
-  ]
+  ];
 }

@@ -1,13 +1,13 @@
-import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete'
-import { history, defaultKeymap, historyKeymap } from '@codemirror/commands'
-import { markdown } from '@codemirror/lang-markdown'
+import { closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete";
+import { history, defaultKeymap, historyKeymap } from "@codemirror/commands";
+import { markdown } from "@codemirror/lang-markdown";
 import {
   indentOnInput,
   syntaxHighlighting,
   defaultHighlightStyle,
   bracketMatching,
-} from '@codemirror/language'
-import { highlightSelectionMatches, searchKeymap } from '@codemirror/search'
+} from "@codemirror/language";
+import { highlightSelectionMatches, searchKeymap } from "@codemirror/search";
 import {
   highlightSpecialChars,
   drawSelection,
@@ -16,7 +16,7 @@ import {
   crosshairCursor,
   keymap,
   EditorView,
-} from '@codemirror/view'
+} from "@codemirror/view";
 
 export const createEditorView = (
   initialValue: string,
@@ -26,17 +26,17 @@ export const createEditorView = (
   const updateListener = EditorView.updateListener.of((vu) => {
     // console.log(vu)
     if (vu.docChanged) {
-      onChange(vu.state.doc.toString())
+      onChange(vu.state.doc.toString());
     }
-  })
+  });
 
   const theme = EditorView.theme({
-    '& .cm-scroller': {
-      fontFamily: 'SF Mono, Consolas, Liberation Mono, Menlo, monospace',
-      fontSize: '14px',
-      padding: '16px',
+    "& .cm-scroller": {
+      fontFamily: "SF Mono, Consolas, Liberation Mono, Menlo, monospace",
+      fontSize: "14px",
+      padding: "16px",
     },
-  })
+  });
 
   return new EditorView({
     doc: initialValue,
@@ -78,5 +78,5 @@ export const createEditorView = (
       updateListener,
     ],
     parent,
-  })
-}
+  });
+};

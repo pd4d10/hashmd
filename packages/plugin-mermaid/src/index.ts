@@ -1,32 +1,32 @@
-import { icons } from './icons'
-import en from './locales/en.json'
-import { appendBlock, type HashmdPlugin } from 'hashmd'
-import type { default as Mermaid, MermaidConfig } from 'mermaid'
+import { icons } from "./icons";
+import en from "./locales/en.json";
+import { appendBlock, type HashmdPlugin } from "hashmd";
+import type { default as Mermaid, MermaidConfig } from "mermaid";
 
 type Locale = {
-  mermaid: string
-  flowchart: string
-  sequence: string
-  class: string
-  state: string
-  er: string
-  uj: string
-  gantt: string
-  pie: string
-  mindmap: string
-  timeline: string
-}
+  mermaid: string;
+  flowchart: string;
+  sequence: string;
+  class: string;
+  state: string;
+  er: string;
+  uj: string;
+  gantt: string;
+  pie: string;
+  mindmap: string;
+  timeline: string;
+};
 
 export interface HashmdPluginMermaidOptions extends MermaidConfig {
-  locale?: Partial<Locale>
+  locale?: Partial<Locale>;
 }
 
 export default function mermaid({
   locale: _locale,
   ...mermaidConfig
 }: HashmdPluginMermaidOptions = {}): HashmdPlugin {
-  const locale = { ...en, ..._locale } as Locale
-  let m: typeof Mermaid
+  const locale = { ...en, ..._locale } as Locale;
+  let m: typeof Mermaid;
 
   const actionItems = [
     {
@@ -134,31 +134,31 @@ another task      : 24d`,
       2006 : Twitter
       `,
     },
-  ]
+  ];
 
   return {
     viewerEffect({ markdownBody }) {
-      ;(async () => {
+      (async () => {
         const els = markdownBody.querySelectorAll<HTMLElement>(
-          'pre>code.language-mermaid',
-        )
-        if (els.length === 0) return
+          "pre>code.language-mermaid",
+        );
+        if (els.length === 0) return;
 
         if (!m) {
-          m = await import('mermaid').then((c) => c.default)
+          m = await import("mermaid").then((c) => c.default);
           if (mermaidConfig) {
-            m.initialize(mermaidConfig)
+            m.initialize(mermaidConfig);
           }
         }
 
         els.forEach((el, i) => {
-          const pre = el.parentElement!
-          const source = el.innerText
+          const pre = el.parentElement!;
+          const source = el.innerText;
 
-          const container = document.createElement('div')
-          container.classList.add('hashmd-mermaid')
-          container.style.lineHeight = 'initial' // reset line-height
-          pre.replaceWith(container)
+          const container = document.createElement("div");
+          container.classList.add("hashmd-mermaid");
+          container.style.lineHeight = "initial"; // reset line-height
+          pre.replaceWith(container);
 
           m.render(
             `hashmd-mermaid-${Date.now()}-${i}`,
@@ -168,30 +168,30 @@ another task      : 24d`,
           )
             .then((svgCode) => {
               // @ts-ignore
-              container.innerHTML = svgCode.svg
+              container.innerHTML = svgCode.svg;
             })
             .catch((err) => {
               // console.error(err);
-            })
-        })
-      })()
+            });
+        });
+      })();
     },
     actions: [
       {
         title: locale.mermaid,
         icon: icons.ChartGraph,
-        cheatsheet: '```mermaid',
+        cheatsheet: "```mermaid",
         handler: {
-          type: 'dropdown',
+          type: "dropdown",
           actions: actionItems.map(({ title, code }) => ({
             title,
             handler: {
-              type: 'action',
+              type: "action",
               click({ editor }) {
                 appendBlock(editor, code, {
-                  prefix: '```mermaid\n',
-                  suffix: '\n```',
-                })
+                  prefix: "```mermaid\n",
+                  suffix: "\n```",
+                });
               },
             },
           })),
@@ -199,5 +199,5 @@ another task      : 24d`,
         },
       },
     ],
-  }
+  };
 }

@@ -7,8 +7,8 @@ HashMD plugin to zoom images like Medium
 ## Usage
 
 ```js
-import mediumZoom from '@hashmd/plugin-medium-zoom'
-import { Editor } from 'hashmd'
+import mediumZoom from "@hashmd/plugin-medium-zoom";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

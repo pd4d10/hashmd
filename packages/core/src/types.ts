@@ -1,86 +1,86 @@
-import type { EditorView } from '@codemirror/view'
-import type { Schema } from 'hast-util-sanitize'
-import type { Image } from 'mdast'
-import type { Options } from 'remark-rehype'
-import type { Processor } from 'unified'
-import type { VFile } from 'vfile'
+import type { EditorView } from "@codemirror/view";
+import type { Schema } from "hast-util-sanitize";
+import type { Image } from "mdast";
+import type { Options } from "remark-rehype";
+import type { Processor } from "unified";
+import type { VFile } from "vfile";
 
 export interface HashmdLocale {
-  write: string
-  preview: string
-  writeOnly: string
-  exitWriteOnly: string
-  previewOnly: string
-  exitPreviewOnly: string
-  help: string
-  closeHelp: string
-  toc: string
-  closeToc: string
-  fullscreen: string
-  exitFullscreen: string
-  source: string
-  cheatsheet: string
-  shortcuts: string
-  words: string
-  lines: string
-  sync: string
-  top: string
-  limited: string
-  h1: string
-  h2: string
-  h3: string
-  h4: string
-  h5: string
-  h6: string
-  headingText: string
-  bold: string
-  boldText: string
-  italic: string
-  italicText: string
-  quote: string
-  quotedText: string
-  link: string
-  linkText: string
-  image: string
-  imageAlt: string
-  imageTitle: string
-  code: string
-  codeText: string
-  codeBlock: string
-  codeLang: string
-  ul: string
-  ulItem: string
-  ol: string
-  olItem: string
-  hr: string
+  write: string;
+  preview: string;
+  writeOnly: string;
+  exitWriteOnly: string;
+  previewOnly: string;
+  exitPreviewOnly: string;
+  help: string;
+  closeHelp: string;
+  toc: string;
+  closeToc: string;
+  fullscreen: string;
+  exitFullscreen: string;
+  source: string;
+  cheatsheet: string;
+  shortcuts: string;
+  words: string;
+  lines: string;
+  sync: string;
+  top: string;
+  limited: string;
+  h1: string;
+  h2: string;
+  h3: string;
+  h4: string;
+  h5: string;
+  h6: string;
+  headingText: string;
+  bold: string;
+  boldText: string;
+  italic: string;
+  italicText: string;
+  quote: string;
+  quotedText: string;
+  link: string;
+  linkText: string;
+  image: string;
+  imageAlt: string;
+  imageTitle: string;
+  code: string;
+  codeText: string;
+  codeBlock: string;
+  codeLang: string;
+  ul: string;
+  ulItem: string;
+  ol: string;
+  olItem: string;
+  hr: string;
 }
 
 export interface HashmdEditorContext {
   /**
    * CodeMirror editor instance
    */
-  editor: EditorView
+  editor: EditorView;
 }
 
 export interface HashmdViewerContext {
   /**
    * The root element of the viewer
    */
-  markdownBody: HTMLElement
+  markdownBody: HTMLElement;
   /**
    * Virtual file format used in [unified](https://unifiedjs.com/)
    *
    * Get the HTML output by calling `vfile.toString()`
    */
-  file: VFile
+  file: VFile;
 }
 
-type Listener = (context: HashmdEditorContext) => void
+type Listener = (context: HashmdEditorContext) => void;
 
 type HashmdActionHandler =
   | {
-      type: 'action'
-      click: Listener
+      type: "action";
+      click: Listener;
       /**
        * Keyboard shortcut
        *
@@ -89,46 +89,46 @@ type HashmdActionHandler =
        *
        * https://codemirror.net/doc/manual.html#keymaps
        */
-      shortcut?: string
+      shortcut?: string;
       /**
        * mouseenter event listener, only takes effect in dropdown items
        */
-      mouseenter?: Listener
+      mouseenter?: Listener;
       /**
        * mouseleave event listener, only takes effect in dropdown items
        */
-      mouseleave?: Listener
+      mouseleave?: Listener;
     }
   | {
-      type: 'dropdown'
-      actions: HashmdAction[]
-    }
+      type: "dropdown";
+      actions: HashmdAction[];
+    };
 
 export interface HashmdAction {
   /**
    * Action title
    */
-  title: string
+  title: string;
   /**
    * Action icon position
    *
    * Specifies that the action icon is in the toolbar position, which defaults to the left
    */
-  position?: 'left' | 'right'
+  position?: "left" | "right";
   /**
    * Action icon (16x16), usually inline svg
    */
-  icon?: string
+  icon?: string;
   /**
    * Markdown syntax cheatsheet
    *
    * If specified, this record will be added to the Markdown cheatsheet section
    */
-  cheatsheet?: string
+  cheatsheet?: string;
   /**
    * Action handler
    */
-  handler?: HashmdActionHandler
+  handler?: HashmdActionHandler;
 }
 
 export interface HashmdPlugin {
@@ -137,25 +137,25 @@ export interface HashmdPlugin {
    *
    * https://github.com/remarkjs/remark/blob/main/doc/plugins.md
    */
-  remark?: (p: Processor) => Processor
+  remark?: (p: Processor) => Processor;
   /**
    * Customize HTML parse by rehype plugins:
    *
    * https://github.com/rehypejs/rehype/blob/main/doc/plugins.md
    */
-  rehype?: (p: Processor) => Processor
+  rehype?: (p: Processor) => Processor;
   /**
    * Register actions in toolbar, cheatsheet and shortcuts
    */
-  actions?: HashmdAction[]
+  actions?: HashmdAction[];
   /**
    * Side effect for the editor, triggers when plugin changes
    */
-  editorEffect?(ctx: HashmdEditorContext): void | (() => void)
+  editorEffect?(ctx: HashmdEditorContext): void | (() => void);
   /**
    * Side effect for the viewer, triggers when viewer props changes
    */
-  viewerEffect?(ctx: HashmdViewerContext): void | (() => void)
+  viewerEffect?(ctx: HashmdViewerContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
@@ -168,50 +168,50 @@ export interface EditorProps extends ViewerProps {
    *
    * @defaultValue `auto`
    */
-  mode?: 'split' | 'tab' | 'auto'
+  mode?: "split" | "tab" | "auto";
   /**
    * Debounce time (ms) for preview
    *
    * @defaultValue 300
    */
-  previewDebounce?: number
+  previewDebounce?: number;
   /**
    * Editor placeholder
    */
-  placeholder?: string
+  placeholder?: string;
   /**
    * i18n locale
    *
    * @defaultValue en
    */
-  locale?: Partial<HashmdLocale>
+  locale?: Partial<HashmdLocale>;
   /**
    * Handle images upload
    */
   uploadImages?: (
     files: File[],
-  ) => Promise<Pick<Image, 'url' | 'alt' | 'title'>[]>
+  ) => Promise<Pick<Image, "url" | "alt" | "title">[]>;
   /**
    * Override the default preview area render
    *
    * If specified, the built-in viewer would not take effect.
    */
-  overridePreview?(el: HTMLElement, props: ViewerProps): void
+  overridePreview?(el: HTMLElement, props: ViewerProps): void;
   /**
    * Maximum length (number of characters) of value
    */
-  maxLength?: number
+  maxLength?: number;
 }
 
 export interface ViewerProps {
   /**
    * Markdown text
    */
-  value: string
+  value: string;
   /**
    * HashMD plugin list
    */
-  plugins?: HashmdPlugin[]
+  plugins?: HashmdPlugin[];
   /**
    * Sanitize strategy: Defaults to GitHub style sanitation with class names allowed
    *
@@ -219,11 +219,11 @@ export interface ViewerProps {
    *
    * If you want further customization, pass a function to mutate sanitize schema.
    */
-  sanitize?: (schema: Schema) => Schema
+  sanitize?: (schema: Schema) => Schema;
   /**
    * custom remark-rehype options: Defaults value { allowDangerousHtml: true }
    *
    * https://github.com/remarkjs/remark-rehype
    */
-  remarkRehype?: Options
+  remarkRehype?: Options;
 }

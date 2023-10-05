@@ -17,25 +17,25 @@ My favorite markdown editor is [HashMD](https://github.com/pd4d10/hashmd).
 > Dorothy followed her through many of the beautiful rooms in her castle.
 
 ```js
-import gfm from '@hashmd/plugin-gfm'
-import { Editor, Viewer } from 'hashmd'
+import gfm from "@hashmd/plugin-gfm";
+import { Editor, Viewer } from "hashmd";
 
 const plugins = [
   gfm(),
   // Add more plugins here
-]
+];
 
 const editor = new Editor({
   target: document.body, // DOM to render
   props: {
-    value: '',
+    value: "",
     plugins,
   },
-})
+});
 
-editor.on('change', (e) => {
-  editor.$set({ value: e.detail.value })
-})
+editor.on("change", (e) => {
+  editor.$set({ value: e.detail.value });
+});
 ```
 
 ## GFM Extended Syntax

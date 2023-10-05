@@ -7,8 +7,8 @@ HashMD plugin to support Gemoji shortcodes
 ## Usage
 
 ```js
-import gemoji from '@hashmd/plugin-gemoji'
-import { Editor } from 'hashmd'
+import gemoji from "@hashmd/plugin-gemoji";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

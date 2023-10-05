@@ -6,4 +6,4 @@ export const icons = {
     '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 48 48"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m37 9-3-3H8l17 18L8 42h26l3-3M5 24h10M33 24h10"/></svg>',
   Block:
     '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 48 48"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m36 11-3-3H12l16 16-16 16h21l3-3M6 5v38M42 5v38"/></svg>',
-}
+};

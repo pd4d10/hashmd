@@ -1,24 +1,24 @@
-import type { HashmdLocale } from './types'
-import { Meta } from './viewer-next'
-import { LitElement, css, html, nothing } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
-import { classMap } from 'lit/directives/class-map.js'
-import { styleMap } from 'lit/directives/style-map.js'
+import type { HashmdLocale } from "./types";
+import { Meta } from "./viewer-next";
+import { LitElement, css, html, nothing } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
+import { styleMap } from "lit/directives/style-map.js";
 
-@customElement('hashmd-toc')
+@customElement("hashmd-toc")
 export class Toc extends LitElement {
-  @property() meta?: Meta
-  @property() currentBlockIndex!: number
-  @property() locale!: HashmdLocale
+  @property() meta?: Meta;
+  @property() currentBlockIndex!: number;
+  @property() locale!: HashmdLocale;
 
   protected render(): unknown {
-    const { meta } = this
-    if (!meta) return nothing
+    const { meta } = this;
+    if (!meta) return nothing;
 
     const minLevel = meta.toc.reduce(
       (min, { level }) => Math.min(min, level),
       6,
-    )
+    );
 
     return html`<h2>${this.locale.toc}</h2>
       <ul>
@@ -34,13 +34,13 @@ export class Toc extends LitElement {
                 paddingLeft: `${(level - minLevel) * 16 + 8}px`,
               })}
               @click=${() => {
-                this.dispatchEvent(new CustomEvent('click', { detail: index }))
+                this.dispatchEvent(new CustomEvent("click", { detail: index }));
               }}
             >
               ${text}
             </li>`,
         )}
-      </ul>`
+      </ul>`;
   }
 
   static styles = css`
@@ -61,5 +61,5 @@ export class Toc extends LitElement {
     &-first {
       font-weight: 500;
     }
-  `
+  `;
 }

@@ -7,9 +7,9 @@ HashMD plugin to support math formula (SSR compatible)
 ## Usage
 
 ```js
-import math from '@hashmd/plugin-math-ssr'
-import { Editor } from 'hashmd'
-import 'katex/dist/katex.css'
+import math from "@hashmd/plugin-math-ssr";
+import { Editor } from "hashmd";
+import "katex/dist/katex.css";
 
 new Editor({
   target: document.body,
@@ -19,7 +19,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

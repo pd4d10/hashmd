@@ -1,26 +1,26 @@
-import { icons } from './icons'
-import en from './locales/en.json'
-import { appendBlock, replaceLines, type HashmdPlugin, wrapText } from 'hashmd'
-import remarkGfm, { Options } from 'remark-gfm'
+import { icons } from "./icons";
+import en from "./locales/en.json";
+import { appendBlock, replaceLines, type HashmdPlugin, wrapText } from "hashmd";
+import remarkGfm, { Options } from "remark-gfm";
 
 type Locale = {
-  strike: string
-  strikeText: string
-  task: string
-  taskText: string
-  table: string
-  tableHeading: string
-}
+  strike: string;
+  strikeText: string;
+  task: string;
+  taskText: string;
+  table: string;
+  tableHeading: string;
+};
 
 export interface HashmdPluginGfmOptions extends Options {
-  locale?: Partial<Locale>
+  locale?: Partial<Locale>;
 }
 
 export default function gfm({
   locale: _locale,
   ...remarkGfmOptions
 }: HashmdPluginGfmOptions = {}): HashmdPlugin {
-  const locale = { ...en, ..._locale } as Locale
+  const locale = { ...en, ..._locale } as Locale;
 
   return {
     remark: (processor) => processor.use(remarkGfm, remarkGfmOptions),
@@ -30,9 +30,9 @@ export default function gfm({
         icon: icons.Strikethrough,
         cheatsheet: `~~${locale.strikeText}~~`,
         handler: {
-          type: 'action',
+          type: "action",
           click({ editor }) {
-            wrapText(editor, '~~')
+            wrapText(editor, "~~");
           },
         },
       },
@@ -41,9 +41,9 @@ export default function gfm({
         icon: icons.CheckCorrect,
         cheatsheet: `- [ ] ${locale.taskText}`,
         handler: {
-          type: 'action',
+          type: "action",
           click({ editor }) {
-            replaceLines(editor, (line) => '- [ ] ' + line)
+            replaceLines(editor, (line) => "- [ ] " + line);
           },
         },
       },
@@ -51,17 +51,17 @@ export default function gfm({
         title: locale.table,
         icon: icons.InsertTable,
         handler: {
-          type: 'action',
+          type: "action",
           click({ editor }) {
             appendBlock(editor, locale.tableHeading, {
-              prefix: '| ',
+              prefix: "| ",
               suffix: ` |  |
 | --- | --- |
 |  |  |`,
-            })
+            });
           },
         },
       },
     ],
-  }
+  };
 }

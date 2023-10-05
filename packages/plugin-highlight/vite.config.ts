@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
   build: {
-    lib: { entry: 'src/index.ts' },
+    lib: { entry: "src/index.ts" },
   },
-})
+});

@@ -7,8 +7,8 @@ HashMD plugin to parse frontmatter
 ## Usage
 
 ```js
-import frontmatter from '@hashmd/plugin-frontmatter'
-import { Editor } from 'hashmd'
+import frontmatter from "@hashmd/plugin-frontmatter";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

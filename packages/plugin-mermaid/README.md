@@ -7,8 +7,8 @@ HashMD plugin to support Mermaid diagram
 ## Usage
 
 ```js
-import mermaid from '@hashmd/plugin-mermaid'
-import { Editor } from 'hashmd'
+import mermaid from "@hashmd/plugin-mermaid";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

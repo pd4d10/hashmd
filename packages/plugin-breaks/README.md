@@ -7,8 +7,8 @@ HashMD plugin to support breaks
 ## Usage
 
 ```js
-import breaks from '@hashmd/plugin-breaks'
-import { Editor } from 'hashmd'
+import breaks from "@hashmd/plugin-breaks";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

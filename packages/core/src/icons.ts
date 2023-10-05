@@ -35,4 +35,4 @@ export const icons = {
     '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 48 48"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M33 6h9v9M42 33v9h-9M15 42H6v-9M6 15V6h9"/></svg>',
   GithubOne:
     '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 48 48"><path stroke="currentColor" stroke-linecap="round" stroke-width="4" d="M29.344 30.477c2.404-.5 4.585-1.366 6.28-2.638C38.52 25.668 40 22.314 40 19c0-2.324-.881-4.494-2.407-6.332-.85-1.024 1.636-8.667-.573-7.638-2.21 1.03-5.45 3.308-7.147 2.805A20.712 20.712 0 0 0 24 7c-1.8 0-3.532.223-5.147.634C16.505 8.232 14.259 6 12 5.03c-2.26-.97-1.026 6.934-1.697 7.765C8.84 14.605 8 16.73 8 19c0 3.314 1.79 6.668 4.686 8.84 1.93 1.446 4.348 2.368 7.054 2.822M19.74 30.662c-1.159 1.275-1.738 2.486-1.738 3.632v8.717M29.345 30.477c1.097 1.44 1.646 2.734 1.646 3.88v8.654M6 31.215c.899.11 1.566.524 2 1.24.652 1.075 3.074 5.063 5.825 5.063h4.177"/></svg>',
-}
+};
