@@ -7,6 +7,7 @@
     "clean": "rm -rf packages/*/tsconfig.tsbuildinfo && rm -rf packages/*/dist",
     "dev": "pnpm --filter example-lit dev",
     "format": "prettier --write '**/*.{ts,tsx,json,md}'",
+    "icon": "node scripts/icon.js && prettier --write '**/icons.ts'",
     "postinstall": "node scripts/postinstall.js && tsconfig-gen && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
     "style": "prettier --check '**/*.{ts,tsx,json,md}'",

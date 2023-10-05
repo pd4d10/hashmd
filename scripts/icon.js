@@ -6,7 +6,7 @@ import svgo from 'svgo'
 
 /** @type {Record<string, (keyof typeof import('@icon-park/svg/es/map'))[]>} */
 const meta = {
-  'hashmd/src': [
+  'core/src': [
     'Close',
 
     'H',
