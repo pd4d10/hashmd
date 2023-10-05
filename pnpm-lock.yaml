@@ -71,9 +71,9 @@ importers:
       vite:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@20.8.2)(sass@1.68.0)
-      vite-plugin-workspace:
-        specifier: ^0.1.0
-        version: 0.1.0(vite@4.4.9)
+      vite-workspace:
+        specifier: ^0.2.0
+        version: 0.2.0(typescript@5.2.2)(vite@4.4.9)
       vitest:
         specifier: ^0.34.6
         version: 0.34.6(happy-dom@12.7.0)(sass@1.68.0)
@@ -3762,6 +3762,10 @@ packages:
       slash: 4.0.0
     dev: true
 
+  /globrex@0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+    dev: true
+
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
     dev: true
@@ -7249,6 +7253,19 @@ packages:
     engines: {node: '>=6.10'}
     dev: false
 
+  /tsconfck@2.1.2(typescript@5.2.2):
+    resolution: {integrity: sha512-ghqN1b0puy3MhhviwO2kGF8SeMDNhEbnKxjK7h6+fvY9JAxqvXi8y5NAHSQv687OVboS2uZIByzGd45/YxrRHg==}
+    engines: {node: ^14.13.1 || ^16 || >=18}
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.3.5 || ^5.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.2.2
+    dev: true
+
   /tsconfig-gen@0.2.2:
     resolution: {integrity: sha512-/6dWZ09euXgt/yVd0X3c7tFbz+SWfwqlpAGzhBzV/lmwicmeLkN6I+5hIgS2i58i7RHZhoX4J2DYtJlxb5DREg==}
     hasBin: true
@@ -7522,17 +7539,36 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-workspace@0.1.0(vite@4.4.9):
-    resolution: {integrity: sha512-TTcNa0JeSc8z2pR0fg5CNz9gaVmr0SUiY29G+K4K87ffqH0F7/6tIBJCHgx3zZwmqN6uGA49yxj9sASr/7ladQ==}
+  /vite-tsconfig-paths@4.2.1(typescript@5.2.2)(vite@4.4.9):
+    resolution: {integrity: sha512-GNUI6ZgPqT3oervkvzU+qtys83+75N/OuDaQl7HmOqFTb0pjZsuARrRipsyJhJ3enqV8beI1xhGbToR4o78nSQ==}
+    peerDependencies:
+      vite: '*'
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+      globrex: 0.1.2
+      tsconfck: 2.1.2(typescript@5.2.2)
+      vite: 4.4.9(@types/node@20.8.2)(sass@1.68.0)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /vite-workspace@0.2.0(typescript@5.2.2)(vite@4.4.9):
+    resolution: {integrity: sha512-ARwncodAGslcqF2GQ3DQd4cNW1ydjZqGyhdwRFNdACwpgeCBGbkTe+5ge63gasZCsUYKFjquHkSE7cpnjq75QA==}
     peerDependencies:
       vite: ^4.0.0
     dependencies:
       debug: 4.3.4
+      fast-glob: 3.3.1
       find-up: 6.3.0
-      glob: 10.3.10
       vite: 4.4.9(@types/node@20.8.2)(sass@1.68.0)
+      vite-tsconfig-paths: 4.2.1(typescript@5.2.2)(vite@4.4.9)
     transitivePeerDependencies:
       - supports-color
+      - typescript
     dev: true
 
   /vite@4.4.9(@types/node@20.8.2)(sass@1.68.0):

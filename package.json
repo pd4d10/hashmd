@@ -48,7 +48,7 @@
     "tsconfig-gen": "^0.2.2",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-workspace": "^0.1.0",
+    "vite-workspace": "^0.2.0",
     "vitest": "^0.34.6"
   },
   "packageManager": "pnpm@8.8.0"

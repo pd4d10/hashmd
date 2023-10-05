@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import workspace from 'vite-plugin-workspace'
+import { vitePlugin as workspace } from 'vite-workspace'
 
 export default defineConfig({
   plugins: [workspace()],
