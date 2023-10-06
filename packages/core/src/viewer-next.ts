@@ -1,4 +1,4 @@
-import { HashmdPlugin, ViewerProps } from "./types";
+import { Plugin, ViewerProps } from "./types";
 import { getProcessor } from "./utils";
 import type { Root, Element } from "hast";
 import { LitElement, html } from "lit";
@@ -47,7 +47,7 @@ export class Viewer extends LitElement {
   }
 
   render() {
-    const dispatchPlugin: HashmdPlugin = {
+    const dispatchPlugin: Plugin = {
       // @ts-ignore
       rehype: (processor) =>
         processor.use<any, Root>(() => (hast, file) => {

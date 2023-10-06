@@ -1,4 +1,4 @@
-import type { HashmdPlugin } from "hashmd";
+import type { Plugin } from "hashmd";
 import type * as M from "medium-zoom";
 
 export interface HashmdPluginMediumZoomOptions extends M.ZoomOptions {
@@ -7,7 +7,7 @@ export interface HashmdPluginMediumZoomOptions extends M.ZoomOptions {
 
 export default function mediumZoom(
   options?: HashmdPluginMediumZoomOptions,
-): HashmdPlugin {
+): Plugin {
   let m: typeof M;
 
   return {

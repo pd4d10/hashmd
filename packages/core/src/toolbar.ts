@@ -1,4 +1,4 @@
-import { EditorContext, HashmdLocale, ToolbarItem } from "./types";
+import { EditorContext, Locale, ToolbarItem } from "./types";
 import { computePosition, flip, shift } from "@floating-ui/dom";
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
@@ -8,7 +8,7 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js";
 @customElement("hashmd-toolbar")
 export class Toolbar extends LitElement {
   @property() items!: ToolbarItem[];
-  @property() locale!: HashmdLocale;
+  @property() locale!: Locale;
   @property() context!: EditorContext;
   @property() activeTab: "icon" | "write" | "preview" = "icon"; // TODO:
 

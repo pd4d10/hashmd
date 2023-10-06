@@ -5,7 +5,7 @@ import type { Options } from "remark-rehype";
 import type { Processor } from "unified";
 import type { VFile } from "vfile";
 
-export interface HashmdLocale {
+export interface Locale {
   write: string;
   preview: string;
   writeOnly: string;
@@ -62,7 +62,7 @@ export interface EditorContext {
   editor: EditorView;
 }
 
-export interface HashmdViewerContext {
+export interface ViewerContext {
   /**
    * The root element of the viewer
    */
@@ -146,7 +146,7 @@ export type ToolbarActionHandler = {};
 
 type EventListener = (context: EditorContext) => void;
 
-export interface HashmdPlugin {
+export interface Plugin {
   /**
    * Customize Markdown parse by remark plugins:
    *
@@ -170,7 +170,7 @@ export interface HashmdPlugin {
   /**
    * Side effect for the viewer, triggers when viewer props changes
    */
-  viewerEffect?(ctx: HashmdViewerContext): void | (() => void);
+  viewerEffect?(ctx: ViewerContext): void | (() => void);
 }
 
 export interface EditorProps extends ViewerProps {
@@ -199,7 +199,7 @@ export interface EditorProps extends ViewerProps {
    *
    * @defaultValue en
    */
-  locale?: Partial<HashmdLocale>;
+  locale?: Partial<Locale>;
   /**
    * Handle images upload
    */
@@ -224,9 +224,9 @@ export interface ViewerProps {
    */
   value: string;
   /**
-   * HashMD plugin list
+   * Plugin list
    */
-  plugins?: HashmdPlugin[];
+  plugins?: Plugin[];
   /**
    * Sanitize strategy: Defaults to GitHub style sanitation with class names allowed
    *

@@ -1,6 +1,6 @@
 import { icons } from "./icons";
 import en from "./locales/en.json";
-import { appendBlock, replaceLines, type HashmdPlugin, wrapText } from "hashmd";
+import { appendBlock, replaceLines, type Plugin, wrapText } from "hashmd";
 import remarkGfm, { Options } from "remark-gfm";
 
 type Locale = {
@@ -19,7 +19,7 @@ export interface HashmdPluginGfmOptions extends Options {
 export default function gfm({
   locale: _locale,
   ...remarkGfmOptions
-}: HashmdPluginGfmOptions = {}): HashmdPlugin {
+}: HashmdPluginGfmOptions = {}): Plugin {
   const locale = { ...en, ..._locale } as Locale;
 
   return {

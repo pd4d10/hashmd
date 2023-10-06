@@ -8,7 +8,7 @@ import "./sidebar.js";
 import "./status.js";
 import "./toc.js";
 import "./toolbar.js";
-import { Action, EditorProps, HashmdLocale, ToolbarItem } from "./types";
+import { Action, EditorProps, Locale, ToolbarItem } from "./types";
 import { Meta } from "./viewer-next";
 import { EditorView } from "@codemirror/view";
 import { Element } from "hast";
@@ -284,7 +284,7 @@ export class Editor extends LitElement {
     });
   }
 
-  private get mergedLocale(): HashmdLocale {
+  private get mergedLocale(): Locale {
     return { ...this.locale, ...en };
   }
 

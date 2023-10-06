@@ -1,4 +1,4 @@
-import type { HashmdLocale } from "./types";
+import type { Locale } from "./types";
 import { Meta } from "./viewer-next";
 import { LitElement, css, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
@@ -9,7 +9,7 @@ import { styleMap } from "lit/directives/style-map.js";
 export class Toc extends LitElement {
   @property() meta?: Meta;
   @property() currentBlockIndex!: number;
-  @property() locale!: HashmdLocale;
+  @property() locale!: Locale;
 
   protected render(): unknown {
     const { meta } = this;

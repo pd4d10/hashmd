@@ -1,4 +1,4 @@
-import type { HashmdPlugin } from "hashmd";
+import type { Plugin } from "hashmd";
 import { load } from "js-yaml";
 import remarkFrontmatter from "remark-frontmatter";
 
@@ -14,7 +14,7 @@ declare module "vfile" {
 
 export default function frontmatter({
   onError,
-}: HashmdPluginFrontmatterOptions = {}): HashmdPlugin {
+}: HashmdPluginFrontmatterOptions = {}): Plugin {
   return {
     remark: (processor) =>
       // @ts-ignore

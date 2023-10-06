@@ -1,6 +1,6 @@
 import en from "./locales/en.json";
 import { MathLocale, getToolbarItems } from "./utils";
-import type { HashmdPlugin } from "hashmd";
+import type { Plugin } from "hashmd";
 import type { default as K, KatexOptions } from "katex";
 import remarkMath from "remark-math";
 
@@ -12,7 +12,7 @@ export interface HashmdPluginMathOptions {
 export default function math({
   locale: _locale,
   katexOptions,
-}: HashmdPluginMathOptions = {}): HashmdPlugin {
+}: HashmdPluginMathOptions = {}): Plugin {
   const locale = { ...en, ..._locale };
   let katex: typeof K;
 

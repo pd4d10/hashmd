@@ -1,4 +1,4 @@
-import { HashmdLocale, EditorProps } from "./types";
+import { Locale, EditorProps } from "./types";
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
@@ -7,7 +7,7 @@ import wordCount from "word-count";
 @customElement("hashmd-status")
 export class Status extends LitElement {
   @property() value!: string;
-  @property() locale!: HashmdLocale;
+  @property() locale!: Locale;
   @property() sync!: boolean;
 
   protected render(): unknown {

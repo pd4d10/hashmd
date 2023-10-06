@@ -1,10 +1,5 @@
 import { icons } from "./icons";
-import type {
-  EditorProps,
-  HashmdLocale,
-  EditorContext,
-  ToolbarItem,
-} from "./types";
+import type { EditorProps, Locale, EditorContext, ToolbarItem } from "./types";
 import { EditorView } from "@codemirror/view";
 import selectFiles from "select-files";
 
@@ -135,14 +130,14 @@ export async function handleImageUpload(
   );
 }
 
-export function getLeftItems(locale: HashmdLocale): ToolbarItem[] {
+export function getLeftItems(locale: Locale): ToolbarItem[] {
   return [
     {
       type: "multiple",
       title: "Headings",
       icon: icons.heading,
       actions: [1, 2, 3, 4, 5, 6].map((level) => ({
-        title: locale[`h${level}` as keyof HashmdLocale],
+        title: locale[`h${level}` as keyof Locale],
         cheatsheet:
           level <= 3 ? `${"#".repeat(level)} ${locale.headingText}` : undefined,
         click({ editor }) {

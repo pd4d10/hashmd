@@ -1,6 +1,6 @@
 import { icons } from "./icons";
 import en from "./locales/en.json";
-import { appendBlock, type HashmdPlugin } from "hashmd";
+import { appendBlock, type Plugin } from "hashmd";
 import type { default as Mermaid, MermaidConfig } from "mermaid";
 
 type Locale = {
@@ -24,7 +24,7 @@ export interface HashmdPluginMermaidOptions extends MermaidConfig {
 export default function mermaid({
   locale: _locale,
   ...mermaidConfig
-}: HashmdPluginMermaidOptions = {}): HashmdPlugin {
+}: HashmdPluginMermaidOptions = {}): Plugin {
   const locale = { ...en, ..._locale } as Locale;
   let m: typeof Mermaid;
 

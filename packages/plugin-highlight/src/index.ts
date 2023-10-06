@@ -1,4 +1,4 @@
-import type { HashmdPlugin } from "hashmd";
+import type { Plugin } from "hashmd";
 import type H from "highlight.js";
 
 export interface HashmdPluginHighlightOptions {
@@ -7,7 +7,7 @@ export interface HashmdPluginHighlightOptions {
 
 export default function highlight({
   init,
-}: HashmdPluginHighlightOptions = {}): HashmdPlugin {
+}: HashmdPluginHighlightOptions = {}): Plugin {
   let hljs: typeof H;
   return {
     viewerEffect({ markdownBody }) {

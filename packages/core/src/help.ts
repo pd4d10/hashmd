@@ -1,11 +1,11 @@
-import { Action, HashmdLocale } from "./types";
+import { Action, Locale } from "./types";
 import { LitElement, css, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 @customElement("hashmd-help")
 export class Help extends LitElement {
-  @property() locale!: HashmdLocale;
+  @property() locale!: Locale;
   @property() actions!: Action[];
 
   protected render(): unknown {
