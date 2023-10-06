@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm clean && tsc --build && echo TODO",
+    "build": "pnpm clean && pnpm icon && tsc --build && echo TODO",
     "clean": "rm -rf packages/*/tsconfig.tsbuildinfo && rm -rf packages/*/dist",
     "dev": "pnpm --filter example-lit dev",
     "format": "prettier --write '**/*.{ts,tsx,js,json,css,md}'",
