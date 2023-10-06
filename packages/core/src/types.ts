@@ -144,7 +144,7 @@ export type ToolbarItem =
 
 export type ToolbarActionHandler = {};
 
-type EventListener = (context: EditorContext) => void;
+type EventListener = (e: CustomEvent<EditorContext>) => void;
 
 export interface Plugin {
   /**
@@ -191,10 +191,6 @@ export interface EditorProps extends ViewerProps {
    */
   previewDebounce?: number;
   /**
-   * Editor placeholder
-   */
-  placeholder?: string;
-  /**
    * i18n locale
    *
    * @defaultValue en
@@ -206,16 +202,6 @@ export interface EditorProps extends ViewerProps {
   uploadImages?: (
     files: File[],
   ) => Promise<Pick<Image, "url" | "alt" | "title">[]>;
-  /**
-   * Override the default preview area render
-   *
-   * If specified, the built-in viewer would not take effect.
-   */
-  overridePreview?(el: HTMLElement, props: ViewerProps): void;
-  /**
-   * Maximum length (number of characters) of value
-   */
-  maxLength?: number;
 }
 
 export interface ViewerProps {

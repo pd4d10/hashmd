@@ -30,7 +30,9 @@ export class Toolbar extends LitElement {
                     title=${item.title}
                     @click=${() => {
                       if (item.type === "single") {
-                        item.click(this.context);
+                        item.click(
+                          new CustomEvent("click", { detail: this.context }),
+                        );
                       }
                     }}
                     @mouseenter=${(e: MouseEvent) => {
@@ -69,13 +71,25 @@ export class Toolbar extends LitElement {
                                 <div
                                   class="dropdown-item"
                                   @click=${() => {
-                                    action.click(this.context);
+                                    action.click(
+                                      new CustomEvent("click", {
+                                        detail: this.context,
+                                      }),
+                                    );
                                   }}
                                   @mouseenter=${() => {
-                                    action.mouseenter?.(this.context);
+                                    action.mouseenter?.(
+                                      new CustomEvent("mouseenter", {
+                                        detail: this.context,
+                                      }),
+                                    );
                                   }}
                                   @mouseleave=${() => {
-                                    action.mouseleave?.(this.context);
+                                    action.mouseleave?.(
+                                      new CustomEvent("mouseleave", {
+                                        detail: this.context,
+                                      }),
+                                    );
                                   }}
                                 >
                                   ${action.title}

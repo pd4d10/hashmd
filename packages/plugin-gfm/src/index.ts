@@ -30,7 +30,7 @@ export default function gfm({
         title: locale.strike,
         icon: icons.strike,
         cheatsheet: `~~${locale.strikeText}~~`,
-        click({ editor }) {
+        click({ detail: { editor } }) {
           wrapText(editor, "~~");
         },
       },
@@ -39,7 +39,7 @@ export default function gfm({
         title: locale.task,
         icon: icons.task,
         cheatsheet: `- [ ] ${locale.taskText}`,
-        click({ editor }) {
+        click({ detail: { editor } }) {
           replaceLines(editor, (line) => "- [ ] " + line);
         },
       },
@@ -47,7 +47,7 @@ export default function gfm({
         type: "single",
         title: locale.table,
         icon: icons.table,
-        click({ editor }) {
+        click({ detail: { editor } }) {
           appendBlock(editor, locale.tableHeading, {
             prefix: "| ",
             suffix: ` |  |

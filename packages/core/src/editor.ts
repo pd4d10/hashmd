@@ -140,7 +140,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
         title: locale[`h${level}` as keyof Locale],
         cheatsheet:
           level <= 3 ? `${"#".repeat(level)} ${locale.headingText}` : undefined,
-        click({ editor }) {
+        click({ detail: { editor } }) {
           replaceLines(editor, (line) => {
             line = line.trim().replace(/^#*/, "").trim();
             line = "#".repeat(level) + " " + line;
@@ -155,7 +155,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.bold,
       cheatsheet: `**${locale.boldText}**`,
       shortcut: getShortcutWithPrefix("B"),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         wrapText(editor, "**");
       },
     },
@@ -165,7 +165,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.italic,
       cheatsheet: `*${locale.italicText}*`,
       shortcut: getShortcutWithPrefix("I"),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         wrapText(editor, "*");
       },
     },
@@ -174,7 +174,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       title: locale.quote,
       icon: icons.quote,
       cheatsheet: `> ${locale.quotedText}`,
-      click({ editor }) {
+      click({ detail: { editor } }) {
         replaceLines(editor, (line) => "> " + line);
       },
     },
@@ -184,7 +184,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.link,
       cheatsheet: `[${locale.linkText}](url)`,
       shortcut: getShortcutWithPrefix("K"),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         wrapText(editor, "[", "](url)");
       },
     },
@@ -215,7 +215,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.code,
       cheatsheet: "`" + locale.codeText + "`",
       shortcut: getShortcutWithPrefix("K", true),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         wrapText(editor, "`");
       },
     },
@@ -225,7 +225,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.codeBlock,
       cheatsheet: "```" + locale.codeLang + "↵",
       shortcut: getShortcutWithPrefix("C", true),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         appendBlock(editor, "lang", { prefix: "```", suffix: "\n```\n" });
       },
     },
@@ -235,7 +235,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.ul,
       cheatsheet: `- ${locale.ulItem}`,
       shortcut: getShortcutWithPrefix("U", true),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         replaceLines(editor, (line) => "- " + line);
       },
     },
@@ -245,7 +245,7 @@ export function getLeftItems(locale: Locale): ToolbarItem[] {
       icon: icons.ol,
       cheatsheet: `1. ${locale.olItem}`,
       shortcut: getShortcutWithPrefix("O", true),
-      click({ editor }) {
+      click({ detail: { editor } }) {
         replaceLines(editor, (line, i) => `${i + 1}. ${line}`);
       },
     },

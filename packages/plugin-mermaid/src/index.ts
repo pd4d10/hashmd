@@ -183,7 +183,7 @@ another task      : 24d`,
         icon: icons.mermaid,
         actions: actionItems.map(({ title, code }) => ({
           title,
-          click({ editor }) {
+          click({ detail: { editor } }) {
             appendBlock(editor, code, {
               prefix: "```mermaid\n",
               suffix: "\n```",

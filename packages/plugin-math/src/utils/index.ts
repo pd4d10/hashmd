@@ -18,14 +18,14 @@ export function getToolbarItems(locale: MathLocale): ToolbarItem[] {
         {
           title: locale.inline,
           cheatsheet: `$${locale.inlineText}$`,
-          click({ editor }) {
+          click({ detail: { editor } }) {
             wrapText(editor, "$");
           },
         },
         {
           title: locale.block,
           cheatsheet: `$$↵${locale.blockText}↵$$`,
-          click({ editor }) {
+          click({ detail: { editor } }) {
             appendBlock(editor, "\\TeX", {
               prefix: "$$\n",
               suffix: "\n$$",
