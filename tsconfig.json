@@ -1,18 +1,44 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/react" },
-    { "path": "packages/plugin-mermaid" },
-    { "path": "packages/plugin-medium-zoom" },
-    { "path": "packages/plugin-math-ssr" },
-    { "path": "packages/plugin-math" },
-    { "path": "packages/plugin-highlight-ssr" },
-    { "path": "packages/plugin-highlight" },
-    { "path": "packages/plugin-gfm" },
-    { "path": "packages/plugin-gemoji" },
-    { "path": "packages/plugin-frontmatter" },
-    { "path": "packages/plugin-breaks" },
-    { "path": "packages/core" },
-    { "path": "examples/lit" }
+    {
+      "path": "examples/lit"
+    },
+    {
+      "path": "packages/core"
+    },
+    {
+      "path": "packages/plugin-breaks"
+    },
+    {
+      "path": "packages/plugin-frontmatter"
+    },
+    {
+      "path": "packages/plugin-gemoji"
+    },
+    {
+      "path": "packages/plugin-gfm"
+    },
+    {
+      "path": "packages/plugin-highlight"
+    },
+    {
+      "path": "packages/plugin-highlight-ssr"
+    },
+    {
+      "path": "packages/plugin-math"
+    },
+    {
+      "path": "packages/plugin-medium-zoom"
+    },
+    {
+      "path": "packages/plugin-mermaid"
+    },
+    {
+      "path": "packages/react"
+    },
+    {
+      "path": "packages/plugin-math-ssr"
+    }
   ]
 }
