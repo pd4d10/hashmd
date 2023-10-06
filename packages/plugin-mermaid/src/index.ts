@@ -176,27 +176,20 @@ another task      : 24d`,
         });
       })();
     },
-    actions: [
+    toolbar: [
       {
+        type: "multiple",
         title: locale.mermaid,
         icon: icons.mermaid,
-        cheatsheet: "```mermaid",
-        handler: {
-          type: "dropdown",
-          actions: actionItems.map(({ title, code }) => ({
-            title,
-            handler: {
-              type: "action",
-              click({ editor }) {
-                appendBlock(editor, code, {
-                  prefix: "```mermaid\n",
-                  suffix: "\n```",
-                });
-              },
-            },
-          })),
-          ...locale,
-        },
+        actions: actionItems.map(({ title, code }) => ({
+          title,
+          click({ editor }) {
+            appendBlock(editor, code, {
+              prefix: "```mermaid\n",
+              suffix: "\n```",
+            });
+          },
+        })),
       },
     ],
   };

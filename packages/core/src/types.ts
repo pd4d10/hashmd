@@ -55,7 +55,7 @@ export interface HashmdLocale {
   hr: string;
 }
 
-export interface HashmdEditorContext {
+export interface EditorContext {
   /**
    * CodeMirror editor instance
    */
@@ -75,50 +75,30 @@ export interface HashmdViewerContext {
   file: VFile;
 }
 
-type Listener = (context: HashmdEditorContext) => void;
+interface ToolbarCommon {
+  /**
+   * Toolbar title
+   */
+  title: string;
+  /**
+   * Toolbar icon (16x16), usually inline svg
+   */
+  icon: string;
+  /**
+   *
+   */
+  active?: boolean;
+}
 
-type HashmdActionHandler =
-  | {
-      type: "action";
-      click: Listener;
-      /**
-       * Keyboard shortcut
-       *
-       * If specified, this shortcut will bind to click listener
-       * and will be added to the Keyboard shortcut section
-       *
-       * https://codemirror.net/doc/manual.html#keymaps
-       */
-      shortcut?: string;
-      /**
-       * mouseenter event listener, only takes effect in dropdown items
-       */
-      mouseenter?: Listener;
-      /**
-       * mouseleave event listener, only takes effect in dropdown items
-       */
-      mouseleave?: Listener;
-    }
-  | {
-      type: "dropdown";
-      actions: HashmdAction[];
-    };
-
-export interface HashmdAction {
+export interface Action {
   /**
    * Action title
    */
   title: string;
   /**
-   * Action icon position
-   *
-   * Specifies that the action icon is in the toolbar position, which defaults to the left
+   * Click event handler
    */
-  position?: "left" | "right";
-  /**
-   * Action icon (16x16), usually inline svg
-   */
-  icon?: string;
+  click: EventListener;
   /**
    * Markdown syntax cheatsheet
    *
@@ -126,10 +106,45 @@ export interface HashmdAction {
    */
   cheatsheet?: string;
   /**
-   * Action handler
+   * Keyboard shortcut
+   *
+   * If specified, this shortcut will bind to click listener
+   * and will be added to the Keyboard shortcut section
+   *
+   * https://codemirror.net/doc/manual.html#keymaps
    */
-  handler?: HashmdActionHandler;
+  shortcut?: string;
+  mouseenter?: EventListener;
+  mouseleave?: EventListener;
 }
+
+export interface ToolbarActionSingle extends ToolbarCommon, Action {
+  type: "single";
+}
+
+export interface ToolbarActionMultiple extends ToolbarCommon {
+  type: "multiple";
+  title: string;
+  actions: Action[];
+}
+
+export interface ToolbarDivider {
+  type: "divider";
+}
+
+export interface ToolbarSpace {
+  type: "space";
+}
+
+export type ToolbarItem =
+  | ToolbarActionSingle
+  | ToolbarActionMultiple
+  | ToolbarDivider
+  | ToolbarSpace;
+
+export type ToolbarActionHandler = {};
+
+type EventListener = (context: EditorContext) => void;
 
 export interface HashmdPlugin {
   /**
@@ -147,11 +162,11 @@ export interface HashmdPlugin {
   /**
    * Register actions in toolbar, cheatsheet and shortcuts
    */
-  actions?: HashmdAction[];
+  toolbar?: ToolbarItem[];
   /**
    * Side effect for the editor, triggers when plugin changes
    */
-  editorEffect?(ctx: HashmdEditorContext): void | (() => void);
+  editorEffect?(ctx: EditorContext): void | (() => void);
   /**
    * Side effect for the viewer, triggers when viewer props changes
    */

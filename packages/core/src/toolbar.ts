@@ -1,154 +1,40 @@
-import { icons } from "./icons";
-import {
-  HashmdAction,
-  HashmdEditorContext,
-  HashmdLocale,
-  ViewerProps,
-} from "./types";
-import { getProcessor } from "./utils";
+import { EditorContext, HashmdLocale, ToolbarItem } from "./types";
 import { computePosition, flip, shift } from "@floating-ui/dom";
-import { LitElement, html, css, nothing, PropertyValueMap } from "lit";
+import { LitElement, html, css, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
-interface RightAction extends HashmdAction {
-  active?: boolean;
-  hidden?: boolean;
-}
-
 @customElement("hashmd-toolbar")
 export class Toolbar extends LitElement {
-  @property() actions!: HashmdAction[];
-  @property() rightAfferentActions!: HashmdAction[];
-  @property() sidebar!: false | "help" | "toc";
+  @property() items!: ToolbarItem[];
   @property() locale!: HashmdLocale;
-  @property() context!: HashmdEditorContext;
-  @property() fullscreen!: boolean;
-
+  @property() context!: EditorContext;
   @property() activeTab: "icon" | "write" | "preview" = "icon"; // TODO:
 
-  get rightActions() {
-    const {
-      activeTab,
-      fullscreen,
-      sidebar,
-      locale,
-      actions,
-      rightAfferentActions,
-    } = this;
-
-    const split = activeTab === "icon";
-    const tocActive = sidebar === "toc";
-    const helpActive = sidebar === "help";
-    const writeActive = activeTab === "write";
-    const previewActive = activeTab === "preview";
-    const rightActions: RightAction[] = [
-      {
-        title: tocActive ? locale.closeToc : locale.toc,
-        icon: icons.toc,
-        handler: {
-          type: "action",
-          click: () => {
-            this.dispatchEvent(
-              new CustomEvent("toggle-sidebar", { detail: "toc" }),
-            );
-          },
-        },
-        active: tocActive,
-      },
-      {
-        title: helpActive ? locale.closeHelp : locale.help,
-        icon: icons.help,
-        handler: {
-          type: "action",
-          click: () => {
-            this.dispatchEvent(
-              new CustomEvent("toggle-sidebar", { detail: "help" }),
-            );
-          },
-        },
-        active: helpActive,
-      },
-      {
-        title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
-        icon: icons.write,
-        handler: {
-          type: "action",
-          click: () => {
-            this.dispatchEvent(new CustomEvent("tab", { detail: "write" }));
-          },
-        },
-        active: writeActive,
-        hidden: !split,
-      },
-      {
-        title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
-        icon: icons.preview,
-        handler: {
-          type: "action",
-          click: () => {
-            this.dispatchEvent(new CustomEvent("tab", { detail: "preview" }));
-          },
-        },
-        active: previewActive,
-        hidden: !split,
-      },
-      {
-        title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-        icon: fullscreen ? icons.exitFullscreen : icons.fullscreen,
-        handler: {
-          type: "action",
-          click: () => {
-            this.dispatchEvent(new CustomEvent("toggle-fullscreen"));
-          },
-        },
-      },
-      {
-        title: locale.source,
-        icon: icons.source,
-        handler: {
-          type: "action",
-          click: () => {
-            window.open("https://github.com/pd4d10/hashmd");
-          },
-        },
-      },
-      ...rightAfferentActions,
-    ];
-
-    return rightActions;
-  }
-
   render() {
-    const {
-      activeTab,
-      fullscreen,
-      sidebar,
-      locale,
-      actions,
-      rightAfferentActions,
-
-      rightActions,
-    } = this;
+    const { activeTab, locale, items } = this;
 
     const split = activeTab === "icon";
 
     return html`<div class="toolbar">
       ${split
-        ? actions.map((item, index) =>
-            item.handler
-              ? html`
+        ? items.map((item) =>
+            item.type === "space"
+              ? html`<div class="gap"></div>`
+              : item.type === "divider"
+              ? html`<div>todo</div>`
+              : html`
                   <div
                     class="icon"
                     title=${item.title}
                     @click=${() => {
-                      if (item.handler?.type === "action") {
-                        item.handler.click(this.context);
+                      if (item.type === "single") {
+                        item.click(this.context);
                       }
                     }}
                     @mouseenter=${(e: MouseEvent) => {
-                      if (item.handler?.type === "dropdown") {
+                      if (item.type === "multiple") {
                         const button = e.target as HTMLElement;
                         const dropdown =
                           button.querySelector<HTMLElement>(".dropdown")!;
@@ -163,7 +49,7 @@ export class Toolbar extends LitElement {
                       }
                     }}
                     @mouseleave=${(e: MouseEvent) => {
-                      if (item.handler?.type === "dropdown") {
+                      if (item.type === "multiple") {
                         const button = e.target as HTMLElement;
                         const dropdown =
                           button.querySelector<HTMLElement>(".dropdown")!;
@@ -174,35 +60,25 @@ export class Toolbar extends LitElement {
                     }}
                   >
                     ${unsafeHTML(item.icon)}
-                    ${item.handler.type === "dropdown"
+                    ${item.type === "multiple"
                       ? html`
                           <div class="dropdown">
                             <div class="dropdown-title">${item.title}</div>
-                            ${item.handler.actions.map(
-                              (subAction) => html`
+                            ${item.actions.map(
+                              (action) => html`
                                 <div
                                   class="dropdown-item"
                                   @click=${() => {
-                                    if (subAction.handler?.type === "action") {
-                                      subAction.handler?.click?.(this.context);
-                                    }
+                                    action.click(this.context);
                                   }}
                                   @mouseenter=${() => {
-                                    if (subAction.handler?.type === "action") {
-                                      subAction.handler?.mouseenter?.(
-                                        this.context,
-                                      );
-                                    }
+                                    action.mouseenter?.(this.context);
                                   }}
                                   @mouseleave=${() => {
-                                    if (subAction.handler?.type === "action") {
-                                      subAction.handler.mouseleave?.(
-                                        this.context,
-                                      );
-                                    }
+                                    action.mouseleave?.(this.context);
                                   }}
                                 >
-                                  ${subAction.title}
+                                  ${action.title}
                                 </div>
                               `,
                             )}
@@ -210,8 +86,7 @@ export class Toolbar extends LitElement {
                         `
                       : nothing}
                   </div>
-                `
-              : nothing,
+                `,
           )
         : html`<div
               @click=${() => {
@@ -243,26 +118,6 @@ export class Toolbar extends LitElement {
             >
               ${locale.preview}
             </div>`}
-      <div class="gap"></div>
-      ${rightActions.map((item, index) =>
-        item.hidden
-          ? nothing
-          : html`
-              <div
-                class=${classMap({
-                  icon: true,
-                  active: item.active ?? false,
-                })}
-                @click=${() => {
-                  if (item.handler?.type === "action") {
-                    item.handler.click(this.context);
-                  }
-                }}
-              >
-                ${unsafeHTML(item.icon)}
-              </div>
-            `,
-      )}
     </div> `;
   }
 

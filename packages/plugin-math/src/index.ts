@@ -1,5 +1,5 @@
 import en from "./locales/en.json";
-import { MathLocale, getMathActions } from "./utils";
+import { MathLocale, getToolbarItems } from "./utils";
 import type { HashmdPlugin } from "hashmd";
 import type { default as K, KatexOptions } from "katex";
 import remarkMath from "remark-math";
@@ -39,6 +39,6 @@ export default function math({
       renderMath(".math.math-inline", false);
       renderMath(".math.math-display", true);
     },
-    actions: getMathActions(locale),
+    toolbar: getToolbarItems(locale),
   };
 }

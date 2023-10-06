@@ -1,13 +1,14 @@
 import "./codemirror";
 import { createEditorView } from "./codemirror";
-import { findStartIndex, getBuiltinActions } from "./editor";
+import { findStartIndex, getLeftItems, replaceLines } from "./editor";
 import "./help.js";
+import { icons } from "./icons";
 import en from "./locales/en.json";
 import "./sidebar.js";
 import "./status.js";
 import "./toc.js";
 import "./toolbar.js";
-import { EditorProps } from "./types";
+import { Action, EditorProps, HashmdLocale, ToolbarItem } from "./types";
 import { Meta } from "./viewer-next";
 import { EditorView } from "@codemirror/view";
 import { Element } from "hast";
@@ -26,11 +27,11 @@ export class Editor extends LitElement {
   @property() uploadImages: EditorProps["uploadImages"];
 
   @property({ state: true }) _containerWidth = Infinity;
-  @property({ state: true }) _activeTab: false | "write" | "preview" = false;
+  @property({ state: true }) activeTab: false | "write" | "preview" = false;
 
-  @property({ state: true }) _fullscreen = false;
+  @property({ state: true }) fullscreen = false;
   @property({ state: true }) _sync = true;
-  @property({ state: true }) _sidebar: "help" | "toc" | false = "toc";
+  @property({ state: true }) sidebar: "help" | "toc" | false = "toc";
   @property({ state: true }) meta?: Meta;
   @property({ state: true }) editCalled = false;
   @property({ state: true }) previewCalled = false;
@@ -39,9 +40,9 @@ export class Editor extends LitElement {
   @property({ state: true }) currentBlockIndex = 0;
 
   private toggleFullscreen() {
-    this._fullscreen = !this._fullscreen;
+    this.fullscreen = !this.fullscreen;
 
-    if (this._fullscreen) {
+    if (this.fullscreen) {
       Object.assign(this.style, {
         position: "fixed",
         inset: "0",
@@ -197,6 +198,96 @@ export class Editor extends LitElement {
     this.previewCalled = true;
   }
 
+  private get leftItems() {
+    return getLeftItems(this.mergedLocale);
+  }
+
+  private get rightItems(): ToolbarItem[] {
+    const { activeTab, fullscreen, sidebar, mergedLocale: locale } = this;
+    const tocActive = sidebar === "toc";
+    const helpActive = sidebar === "help";
+    const writeActive = activeTab === "write";
+    const previewActive = activeTab === "preview";
+    return [
+      {
+        type: "single",
+        title: tocActive ? locale.closeToc : locale.toc,
+        icon: icons.toc,
+        click: () => {
+          this.sidebar = this.sidebar === "toc" ? false : "toc";
+        },
+        active: tocActive,
+      },
+      {
+        type: "single",
+        title: helpActive ? locale.closeHelp : locale.help,
+        icon: icons.help,
+        click: () => {
+          this.sidebar = this.sidebar === "help" ? false : "help";
+        },
+      },
+      {
+        type: "single",
+        title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
+        icon: icons.write,
+        click: () => {
+          this.dispatchEvent(new CustomEvent("tab", { detail: "write" }));
+        },
+        active: writeActive,
+      },
+      {
+        type: "single",
+        title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
+        icon: icons.preview,
+        click: () => {
+          this.dispatchEvent(new CustomEvent("tab", { detail: "preview" }));
+        },
+        active: previewActive,
+      },
+      {
+        type: "single",
+        title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
+        icon: fullscreen ? icons.exitFullscreen : icons.fullscreen,
+        click: () => {
+          this.toggleFullscreen();
+        },
+      },
+      {
+        type: "single",
+        title: locale.source,
+        icon: icons.source,
+        click: () => {
+          window.open("https://github.com/pd4d10/hashmd");
+        },
+      },
+    ];
+  }
+
+  private get toolbarItems(): ToolbarItem[] {
+    return [
+      ...this.leftItems,
+      ...this.plugins.flatMap((p) => p.toolbar ?? []),
+      { type: "space" },
+      ...this.rightItems,
+    ];
+  }
+
+  private get actions(): Action[] {
+    return this.toolbarItems.flatMap((item) => {
+      if (item.type === "single") {
+        return [item];
+      } else if (item.type === "multiple") {
+        return item.actions;
+      } else {
+        return [];
+      }
+    });
+  }
+
+  private get mergedLocale(): HashmdLocale {
+    return { ...this.locale, ...en };
+  }
+
   render() {
     const {
       value,
@@ -205,29 +296,24 @@ export class Editor extends LitElement {
       mode = "auto",
       locale,
       uploadImages,
+      mergedLocale,
+      toolbarItems,
+      actions,
 
       _containerWidth,
-      _activeTab,
-      _fullscreen,
-      _sidebar,
+      activeTab,
+      fullscreen,
+      sidebar,
     } = this;
-    const mergedLocale = { ...en, ...locale };
-    const actions = getBuiltinActions(mergedLocale, plugins, uploadImages);
-
     const split =
       mode === "split" || (mode === "auto" && _containerWidth >= 800);
 
     return html`<hashmd-toolbar
-        .actions=${actions.leftActions}
-        .rightAfferentActions=${actions.rightActions}
+        .items=${toolbarItems}
         .locale=${mergedLocale}
-        .sidebar=${_sidebar}
+        .sidebar=${sidebar}
         .context=${{ editor: this._editor! }}
-        .fullscreen=${_fullscreen}
-        @toggle-sidebar=${(e: CustomEvent) => {
-          this._sidebar = this._sidebar === e.detail ? false : e.detail;
-        }}
-        @toggle-fullscreen=${this.toggleFullscreen}
+        .fullscreen=${fullscreen}
       ></hashmd-toolbar>
       <div class="body">
         ${split ? html`<div class="edit"></div>` : nothing}
@@ -239,18 +325,18 @@ export class Editor extends LitElement {
             }}
           ></hashmd-viewer>
         </div>
-        ${_sidebar
+        ${sidebar
           ? html`<hashmd-sidebar
               @close=${() => {
-                this._sidebar = false;
+                this.sidebar = false;
               }}
             >
-              ${_sidebar === "help"
+              ${sidebar === "help"
                 ? html`<hashmd-help
                     .locale=${mergedLocale}
-                    .actions=${actions.leftActions}
+                    .actions=${actions}
                   ></hashmd-help>`
-                : _sidebar === "toc"
+                : sidebar === "toc"
                 ? html`<hashmd-toc
                     .locale=${mergedLocale}
                     .currentBlockIndex=${this.currentBlockIndex}

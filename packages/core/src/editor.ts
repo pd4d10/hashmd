@@ -1,10 +1,9 @@
 import { icons } from "./icons";
 import type {
-  HashmdPlugin,
-  HashmdAction,
   EditorProps,
   HashmdLocale,
-  HashmdEditorContext,
+  EditorContext,
+  ToolbarItem,
 } from "./types";
 import { EditorView } from "@codemirror/view";
 import selectFiles from "select-files";
@@ -110,7 +109,7 @@ export function findStartIndex(num: number, nums: number[]) {
   return startIndex;
 }
 
-const getShortcutWithPrefix = (key: string, shift = false) => {
+export const getShortcutWithPrefix = (key: string, shift = false) => {
   const shiftPrefix = shift ? "Shift-" : "";
   const CmdPrefix =
     typeof navigator !== "undefined" && /Mac/.test(navigator.platform)
@@ -120,7 +119,7 @@ const getShortcutWithPrefix = (key: string, shift = false) => {
 };
 
 export async function handleImageUpload(
-  { editor }: HashmdEditorContext,
+  { editor }: EditorContext,
   uploadImages: NonNullable<EditorProps["uploadImages"]>,
   files: File[],
 ) {
@@ -136,176 +135,126 @@ export async function handleImageUpload(
   );
 }
 
-export function getBuiltinActions(
-  locale: HashmdLocale,
-  plugins: HashmdPlugin[],
-  uploadImages: EditorProps["uploadImages"],
-): { leftActions: HashmdAction[]; rightActions: HashmdAction[] } {
-  const leftActions: HashmdAction[] = [
+export function getLeftItems(locale: HashmdLocale): ToolbarItem[] {
+  return [
     {
+      type: "multiple",
       title: "Headings",
       icon: icons.heading,
-      handler: {
-        type: "dropdown",
-        actions: [1, 2, 3, 4, 5, 6].map((level) => ({
-          title: locale[`h${level}` as keyof HashmdLocale],
-          cheatsheet:
-            level <= 3
-              ? `${"#".repeat(level)} ${locale.headingText}`
-              : undefined,
-          handler: {
-            type: "action",
-            click({ editor }) {
-              replaceLines(editor, (line) => {
-                line = line.trim().replace(/^#*/, "").trim();
-                line = "#".repeat(level) + " " + line;
-                return line;
-              });
-            },
-          },
-        })),
-      },
+      actions: [1, 2, 3, 4, 5, 6].map((level) => ({
+        title: locale[`h${level}` as keyof HashmdLocale],
+        cheatsheet:
+          level <= 3 ? `${"#".repeat(level)} ${locale.headingText}` : undefined,
+        click({ editor }) {
+          replaceLines(editor, (line) => {
+            line = line.trim().replace(/^#*/, "").trim();
+            line = "#".repeat(level) + " " + line;
+            return line;
+          });
+        },
+      })),
     },
     {
+      type: "single",
       title: locale.bold,
       icon: icons.bold,
       cheatsheet: `**${locale.boldText}**`,
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("B"),
-        click({ editor }) {
-          wrapText(editor, "**");
-        },
+      shortcut: getShortcutWithPrefix("B"),
+      click({ editor }) {
+        wrapText(editor, "**");
       },
     },
     {
+      type: "single",
       title: locale.italic,
       icon: icons.italic,
       cheatsheet: `*${locale.italicText}*`,
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("I"),
-        click({ editor }) {
-          wrapText(editor, "*");
-        },
+      shortcut: getShortcutWithPrefix("I"),
+      click({ editor }) {
+        wrapText(editor, "*");
       },
     },
     {
+      type: "single",
       title: locale.quote,
       icon: icons.quote,
       cheatsheet: `> ${locale.quotedText}`,
-      handler: {
-        type: "action",
-        click({ editor }) {
-          replaceLines(editor, (line) => "> " + line);
-        },
+      click({ editor }) {
+        replaceLines(editor, (line) => "> " + line);
       },
     },
     {
+      type: "single",
       title: locale.link,
       icon: icons.link,
       cheatsheet: `[${locale.linkText}](url)`,
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("K"),
-        click({ editor }) {
-          wrapText(editor, "[", "](url)");
-        },
+      shortcut: getShortcutWithPrefix("K"),
+      click({ editor }) {
+        wrapText(editor, "[", "](url)");
       },
     },
     {
+      type: "single",
       title: locale.image,
       icon: icons.image,
       cheatsheet: `![${locale.imageAlt}](url "${locale.imageTitle}")`,
-      handler: uploadImages
-        ? {
-            type: "action",
-            shortcut: getShortcutWithPrefix("I", true),
-            async click(ctx) {
-              const fileList = await selectFiles({
-                accept: "image/*",
-                multiple: true,
-              });
+      shortcut: getShortcutWithPrefix("I", true),
+      async click(ctx) {
+        const fileList = await selectFiles({
+          accept: "image/*",
+          multiple: true,
+        });
 
-              if (fileList?.length) {
-                await handleImageUpload(
-                  ctx,
-                  uploadImages,
-                  Array.from(fileList),
-                );
-              }
-            },
-          }
-        : undefined,
+        if (fileList?.length) {
+          // await handleImageUpload(
+          //   ctx,
+          //   uploadImages!, // FIXME:
+          //   Array.from(fileList),
+          // );
+        }
+      },
     },
     {
+      type: "single",
       title: locale.code,
       icon: icons.code,
       cheatsheet: "`" + locale.codeText + "`",
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("K", true),
-        click({ editor }) {
-          wrapText(editor, "`");
-        },
+      shortcut: getShortcutWithPrefix("K", true),
+      click({ editor }) {
+        wrapText(editor, "`");
       },
     },
     {
+      type: "single",
       title: locale.codeBlock,
       icon: icons.codeBlock,
       cheatsheet: "```" + locale.codeLang + "↵",
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("C", true),
-        click({ editor }) {
-          appendBlock(editor, "lang", { prefix: "```", suffix: "\n```\n" });
-        },
+      shortcut: getShortcutWithPrefix("C", true),
+      click({ editor }) {
+        appendBlock(editor, "lang", { prefix: "```", suffix: "\n```\n" });
       },
     },
     {
+      type: "single",
       title: locale.ul,
       icon: icons.ul,
       cheatsheet: `- ${locale.ulItem}`,
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("U", true),
-        click({ editor }) {
-          replaceLines(editor, (line) => "- " + line);
-        },
+      shortcut: getShortcutWithPrefix("U", true),
+      click({ editor }) {
+        replaceLines(editor, (line) => "- " + line);
       },
     },
     {
+      type: "single",
       title: locale.ol,
       icon: icons.ol,
       cheatsheet: `1. ${locale.olItem}`,
-      handler: {
-        type: "action",
-        shortcut: getShortcutWithPrefix("O", true),
-        click({ editor }) {
-          replaceLines(editor, (line, i) => `${i + 1}. ${line}`);
-        },
+      shortcut: getShortcutWithPrefix("O", true),
+      click({ editor }) {
+        replaceLines(editor, (line, i) => `${i + 1}. ${line}`);
       },
     },
-    {
-      title: locale.hr,
-      icon: icons.hr,
-      cheatsheet: "---",
-    },
   ];
-  const rightActions: HashmdAction[] = [];
-  plugins.forEach(({ actions }) => {
-    if (actions) {
-      actions.forEach((action) => {
-        if (!action.position || action.position !== "right")
-          leftActions.push(action);
-        else rightActions.unshift(action);
-      });
-    }
-  });
-  return {
-    leftActions,
-    rightActions,
-  };
 }
 
 if (import.meta.vitest) {

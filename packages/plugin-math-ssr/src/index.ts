@@ -1,5 +1,5 @@
 import en from "./locales/en.json";
-import { MathLocale, getMathActions } from "./utils";
+import { MathLocale, getToolbarItems } from "./utils";
 import type { HashmdPlugin } from "hashmd";
 import rehypeKatex, { Options } from "rehype-katex";
 import remarkMath from "remark-math";
@@ -17,6 +17,6 @@ export default function mathSsr({
   return {
     remark: (processor) => processor.use(remarkMath),
     rehype: (processor) => processor.use<any, any>(rehypeKatex, katexOptions),
-    actions: getMathActions(locale),
+    toolbar: getToolbarItems(locale),
   };
 }

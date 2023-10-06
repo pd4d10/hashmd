@@ -1,39 +1,21 @@
-import { HashmdAction, HashmdLocale } from "./types";
+import { Action, HashmdLocale } from "./types";
 import { LitElement, css, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
-function flatItems(actions: HashmdAction[]) {
-  let items: HashmdAction[] = [];
-
-  actions.forEach((action) => {
-    const { handler, cheatsheet } = action;
-    if (handler?.type === "dropdown") {
-      items.push(...flatItems(handler.actions));
-    }
-    if (cheatsheet) {
-      items.push(action);
-    }
-  });
-
-  return items;
-}
-
 @customElement("hashmd-help")
 export class Help extends LitElement {
   @property() locale!: HashmdLocale;
-  @property() actions!: HashmdAction[];
+  @property() actions!: Action[];
 
   protected render(): unknown {
     const { actions, locale } = this;
-    const items = flatItems(actions);
 
     return html`<h2>${locale.cheatsheet}</h2>
       <ul>
-        ${items.map((action) =>
+        ${actions.map((action) =>
           action.cheatsheet
             ? html`<li>
-                <div class="icon">${unsafeHTML(action.icon)}</div>
                 <div class="title">${action.title}</div>
                 <div class="gap"></div>
                 <div class="content">
@@ -45,14 +27,13 @@ export class Help extends LitElement {
       </ul>
       <h2>${locale.shortcuts}</h2>
       <ul>
-      ${items.map((action) =>
-        action.handler?.type === "action" && action.handler.shortcut
+      ${actions.map((action) =>
+        action.shortcut
           ? html`<li>
-              <div class="icon">${unsafeHTML(action.icon)}</div>
               <div class="title">${action.title}</div>
               <div class="gap"></div>
               <div class="content">
-                <code>${action.handler.shortcut}</code>
+                <code>${action.shortcut}</code>
               </div>
             </li>`
           : nothing,
@@ -90,12 +71,6 @@ export class Help extends LitElement {
       width: 16px;
       height: 16px;
       display: block;
-    }
-    .icon {
-      padding: 2px 0;
-    }
-    .title {
-      padding-left: 8px;
     }
     .gap {
       flex-grow: 1;

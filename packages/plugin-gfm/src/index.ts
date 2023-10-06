@@ -24,42 +24,36 @@ export default function gfm({
 
   return {
     remark: (processor) => processor.use(remarkGfm, remarkGfmOptions),
-    actions: [
+    toolbar: [
       {
+        type: "single",
         title: locale.strike,
         icon: icons.strike,
         cheatsheet: `~~${locale.strikeText}~~`,
-        handler: {
-          type: "action",
-          click({ editor }) {
-            wrapText(editor, "~~");
-          },
+        click({ editor }) {
+          wrapText(editor, "~~");
         },
       },
       {
+        type: "single",
         title: locale.task,
         icon: icons.task,
         cheatsheet: `- [ ] ${locale.taskText}`,
-        handler: {
-          type: "action",
-          click({ editor }) {
-            replaceLines(editor, (line) => "- [ ] " + line);
-          },
+        click({ editor }) {
+          replaceLines(editor, (line) => "- [ ] " + line);
         },
       },
       {
+        type: "single",
         title: locale.table,
         icon: icons.table,
-        handler: {
-          type: "action",
-          click({ editor }) {
-            appendBlock(editor, locale.tableHeading, {
-              prefix: "| ",
-              suffix: ` |  |
+        click({ editor }) {
+          appendBlock(editor, locale.tableHeading, {
+            prefix: "| ",
+            suffix: ` |  |
 | --- | --- |
 |  |  |`,
-            });
-          },
+          });
         },
       },
     ],
