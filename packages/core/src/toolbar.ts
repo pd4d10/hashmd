@@ -141,6 +141,7 @@ export class Toolbar extends LitElement {
               ? html`
                   <div
                     class="icon"
+                    title=${item.title}
                     @click=${() => {
                       if (item.handler?.type === "action") {
                         item.handler.click(this.context);
@@ -178,7 +179,7 @@ export class Toolbar extends LitElement {
                           <div class="dropdown">
                             <div class="dropdown-title">${item.title}</div>
                             ${item.handler.actions.map(
-                              (subAction, i) => html`
+                              (subAction) => html`
                                 <div
                                   class="dropdown-item"
                                   @click=${() => {
