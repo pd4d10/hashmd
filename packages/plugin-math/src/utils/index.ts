@@ -11,14 +11,14 @@ export type MathLocale = {
 export function getMathActions(locale: MathLocale): HashmdAction[] {
   return [
     {
-      icon: icons.Formula,
+      icon: icons.formula,
       title: "Math",
       handler: {
         type: "dropdown",
         actions: [
           {
             title: locale.inline,
-            icon: icons.Inline,
+            icon: icons.inline,
             cheatsheet: `$${locale.inlineText}$`,
             handler: {
               type: "action",
@@ -29,7 +29,7 @@ export function getMathActions(locale: MathLocale): HashmdAction[] {
           },
           {
             title: locale.block,
-            icon: icons.Block,
+            icon: icons.block,
             cheatsheet: `$$↵${locale.blockText}↵$$`,
             handler: {
               type: "action",

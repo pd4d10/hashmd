@@ -12,7 +12,7 @@ export class Sidebar extends LitElement {
           this.dispatchEvent(new CustomEvent("close"));
         }}
       >
-        ${unsafeHTML(icons.Close)}
+        ${unsafeHTML(icons.close)}
       </div>
       <slot></slot>`;
   }

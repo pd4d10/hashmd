@@ -4,40 +4,48 @@ import { execSync } from "child_process";
 import fs from "fs-extra";
 import svgo from "svgo";
 
-/** @type {Record<string, (keyof typeof import('@icon-park/svg/es/map'))[]>} */
+/** @type {Record<string, Record<string, keyof typeof import('@icon-park/svg/es/map')>>} */
 const meta = {
-  "core/src": [
-    "Close",
+  "core/src": {
+    close: "Close",
 
-    "H",
-    "TextBold",
-    "TextItalic",
-    "Quote",
-    "LinkOne",
-    "Pic",
-    "Code",
-    "CodeBrackets",
-    "ListTwo",
-    "OrderedList",
-    "DividingLine",
+    heading: "H",
+    bold: "TextBold",
+    italic: "TextItalic",
+    quote: "Quote",
+    link: "LinkOne",
+    image: "Pic",
+    code: "Code",
+    codeBlock: "CodeBrackets",
+    ul: "ListTwo",
+    ol: "OrderedList",
+    hr: "DividingLine",
 
-    "AlignTextLeftOne",
-    "Helpcenter",
-    "LeftExpand",
-    "RightExpand",
-    "OffScreen",
-    "FullScreen",
-    "GithubOne",
-  ],
-  "plugin-gfm/src": ["Strikethrough", "CheckCorrect", "InsertTable"],
-  "plugin-math/src/utils": ["Formula", "Inline", "Block"],
-  "plugin-mermaid/src": ["ChartGraph"],
+    toc: "AlignTextLeftOne",
+    help: "Helpcenter",
+    write: "LeftExpand",
+    preview: "RightExpand",
+    exitFullscreen: "OffScreen",
+    fullscreen: "FullScreen",
+    source: "GithubOne",
+  },
+  "plugin-gfm/src": {
+    strike: "Strikethrough",
+    task: "CheckCorrect",
+    table: "InsertTable",
+  },
+  "plugin-math/src/utils": {
+    formula: "Formula",
+    block: "Inline",
+    inline: "Block",
+  },
+  "plugin-mermaid/src": { mermaid: "ChartGraph" },
 };
 
-for (let [p, keys] of Object.entries(meta)) {
+for (let [p, keyMap] of Object.entries(meta)) {
   let obj = {};
-  for (let key of keys) {
-    const svg = svgo.optimize(icons[key]({}));
+  for (let [key, iconKey] of Object.entries(keyMap)) {
+    const svg = svgo.optimize(icons[iconKey]({}));
     obj[key] = svg.data;
   }
 

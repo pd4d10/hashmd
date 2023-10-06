@@ -179,7 +179,7 @@ another task      : 24d`,
     actions: [
       {
         title: locale.mermaid,
-        icon: icons.ChartGraph,
+        icon: icons.mermaid,
         cheatsheet: "```mermaid",
         handler: {
           type: "dropdown",

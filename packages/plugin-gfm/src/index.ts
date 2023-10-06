@@ -27,7 +27,7 @@ export default function gfm({
     actions: [
       {
         title: locale.strike,
-        icon: icons.Strikethrough,
+        icon: icons.strike,
         cheatsheet: `~~${locale.strikeText}~~`,
         handler: {
           type: "action",
@@ -38,7 +38,7 @@ export default function gfm({
       },
       {
         title: locale.task,
-        icon: icons.CheckCorrect,
+        icon: icons.task,
         cheatsheet: `- [ ] ${locale.taskText}`,
         handler: {
           type: "action",
@@ -49,7 +49,7 @@ export default function gfm({
       },
       {
         title: locale.table,
-        icon: icons.InsertTable,
+        icon: icons.table,
         handler: {
           type: "action",
           click({ editor }) {

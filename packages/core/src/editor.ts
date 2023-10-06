@@ -144,7 +144,7 @@ export function getBuiltinActions(
   const leftActions: HashmdAction[] = [
     {
       title: "Headings",
-      icon: icons.H,
+      icon: icons.heading,
       handler: {
         type: "dropdown",
         actions: [1, 2, 3, 4, 5, 6].map((level) => ({
@@ -168,7 +168,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.bold,
-      icon: icons.TextBold,
+      icon: icons.bold,
       cheatsheet: `**${locale.boldText}**`,
       handler: {
         type: "action",
@@ -180,7 +180,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.italic,
-      icon: icons.TextItalic,
+      icon: icons.italic,
       cheatsheet: `*${locale.italicText}*`,
       handler: {
         type: "action",
@@ -192,7 +192,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.quote,
-      icon: icons.Quote,
+      icon: icons.quote,
       cheatsheet: `> ${locale.quotedText}`,
       handler: {
         type: "action",
@@ -203,7 +203,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.link,
-      icon: icons.LinkOne,
+      icon: icons.link,
       cheatsheet: `[${locale.linkText}](url)`,
       handler: {
         type: "action",
@@ -215,7 +215,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.image,
-      icon: icons.Pic,
+      icon: icons.image,
       cheatsheet: `![${locale.imageAlt}](url "${locale.imageTitle}")`,
       handler: uploadImages
         ? {
@@ -240,7 +240,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.code,
-      icon: icons.Code,
+      icon: icons.code,
       cheatsheet: "`" + locale.codeText + "`",
       handler: {
         type: "action",
@@ -252,7 +252,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.codeBlock,
-      icon: icons.CodeBrackets,
+      icon: icons.codeBlock,
       cheatsheet: "```" + locale.codeLang + "↵",
       handler: {
         type: "action",
@@ -264,7 +264,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.ul,
-      icon: icons.ListTwo,
+      icon: icons.ul,
       cheatsheet: `- ${locale.ulItem}`,
       handler: {
         type: "action",
@@ -276,7 +276,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.ol,
-      icon: icons.OrderedList,
+      icon: icons.ol,
       cheatsheet: `1. ${locale.olItem}`,
       handler: {
         type: "action",
@@ -288,7 +288,7 @@ export function getBuiltinActions(
     },
     {
       title: locale.hr,
-      icon: icons.DividingLine,
+      icon: icons.hr,
       cheatsheet: "---",
     },
   ];

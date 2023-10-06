@@ -46,7 +46,7 @@ export class Toolbar extends LitElement {
     const rightActions: RightAction[] = [
       {
         title: tocActive ? locale.closeToc : locale.toc,
-        icon: icons.AlignTextLeftOne,
+        icon: icons.toc,
         handler: {
           type: "action",
           click: () => {
@@ -59,7 +59,7 @@ export class Toolbar extends LitElement {
       },
       {
         title: helpActive ? locale.closeHelp : locale.help,
-        icon: icons.Helpcenter,
+        icon: icons.help,
         handler: {
           type: "action",
           click: () => {
@@ -72,7 +72,7 @@ export class Toolbar extends LitElement {
       },
       {
         title: writeActive ? locale.exitWriteOnly : locale.writeOnly,
-        icon: icons.LeftExpand,
+        icon: icons.write,
         handler: {
           type: "action",
           click: () => {
@@ -84,7 +84,7 @@ export class Toolbar extends LitElement {
       },
       {
         title: previewActive ? locale.exitPreviewOnly : locale.previewOnly,
-        icon: icons.RightExpand,
+        icon: icons.preview,
         handler: {
           type: "action",
           click: () => {
@@ -96,7 +96,7 @@ export class Toolbar extends LitElement {
       },
       {
         title: fullscreen ? locale.exitFullscreen : locale.fullscreen,
-        icon: fullscreen ? icons.OffScreen : icons.FullScreen,
+        icon: fullscreen ? icons.exitFullscreen : icons.fullscreen,
         handler: {
           type: "action",
           click: () => {
@@ -106,7 +106,7 @@ export class Toolbar extends LitElement {
       },
       {
         title: locale.source,
-        icon: icons.GithubOne,
+        icon: icons.source,
         handler: {
           type: "action",
           click: () => {
