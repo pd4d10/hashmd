@@ -66,14 +66,6 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
     Add as many paragraphs as you like.
 
-## Gemoji
-
-Thumbs up: :+1:, thumbs down: :-1:.
-
-Families: :family_man_man_boy_boy:
-
-Long flags: :wales:, :scotland:, :england:.
-
 ## Math Equation
 
 Inline math equation: $a+b$

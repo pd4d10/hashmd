@@ -26,9 +26,6 @@
       "path": "../../packages/plugin-frontmatter"
     },
     {
-      "path": "../../packages/plugin-gemoji"
-    },
-    {
       "path": "../../packages/plugin-gfm"
     },
     {

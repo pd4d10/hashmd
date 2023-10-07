@@ -82,7 +82,7 @@ importers:
     dependencies:
       vitepress:
         specifier: 1.0.0-rc.20
-        version: 1.0.0-rc.20(@algolia/client-search@4.20.0)(sass@1.68.0)(search-insights@2.8.3)
+        version: 1.0.0-rc.20(@algolia/client-search@4.20.0)(sass@1.69.0)(search-insights@2.8.3)
 
   examples/lit:
     dependencies:
@@ -92,9 +92,6 @@ importers:
       '@hashmd/plugin-frontmatter':
         specifier: workspace:*
         version: link:../../packages/plugin-frontmatter
-      '@hashmd/plugin-gemoji':
-        specifier: workspace:*
-        version: link:../../packages/plugin-gemoji
       '@hashmd/plugin-gfm':
         specifier: workspace:*
         version: link:../../packages/plugin-gfm
@@ -228,16 +225,6 @@ importers:
       vfile:
         specifier: ^6.0.1
         version: 6.0.1
-    devDependencies:
-      hashmd:
-        specifier: workspace:*
-        version: link:../core
-
-  packages/plugin-gemoji:
-    dependencies:
-      remark-gemoji:
-        specifier: ^8.0.0
-        version: 8.0.0
     devDependencies:
       hashmd:
         specifier: workspace:*
@@ -3596,10 +3583,6 @@ packages:
       wide-align: 1.1.5
     dev: true
 
-  /gemoji@8.1.0:
-    resolution: {integrity: sha512-HA4Gx59dw2+tn+UAa7XEV4ufUKI4fH1KgcbenVA9YKSj1QJTT0xh5Mwv5HMFNN3l2OtUe3ZIfuRwSyZS5pLIWw==}
-    dev: false
-
   /get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
@@ -6600,14 +6583,6 @@ packages:
       - supports-color
     dev: false
 
-  /remark-gemoji@8.0.0:
-    resolution: {integrity: sha512-/fL9rc72FYwFGtOKcT+QeQdx9Q9t5v4N6KLXSDOTEgaedzK85I9judBqB2eqz+g4b0ERMejlwSOuPK+wket6aA==}
-    dependencies:
-      '@types/mdast': 4.0.1
-      gemoji: 8.1.0
-      mdast-util-find-and-replace: 3.0.1
-    dev: false
-
   /remark-gfm@4.0.0:
     resolution: {integrity: sha512-U92vJgBPkbw4Zfu/IiW2oTZLSL3Zpv+uI7My2eq8JxKgqraFdU8YUGicEJCEgSbeaG+QDFqIcwwfMTOEelPxuA==}
     dependencies:
@@ -6787,16 +6762,6 @@ packages:
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sass@1.68.0:
-    resolution: {integrity: sha512-Lmj9lM/fef0nQswm1J2HJcEsBUba4wgNx2fea6yJHODREoMFnwRpZydBnX/RjyXw2REIwdkbqE4hrTo4qfDBUA==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.5.3
-      immutable: 4.3.4
-      source-map-js: 1.0.2
-    dev: false
-
   /sass@1.69.0:
     resolution: {integrity: sha512-l3bbFpfTOGgQZCLU/gvm1lbsQ5mC/WnLz3djL2v4WCJBDrWm58PO+jgngcGRNnKUh6wSsdm50YaovTqskZ0xDQ==}
     engines: {node: '>=14.0.0'}
@@ -6805,7 +6770,6 @@ packages:
       chokidar: 3.5.3
       immutable: 4.3.4
       source-map-js: 1.0.2
-    dev: true
 
   /search-insights@2.8.3:
     resolution: {integrity: sha512-W9rZfQ9XEfF0O6ntgQOTI7Txc8nkZrO4eJ/pTHK0Br6wWND2sPGPoWg+yGhdIW7wMbLqk8dc23IyEtLlNGpeNw==}
@@ -7614,43 +7578,6 @@ packages:
       - typescript
     dev: true
 
-  /vite@4.4.11(@types/node@20.8.2)(sass@1.68.0):
-    resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 20.8.2
-      esbuild: 0.18.20
-      postcss: 8.4.31
-      rollup: 3.29.4
-      sass: 1.68.0
-    optionalDependencies:
-      fsevents: 2.3.3
-    dev: false
-
   /vite@4.4.11(@types/node@20.8.2)(sass@1.69.0):
     resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -7686,9 +7613,8 @@ packages:
       sass: 1.69.0
     optionalDependencies:
       fsevents: 2.3.3
-    dev: true
 
-  /vitepress@1.0.0-rc.20(@algolia/client-search@4.20.0)(sass@1.68.0)(search-insights@2.8.3):
+  /vitepress@1.0.0-rc.20(@algolia/client-search@4.20.0)(sass@1.69.0)(search-insights@2.8.3):
     resolution: {integrity: sha512-CykMUJ8JLxLcGWek0ew3wln4RYbsOd1+0YzXITTpajggpynm2S331TNkJVOkHrMRc6GYe3y4pS40GfgcW0ZwAw==}
     hasBin: true
     peerDependencies:
@@ -7710,7 +7636,7 @@ packages:
       mark.js: 8.11.1
       minisearch: 6.1.0
       shiki: 0.14.4
-      vite: 4.4.11(@types/node@20.8.2)(sass@1.68.0)
+      vite: 4.4.11(@types/node@20.8.2)(sass@1.69.0)
       vue: 3.3.4
     transitivePeerDependencies:
       - '@algolia/client-search'

@@ -1,7 +1,6 @@
 import markdownText from "./text.md?raw";
 import breaks from "@hashmd/plugin-breaks";
 import frontmatter from "@hashmd/plugin-frontmatter";
-import gemoji from "@hashmd/plugin-gemoji";
 import gfm from "@hashmd/plugin-gfm";
 import highlight from "@hashmd/plugin-highlight";
 import math from "@hashmd/plugin-math";
@@ -53,7 +52,6 @@ export class MyElement extends LitElement {
   @property() enabled = {
     breaks: false,
     frontmatter: true,
-    gemoji: true,
     gfm: true,
     highlight: true,
     math: true,
@@ -66,7 +64,6 @@ export class MyElement extends LitElement {
     const plugins = [
       enabled.breaks && breaks(),
       enabled.frontmatter && frontmatter(),
-      enabled.gemoji && gemoji(),
       enabled.gfm &&
         gfm({
           locale: gfmLocales[locale],
