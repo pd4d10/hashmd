@@ -26,7 +26,7 @@
     "locales"
   ],
   "dependencies": {
-    "@types/js-yaml": "^4.0.5",
+    "@types/js-yaml": "^4.0.7",
     "js-yaml": "^4.1.0",
     "remark-frontmatter": "^5.0.0",
     "vfile": "^6.0.1"

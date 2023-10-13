@@ -26,6 +26,9 @@
       "path": "packages/plugin-math"
     },
     {
+      "path": "packages/plugin-math-ssr"
+    },
+    {
       "path": "packages/plugin-medium-zoom"
     },
     {
@@ -33,9 +36,6 @@
     },
     {
       "path": "packages/react"
-    },
-    {
-      "path": "packages/plugin-math-ssr"
     }
   ]
 }

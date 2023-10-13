@@ -26,7 +26,7 @@
     "locales"
   ],
   "dependencies": {
-    "highlight.js": "^11.7.0"
+    "highlight.js": "^11.9.0"
   },
   "devDependencies": {
     "hashmd": "workspace:*"
