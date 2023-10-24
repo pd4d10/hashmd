@@ -4,8 +4,10 @@
   "flowchart": "Diagrama de flujo",
   "gantt": "Diagrama de Gantt",
   "mermaid": "Diagramas de Mermaid",
+  "mindmap": "Mapa mental",
   "pie": "Gráfico sectorial",
   "sequence": "Diagrama de secuencia",
   "state": "Diagrama de estado",
+  "timeline": "Cronología",
   "uj": "Diagrama de trayecto de usuario"
 }
