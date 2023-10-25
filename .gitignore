@@ -5,3 +5,4 @@ dist
 tsconfig.tsbuildinfo
 coverage
 packages/*/LICENSE
+cache/

@@ -1,50 +1,38 @@
-import { icons } from './icons'
-import type { BytemdAction } from 'bytemd'
+import { icons } from "./icons";
+import { wrapText, appendBlock, ToolbarItem } from "hashmd";
 
 export type MathLocale = {
-  inline: string
-  inlineText: string
-  block: string
-  blockText: string
-}
+  inline: string;
+  inlineText: string;
+  block: string;
+  blockText: string;
+};
 
-export function getMathActions(locale: MathLocale): BytemdAction[] {
+export function getToolbarItems(locale: MathLocale): ToolbarItem[] {
   return [
     {
-      icon: icons.Formula,
-      handler: {
-        type: 'dropdown',
-        actions: [
-          {
-            title: locale.inline,
-            icon: icons.Inline,
-            cheatsheet: `$${locale.inlineText}$`,
-            handler: {
-              type: 'action',
-              click({ wrapText, editor }) {
-                wrapText('$')
-                editor.focus()
-              },
-            },
+      type: "multiple",
+      icon: icons.formula,
+      title: "Math",
+      actions: [
+        {
+          title: locale.inline,
+          cheatsheet: `$${locale.inlineText}$`,
+          click({ detail: { editor } }) {
+            wrapText(editor, "$");
           },
-          {
-            title: locale.block,
-            icon: icons.Block,
-            cheatsheet: `$$↵${locale.blockText}↵$$`,
-            handler: {
-              type: 'action',
-              click({ appendBlock, editor, codemirror }) {
-                const { line } = appendBlock('$$\n\\TeX\n$$')
-                editor.setSelection(
-                  codemirror.Pos(line + 1, 0),
-                  codemirror.Pos(line + 1, 4)
-                )
-                editor.focus()
-              },
-            },
+        },
+        {
+          title: locale.block,
+          cheatsheet: `$$↵${locale.blockText}↵$$`,
+          click({ detail: { editor } }) {
+            appendBlock(editor, "\\TeX", {
+              prefix: "$$\n",
+              suffix: "\n$$",
+            });
           },
-        ],
-      },
+        },
+      ],
     },
-  ]
+  ];
 }

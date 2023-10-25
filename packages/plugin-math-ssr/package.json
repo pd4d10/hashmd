@@ -1,26 +1,24 @@
 {
-  "name": "@bytemd/plugin-math-ssr",
+  "name": "@hashmd/plugin-math-ssr",
   "version": "1.21.0",
-  "description": "ByteMD plugin to support math formula (SSR compatible)",
+  "description": "HashMD plugin to support math formula (SSR compatible)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-math-ssr"
   },
   "license": "MIT",
   "author": "Rongjian Zhang",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./locales/*": "./locales/*",
-    "./lib/locales/*": "./locales/*"
+    "./locales/*": "./locales/*"
   },
   "main": "./dist/index.js",
-  "jsdelivr": "./dist/index.umd.js",
-  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -28,13 +26,13 @@
     "locales"
   ],
   "dependencies": {
-    "rehype-katex": "^6.0.2",
-    "remark-math": "^5.1.1"
+    "rehype-katex": "^7.0.0",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

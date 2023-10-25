@@ -1,26 +1,24 @@
 {
-  "name": "@bytemd/plugin-medium-zoom",
+  "name": "@hashmd/plugin-medium-zoom",
   "version": "1.21.0",
-  "description": "ByteMD plugin to zoom images like Medium",
+  "description": "HashMD plugin to zoom images like Medium",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-medium-zoom"
   },
   "license": "MIT",
   "author": "Rongjian Zhang",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./locales/*": "./locales/*",
-    "./lib/locales/*": "./locales/*"
+    "./locales/*": "./locales/*"
   },
   "main": "./dist/index.js",
-  "jsdelivr": "./dist/index.umd.js",
-  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -31,9 +29,9 @@
     "medium-zoom": "^1.0.8"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

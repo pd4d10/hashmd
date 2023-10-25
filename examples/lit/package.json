@@ -1,0 +1,27 @@
+{
+  "name": "example-lit",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hashmd/plugin-breaks": "workspace:*",
+    "@hashmd/plugin-frontmatter": "workspace:*",
+    "@hashmd/plugin-gfm": "workspace:*",
+    "@hashmd/plugin-highlight": "workspace:*",
+    "@hashmd/plugin-highlight-ssr": "workspace:*",
+    "@hashmd/plugin-math": "workspace:*",
+    "@hashmd/plugin-math-ssr": "workspace:*",
+    "@hashmd/plugin-medium-zoom": "workspace:*",
+    "@hashmd/plugin-mermaid": "workspace:*",
+    "github-markdown-css": "^5.3.0",
+    "hashmd": "workspace:*",
+    "highlight.js": "^11.9.0",
+    "katex": "^0.16.9",
+    "lit": "^3.0.0"
+  }
+}

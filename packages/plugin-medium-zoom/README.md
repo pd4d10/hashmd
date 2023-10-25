@@ -1,14 +1,14 @@
-# @bytemd/plugin-medium-zoom
+# @hashmd/plugin-medium-zoom
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-medium-zoom.svg)](https://npm.im/@bytemd/plugin-medium-zoom)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-medium-zoom.svg)](https://npm.im/@hashmd/plugin-medium-zoom)
 
-ByteMD plugin to zoom images like Medium
+HashMD plugin to zoom images like Medium
 
 ## Usage
 
 ```js
-import mediumZoom from '@bytemd/plugin-medium-zoom'
-import { Editor } from 'bytemd'
+import mediumZoom from "@hashmd/plugin-medium-zoom";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

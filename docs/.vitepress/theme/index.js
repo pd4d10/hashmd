@@ -1,6 +1,5 @@
 // https://vitepress.vuejs.org/guide/theming.html#customizing-css
+import "./custom.css";
+import DefaultTheme from "vitepress/theme";
 
-import DefaultTheme from 'vitepress/theme'
-import './custom.css'
-
-export default DefaultTheme
+export default DefaultTheme;

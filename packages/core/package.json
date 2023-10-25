@@ -1,0 +1,58 @@
+{
+  "name": "hashmd",
+  "version": "1.21.0",
+  "description": "Hackable Markdown Editor and Viewer",
+  "keywords": [
+    "markdown",
+    "editor",
+    "viewer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pd4d10/hashmd.git",
+    "directory": "packages/core"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "locales"
+  ],
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.10.2",
+    "@codemirror/commands": "^6.3.0",
+    "@codemirror/lang-markdown": "^6.2.2",
+    "@codemirror/language": "^6.9.1",
+    "@codemirror/search": "^6.5.4",
+    "@codemirror/view": "^6.21.3",
+    "@floating-ui/dom": "^1.5.3",
+    "@types/hast": "^3.0.1",
+    "@types/lodash-es": "^4.17.9",
+    "@types/mdast": "^4.0.1",
+    "hast-util-sanitize": "^5.0.0",
+    "lit": "^3.0.0",
+    "lodash-es": "^4.17.21",
+    "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.0.0",
+    "select-files": "^1.0.1",
+    "unified": "^11.0.3",
+    "unist-util-visit": "^5.0.0",
+    "vfile": "^6.0.1",
+    "word-count": "^0.2.2"
+  }
+}

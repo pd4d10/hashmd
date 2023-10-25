@@ -1,26 +1,24 @@
 {
-  "name": "@bytemd/plugin-frontmatter",
+  "name": "@hashmd/plugin-frontmatter",
   "version": "1.21.0",
-  "description": "ByteMD plugin to parse frontmatter",
+  "description": "HashMD plugin to parse frontmatter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/plugin-frontmatter"
   },
   "license": "MIT",
   "author": "Rongjian Zhang",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./locales/*": "./locales/*",
-    "./lib/locales/*": "./locales/*"
+    "./locales/*": "./locales/*"
   },
   "main": "./dist/index.js",
-  "jsdelivr": "./dist/index.umd.js",
-  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -28,15 +26,15 @@
     "locales"
   ],
   "dependencies": {
-    "@types/js-yaml": "^4.0.5",
+    "@types/js-yaml": "^4.0.7",
     "js-yaml": "^4.1.0",
-    "remark-frontmatter": "^4.0.1",
-    "vfile": "^5.3.7"
+    "remark-frontmatter": "^5.0.0",
+    "vfile": "^6.0.1"
   },
   "devDependencies": {
-    "bytemd": "workspace:*"
+    "hashmd": "workspace:*"
   },
   "peerDependencies": {
-    "bytemd": "^1.5.0"
+    "hashmd": "^1.5.0"
   }
 }

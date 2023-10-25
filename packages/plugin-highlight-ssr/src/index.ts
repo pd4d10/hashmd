@@ -1,12 +1,8 @@
-import type { BytemdPlugin } from 'bytemd'
-import rehypeHighlight, { Options } from 'rehype-highlight'
+import type { Plugin } from "hashmd";
+import rehypeHighlight, { Options } from "rehype-highlight";
 
-export default function highlightSsr({
-  ignoreMissing = true,
-  ...rest
-}: Options = {}): BytemdPlugin {
+export default function highlightSsr(options: Options = {}): Plugin {
   return {
-    rehype: (processor) =>
-      processor.use(rehypeHighlight, { ignoreMissing, ...rest }),
-  }
+    rehype: (processor) => processor.use<any, any>(rehypeHighlight, options),
+  };
 }

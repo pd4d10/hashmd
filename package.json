@@ -1,71 +1,53 @@
 {
-  "name": "@bytemd/monorepo",
+  "name": "@hashmd/monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "type": "module",
   "scripts": {
-    "build": "pnpm clean && node scripts/build.mjs && tsc --build",
+    "build": "pnpm clean && pnpm icon && tsc --build && echo TODO",
     "clean": "rm -rf packages/*/tsconfig.tsbuildinfo && rm -rf packages/*/dist",
-    "dev": "pnpm --filter playground dev",
-    "format": "prettier --write '**/*.{ts,tsx,json,md,svelte}' && sort-package-json package.json 'packages/*/package.json'",
-    "postinstall": "node scripts/postinstall.mjs && pnpm format && sort-json packages/*/locales/*.json",
+    "dev": "pnpm --filter example-lit dev",
+    "format": "prettier --write '**/*.{ts,tsx,js,json,css,md}'",
+    "icon": "node scripts/icon.js && prettier --write '**/icons.ts'",
+    "postinstall": "node scripts/postinstall.js && tsconfig-gen && pnpm format && sort-json packages/*/locales/*.json",
     "pub": "pnpm build && lerna publish",
-    "style": "prettier --check '**/*.{ts,tsx,json,md,svelte}'",
-    "test": "vitest"
+    "style": "prettier --check '**/*.{ts,tsx,js,json,css,md}'",
+    "test": "echo TODO"
   },
   "prettier": {
-    "pluginSearchDirs": [
-      "."
+    "importOrderParserPlugins": [
+      "typescript",
+      "jsx",
+      "decorators-legacy"
     ],
-    "proseWrap": "never",
-    "semi": false,
-    "singleQuote": true
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports",
+      "prettier-plugin-packagejson"
+    ]
   },
   "devDependencies": {
     "@icon-park/svg": "^1.4.2",
-    "@sveltejs/vite-plugin-svelte": "2.0.4",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/svelte": "^3.2.2",
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/fs-extra": "^11.0.1",
-    "@types/lodash-es": "^4.17.7",
-    "@types/resolve": "^1.20.2",
-    "conventional-changelog-cli": "^2.2.2",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/fs-extra": "^11.0.2",
+    "@types/lodash-es": "^4.17.9",
+    "@types/resolve": "^1.20.3",
     "decode-named-character-reference": "^1.0.2",
-    "execa": "^7.1.1",
-    "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
-    "jsdom": "^21.1.1",
-    "lerna": "^6.6.1",
+    "happy-dom": "^12.9.1",
+    "lerna": "^7.3.1",
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
-    "prettier": "^2.8.7",
-    "prettier-plugin-svelte": "^2.10.0",
-    "resolve": "^1.22.1",
-    "sass": "^1.60.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-packagejson": "^2.4.6",
+    "resolve": "^1.22.8",
+    "sass": "^1.69.3",
     "sort-json": "^2.0.1",
-    "sort-package-json": "^2.4.1",
-    "svelte": "^3.57.0",
-    "svelte-preprocess": "^5.0.3",
-    "svelte2tsx": "^0.6.10",
     "svgo": "^3.0.2",
-    "typescript": "^5.0.2",
-    "vite": "^4.2.1",
-    "vitest": "^0.29.8"
+    "tsconfig-gen": "^0.3.1",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11",
+    "vite-workspace": "^0.2.0",
+    "vitest": "^0.34.6"
   },
-  "packageManager": "pnpm@8.1.0",
-  "bundlewatch": {
-    "files": [
-      {
-        "path": "packages/*/dist/index.umd.js"
-      }
-    ],
-    "ci": {
-      "repoBranchBase": "main",
-      "trackBranches": [
-        "main"
-      ]
-    }
-  }
+  "packageManager": "pnpm@8.8.0"
 }

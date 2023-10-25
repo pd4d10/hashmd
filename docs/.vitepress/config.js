@@ -1,19 +1,19 @@
 // @ts-check
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 export default defineConfig({
-  title: 'ByteMD',
-  description: 'Hackable Markdown Editor and Viewer',
+  title: "HashMD",
+  description: "Hackable Markdown Editor and Viewer",
   themeConfig: {
     nav: [
       {
-        text: 'Playground',
-        link: 'https://bytemd.js.org/playground/',
+        text: "Playground",
+        link: "https://hashmd.js.org/playground/",
       },
       {
-        text: 'GitHub',
-        link: 'https://github.com/bytedance/bytemd',
+        text: "GitHub",
+        link: "https://github.com/pd4d10/hashmd",
       },
     ],
   },
-})
+});

@@ -1,14 +1,14 @@
-# @bytemd/plugin-gfm
+# @hashmd/plugin-gfm
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-gfm.svg)](https://npm.im/@bytemd/plugin-gfm)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-gfm.svg)](https://npm.im/@hashmd/plugin-gfm)
 
-ByteMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)
+HashMD plugin to support GFM (autolink literals, strikethrough, tables, tasklists)
 
 ## Usage
 
 ```js
-import gfm from '@bytemd/plugin-gfm'
-import { Editor } from 'bytemd'
+import gfm from "@hashmd/plugin-gfm";
+import { Editor } from "hashmd";
 
 new Editor({
   target: document.body,
@@ -18,7 +18,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

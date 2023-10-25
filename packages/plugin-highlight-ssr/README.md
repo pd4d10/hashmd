@@ -1,15 +1,15 @@
-# @bytemd/plugin-highlight-ssr
+# @hashmd/plugin-highlight-ssr
 
-[![npm](https://img.shields.io/npm/v/@bytemd/plugin-highlight-ssr.svg)](https://npm.im/@bytemd/plugin-highlight-ssr)
+[![npm](https://img.shields.io/npm/v/@hashmd/plugin-highlight-ssr.svg)](https://npm.im/@hashmd/plugin-highlight-ssr)
 
-ByteMD plugin to highlight code blocks (SSR compatible)
+HashMD plugin to highlight code blocks (SSR compatible)
 
 ## Usage
 
 ```js
-import highlight from '@bytemd/plugin-highlight-ssr'
-import { Editor } from 'bytemd'
-import 'highlight.js/styles/default.css'
+import highlight from "@hashmd/plugin-highlight-ssr";
+import { Editor } from "hashmd";
+import "highlight.js/styles/default.css";
 
 new Editor({
   target: document.body,
@@ -19,7 +19,7 @@ new Editor({
       // ... other plugins
     ],
   },
-})
+});
 ```
 
 ## License

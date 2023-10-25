@@ -1,0 +1,191 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`append block > basic 1`] = `
+{
+  "doc": "text
+
+block
+",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 6,
+        "head": 11,
+      },
+    ],
+  },
+}
+`;
+
+exports[`append block > with prefix and suffix 1`] = `
+{
+  "doc": "text
+
+\`\`\`js
+let x = 1
+\`\`\`
+",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 12,
+        "head": 21,
+      },
+    ],
+  },
+}
+`;
+
+exports[`replace lines > basic 1`] = `
+{
+  "doc": "> line1
+line2",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 7,
+      },
+    ],
+  },
+}
+`;
+
+exports[`replace lines > with selection 1`] = `
+{
+  "doc": "> line1
+> line2",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 15,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > find word 1`] = `
+{
+  "doc": "[text](url)",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 1,
+        "head": 5,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > find word 2`] = `
+{
+  "doc": "text",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 4,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > no word 1`] = `
+{
+  "doc": "[](url)",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 1,
+        "head": 1,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > no word 2`] = `
+{
+  "doc": "",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with same prefix and suffix 1`] = `
+{
+  "doc": "*text*",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 1,
+        "head": 5,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with same prefix and suffix 2`] = `
+{
+  "doc": "text",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 0,
+        "head": 4,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with selection 1`] = `
+{
+  "doc": "t[ex](url)t",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 2,
+        "head": 4,
+      },
+    ],
+  },
+}
+`;
+
+exports[`wrap text > with selection 2`] = `
+{
+  "doc": "text",
+  "selection": {
+    "main": 0,
+    "ranges": [
+      {
+        "anchor": 1,
+        "head": 3,
+      },
+    ],
+  },
+}
+`;

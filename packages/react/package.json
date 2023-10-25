@@ -1,26 +1,24 @@
 {
-  "name": "@bytemd/react",
+  "name": "@hashmd/react",
   "version": "1.21.0",
   "description": "Hackable Markdown Editor and Viewer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bytedance/bytemd.git",
+    "url": "https://github.com/pd4d10/hashmd.git",
     "directory": "packages/react"
   },
   "license": "MIT",
   "author": "Rongjian Zhang",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./locales/*": "./locales/*",
-    "./lib/locales/*": "./locales/*"
+    "./locales/*": "./locales/*"
   },
   "main": "./dist/index.js",
-  "jsdelivr": "./dist/index.umd.js",
-  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -28,10 +26,11 @@
     "locales"
   ],
   "dependencies": {
-    "bytemd": "workspace:*"
+    "@lit-labs/react": "^2.1.1",
+    "hashmd": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.0.31",
+    "@types/react": "^18.2.28",
     "react": "^18.2.0"
   },
   "peerDependencies": {
