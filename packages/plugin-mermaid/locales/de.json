@@ -4,8 +4,10 @@
   "flowchart": "Flussdiagramm",
   "gantt": "Gantt-Diagramm",
   "mermaid": "Mermaid-Diagramme",
+  "mindmap": "Gedankenkarten",
   "pie": "Kreisdiagramm",
   "sequence": "Sequenzdiagramm",
   "state": "Zustandsdiagramm",
+  "timeline": "Zeitleiste",
   "uj": "User Journey-Diagramm"
 }
