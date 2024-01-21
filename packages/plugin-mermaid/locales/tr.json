@@ -4,8 +4,10 @@
   "flowchart": "Akış diyagramı",
   "gantt": "Gantt şeması",
   "mermaid": "Mermaid diyagramları",
+  "mindmap": "Akıl haritaları",
   "pie": "Pasta grafiği",
   "sequence": "Sıra diyagramı",
   "state": "Durum diyagramı",
+  "timeline": "Zaman çizelgesi",
   "uj": "Kullanıcı yolculuk diyagramı"
 }
